@@ -1,16 +1,21 @@
-# feeel
+Feeel
+=====
 
-A new Flutter project.
+Feeel is an open-source app for doing simple at-home exercises.
 
-## Getting Started
+This is an in-progress rewrite of the [original app](https://gitlab.com/enjoyingfoss/feeel) in Flutter. It doesn't work as it should yet, but hopefully it will soon. *Get involved* to speed up the process!
 
-This project is a starting point for a Flutter application.
+To get a general idea of the app, see this video:
+![YouTube video introduction](https://youtu.be/h1-HracNEWE)
 
-A few resources to get you started if this is your first Flutter project:
+Contribute
+====
+ANYONE can contribute, no special skills required. Message me on [Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org) if you'd like to help.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+You can help by donating photos of exercises, turning photos into low-poly illustrations (easy stuff, anyone can do it), conducting user interviews, doing user testing, ideating, creating graphics, [translating](https://www.transifex.com/feeel/feeel/), spreading the message, programming, or doing anything else that would help the project. :)
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Donate
+====
+If you'd prefer to donate instead, you can donate through these:
+- **[Liberapay](https://liberapay.com/Feeel/)**
+- [Bountysource](https://salt.bountysource.com/teams/feeel)
