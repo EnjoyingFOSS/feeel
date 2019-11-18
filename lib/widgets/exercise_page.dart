@@ -51,9 +51,8 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   double _dragStart = 0;
   int _seconds = 0;
   PageController _pageController = PageController();
-  static const Duration TRANSITION_DURATION = Duration(
-   microseconds: 600);
-   static const Curve TRANSITION_CURVE = Curves.easeIn;
+  static const Duration TRANSITION_DURATION = Duration(microseconds: 600);
+  static const Curve TRANSITION_CURVE = Curves.easeIn;
 
   // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
 
@@ -128,7 +127,8 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   @override
   void onBreak(int workoutPos, WorkoutExercise nextExercise) {
     // TODO: implement onBreak
-    _pageController.animateToPage(workoutPos, duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
+    _pageController.animateToPage(workoutPos,
+        duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
   }
 
   @override
@@ -140,7 +140,8 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
 
   @override
   void onExercise(int workoutPos, WorkoutExercise exercise) {
-    _pageController.animateToPage(workoutPos, duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
+    _pageController.animateToPage(workoutPos,
+        duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
   }
 
   @override
@@ -173,15 +174,8 @@ class ExerciseHeader extends StatelessWidget {
                 if (paused)
                   Align(
                     child: Padding(
-                      child: IconButton(
-                        //todo add onPress effect
-                        icon: Icon(
-                          Icons.arrow_back,
-                        ),
+                      child: BackButton(
                         color: color,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
                       ),
                       padding: EdgeInsets.all(16),
                     ),

@@ -44,8 +44,6 @@ class WorkoutController {
 
     _renderStage();
     _renderSeconds(); // todo remove once I add PREPARED state
-
-    _timer.start();
   } //todo how to init _exerciseCount ???
 
   // HELPERS
@@ -157,7 +155,7 @@ class WorkoutController {
   void close() {
     TTSHelper.tts.stop();
     _timer.stop();
-    _views.clear();
+    clearView();
     // todo views.clear() needed?
   }
 }

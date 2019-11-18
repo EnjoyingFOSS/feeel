@@ -22,6 +22,7 @@ import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/models/workout_listed.dart';
 import 'package:feeel/widgets/exercise_page.dart';
 import 'package:feeel/widgets/expandable_card.dart';
+import 'package:feeel/widgets/finish_page.dart';
 import 'package:feeel/widgets/workout_cover.dart';
 import 'package:flutter/material.dart';
 
@@ -62,12 +63,22 @@ class WorkoutScreenState extends State<WorkoutScreen> {
                 return PageView(
                   controller: _pageController,
                   children: <Widget>[
-                    WorkoutCover(workout),
+                    WorkoutCover(
+                      workout: workout,
+                      color: DEFAULT_COLOR,
+                      onPressed: () {
+                        _workoutController.togglePlayPause();
+                        _pageController
+                            .jumpToPage(WorkoutScreens.EXERCISE.index);
+                      },
+                    ),
                     ExercisePage(
-                    workoutController: _workoutController,
-                    workout: workout,
-                    color: DEFAULT_COLOR),
-                    Stack()
+                        workoutController: _workoutController,
+                        workout: workout,
+                        color: DEFAULT_COLOR),
+                    FinishPage(
+                      color: DEFAULT_COLOR,
+                    )
                   ],
                   // physics: NeverScrollableScrollPhysics(),
                 );

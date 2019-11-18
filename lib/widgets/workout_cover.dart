@@ -3,11 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:feeel/models/workout.dart';
 
 class WorkoutCover extends StatelessWidget {
-  Workout _workout;
+  final Color color;
+  final Workout workout;
+  final Function onPressed;
 
-  WorkoutCover(Workout workout, {Key key}) : super(key: key) {
-    _workout = workout;
-  }
+  WorkoutCover({Key key, @required this.workout, @required this.color, this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +16,22 @@ class WorkoutCover extends StatelessWidget {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.arrow_back),
-            // color: Color(_workout.color), //todo category colors
-            onPressed: () {
-              Navigator.pop(context);
-            },
+          BackButton(
+            color: color,
           ),
-          Expanded(child: Center(child: Text(_workout.title)))
+          Expanded(
+              child: Center(
+                  child: Text(
+            workout.title,
+            style: TextStyle(
+                fontSize: 40, fontWeight: FontWeight.w900, color: color),
+          ))),
+          Center(child: FloatingActionButton.extended(
+            icon: Icon(Icons.play_arrow),
+            label: Text("Start exercise"),
+            onPressed: onPressed,
+            backgroundColor: color,
+          ))
         ]));
   }
 }
