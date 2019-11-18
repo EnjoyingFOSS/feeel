@@ -18,18 +18,24 @@
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/helpers/tts_helper.dart';
 import 'package:feeel/models/exercise.dart';
+import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'exercise_illustration.dart';
 import 'expandable_card.dart';
 
 class ExercisePage extends StatefulWidget {
-  static const DEFAULT_COLOR = Color(0xFF0061DF);
-  final WorkoutExercise workoutExercise;
+  final Workout workout;
   final Color color;
+  final WorkoutController workoutController;
 
-  const ExercisePage({Key key, this.workoutExercise, this.color = DEFAULT_COLOR})
+  const ExercisePage(
+      {Key key,
+      @required this.workout,
+      @required this.color,
+      @required this.workoutController})
       : super(key: key);
 
   @override
@@ -38,15 +44,24 @@ class ExercisePage extends StatefulWidget {
   }
 }
 
-class ExerciseScreenView extends State<ExercisePage> {
+class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   //todo ban swipe to go back unless controls are shown?
-  bool _controlsShown = false;
-  bool _onBreak = true;
+  bool _paused = false;
   bool _infoShown = false;
   double _dragStart = 0;
-  int _second;
+  int _seconds = 0;
+  PageController _pageController = PageController();
+  static const Duration TRANSITION_DURATION = Duration(
+   microseconds: 600);
+   static const Curve TRANSITION_CURVE = Curves.easeIn;
 
   // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
+
+  @override
+  void initState() {
+    widget.workoutController.setView(this);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,43 +70,11 @@ class ExerciseScreenView extends State<ExercisePage> {
           color: Colors.white, //todo gradient
           child: Column(
             children: <Widget>[
-              SafeArea(
-                  bottom: false,
-                  child: Align(
-                      alignment: Alignment.topCenter,
-                      child: Stack(
-                        children: <Widget>[
-                          if (_controlsShown)
-                            Align(
-                              child: Padding(
-                                child: IconButton(
-                                  //todo add onPress effect
-                                  icon: Icon(
-                                    Icons.arrow_back,
-                                  ),
-                                  color: widget.color,
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                                padding: EdgeInsets.all(16),
-                              ),
-                              alignment: Alignment.centerLeft,
-                            ),
-                          Align(
-                              alignment: Alignment.center,
-                              child: Padding(
-                                  padding: EdgeInsets.all(16),
-                                  child: Text(
-                                    "30",
-                                    style: TextStyle(
-                                        fontSize: _controlsShown ? 24 : 72,
-                                        fontWeight: FontWeight.w900,
-                                        color: widget.color),
-                                  ))),
-                        ],
-                      ))),
-              _controlsShown
+              ExerciseHeader(
+                  color: widget.color,
+                  paused: _paused,
+                  counterText: _seconds.toString()),
+              _paused
                   ? Row(children: <Widget>[
                       Expanded(
                           child: Icon(Icons.skip_previous,
@@ -111,58 +94,25 @@ class ExerciseScreenView extends State<ExercisePage> {
                       style: TextStyle(color: widget.color),
                     ),
               Expanded(
-                  child: Stack(
-                children: <Widget>[
-                  Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        color: widget.color,
-                        height: MediaQuery.of(context).size.width * 0.372,
-                      )),
-                  Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: widget.workoutExercise.exercise.image != null
-                              ? Image.asset(widget.workoutExercise.exercise.image)
-                              : null))
-                ],
-              )),
-              // FlatButton(
-              //   child: Text("temp"),
-              //   onPressed: () {
-              //     TTSHelper.tts.speak(
-              //         "This is a really long message that I need to play so that I can hide the application in the background.");
-              //   },
-              // ),
-              Container(
-                alignment: Alignment.center,
-                child: SafeArea(
-                    top: false,
-                    child: Column(children: <Widget>[
-                      Text(widget.workoutExercise.exercise.name,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white)),
-                      if (_infoShown)
-                        Text(
-                          "asdf",
-                          textAlign: TextAlign.left, //todo make span full width
-                          style: TextStyle(fontSize: 14, color: Colors.white),
-                        )
-                    ])),
-                color: widget.color,
-                padding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                width: double.infinity,
+                child: PageView.builder(
+                  //todo
+                  controller: _pageController,
+                  itemBuilder: (context, i) {
+                    return ExerciseIllustration(
+                      infoShown: false,
+                      color: widget.color,
+                      exercise: widget.workout.workoutExercises[i].exercise,
+                    );
+                  },
+                  itemCount: widget.workout.workoutExercises.length,
+                ),
               )
             ],
           )),
       onTap: () {
         //todo setstate
         setState(() {
-          _controlsShown = !_controlsShown;
+          _paused = !_paused;
         });
       },
       //todo drag
@@ -170,8 +120,27 @@ class ExerciseScreenView extends State<ExercisePage> {
   }
 
   @override
-  void onSecondElapsed(int second) {
-    // TODO: implement onSecondElapsed
+  void dispose() {
+    super.dispose();
+    widget.workoutController.clearView();
+  }
+
+  @override
+  void onBreak(int workoutPos, WorkoutExercise nextExercise) {
+    // TODO: implement onBreak
+    _pageController.animateToPage(workoutPos, duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
+  }
+
+  @override
+  void onCount(int seconds) {
+    setState(() {
+      _seconds = seconds;
+    });
+  }
+
+  @override
+  void onExercise(int workoutPos, WorkoutExercise exercise) {
+    _pageController.animateToPage(workoutPos, duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
   }
 
   @override
@@ -182,5 +151,54 @@ class ExerciseScreenView extends State<ExercisePage> {
   @override
   void onPlay() {
     // TODO: implement onPlay
+  }
+}
+
+class ExerciseHeader extends StatelessWidget {
+  final String counterText; //todo is this really the best way to rerender time?
+  final Color color;
+  final bool paused;
+
+  ExerciseHeader({Key key, this.color, this.counterText, this.paused = false})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        bottom: false,
+        child: Align(
+            alignment: Alignment.topCenter,
+            child: Stack(
+              children: <Widget>[
+                if (paused)
+                  Align(
+                    child: Padding(
+                      child: IconButton(
+                        //todo add onPress effect
+                        icon: Icon(
+                          Icons.arrow_back,
+                        ),
+                        color: color,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      padding: EdgeInsets.all(16),
+                    ),
+                    alignment: Alignment.centerLeft,
+                  ),
+                Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Text(
+                          counterText,
+                          style: TextStyle(
+                              fontSize: paused ? 24 : 72,
+                              fontWeight: FontWeight.w900,
+                              color: color),
+                        ))),
+              ],
+            )));
   }
 }

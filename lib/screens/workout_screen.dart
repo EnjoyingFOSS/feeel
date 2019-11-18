@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/helpers/db_helper.dart';
-import 'package:feeel/helpers/tts_helper.dart';
 import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/models/workout_listed.dart';
@@ -36,9 +36,14 @@ class WorkoutScreen extends StatefulWidget {
   }
 }
 
+enum WorkoutScreens { COVER, EXERCISE, FINISH }
+
 class WorkoutScreenState extends State<WorkoutScreen> {
-  static const int BEGIN_SCREEN_COUNT = 1;
-  static const int END_SCREEN_COUNT = 1;
+  static const DEFAULT_COLOR = Color(0xFF0061DF);
+
+  WorkoutController _workoutController;
+  PageController _pageController = PageController();
+  int _seconds;
 
   @override
   Widget build(BuildContext context) {
@@ -49,21 +54,22 @@ class WorkoutScreenState extends State<WorkoutScreen> {
               if (snapshot.hasData) {
                 Workout workout = snapshot.data;
 
-                return PageView.builder(
-                  itemBuilder: (context, i) {
-                    if (i < BEGIN_SCREEN_COUNT) {
-                      return WorkoutCover(workout); //todo
-                    } else if (i >=
-                        workout.workoutExercises.length + BEGIN_SCREEN_COUNT) {
-                      return Stack(); //todo
-                    } else
-                      return ExercisePage(
-                          workoutExercise:
-                              workout.workoutExercises[i - BEGIN_SCREEN_COUNT]);
-                  },
-                  itemCount: workout.workoutExercises.length +
-                      BEGIN_SCREEN_COUNT +
-                      END_SCREEN_COUNT,
+                _workoutController = WorkoutController(workout);
+                _workoutController.setOnFinish(() {
+                  _pageController.jumpToPage(WorkoutScreens.FINISH.index);
+                });
+
+                return PageView(
+                  controller: _pageController,
+                  children: <Widget>[
+                    WorkoutCover(workout),
+                    ExercisePage(
+                    workoutController: _workoutController,
+                    workout: workout,
+                    color: DEFAULT_COLOR),
+                    Stack()
+                  ],
+                  // physics: NeverScrollableScrollPhysics(),
                 );
               } else {
                 return Center(
@@ -76,6 +82,6 @@ class WorkoutScreenState extends State<WorkoutScreen> {
   @override
   void dispose() {
     super.dispose();
-    TTSHelper.tts.stop(); //todo do I want to stop on dispose?
+    _workoutController.close();
   }
 }
