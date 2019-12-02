@@ -1,14 +1,15 @@
 import 'dart:async';
 
+import 'package:feeel/audio/tts_helper.dart';
+import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
-import 'package:feeel/helpers/tts_helper.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
 
-enum WorkoutStage { EXERCISE, BREAK, END }
+enum WorkoutStage { READY, EXERCISE, BREAK, END }
 
-enum ViewTypes { GUI, TTS }
+enum ViewTypes { GUI, AUDIO }
 
 class WorkoutController {
   final Workout _workout;
@@ -16,15 +17,24 @@ class WorkoutController {
   List<WorkoutView> _views =
       List(ViewTypes.values.length); //todo weak references + NOT NULL SAFE!
   int _exercisePos = 0;
-  WorkoutStage _stage = WorkoutStage.BREAK;
+  WorkoutStage _stage = WorkoutStage.READY;
   WorkoutTimer _timer; //todo init timer
 
   WorkoutController(this._workout) {
-    _timer = WorkoutTimer(_getCurWorkoutExercise().breakBeforeDuration,
-        onSecondDecrease: () {
+    if (_workout.workoutExercises.length == 0)
+      throw Exception("Workout must have length > 0");
+
+    _views[ViewTypes.AUDIO.index] = TTSView(); //todo allow audio setting
+    _onFinishes[ViewTypes.AUDIO.index] = () {
+      TTSHelper.tts.speak("You did it!");
+    };
+
+    _timer = WorkoutTimer(0, onSecondDecrease: () {
       for (var view in _views) view?.onCount(_timer.timeRemaining);
     }, onTimerZero: () {
       switch (_stage) {
+        case WorkoutStage.READY:
+          break;
         case WorkoutStage.BREAK:
           _setUpExerciseStage();
           break;
@@ -41,9 +51,6 @@ class WorkoutController {
           break;
       }
     });
-
-    _renderStage();
-    _renderSeconds(); // todo remove once I add PREPARED state
   } //todo how to init _exerciseCount ???
 
   // HELPERS
@@ -56,6 +63,11 @@ class WorkoutController {
   bool _isFirstExercise() => _exercisePos == 0;
 
   // CONTROLS
+  void start() {
+    _setUpStart();
+    _timer.start();
+  }
+
   void skipToNext() {
     if (!_isLastExercise()) {
       _exercisePos++;
@@ -88,6 +100,10 @@ class WorkoutController {
 
   void _renderStage() {
     switch (_stage) {
+      case WorkoutStage.READY:
+        for (var view in _views)
+          view?.onStart(_exercisePos, _getCurWorkoutExercise());
+        break;
       case WorkoutStage.EXERCISE:
         for (var view in _views)
           view?.onExercise(_exercisePos, _getCurWorkoutExercise());
@@ -133,6 +149,16 @@ class WorkoutController {
     _renderPausePlay();
   }
 
+  void _setUpStart() {
+    _renderStage();
+    _stage = WorkoutStage.BREAK;
+
+    _timer.timeRemaining = _getCurWorkoutExercise().breakBeforeDuration;
+    _renderSeconds();
+
+    _renderPausePlay();
+  }
+
   void _setUpEndStage() {
     _timer.stop();
 
@@ -153,14 +179,16 @@ class WorkoutController {
   }
 
   void close() {
-    TTSHelper.tts.stop();
     _timer.stop();
     clearView();
+    _views[ViewTypes.AUDIO.index] = null;
+    TTSHelper.tts.stop(); //todo once stopped, does it restart?
     // todo views.clear() needed?
   }
 }
 
 abstract class WorkoutView {
+  void onStart(int workoutPos, WorkoutExercise nextExercise);
   void onBreak(int workoutPos, WorkoutExercise nextExercise);
   void onExercise(int workoutPos, WorkoutExercise exercise);
   void onCount(int seconds);

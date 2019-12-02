@@ -18,37 +18,57 @@
 import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/screens/workout_list.dart';
-import 'package:feeel/screens/workout_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'models/exercise.dart';
+import 'package:i18n_extension/i18n_widget.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+    //     statusBarColor: Colors.grey, // Color for Android
+    //     statusBarBrightness:
+    //         Brightness.light // Dark == white status bar -- for IOS.
+    //     ));
     return MaterialApp(
-        title: 'Flutter Demo', theme: getDayTheme(), home: WorkoutList());
+        title: 'Feeel',
+        supportedLocales: [
+          const Locale('en'),
+          const Locale('cs'),
+        ],
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        theme: getDayTheme(),
+        home:
+            I18n(child: WorkoutListScreen())); //todo not seeing current locale!
   }
 
-  ThemeData getNightTheme() {
+  ThemeData getDayTheme() {
     var colors = ColorScheme(
-        primary: Color(0xFF99B433),
-        primaryVariant: Color(0xFF99B433),
+        primary: Color(0xFF0B65DB),
+        primaryVariant: Color(0xFF0B65DB),
         secondary: Color(0xffE96216),
         secondaryVariant: Color(0xFFE96216),
-        surface: Color(0xFF4d4d4d),
-        background: Color(0xFF333333),
+        surface: Color(0xFFFFFFFF),
+        background: Color(0xFFFFFFFF),
         error: Color(0xFFB00020),
         onPrimary: Colors.white,
         onSecondary: Colors.white,
         onSurface: Colors.white,
         onBackground: Colors.white,
         onError: Colors.white,
-        brightness: Brightness.dark);
+        brightness: Brightness.light);
 
     return ThemeData(
+      backgroundColor: colors.background,
       brightness: colors.brightness,
       colorScheme: colors,
       primaryColor: colors.primary,
@@ -60,35 +80,5 @@ class MyApp extends StatelessWidget {
       toggleableActiveColor: colors.primary,
       textSelectionHandleColor: colors.secondary,
     );
-  }
-
-  ThemeData getDayTheme() {
-    var colors = ColorScheme(
-        primary: Color(0xFF99B433),
-        primaryVariant: Color(0xFF99B433),
-        secondary: Color(0xffE96216),
-        secondaryVariant: Color(0xFFE96216),
-        surface: Color(0xFFFFFFFF),
-        background: Color(0xFFFFFFFF),
-        error: Color(0xFFB00020),
-        onPrimary: Colors.white,
-        onSecondary: Colors.white,
-        onSurface: Colors.white,
-        onBackground: Colors.white,
-        onError: Colors.white,
-        brightness: Brightness.dark);
-
-    return ThemeData(
-        // brightness: colors.brightness,
-        // colorScheme: colors,
-        // primaryColor: colors.primary,
-        // accentColor: colors.secondary,
-        // scaffoldBackgroundColor: colors.background,
-        // cardColor: colors.surface,
-        // errorColor: colors.error,
-        // buttonColor: colors.primary,
-        // toggleableActiveColor: colors.primary,
-        // textSelectionHandleColor: colors.secondary,
-        );
   }
 }

@@ -67,16 +67,33 @@ class DBHelper {
   }
 
   void _addInitialData() async {
-    int exerciseId;
+    
 
     // 7 minute workout
+    _add7MinuteWorkout();
+  }
+
+  void _add7MinuteWorkout() async {
     int workoutId = await createWorkout("7 minute workout");
     int workoutOrder = 1;
+    int exerciseId;
 
     exerciseId = await createExercise(
         name: "Jumping jacks",
         description: "Description",
         image: "assets/exercise_jumpingjacks.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 5);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "Wall sit",
+        description: "Description",
+        image: "assets/exercise_wallsit.png");
     createWorkoutExercise(
         workoutId: workoutId,
         order: workoutOrder,
@@ -96,7 +113,145 @@ class DBHelper {
         duration: 30,
         breakBeforeDuration: 10);
     workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_abcrunch.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_stepup.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_squat.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_tricepsdip.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_plank.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_highknees.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_lunge.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_pushuprotation.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_sideplank.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "",
+        description: "",
+        image: "assets/exercise_sideplank.png");
+    createWorkoutExercise(
+        workoutId: workoutId,
+        order: workoutOrder,
+        exerciseId: exerciseId,
+        duration: 30,
+        breakBeforeDuration: 10);
+    workoutOrder++;
   }
+
+  // void _addAdvanced7MinuteWorkout { TODO
+  //   int workoutId = await createWorkout();
+  //   int workoutOrder = 1;
+  //   int exerciseId;
+
+  //   exerciseId = await createExercise(
+  //       name: "",
+  //       description: "",
+  //       image: "assets/.png");
+  //   createWorkoutExercise(
+  //       workoutId: workoutId,
+  //       order: workoutOrder,
+  //       exerciseId: exerciseId,
+  //       duration: 30,
+  //       breakBeforeDuration: 10);
+  //   workoutOrder++;
+  // }
 
   Future<String> getPath() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();

@@ -14,13 +14,15 @@ class FinishPage extends StatelessWidget {
         BackButton(
           color: color,
         ),
-        Expanded(child: Image.asset("assets/image_success.png")),
-        Center(
-            child: Text(
-          "You're glowing!",
-          style: TextStyle(
-              fontSize: 32, fontWeight: FontWeight.w900, color: color),
-        ))
+        Expanded(child: Center(child: Image.asset("assets/image_success.png"))),
+        Padding(
+            padding: EdgeInsets.all(16),
+            child: Center(
+                child: Text(
+              "You're glowing!",
+              style: TextStyle(
+                  fontSize: 32, fontWeight: FontWeight.w900, color: color),
+            )))
       ],
     ));
   }

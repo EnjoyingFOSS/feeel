@@ -16,15 +16,14 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/controllers/workout_controller.dart';
-import 'package:feeel/helpers/tts_helper.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/widgets/break_illustration.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
+import 'package:feeel/i18n/translations.dart';
 import 'exercise_illustration.dart';
-import 'expandable_card.dart';
 
 class ExercisePage extends StatefulWidget {
   final Workout workout;
@@ -48,8 +47,9 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   //todo ban swipe to go back unless controls are shown?
   bool _paused = false;
   bool _infoShown = false;
+  bool _break = true;
   double _dragStart = 0;
-  int _seconds = 0;
+  int _seconds;
   PageController _pageController = PageController();
   static const Duration TRANSITION_DURATION = Duration(microseconds: 600);
   static const Curve TRANSITION_CURVE = Curves.easeIn;
@@ -59,14 +59,15 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   @override
   void initState() {
     widget.workoutController.setView(this);
+    _seconds = widget.workout.workoutExercises[0].breakBeforeDuration;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Container(
-          color: Colors.white, //todo gradient
+      child: Material(
+          color: Theme.of(context).backgroundColor,
           child: Column(
             children: <Widget>[
               ExerciseHeader(
@@ -76,34 +77,58 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
               _paused
                   ? Row(children: <Widget>[
                       Expanded(
-                          child: Icon(Icons.skip_previous,
-                              size: 32, color: widget.color)),
-                      Expanded(
-                          child: Icon(Icons.play_arrow,
-                              size: 64, color: widget.color)),
-                      Expanded(
-                          child: Icon(
-                        Icons.skip_next,
+                          child: IconButton(
+                        iconSize: 32,
                         color: widget.color,
-                        size: 32,
-                      ))
+                        icon: Icon(Icons.skip_previous),
+                        onPressed: () {
+                          widget.workoutController.skipToPrevious();
+                        },
+                      )),
+                      Expanded(
+                        child: IconButton(
+                            iconSize: 64,
+                            color: widget.color,
+                            icon: Icon(Icons.play_arrow),
+                            onPressed: () {
+                              widget.workoutController.togglePlayPause();
+                            }),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                            iconSize: 32,
+                            color: widget.color,
+                            icon: Icon(
+                              Icons.skip_next,
+                            ),
+                            onPressed: () {
+                              widget.workoutController.skipToNext();
+                            }),
+                      )
                     ])
                   : Text(
-                      "Tap for controls",
+                      "Tap for controls".i18n,
                       style: TextStyle(color: widget.color),
                     ),
               Expanded(
                 child: PageView.builder(
                   //todo
+                  physics: NeverScrollableScrollPhysics(),
                   controller: _pageController,
                   itemBuilder: (context, i) {
-                    return ExerciseIllustration(
-                      infoShown: false,
-                      color: widget.color,
-                      exercise: widget.workout.workoutExercises[i].exercise,
-                    );
+                    if (i % 2 == 0) {
+                      return BreakIllustration(
+                          color: widget.color,
+                          nextExercise: widget.workout
+                              .workoutExercises[(i / 2).floor()].exercise);
+                    } else
+                      return ExerciseIllustration(
+                        color: widget.color,
+                        exercise: widget
+                            .workout.workoutExercises[(i / 2).floor()].exercise,
+                      );
                   },
-                  itemCount: widget.workout.workoutExercises.length,
+                  itemCount: widget.workout.workoutExercises.length * 2,
                 ),
               )
             ],
@@ -111,7 +136,7 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
       onTap: () {
         //todo setstate
         setState(() {
-          _paused = !_paused;
+          widget.workoutController.togglePlayPause();
         });
       },
       //todo drag
@@ -127,7 +152,21 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   @override
   void onBreak(int workoutPos, WorkoutExercise nextExercise) {
     // TODO: implement onBreak
-    _pageController.animateToPage(workoutPos,
+    setState(() {
+      _break = true;
+      _seconds = nextExercise.breakBeforeDuration;
+    });
+    _pageController.animateToPage(workoutPos * 2,
+        duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
+  }
+
+  @override
+  void onExercise(int workoutPos, WorkoutExercise exercise) {
+    setState(() {
+      _break = false;
+      _seconds = exercise.duration;
+    });
+    _pageController.animateToPage(workoutPos * 2 + 1,
         duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
   }
 
@@ -139,19 +178,24 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onExercise(int workoutPos, WorkoutExercise exercise) {
-    _pageController.animateToPage(workoutPos,
-        duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
-  }
-
-  @override
   void onPause() {
-    // TODO: implement onPause
+    setState(() {
+      _paused = true;
+    });
   }
 
   @override
   void onPlay() {
-    // TODO: implement onPlay
+    setState(() {
+      _paused = false;
+    });
+  }
+
+  @override
+  void onStart(int workoutPos, WorkoutExercise nextExercise) {
+    setState(() {
+      _seconds = nextExercise.breakBeforeDuration;
+    });
   }
 }
 
