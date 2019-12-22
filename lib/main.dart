@@ -30,11 +30,11 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-    //     statusBarColor: Colors.grey, // Color for Android
-    //     statusBarBrightness:
-    //         Brightness.light // Dark == white status bar -- for IOS.
-    //     ));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.grey, // Color for Android
+        statusBarBrightness:
+            Brightness.light // Dark == white status bar -- for IOS.
+        ));
     return MaterialApp(
         title: 'Feeel',
         supportedLocales: [
@@ -62,9 +62,9 @@ class MyApp extends StatelessWidget {
         error: Color(0xFFB00020),
         onPrimary: Colors.white,
         onSecondary: Colors.white,
-        onSurface: Colors.white,
-        onBackground: Colors.white,
-        onError: Colors.white,
+        onSurface: Colors.black87,
+        onBackground: Colors.black87,
+        onError: Colors.black87,
         brightness: Brightness.light);
 
     return ThemeData(
