@@ -30,6 +30,7 @@ class WorkoutController {
     };
 
     _timer = WorkoutTimer(0, onSecondDecrease: () {
+      //todo initTime seems useless
       for (var view in _views) view?.onCount(_timer.timeRemaining);
     }, onTimerZero: () {
       switch (_stage) {
@@ -80,7 +81,9 @@ class WorkoutController {
       _exercisePos--;
       _setUpExerciseStage();
     } else {
-      _timer.timeRemaining = _getCurWorkoutExercise().duration;
+      _timer.timeRemaining = _getCurWorkoutExercise().duration == null
+          ? _workout.exerciseDuration
+          : _getCurWorkoutExercise().duration;
     }
   }
 
@@ -99,18 +102,34 @@ class WorkoutController {
   // RENDER
 
   void _renderStage() {
+    var curWorkoutExercise = _getCurWorkoutExercise();
     switch (_stage) {
       case WorkoutStage.READY:
         for (var view in _views)
-          view?.onStart(_exercisePos, _getCurWorkoutExercise());
+          view?.onStart(
+              _exercisePos,
+              curWorkoutExercise,
+              curWorkoutExercise.breakBeforeDuration == null
+                  ? _workout.countdownDuration
+                  : curWorkoutExercise.breakBeforeDuration);
         break;
       case WorkoutStage.EXERCISE:
         for (var view in _views)
-          view?.onExercise(_exercisePos, _getCurWorkoutExercise());
+          view?.onExercise(
+              _exercisePos,
+              curWorkoutExercise,
+              curWorkoutExercise.duration == null
+                  ? _workout.exerciseDuration
+                  : curWorkoutExercise.duration);
         break;
       case WorkoutStage.BREAK:
         for (var view in _views)
-          view?.onBreak(_exercisePos, _getCurWorkoutExercise());
+          view?.onBreak(
+              _exercisePos,
+              curWorkoutExercise,
+              curWorkoutExercise.breakBeforeDuration == null
+                  ? _workout.breakDuration
+                  : curWorkoutExercise.breakBeforeDuration);
         break;
       case WorkoutStage.END:
         for (var onFinish in _onFinishes) if (onFinish != null) onFinish();
@@ -133,7 +152,9 @@ class WorkoutController {
     _stage = WorkoutStage.EXERCISE;
     _renderStage();
 
-    _timer.timeRemaining = _getCurWorkoutExercise().duration;
+    _timer.timeRemaining = _getCurWorkoutExercise().duration == null
+        ? _workout.exerciseDuration
+        : _getCurWorkoutExercise().duration;
     _renderSeconds();
 
     _renderPausePlay();
@@ -143,7 +164,9 @@ class WorkoutController {
     _stage = WorkoutStage.BREAK;
     _renderStage();
 
-    _timer.timeRemaining = _getCurWorkoutExercise().breakBeforeDuration;
+    _timer.timeRemaining = _getCurWorkoutExercise().breakBeforeDuration == null
+        ? _workout.breakDuration
+        : _getCurWorkoutExercise().breakBeforeDuration;
     _renderSeconds();
 
     _renderPausePlay();
@@ -153,7 +176,9 @@ class WorkoutController {
     _renderStage();
     _stage = WorkoutStage.BREAK;
 
-    _timer.timeRemaining = _getCurWorkoutExercise().breakBeforeDuration;
+    _timer.timeRemaining = _getCurWorkoutExercise().breakBeforeDuration == null
+        ? _workout.countdownDuration
+        : _getCurWorkoutExercise().breakBeforeDuration;
     _renderSeconds();
 
     _renderPausePlay();
@@ -188,9 +213,12 @@ class WorkoutController {
 }
 
 abstract class WorkoutView {
-  void onStart(int workoutPos, WorkoutExercise nextExercise);
-  void onBreak(int workoutPos, WorkoutExercise nextExercise);
-  void onExercise(int workoutPos, WorkoutExercise exercise);
+  void onStart(
+      int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration);
+  void onBreak(
+      int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration);
+  void onExercise(
+      int workoutPos, WorkoutExercise exercise, int defaultExerciseDuration);
   void onCount(int seconds);
   void onPause();
   void onPlay();

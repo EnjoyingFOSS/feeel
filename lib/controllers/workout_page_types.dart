@@ -1,0 +1,1 @@
+enum WorkoutPageTypes { COVER, EXERCISE, FINISH }

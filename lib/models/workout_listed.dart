@@ -15,11 +15,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/workout_exercise.dart';
 
 class WorkoutListed {
   final int dbId;
   final String title;
+  final WorkoutType type;
+  final WorkoutCategory category;
 
-  WorkoutListed(this.dbId, this.title);
+  WorkoutListed(this.dbId, this.type, this.title, this.category);
 }

@@ -22,9 +22,36 @@ class WorkoutCover extends StatelessWidget {
             color: color,
           ),
           Expanded(
+// todo child: CustomScrollView(slivers: <Widget>[
+//   SliverList(
+//                     delegate: SliverChildBuilderDelegate(
+//                       (context, index) {
+//                         return WorkoutListItem(workoutsListed[index],
+//                             onDelete: () {
+//                           setState(() {
+//                             DBHelper.db.deleteCustomWorkout(
+//                                 workoutsListed[index].dbId);
+//                           });
+//                         }, onEdit: () {
+//                           setState(() {
+//                             Navigator.push(
+//                                 context,
+//                                 MaterialPageRoute(
+//                                     builder: (context) => WorkoutEditorScreen(
+//                                           workoutListed: workoutsListed[index],
+//                                         )));
+//                           });
+//                         });
+//                       },
+//                       childCount: workoutsListed.length,
+//                     ),
+//                   )
+// ],)
+
               child: Center(
                   child: Text(
-            workout.title,
+            workout.title.i18n,
+            textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 40, fontWeight: FontWeight.w900, color: color),
           ))),

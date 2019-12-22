@@ -53,13 +53,16 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   PageController _pageController = PageController();
   static const Duration TRANSITION_DURATION = Duration(microseconds: 600);
   static const Curve TRANSITION_CURVE = Curves.easeIn;
+  String _descriptionText;
+  double _dragYStart;
 
   // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
 
   @override
   void initState() {
     widget.workoutController.setView(this);
-    _seconds = widget.workout.workoutExercises[0].breakBeforeDuration;
+    var secs = widget.workout.workoutExercises[0].breakBeforeDuration;
+    _seconds = secs == null ? widget.workout.breakDuration : secs;
     super.initState();
   }
 
@@ -116,21 +119,33 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
                   physics: NeverScrollableScrollPhysics(),
                   controller: _pageController,
                   itemBuilder: (context, i) {
+                    var exercise = widget
+                        .workout.workoutExercises[(i / 2).floor()].exercise;
                     if (i % 2 == 0) {
                       return BreakIllustration(
-                          color: widget.color,
-                          nextExercise: widget.workout
-                              .workoutExercises[(i / 2).floor()].exercise);
+                          color: widget.color, nextExercise: exercise);
                     } else
                       return ExerciseIllustration(
                         color: widget.color,
-                        exercise: widget
-                            .workout.workoutExercises[(i / 2).floor()].exercise,
+                        exercise: exercise,
                       );
                   },
                   itemCount: widget.workout.workoutExercises.length * 2,
                 ),
-              )
+              ), // todo show drag handle
+              if (_infoShown)
+                Container(
+                  color: Color(0xff0050BA),
+                  width: double.infinity,
+                  height: 200, //todo style, height
+                  child: _descriptionText != null
+                      ? Padding(
+                          padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
+                          child: Text(_descriptionText,
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.white)))
+                      : Container(),
+                )
             ],
           )),
       onTap: () {
@@ -139,7 +154,19 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
           widget.workoutController.togglePlayPause();
         });
       },
-      //todo drag
+      //todo onHorizontalDrag
+      onVerticalDragStart: (DragStartDetails details) {
+        _dragYStart = details.globalPosition.dy;
+      },
+      onVerticalDragUpdate: (DragUpdateDetails details) {
+        _infoShown = _dragYStart > details.globalPosition.dy;
+      },
+      // todo ? onVerticalDragCancel: ,
+      onVerticalDragEnd: (DragEndDetails details) {
+        _dragYStart = null;
+        setState(() {});
+      },
+      //todo drag animation
     );
   }
 
@@ -150,21 +177,23 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onBreak(int workoutPos, WorkoutExercise nextExercise) {
+  void onBreak(int workoutPos, WorkoutExercise nextExercise, int duration) {
     // TODO: implement onBreak
     setState(() {
       _break = true;
-      _seconds = nextExercise.breakBeforeDuration;
+      _seconds = duration;
+      _descriptionText = nextExercise.exercise.description;
     });
     _pageController.animateToPage(workoutPos * 2,
         duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
   }
 
   @override
-  void onExercise(int workoutPos, WorkoutExercise exercise) {
+  void onExercise(int workoutPos, WorkoutExercise exercise, int duration) {
     setState(() {
       _break = false;
-      _seconds = exercise.duration;
+      _seconds = duration;
+      _descriptionText = exercise.exercise.description;
     });
     _pageController.animateToPage(workoutPos * 2 + 1,
         duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
@@ -192,9 +221,9 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onStart(int workoutPos, WorkoutExercise nextExercise) {
+  void onStart(int workoutPos, WorkoutExercise nextExercise, int duration) {
     setState(() {
-      _seconds = nextExercise.breakBeforeDuration;
+      _seconds = duration;
     });
   }
 }

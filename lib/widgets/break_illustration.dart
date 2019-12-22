@@ -17,11 +17,8 @@ class BreakIllustration extends StatelessWidget {
     return IllustrationLayout(
       color: color,
       illustrationImage: nextExercise.image != null
-          ? ColorFiltered(
-              colorFilter: ColorFilter.mode(
-                Colors.grey,
-                BlendMode.saturation,
-              ),
+          ? Opacity(
+              opacity: 0.4,
               child: Image.asset(nextExercise.image),
             )
           : null,

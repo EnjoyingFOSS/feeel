@@ -8,12 +8,13 @@ class TTSView implements WorkoutView {
   int halfTime = 0;
 
   @override
-  void onStart(int workoutPos, WorkoutExercise nextExercise) {
-    TTSHelper.tts.speak("Let's go! First up: ${nextExercise.exercise.name}"); //todo internationalization
+  void onStart(int workoutPos, WorkoutExercise nextExercise, int duration) {
+    TTSHelper.tts.speak(
+        "Let's go! First up: ${nextExercise.exercise.name}"); //todo internationalization
   }
 
   @override
-  void onBreak(int workoutPos, WorkoutExercise nextExercise) {
+  void onBreak(int workoutPos, WorkoutExercise nextExercise, int duration) {
     TTSHelper.tts.speak("Break!".i18n +
         " " +
         "Next up:".i18n +
@@ -31,9 +32,9 @@ class TTSView implements WorkoutView {
   }
 
   @override
-  void onExercise(int workoutPos, WorkoutExercise exercise) {
+  void onExercise(int workoutPos, WorkoutExercise exercise, int duration) {
     TTSHelper.tts.speak(exercise.exercise.name.i18n);
-    halfTime = (exercise.duration / 2).ceil();
+    halfTime = (duration / 2).ceil();
   }
 
   @override

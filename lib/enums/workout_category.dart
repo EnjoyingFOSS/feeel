@@ -1,0 +1,1 @@
+enum WorkoutCategory { FULL_BODY }

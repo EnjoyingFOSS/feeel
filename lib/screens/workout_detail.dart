@@ -17,12 +17,15 @@
 
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/db/db_helper.dart';
+import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/models/workout_listed.dart';
 import 'package:feeel/widgets/exercise_page.dart';
 import 'package:feeel/widgets/finish_page.dart';
 import 'package:feeel/widgets/workout_cover.dart';
+import 'package:feeel/widgets/workout_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -37,14 +40,15 @@ class WorkoutDetailScreen extends StatefulWidget {
   }
 }
 
-enum WorkoutPages { COVER, EXERCISE, FINISH }
-
 class WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
-  static const DEFAULT_COLOR = Color(0xFF0061DF);
+  Future _future;
 
-  WorkoutController _workoutController;
-  PageController _pageController = PageController();
-  int _seconds;
+  @override
+  void initState() {
+    super.initState();
+    _future = DBHelper.db
+        .queryWorkout(widget.workoutListed.dbId, widget.workoutListed.type);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,57 +59,48 @@ class WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
         },
         child: Scaffold(
             body: FutureBuilder<Workout>(
-                future: DBHelper.db.queryWorkout(widget.workoutListed.dbId),
+                future: _future,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     Workout workout = snapshot.data;
 
-                    if (_workoutController != null) {
-                      _workoutController.close();
+                    if (workout.workoutExercises.length <= 0) {
+                      return Center(
+                          child: Column(
+                        children: [
+                          Text("There are no exercises in this workout. :("),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              FlatButton(
+                                child: Text("Back to workout list"),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              if (workout.type == WorkoutType.CUSTOM)
+                                RaisedButton(
+                                  child: Text("Delete this workout"),
+                                  onPressed: () {
+                                    DBHelper.db
+                                        .deleteCustomWorkout(workout.dbId);
+                                    Navigator.pop(context);
+                                  },
+                                )
+                            ],
+                          )
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                      ));
+                    } else {
+                      return WorkoutPager(workout: workout);
                     }
-                    _workoutController = WorkoutController(workout);
-                    _workoutController.setOnFinish(() {
-                      Wakelock.toggle(on: false);
-                      _pageController.jumpToPage(WorkoutPages
-                    .FINISH.index);
-                    });
-
-                    return PageView(
-                      physics: NeverScrollableScrollPhysics(),
-                      controller: _pageController,
-                      children: <Widget>[
-                        WorkoutCover(
-                          workout: workout,
-                          color: DEFAULT_COLOR,
-                          onPressed: () {
-                            _pageController
-                                .jumpToPage(WorkoutPages
-                              .EXERCISE.index);
-                            _workoutController.start();
-                            Wakelock.toggle(on: true);
-                          },
-                        ),
-                        ExercisePage(
-                            workoutController: _workoutController,
-                            workout: workout,
-                            color: DEFAULT_COLOR),
-                        FinishPage(
-                          color: DEFAULT_COLOR,
-                        )
-                      ],
-                      // physics: NeverScrollableScrollPhysics(),
-                    );
                   } else {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
                   }
                 })));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _workoutController.close();
   }
 }
