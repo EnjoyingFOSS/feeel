@@ -35,7 +35,10 @@ class TrianglePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var path = Path();
     path.lineTo(rx * size.width, size.height);
-    path.lineTo(size.width, ry * size.height);
+    if (rx < 0.5)
+      path.lineTo(size.width, (ry + 1) * size.height / 2);
+    else
+      path.lineTo(size.width, ry * size.height / 2);
     path.close();
 
     int rotation = (rr * 4).floor();
