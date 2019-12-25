@@ -81,14 +81,15 @@ class DBHelper {
   }
 
   void _addInitialData() async {
-    _addScientific7MinuteWorkout();
+    await _addScientific7MinuteWorkout();
+    await _addLegWorkout();
   }
 
   final int _DEFAULT_COUNTDOWN_DURATION = 5;
   final int _DEFAULT_EXERCISE_DURATION = 30;
   final int _DEFAULT_BREAK_DURATION = 10;
 
-  void _addScientific7MinuteWorkout() async {
+  Future<void> _addScientific7MinuteWorkout() async {
     int workoutId = await _createWorkout(
         "Scientific 7 minute workout",
         _DEFAULT_COUNTDOWN_DURATION,
@@ -102,7 +103,7 @@ class DBHelper {
     exerciseId = await createExercise(
         name: "Jumping jacks",
         description:
-            "1. Stand with feet together and arms at the sides<br/>\n2. Jump to a position with the legs spread wide and the hands touching overhead<br/>\n3. Repeat",
+            "1. Stand with feet together and arms at the sides\n2. Jump to a position with the legs spread wide and the hands touching overhead\n3. Repeat",
         image: "assets/exercise_jumpingjacks.png");
     _createWorkoutExercise(
         workoutId: workoutId,
@@ -116,7 +117,7 @@ class DBHelper {
     exerciseId = await createExercise(
         name: "Wall sit",
         description:
-            "1. Lean against the wall with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall<br/>\n        2. Slide down the wall, keeping the back pressed to it, until \n. The knees should be directly above the ankles<br/>\n<br/>\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
+            "1. Lean against the wall with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n        2. Slide down the wall, keeping the back pressed to it, until \n. The knees should be directly above the ankles\n\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
         image: "assets/exercise_wallsit.png");
     _createWorkoutExercise(
         workoutId: workoutId,
@@ -130,7 +131,7 @@ class DBHelper {
     exerciseId = await createExercise(
         name: "Push-ups",
         description:
-            "1. Lie down on your stomach<br/>\n        2. Place your hands near your ears<br/>\n        3. Use your arms to lift your stomach up until the arms are straight, keeping the back straight<br/>\n        4. Bend arms until chest almost touches the ground, making sure the back is straight<br/>\n        5. Repeat from step 3",
+            "1. Lie down on your stomach\n        2. Place your hands near your ears\n        3. Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n        4. Bend arms until chest almost touches the ground, making sure the back is straight\n        5. Repeat from step 3",
         image: "assets/exercise_pushup.png");
     _createWorkoutExercise(
         workoutId: workoutId,
@@ -144,7 +145,7 @@ class DBHelper {
     exerciseId = await createExercise(
         name: "Ab crunches",
         description:
-            "1. Lie down face up on the floor with knees bent.<br/>\n        2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.<br/>\n        3. Repeat",
+            "1. Lie down face up on the floor with knees bent.\n        2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n        3. Repeat",
         image: "assets/exercise_abcrunch.png");
     _createWorkoutExercise(
         workoutId: workoutId,
@@ -158,7 +159,7 @@ class DBHelper {
     exerciseId = await createExercise(
         name: "Step-ups",
         description:
-            "1. Stand facing a chair<br/>\n        2. Step up onto the chair<br/>\n        3. Step off the chair<br/>\n        4. Repeat",
+            "1. Stand facing a chair\n        2. Step up onto the chair\n        3. Step off the chair\n        4. Repeat",
         image: "assets/exercise_stepup.png");
     _createWorkoutExercise(
         workoutId: workoutId,
@@ -265,6 +266,90 @@ class DBHelper {
         exerciseId: exerciseId,
         duration: 30,
         breakBeforeDuration: 10);
+    workoutOrder++;
+  }
+
+  Future<void> _addLegWorkout() async {
+    int workoutId = await _createWorkout(
+        "Leg workout",
+        _DEFAULT_COUNTDOWN_DURATION,
+        _DEFAULT_EXERCISE_DURATION,
+        _DEFAULT_BREAK_DURATION,
+        WorkoutType.DEFAULT,
+        WorkoutCategory.LEGS);
+    int workoutOrder = 1;
+    int exerciseId;
+
+    exerciseId = await createExercise(
+        name: "Stationary lunges",
+        description:
+            "1. Stand tall with your feet hip distance apart, take a step forward and keep this position, using arms for balance if needed.<br/>\n        2. Lower the front knee to a 90 degree angle so that both knees are bent. The back knee should not touch the floor and avoid rocking forward. The front knee must remain perpendicular to the floor and in line with the foot.<br/>\n        3. Press up with front knee to the starting postion and repeat, switching feet.",
+        image: "assets/exercise_stationarylunge.webp");
+    _createWorkoutExercise(
+        workoutId: workoutId,
+        workoutType: WorkoutType.DEFAULT,
+        order: workoutOrder,
+        exerciseId: exerciseId);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "Stationary lateral lunges",
+        description:
+            "1. Stand tall and take a wide lateral stride, just greater than shoulder width. \n\n        2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n\n        3. Press up and repeat, switching feet.",
+        image: "assets/exercise_stationarylaterallunge.webp");
+    _createWorkoutExercise(
+        workoutId: workoutId,
+        workoutType: WorkoutType.DEFAULT,
+        order: workoutOrder,
+        exerciseId: exerciseId);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "Bulgarian split squats",
+        description:
+            "1. Stand tall in front of a chair and take a large step. Put the upper part of your foot on the chair.\n\n        2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n\n        3. Push back to the starting position and repeat, switching feet.",
+        image: "assets/exercise_bulgariansplitsquat.webp");
+    _createWorkoutExercise(
+        workoutId: workoutId,
+        workoutType: WorkoutType.DEFAULT,
+        order: workoutOrder,
+        exerciseId: exerciseId);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "Pistol squats",
+        description:
+            "1. Sit on a bench or a chair with one leg straight in front of you. Stand up using only your other leg.\n\n        2. Bend the knee slowly to return to the starting position. Try to not rest on the chair or bench.",
+        image: "assets/exercise_pistolsquat.webp");
+    _createWorkoutExercise(
+        workoutId: workoutId,
+        workoutType: WorkoutType.DEFAULT,
+        order: workoutOrder,
+        exerciseId: exerciseId);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "Cable kickbacks",
+        description:
+            "1. Get down on all fours and place one foot against a resistance like a cable.\n\n        2. Push your foot back until fully extended, concentrating on the gluteus muscles.\n\n        3. Stay for one second, then return to the initial position.",
+        image: "assets/exercise_cablekickback.webp");
+    _createWorkoutExercise(
+        workoutId: workoutId,
+        workoutType: WorkoutType.DEFAULT,
+        order: workoutOrder,
+        exerciseId: exerciseId);
+    workoutOrder++;
+
+    exerciseId = await createExercise(
+        name: "Calf raises",
+        description:
+            "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n\n        3. Lift your heels until you\\'re standing on toes.\n\n        4. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.",
+        image: "assets/exercise_calfraise.webp");
+    _createWorkoutExercise(
+        workoutId: workoutId,
+        workoutType: WorkoutType.DEFAULT,
+        order: workoutOrder,
+        exerciseId: exerciseId);
     workoutOrder++;
   }
 
