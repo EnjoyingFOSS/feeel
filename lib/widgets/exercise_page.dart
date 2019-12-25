@@ -55,6 +55,7 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   static const Curve TRANSITION_CURVE = Curves.easeIn;
   String _descriptionText;
   double _dragYStart;
+  Color descriptionColor;
 
   // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
 
@@ -64,6 +65,11 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
     var secs = widget.workout.workoutExercises[0].breakBeforeDuration;
     _seconds = secs == null ? widget.workout.breakDuration : secs;
     super.initState();
+
+    final hslColor = HSLColor.fromColor(widget.color); //todo test, tweak
+    descriptionColor = hslColor
+        .withLightness((hslColor.lightness - 0.1).clamp(0.0, 1.0))
+        .toColor();
   }
 
   @override
@@ -135,7 +141,7 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
               ), // todo show drag handle
               if (_infoShown)
                 Container(
-                  color: Color(0xff0050BA),
+                  color: descriptionColor,
                   width: double.infinity,
                   height: 200, //todo style, height
                   child: _descriptionText != null
