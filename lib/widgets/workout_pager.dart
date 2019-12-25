@@ -5,6 +5,7 @@ import 'package:feeel/screens/workout_detail.dart';
 import 'package:feeel/widgets/workout_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:feeel/enums/workout_category.dart';
 
 import 'exercise_page.dart';
 import 'finish_page.dart';
@@ -23,11 +24,12 @@ class WorkoutPager extends StatefulWidget {
 class WorkoutPagerState extends State<WorkoutPager> {
   WorkoutController _workoutController;
   PageController _pageController = PageController();
-  static const DEFAULT_COLOR = Color(0xFF0061DF);
+  Color color;
 
   @override
   void initState() {
     super.initState();
+    color = Color(widget.workout.category.colorInt);
     _workoutController = WorkoutController(widget.workout);
   }
 
@@ -44,7 +46,7 @@ class WorkoutPagerState extends State<WorkoutPager> {
       children: <Widget>[
         WorkoutCover(
           workout: widget.workout,
-          color: DEFAULT_COLOR,
+          color: color,
           onPressed: () {
             _pageController.jumpToPage(WorkoutPageTypes.EXERCISE.index);
             _workoutController.start();
@@ -54,9 +56,9 @@ class WorkoutPagerState extends State<WorkoutPager> {
         ExercisePage(
             workoutController: _workoutController,
             workout: widget.workout,
-            color: DEFAULT_COLOR),
+            color: color),
         FinishPage(
-          color: DEFAULT_COLOR,
+          color: color,
         )
       ],
       // physics: NeverScrollableScrollPhysics(),

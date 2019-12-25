@@ -57,8 +57,8 @@ class MyApp extends StatelessWidget {
         primaryVariant: Color(0xFF0B65DB),
         secondary: Color(0xffE96216),
         secondaryVariant: Color(0xFFE96216),
-        surface: Color(0xFFFFFFFF),
-        background: Color(0xFFFFFFFF),
+        surface: Colors.white,
+        background: Colors.white,
         error: Color(0xFFB00020),
         onPrimary: Colors.white,
         onSecondary: Colors.white,
@@ -66,6 +66,37 @@ class MyApp extends StatelessWidget {
         onBackground: Colors.black87,
         onError: Colors.black87,
         brightness: Brightness.light);
+
+    return ThemeData(
+      backgroundColor: colors.background,
+      brightness: colors.brightness,
+      colorScheme: colors,
+      primaryColor: colors.primary,
+      accentColor: colors.secondary,
+      scaffoldBackgroundColor: colors.background,
+      cardColor: colors.surface,
+      errorColor: colors.error,
+      buttonColor: colors.primary,
+      toggleableActiveColor: colors.primary,
+      textSelectionHandleColor: colors.secondary,
+    );
+  }
+
+  ThemeData getNightTheme() {
+    var colors = ColorScheme(
+        primary: Color(0xFF0B65DB),
+        primaryVariant: Color(0xFF0B65DB),
+        secondary: Color(0xffE96216),
+        secondaryVariant: Color(0xFFE96216),
+        surface: Colors.black87,
+        background: Colors.black87,
+        error: Color(0xFFB00020),
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+        onSurface: Colors.white,
+        onBackground: Colors.white,
+        onError: Colors.white,
+        brightness: Brightness.dark);
 
     return ThemeData(
       backgroundColor: colors.background,

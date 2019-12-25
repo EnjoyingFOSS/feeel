@@ -1,3 +1,4 @@
+import 'package:drag_list/drag_list.dart';
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
@@ -59,11 +60,35 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                     _editableWorkout = snapshot.data;
                     _titleController.text = _editableWorkout.title;
                   }
+
+                  var textStyle = TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.w900,
+                      color: Theme.of(context).primaryColor);
+                  var header = Row(children: <Widget>[
+                    CloseButton(),
+                    Expanded(
+                      child: Padding(
+                          child: TextField(
+                              style: textStyle,
+                              controller: _titleController,
+                              decoration: InputDecoration(
+                                  hintStyle: textStyle.copyWith(
+                                      color: Theme.of(context)
+                                          .primaryColor
+                                          .withAlpha(64)),
+                                  // border: InputBorder.none,
+                                  filled: false,
+                                  hintText: 'Workout title'.i18n)),
+                          padding: EdgeInsets.only(left: 16, right: 16)),
+                    ),
+                  ]);
+
                   return Form(
                       child: (_editableWorkout.workoutExercises.isEmpty)
                           ? Column(
                               children: <Widget>[
-                                _buildHeader(_titleController),
+                                header,
                                 Spacer(), //todo is this the right way to center column content?
                                 SizedBox(
                                   child: Image.asset("assets/image_coach.png"),
@@ -80,37 +105,46 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                   padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
                                 ),
                                 Text(
-                                    "Design the workout that makes you feel the best",
+                                    "Design the workout that makes you feel the best"
+                                        .i18n,
                                     style: Theme.of(context)
                                         .textTheme
                                         .subhead
-                                        .copyWith(color: Colors.black54)),
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onBackground
+                                                .withAlpha(162))),
                                 Spacer()
                               ],
                             )
-                          : ReorderableListView(
-                              header: _buildHeader(_titleController),
-                              children: <Widget>[
-                                ...(_editableWorkout.workoutExercises
-                                    .map((WorkoutExercise workoutExercise) {
-                                  return ListTile(
-                                      title: Text(
-                                          workoutExercise.exercise.name.i18n),
-                                      key: ObjectKey(workoutExercise));
-                                }))
-                              ],
-                              onReorder: (int startIndex, int endIndex) {
-                                //todo use linkedlist?
-                                WorkoutExercise removedExercise =
-                                    _editableWorkout.workoutExercises
-                                        .removeAt(startIndex);
-
-                                if (endIndex > startIndex) endIndex -= 1;
-
-                                _editableWorkout.workoutExercises
-                                    .insert(endIndex, removedExercise);
-                              },
-                            ));
+                          : Column(children: [
+                              header,
+                              Container(
+                                height: 32,
+                              ),
+                              Expanded(
+                                  child: DragList<WorkoutExercise>(
+                                items: _editableWorkout.workoutExercises,
+                                itemExtent: 72.0,
+                                builder: (context, item, handle) {
+                                  return Row(children: [
+                                    Padding(
+                                      child: Image.asset(item.exercise.image),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 16),
+                                    ),
+                                    Padding(
+                                      child: Text(item.exercise.name),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 16),
+                                    ),
+                                    Spacer(),
+                                    handle,
+                                  ]);
+                                },
+                              ))
+                            ]));
                 } else {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -118,8 +152,8 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                 }
               })),
       bottomNavigationBar: BottomAppBar(
-          color: Color(0xffD9E9FF),
-          child: new Row(
+          color: Color(0xffD9E9FF), //todo make theming-friendly
+          child: Row(
             children: <Widget>[
               FlatButton.icon(
                   label: Text("Add exercises".i18n),

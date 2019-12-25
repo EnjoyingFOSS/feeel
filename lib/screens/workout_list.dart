@@ -56,6 +56,7 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
                   SliverPadding(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       sliver: SliverAppBar(
+                        brightness: Theme.of(context).brightness,
                         centerTitle: false,
                         title: Text.rich(
                             //todo add varying spans, e.g. "Feeel energized", "Feeel goood", "Feeel fresh" ,"Feeel the burn", ...
@@ -68,14 +69,14 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
                                     .w900, //todo extract into parent textspan
                                 color: Theme.of(context).colorScheme.primary),
                           ),
-                          TextSpan(
-                            text: "energized",
-                            style: TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.w900,
-                                color:
-                                    Theme.of(context).colorScheme.onBackground),
-                          )
+                          // todo TextSpan(
+                          //   text: "energized",
+                          //   style: TextStyle(
+                          //       fontSize: 32,
+                          //       fontWeight: FontWeight.w900,
+                          //       color:
+                          //           Theme.of(context).colorScheme.onBackground),
+                          // )
                         ])),
                         backgroundColor: Theme.of(context).backgroundColor,
                       )),
