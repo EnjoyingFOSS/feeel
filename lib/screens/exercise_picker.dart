@@ -35,6 +35,7 @@ class ExercisePickerState extends State<ExercisePicker> {
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.done),
+          tooltip: "Done".i18n,
           onPressed: () {
             List<Exercise> chosenExercises =
                 List.generate(_chosenExerciseIndices.length, (index) {
@@ -71,7 +72,11 @@ class ExercisePickerState extends State<ExercisePicker> {
                                       )),
                             ),
                           ]),
-                          secondary: Image.asset(exercise.image),
+                          secondary: exercise.image == null
+                              ? Container(
+                                  width: 0,
+                                )
+                              : Image.asset(exercise.image),
                           onChanged: (chosen) {
                             setState(() {
                               if (chosen) {
@@ -95,7 +100,7 @@ class ExercisePickerState extends State<ExercisePicker> {
                             final MailOptions mailOptions = MailOptions(
                               //todo TRANSLATE !!!
                               body:
-                                  "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. I am licensing the name and description under a CC BY-SA 4.0 license. I also give permission to process the attached image(s). After they are processed, I will evaluate whether I am willing to license them under the same license.", //todo translate
+                                  "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and a GPLv3 with an app store exception license. I also give permission to process the attached image(s). After they are processed, I will evaluate whether I am willing to license them under the same license.", //todo translate
                               subject: 'Exercise proposal: $name',
                               recipients: ['contact.mirek@pm.me'],
                               // attachments: [

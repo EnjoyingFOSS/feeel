@@ -50,6 +50,7 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
             builder: (BuildContext context,
                 AsyncSnapshot<List<WorkoutListed>> snapshot) {
               if (snapshot.hasData) {
+                print("LOADED");
                 var workoutsListed = snapshot.data;
 
                 return CustomScrollView(slivers: <Widget>[
@@ -91,11 +92,11 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
                               itemBuilder: (context) {
                                 return [
                                   PopupMenuItem<String>(
-                                      child: Text("Delete".i18n),
-                                      value: _MENU_DELETE),
-                                  PopupMenuItem<String>(
                                       child: Text("Edit".i18n),
                                       value: _MENU_EDIT),
+                                  PopupMenuItem<String>(
+                                      child: Text("Delete".i18n),
+                                      value: _MENU_DELETE),
                                 ];
                               },
                               onSelected: (String value) {
@@ -126,6 +127,7 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
   }
 
   void _onDeleteCustom(WorkoutListed workoutListed) {
+    // todo allow an undo !!!
     DBHelper.db.deleteCustomWorkout(workoutListed.dbId).then((_) {
       setState(() {});
     });

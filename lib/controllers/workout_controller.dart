@@ -6,6 +6,7 @@ import 'package:feeel/controllers/workout_timer.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/i18n/translations.dart';
 
 enum WorkoutStage { READY, EXERCISE, BREAK, END }
 
@@ -26,7 +27,7 @@ class WorkoutController {
 
     _views[ViewTypes.AUDIO.index] = TTSView(); //todo allow audio setting
     _onFinishes[ViewTypes.AUDIO.index] = () {
-      TTSHelper.tts.speak("You did it!");
+      TTSHelper.tts.speak("You did it!".i18n);
     };
 
     _timer = WorkoutTimer(0, onSecondDecrease: () {

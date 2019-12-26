@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:feeel/i18n/translations.dart';
 
 class FinishPage extends StatelessWidget {
   final Color color;
@@ -19,7 +20,7 @@ class FinishPage extends StatelessWidget {
             padding: EdgeInsets.all(16),
             child: Center(
                 child: Text(
-              "You're glowing!",
+              "You're glowing!".i18n,
               style: TextStyle(
                   fontSize: 32, fontWeight: FontWeight.w900, color: color),
             )))
