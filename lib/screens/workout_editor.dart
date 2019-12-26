@@ -66,6 +66,9 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                       fontWeight: FontWeight.w900,
                       color: Theme.of(context).primaryColor);
                   var header = Row(children: <Widget>[
+                    Container(
+                      width: 4,
+                    ),
                     CloseButton(),
                     Expanded(
                       child: Padding(
@@ -107,6 +110,7 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                 Text(
                                     "Design the workout that makes you feel the best"
                                         .i18n,
+                                    textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
                                         .subhead
@@ -182,11 +186,13 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
           backgroundColor: Theme.of(context).primaryColor,
+          tooltip: "Done".i18n,
           child: Icon(Icons.done),
           onPressed: () {
             _saveInputToWorkout();
-            DBHelper.db.createOrModifyCustomWorkout(_editableWorkout);
-            Navigator.pop(context);
+            DBHelper.db.createOrModifyCustomWorkout(_editableWorkout).then((_) {
+              Navigator.pop(context);
+            });
           }),
     );
   }

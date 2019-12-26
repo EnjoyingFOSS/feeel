@@ -16,10 +16,10 @@ class DBHelper {
   static final DBHelper db = DBHelper._();
   static Database _database;
 
-  static final String _dbFile = "feeel.db";
-  static final String _workoutTable = 'workouts';
-  static final String _exerciseTable = 'exercises';
-  static final String _workoutExerciseTable = 'workoutExercises';
+  static const String _dbFile = "feeel.db";
+  static const String _workoutTable = 'workouts';
+  static const String _exerciseTable = 'exercises';
+  static const String _workoutExerciseTable = 'workoutExercises';
 
   static const String idCol = 'id';
   static const String typeCol = 'type';
@@ -38,11 +38,16 @@ class DBHelper {
   static const String breakDurationCol = 'breakDuration';
   static const String exerciseDurationCol = 'exerciseDuration';
 
+  static const int _DEFAULT_COUNTDOWN_DURATION = 5;
+  static const int _DEFAULT_EXERCISE_DURATION = 30;
+  static const int _DEFAULT_BREAK_DURATION = 10;
+
   _createDB() async {
     String path = await getPath();
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
+      print("tables started");
       await db.execute("CREATE TABLE $_workoutTable ( "
           "$idCol INTEGER NOT NULL, "
           "$typeCol INTEGER NOT NULL, "
@@ -76,21 +81,23 @@ class DBHelper {
           "PRIMARY KEY($workoutIdCol,$orderCol)"
           ")");
 
-      _addInitialData();
+      print("tables done");
+
+      await _addInitialData(db);
     });
   }
 
-  void _addInitialData() async {
-    await _addScientific7MinuteWorkout();
-    await _addLegWorkout();
+  Future<void> _addInitialData(Database db) async {
+    print("Adding intitial data");
+
+    await _addScientific7MinuteWorkout(db);
+    await _addLegWorkout(db);
+    print("Data added");
   }
 
-  final int _DEFAULT_COUNTDOWN_DURATION = 5;
-  final int _DEFAULT_EXERCISE_DURATION = 30;
-  final int _DEFAULT_BREAK_DURATION = 10;
-
-  Future<void> _addScientific7MinuteWorkout() async {
+  Future<void> _addScientific7MinuteWorkout(Database db) async {
     int workoutId = await _createWorkout(
+        db,
         "Scientific 7 minute workout",
         _DEFAULT_COUNTDOWN_DURATION,
         _DEFAULT_EXERCISE_DURATION,
@@ -100,12 +107,12 @@ class DBHelper {
     int workoutOrder = 1;
     int exerciseId;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Jumping jacks",
         description:
             "1. Stand with feet together and arms at the sides\n2. Jump to a position with the legs spread wide and the hands touching overhead\n3. Repeat",
         image: "assets/exercise_jumpingjacks.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -114,12 +121,12 @@ class DBHelper {
         breakBeforeDuration: 5);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Wall sit",
         description:
-            "1. Lean against the wall with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n        2. Slide down the wall, keeping the back pressed to it, until \n. The knees should be directly above the ankles\n\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
+            "1. Lean against the wall with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n2. Slide down the wall, keeping the back pressed to it, until \n. The knees should be directly above the ankles\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
         image: "assets/exercise_wallsit.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -128,12 +135,12 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Push-ups",
         description:
-            "1. Lie down on your stomach\n        2. Place your hands near your ears\n        3. Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n        4. Bend arms until chest almost touches the ground, making sure the back is straight\n        5. Repeat from step 3",
+            "1. Lie down on your stomach\n2. Place your hands near your ears\n3. Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n4. Bend arms until chest almost touches the ground, making sure the back is straight\n5. Repeat from step 3",
         image: "assets/exercise_pushup.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -142,12 +149,12 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Ab crunches",
         description:
-            "1. Lie down face up on the floor with knees bent.\n        2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n        3. Repeat",
+            "1. Lie down face up on the floor with knees bent.\n2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n3. Repeat",
         image: "assets/exercise_abcrunch.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -156,12 +163,12 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Step-ups",
         description:
-            "1. Stand facing a chair\n        2. Step up onto the chair\n        3. Step off the chair\n        4. Repeat",
+            "1. Stand facing a chair\n2. Step up onto the chair\n3. Step off the chair\n4. Repeat",
         image: "assets/exercise_stepup.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -170,9 +177,9 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Squats", description: "", image: "assets/exercise_squat.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -181,11 +188,11 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Chair dips",
         description: "",
         image: "assets/exercise_tricepsdip.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -194,9 +201,9 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Plank", description: "", image: "assets/exercise_plank.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -205,11 +212,11 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "High knees",
         description: "",
         image: "assets/exercise_highknees.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -218,9 +225,9 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Lunges", description: "", image: "assets/exercise_lunge.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -229,11 +236,11 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Push-up rotations",
         description: "",
         image: "assets/exercise_pushuprotation.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -242,11 +249,11 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Side plank left",
         description: "",
         image: "assets/exercise_sideplank.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -255,11 +262,11 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Side plank right",
         description: "",
         image: "assets/exercise_sideplank.png");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -269,83 +276,84 @@ class DBHelper {
     workoutOrder++;
   }
 
-  Future<void> _addLegWorkout() async {
+  Future<void> _addLegWorkout(Database db) async {
     int workoutId = await _createWorkout(
+        db,
         "Leg workout",
         _DEFAULT_COUNTDOWN_DURATION,
         _DEFAULT_EXERCISE_DURATION,
         _DEFAULT_BREAK_DURATION,
         WorkoutType.DEFAULT,
-        WorkoutCategory.LEGS);
+        WorkoutCategory.LEGS); //TODO should I catch, then throw, or do as here?
     int workoutOrder = 1;
     int exerciseId;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Stationary lunges",
         description:
-            "1. Stand tall with your feet hip distance apart, take a step forward and keep this position, using arms for balance if needed.<br/>\n        2. Lower the front knee to a 90 degree angle so that both knees are bent. The back knee should not touch the floor and avoid rocking forward. The front knee must remain perpendicular to the floor and in line with the foot.<br/>\n        3. Press up with front knee to the starting postion and repeat, switching feet.",
+            "1. Stand tall with your feet hip distance apart, take a step forward and keep this position, using arms for balance if needed.\n2. Lower the front knee to a 90 degree angle so that both knees are bent. The back knee should not touch the floor and avoid rocking forward. The front knee must remain perpendicular to the floor and in line with the foot.\n3. Press up with front knee to the starting postion and repeat, switching feet.",
         image: "assets/exercise_stationarylunge.webp");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
         exerciseId: exerciseId);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Stationary lateral lunges",
         description:
-            "1. Stand tall and take a wide lateral stride, just greater than shoulder width. \n\n        2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n\n        3. Press up and repeat, switching feet.",
+            "1. Stand tall and take a wide lateral stride, just greater than shoulder width.\n2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n3. Press up and repeat, switching feet.",
         image: "assets/exercise_stationarylaterallunge.webp");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
         exerciseId: exerciseId);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Bulgarian split squats",
         description:
-            "1. Stand tall in front of a chair and take a large step. Put the upper part of your foot on the chair.\n\n        2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n\n        3. Push back to the starting position and repeat, switching feet.",
+            "1. Stand tall in front of a chair and take a large step. Put the upper part of your foot on the chair.\n2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n3. Push back to the starting position and repeat, switching feet.",
         image: "assets/exercise_bulgariansplitsquat.webp");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
         exerciseId: exerciseId);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Pistol squats",
         description:
-            "1. Sit on a bench or a chair with one leg straight in front of you. Stand up using only your other leg.\n\n        2. Bend the knee slowly to return to the starting position. Try to not rest on the chair or bench.",
+            "1. Sit on a bench or a chair with one leg straight in front of you. Stand up using only your other leg.\n2. Bend the knee slowly to return to the starting position. Try to not rest on the chair or bench.",
         image: "assets/exercise_pistolsquat.webp");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
         exerciseId: exerciseId);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Cable kickbacks",
         description:
-            "1. Get down on all fours and place one foot against a resistance like a cable.\n\n        2. Push your foot back until fully extended, concentrating on the gluteus muscles.\n\n        3. Stay for one second, then return to the initial position.",
+            "1. Get down on all fours and place one foot against a resistance like a cable.\n2. Push your foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.",
         image: "assets/exercise_cablekickback.webp");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
         exerciseId: exerciseId);
     workoutOrder++;
 
-    exerciseId = await createExercise(
+    exerciseId = await _createExercise(db,
         name: "Calf raises",
         description:
-            "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n\n        3. Lift your heels until you\\'re standing on toes.\n\n        4. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.",
+            "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n3. Lift your heels until you\\'re standing on toes.\n4. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.",
         image: "assets/exercise_calfraise.webp");
-    _createWorkoutExercise(
+    await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
         order: workoutOrder,
@@ -362,7 +370,7 @@ class DBHelper {
   //       name: "",
   //       description: "",
   //       image: "assets/.png");
-  //   _createWorkoutExercise(
+  //   await _createWorkoutExercise(db,
   //       workoutId: workoutId,
   //       workoutType: WorkoutType.DEFAULT,
   //       order: workoutOrder,
@@ -405,14 +413,13 @@ class DBHelper {
     return table.first[idColumn] == null ? 1 : table.first[idColumn];
   }
 
-  Future<int> createExercise(
+  Future<int> _createExercise(Database db,
       {String name,
       String description,
       String image,
       String imageAuthor,
       int imageLicense,
       int category}) async {
-    final db = await database;
     var table = _exerciseTable;
     int id = await _getNextId(db, table, idCol);
 
@@ -430,8 +437,10 @@ class DBHelper {
   }
 
   Future<int> createOrModifyCustomWorkout(Workout workout) async {
+    final db = await database;
     int workoutId = workout.dbId == null
         ? await _createWorkout(
+            db,
             workout.title,
             workout.countdownDuration,
             workout.exerciseDuration,
@@ -447,7 +456,7 @@ class DBHelper {
 
     for (int i = 0; i < workout.workoutExercises.length; i++) {
       var we = workout.workoutExercises[i];
-      _createWorkoutExercise(
+      await _createWorkoutExercise(db,
           workoutId: workoutId,
           workoutType: WorkoutType.CUSTOM,
           order: i + 1,
@@ -485,13 +494,13 @@ class DBHelper {
   }
 
   Future<int> _createWorkout(
+      Database db,
       String title,
       int countdownDuration,
       int exerciseDuration,
       int breakDuration,
       WorkoutType type,
       WorkoutCategory category) async {
-    final db = await database;
     var table = _workoutTable;
     int id = await _getNextId(db, table, idCol);
 
@@ -508,15 +517,13 @@ class DBHelper {
     return id;
   }
 
-  Future<void> _createWorkoutExercise(
+  Future<void> _createWorkoutExercise(Database db,
       {int workoutId,
       WorkoutType workoutType = WorkoutType.DEFAULT,
       int order,
       int exerciseId,
       int duration,
       int breakBeforeDuration}) async {
-    final db = await database;
-
     await db.insert(_workoutExerciseTable, {
       workoutIdCol: workoutId,
       workoutTypeCol: workoutType.index,
