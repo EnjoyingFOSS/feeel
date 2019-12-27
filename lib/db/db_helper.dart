@@ -6,7 +6,6 @@ import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/models/workout_listed.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/screens/workout_list.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -16,27 +15,27 @@ class DBHelper {
   static final DBHelper db = DBHelper._();
   static Database _database;
 
-  static const String _dbFile = "feeel.db";
-  static const String _workoutTable = 'workouts';
-  static const String _exerciseTable = 'exercises';
-  static const String _workoutExerciseTable = 'workoutExercises';
+  static const String _DB_FILE = "feeel.db";
+  static const String _WORKOUT_TABLE = 'workouts';
+  static const String _EXERCISE_TABLE = 'exercises';
+  static const String _WORKOUT_EXERCISE_TABLE = 'workoutExercises';
 
-  static const String idCol = 'id';
-  static const String typeCol = 'type';
-  static const String titleCol = 'title';
-  static const String workoutIdCol = 'workoutId';
-  static const String workoutTypeCol = 'workoutType';
-  static const String categoryCol = 'category';
-  static const String orderCol = 'orderCol';
-  static const String nameCol = 'name';
-  static const String descriptionCol = 'description';
-  static const String imageCol = 'image';
-  static const String imageLicenseCol = 'imageLicense';
-  static const String imageAuthorCol = 'imageAuthor';
-  static const String exerciseCol = 'exercise';
-  static const String countdownDurationCol = 'countdownDuration';
-  static const String breakDurationCol = 'breakDuration';
-  static const String exerciseDurationCol = 'exerciseDuration';
+  static const String _ID_COL = 'id';
+  static const String _TYPE_COL = 'type';
+  static const String _TITLE_COL = 'title';
+  static const String _WORKOUT_ID_COL = 'workoutId';
+  static const String _WORKOUT_TYPE_COL = 'workoutType';
+  static const String _CATEGORY_COL = 'category';
+  static const String _ORDER_COL = 'orderCol';
+  static const String _NAME_COL = 'name';
+  static const String _DESCRIPTION_COL = 'description';
+  static const String _IMAGE_COL = 'image';
+  static const String _IMAGE_LICENSE_COL = 'imageLicense';
+  static const String _IMAGE_AUTHOR_COL = 'imageAuthor';
+  static const String _EXERCISE_COL = 'exercise';
+  static const String _COUNTDOWN_DURATION_COL = 'countdownDuration';
+  static const String _BREAK_DURATION_COL = 'breakDuration';
+  static const String _EXERCISE_DURATION_COL = 'exerciseDuration';
 
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
@@ -47,52 +46,46 @@ class DBHelper {
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
-      print("tables started");
-      await db.execute("CREATE TABLE $_workoutTable ( "
-          "$idCol INTEGER NOT NULL, "
-          "$typeCol INTEGER NOT NULL, "
-          "$titleCol TEXT NOT NULL, "
-          "$categoryCol INTEGER NOT NULL, "
-          "$countdownDurationCol INTEGER NOT NULL, "
-          "$exerciseDurationCol INTEGER NOT NULL, "
-          "$breakDurationCol INTEGER NOT NULL, " // todo lastUsed as date
-          "PRIMARY KEY($idCol,$typeCol)"
+      await db.execute("CREATE TABLE $_WORKOUT_TABLE ( "
+          "$_ID_COL INTEGER NOT NULL, "
+          "$_TYPE_COL INTEGER NOT NULL, "
+          "$_TITLE_COL TEXT NOT NULL, "
+          "$_CATEGORY_COL INTEGER NOT NULL, "
+          "$_COUNTDOWN_DURATION_COL INTEGER NOT NULL, "
+          "$_EXERCISE_DURATION_COL INTEGER NOT NULL, "
+          "$_BREAK_DURATION_COL INTEGER NOT NULL, " // todo lastUsed as date
+          "PRIMARY KEY($_ID_COL,$_TYPE_COL)"
           ")");
 
       // todo history table with a history of workouts
 
-      await db.execute("CREATE TABLE $_exerciseTable ("
-          "$idCol INTEGER PRIMARY KEY, "
-          "$nameCol TEXT, "
-          "$descriptionCol TEXT, "
-          "$imageCol TEXT, " // todo what do I get from the server, really? actually, should split this up!
-          "$imageAuthorCol TEXT, "
-          "$imageLicenseCol INTEGER, "
-          "$categoryCol INTEGER" //todo not null?
+      await db.execute("CREATE TABLE $_EXERCISE_TABLE ("
+          "$_ID_COL INTEGER PRIMARY KEY, "
+          "$_NAME_COL TEXT, "
+          "$_DESCRIPTION_COL TEXT, "
+          "$_IMAGE_COL TEXT, " // todo what do I get from the server, really? actually, should split this up!
+          "$_IMAGE_AUTHOR_COL TEXT, "
+          "$_IMAGE_LICENSE_COL INTEGER, "
+          "$_CATEGORY_COL INTEGER" //todo not null?
           ")");
 
-      await db.execute("CREATE TABLE $_workoutExerciseTable ("
-          "$workoutIdCol INTEGER NOT NULL, "
-          "$workoutTypeCol INTEGER NOT NULL, "
-          "$orderCol INTEGER NOT NULL, "
-          "$exerciseCol INTEGER NOT NULL, "
-          "$exerciseDurationCol INTEGER, "
-          "$breakDurationCol INTEGER, "
-          "PRIMARY KEY($workoutIdCol,$orderCol)"
+      await db.execute("CREATE TABLE $_WORKOUT_EXERCISE_TABLE ("
+          "$_WORKOUT_ID_COL INTEGER NOT NULL, "
+          "$_WORKOUT_TYPE_COL INTEGER NOT NULL, "
+          "$_ORDER_COL INTEGER NOT NULL, "
+          "$_EXERCISE_COL INTEGER NOT NULL, "
+          "$_EXERCISE_DURATION_COL INTEGER, "
+          "$_BREAK_DURATION_COL INTEGER, "
+          "PRIMARY KEY($_WORKOUT_ID_COL,$_ORDER_COL)"
           ")");
-
-      print("tables done");
 
       await _addInitialData(db);
     });
   }
 
   Future<void> _addInitialData(Database db) async {
-    print("Adding intitial data");
-
     await _addScientific7MinuteWorkout(db);
     await _addLegWorkout(db);
-    print("Data added");
   }
 
   Future<void> _addScientific7MinuteWorkout(Database db) async {
@@ -178,7 +171,10 @@ class DBHelper {
     workoutOrder++;
 
     exerciseId = await _createExercise(db,
-        name: "Squats", description: "", image: "assets/exercise_squat.png");
+        name: "Squats",
+        description:
+            "1. Stand with feet shoulder-width apart\n2. Move the hips back and bend the knees and hips to lower the torso\n3. Repeat",
+        image: "assets/exercise_squat.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -190,7 +186,8 @@ class DBHelper {
 
     exerciseId = await _createExercise(db,
         name: "Chair dips",
-        description: "",
+        description:
+            "1. Sit down on the front edge of a chair, back straight, hands holding the front edge\n2. Still holding the edge of the chair, arms extended, lift your butt and walk forward slightly so that it is a few inches from the chair.\n3. Slowly lower your body, keeping the back straight, until arms are at a right angle\n4. Raise your body again to the previous position, arms extended\n5. Repeat steps 3 and 4",
         image: "assets/exercise_tricepsdip.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
@@ -202,7 +199,10 @@ class DBHelper {
     workoutOrder++;
 
     exerciseId = await _createExercise(db,
-        name: "Plank", description: "", image: "assets/exercise_plank.png");
+        name: "Plank",
+        description:
+            "1. Get down on all fours, with arms straight and knees bent\n2. Walk your feet back until they are extended\n3. Hold this position",
+        image: "assets/exercise_plank.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -214,7 +214,8 @@ class DBHelper {
 
     exerciseId = await _createExercise(db,
         name: "High knees",
-        description: "",
+        description:
+            "1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace",
         image: "assets/exercise_highknees.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
@@ -226,7 +227,10 @@ class DBHelper {
     workoutOrder++;
 
     exerciseId = await _createExercise(db,
-        name: "Lunges", description: "", image: "assets/exercise_lunge.png");
+        name: "Lunges",
+        description:
+            "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Return to standing position by stepping back\n6. Repeat, switching legs each time",
+        image: "assets/exercise_lunge.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -238,7 +242,8 @@ class DBHelper {
 
     exerciseId = await _createExercise(db,
         name: "Push-up rotations",
-        description: "",
+        description:
+            "1. Do a standard push-up:\n1.a Lie down on your stomach\n1.b Place your hands near your ears\n1.c Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n1.d Bend arms until chest almost touches the ground, making sure the back is straight\n1.e Lift your stomach up again, returning to step 3\n2. Rotate your body to the side so that the back is straight, the bottom hand supporting the body is fully extended, and only the bottom hand and foot touch the floor\n3. Repeat, changing sides at step 2 each time",
         image: "assets/exercise_pushuprotation.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
@@ -251,8 +256,9 @@ class DBHelper {
 
     exerciseId = await _createExercise(db,
         name: "Side plank left",
-        description: "",
-        image: "assets/exercise_sideplank.png");
+        description:
+            "1. Lie down on your left side, with your bottom elbow at a right angle, arm sticking out\n2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line\n3. Hold this position",
+        image: "assets/exercise_sideplank_l.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -264,8 +270,9 @@ class DBHelper {
 
     exerciseId = await _createExercise(db,
         name: "Side plank right",
-        description: "",
-        image: "assets/exercise_sideplank.png");
+        description:
+            "1. Lie down on your right side, with your bottom elbow at a right angle, arm sticking out\n2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line\n3. Hold this position",
+        image: "assets/exercise_sideplank_r.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -284,7 +291,7 @@ class DBHelper {
         _DEFAULT_EXERCISE_DURATION,
         _DEFAULT_BREAK_DURATION,
         WorkoutType.DEFAULT,
-        WorkoutCategory.LEGS); //TODO should I catch, then throw, or do as here?
+        WorkoutCategory.LEGS);
     int workoutOrder = 1;
     int exerciseId;
 
@@ -361,28 +368,9 @@ class DBHelper {
     workoutOrder++;
   }
 
-  // void _addAdvanced7MinuteWorkout { TODO
-  //   int workoutId = await createWorkout();
-  //   int workoutOrder = 1;
-  //   int exerciseId;
-
-  //   exerciseId = await createExercise(
-  //       name: "",
-  //       description: "",
-  //       image: "assets/.png");
-  //   await _createWorkoutExercise(db,
-  //       workoutId: workoutId,
-  //       workoutType: WorkoutType.DEFAULT,
-  //       order: workoutOrder,
-  //       exerciseId: exerciseId,
-  //       duration: 30,
-  //       breakBeforeDuration: 10);
-  //   workoutOrder++;
-  // }
-
   Future<String> getPath() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    return join(documentsDirectory.path, _dbFile);
+    return join(documentsDirectory.path, _DB_FILE);
   }
 
   Future<void> exportDB(String exportPath) async {
@@ -395,7 +383,6 @@ class DBHelper {
 
       dbFile.copy(
           exportPath); //todo think about how to better avoid problems with duplicate filenames
-      print(exportPath);
     }
   }
 
@@ -420,17 +407,17 @@ class DBHelper {
       String imageAuthor,
       int imageLicense,
       int category}) async {
-    var table = _exerciseTable;
-    int id = await _getNextId(db, table, idCol);
+    var table = _EXERCISE_TABLE;
+    int id = await _getNextId(db, table, _ID_COL);
 
     await db.insert(table, {
-      idCol: id,
-      nameCol: name,
-      descriptionCol: description,
-      imageCol: image,
-      imageAuthorCol: imageAuthor,
-      imageLicenseCol: imageLicense,
-      categoryCol: category
+      _ID_COL: id,
+      _NAME_COL: name,
+      _DESCRIPTION_COL: description,
+      _IMAGE_COL: image,
+      _IMAGE_AUTHOR_COL: imageAuthor,
+      _IMAGE_LICENSE_COL: imageLicense,
+      _CATEGORY_COL: category
     });
 
     return id;
@@ -472,24 +459,24 @@ class DBHelper {
     _deleteWorkoutExercises(workoutId, WorkoutType.CUSTOM);
 
     final db = await database;
-    db.delete(_workoutTable,
-        where: "$idCol = ? AND $typeCol = ?",
+    db.delete(_WORKOUT_TABLE,
+        where: "$_ID_COL = ? AND $_TYPE_COL = ?",
         whereArgs: [workoutId, WorkoutType.CUSTOM.index]);
   }
 
   void _renameWorkout(
       int workoutId, WorkoutType workoutType, String workoutTitle) async {
     final db = await database;
-    db.update(_workoutTable, {titleCol: workoutTitle},
-        where: "$idCol = ? and $typeCol = ?",
+    db.update(_WORKOUT_TABLE, {_TITLE_COL: workoutTitle},
+        where: "$_ID_COL = ? and $_TYPE_COL = ?",
         whereArgs: [workoutId, workoutType.index]);
   }
 
   void _deleteWorkoutExercises(int workoutId, WorkoutType type) async {
     //todo would it be more efficient if I passed in the workout, which already has the IDs?
     final db = await database;
-    db.delete(_workoutExerciseTable,
-        where: "$workoutIdCol = ? AND $workoutTypeCol = ?",
+    db.delete(_WORKOUT_EXERCISE_TABLE,
+        where: "$_WORKOUT_ID_COL = ? AND $_WORKOUT_TYPE_COL = ?",
         whereArgs: [workoutId, type.index]);
   }
 
@@ -501,17 +488,17 @@ class DBHelper {
       int breakDuration,
       WorkoutType type,
       WorkoutCategory category) async {
-    var table = _workoutTable;
-    int id = await _getNextId(db, table, idCol);
+    var table = _WORKOUT_TABLE;
+    int id = await _getNextId(db, table, _ID_COL);
 
     await db.insert(table, {
-      idCol: id,
-      titleCol: title,
-      countdownDurationCol: countdownDuration,
-      exerciseDurationCol: exerciseDuration,
-      breakDurationCol: breakDuration,
-      typeCol: type.index,
-      categoryCol: category.index
+      _ID_COL: id,
+      _TITLE_COL: title,
+      _COUNTDOWN_DURATION_COL: countdownDuration,
+      _EXERCISE_DURATION_COL: exerciseDuration,
+      _BREAK_DURATION_COL: breakDuration,
+      _TYPE_COL: type.index,
+      _CATEGORY_COL: category.index
     });
 
     return id;
@@ -524,30 +511,30 @@ class DBHelper {
       int exerciseId,
       int duration,
       int breakBeforeDuration}) async {
-    await db.insert(_workoutExerciseTable, {
-      workoutIdCol: workoutId,
-      workoutTypeCol: workoutType.index,
-      orderCol: order,
-      exerciseCol: exerciseId,
-      exerciseDurationCol: duration,
-      breakDurationCol: breakBeforeDuration
+    await db.insert(_WORKOUT_EXERCISE_TABLE, {
+      _WORKOUT_ID_COL: workoutId,
+      _WORKOUT_TYPE_COL: workoutType.index,
+      _ORDER_COL: order,
+      _EXERCISE_COL: exerciseId,
+      _EXERCISE_DURATION_COL: duration,
+      _BREAK_DURATION_COL: breakBeforeDuration
     });
   }
 
   Future<List<Exercise>> queryExercisesFromCategory(int category) async {
     final db = await database;
-    var res = await db.query(_exerciseTable,
-        where: "$categoryCol = ?", whereArgs: [category]);
+    var res = await db.query(_EXERCISE_TABLE,
+        where: "$_CATEGORY_COL = ?", whereArgs: [category]);
     List<Exercise> list = res.isNotEmpty
         ? res
             .map((map) => Exercise(
-                dbId: map[idCol],
-                name: map[nameCol],
-                description: map[descriptionCol],
-                image: map[imageCol],
-                imageAuthor: map[imageAuthorCol],
-                imageLicense: map[imageLicenseCol],
-                category: map[categoryCol]))
+                dbId: map[_ID_COL],
+                name: map[_NAME_COL],
+                description: map[_DESCRIPTION_COL],
+                image: map[_IMAGE_COL],
+                imageAuthor: map[_IMAGE_AUTHOR_COL],
+                imageLicense: map[_IMAGE_LICENSE_COL],
+                category: map[_CATEGORY_COL]))
             .toList()
         : [];
     return list;
@@ -555,17 +542,17 @@ class DBHelper {
 
   Future<List<Exercise>> queryExercises() async {
     final db = await database;
-    var res = await db.query(_exerciseTable);
+    var res = await db.query(_EXERCISE_TABLE);
     List<Exercise> list = res.isNotEmpty
         ? res
             .map((map) => Exercise(
-                dbId: map[idCol],
-                name: map[nameCol],
-                description: map[descriptionCol],
-                image: map[imageCol],
-                imageAuthor: map[imageAuthorCol],
-                imageLicense: map[imageLicenseCol],
-                category: map[categoryCol]))
+                dbId: map[_ID_COL],
+                name: map[_NAME_COL],
+                description: map[_DESCRIPTION_COL],
+                image: map[_IMAGE_COL],
+                imageAuthor: map[_IMAGE_AUTHOR_COL],
+                imageLicense: map[_IMAGE_LICENSE_COL],
+                category: map[_CATEGORY_COL]))
             .toList()
         : [];
     return list;
@@ -573,14 +560,14 @@ class DBHelper {
 
   Future<List<WorkoutListed>> listWorkouts() async {
     final db = await database;
-    var res = await db.query(_workoutTable);
+    var res = await db.query(_WORKOUT_TABLE);
     List<WorkoutListed> list = res.isNotEmpty
         ? res
             .map((map) => WorkoutListed(
-                map[idCol],
-                WorkoutType.values[map[typeCol]],
-                map[titleCol],
-                WorkoutCategory.values[map[categoryCol]]))
+                map[_ID_COL],
+                WorkoutType.values[map[_TYPE_COL]],
+                map[_TITLE_COL],
+                WorkoutCategory.values[map[_CATEGORY_COL]]))
             .toList()
         : [];
     return list;
@@ -589,49 +576,49 @@ class DBHelper {
   Future<Exercise> queryExercise(int exerciseId) async {
     final db = await database;
     var res = await db
-        .query(_exerciseTable, where: "$idCol = ?", whereArgs: [exerciseId]);
+        .query(_EXERCISE_TABLE, where: "$_ID_COL = ?", whereArgs: [exerciseId]);
     return res.isNotEmpty
         ? Exercise(
-            dbId: res.first[idCol],
-            name: res.first[nameCol],
-            description: res.first[descriptionCol],
-            image: res.first[imageCol],
-            imageAuthor: res.first[imageAuthorCol],
-            imageLicense: res.first[imageLicenseCol],
-            category: res.first[categoryCol])
+            dbId: res.first[_ID_COL],
+            name: res.first[_NAME_COL],
+            description: res.first[_DESCRIPTION_COL],
+            image: res.first[_IMAGE_COL],
+            imageAuthor: res.first[_IMAGE_AUTHOR_COL],
+            imageLicense: res.first[_IMAGE_LICENSE_COL],
+            category: res.first[_CATEGORY_COL])
         : Null;
   }
 
   Future<Workout> queryWorkout(int workoutId, WorkoutType type) async {
     final db = await database;
-    var weRes = await db.query(_workoutExerciseTable,
-        where: "$workoutIdCol = ? AND $workoutTypeCol = ?",
+    var weRes = await db.query(_WORKOUT_EXERCISE_TABLE,
+        where: "$_WORKOUT_ID_COL = ? AND $_WORKOUT_TYPE_COL = ?",
         whereArgs: [workoutId, type.index],
-        orderBy: orderCol); //todo orderby correct?
+        orderBy: _ORDER_COL);
     List<WorkoutExercise> workoutExercises = List()..length = weRes.length;
     for (int i = 0; i < weRes.length; i++) {
       var item = weRes[i];
-      var exercise = await queryExercise(item[exerciseCol]);
+      var exercise = await queryExercise(item[_EXERCISE_COL]);
       workoutExercises[i] = WorkoutExercise(
-          dbId: item[idCol],
+          dbId: item[_ID_COL],
           exercise: exercise,
-          duration: item[exerciseDurationCol],
-          breakBeforeDuration: item[breakDurationCol]);
+          duration: item[_EXERCISE_DURATION_COL],
+          breakBeforeDuration: item[_BREAK_DURATION_COL]);
     }
 
-    var workoutRes = await db.query(_workoutTable,
-        where: "$idCol = ? AND $typeCol = ?",
+    var workoutRes = await db.query(_WORKOUT_TABLE,
+        where: "$_ID_COL = ? AND $_TYPE_COL = ?",
         whereArgs: [workoutId, type.index]);
 
     return Workout(
-        dbId: workoutRes[0][idCol],
-        title: workoutRes[0][titleCol],
+        dbId: workoutRes[0][_ID_COL],
+        title: workoutRes[0][_TITLE_COL],
         workoutExercises: workoutExercises,
-        countdownDuration: workoutRes[0][countdownDurationCol],
-        breakDuration: workoutRes[0][breakDurationCol],
-        exerciseDuration: workoutRes[0][exerciseDurationCol],
-        type: WorkoutType.values[workoutRes[0][typeCol]],
-        category: WorkoutCategory.values[workoutRes[0][categoryCol]]);
+        countdownDuration: workoutRes[0][_COUNTDOWN_DURATION_COL],
+        breakDuration: workoutRes[0][_BREAK_DURATION_COL],
+        exerciseDuration: workoutRes[0][_EXERCISE_DURATION_COL],
+        type: WorkoutType.values[workoutRes[0][_TYPE_COL]],
+        category: WorkoutCategory.values[workoutRes[0][_CATEGORY_COL]]);
   }
 
   Future close() async {
