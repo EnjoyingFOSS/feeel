@@ -9,9 +9,8 @@ class TTSView implements WorkoutView {
 
   @override
   void onStart(int workoutPos, WorkoutExercise nextExercise, int duration) {
-    TTSHelper.tts.speak("Let's go! First up: %s"
-        .replaceFirst("%s", nextExercise.exercise.name)
-        .i18n); //todo internationalization
+    TTSHelper.tts.speak("Let's go! First up: %s".i18n.replaceFirst(
+        "%s", nextExercise.exercise.name)); //todo internationalization
   }
 
   @override
@@ -28,9 +27,8 @@ class TTSView implements WorkoutView {
     if (seconds <= COUNTDOWN)
       TTSHelper.tts.speak(seconds.toString());
     else if (seconds == halfTime) {
-      TTSHelper.tts.speak("%d seconds left"
-          .replaceFirst("%d", "$seconds")
-          .i18n); //todo internationalize with declension
+      TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst(
+          "%d", "$seconds")); //todo internationalize with declension
     }
   }
 

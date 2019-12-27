@@ -349,7 +349,7 @@ Quadricep pain is normal, stop if feeling pain in the knee or kneecap""",
 } +
 {
 "en_us": """Calf raises""",
-"cs_cz": """Calf raise""",
+"cs_cz": """Výpony""",
 } +
 {
 "en_us": """1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.
