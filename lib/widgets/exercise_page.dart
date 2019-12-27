@@ -16,7 +16,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/controllers/workout_controller.dart';
-import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/widgets/break_illustration.dart';
@@ -47,8 +46,6 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   //todo ban swipe to go back unless controls are shown?
   bool _paused = false;
   bool _infoShown = false;
-  bool _break = true;
-  double _dragStart = 0;
   int _seconds;
   PageController _pageController = PageController();
   static const Duration TRANSITION_DURATION = Duration(microseconds: 600);
@@ -147,11 +144,12 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
                   width: double.infinity,
                   height: 200, //todo style, height
                   child: _descriptionText != null
-                      ? Padding(
-                          padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
-                          child: Text(_descriptionText,
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.white)))
+                      ? SingleChildScrollView(
+                          child: Padding(
+                              padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
+                              child: Text(_descriptionText,
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.white))))
                       : Container(),
                 )
             ],
@@ -185,10 +183,16 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onBreak(int workoutPos, WorkoutExercise nextExercise, int duration) {
-    // TODO: implement onBreak
+  void onStart(int workoutPos, WorkoutExercise nextExercise, int duration) {
     setState(() {
-      _break = true;
+      _seconds = duration;
+      _descriptionText = nextExercise.exercise.description;
+    });
+  }
+
+  @override
+  void onBreak(int workoutPos, WorkoutExercise nextExercise, int duration) {
+    setState(() {
       _seconds = duration;
       _descriptionText = nextExercise.exercise.description;
     });
@@ -199,7 +203,6 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   @override
   void onExercise(int workoutPos, WorkoutExercise exercise, int duration) {
     setState(() {
-      _break = false;
       _seconds = duration;
       _descriptionText = exercise.exercise.description;
     });
@@ -225,13 +228,6 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   void onPlay() {
     setState(() {
       _paused = false;
-    });
-  }
-
-  @override
-  void onStart(int workoutPos, WorkoutExercise nextExercise, int duration) {
-    setState(() {
-      _seconds = duration;
     });
   }
 }
