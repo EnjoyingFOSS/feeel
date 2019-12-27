@@ -15,14 +15,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/models/workout.dart';
-import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/screens/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'models/exercise.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 
 void main() => runApp(MyApp());
@@ -31,9 +28,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.grey, // Color for Android
+        statusBarColor: Colors.white,
         statusBarBrightness:
-            Brightness.light // Dark == white status bar -- for IOS.
+            Brightness.light
         ));
     return MaterialApp(
         title: 'Feeel',
