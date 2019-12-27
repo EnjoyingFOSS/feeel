@@ -21,6 +21,8 @@
     "btnEdit": "Edit",
     "btnDelete": "Delete",
     "btnDone": "Done",
+    "btnMoreInfo": "More info",
+    "btnCreateCustomWorkout": "Create custom workout",
     "btnAddCustomExerice": "Add custom exercise",
     "workoutScientific7Minute": "Scientific 7 minute workout",
     "workoutLeg": "Leg workout",

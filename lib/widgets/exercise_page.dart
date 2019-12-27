@@ -62,8 +62,7 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
   @override
   void initState() {
     widget.workoutController.setView(this);
-    var secs = widget.workout.workoutExercises[0].breakBeforeDuration;
-    _seconds = secs == null ? widget.workout.breakDuration : secs;
+    _seconds = widget.workout.countdownDuration;
     super.initState();
 
     final hslColor = HSLColor.fromColor(widget.color); //todo test, tweak
@@ -89,6 +88,7 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
                           child: IconButton(
                         iconSize: 32,
                         color: widget.color,
+                        tooltip: "Previous exercise".i18n,
                         icon: Icon(Icons.skip_previous),
                         onPressed: () {
                           widget.workoutController.skipToPrevious();
@@ -98,6 +98,7 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
                         child: IconButton(
                             iconSize: 64,
                             color: widget.color,
+                            tooltip: "Resume workout".i18n,
                             icon: Icon(Icons.play_arrow),
                             onPressed: () {
                               widget.workoutController.togglePlayPause();
@@ -107,6 +108,7 @@ class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
                         child: IconButton(
                             iconSize: 32,
                             color: widget.color,
+                            tooltip: "Next exercise".i18n,
                             icon: Icon(
                               Icons.skip_next,
                             ),

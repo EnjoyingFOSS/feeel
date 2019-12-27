@@ -35,6 +35,7 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
         //todo do I need SafeArea here?
         backgroundColor: Theme.of(context).backgroundColor,
         floatingActionButton: FloatingActionButton(
+          tooltip: "Create custom workout".i18n,
           child: Icon(Icons.add),
           onPressed: () {
             Navigator.push(context,

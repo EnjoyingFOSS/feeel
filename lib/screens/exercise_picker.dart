@@ -62,6 +62,7 @@ class ExercisePickerState extends State<ExercisePicker> {
                             IconButton(
                               //todo add labels to all icons
                               icon: Icon(Icons.info_outline),
+                              tooltip: "More info".i18n,
                               onPressed: () => showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
