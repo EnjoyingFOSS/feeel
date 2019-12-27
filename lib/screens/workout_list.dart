@@ -50,7 +50,6 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
             builder: (BuildContext context,
                 AsyncSnapshot<List<WorkoutListed>> snapshot) {
               if (snapshot.hasData) {
-                print("LOADED");
                 var workoutsListed = snapshot.data;
 
                 return CustomScrollView(slivers: <Widget>[
@@ -81,42 +80,44 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
                         ])),
                         backgroundColor: Theme.of(context).backgroundColor,
                       )),
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        WorkoutListed workoutListed = workoutsListed[index];
-                        if (workoutListed.type == WorkoutType.CUSTOM)
-                          return WorkoutListItem(
-                            workoutListed,
-                            trailing: PopupMenuButton(
-                              itemBuilder: (context) {
-                                return [
-                                  PopupMenuItem<String>(
-                                      child: Text("Edit".i18n),
-                                      value: _MENU_EDIT),
-                                  PopupMenuItem<String>(
-                                      child: Text("Delete".i18n),
-                                      value: _MENU_DELETE),
-                                ];
-                              },
-                              onSelected: (String value) {
-                                switch (value) {
-                                  case _MENU_DELETE:
-                                    _onDeleteCustom(workoutListed);
-                                    break;
-                                  case _MENU_EDIT:
-                                    _onEditCustom(workoutListed);
-                                    break;
-                                }
-                              },
-                            ),
-                          );
-                        else
-                          return WorkoutListItem(workoutListed);
-                      },
-                      childCount: workoutsListed.length,
-                    ),
-                  )
+                  SliverPadding(
+                      padding: EdgeInsets.only(bottom: 80),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            WorkoutListed workoutListed = workoutsListed[index];
+                            if (workoutListed.type == WorkoutType.CUSTOM)
+                              return WorkoutListItem(
+                                workoutListed,
+                                trailing: PopupMenuButton(
+                                  itemBuilder: (context) {
+                                    return [
+                                      PopupMenuItem<String>(
+                                          child: Text("Edit".i18n),
+                                          value: _MENU_EDIT),
+                                      PopupMenuItem<String>(
+                                          child: Text("Delete".i18n),
+                                          value: _MENU_DELETE),
+                                    ];
+                                  },
+                                  onSelected: (String value) {
+                                    switch (value) {
+                                      case _MENU_DELETE:
+                                        _onDeleteCustom(workoutListed);
+                                        break;
+                                      case _MENU_EDIT:
+                                        _onEditCustom(workoutListed);
+                                        break;
+                                    }
+                                  },
+                                ),
+                              );
+                            else
+                              return WorkoutListItem(workoutListed);
+                          },
+                          childCount: workoutsListed.length,
+                        ),
+                      ))
                 ]);
               } else {
                 return Center(
