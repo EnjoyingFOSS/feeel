@@ -90,6 +90,14 @@ static var t = Translations("en_us") +
 "cs_cz": """Hotovo""",
 } +
 {
+"en_us": """More info""",
+"cs_cz": """Více info""",
+} +
+{
+"en_us": """Create custom workout""",
+"cs_cz": """Vytvořit vlastní trénink""",
+} +
+{
 "en_us": """Add custom exercise""",
 "cs_cz": """Přidat vlastní cvik""",
 } +
@@ -263,7 +271,11 @@ Quadricep pain is normal, stop if feeling pain in the knee or kneecap""",
 "cs_cz": """Prkno na levém boku""",
 } +
 {
-"en_us": """1. Lie down on your left side, with your bottom elbow at a right angle, arm sticking out
+"en_us": """Side plank right""",
+"cs_cz": """Prkno na pravém boku""",
+} +
+{
+"en_us": """1. Lie down on your side, with your bottom elbow at a right angle, arm sticking out
 2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line
 3. Hold this position""",
 "cs_cz": """1. Lie down on your left side, with your bottom elbow at a right angle, arm sticking out
@@ -271,32 +283,8 @@ Quadricep pain is normal, stop if feeling pain in the knee or kneecap""",
         3. Hold this position""",
 } +
 {
-"en_us": """Side plank right""",
-"cs_cz": """Prkno na pravém boku""",
-} +
-{
-"en_us": """1. Lie down on your right side, with your bottom elbow at a right angle, arm sticking out
-2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line
-3. Hold this position""",
-"cs_cz": """1. Lie down on your right side, with your bottom elbow at a right angle, arm sticking out
-        2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line
-        3. Hold this position""",
-} +
-{
-"en_us": """Stationary lunges""",
-"cs_cz": """Dřepy ve výpadu""",
-} +
-{
-"en_us": """1. Stand tall with your feet hip distance apart, take a step forward and keep this position, using arms for balance if needed.
-2. Lower the front knee to a 90 degree angle so that both knees are bent. The back knee should not touch the floor and avoid rocking forward. The front knee must remain perpendicular to the floor and in line with the foot.
-3. Press up with front knee to the starting postion and repeat, switching feet.""",
-"cs_cz": """1. Stand tall with your feet hip distance apart, take a step forward and keep this position, using arms for balance if needed.
-        2. Lower the front knee to a 90 degree angle so that both knees are bent. The back knee should not touch the floor and avoid rocking forward. The front knee must remain perpendicular to the floor and in line with the foot.
-        3. Press up with front knee to the starting postion and repeat, switching feet.""",
-} +
-{
-"en_us": """Stationary lateral lunges""",
-"cs_cz": """Dřepy v bočním výpadu""",
+"en_us": """Side lunges""",
+"cs_cz": """Boční výpady""",
 } +
 {
 "en_us": """1. Stand tall and take a wide lateral stride, just greater than shoulder width.
@@ -309,57 +297,69 @@ Quadricep pain is normal, stop if feeling pain in the knee or kneecap""",
         3. Press up and repeat, switching feet.""",
 } +
 {
-"en_us": """Bulgarian split squats""",
-"cs_cz": """Bulharské dřepy""",
+"en_us": """Bulgarian split squats left""",
+"cs_cz": """Bulharské dřepy na levé noze""",
 } +
 {
-"en_us": """1. Stand tall in front of a chair and take a large step. Put the upper part of your foot on the chair.
+"en_us": """Bulgarian split squats right""",
+"cs_cz": """Bulharské dřepy na pravé noze""",
+} +
+{
+"en_us": """1. Stand tall in front of a chair and take a large step. Put the upper part of one of your feet on the chair.
 2. Bend the front knee, balancing with arms until the back knee almost touches the ground
-3. Push back to the starting position and repeat, switching feet.""",
-"cs_cz": """1. Stand tall in front of a chair and take a large step. Put the upper part of your foot on the chair.
-
-        2. Bend the front knee, balancing with arms until the back knee almost touches the ground
-
-        3. Push back to the starting position and repeat, switching feet.""",
+3. Push back to the starting position and repeat.""",
+"cs_cz": """1. Stand tall in front of a chair and take a large step. Put the upper part of one of your feet on the chair.
+2. Bend the front knee, balancing with arms until the back knee almost touches the ground
+3. Push back to the starting position and repeat.""",
 } +
 {
-"en_us": """Pistol squats""",
-"cs_cz": """Dřep na jedné noze""",
+"en_us": """Pistol squats left""",
+"cs_cz": """Dřep na levé noze""",
 } +
 {
-"en_us": """1. Sit on a bench or a chair with one leg straight in front of you. Stand up using only your other leg.
-2. Bend the knee slowly to return to the starting position. Try to not rest on the chair or bench.""",
-"cs_cz": """1. Sit on a bench or a chair with one leg straight in front of you. Stand up using only your other leg.
-
-        2. Bend the knee slowly to return to the starting position. Try to not rest on the chair or bench.""",
+"en_us": """Pistol squats right""",
+"cs_cz": """Dřep na pravé noze""",
 } +
 {
-"en_us": """Cable kickbacks""",
-"cs_cz": """Cable kickback""",
+"en_us": """1. Stand on one leg, with your other leg straight and slightly forward.
+2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.
+3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.
+4. Repeat""",
+"cs_cz": """1. Stand on one leg, with your other leg straight and slightly forward.
+2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.
+3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.
+4. Repeat""",
 } +
 {
-"en_us": """1. Get down on all fours and place one foot against a resistance like a cable.
-2. Push your foot back until fully extended, concentrating on the gluteus muscles.
-3. Stay for one second, then return to the initial position.""",
-"cs_cz": """1. Get down on all fours and place one foot against a resistance like a cable.
-
-        2. Push your foot back until fully extended, concentrating on the gluteus muscles.
-
-        3. Stay for one second, then return to the initial position.""",
+"en_us": """Kneeling kickbacks""",
+"cs_cz": """Kickbacky v kleku""",
 } +
 {
-"en_us": """Calf raises""",
-"cs_cz": """Výpony""",
+"en_us": """1. Get down on all fours.
+2. Push one foot back until fully extended, concentrating on the gluteus muscles.
+3. Stay for one second, then return to the initial position.
+4. Repeat, alternating feet""",
+"cs_cz": """1. Get down on all fours.
+2. Push one foot back until fully extended, concentrating on the gluteus muscles.
+3. Stay for one second, then return to the initial position.
+4. Repeat, alternating feet""",
+} +
+{
+"en_us": """Left leg calf raises""",
+"cs_cz": """Výpony na levé noze""",
+} +
+{
+"en_us": """Right leg calf raises""",
+"cs_cz": """Výpony na pravé noze""",
 } +
 {
 "en_us": """1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.
-3. Lift your heels until you\'re standing on toes.
-4. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.""",
+2. Lift your heels until you're standing on toes.
+3. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.""",
 "cs_cz": """1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.
-
-        3. Lift your heels until you\'re standing on toes.
-
-        4. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.""",
+2. Lift your heels until you're standing on toes.
+3. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.
+4. Repeat""",
 };
 String get i18n => localize(this, t);
 }

@@ -36,6 +36,7 @@ class DBHelper {
   static const String _COUNTDOWN_DURATION_COL = 'countdownDuration';
   static const String _BREAK_DURATION_COL = 'breakDuration';
   static const String _EXERCISE_DURATION_COL = 'exerciseDuration';
+  static const String _TWO_SIDED_COL = 'twoSided';
 
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
@@ -63,6 +64,7 @@ class DBHelper {
           "$_ID_COL INTEGER PRIMARY KEY, "
           "$_NAME_COL TEXT, "
           "$_DESCRIPTION_COL TEXT, "
+          "$_TWO_SIDED_COL INTEGER NOT NULL, "
           "$_IMAGE_COL TEXT, " // todo what do I get from the server, really? actually, should split this up!
           "$_IMAGE_AUTHOR_COL TEXT, "
           "$_IMAGE_LICENSE_COL INTEGER, "
@@ -230,7 +232,7 @@ class DBHelper {
         name: "Lunges",
         description:
             "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Return to standing position by stepping back\n6. Repeat, switching legs each time",
-        image: "assets/exercise_lunge.png");
+        image: "assets/exercise_lunge.webp");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -254,11 +256,13 @@ class DBHelper {
         breakBeforeDuration: 10);
     workoutOrder++;
 
+    final sidePlankDesc =
+        "1. Lie down on your side, with your bottom elbow at a right angle, arm sticking out\n2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line\n3. Hold this position";
+
     exerciseId = await _createExercise(db,
         name: "Side plank left",
-        description:
-            "1. Lie down on your left side, with your bottom elbow at a right angle, arm sticking out\n2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line\n3. Hold this position",
-        image: "assets/exercise_sideplank_l.png");
+        description: sidePlankDesc,
+        image: "assets/exercise_sideplank.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -270,9 +274,9 @@ class DBHelper {
 
     exerciseId = await _createExercise(db,
         name: "Side plank right",
-        description:
-            "1. Lie down on your right side, with your bottom elbow at a right angle, arm sticking out\n2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line\n3. Hold this position",
-        image: "assets/exercise_sideplank_r.png");
+        description: sidePlankDesc,
+        twoSided: true,
+        image: "assets/exercise_sideplank.png");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -295,11 +299,7 @@ class DBHelper {
     int workoutOrder = 1;
     int exerciseId;
 
-    exerciseId = await _createExercise(db,
-        name: "Stationary lunges",
-        description:
-            "1. Stand tall with your feet hip distance apart, take a step forward and keep this position, using arms for balance if needed.\n2. Lower the front knee to a 90 degree angle so that both knees are bent. The back knee should not touch the floor and avoid rocking forward. The front knee must remain perpendicular to the floor and in line with the foot.\n3. Press up with front knee to the starting postion and repeat, switching feet.",
-        image: "assets/exercise_stationarylunge.webp");
+    exerciseId = 10; //todo don't hard-code in lunges
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -308,10 +308,10 @@ class DBHelper {
     workoutOrder++;
 
     exerciseId = await _createExercise(db,
-        name: "Stationary lateral lunges",
+        name: "Side lunges",
         description:
-            "1. Stand tall and take a wide lateral stride, just greater than shoulder width.\n2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n3. Press up and repeat, switching feet.",
-        image: "assets/exercise_stationarylaterallunge.webp");
+            "1. Stand tall and take a wide lateral stride, just greater than the shoulder width.\n2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n3. Press up and repeat, switching feet.",
+        image: "assets/exercise_sidelunge.webp");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -319,10 +319,12 @@ class DBHelper {
         exerciseId: exerciseId);
     workoutOrder++;
 
+    final bulgarianSquatsDesc =
+        "1. Stand tall in front of a chair and take a large step. Put the upper part of your left foot on the chair.\n2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n3. Push back to the starting position and repeat.";
+
     exerciseId = await _createExercise(db,
-        name: "Bulgarian split squats",
-        description:
-            "1. Stand tall in front of a chair and take a large step. Put the upper part of your foot on the chair.\n2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n3. Push back to the starting position and repeat, switching feet.",
+        name: "Bulgarian split squats left",
+        description: bulgarianSquatsDesc,
         image: "assets/exercise_bulgariansplitsquat.webp");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
@@ -332,9 +334,23 @@ class DBHelper {
     workoutOrder++;
 
     exerciseId = await _createExercise(db,
-        name: "Pistol squats",
-        description:
-            "1. Sit on a bench or a chair with one leg straight in front of you. Stand up using only your other leg.\n2. Bend the knee slowly to return to the starting position. Try to not rest on the chair or bench.",
+        name: "Bulgarian split squats right",
+        description: bulgarianSquatsDesc,
+        twoSided: true,
+        image: "assets/exercise_bulgariansplitsquat.webp");
+    await _createWorkoutExercise(db,
+        workoutId: workoutId,
+        workoutType: WorkoutType.DEFAULT,
+        order: workoutOrder,
+        exerciseId: exerciseId);
+    workoutOrder++;
+
+    final pistolSquatDesc =
+        "1. Stand on one leg, with your other leg straight and slightly forward.\n2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.\n3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.\n4. Repeat";
+
+    exerciseId = await _createExercise(db,
+        name: "Pistol squats left",
+        description: pistolSquatDesc,
         image: "assets/exercise_pistolsquat.webp");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
@@ -344,10 +360,10 @@ class DBHelper {
     workoutOrder++;
 
     exerciseId = await _createExercise(db,
-        name: "Cable kickbacks",
-        description:
-            "1. Get down on all fours and place one foot against a resistance like a cable.\n2. Push your foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.",
-        image: "assets/exercise_cablekickback.webp");
+        name: "Pistol squats right",
+        description: pistolSquatDesc,
+        twoSided: true,
+        image: "assets/exercise_pistolsquat.webp");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -356,10 +372,36 @@ class DBHelper {
     workoutOrder++;
 
     exerciseId = await _createExercise(db,
-        name: "Calf raises",
+        name: "Kneeling kickbacks",
         description:
-            "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n3. Lift your heels until you\\'re standing on toes.\n4. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.",
-        image: "assets/exercise_calfraise.webp");
+            "1. Get down on all fours and place one foot against a resistance like a cable.\n2. Push your foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.",
+        image: "assets/exercise_kneelingkickback.webp");
+    await _createWorkoutExercise(db,
+        workoutId: workoutId,
+        workoutType: WorkoutType.DEFAULT,
+        order: workoutOrder,
+        exerciseId: exerciseId);
+    workoutOrder++;
+
+    final singleLegCalfRaiseDesc =
+        "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n2. Lift your heels until you're standing on toes.\n3. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.";
+
+    exerciseId = await _createExercise(db,
+        name: "Left leg calf raises",
+        description: singleLegCalfRaiseDesc,
+        image: "assets/exercise_singlelegcalfraise.webp");
+    await _createWorkoutExercise(db,
+        workoutId: workoutId,
+        workoutType: WorkoutType.DEFAULT,
+        order: workoutOrder,
+        exerciseId: exerciseId);
+    workoutOrder++;
+
+    exerciseId = await _createExercise(db,
+        name: "Right leg calf raises",
+        twoSided: true,
+        description: singleLegCalfRaiseDesc,
+        image: "assets/exercise_singlelegcalfraise.webp");
     await _createWorkoutExercise(db,
         workoutId: workoutId,
         workoutType: WorkoutType.DEFAULT,
@@ -403,6 +445,7 @@ class DBHelper {
   Future<int> _createExercise(Database db,
       {String name,
       String description,
+      bool twoSided = false,
       String image,
       String imageAuthor,
       int imageLicense,
@@ -414,6 +457,7 @@ class DBHelper {
       _ID_COL: id,
       _NAME_COL: name,
       _DESCRIPTION_COL: description,
+      _TWO_SIDED_COL: twoSided ? 1 : 0,
       _IMAGE_COL: image,
       _IMAGE_AUTHOR_COL: imageAuthor,
       _IMAGE_LICENSE_COL: imageLicense,
@@ -531,6 +575,7 @@ class DBHelper {
                 dbId: map[_ID_COL],
                 name: map[_NAME_COL],
                 description: map[_DESCRIPTION_COL],
+                twoSided: map[_TWO_SIDED_COL] == 1,
                 image: map[_IMAGE_COL],
                 imageAuthor: map[_IMAGE_AUTHOR_COL],
                 imageLicense: map[_IMAGE_LICENSE_COL],
@@ -549,6 +594,7 @@ class DBHelper {
                 dbId: map[_ID_COL],
                 name: map[_NAME_COL],
                 description: map[_DESCRIPTION_COL],
+                twoSided: map[_TWO_SIDED_COL] == 1,
                 image: map[_IMAGE_COL],
                 imageAuthor: map[_IMAGE_AUTHOR_COL],
                 imageLicense: map[_IMAGE_LICENSE_COL],
@@ -582,6 +628,7 @@ class DBHelper {
             dbId: res.first[_ID_COL],
             name: res.first[_NAME_COL],
             description: res.first[_DESCRIPTION_COL],
+            twoSided: res.first[_TWO_SIDED_COL] == 1,
             image: res.first[_IMAGE_COL],
             imageAuthor: res.first[_IMAGE_AUTHOR_COL],
             imageLicense: res.first[_IMAGE_LICENSE_COL],

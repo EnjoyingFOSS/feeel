@@ -19,6 +19,7 @@ class Exercise {
   final int dbId;
   final String name;
   final String description;
+  final bool twoSided;
   final String image;
   final String imageAuthor;
   final int imageLicense;
@@ -28,6 +29,7 @@ class Exercise {
       {this.dbId,
       this.name,
       this.description,
+      this.twoSided,
       this.image,
       this.imageAuthor,
       this.imageLicense,
