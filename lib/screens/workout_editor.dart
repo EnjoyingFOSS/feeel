@@ -144,6 +144,16 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                           EdgeInsets.symmetric(horizontal: 16),
                                     ),
                                     Spacer(),
+                                    IconButton(
+                                      icon: Icon(Icons.delete),
+                                      tooltip: "Delete".i18n,
+                                      onPressed: () {
+                                        setState(() {
+                                          _editableWorkout.workoutExercises
+                                              .remove(item);
+                                        });
+                                      },
+                                    ),
                                     handle,
                                   ]);
                                 },
