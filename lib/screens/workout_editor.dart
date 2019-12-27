@@ -107,18 +107,21 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                               fontSize: 24)),
                                   padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
                                 ),
-                                Text(
-                                    "Design the workout that makes you feel the best"
-                                        .i18n,
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .subhead
-                                        .copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onBackground
-                                                .withAlpha(162))),
+                                Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8),
+                                    child: Text(
+                                        "Design the workout that makes you feel the best"
+                                            .i18n,
+                                        textAlign: TextAlign.center,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subhead
+                                            .copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .onBackground
+                                                    .withAlpha(162)))),
                                 Spacer()
                               ],
                             )

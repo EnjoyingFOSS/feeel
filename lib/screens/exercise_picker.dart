@@ -58,8 +58,7 @@ class ExercisePickerState extends State<ExercisePicker> {
                         return CheckboxListTile(
                           value: _chosenExerciseIndices.contains(i),
                           title: Row(children: [
-                            Text(exercise.name.i18n),
-                            Spacer(),
+                            Expanded(child: Text(exercise.name.i18n)),
                             IconButton(
                               //todo add labels to all icons
                               icon: Icon(Icons.info_outline),
