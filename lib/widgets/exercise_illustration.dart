@@ -18,7 +18,13 @@ class ExerciseIllustration extends StatelessWidget {
     return IllustrationLayout(
       color: color,
       illustrationImage: exercise.image != null
-          ? Image.asset(exercise.image)
+          ? (exercise.twoSided
+              ? Transform(
+                  child: Image.asset(exercise.image),
+                  alignment: Alignment.center,
+                  transform: Matrix4.identity()..scale(-1.0, 1.0),
+                )
+              : Image.asset(exercise.image))
           : Text("Image missing".i18n),
       illustrationTitle: Text(exercise.name.i18n,
           textAlign: TextAlign.center,
