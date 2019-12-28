@@ -1,6 +1,7 @@
 import 'package:feeel/models/exercise.dart';
 import 'package:flutter/material.dart';
 
+import 'flipped.dart';
 import 'illustration_layout.dart';
 import 'package:feeel/i18n/translations.dart';
 
@@ -19,11 +20,7 @@ class ExerciseIllustration extends StatelessWidget {
       color: color,
       illustrationImage: exercise.image != null
           ? (exercise.twoSided
-              ? Transform(
-                  child: Image.asset(exercise.image),
-                  alignment: Alignment.center,
-                  transform: Matrix4.identity()..scale(-1.0, 1.0),
-                )
+              ? Flipped(child: Image.asset(exercise.image))
               : Image.asset(exercise.image))
           : Text("Image missing".i18n),
       illustrationTitle: Text(exercise.name.i18n,

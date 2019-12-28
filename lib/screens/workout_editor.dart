@@ -5,6 +5,7 @@ import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/screens/exercise_picker.dart';
+import 'package:feeel/widgets/flipped.dart';
 
 import '../models/workout.dart';
 
@@ -26,9 +27,9 @@ class WorkoutEditorScreen extends StatefulWidget {
 class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   Workout _editableWorkout;
   Future _future;
-  final int DEFAULT_COUNTDOWN_DURATION = 5;
-  final int DEFAULT_EXERCISE_DURATION = 30;
-  final int DEFAULT_BREAK_DURATION = 10;
+  static const int _DEFAULT_COUNTDOWN_DURATION = 5;
+  static const int _DEFAULT_EXERCISE_DURATION = 30;
+  static const int _DEFAULT_BREAK_DURATION = 10;
   final _titleController = TextEditingController();
 
   @override
@@ -37,9 +38,9 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
         ? Future.value(Workout(
             type: WorkoutType.CUSTOM,
             workoutExercises: List<WorkoutExercise>(),
-            countdownDuration: DEFAULT_COUNTDOWN_DURATION,
-            breakDuration: DEFAULT_BREAK_DURATION,
-            exerciseDuration: DEFAULT_EXERCISE_DURATION,
+            countdownDuration: _DEFAULT_COUNTDOWN_DURATION,
+            breakDuration: _DEFAULT_BREAK_DURATION,
+            exerciseDuration: _DEFAULT_EXERCISE_DURATION,
             category: WorkoutCategory.FULL_BODY))
         : DBHelper.db
             .queryWorkout(widget.workoutListed.dbId, widget.workoutListed.type);
@@ -132,21 +133,29 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                               ),
                               Expanded(
                                   child: DragList<WorkoutExercise>(
+                                padding: EdgeInsets.only(bottom: 32),
                                 items: _editableWorkout.workoutExercises,
                                 itemExtent: 72.0,
                                 builder: (context, item, handle) {
                                   return Row(children: [
                                     Padding(
-                                      child: Image.asset(item.exercise.image),
+                                      child: item.exercise.image == null
+                                          ? Container()
+                                          : item.exercise.twoSided
+                                              ? Flipped(
+                                                  child: Image.asset(
+                                                      item.exercise.image))
+                                              : Image.asset(
+                                                  item.exercise.image),
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 16),
                                     ),
-                                    Padding(
+                                    Expanded(
+                                        child: Padding(
                                       child: Text(item.exercise.name),
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 16),
-                                    ),
-                                    Spacer(),
+                                    )),
                                     IconButton(
                                       icon: Icon(Icons.delete),
                                       tooltip: "Delete".i18n,
@@ -212,42 +221,5 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
 
   void _saveInputToWorkout() {
     _editableWorkout.title = _titleController.text;
-  }
-
-  Widget _buildHeader(TextEditingController titleController) {
-    //todo split into separate widget
-    var textStyle = TextStyle(
-        fontSize: 40,
-        fontWeight: FontWeight.w900,
-        color: Theme.of(context).primaryColor);
-    return SizedBox(
-        height: 72,
-        child: Stack(
-          children: <Widget>[
-            Positioned.directional(
-                textDirection: TextDirection.ltr,
-                start: 8,
-                top: 0,
-                bottom: 0,
-                width: 24,
-                child: CloseButton()),
-            Positioned.directional(
-                textDirection: TextDirection.ltr, //todo get this from context
-                start: 56,
-                end: 0,
-                top: 16,
-                bottom: 0,
-                child: TextField(
-                    style: textStyle,
-                    controller: titleController,
-                    decoration: InputDecoration(
-                        hintStyle: textStyle.copyWith(
-                            color:
-                                Theme.of(context).primaryColor.withAlpha(64)),
-                        // border: InputBorder.none,
-                        filled: false,
-                        hintText: 'Workout title'.i18n)))
-          ],
-        ));
   }
 }

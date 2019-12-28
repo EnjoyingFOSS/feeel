@@ -1,5 +1,6 @@
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/exercise.dart';
+import 'package:feeel/widgets/flipped.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:flutter_mailer/flutter_mailer.dart';
@@ -76,7 +77,9 @@ class ExercisePickerState extends State<ExercisePicker> {
                               ? Container(
                                   width: 0,
                                 )
-                              : Image.asset(exercise.image),
+                              : (exercise.twoSided
+                                  ? Flipped(child: Image.asset(exercise.image))
+                                  : Image.asset(exercise.image)),
                           onChanged: (chosen) {
                             setState(() {
                               if (chosen) {
