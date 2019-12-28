@@ -290,7 +290,7 @@ class DBHelper {
   Future<void> _addLegWorkout(Database db) async {
     int workoutId = await _createWorkout(
         db,
-        "Leg workout",
+        "Advanced leg workout",
         _DEFAULT_COUNTDOWN_DURATION,
         _DEFAULT_EXERCISE_DURATION,
         _DEFAULT_BREAK_DURATION,
