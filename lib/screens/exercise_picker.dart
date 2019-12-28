@@ -1,5 +1,6 @@
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/exercise.dart';
+import 'package:feeel/screens/exercise_creator.dart';
 import 'package:feeel/widgets/flipped.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -97,27 +98,12 @@ class ExercisePickerState extends State<ExercisePicker> {
                               alignment: Alignment.center,
                               child: Icon(Icons.add)),
                           title: Text("Add custom exercise".i18n),
-                          onTap: () async {
-                            // TOOD !!!
-                            var name = "Exercise name";
-                            final MailOptions mailOptions = MailOptions(
-                              //todo TRANSLATE !!!
-                              body:
-                                  "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and a GPLv3 with an app store exception license. I also give permission to process the attached image(s). After they are processed, I will evaluate whether I am willing to license them under the same license.", //todo translate
-                              subject: 'Exercise proposal: $name',
-                              recipients: ['contact.mirek@pm.me'],
-                              // attachments: [
-                              //   tempPath, //todo !!!!
-                              // ],
-                            );
-                            await FlutterMailer.send(mailOptions)
-                                .catchError(() {
-                              Scaffold.of(this.context).showSnackBar(SnackBar(
-                                content: Text("Email could not be sent"),
-                              ));
-                            });
-
-                            // todo !!!
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => ExerciseCreator(),
+                                    fullscreenDialog: true));
                           },
                         );
                       }
