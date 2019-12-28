@@ -28,10 +28,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.white,
-        statusBarBrightness:
-            Brightness.light
-        ));
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light));
     return MaterialApp(
         title: 'Feeel',
         supportedLocales: [
