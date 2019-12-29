@@ -47,7 +47,7 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
           },
         ),
         body: FutureBuilder<List<WorkoutListed>>(
-            future: DBHelper.db.listWorkouts(),
+            future: DBHelper.db.queryAllWorkouts(),
             builder: (BuildContext context,
                 AsyncSnapshot<List<WorkoutListed>> snapshot) {
               if (snapshot.hasData) {
