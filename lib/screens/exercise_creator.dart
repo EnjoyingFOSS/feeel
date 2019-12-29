@@ -28,13 +28,25 @@ class _ExerciseCreatorState extends State<ExerciseCreator> {
         onPressed: _sendMessage,
       ),
       appBar: AppBar(
-        title: Text("Submit new exercise".i18n),
+        title: Text("Contribute an exercise".i18n),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(16, 8, 16, 64),
         child: Form(
             child: Column(
           children: <Widget>[
+            Text(
+                "Feeel relies on volunteers like you to submit exercises and exercise photos. Any photos you submit will first be privately processed, then sent to you for approval, and only then released in the app. Thanks for contributing!"),
+            Container(
+              height: 8,
+            ),
+            Container(
+              color: Colors.black45,
+              height: 2,
+            ),
+            Container(
+              height: 8,
+            ),
             TextFormField(
               decoration: InputDecoration(labelText: "Exercise name".i18n),
               controller: _nameController,
@@ -84,7 +96,6 @@ class _ExerciseCreatorState extends State<ExerciseCreator> {
   }
 
   Future _sendMessage() async {
-    // TOOD !!!
     final MailOptions mailOptions = MailOptions(
       //todo TRANSLATE !!!
       body: """Hello,
@@ -93,20 +104,19 @@ I'm sending a proposal of an exercise. I hereby declare that all of it is my own
 
 Exercise name: ${_nameController.text}
 Exercise steps:
-${_stepsController.text}
-
------
+${_stepsController.text} """ +
+                  Localizations.localeOf(context).languageCode ==
+              "en" // todo TEST !!!
+          ? ""
+          : ("""-----
 
 TRANSLATION:
 
 """ +
-          "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and a GPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.\n\nExercise name: %1s\nExercise steps:\n%2s"
-              .i18n
-              .replaceFirst("%1s", _nameController.text)
-              .replaceFirst(
-                  "%2s",
-                  _stepsController
-                      .text), //todo translate, but also include original English at the top of the message
+              "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and a GPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.\n\nExercise name: %1s\nExercise steps:\n%2s"
+                  .i18n
+                  .replaceFirst("%1s", _nameController.text)
+                  .replaceFirst("%2s", _stepsController.text)),
       subject:
           "Exercise proposal: %s".i18n.replaceFirst("%s", _nameController.text),
       recipients: ['contact.mirek@pm.me'],
