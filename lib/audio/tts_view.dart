@@ -1,11 +1,33 @@
+// Copyright (C) 2019 Miroslav Mazel
+// 
+// This file is part of Feeel.
+// 
+// Feeel is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version. As an additional permission under
+// section 7, you are allowed to distribute the software through an app
+// store, even if that store has restrictive terms and conditions that
+// are incompatible with the GPL, provided that the source is also
+// available under the GPL with or without this permission through a
+// channel without those restrictive terms and conditions.
+// 
+// Feeel is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
+
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class TTSView implements WorkoutView {
-  static final int COUNTDOWN = 5;
-  int halfTime = 0;
+  static const int _COUNTDOWN = 5;
+  int _halfTime = 0;
 
   @override
   void onStart(int workoutPos, WorkoutExercise nextExercise, int duration) {
@@ -24,9 +46,9 @@ class TTSView implements WorkoutView {
 
   @override
   void onCount(int seconds) {
-    if (seconds <= COUNTDOWN)
+    if (seconds <= _COUNTDOWN)
       TTSHelper.tts.speak(seconds.toString());
-    else if (seconds == halfTime) {
+    else if (seconds == _halfTime) {
       TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst(
           "%d", "$seconds")); //todo internationalize with declension
     }
@@ -35,7 +57,7 @@ class TTSView implements WorkoutView {
   @override
   void onExercise(int workoutPos, WorkoutExercise exercise, int duration) {
     TTSHelper.tts.speak(exercise.exercise.name.i18n);
-    halfTime = (duration / 2).ceil();
+    _halfTime = (duration / 2).ceil();
   }
 
   @override

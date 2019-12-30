@@ -1,3 +1,25 @@
+// Copyright (C) 2019 Miroslav Mazel
+// 
+// This file is part of Feeel.
+// 
+// Feeel is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version. As an additional permission under
+// section 7, you are allowed to distribute the software through an app
+// store, even if that store has restrictive terms and conditions that
+// are incompatible with the GPL, provided that the source is also
+// available under the GPL with or without this permission through a
+// channel without those restrictive terms and conditions.
+// 
+// Feeel is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
+
 import 'package:i18n_extension/i18n_extension.dart';
 extension Localization on String {
 static var t = Translations("en_us") + 
@@ -79,22 +101,22 @@ static var t = Translations("en_us") +
 {
 "nl": """null""",
 "en_us": """Exercise name""",
-"cs_cz": """Exercise name""",
+"cs_cz": """Název cviku""",
 } +
 {
 "nl": """null""",
 "en_us": """How to perform exercise (optional)""",
-"cs_cz": """How to perform exercise (optional)""",
+"cs_cz": """Jak provést cvik (nepovinné)""",
 } +
 {
 "nl": """null""",
 "en_us": """Email could not be sent""",
-"cs_cz": """Email could not be sent""",
+"cs_cz": """E-mail se nepovedlo odeslat""",
 } +
 {
 "nl": """null""",
 "en_us": """Exercise proposal: %s""",
-"cs_cz": """Exercise proposal: %s""",
+"cs_cz": """Návrh cviku: %s""",
 } +
 {
 "nl": """null""",
@@ -171,22 +193,22 @@ Exercise steps:
 {
 "nl": """null""",
 "en_us": """Submit via email""",
-"cs_cz": """Submit via email""",
+"cs_cz": """Odeslat e-mailem""",
 } +
 {
 "nl": """null""",
 "en_us": """Add photo from gallery""",
-"cs_cz": """Add photo from gallery""",
+"cs_cz": """Přidat fotku z galerie""",
 } +
 {
 "nl": """null""",
 "en_us": """Take a photo""",
-"cs_cz": """Take a photo""",
+"cs_cz": """Vyfotit cvik""",
 } +
 {
 "nl": """null""",
 "en_us": """Add a link to your photo(s)""",
-"cs_cz": """Add a link to your photo(s)""",
+"cs_cz": """Přidat odkaz k fotce/fotkám""",
 } +
 {
 "nl": """Wetenschappelijk bewezen 7-minutenworkout""",
@@ -225,8 +247,7 @@ Exercise steps:
 
 Pijn in je dijbeenspieren is normaal. Stop als je pijn in je knie of knieholte voelt.""",
 "en_us": """1. Lean against the wall with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall
-2. Slide down the wall, keeping the back pressed to it, until 
-. The knees should be directly above the ankles
+2. Slide down the wall, keeping the back pressed to it, until legs are at a right angle. The knees should be directly above the ankles
 Quadricep pain is normal, stop if feeling pain in the knee or kneecap""",
 "cs_cz": """1. Lean against the wall with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall
         2. Slide down the wall, keeping the back pressed to it, until 
@@ -382,6 +403,29 @@ omhoog en loop een stukje naar voren.
         6. Repeat, switching legs each time""",
 } +
 {
+"nl": """null""",
+"en_us": """Split squats left""",
+"cs_cz": """Dřep ve výpadu nalevo""",
+} +
+{
+"nl": """null""",
+"en_us": """Split squats right""",
+"cs_cz": """Dřep ve výpadu napravo""",
+} +
+{
+"nl": """null""",
+"en_us": """1. Stand with back straight
+2. Take a large step forward with your left leg
+3. Bring your pelvis down until you almost touch the floor with your right knee
+4. Bring your pelvis back up
+5. Repeat from step 3.""",
+"cs_cz": """1. Stand with back straight
+2. Take a large step forward with your left leg
+3. Bring your pelvis down until you almost touch the floor with your right knee
+4. Bring your pelvis back up
+5. Repeat from step 3.""",
+} +
+{
 "nl": """Draaiend opdrukken""",
 "en_us": """Push-up rotations""",
 "cs_cz": """Kliky s rotací""",
@@ -434,22 +478,21 @@ omhoog en loop een stukje naar voren.
         3. Hold this position""",
 } +
 {
-"nl": """Zijwaartse uitvalspassen""",
-"en_us": """Side lunges""",
-"cs_cz": """Boční výpady""",
+"nl": """null""",
+"en_us": """Side split squats left""",
+"cs_cz": """Boční výpady nalevo""",
 } +
 {
-"nl": """1. Ga recht staan en doe een brede, zijwaartse pas, net iets voorbij schouderbreedte.
-2. Buig één knie totdat je heup gelijkstaat aan de grond. De gebogen knie moet gelijkstaan aan de voet.
-3. Duw jezelf omhoog met je voorste knie, ga terug naar stap 1 en herhaal, telkens met een andere knie.""",
+"nl": """null""",
+"en_us": """Side split squats right""",
+"cs_cz": """Boční výpady napravo""",
+} +
+{
+"nl": """null""",
 "en_us": """1. Stand tall and take a wide lateral stride, just greater than shoulder width.
 2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.
-3. Press up and repeat, switching feet.""",
-"cs_cz": """1. Stand tall and take a wide lateral stride, just greater than shoulder width. 
-
-        2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.
-
-        3. Press up and repeat, switching feet.""",
+3. Push back to the starting position and repeat.""",
+"cs_cz": """null""",
 } +
 {
 "nl": """Bulgaarse gespleten hurkzit (links)""",
