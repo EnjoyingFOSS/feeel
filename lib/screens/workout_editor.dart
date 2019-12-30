@@ -91,6 +91,7 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   return Form(
                       child: (_editableWorkout.workoutExercises.isEmpty)
                           ? Column(
+                            // todo singleChildScrollView, perhaps through the use of Centered or Flexible inside Column
                               children: <Widget>[
                                 header,
                                 Spacer(), //todo is this the right way to center column content?

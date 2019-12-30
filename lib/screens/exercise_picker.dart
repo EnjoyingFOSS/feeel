@@ -97,7 +97,7 @@ class ExercisePickerState extends State<ExercisePicker> {
                               width: 56,
                               alignment: Alignment.center,
                               child: Icon(Icons.add)),
-                          title: Text("Add custom exercise".i18n),
+                          title: Text("Propose custom exercise".i18n),
                           onTap: () {
                             Navigator.push(
                                 context,
