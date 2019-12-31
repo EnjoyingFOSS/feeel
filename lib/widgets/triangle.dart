@@ -25,9 +25,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class Triangle extends StatelessWidget {
-  Color color;
-  int seed;
-  double dimension;
+  final Color color;
+  final int seed;
+  final double dimension;
 
   Triangle({@required this.dimension, @required this.color, this.seed = 0});
 
