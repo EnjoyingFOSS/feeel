@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,15 +11,16 @@
 // are incompatible with the GPL, provided that the source is also
 // available under the GPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/screens/exercise_creator.dart';
@@ -95,13 +96,16 @@ class ExercisePickerState extends State<ExercisePicker> {
                                       )),
                             ),
                           ]),
-                          secondary: exercise.image == null
+                          secondary: exercise.imageSlug == null
                               ? Container(
                                   width: 0,
                                 )
                               : (exercise.twoSided
-                                  ? Flipped(child: Image.asset(exercise.image))
-                                  : Image.asset(exercise.image)),
+                                  ? Flipped(
+                                      child: Image.asset(AssetHelper.getThumb(
+                                          exercise.imageSlug)))
+                                  : Image.asset(AssetHelper.getThumb(
+                                      exercise.imageSlug))),
                           onChanged: (chosen) {
                             setState(() {
                               if (chosen) {

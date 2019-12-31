@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,16 +11,17 @@
 // are incompatible with the GPL, provided that the source is also
 // available under the GPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:drag_list/drag_list.dart';
+import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
@@ -113,7 +114,7 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   return Form(
                       child: (_editableWorkout.workoutExercises.isEmpty)
                           ? Column(
-                            // todo singleChildScrollView, perhaps through the use of Centered or Flexible inside Column
+                              // todo singleChildScrollView, perhaps through the use of Centered or Flexible inside Column
                               children: <Widget>[
                                 header,
                                 Spacer(), //todo is this the right way to center column content?
@@ -162,14 +163,16 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                 builder: (context, item, handle) {
                                   return Row(children: [
                                     Padding(
-                                      child: item.exercise.image == null
+                                      child: item.exercise.imageSlug == null
                                           ? Container()
                                           : item.exercise.twoSided
                                               ? Flipped(
                                                   child: Image.asset(
-                                                      item.exercise.image))
+                                                      AssetHelper.getThumb(item
+                                                          .exercise.imageSlug)))
                                               : Image.asset(
-                                                  item.exercise.image),
+                                                  AssetHelper.getThumb(
+                                                      item.exercise.imageSlug)),
                                       padding:
                                           EdgeInsets.symmetric(horizontal: 16),
                                     ),

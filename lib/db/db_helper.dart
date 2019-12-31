@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,12 +11,12 @@
 // are incompatible with the GPL, provided that the source is also
 // available under the GPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -78,7 +78,7 @@ class DBHelper {
   static const String _ORDER_COL = 'orderCol';
   static const String _NAME_COL = 'name';
   static const String _DESCRIPTION_COL = 'description';
-  static const String _IMAGE_COL = 'image';
+  static const String _IMAGE_SLUG_COL = 'image';
   static const String _IMAGE_LICENSE_COL = 'imageLicense';
   static const String _IMAGE_AUTHOR_COL = 'imageAuthor';
   static const String _EXERCISE_COL = 'exercise';
@@ -127,7 +127,7 @@ class DBHelper {
       "$_NAME_COL TEXT, "
       "$_DESCRIPTION_COL TEXT, "
       "$_FLIPPED_COL INTEGER NOT NULL, "
-      "$_IMAGE_COL TEXT, " // todo what do I get from the server, really? actually, should split this up!
+      "$_IMAGE_SLUG_COL TEXT, " // todo what do I get from the server, really? actually, should split this up!
       "$_IMAGE_AUTHOR_COL TEXT, "
       "$_IMAGE_LICENSE_COL INTEGER, "
       "$_CATEGORY_COL INTEGER" //todo not null?
@@ -204,67 +204,67 @@ class DBHelper {
         name: "Jumping jacks",
         description:
             "1. Stand with feet together and arms at the sides\n2. Jump to a position with the legs spread wide and the hands touching overhead\n3. Repeat",
-        image: "assets/exercise_jumpingjacks.png");
+        imageSlug: "exercise_jumpingjacks.webp");
 
     await _createExercise(db,
         name: "Wall sit",
         description:
             "1. Lean against the wall with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n2. Slide down the wall, keeping the back pressed to it, until \n. The knees should be directly above the ankles\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
-        image: "assets/exercise_wallsit.png");
+        imageSlug: "exercise_wallsit.webp");
 
     await _createExercise(db,
         name: "Push-ups",
         description:
             "1. Lie down on your stomach\n2. Place your hands near your ears\n3. Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n4. Bend arms until chest almost touches the ground, making sure the back is straight\n5. Repeat from step 3",
-        image: "assets/exercise_pushup.png");
+        imageSlug: "exercise_pushup.webp");
 
     await _createExercise(db,
         name: "Ab crunches",
         description:
             "1. Lie down face up on the floor with knees bent.\n2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n3. Repeat",
-        image: "assets/exercise_abcrunch.png");
+        imageSlug: "exercise_abcrunch.webp");
 
     await _createExercise(db,
         name: "Step-ups",
         description:
             "1. Stand facing a chair\n2. Step up onto the chair\n3. Step off the chair\n4. Repeat",
-        image: "assets/exercise_stepup.png");
+        imageSlug: "exercise_stepup.webp");
 
     await _createExercise(db,
         name: "Squats",
         description:
             "1. Stand with feet shoulder-width apart\n2. Move the hips back and bend the knees and hips to lower the torso\n3. Repeat",
-        image: "assets/exercise_squat.png");
+        imageSlug: "exercise_squat.webp");
 
     await _createExercise(db,
         name: "Chair dips",
         description:
             "1. Sit down on the front edge of a chair, back straight, hands holding the front edge\n2. Still holding the edge of the chair, arms extended, lift your butt and walk forward slightly so that it is a few inches from the chair.\n3. Slowly lower your body, keeping the back straight, until arms are at a right angle\n4. Raise your body again to the previous position, arms extended\n5. Repeat steps 3 and 4",
-        image: "assets/exercise_tricepsdip.png");
+        imageSlug: "exercise_tricepsdip.webp");
 
     await _createExercise(db,
         name: "Plank",
         description:
             "1. Get down on all fours, with arms straight and knees bent\n2. Walk your feet back until they are extended\n3. Hold this position",
-        image: "assets/exercise_plank.png");
+        imageSlug: "exercise_plank.webp");
 
     await _createExercise(db,
         name: "High knees",
         description:
             "1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace",
-        image: "assets/exercise_highknees.png");
+        imageSlug: "exercise_highknees.webp");
 
     await _createExercise(db,
         name: "Lunges",
         description:
             "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Return to standing position by stepping back\n6. Repeat, switching legs each time",
-        image: "assets/exercise_lunge.webp");
+        imageSlug: "exercise_lunge.webp");
 
     await _createExercise(db,
         name: "Push-up rotations",
         description:
             "1. Do a standard push-up:\n1.a Lie down on your stomach\n1.b Place your hands near your ears\n1.c Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n1.d Bend arms until chest almost touches the ground, making sure the back is straight\n1.e Lift your stomach up again, returning to step 3\n2. Rotate your body to the side so that the back is straight, the bottom hand supporting the body is fully extended, and only the bottom hand and foot touch the floor\n3. Repeat, changing sides at step 2 each time",
-        image: "assets/exercise_pushuprotation.png");
+        imageSlug: "exercise_pushuprotation.webp");
 
     final sidePlankDesc =
         "1. Lie down on your side, with your bottom elbow at a right angle, arm sticking out\n2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line\n3. Hold this position";
@@ -272,13 +272,13 @@ class DBHelper {
     await _createExercise(db,
         name: "Side plank left",
         description: sidePlankDesc,
-        image: "assets/exercise_sideplank.png");
+        imageSlug: "exercise_sideplank.webp");
 
     await _createExercise(db,
         name: "Side plank right",
         description: sidePlankDesc,
         flipped: true,
-        image: "assets/exercise_sideplank.png");
+        imageSlug: "exercise_sideplank.webp");
 
     final sideLungeDesc =
         "1. Stand tall and take a wide lateral stride, just greater than the shoulder width.\n2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n3. Press up and repeat.";
@@ -287,7 +287,7 @@ class DBHelper {
         name: "Side split squats left",
         description: sideLungeDesc,
         flipped: true,
-        image: "assets/exercise_sidesplitsquat.webp");
+        imageSlug: "exercise_sidesplitsquat.webp");
 
     final bulgarianSquatsDesc =
         "1. Stand tall in front of a chair and take a large step. Put the upper part of your left foot on the chair.\n2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n3. Push back to the starting position and repeat.";
@@ -295,13 +295,13 @@ class DBHelper {
     await _createExercise(db,
         name: "Bulgarian split squats left",
         description: bulgarianSquatsDesc,
-        image: "assets/exercise_bulgariansplitsquat.webp");
+        imageSlug: "exercise_bulgariansplitsquat.webp");
 
     await _createExercise(db,
         name: "Bulgarian split squats right",
         description: bulgarianSquatsDesc,
         flipped: true,
-        image: "assets/exercise_bulgariansplitsquat.webp");
+        imageSlug: "exercise_bulgariansplitsquat.webp");
     final pistolSquatDesc =
         "1. Stand on one leg, with your other leg straight and slightly forward.\n2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.\n3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.\n4. Repeat";
 
@@ -309,18 +309,18 @@ class DBHelper {
         name: "Pistol squats left",
         description: pistolSquatDesc,
         flipped: true,
-        image: "assets/exercise_pistolsquat.webp");
+        imageSlug: "exercise_pistolsquat.webp");
 
     await _createExercise(db,
         name: "Pistol squats right",
         description: pistolSquatDesc,
-        image: "assets/exercise_pistolsquat.webp");
+        imageSlug: "exercise_pistolsquat.webp");
 
     await _createExercise(db,
         name: "Kneeling kickbacks",
         description:
             "1. Get down on all fours.\n2. Push one foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.\n4. Repeat, alternating feet",
-        image: "assets/exercise_kneelingkickback.webp");
+        imageSlug: "exercise_kneelingkickback.webp");
 
     final singleLegCalfRaiseDesc =
         "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n2. Lift your heels until you're standing on toes.\n3. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.";
@@ -328,18 +328,18 @@ class DBHelper {
     await _createExercise(db,
         name: "Left leg calf raises",
         description: singleLegCalfRaiseDesc,
-        image: "assets/exercise_singlelegcalfraise.webp");
+        imageSlug: "exercise_singlelegcalfraise.webp");
 
     await _createExercise(db,
         name: "Right leg calf raises",
         flipped: true,
         description: singleLegCalfRaiseDesc,
-        image: "assets/exercise_singlelegcalfraise.webp");
+        imageSlug: "exercise_singlelegcalfraise.webp");
 
     await _createExercise(db,
         name: "Side split squats right",
         description: sideLungeDesc,
-        image: "assets/exercise_sidesplitsquat.webp");
+        imageSlug: "exercise_sidesplitsquat.webp");
 
     final splitSquatsDesc =
         "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Repeat from step 3.";
@@ -347,13 +347,13 @@ class DBHelper {
     await _createExercise(db,
         name: "Split squats left",
         description: splitSquatsDesc,
-        image: "assets/exercise_splitsquat.webp");
+        imageSlug: "exercise_splitsquat.webp");
 
     await _createExercise(db,
         name: "Split squats right",
         flipped: true,
         description: splitSquatsDesc,
-        image: "assets/exercise_splitsquat.webp");
+        imageSlug: "exercise_splitsquat.webp");
   }
 
   Future<void> _createWorkoutFromList(
@@ -418,7 +418,7 @@ class DBHelper {
       {String name,
       String description,
       bool flipped = false,
-      String image,
+      String imageSlug,
       String imageAuthor,
       int imageLicense,
       int category}) async {
@@ -430,7 +430,7 @@ class DBHelper {
       _NAME_COL: name,
       _DESCRIPTION_COL: description,
       _FLIPPED_COL: flipped ? 1 : 0,
-      _IMAGE_COL: image,
+      _IMAGE_SLUG_COL: imageSlug,
       _IMAGE_AUTHOR_COL: imageAuthor,
       _IMAGE_LICENSE_COL: imageLicense,
       _CATEGORY_COL: category
@@ -555,7 +555,7 @@ class DBHelper {
                 name: map[_NAME_COL],
                 description: map[_DESCRIPTION_COL],
                 twoSided: map[_FLIPPED_COL] == 1,
-                image: map[_IMAGE_COL],
+                imageSlug: map[_IMAGE_SLUG_COL],
                 imageAuthor: map[_IMAGE_AUTHOR_COL],
                 imageLicense: map[_IMAGE_LICENSE_COL],
                 category: map[_CATEGORY_COL]))
@@ -574,7 +574,7 @@ class DBHelper {
                 name: map[_NAME_COL],
                 description: map[_DESCRIPTION_COL],
                 twoSided: map[_FLIPPED_COL] == 1,
-                image: map[_IMAGE_COL],
+                imageSlug: map[_IMAGE_SLUG_COL],
                 imageAuthor: map[_IMAGE_AUTHOR_COL],
                 imageLicense: map[_IMAGE_LICENSE_COL],
                 category: map[_CATEGORY_COL]))
@@ -608,7 +608,7 @@ class DBHelper {
             name: res.first[_NAME_COL],
             description: res.first[_DESCRIPTION_COL],
             twoSided: res.first[_FLIPPED_COL] == 1,
-            image: res.first[_IMAGE_COL],
+            imageSlug: res.first[_IMAGE_SLUG_COL],
             imageAuthor: res.first[_IMAGE_AUTHOR_COL],
             imageLicense: res.first[_IMAGE_LICENSE_COL],
             category: res.first[_CATEGORY_COL])

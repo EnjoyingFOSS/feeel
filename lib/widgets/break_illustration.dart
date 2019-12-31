@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,19 +11,22 @@
 // are incompatible with the GPL, provided that the source is also
 // available under the GPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/widgets/illustration_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
+
+import 'flipped.dart';
 
 class BreakIllustration extends StatelessWidget {
   static const double BOTTOM_PADDING = 32;
@@ -38,12 +41,16 @@ class BreakIllustration extends StatelessWidget {
   Widget build(BuildContext context) {
     return IllustrationLayout(
       color: color,
-      illustrationImage: nextExercise.image != null
+      illustrationImage: nextExercise.imageSlug != null
           ? Opacity(
               opacity: 0.4,
-              child: Image.asset(nextExercise.image),
+              child: (nextExercise.twoSided
+                  ? Flipped(
+                      child: Image.asset(
+                          AssetHelper.getImage(nextExercise.imageSlug)))
+                  : Image.asset(AssetHelper.getImage(nextExercise.imageSlug))),
             )
-          : null,
+          : Text("Image missing".i18n),
       illustrationTitle: Column(
         children: [
           Text("Next up:".i18n,
