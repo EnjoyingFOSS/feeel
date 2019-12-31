@@ -89,37 +89,43 @@ static var t = Translations("en_us") +
 "cs_cz": """Dobrá práce!""",
 } +
 {
-"nl": """null""",
+"nl": """Deel je oefeningen met ons""",
 "en_us": """Contribute an exercise""",
 "cs_cz": """Přispěj nový cvik""",
 } +
 {
-"nl": """null""",
+"nl": """Feeel is afhankelijk van vrijwilligers zoals jij voor het verkrijgen van oefeningen met bijbehorende foto's. Je foto's worden anoniem aangepast voor gebruik in de app, dan aan je opgestuurd voor goedkeuring en pas dáárna toegevoegd aan de app. Alvast bedankt!""",
 "en_us": """Feeel relies on volunteers like you to submit exercises and exercise photos. Any photos you submit will first be privately processed, then sent to you for approval, and only then released in the app. Thanks for contributing!""",
 "cs_cz": """Feeel relies on volunteers like you to submit exercises and exercise photos. Any photos you submit will first be privately processed, then sent to you for approval, and only then released in the app. Thanks for contributing!""",
 } +
 {
-"nl": """null""",
+"nl": """Naam van oefening""",
 "en_us": """Exercise name""",
 "cs_cz": """Název cviku""",
 } +
 {
-"nl": """null""",
+"nl": """Hoe voer je de oefening te worden uit? (optioneel)""",
 "en_us": """How to perform exercise (optional)""",
 "cs_cz": """Jak provést cvik (nepovinné)""",
 } +
 {
-"nl": """null""",
+"nl": """De e-mail kan niet worden verstuurd""",
 "en_us": """Email could not be sent""",
 "cs_cz": """E-mail se nepovedlo odeslat""",
 } +
 {
-"nl": """null""",
+"nl": """Oefeningbijdrage:%s""",
 "en_us": """Exercise proposal: %s""",
 "cs_cz": """Návrh cviku: %s""",
 } +
 {
-"nl": """null""",
+"nl": """Hallo,
+
+Hierbij dien ik een voorstel in voor een oefening. Ik begrijp dat ik alleen mijn *eigen* werk mag indienen. Als ik dit bericht verstuur, ga ik onherroepelijk akkoord met het feit dat de naam en omschrijving van de oefening worden vrijgegeven onder de CC BY-SA- en GPLv3-licentie, met uitzondering van de appwinkel. Ik geef tevens toestemming om de bijgevoegde afbeelding(en) anoniem te verwerken. Daarna worden ze door mij geëvalueerd om ze al dan niet vrij te geven onder de CC BY-SA-licentie.
+
+Naam van de oefening: %1s
+Uitleg:
+%2s""",
 "en_us": """Hello,
 
 I'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and a GPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.
@@ -186,27 +192,27 @@ Exercise steps:
 "cs_cz": """Vytvořit vlastní trénink""",
 } +
 {
-"nl": """Eigen workout toevoegen""",
+"nl": """Deel je eigen workout met ons""",
 "en_us": """Propose custom exercise""",
 "cs_cz": """Navrhnout vlastní cvik""",
 } +
 {
-"nl": """null""",
+"nl": """Versturen via e-mail""",
 "en_us": """Submit via email""",
 "cs_cz": """Odeslat e-mailem""",
 } +
 {
-"nl": """null""",
+"nl": """Foto toevoegen uit galerij""",
 "en_us": """Add photo from gallery""",
 "cs_cz": """Přidat fotku z galerie""",
 } +
 {
-"nl": """null""",
+"nl": """Foto maken""",
 "en_us": """Take a photo""",
 "cs_cz": """Vyfotit cvik""",
 } +
 {
-"nl": """null""",
+"nl": """Voeg een link toe naar je foto('s)""",
 "en_us": """Add a link to your photo(s)""",
 "cs_cz": """Přidat odkaz k fotce/fotkám""",
 } +
@@ -216,7 +222,7 @@ Exercise steps:
 "cs_cz": """Vědecký sedmiminutový trénink""",
 } +
 {
-"nl": """null""",
+"nl": """Beenworkout voor gevorderden""",
 "en_us": """Advanced leg workout""",
 "cs_cz": """Pokročilý trénink nohou""",
 } +
@@ -403,17 +409,21 @@ omhoog en loop een stukje naar voren.
         6. Repeat, switching legs each time""",
 } +
 {
-"nl": """null""",
+"nl": """Split squats (links)""",
 "en_us": """Split squats left""",
 "cs_cz": """Dřep ve výpadu nalevo""",
 } +
 {
-"nl": """null""",
+"nl": """Split squats (rechts)""",
 "en_us": """Split squats right""",
 "cs_cz": """Dřep ve výpadu napravo""",
 } +
 {
-"nl": """null""",
+"nl": """1. Stand with back straight
+2. Take a large step forward with your left leg
+3. Bring your pelvis down until you almost touch the floor with your right knee
+4. Bring your pelvis back up
+5. Repeat from step 3.""",
 "en_us": """1. Stand with back straight
 2. Take a large step forward with your left leg
 3. Bring your pelvis down until you almost touch the floor with your right knee
@@ -478,21 +488,25 @@ omhoog en loop een stukje naar voren.
         3. Hold this position""",
 } +
 {
-"nl": """null""",
+"nl": """Zijwaartse uitvalspassen (links)""",
 "en_us": """Side split squats left""",
 "cs_cz": """Boční výpady nalevo""",
 } +
 {
-"nl": """null""",
+"nl": """Zijwaartse uitvalspassen (rechts)""",
 "en_us": """Side split squats right""",
 "cs_cz": """Boční výpady napravo""",
 } +
 {
-"nl": """null""",
+"nl": """1. Ga recht staan en doe een brede, zijwaartse pas, net iets voorbij schouderbreedte.
+2. Buig één knie totdat je heup gelijkstaat aan de grond. De gebogen knie moet gelijkstaan aan de voet.
+3. Duw jezelf omhoog met je voorste knie, ga terug naar stap 1 en herhaal, telkens met een andere knie.""",
 "en_us": """1. Stand tall and take a wide lateral stride, just greater than shoulder width.
 2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.
 3. Push back to the starting position and repeat.""",
-"cs_cz": """null""",
+"cs_cz": """1. Stand tall and take a wide lateral stride, just greater than shoulder width.
+2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.
+3. Push back to the starting position and repeat.""",
 } +
 {
 "nl": """Bulgaarse gespleten hurkzit (links)""",
