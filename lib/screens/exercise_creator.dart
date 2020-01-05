@@ -1,23 +1,23 @@
 // Copyright (C) 2019 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
+// it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version. As an additional permission under
 // section 7, you are allowed to distribute the software through an app
 // store, even if that store has restrictive terms and conditions that
-// are incompatible with the GPL, provided that the source is also
-// available under the GPL with or without this permission through a
+// are incompatible with the AGPL, provided that the source is also
+// available under the AGPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'dart:io';
@@ -52,68 +52,70 @@ class _ExerciseCreatorState extends State<ExerciseCreator> {
       appBar: AppBar(
         title: Text("Contribute an exercise".i18n),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(16, 8, 16, 64),
-        child: Form(
-            child: Column(
-          children: <Widget>[
-            Text(
-                "Feeel relies on volunteers like you to submit exercises and exercise photos. Any photos you submit will first be privately processed, then sent to you for approval, and only then released in the app. Thanks for contributing!"),
-            Container(
-              height: 8,
+      body: Column(children: [
+        Material(
+          color: Theme.of(context).primaryColorDark,
+          child: Padding(
+            child: Text(
+              "Feeel relies on volunteers like you to submit exercises and exercise photos. Any photos you submit will first be privately processed, then sent to you for approval, and only then released in the app. Thanks for contributing!",
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
             ),
-            Container(
-              color: Colors.black45,
-              height: 2,
-            ),
-            Container(
-              height: 8,
-            ),
-            TextFormField(
-              decoration: InputDecoration(labelText: "Exercise name".i18n),
-              controller: _nameController,
-            ),
-            TextFormField(
-              maxLines: null,
-              decoration: InputDecoration(
-                  labelText: "How to perform exercise (optional)".i18n),
-              keyboardType: TextInputType.multiline,
-              controller: _stepsController,
-            ),
-            Container(
-              height: 16,
-            ),
-            if (_imageFiles != null)
-              ..._imageFiles.map((File imageFile) => Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: ImageRow(
-                    imageFile: imageFile,
-                    onDelete: () {
-                      setState(() {
-                        _imageFiles.remove(imageFile);
-                      });
-                    },
-                  ))), //todo allow deletion
-            ListTile(
-              leading: Icon(Icons.add_photo_alternate),
-              title: Text(
-                "Add photo from gallery".i18n,
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          ),
+          elevation: 4,
+        ),
+        Expanded(
+            child: SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(16, 8, 16, 64),
+          child: Form(
+              child: Column(
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(labelText: "Exercise name".i18n),
+                controller: _nameController,
               ),
-              onTap: _addPhotoFromGallery,
-            ),
-            ListTile(
-              leading: Icon(Icons.add_a_photo),
-              title: Text("Take a photo".i18n),
-              onTap: _addPhotoFromCamera,
-            ),
-            // ListTile(
-            //   //todo
-            //   leading: Icon(Icons.insert_link),
-            //   title: Text("Add a link to your photo(s)".i18n),
-            // )
-          ],
-        )),
-      ),
+              TextFormField(
+                maxLines: null,
+                decoration: InputDecoration(
+                    labelText: "How to perform exercise (optional)".i18n),
+                keyboardType: TextInputType.multiline,
+                controller: _stepsController,
+              ),
+              Container(
+                height: 16,
+              ),
+              if (_imageFiles != null)
+                ..._imageFiles.map((File imageFile) => Padding(
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: ImageRow(
+                      imageFile: imageFile,
+                      onDelete: () {
+                        setState(() {
+                          _imageFiles.remove(imageFile);
+                        });
+                      },
+                    ))), //todo allow deletion
+              ListTile(
+                leading: Icon(Icons.add_photo_alternate),
+                title: Text(
+                  "Add photo from gallery".i18n,
+                ),
+                onTap: _addPhotoFromGallery,
+              ),
+              ListTile(
+                leading: Icon(Icons.add_a_photo),
+                title: Text("Take a photo".i18n),
+                onTap: _addPhotoFromCamera,
+              ),
+              // ListTile(
+              //   //todo
+              //   leading: Icon(Icons.insert_link),
+              //   title: Text("Add a link to your photo(s)".i18n),
+              // )
+            ],
+          )),
+        ))
+      ]),
     );
   }
 
@@ -122,7 +124,7 @@ class _ExerciseCreatorState extends State<ExerciseCreator> {
       //todo TRANSLATE !!!
       body: """Hello,
 
-I'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and a GPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.
+I'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.
 
 Exercise name: ${_nameController.text}
 Exercise steps:
@@ -135,7 +137,7 @@ ${_stepsController.text} """ +
 TRANSLATION:
 
 """ +
-              "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and a GPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.\n\nExercise name: %1s\nExercise steps:\n%2s"
+              "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.\n\nExercise name: %1s\nExercise steps:\n%2s"
                   .i18n
                   .replaceFirst("%1s", _nameController.text)
                   .replaceFirst("%2s", _stepsController.text)),

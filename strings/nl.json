@@ -18,7 +18,7 @@
     "txtHowToPerformExercise": "Hoe voer je de oefening te worden uit? (optioneel)",
     "txtEmailCouldNotBeSent": "De e-mail kan niet worden verstuurd",
     "txtSubmitExerciseMessageTitle": "Oefeningbijdrage:%s",
-    "txtSubmitExerciseMessageContents": "Hallo,\n\nHierbij dien ik een voorstel in voor een oefening. Ik begrijp dat ik alleen mijn *eigen* werk mag indienen. Als ik dit bericht verstuur, ga ik onherroepelijk akkoord met het feit dat de naam en omschrijving van de oefening worden vrijgegeven onder de CC BY-SA- en GPLv3-licentie, met uitzondering van de appwinkel. Ik geef tevens toestemming om de bijgevoegde afbeelding(en) anoniem te verwerken. Daarna worden ze door mij geëvalueerd om ze al dan niet vrij te geven onder de CC BY-SA-licentie.\n\nNaam van de oefening: %1s\nUitleg:\n%2s",
+    "txtSubmitExerciseMessageContents": "Hallo,\n\nHierbij dien ik een voorstel in voor een oefening. Ik begrijp dat ik alleen mijn *eigen* werk mag indienen. Als ik dit bericht verstuur, ga ik onherroepelijk akkoord met het feit dat de naam en omschrijving van de oefening worden vrijgegeven onder de CC BY-SA- en AGPLv3-licentie, met uitzondering van de appwinkel. Ik geef tevens toestemming om de bijgevoegde afbeelding(en) anoniem te verwerken. Daarna worden ze door mij geëvalueerd om ze al dan niet vrij te geven onder de CC BY-SA-licentie.\n\nNaam van de oefening: %1s\nUitleg:\n%2s",
     "btnStartWorkout": "Workout starten",
     "btnResumeWorkout": "Workout hervatten",
     "btnPreviousExercise": "Vorige oefening",

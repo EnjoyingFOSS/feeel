@@ -18,7 +18,7 @@
     "txtHowToPerformExercise": "How to perform exercise (optional)",
     "txtEmailCouldNotBeSent": "Email could not be sent",
     "txtSubmitExerciseMessageTitle": "Exercise proposal: %s",
-    "txtSubmitExerciseMessageContents": "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and a GPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.\n\nExercise name: %1s\nExercise steps:\n%2s",
+    "txtSubmitExerciseMessageContents": "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.\n\nExercise name: %1s\nExercise steps:\n%2s",
     "btnStartWorkout": "Start workout",
     "btnResumeWorkout": "Resume workout",
     "btnPreviousExercise": "Previous exercise",
