@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Miroslav Mazel
+// Copyright (C) 2020 Miroslav Mazel
 //
 // This file is part of Feeel.
 //
