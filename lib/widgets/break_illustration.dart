@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Miroslav Mazel
+// Copyright (C) 2020 Miroslav Mazel
 //
 // This file is part of Feeel.
 //
@@ -32,15 +32,20 @@ class BreakIllustration extends StatelessWidget {
   static const double BOTTOM_PADDING = 32;
   final Color color;
   final Exercise nextExercise;
+  final bool arrowUp;
 
   const BreakIllustration(
-      {Key key, @required this.color, @required this.nextExercise})
+      {Key key,
+      @required this.color,
+      @required this.nextExercise,
+      @required this.arrowUp})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IllustrationLayout(
       color: color,
+      arrowUp: arrowUp,
       illustrationImage: nextExercise.imageSlug != null
           ? Opacity(
               opacity: 0.4,
@@ -63,7 +68,7 @@ class BreakIllustration extends StatelessWidget {
               style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.w900,
-                  color: Colors.white))
+                  color: Colors.white)),
         ],
         mainAxisAlignment: MainAxisAlignment.end,
       ),

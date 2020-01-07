@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Miroslav Mazel
+// Copyright (C) 2020 Miroslav Mazel
 //
 // This file is part of Feeel.
 //
@@ -23,7 +23,7 @@
 import 'package:flutter/material.dart';
 
 class IllustrationLayout extends StatelessWidget {
-  static const double BOTTOM_PADDING = 48;
+  static const double BOTTOM_PADDING = 16;
   final Widget illustrationImage;
   final Widget illustrationTitle;
   final bool arrowUp;
@@ -59,9 +59,18 @@ class IllustrationLayout extends StatelessWidget {
         ],
       )),
       Container(
-        height: 128,
-        alignment: Alignment.bottomCenter,
-        child: illustrationTitle,
+        child: Container(
+          height: 144,
+          alignment: Alignment.bottomCenter,
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Icon(
+              arrowUp ? Icons.expand_less : Icons.expand_more,
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+            illustrationTitle
+          ]), //todo make illustrationTitle responsive
+          width: double.infinity,
+        ),
         color: color,
         padding: EdgeInsets.only(
             left: 16,
@@ -69,7 +78,6 @@ class IllustrationLayout extends StatelessWidget {
             bottom: bottomViewPadding > BOTTOM_PADDING
                 ? bottomViewPadding
                 : BOTTOM_PADDING),
-        width: double.infinity,
       )
     ]);
   }

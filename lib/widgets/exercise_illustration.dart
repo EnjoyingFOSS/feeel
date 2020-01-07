@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Miroslav Mazel
+// Copyright (C) 2020 Miroslav Mazel
 //
 // This file is part of Feeel.
 //
@@ -32,15 +32,20 @@ class ExerciseIllustration extends StatelessWidget {
   static const double BOTTOM_PADDING = 32;
   final Color color;
   final Exercise exercise;
+  final bool arrowUp;
 
   const ExerciseIllustration(
-      {Key key, @required this.color, @required this.exercise})
+      {Key key,
+      @required this.color,
+      @required this.exercise,
+      @required this.arrowUp})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IllustrationLayout(
       color: color,
+      arrowUp: arrowUp,
       illustrationImage: exercise.imageSlug != null
           ? (exercise.twoSided
               ? Flipped(
