@@ -34,12 +34,12 @@ class WorkoutDetailScreen extends StatefulWidget {
   const WorkoutDetailScreen({Key key, this.workoutListed}) : super(key: key);
 
   @override
-  WorkoutDetailScreenState createState() {
-    return WorkoutDetailScreenState();
+  _WorkoutDetailScreenState createState() {
+    return _WorkoutDetailScreenState();
   }
 }
 
-class WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
+class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   Future _future;
 
   @override

@@ -42,12 +42,12 @@ class ExercisePage extends StatefulWidget {
       : super(key: key);
 
   @override
-  ExerciseScreenView createState() {
-    return ExerciseScreenView();
+  _ExercisePageState createState() {
+    return _ExercisePageState();
   }
 }
 
-class ExerciseScreenView extends State<ExercisePage> implements WorkoutView {
+class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   //todo ban swipe to go back unless controls are shown?
   bool _paused = false;
   bool _infoShown = false;

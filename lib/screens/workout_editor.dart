@@ -42,12 +42,12 @@ class WorkoutEditorScreen extends StatefulWidget {
   const WorkoutEditorScreen({Key key, this.workoutListed}) : super(key: key);
 
   @override
-  WorkoutEditorScreenState createState() {
-    return WorkoutEditorScreenState();
+  _WorkoutEditorScreenState createState() {
+    return _WorkoutEditorScreenState();
   }
 }
 
-class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
+class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   Workout _editableWorkout;
   Future _future;
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
@@ -215,7 +215,7 @@ class WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                     List<Exercise> exercises = await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ExercisePicker(),
+                          builder: (context) => ExercisePickerScreen(),
                           fullscreenDialog: true,
                         ));
                     setState(() {

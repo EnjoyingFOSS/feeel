@@ -28,14 +28,14 @@ import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:feeel/i18n/translations.dart';
 
-class ExerciseCreator extends StatefulWidget {
-  ExerciseCreator({Key key}) : super(key: key);
+class ExerciseCreatorScreen extends StatefulWidget {
+  ExerciseCreatorScreen({Key key}) : super(key: key);
 
   @override
-  _ExerciseCreatorState createState() => _ExerciseCreatorState();
+  _ExerciseCreatorScreenState createState() => _ExerciseCreatorScreenState();
 }
 
-class _ExerciseCreatorState extends State<ExerciseCreator> {
+class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
   final _imageFiles = List<File>();
   final _nameController = TextEditingController();
   final _stepsController = TextEditingController();

@@ -55,7 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 SharedPreferences preferences = snapshot.data;
                 return ListView(
                   children: <Widget>[
-                    SwitchListTile(
+                    SwitchListTile.adaptive(
                       value: preferences.getBool(PreferenceKeys.TTS_ENABLED) ??
                           true,
                       title: Text("Enable TTS".i18n),

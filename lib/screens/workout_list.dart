@@ -1,7 +1,7 @@
 // Copyright (C) 2020 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,18 +11,19 @@
 // are incompatible with the AGPL, provided that the source is also
 // available under the AGPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/workout_listed.dart';
+import 'package:feeel/screens/settings.dart';
 import 'package:feeel/screens/workout_editor.dart';
 import 'package:feeel/widgets/workout_list_item.dart';
 import 'package:flutter/material.dart';
@@ -30,18 +31,12 @@ import 'package:feeel/i18n/translations.dart';
 
 class WorkoutListScreen extends StatefulWidget {
   @override
-  WorkoutListScreenState createState() {
-    return WorkoutListScreenState();
+  _WorkoutListScreenState createState() {
+    return _WorkoutListScreenState();
   }
 }
 
-class WorkoutListScreenState extends State<WorkoutListScreen> {
-  // @override
-  // void initState() {
-  //   _future = ;
-  //   super.initState();
-  // }
-
+class _WorkoutListScreenState extends State<WorkoutListScreen> {
   static const String _MENU_DELETE = "delete";
   static const String _MENU_EDIT = "edit";
 
@@ -96,6 +91,20 @@ class WorkoutListScreenState extends State<WorkoutListScreen> {
                           // )
                         ])),
                         backgroundColor: Theme.of(context).backgroundColor,
+                        actions: <Widget>[
+                          IconButton(
+                            icon: Icon(
+                              Icons.settings,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SettingsScreen()));
+                            },
+                          )
+                        ],
                       )),
                   SliverPadding(
                       padding: EdgeInsets.only(bottom: 80),

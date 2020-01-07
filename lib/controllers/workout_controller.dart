@@ -75,7 +75,7 @@ class WorkoutController {
 
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
-      if (prefs.getBool(PreferenceKeys.TTS_ENABLED)) {
+      if (prefs.getBool(PreferenceKeys.TTS_ENABLED) ?? true) {
         _views[ViewTypes.AUDIO.index] = TTSView(); //todo allow audio setting
         _onFinishes[ViewTypes.AUDIO.index] = () {
           TTSHelper.tts.speak("You did it!".i18n);

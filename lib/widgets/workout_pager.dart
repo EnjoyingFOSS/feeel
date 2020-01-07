@@ -38,11 +38,11 @@ class WorkoutPager extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return WorkoutPagerState();
+    return _WorkoutPagerState();
   }
 }
 
-class WorkoutPagerState extends State<WorkoutPager> {
+class _WorkoutPagerState extends State<WorkoutPager> {
   WorkoutController _workoutController;
   PageController _pageController = PageController();
   Color color;

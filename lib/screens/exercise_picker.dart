@@ -28,14 +28,14 @@ import 'package:feeel/widgets/flipped.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
-class ExercisePicker extends StatefulWidget {
+class ExercisePickerScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return ExercisePickerState();
+    return _ExercisePickerScreenState();
   }
 }
 
-class ExercisePickerState extends State<ExercisePicker> {
+class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
   List<Exercise> _exercises;
   List<int> _chosenExerciseIndices = List<int>(); //todo use boolean array
   Future<List<Exercise>> _future;
@@ -127,7 +127,7 @@ class ExercisePickerState extends State<ExercisePicker> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => ExerciseCreator(),
+                                    builder: (_) => ExerciseCreatorScreen(),
                                     fullscreenDialog: true));
                           },
                         );
