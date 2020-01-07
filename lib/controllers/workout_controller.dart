@@ -1,7 +1,7 @@
 // Copyright (C) 2020 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,21 +11,23 @@
 // are incompatible with the AGPL, provided that the source is also
 // available under the AGPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
+import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum WorkoutStage { READY, EXERCISE, BREAK, END }
 
@@ -44,10 +46,7 @@ class WorkoutController {
     if (_workout.workoutExercises.length == 0)
       throw Exception("Workout must have length > 0");
 
-    _views[ViewTypes.AUDIO.index] = TTSView(); //todo allow audio setting
-    _onFinishes[ViewTypes.AUDIO.index] = () {
-      TTSHelper.tts.speak("You did it!".i18n);
-    };
+    _setUpAudio();
 
     _timer = WorkoutTimer(0, onSecondDecrease: () {
       //todo initTime seems useless
@@ -73,6 +72,17 @@ class WorkoutController {
       }
     });
   } //todo how to init _exerciseCount ???
+
+  void _setUpAudio() {
+    SharedPreferences.getInstance().then((prefs) {
+      if (prefs.getBool(PreferenceKeys.TTS_ENABLED)) {
+        _views[ViewTypes.AUDIO.index] = TTSView(); //todo allow audio setting
+        _onFinishes[ViewTypes.AUDIO.index] = () {
+          TTSHelper.tts.speak("You did it!".i18n);
+        };
+      }
+    });
+  }
 
   // HELPERS
   WorkoutExercise _getCurWorkoutExercise() =>
