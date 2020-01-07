@@ -28,7 +28,7 @@ dependencies:
   sqflite: any
   path_provider: any
   i18n_extension: ^1.1.0
-  drag_list: ^1.0.5
+  drag_list: ^1.0.6
   flutter_mailer: ^0.4.2
   image_picker: ^0.6.2
 
