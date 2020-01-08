@@ -1,7 +1,7 @@
 // Copyright (C) 2020 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,12 +11,12 @@
 // are incompatible with the AGPL, provided that the source is also
 // available under the AGPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -39,12 +39,12 @@ class FinishPage extends StatelessWidget {
         ),
         Expanded(child: Center(child: Image.asset("assets/image_success.png"))),
         Padding(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.fromLTRB(16, 24, 16, 32),
             child: Center(
                 child: Text(
               "You're glowing!".i18n,
               style: TextStyle(
-                  fontSize: 32, fontWeight: FontWeight.w900, color: color),
+                  fontSize: 40, fontWeight: FontWeight.w900, color: color),
             )))
       ],
     ));
