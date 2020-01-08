@@ -56,13 +56,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 return ListView(
                   children: <Widget>[
                     SwitchListTile.adaptive(
-                      value: preferences.getBool(PreferenceKeys.TTS_ENABLED) ??
-                          true,
-                      title: Text("Enable TTS".i18n),
+                      value: preferences.getBool(PreferenceKeys.TTS_DISABLED) ??
+                          false,
+                      title: Text("Use sounds instead of speech".i18n),
                       onChanged: (bool newValue) {
                         setState(() {
                           preferences.setBool(
-                              PreferenceKeys.TTS_ENABLED, newValue);
+                              PreferenceKeys.TTS_DISABLED, newValue);
                         });
                       },
                     )

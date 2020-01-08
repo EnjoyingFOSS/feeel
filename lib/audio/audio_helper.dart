@@ -20,6 +20,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-class PreferenceKeys {
-  static const TTS_DISABLED = "ttsDisabled";
+class AudioHelper {
+  static const int COUNTDOWN = 5;
 }

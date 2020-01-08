@@ -20,13 +20,13 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class TTSView implements WorkoutView {
-  static const int _COUNTDOWN = 5;
   int _halfTime = 0;
 
   @override
@@ -46,7 +46,7 @@ class TTSView implements WorkoutView {
 
   @override
   void onCount(int seconds) {
-    if (seconds <= _COUNTDOWN)
+    if (seconds <= AudioHelper.COUNTDOWN)
       TTSHelper.tts.speak(seconds.toString());
     else if (seconds == _halfTime) {
       TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst(

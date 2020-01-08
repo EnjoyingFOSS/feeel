@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/audio/sound_view.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
@@ -75,7 +76,13 @@ class WorkoutController {
 
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
-      if (prefs.getBool(PreferenceKeys.TTS_ENABLED) ?? true) {
+      if (prefs.getBool(PreferenceKeys.TTS_DISABLED) ?? false) {
+        final soundView = SoundView();
+        _views[ViewTypes.AUDIO.index] = soundView;
+        _onFinishes[ViewTypes.AUDIO.index] = () {
+          soundView.onFinish();
+        };
+      } else {
         _views[ViewTypes.AUDIO.index] = TTSView(); //todo allow audio setting
         _onFinishes[ViewTypes.AUDIO.index] = () {
           TTSHelper.tts.speak("You did it!".i18n);
