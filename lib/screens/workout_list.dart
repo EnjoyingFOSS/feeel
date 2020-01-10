@@ -97,6 +97,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                               Icons.settings,
                               color: Theme.of(context).colorScheme.primary,
                             ),
+                            tooltip: "Settings".i18n,
                             onPressed: () {
                               Navigator.push(
                                   context,
