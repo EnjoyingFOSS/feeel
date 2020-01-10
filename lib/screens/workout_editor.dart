@@ -28,6 +28,7 @@ import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/screens/exercise_picker.dart';
+import 'package:feeel/widgets/exercise_drag_row.dart';
 import 'package:feeel/widgets/flipped.dart';
 
 import '../models/workout.dart';
@@ -48,12 +49,13 @@ class WorkoutEditorScreen extends StatefulWidget {
 }
 
 class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
-  Workout _editableWorkout;
-  Future _future;
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
   final _titleController = TextEditingController();
+  Workout _editableWorkout;
+  Future _future;
+  bool _editingTime = false;
 
   @override
   void initState() {
@@ -161,39 +163,16 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                 items: _editableWorkout.workoutExercises,
                                 itemExtent: 72.0,
                                 builder: (context, item, handle) {
-                                  return Row(children: [
-                                    Padding(
-                                      child: item.exercise.imageSlug == null
-                                          ? Container()
-                                          : item.exercise.twoSided
-                                              ? Flipped(
-                                                  child: Image.asset(
-                                                      AssetHelper.getThumb(item
-                                                          .exercise.imageSlug)))
-                                              : Image.asset(
-                                                  AssetHelper.getThumb(
-                                                      item.exercise.imageSlug)),
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 16),
-                                    ),
-                                    Expanded(
-                                        child: Padding(
-                                      child: Text(item.exercise.name),
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 16),
-                                    )),
-                                    IconButton(
-                                      icon: Icon(Icons.delete),
-                                      tooltip: "Delete".i18n,
-                                      onPressed: () {
-                                        setState(() {
-                                          _editableWorkout.workoutExercises
-                                              .remove(item);
-                                        });
-                                      },
-                                    ),
-                                    handle,
-                                  ]);
+                                  return ExerciseDragRow(
+                                    workoutExercise: item,
+                                    handle: handle,
+                                    onDelete: () {
+                                      setState(() {
+                                        _editableWorkout.workoutExercises
+                                            .remove(item);
+                                      });
+                                    },
+                                  );
                                 },
                               ))
                             ]));
@@ -238,7 +217,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
           child: Icon(Icons.done),
           onPressed: () {
             _saveInputToWorkout();
-            DBHelper.db.createOrModifyCustomWorkout(_editableWorkout).then((_) {
+            DBHelper.db.createOrUpdateCustomWorkout(_editableWorkout).then((_) {
               Navigator.pop(context);
             });
           }),
