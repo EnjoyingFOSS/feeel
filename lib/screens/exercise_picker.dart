@@ -53,7 +53,6 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
           iconTheme: Theme.of(context).iconTheme,
           textTheme: Theme.of(context).textTheme,
           brightness: Theme.of(context).brightness,
-          centerTitle: false,
           backgroundColor: Color(0xffD9E9FF),
           title: Text("Add exercises".i18n),
         ),
