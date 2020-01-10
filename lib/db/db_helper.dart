@@ -281,7 +281,7 @@ class DBHelper {
         imageSlug: "exercise_sideplank.webp");
 
     final sideLungeDesc =
-        "1. Stand tall and take a wide lateral stride, just greater than the shoulder width.\n2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n3. Press up and repeat.";
+        "1. Stand tall and take a wide lateral stride, just greater than shoulder width.\n2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n3. Push back to the starting position and repeat.";
 
     await _createExercise(db,
         name: "Side split squats left",
@@ -439,7 +439,7 @@ class DBHelper {
     return id;
   }
 
-  Future<int> createOrModifyCustomWorkout(Workout workout) async {
+  Future<int> createOrUpdateCustomWorkout(final Workout workout) async {
     final db = await database;
     int workoutId = workout.dbId == null
         ? await _createWorkout(
@@ -453,8 +453,8 @@ class DBHelper {
         : workout.dbId;
 
     if (workout.dbId != null) {
-      _deleteWorkoutExercises(workoutId, WorkoutType.CUSTOM);
-      _renameWorkout(workoutId, WorkoutType.CUSTOM, workout.title);
+      await _deleteWorkoutExercises(workoutId, WorkoutType.CUSTOM);
+      await _renameWorkout(workoutId, WorkoutType.CUSTOM, workout.title);
     }
 
     for (int i = 0; i < workout.workoutExercises.length; i++) {
@@ -472,7 +472,7 @@ class DBHelper {
   }
 
   Future<void> deleteCustomWorkout(int workoutId) async {
-    _deleteWorkoutExercises(workoutId, WorkoutType.CUSTOM);
+    await _deleteWorkoutExercises(workoutId, WorkoutType.CUSTOM);
 
     final db = await database;
     await db.delete(_WORKOUT_TABLE,
