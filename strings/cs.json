@@ -19,6 +19,7 @@
     "txtEmailCouldNotBeSent": "E-mail se nepovedlo odeslat",
     "txtSubmitExerciseMessageTitle": "Návrh cviku: %s",
     "txtSubmitExerciseMessageContents": "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.\n\nExercise name: %1s\nExercise steps:\n%2s",
+    "txtSettings": "Nastavení",
     "btnStartWorkout": "Spustit trénink",
     "btnResumeWorkout": "Pokračovat v tréninku",
     "btnPreviousExercise": "Předchozí cvik",
@@ -34,12 +35,13 @@
     "btnAddPhotoFromGallery": "Přidat fotku z galerie",
     "btnTakeAPhoto": "Vyfotit cvik",
     "btnAddALinkToPhotos": "Přidat odkaz k fotce/fotkám",
+    "btnDisableTTS": "Používat zvuky namísto mluveného slova",
     "workoutScientific7Minute": "Vědecký sedmiminutový trénink",
     "workoutAdvancedLeg": "Pokročilý trénink nohou",
     "exerciseJumpingJacks": "Skákací panák",
-    "stepsJumpingJacks": "1. Stand with feet together and arms at the sides\n2. Jump to a position with the legs spread wide and the hands touching overhead\n3. Repeat",
+    "stepsJumpingJacks": "1. Stůj vzpřímeně, nohy těsně vedle sebe a ruce podél těla\n2. Skoč na místě a roztáhni přitom nohy bez prohnutí kolen a rukama tleskni nad hlavou\n3. Skoč zpět a neustále opakuj",
     "exerciseWallSit": "Sed u stěny",
-    "stepsWallSit": "1. Lean against the wall with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n        2. Slide down the wall, keeping the back pressed to it, until \n. The knees should be directly above the ankles\n        \n        Quadricep pain is normal, stop if feeling pain in the knee or kneecap",
+    "stepsWallSit": "1. Opři se o stěnu tak, aby Lean against the wall with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n        2. Slide down the wall, keeping the back pressed to it, until \n. The knees should be directly above the ankles\n        \n        Quadricep pain is normal, stop if feeling pain in the knee or kneecap",
     "exercisePushups": "Kliky",
     "stepsPushups": "1. Lie down on your stomach\n        2. Place your hands near your ears\n        3. Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n        4. Bend arms until chest almost touches the ground, making sure the back is straight\n        5. Repeat from step 3",
     "exerciseAbCrunches": "Sedolehy",
@@ -77,5 +79,5 @@
     "stepsKneelingKickback": "1. Get down on all fours.\n2. Push one foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.\n4. Repeat, alternating feet",
     "exerciseSingleLegCalfRaiseLeft": "Výpony na levé noze",
     "exerciseSingleLegCalfRaiseRight": "Výpony na pravé noze",
-    "stepsSingleLegCalfRaise": "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n2. Lift your heels until you're standing on toes.\n3. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.\n4. Repeat"
+    "stepsSingleLegCalfRaise": "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n2. Lift your heels until you're standing on toes.\n3. Stay in this position for three seconds, then lower your foot without touching the ground with your heel."
 }
