@@ -75,6 +75,12 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
 
   @override
   Widget build(BuildContext context) {
+    var expandIcon = Icon(
+      !_infoShown ? Icons.expand_less : Icons.expand_more,
+      color: _paused
+          ? Theme.of(context).colorScheme.onPrimary
+          : Theme.of(context).colorScheme.onPrimary.withAlpha(127),
+    );
     return GestureDetector(
       child: Material(
           color: Theme.of(context).backgroundColor,
@@ -133,14 +139,12 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                         .workout.workoutExercises[(i / 2).floor()].exercise;
                     if (i % 2 == 0) {
                       return BreakIllustration(
-                          arrowUp:
-                              !_infoShown, //todo it shouldn't be like this, I don't think
+                          expandIcon: expandIcon,
                           color: widget.color,
                           nextExercise: exercise);
                     } else
                       return ExerciseIllustration(
-                        arrowUp:
-                            !_infoShown, //todo it shouldn't be like this, I don't think
+                        expandIcon: expandIcon,
                         color: widget.color,
                         exercise: exercise,
                       );

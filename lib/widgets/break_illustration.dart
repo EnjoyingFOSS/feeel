@@ -32,20 +32,20 @@ class BreakIllustration extends StatelessWidget {
   static const double BOTTOM_PADDING = 32;
   final Color color;
   final Exercise nextExercise;
-  final bool arrowUp;
+  final Widget expandIcon;
 
   const BreakIllustration(
       {Key key,
       @required this.color,
       @required this.nextExercise,
-      @required this.arrowUp})
+      @required this.expandIcon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IllustrationLayout(
       color: color,
-      arrowUp: arrowUp,
+      expandIcon: expandIcon,
       illustrationImage: nextExercise.imageSlug != null
           ? Opacity(
               opacity: 0.4,

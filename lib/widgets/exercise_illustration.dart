@@ -32,20 +32,20 @@ class ExerciseIllustration extends StatelessWidget {
   static const double BOTTOM_PADDING = 32;
   final Color color;
   final Exercise exercise;
-  final bool arrowUp;
+  final Widget expandIcon;
 
   const ExerciseIllustration(
       {Key key,
       @required this.color,
       @required this.exercise,
-      @required this.arrowUp})
+      @required this.expandIcon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IllustrationLayout(
       color: color,
-      arrowUp: arrowUp,
+      expandIcon: expandIcon,
       illustrationImage: exercise.imageSlug != null
           ? (exercise.twoSided
               ? Flipped(

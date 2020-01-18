@@ -26,7 +26,7 @@ class IllustrationLayout extends StatelessWidget {
   static const double BOTTOM_PADDING = 16;
   final Widget illustrationImage;
   final Widget illustrationTitle;
-  final bool arrowUp;
+  final Widget expandIcon;
 
   final Color color;
 
@@ -35,7 +35,7 @@ class IllustrationLayout extends StatelessWidget {
       this.color,
       this.illustrationImage,
       this.illustrationTitle,
-      this.arrowUp})
+      this.expandIcon})
       : super(key: key);
 
   @override
@@ -63,10 +63,7 @@ class IllustrationLayout extends StatelessWidget {
           height: 144,
           alignment: Alignment.bottomCenter,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Icon(
-              arrowUp ? Icons.expand_less : Icons.expand_more,
-              color: Theme.of(context).colorScheme.onPrimary,
-            ),
+            expandIcon ?? Container(),
             illustrationTitle
           ]), //todo make illustrationTitle responsive
           width: double.infinity,
