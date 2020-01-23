@@ -21,7 +21,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:drag_list/drag_list.dart';
-import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
@@ -29,7 +28,6 @@ import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/screens/exercise_picker.dart';
 import 'package:feeel/widgets/exercise_drag_row.dart';
-import 'package:feeel/widgets/flipped.dart';
 
 import '../models/workout.dart';
 
@@ -53,6 +51,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
   final _titleController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   Workout _editableWorkout;
   Future _future;
   bool _editingTime = false;
@@ -98,84 +97,119 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                     CloseButton(),
                     Expanded(
                       child: Padding(
-                          child: TextField(
-                              style: textStyle,
-                              controller: _titleController,
-                              decoration: InputDecoration(
-                                  hintStyle: textStyle.copyWith(
-                                      color: Theme.of(context)
-                                          .primaryColor
-                                          .withAlpha(64)),
-                                  // border: InputBorder.none,
-                                  filled: false,
-                                  hintText: 'Workout title'.i18n)),
+                          child: TextFormField(
+                            style: textStyle,
+                            controller: _titleController,
+                            decoration: InputDecoration(
+                                hintStyle: textStyle.copyWith(
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withAlpha(64)),
+                                // border: InputBorder.none,
+                                filled: false,
+                                hintText: 'Workout title'.i18n),
+                            validator: (String text) {
+                              if (text.isEmpty) {
+                                return "Please specify a workout title".i18n;
+                              }
+                              return null;
+                            },
+                            onSaved: (String text) {
+                              _editableWorkout.title = text;
+                            },
+                          ),
                           padding: EdgeInsets.only(left: 16, right: 16)),
                     ),
                   ]);
 
                   return Form(
-                      child: (_editableWorkout.workoutExercises.isEmpty)
-                          ? Column(
-                              // todo singleChildScrollView, perhaps through the use of Centered or Flexible inside Column
-                              children: <Widget>[
-                                header,
-                                Spacer(), //todo is this the right way to center column content?
-                                SizedBox(
-                                  child: Image.asset("assets/image_coach.png"),
-                                  width: 320,
-                                ),
-                                Padding(
-                                  child: Text("Be your own coach!".i18n,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .display1
-                                          .copyWith(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 24)),
-                                  padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
-                                ),
-                                Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 8),
-                                    child: Text(
-                                        "Design the workout that makes you feel the best"
-                                            .i18n,
-                                        textAlign: TextAlign.center,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subhead
-                                            .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onBackground
-                                                    .withAlpha(162)))),
-                                Spacer()
-                              ],
-                            )
-                          : Column(children: [
-                              header,
-                              Container(
-                                height: 32,
-                              ),
-                              Expanded(
-                                  child: DragList<WorkoutExercise>(
-                                padding: EdgeInsets.only(bottom: 32),
-                                items: _editableWorkout.workoutExercises,
-                                itemExtent: 72.0,
-                                builder: (context, item, handle) {
-                                  return ExerciseDragRow(
-                                    workoutExercise: item,
-                                    handle: handle,
-                                    onDelete: () {
-                                      setState(() {
-                                        _editableWorkout.workoutExercises
-                                            .remove(item);
-                                      });
+                      key: _formKey,
+                      child: FormField(
+                        validator: (_) {
+                          if (_editableWorkout.workoutExercises.isEmpty) {
+                            return "Please add at least 1 exercise".i18n;
+                          }
+                          return null;
+                        },
+                        builder: (FormFieldState state) {
+                          //todo not sure if using formfield and its state correctly, should probably hold _editableWorkout.workoutExercises in state
+                          return (_editableWorkout.workoutExercises.isEmpty)
+                              ? Column(
+                                  // todo singleChildScrollView, perhaps through the use of Centered or Flexible inside Column
+                                  children: <Widget>[
+                                    header,
+                                    Spacer(), //todo is this the right way to center column content?
+                                    SizedBox(
+                                      child:
+                                          Image.asset("assets/image_coach.png"),
+                                      width: 320,
+                                    ),
+                                    Padding(
+                                      child: Text("Be your own coach!".i18n,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .display1
+                                              .copyWith(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 24)),
+                                      padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
+                                    ),
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.symmetric(horizontal: 8),
+                                        child: Text(
+                                            "Design the workout that makes you feel the best"
+                                                .i18n,
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subhead
+                                                .copyWith(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .onBackground
+                                                        .withAlpha(162)))),
+                                    if (state.hasError)
+                                      Padding(
+                                          child: Text(state.errorText,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .caption
+                                                  .copyWith(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .error)),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 16, horizontal: 8)),
+                                    Spacer()
+                                  ],
+                                )
+                              : Column(children: [
+                                  header,
+                                  Container(
+                                    height: 32,
+                                  ),
+                                  Expanded(
+                                      child: DragList<WorkoutExercise>(
+                                    padding: EdgeInsets.only(bottom: 32),
+                                    items: _editableWorkout.workoutExercises,
+                                    itemExtent: 72.0,
+                                    builder: (context, item, handle) {
+                                      return ExerciseDragRow(
+                                        workoutExercise: item,
+                                        handle: handle,
+                                        onDelete: () {
+                                          setState(() {
+                                            _editableWorkout.workoutExercises
+                                                .remove(item);
+                                          });
+                                        },
+                                      );
                                     },
-                                  );
-                                },
-                              ))
-                            ]));
+                                  ))
+                                ]);
+                        },
+                      ));
                 } else {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -216,15 +250,16 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
           tooltip: "Done".i18n,
           child: Icon(Icons.done),
           onPressed: () {
-            _saveInputToWorkout();
-            DBHelper.db.createOrUpdateCustomWorkout(_editableWorkout).then((_) {
-              Navigator.pop(context);
-            });
+            final form = _formKey.currentState;
+            if (form.validate()) {
+              form.save();
+              DBHelper.db
+                  .createOrUpdateCustomWorkout(_editableWorkout)
+                  .then((_) {
+                Navigator.pop(context);
+              });
+            }
           }),
     );
-  }
-
-  void _saveInputToWorkout() {
-    _editableWorkout.title = _titleController.text;
   }
 }

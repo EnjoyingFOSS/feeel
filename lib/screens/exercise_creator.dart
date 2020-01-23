@@ -147,7 +147,7 @@ TRANSLATION:
       attachments: _imageFiles.map((File imageFile) => imageFile.path).toList(),
     );
     await FlutterMailer.send(mailOptions).catchError((Object error) {
-      Scaffold.of(this.context).showSnackBar(SnackBar(
+      Scaffold.of(context).showSnackBar(SnackBar(
         content: Text("Email could not be sent".i18n),
       ));
     });
