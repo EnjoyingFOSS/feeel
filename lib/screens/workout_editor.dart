@@ -27,6 +27,7 @@ import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/screens/exercise_picker.dart';
+import 'package:feeel/widgets/empty_placeholder.dart';
 import 'package:feeel/widgets/exercise_drag_row.dart';
 
 import '../models/workout.dart';
@@ -54,7 +55,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   final _formKey = GlobalKey<FormState>();
   Workout _editableWorkout;
   Future _future;
-  bool _editingTime = false;
+  bool _editingTimeMode = false;
 
   @override
   void initState() {
@@ -134,55 +135,14 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                         builder: (FormFieldState state) {
                           //todo not sure if using formfield and its state correctly, should probably hold _editableWorkout.workoutExercises in state
                           return (_editableWorkout.workoutExercises.isEmpty)
-                              ? Column(
-                                  // todo singleChildScrollView, perhaps through the use of Centered or Flexible inside Column
-                                  children: <Widget>[
-                                    header,
-                                    Spacer(), //todo is this the right way to center column content?
-                                    SizedBox(
-                                      child:
-                                          Image.asset("assets/image_coach.png"),
-                                      width: 320,
-                                    ),
-                                    Padding(
-                                      child: Text("Be your own coach!".i18n,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .display1
-                                              .copyWith(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 24)),
-                                      padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
-                                    ),
-                                    Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 8),
-                                        child: Text(
-                                            "Design the workout that makes you feel the best"
-                                                .i18n,
-                                            textAlign: TextAlign.center,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .subhead
-                                                .copyWith(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .onBackground
-                                                        .withAlpha(162)))),
-                                    if (state.hasError)
-                                      Padding(
-                                          child: Text(state.errorText,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .caption
-                                                  .copyWith(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .error)),
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 16, horizontal: 8)),
-                                    Spacer()
-                                  ],
+                              ? EmptyPlaceholder(
+                                  header: header,
+                                  heading: "Be your own coach!".i18n,
+                                  subheading:
+                                      "Design the workout that makes you feel the best"
+                                          .i18n,
+                                  errorMessage: state.errorText,
+                                  image: Image.asset("assets/image_coach.png"),
                                 )
                               : Column(children: [
                                   header,
