@@ -25,8 +25,8 @@ import 'exercise.dart';
 class WorkoutExercise {
   final int dbId;
   final Exercise exercise;
-  final int duration;
-  final int breakBeforeDuration;
+  int duration;
+  int breakBeforeDuration;
 
   WorkoutExercise(
       {this.dbId, this.exercise, this.duration, this.breakBeforeDuration});

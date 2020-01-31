@@ -23,20 +23,19 @@
 import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
 
 import 'flipped.dart';
 
-class ExerciseDragRow extends StatelessWidget {
+class ExerciseEditorRow extends StatelessWidget {
   final WorkoutExercise workoutExercise;
+  final Widget trailing;
   final Widget handle;
-  final Function onDelete;
 
-  const ExerciseDragRow(
+  const ExerciseEditorRow(
       {Key key,
       @required this.workoutExercise,
-      @required this.handle,
-      @required this.onDelete})
+      @required this.trailing,
+      this.handle})
       : super(key: key);
 
   @override
@@ -50,7 +49,9 @@ class ExerciseDragRow extends StatelessWidget {
                     child: Image.asset(AssetHelper.getThumb(
                         workoutExercise.exercise.imageSlug)))
                 : Image.asset(
-                    AssetHelper.getThumb(workoutExercise.exercise.imageSlug)),
+                    AssetHelper.getThumb(workoutExercise.exercise.imageSlug),
+                    width: 72,
+                    height: 72),
         padding: EdgeInsets.symmetric(horizontal: 16),
       ),
       Expanded(
@@ -58,12 +59,11 @@ class ExerciseDragRow extends StatelessWidget {
         child: Text(workoutExercise.exercise.name),
         padding: EdgeInsets.symmetric(horizontal: 16),
       )),
-      IconButton(
-        icon: Icon(Icons.delete),
-        tooltip: "Delete".i18n,
-        onPressed: onDelete,
-      ),
-      handle,
+      trailing,
+      handle ??
+          Container(
+            width: 16,
+          )
     ]);
   }
 }

@@ -27,8 +27,9 @@ import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/screens/exercise_picker.dart';
+import 'package:feeel/widgets/duration_dropdown.dart';
 import 'package:feeel/widgets/empty_placeholder.dart';
-import 'package:feeel/widgets/exercise_drag_row.dart';
+import 'package:feeel/widgets/exercise_editor_row.dart';
 
 import '../models/workout.dart';
 
@@ -53,6 +54,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   static const int _DEFAULT_BREAK_DURATION = 10;
   final _titleController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final _timingFormKey = GlobalKey<FormState>();
   Workout _editableWorkout;
   Future _future;
   bool _editingTimeMode = false;
@@ -109,8 +111,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                 // border: InputBorder.none,
                                 filled: false,
                                 hintText: 'Workout title'.i18n),
-                            validator: (String text) {
-                              if (text.isEmpty) {
+                            validator: (String input) {
+                              if (input.isEmpty) {
                                 return "Please specify a workout title".i18n;
                               }
                               return null;
@@ -144,30 +146,169 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                   errorMessage: state.errorText,
                                   image: Image.asset("assets/image_coach.png"),
                                 )
-                              : Column(children: [
-                                  header,
-                                  Container(
-                                    height: 32,
-                                  ),
-                                  Expanded(
-                                      child: DragList<WorkoutExercise>(
-                                    padding: EdgeInsets.only(bottom: 32),
-                                    items: _editableWorkout.workoutExercises,
-                                    itemExtent: 72.0,
-                                    builder: (context, item, handle) {
-                                      return ExerciseDragRow(
-                                        workoutExercise: item,
-                                        handle: handle,
-                                        onDelete: () {
-                                          setState(() {
-                                            _editableWorkout.workoutExercises
-                                                .remove(item);
-                                          });
+                              : _editingTimeMode
+                                  ? Form(
+                                      key: _timingFormKey,
+                                      child: Column(children: [
+                                        Padding(
+                                            child: Row(
+                                              children: <Widget>[
+                                                Expanded(
+                                                    child: DurationDropdown(
+                                                  chosenValue: _editableWorkout
+                                                      .exerciseDuration,
+                                                  predefinedValues: [
+                                                    15,
+                                                    30,
+                                                    60
+                                                  ],
+                                                  decoration: InputDecoration(
+                                                      //todo i18n annotation
+                                                      labelText:
+                                                          "Exercise duration"
+                                                              .i18n,
+                                                      filled: true),
+                                                  onChanged: (int value) {
+                                                    setState(() {
+                                                      _editableWorkout
+                                                              .exerciseDuration =
+                                                          value;
+                                                    });
+                                                  },
+                                                )),
+                                                Container(
+                                                  width: 16,
+                                                ),
+                                                Expanded(
+                                                    child: DurationDropdown(
+                                                  chosenValue: _editableWorkout
+                                                      .breakDuration,
+                                                  predefinedValues: [5, 10, 15],
+                                                  decoration: InputDecoration(
+                                                      //todo ellipsize
+                                                      //todo i18n annotation
+                                                      labelText:
+                                                          "Break duration".i18n,
+                                                      filled: true),
+                                                  onChanged: (int value) {
+                                                    setState(() {
+                                                      _editableWorkout
+                                                              .breakDuration =
+                                                          value;
+                                                    });
+                                                  },
+                                                ))
+                                              ],
+                                            ),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 16)),
+                                        Container(
+                                          height: 16,
+                                        ),
+                                        Expanded(
+                                            child: ListView.builder(
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            final workoutExercise =
+                                                _editableWorkout
+                                                    .workoutExercises[index];
+                                            final initialValue =
+                                                workoutExercise?.duration;
+                                            return ExerciseEditorRow(
+                                                workoutExercise:
+                                                    workoutExercise,
+                                                trailing: Container(
+                                                    width: 68,
+                                                    child: Row(children: [
+                                                      Expanded(
+                                                          child: TextFormField(
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        initialValue: initialValue
+                                                                ?.toString() ??
+                                                            "",
+                                                        decoration:
+                                                            InputDecoration(
+                                                                hintStyle: TextStyle(
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic),
+                                                                hintText: initialValue !=
+                                                                        null
+                                                                    ? ""
+                                                                    : _editableWorkout
+                                                                        .exerciseDuration
+                                                                        .toString(),
+                                                                //todo i18n annotation
+                                                                filled: true),
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        validator:
+                                                            (String input) {
+                                                          if (input == "")
+                                                            return null;
+                                                          var secs =
+                                                              int.tryParse(
+                                                                  input);
+                                                          if (secs == null) {
+                                                            //todo upper bound?
+                                                            print("NUMBER");
+                                                            return "Non-numeric"
+                                                                .i18n;
+                                                          }
+                                                          if (secs < 1) {
+                                                            print("POSITIVE");
+                                                            return "Nonpositive"
+                                                                .i18n;
+                                                          }
+                                                          return null;
+                                                        },
+                                                        onSaved:
+                                                            (String input) {
+                                                          var secs =
+                                                              int.tryParse(
+                                                                  input);
+                                                          workoutExercise
+                                                              .duration = secs;
+                                                        },
+                                                      )),
+                                                      Text(" s")
+                                                    ])));
+                                          },
+                                          itemCount: _editableWorkout
+                                              .workoutExercises.length,
+                                        ))
+                                      ]))
+                                  : Column(children: [
+                                      header,
+                                      Container(
+                                        height: 32,
+                                      ),
+                                      Expanded(
+                                          child: DragList<WorkoutExercise>(
+                                        padding: EdgeInsets.only(bottom: 32),
+                                        items:
+                                            _editableWorkout.workoutExercises,
+                                        itemExtent: 72.0,
+                                        builder: (context, item, handle) {
+                                          return ExerciseEditorRow(
+                                              workoutExercise: item,
+                                              handle: handle,
+                                              trailing: IconButton(
+                                                icon: Icon(Icons.delete),
+                                                tooltip: "Delete".i18n,
+                                                onPressed: () {
+                                                  setState(() {
+                                                    _editableWorkout
+                                                        .workoutExercises
+                                                        .remove(item);
+                                                  });
+                                                },
+                                              ));
                                         },
-                                      );
-                                    },
-                                  ))
-                                ]);
+                                      ))
+                                    ]);
                         },
                       ));
                 } else {
@@ -176,50 +317,87 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   );
                 }
               })),
-      bottomNavigationBar: BottomAppBar(
-          color: Color(0xffD9E9FF), //todo make theming-friendly
-          child: Row(
-            children: <Widget>[
-              FlatButton.icon(
-                  label: Text("Add exercises".i18n),
-                  icon: Icon(Icons.add),
-                  onPressed: () async {
-                    // _saveTempState(); todo not needed
-                    List<Exercise> exercises = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ExercisePickerScreen(),
-                          fullscreenDialog: true,
-                        ));
-                    setState(() {
-                      if (exercises != null) {
-                        _editableWorkout.workoutExercises.addAll(
-                            exercises.map((Exercise e) => WorkoutExercise(
-                                exercise:
-                                    e)) // todo make sure list works with zero exercise
-                            );
-                      }
-                    });
-                  }),
-            ],
-          ),
-          shape: CircularNotchedRectangle()),
+      bottomNavigationBar: _editingTimeMode
+          ? BottomAppBar(
+              color: Theme.of(context).primaryColor,
+              child: FlatButton.icon(
+                label: Text("Done editing timing".i18n,
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary)),
+                icon: Icon(
+                  Icons.done,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ), //todo color into separate variable
+                onPressed: () {
+                  setState(() {
+                    final timingForm = _timingFormKey.currentState;
+                    if (_editableWorkout.workoutExercises.length > 0 &&
+                        timingForm.validate()) {
+                      timingForm.save();
+                      print("Saving");
+                      _editingTimeMode = false;
+                    }
+                  });
+                },
+              ))
+          : BottomAppBar(
+              color: Color(0xffD9E9FF), //todo make theming-friendly
+              child: Row(
+                children: <Widget>[
+                  FlatButton.icon(
+                      label: Text("Add exercises".i18n),
+                      icon: Icon(Icons.add),
+                      onPressed: _addExercisesOnPressed),
+                  //todo if (_editableWorkout.workoutExercises.length > 0)
+                  FlatButton.icon(
+                      label: Text("Adjust timing".i18n),
+                      icon: Icon(Icons.timer),
+                      onPressed: _adjustTimingOnPressed),
+                ],
+              ),
+              shape: CircularNotchedRectangle()),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
-          tooltip: "Done".i18n,
-          child: Icon(Icons.done),
-          onPressed: () {
-            final form = _formKey.currentState;
-            if (form.validate()) {
-              form.save();
-              DBHelper.db
-                  .createOrUpdateCustomWorkout(_editableWorkout)
-                  .then((_) {
-                Navigator.pop(context);
-              });
-            }
-          }),
+      floatingActionButton: _editingTimeMode
+          ? null
+          : FloatingActionButton(
+              backgroundColor: Theme.of(context).primaryColor,
+              tooltip: "Done".i18n,
+              child: Icon(Icons.done),
+              onPressed: () {
+                final form = _formKey.currentState;
+                if (form.validate()) {
+                  form.save();
+                  DBHelper.db
+                      .createOrUpdateCustomWorkout(_editableWorkout)
+                      .then((_) {
+                    Navigator.pop(context);
+                  });
+                }
+              }),
     );
+  }
+
+  Future<void> _addExercisesOnPressed() async {
+    // _saveTempState(); todo not needed
+    List<Exercise> exercises = await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ExercisePickerScreen(),
+          fullscreenDialog: true,
+        ));
+    setState(() {
+      if (exercises != null) {
+        _editableWorkout.workoutExercises.addAll(
+            exercises.map((Exercise e) => WorkoutExercise(
+                exercise: e)) // todo make sure list works with zero exercise
+            );
+      }
+    });
+  }
+
+  void _adjustTimingOnPressed() {
+    setState(() {
+      _editingTimeMode = true;
+    });
   }
 }
