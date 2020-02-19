@@ -3,7 +3,7 @@ Feeel
 
 Feeel is an open-source app for doing simple at-home exercises.
 
-This is an in-progress rewrite of the [original app](https://gitlab.com/enjoyingfoss/feeel) in Flutter. It doesn't work as it should yet, but hopefully it will soon. *Get involved* to speed up the process!
+This is an in-progress rewrite of the [original app](https://gitlab.com/enjoyingfoss/feeel-legacy) in Flutter. It doesn't work as it should yet, but hopefully it will soon. *Get involved* to speed up the process!
 
 To get a general idea of the app, see this video:
 ![YouTube video introduction](https://youtu.be/h1-HracNEWE)
