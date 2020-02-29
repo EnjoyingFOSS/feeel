@@ -37,7 +37,7 @@ class DurationDropdown extends StatelessWidget {
       this.decoration,
       this.onChanged,
       this.chosenValue,
-      this.predefinedValues})
+      @required this.predefinedValues})
       : super(key: key) {
     _chosenIsPredefined = predefinedValues.contains(chosenValue);
   }
