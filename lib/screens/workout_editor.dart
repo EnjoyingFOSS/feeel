@@ -291,7 +291,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                         items:
                                             _editableWorkout.workoutExercises,
                                         itemExtent: 72.0,
-                                        builder: (context, item, handle) {
+                                        itemBuilder: (context, item, handle) {
                                           return ExerciseEditorRow(
                                               workoutExercise: item,
                                               handle: handle,

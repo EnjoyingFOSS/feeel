@@ -1,7 +1,7 @@
 // Copyright (C) 2020 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,72 +11,53 @@
 // are incompatible with the AGPL, provided that the source is also
 // available under the AGPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'dart:io';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-enum TtsState { playing, stopped }
+enum _TtsState { PLAYING, STOPPED }
 
 class TTSHelper {
   TTSHelper._();
   static final TTSHelper tts = TTSHelper._();
   static final FlutterTts _flutterTts = FlutterTts();
 
-  dynamic languages;
-  dynamic voices;
-  TtsState ttsState = TtsState.stopped; //todo see if I need this
+  _TtsState ttsState = _TtsState.STOPPED; //todo see if I need this
 
-  init() {
-    if (Platform.isAndroid) {
-      _flutterTts.ttsInitHandler(() {
-        _getLanguages();
-        _getVoices();
-      });
-    } else if (Platform.isIOS) {
-      _getLanguages();
-      _getVoices();
-    }
+  init(BuildContext context) {
+    // todo need to get language? _flutterTts.setLanguage(Localizations.localeOf(context).languageCode);
 
     _flutterTts.setStartHandler(() {
-      ttsState = TtsState.playing;
+      ttsState = _TtsState.PLAYING;
     });
 
     _flutterTts.setCompletionHandler(() {
-      ttsState = TtsState.stopped;
+      ttsState = _TtsState.STOPPED;
     });
 
     _flutterTts.setErrorHandler((msg) {
-      ttsState = TtsState.stopped;
+      ttsState = _TtsState.STOPPED;
     });
-  }
-
-  Future _getLanguages() async {
-    languages = await _flutterTts.getLanguages;
-  }
-
-  Future _getVoices() async {
-    voices = await _flutterTts.getVoices;
   }
 
   Future speak(String message) async {
     if (message != null && message.isNotEmpty) {
-      if (ttsState == TtsState.playing) await _flutterTts.stop();
+      if (ttsState == _TtsState.PLAYING) await _flutterTts.stop();
       var result = await _flutterTts.speak(message);
-      if (result == 1) ttsState = TtsState.playing;
+      if (result == 1) ttsState = _TtsState.PLAYING;
     }
   }
 
   Future stop() async {
     var result = await _flutterTts.stop();
-    if (result == 1) ttsState = TtsState.stopped;
+    if (result == 1) ttsState = _TtsState.STOPPED;
   }
 }

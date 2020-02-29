@@ -73,7 +73,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
               if (snapshot.hasData) {
                 _exercises = snapshot.data;
                 return ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 16),
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 64),
                     itemCount: _exercises.length + 1,
                     itemBuilder: (context, i) {
                       if (i < _exercises.length) {

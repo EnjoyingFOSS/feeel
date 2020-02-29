@@ -24,6 +24,7 @@ import 'dart:io';
 
 import 'package:feeel/widgets/image_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -156,8 +157,14 @@ TRANSLATION:
   }
 
   Future _addPhotoFromGallery() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    _addPhoto(image);
+    ImagePicker.pickImage(source: ImageSource.gallery).catchError((e) {
+      Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text("Can't take photos without camera permission".i18n)));
+    }
+        //, test: (e) => e is PlatformException && e.code == "photo_access_denied");
+        ).then((image) {
+      _addPhoto(image);
+    });
   }
 
   Future _addPhotoFromCamera() async {

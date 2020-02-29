@@ -43,6 +43,7 @@ class FinishPage extends StatelessWidget {
             child: Center(
                 child: Text(
               "You're glowing!".i18n,
+              textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 40, fontWeight: FontWeight.w900, color: color),
             )))
