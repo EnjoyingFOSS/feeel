@@ -55,6 +55,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
           brightness: Theme.of(context).brightness,
           backgroundColor: Color(0xffD9E9FF),
           title: Text("Add exercises".i18n),
+          centerTitle: false,
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.done),
