@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/screens/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,18 +28,25 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:i18n_extension/i18n_widget.dart';
 
+import 'db/notification_helper.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.light));
+    NotificationHelper.helper.init(context);
+    TTSHelper.tts.init(context);
     return MaterialApp(
         title: 'Feeel',
         supportedLocales: [
           const Locale('en'),
+          const Locale('es'),
+          const Locale('nl'),
           const Locale('cs'),
         ],
         localizationsDelegates: [

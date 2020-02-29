@@ -76,7 +76,7 @@ class WorkoutController {
 
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
-      if (prefs.getBool(PreferenceKeys.TTS_DISABLED) ?? false) {
+      if (prefs.getBool(PreferenceKeys.TTS_DISABLED_PREF) ?? false) {
         final soundView = SoundView();
         _views[ViewTypes.AUDIO.index] = soundView;
         _onFinishes[ViewTypes.AUDIO.index] = () {

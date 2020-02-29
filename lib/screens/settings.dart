@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,6 +35,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   Future<SharedPreferences> _preferencesFuture;
+  static const _DEFAULT_NOTIFICATION_TIME = TimeOfDay(hour: 20, minute: 10);
 
   @override
   void initState() {
@@ -45,6 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          centerTitle: false,
           title: Text("Settings".i18n),
         ),
         body: FutureBuilder(
@@ -53,24 +56,65 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 AsyncSnapshot<SharedPreferences> snapshot) {
               if (snapshot.hasData) {
                 SharedPreferences preferences = snapshot.data;
+                final notificationTime = NotificationHelper.timeFromInt(
+                    preferences.getInt(PreferenceKeys.NOTIFICATION_TIME_PREF));
                 return ListView(
                   children: <Widget>[
                     SwitchListTile.adaptive(
-                      value: preferences.getBool(PreferenceKeys.TTS_DISABLED) ??
+                      value: preferences
+                              .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
                           false,
                       title: Text("Use sounds instead of speech".i18n),
                       onChanged: (bool newValue) {
                         setState(() {
                           preferences.setBool(
-                              PreferenceKeys.TTS_DISABLED, newValue);
+                              PreferenceKeys.TTS_DISABLED_PREF, newValue);
                         });
                       },
-                    )
+                    ),
+                    SwitchListTile.adaptive(
+                      value: notificationTime != null,
+                      title: Text("Remind me to exercise daily".i18n),
+                      onChanged: (bool newValue) {
+                        _setNotificationTime(
+                            context,
+                            newValue ? _DEFAULT_NOTIFICATION_TIME : null,
+                            preferences);
+                      },
+                    ),
+                    if (notificationTime != null)
+                      ListTile(
+                        title: Text("Notification time".i18n),
+                        trailing: Text(notificationTime.format(context)),
+                        onTap: () async {
+                          var selectedTime = await showTimePicker(
+                              context: context, initialTime: notificationTime);
+                          if (selectedTime != null) {
+                            _setNotificationTime(
+                                context, selectedTime, preferences);
+                          }
+                        },
+                      )
                   ],
                 );
               } else {
                 return Center(child: CircularProgressIndicator());
               }
             }));
+  }
+
+  void _setNotificationTime(BuildContext context, TimeOfDay timeOfDay,
+      SharedPreferences preferences) {
+    setState(() {
+      if (timeOfDay == null) {
+        preferences.setInt(PreferenceKeys.NOTIFICATION_TIME_PREF, null);
+        //todo unset notification !
+        NotificationHelper.helper.setNotification(context, null);
+      } else {
+        preferences.setInt(PreferenceKeys.NOTIFICATION_TIME_PREF,
+            NotificationHelper.timeToInt(timeOfDay));
+        NotificationHelper.helper.setNotification(context, timeOfDay);
+      }
+    });
   }
 }

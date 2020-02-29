@@ -5,6 +5,8 @@
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
+		<string>es</string>
+		<string>nl</string>
 		<string>cs</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
