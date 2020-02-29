@@ -253,12 +253,10 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                                   input);
                                                           if (secs == null) {
                                                             //todo upper bound?
-                                                            print("NUMBER");
                                                             return "Non-numeric"
                                                                 .i18n;
                                                           }
                                                           if (secs < 1) {
-                                                            print("POSITIVE");
                                                             return "Nonpositive"
                                                                 .i18n;
                                                           }
@@ -334,28 +332,30 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                     if (_editableWorkout.workoutExercises.length > 0 &&
                         timingForm.validate()) {
                       timingForm.save();
-                      print("Saving");
                       _editingTimeMode = false;
                     }
                   });
                 },
               ))
-          : BottomAppBar(
-              color: Color(0xffD9E9FF), //todo make theming-friendly
-              child: Row(
-                children: <Widget>[
-                  FlatButton.icon(
-                      label: Text("Add exercises".i18n),
-                      icon: Icon(Icons.add),
-                      onPressed: _addExercisesOnPressed),
-                  //todo if (_editableWorkout.workoutExercises.length > 0)
-                  FlatButton.icon(
-                      label: Text("Adjust timing".i18n),
-                      icon: Icon(Icons.timer),
-                      onPressed: _adjustTimingOnPressed),
-                ],
-              ),
-              shape: CircularNotchedRectangle()),
+          : Builder(
+              builder: (context) => BottomAppBar(
+                  color: Color(0xffD9E9FF), //todo make theming-friendly
+                  child: Row(
+                    children: <Widget>[
+                      FlatButton.icon(
+                          label: Text("Add exercises".i18n),
+                          icon: Icon(Icons.add),
+                          onPressed: _addExercisesOnPressed),
+                      //todo if (_editableWorkout.workoutExercises.length > 0)
+                      FlatButton.icon(
+                          label: Text("Adjust timing".i18n),
+                          icon: Icon(Icons.timer),
+                          onPressed: () {
+                            _adjustTimingOnPressed(context);
+                          }),
+                    ],
+                  ),
+                  shape: CircularNotchedRectangle())),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: _editingTimeMode
           ? null
@@ -395,9 +395,16 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
     });
   }
 
-  void _adjustTimingOnPressed() {
-    setState(() {
-      _editingTimeMode = true;
-    });
+  void _adjustTimingOnPressed(BuildContext context) {
+    if (_editableWorkout.workoutExercises.length > 0) {
+      setState(() {
+        _editingTimeMode = true;
+      });
+    } else {
+      Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text("Add an exercise first".i18n),
+        duration: Duration(seconds: 2),
+      ));
+    }
   }
 }
