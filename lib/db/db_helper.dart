@@ -180,7 +180,7 @@ class DBHelper {
 
     await _createWorkoutFromList(
       db,
-      "Advanced leg workout",
+      "Leg workout",
       WorkoutCategory.LEGS,
       [
         _Exercises.SPLIT_SQUATS_L,
@@ -189,8 +189,7 @@ class DBHelper {
         _Exercises.SIDE_SPLIT_SQUATS_R,
         _Exercises.BULGARIAN_SPLIT_SQUATS_L,
         _Exercises.BULGARIAN_SPLIT_SQUATS_R,
-        _Exercises.PISTOL_SQUATS_L,
-        _Exercises.PISTOL_SQUATS_R,
+        _Exercises.SQUATS,
         _Exercises.KNEELING_KICKBACKS,
         _Exercises.CALF_RAISES_L,
         _Exercises.CALF_RAISES_R
