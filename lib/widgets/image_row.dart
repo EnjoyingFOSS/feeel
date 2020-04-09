@@ -30,7 +30,7 @@ class ImageRow extends StatelessWidget {
   static const _BYTES_IN_MIB = 1048576;
   final File imageFile;
   final double maxHeight;
-  final Function onDelete;
+  final void Function() onDelete;
 
   const ImageRow({Key key, this.imageFile, this.maxHeight = 256, this.onDelete})
       : super(key: key);

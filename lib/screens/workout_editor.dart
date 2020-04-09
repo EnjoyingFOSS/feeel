@@ -56,7 +56,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   final _formKey = GlobalKey<FormState>();
   final _timingFormKey = GlobalKey<FormState>();
   Workout _editableWorkout;
-  Future _future;
+  Future<Workout> _future;
   bool _editingTimeMode = false;
 
   @override
@@ -79,7 +79,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
     return Scaffold(
       body: SafeArea(
           bottom: false,
-          child: FutureBuilder(
+          child: FutureBuilder<Workout>(
               future: _future,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -127,7 +127,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
 
                   return Form(
                       key: _formKey,
-                      child: FormField(
+                      child: FormField<void>(
                         validator: (_) {
                           if (_editableWorkout.workoutExercises.isEmpty) {
                             return "Please add at least 1 exercise".i18n;

@@ -91,7 +91,7 @@ class DBHelper {
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
 
-  _createDB() async {
+  Future<Database> _createDB() async {
     String path = await getPath();
 
     return await openDatabase(path,
@@ -407,10 +407,10 @@ class DBHelper {
     return _database;
   }
 
-  Future<int> _getNextId(db, tableName, idColumn) async {
+  Future<int> _getNextId(Database db, String tableName, String idColumn) async {
     var table = await db
         .rawQuery("SELECT MAX($idColumn)+1 as $idColumn FROM $tableName");
-    return table.first[idColumn] == null ? 1 : table.first[idColumn];
+    return table.first[idColumn] == null ? 1 : table.first[idColumn] as int;
   }
 
   Future<int> _createExercise(Database db,
@@ -424,7 +424,7 @@ class DBHelper {
     var table = _EXERCISE_TABLE;
     int id = await _getNextId(db, table, _ID_COL);
 
-    await db.insert(table, {
+    await db.insert(table, <String, dynamic>{
       _ID_COL: id,
       _NAME_COL: name,
       _DESCRIPTION_COL: description,
@@ -476,15 +476,15 @@ class DBHelper {
     final db = await database;
     await db.delete(_WORKOUT_TABLE,
         where: "$_ID_COL = ? AND $_TYPE_COL = ?",
-        whereArgs: [workoutId, WorkoutType.CUSTOM.index]);
+        whereArgs: <int>[workoutId, WorkoutType.CUSTOM.index]);
   }
 
   Future<void> _renameWorkout(
       int workoutId, WorkoutType workoutType, String workoutTitle) async {
     final db = await database;
-    await db.update(_WORKOUT_TABLE, {_TITLE_COL: workoutTitle},
+    await db.update(_WORKOUT_TABLE, <String, String>{_TITLE_COL: workoutTitle},
         where: "$_ID_COL = ? and $_TYPE_COL = ?",
-        whereArgs: [workoutId, workoutType.index]);
+        whereArgs: <int>[workoutId, workoutType.index]);
   }
 
   Future<void> _deleteWorkoutExercises(int workoutId, WorkoutType type) async {
@@ -492,7 +492,7 @@ class DBHelper {
     final db = await database;
     await db.delete(_WORKOUT_EXERCISE_TABLE,
         where: "$_WORKOUT_ID_COL = ? AND $_WORKOUT_TYPE_COL = ?",
-        whereArgs: [workoutId, type.index]);
+        whereArgs: <int>[workoutId, type.index]);
   }
 
   Future<void> _deleteDefaultWorkouts(Database db) async {
@@ -513,7 +513,7 @@ class DBHelper {
     var table = _WORKOUT_TABLE;
     int id = await _getNextId(db, table, _ID_COL);
 
-    await db.insert(table, {
+    await db.insert(table, <String, dynamic>{
       _ID_COL: id,
       _TITLE_COL: title,
       _COUNTDOWN_DURATION_COL: countdownDuration,
@@ -533,7 +533,7 @@ class DBHelper {
       int exerciseId,
       int duration,
       int breakBeforeDuration}) async {
-    await db.insert(_WORKOUT_EXERCISE_TABLE, {
+    await db.insert(_WORKOUT_EXERCISE_TABLE, <String, dynamic>{
       _WORKOUT_ID_COL: workoutId,
       _WORKOUT_TYPE_COL: workoutType.index,
       _ORDER_COL: order,
@@ -546,18 +546,18 @@ class DBHelper {
   Future<List<Exercise>> queryExercisesFromCategory(int category) async {
     final db = await database;
     var res = await db.query(_EXERCISE_TABLE,
-        where: "$_CATEGORY_COL = ?", whereArgs: [category]);
+        where: "$_CATEGORY_COL = ?", whereArgs: <int>[category]);
     List<Exercise> list = res.isNotEmpty
         ? res
             .map((map) => Exercise(
-                dbId: map[_ID_COL],
-                name: map[_NAME_COL],
-                description: map[_DESCRIPTION_COL],
+                dbId: map[_ID_COL] as int,
+                name: map[_NAME_COL] as String,
+                description: map[_DESCRIPTION_COL] as String,
                 twoSided: map[_FLIPPED_COL] == 1,
-                imageSlug: map[_IMAGE_SLUG_COL],
-                imageAuthor: map[_IMAGE_AUTHOR_COL],
-                imageLicense: map[_IMAGE_LICENSE_COL],
-                category: map[_CATEGORY_COL]))
+                imageSlug: map[_IMAGE_SLUG_COL] as String,
+                imageAuthor: map[_IMAGE_AUTHOR_COL] as String,
+                imageLicense: map[_IMAGE_LICENSE_COL] as int,
+                category: map[_CATEGORY_COL] as int))
             .toList()
         : [];
     return list;
@@ -569,14 +569,14 @@ class DBHelper {
     List<Exercise> list = res.isNotEmpty
         ? res
             .map((map) => Exercise(
-                dbId: map[_ID_COL],
-                name: map[_NAME_COL],
-                description: map[_DESCRIPTION_COL],
+                dbId: map[_ID_COL] as int,
+                name: map[_NAME_COL] as String,
+                description: map[_DESCRIPTION_COL] as String,
                 twoSided: map[_FLIPPED_COL] == 1,
-                imageSlug: map[_IMAGE_SLUG_COL],
-                imageAuthor: map[_IMAGE_AUTHOR_COL],
-                imageLicense: map[_IMAGE_LICENSE_COL],
-                category: map[_CATEGORY_COL]))
+                imageSlug: map[_IMAGE_SLUG_COL] as String,
+                imageAuthor: map[_IMAGE_AUTHOR_COL] as String,
+                imageLicense: map[_IMAGE_LICENSE_COL] as int,
+                category: map[_CATEGORY_COL] as int))
             .toList()
         : [];
     return list;
@@ -588,10 +588,10 @@ class DBHelper {
     List<WorkoutListed> list = res.isNotEmpty
         ? res
             .map((map) => WorkoutListed(
-                map[_ID_COL],
-                WorkoutType.values[map[_TYPE_COL]],
-                map[_TITLE_COL],
-                WorkoutCategory.values[map[_CATEGORY_COL]]))
+                map[_ID_COL] as int,
+                WorkoutType.values[map[_TYPE_COL] as int],
+                map[_TITLE_COL] as String,
+                WorkoutCategory.values[map[_CATEGORY_COL] as int]))
             .toList()
         : [];
     return list;
@@ -599,51 +599,51 @@ class DBHelper {
 
   Future<Exercise> queryExercise(int exerciseId) async {
     final db = await database;
-    var res = await db
-        .query(_EXERCISE_TABLE, where: "$_ID_COL = ?", whereArgs: [exerciseId]);
+    var res = await db.query(_EXERCISE_TABLE,
+        where: "$_ID_COL = ?", whereArgs: <int>[exerciseId]);
     return res.isNotEmpty
         ? Exercise(
-            dbId: res.first[_ID_COL],
-            name: res.first[_NAME_COL],
-            description: res.first[_DESCRIPTION_COL],
+            dbId: res.first[_ID_COL] as int,
+            name: res.first[_NAME_COL] as String,
+            description: res.first[_DESCRIPTION_COL] as String,
             twoSided: res.first[_FLIPPED_COL] == 1,
-            imageSlug: res.first[_IMAGE_SLUG_COL],
-            imageAuthor: res.first[_IMAGE_AUTHOR_COL],
-            imageLicense: res.first[_IMAGE_LICENSE_COL],
-            category: res.first[_CATEGORY_COL])
-        : Null;
+            imageSlug: res.first[_IMAGE_SLUG_COL] as String,
+            imageAuthor: res.first[_IMAGE_AUTHOR_COL] as String,
+            imageLicense: res.first[_IMAGE_LICENSE_COL] as int,
+            category: res.first[_CATEGORY_COL] as int)
+        : null;
   }
 
   Future<Workout> queryWorkout(int workoutId, WorkoutType type) async {
     final db = await database;
     var weRes = await db.query(_WORKOUT_EXERCISE_TABLE,
         where: "$_WORKOUT_ID_COL = ? AND $_WORKOUT_TYPE_COL = ?",
-        whereArgs: [workoutId, type.index],
+        whereArgs: <int>[workoutId, type.index],
         orderBy: _ORDER_COL);
     List<WorkoutExercise> workoutExercises = List()..length = weRes.length;
     for (int i = 0; i < weRes.length; i++) {
       var item = weRes[i];
-      var exercise = await queryExercise(item[_EXERCISE_COL]);
+      var exercise = await queryExercise(item[_EXERCISE_COL] as int);
       workoutExercises[i] = WorkoutExercise(
-          dbId: item[_ID_COL],
+          dbId: item[_ID_COL] as int,
           exercise: exercise,
-          duration: item[_EXERCISE_DURATION_COL],
-          breakBeforeDuration: item[_BREAK_DURATION_COL]);
+          duration: item[_EXERCISE_DURATION_COL] as int,
+          breakBeforeDuration: item[_BREAK_DURATION_COL] as int);
     }
 
     var workoutRes = await db.query(_WORKOUT_TABLE,
         where: "$_ID_COL = ? AND $_TYPE_COL = ?",
-        whereArgs: [workoutId, type.index]);
+        whereArgs: <int>[workoutId, type.index]);
 
     return Workout(
-        dbId: workoutRes[0][_ID_COL],
-        title: workoutRes[0][_TITLE_COL],
+        dbId: workoutRes[0][_ID_COL] as int,
+        title: workoutRes[0][_TITLE_COL] as String,
         workoutExercises: workoutExercises,
-        countdownDuration: workoutRes[0][_COUNTDOWN_DURATION_COL],
-        breakDuration: workoutRes[0][_BREAK_DURATION_COL],
-        exerciseDuration: workoutRes[0][_EXERCISE_DURATION_COL],
-        type: WorkoutType.values[workoutRes[0][_TYPE_COL]],
-        category: WorkoutCategory.values[workoutRes[0][_CATEGORY_COL]]);
+        countdownDuration: workoutRes[0][_COUNTDOWN_DURATION_COL] as int,
+        breakDuration: workoutRes[0][_BREAK_DURATION_COL] as int,
+        exerciseDuration: workoutRes[0][_EXERCISE_DURATION_COL] as int,
+        type: WorkoutType.values[workoutRes[0][_TYPE_COL] as int],
+        category: WorkoutCategory.values[workoutRes[0][_CATEGORY_COL] as int]);
   }
 
   Future close() async {

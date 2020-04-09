@@ -59,7 +59,7 @@ class DurationDropdown extends StatelessWidget {
           value: CUSTOM,
         )
       ],
-      onChanged: (value) {
+      onChanged: (int value) {
         _onChanged(context, value);
       },
       decoration: decoration,
@@ -77,7 +77,7 @@ class DurationDropdown extends StatelessWidget {
     if (value != CUSTOM) {
       onChanged(value);
     } else {
-      showDialog(
+      showDialog<void>(
           builder: (context) {
             return AlertDialog(
                 //todo save custom value

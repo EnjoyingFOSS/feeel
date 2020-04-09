@@ -29,7 +29,7 @@ import 'package:feeel/i18n/translations.dart';
 class WorkoutCover extends StatelessWidget {
   final Color color;
   final Workout workout;
-  final Function onPressed;
+  final void Function() onPressed;
 
   WorkoutCover(
       {Key key, @required this.workout, @required this.color, this.onPressed})

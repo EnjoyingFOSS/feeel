@@ -87,7 +87,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                               //todo add labels to all icons
                               icon: Icon(Icons.info_outline),
                               tooltip: "More info".i18n,
-                              onPressed: () => showDialog(
+                              onPressed: () => showDialog<void>(
                                   context: context,
                                   builder: (context) => AlertDialog(
                                         title: Text(exercise.name.i18n),
@@ -124,7 +124,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                               child: Icon(Icons.add)),
                           title: Text("Propose custom exercise".i18n),
                           onTap: () {
-                            Navigator.push(
+                            Navigator.push<void>(
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => ExerciseCreatorScreen(),

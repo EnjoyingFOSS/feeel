@@ -32,7 +32,7 @@ class TTSHelper {
 
   _TtsState ttsState = _TtsState.STOPPED; //todo see if I need this
 
-  init(BuildContext context) {
+  void init(BuildContext context) {
     // todo need to get language? _flutterTts.setLanguage(Localizations.localeOf(context).languageCode);
 
     _flutterTts.setStartHandler(() {
@@ -43,7 +43,7 @@ class TTSHelper {
       ttsState = _TtsState.STOPPED;
     });
 
-    _flutterTts.setErrorHandler((msg) {
+    _flutterTts.setErrorHandler((dynamic msg) {
       ttsState = _TtsState.STOPPED;
     });
   }
@@ -51,13 +51,13 @@ class TTSHelper {
   Future speak(String message) async {
     if (message != null && message.isNotEmpty) {
       if (ttsState == _TtsState.PLAYING) await _flutterTts.stop();
-      var result = await _flutterTts.speak(message);
+      dynamic result = await _flutterTts.speak(message);
       if (result == 1) ttsState = _TtsState.PLAYING;
     }
   }
 
   Future stop() async {
-    var result = await _flutterTts.stop();
+    dynamic result = await _flutterTts.stop();
     if (result == 1) ttsState = _TtsState.STOPPED;
   }
 }

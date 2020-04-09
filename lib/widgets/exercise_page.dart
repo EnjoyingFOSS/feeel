@@ -69,7 +69,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
 
     final hslColor = HSLColor.fromColor(widget.color); //todo test, tweak
     descriptionColor = hslColor
-        .withLightness((hslColor.lightness - 0.1).clamp(0.0, 1.0))
+        .withLightness((hslColor.lightness - 0.1).clamp(0.0, 1.0).toDouble())
         .toColor();
   }
 

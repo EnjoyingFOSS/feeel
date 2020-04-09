@@ -49,7 +49,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
           tooltip: "Create custom workout".i18n,
           child: Icon(Icons.add),
           onPressed: () {
-            Navigator.push(context,
+            Navigator.push<void>(context,
                 MaterialPageRoute(builder: (BuildContext context) {
               return WorkoutEditorScreen();
             })).then((_) {
@@ -99,7 +99,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                             ),
                             tooltip: "Settings".i18n,
                             onPressed: () {
-                              Navigator.push(
+                              Navigator.push<void>(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => SettingsScreen()));
@@ -162,7 +162,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
   }
 
   void _onEditCustom(WorkoutListed workoutListed) {
-    Navigator.push(
+    Navigator.push<void>(
         context,
         MaterialPageRoute(
             builder: (context) => WorkoutEditorScreen(

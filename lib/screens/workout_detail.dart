@@ -40,7 +40,7 @@ class WorkoutDetailScreen extends StatefulWidget {
 }
 
 class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
-  Future _future;
+  Future<Workout> _future;
 
   @override
   void initState() {

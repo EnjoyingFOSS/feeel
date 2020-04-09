@@ -23,6 +23,6 @@
 class AssetHelper {
   static const _ASSETS_PATH = "assets/";
   static const _THUMBS_PATH = "assets/thumbs_";
-  static getImage(String imageSlug) => _ASSETS_PATH + imageSlug;
-  static getThumb(String imageSlug) => _THUMBS_PATH + imageSlug;
+  static String getImage(String imageSlug) => _ASSETS_PATH + imageSlug;
+  static String getThumb(String imageSlug) => _THUMBS_PATH + imageSlug;
 }
