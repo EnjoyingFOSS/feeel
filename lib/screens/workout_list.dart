@@ -75,11 +75,13 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                             TextSpan(children: <InlineSpan>[
                           TextSpan(
                             text: "Feeel ",
-                            style: TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight
-                                    .w900, //todo extract into parent textspan
-                                color: Theme.of(context).colorScheme.primary),
+                            style: Theme.of(context)
+                                .appBarTheme
+                                .textTheme
+                                .headline6
+                                .copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
                           ),
                           // todo TextSpan(
                           //   text: "energized",

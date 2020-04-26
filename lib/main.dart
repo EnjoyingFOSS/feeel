@@ -33,6 +33,36 @@ import 'db/notification_helper.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  final dayColors = ColorScheme(
+      primary: Color(0xFF0B65DB),
+      primaryVariant: Color(0xFF0050BA), //used as primaryColorDark in theme
+      secondary: Color(0xffE96216),
+      secondaryVariant: Color(0xFFE96216),
+      surface: Colors.white,
+      background: Colors.white,
+      error: Color(0xFFB00020),
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
+      onSurface: Colors.black87,
+      onBackground: Colors.black87,
+      onError: Colors.black87,
+      brightness: Brightness.light);
+
+  final nightColors = ColorScheme(
+      primary: Color(0xFF0B65DB),
+      primaryVariant: Color(0xFF0050BA), //used as primaryColorDark in theme
+      secondary: Color(0xffE96216),
+      secondaryVariant: Color(0xFFE96216),
+      surface: Colors.black87,
+      background: Colors.black87,
+      error: Color(0xFFB00020),
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
+      onSurface: Colors.white,
+      onBackground: Colors.white,
+      onError: Colors.white,
+      brightness: Brightness.dark);
+
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
@@ -41,11 +71,12 @@ class MyApp extends StatelessWidget {
         statusBarBrightness: Brightness.light));
     NotificationHelper.helper.init(context);
     TTSHelper.tts.init(context);
+    var colors = dayColors;
     return MaterialApp(
         title: 'Feeel',
         supportedLocales: [
           const Locale('en'),
-          const Locale('es'),
+          const Locale('ru'),
           const Locale('nl'),
           const Locale('cs'),
         ],
@@ -54,72 +85,30 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        theme: getDayTheme(),
+        theme: ThemeData(
+            backgroundColor: colors.background,
+            brightness: colors.brightness,
+            colorScheme: colors,
+            primaryColor: colors.primary,
+            primaryColorDark: colors.primaryVariant,
+            accentColor: colors.secondary,
+            scaffoldBackgroundColor: colors.background,
+            cardColor: colors.surface,
+            errorColor: colors.error,
+            buttonColor: colors.primary,
+            toggleableActiveColor: colors.primary,
+            textSelectionHandleColor: colors.secondary,
+            appBarTheme: AppBarTheme(
+                color: colors.background,
+                iconTheme: IconThemeData(color: colors.onBackground),
+                textTheme: TextTheme(
+                    headline6: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900,
+                        color: colors.onBackground)),
+                elevation: 0,
+                brightness: Brightness.light)),
         home:
             I18n(child: WorkoutListScreen())); //todo not seeing current locale!
-  }
-
-  ThemeData getDayTheme() {
-    var colors = ColorScheme(
-        primary: Color(0xFF0B65DB),
-        primaryVariant: Color(0xFF0B65DB),
-        secondary: Color(0xffE96216),
-        secondaryVariant: Color(0xFFE96216),
-        surface: Colors.white,
-        background: Colors.white,
-        error: Color(0xFFB00020),
-        onPrimary: Colors.white,
-        onSecondary: Colors.white,
-        onSurface: Colors.black87,
-        onBackground: Colors.black87,
-        onError: Colors.black87,
-        brightness: Brightness.light);
-
-    return ThemeData(
-      backgroundColor: colors.background,
-      brightness: colors.brightness,
-      colorScheme: colors,
-      primaryColor: colors.primary,
-      primaryColorDark: Color(0xFF0050BA),
-      accentColor: colors.secondary,
-      scaffoldBackgroundColor: colors.background,
-      cardColor: colors.surface,
-      errorColor: colors.error,
-      buttonColor: colors.primary,
-      toggleableActiveColor: colors.primary,
-      textSelectionHandleColor: colors.secondary,
-    );
-  }
-
-  ThemeData getNightTheme() {
-    var colors = ColorScheme(
-        primary: Color(0xFF0B65DB),
-        primaryVariant: Color(0xFF0B65DB),
-        secondary: Color(0xffE96216),
-        secondaryVariant: Color(0xFFE96216),
-        surface: Colors.black87,
-        background: Colors.black87,
-        error: Color(0xFFB00020),
-        onPrimary: Colors.white,
-        onSecondary: Colors.white,
-        onSurface: Colors.white,
-        onBackground: Colors.white,
-        onError: Colors.white,
-        brightness: Brightness.dark);
-
-    return ThemeData(
-      backgroundColor: colors.background,
-      brightness: colors.brightness,
-      colorScheme: colors,
-      primaryColor: colors.primary,
-      primaryColorDark: Color(0xFF0050BA),
-      accentColor: colors.secondary,
-      scaffoldBackgroundColor: colors.background,
-      cardColor: colors.surface,
-      errorColor: colors.error,
-      buttonColor: colors.primary,
-      toggleableActiveColor: colors.primary,
-      textSelectionHandleColor: colors.secondary,
-    );
   }
 }

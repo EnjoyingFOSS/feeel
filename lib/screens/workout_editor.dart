@@ -89,10 +89,6 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                     _titleController.text = _editableWorkout.title;
                   }
 
-                  var textStyle = TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.w900,
-                      color: Theme.of(context).primaryColor);
                   var header = Row(children: <Widget>[
                     Container(
                       width: 4,
@@ -101,13 +97,22 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                     Expanded(
                       child: Padding(
                           child: TextFormField(
-                            style: textStyle,
+                            style: Theme.of(context)
+                                .appBarTheme
+                                .textTheme
+                                .headline6
+                                .copyWith(
+                                    color: Theme.of(context).primaryColor),
                             controller: _titleController,
                             decoration: InputDecoration(
-                                hintStyle: textStyle.copyWith(
-                                    color: Theme.of(context)
-                                        .primaryColor
-                                        .withAlpha(64)),
+                                hintStyle: Theme.of(context)
+                                    .appBarTheme
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                        color: Theme.of(context)
+                                            .primaryColor
+                                            .withAlpha(64)),
                                 // border: InputBorder.none,
                                 filled: false,
                                 hintText: 'Workout title'.i18n),
@@ -281,7 +286,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                   : Column(children: [
                                       header,
                                       Container(
-                                        height: 32,
+                                        height: 16,
                                       ),
                                       Expanded(
                                           child: DragList<WorkoutExercise>(

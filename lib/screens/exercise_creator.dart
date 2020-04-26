@@ -51,7 +51,7 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
         onPressed: _sendMessage,
       ),
       appBar: AppBar(
-        title: Text("Contribute an exercise".i18n),
+        title: Text("Contribute".i18n),
         centerTitle: false,
       ),
       body: Column(children: [

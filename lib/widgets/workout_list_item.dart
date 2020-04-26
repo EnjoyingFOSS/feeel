@@ -73,7 +73,8 @@ class WorkoutListItem extends StatelessWidget {
                                     (workoutListed.type == WorkoutType.DEFAULT)
                                         ? title.i18n
                                         : title,
-                                    style: Theme.of(context).textTheme.title),
+                                    style:
+                                        Theme.of(context).textTheme.headline6),
                                 Container(
                                   height: 8,
                                 ),
@@ -81,7 +82,7 @@ class WorkoutListItem extends StatelessWidget {
                                   subtitle,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .subtitle
+                                      .subtitle2
                                       .copyWith(
                                           fontWeight: FontWeight.bold,
                                           color: Color(

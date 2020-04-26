@@ -56,7 +56,10 @@ class ExerciseEditorRow extends StatelessWidget {
       ),
       Expanded(
           child: Padding(
-        child: Text(workoutExercise.exercise.name),
+        child: Text(
+          workoutExercise.exercise.name,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
         padding: EdgeInsets.symmetric(horizontal: 16),
       )),
       trailing,

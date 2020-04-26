@@ -55,7 +55,7 @@ class EmptyPlaceholder extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Text(subheading,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subhead.copyWith(
+                style: Theme.of(context).textTheme.subtitle1.copyWith(
                     color: Theme.of(context)
                         .colorScheme
                         .onBackground
