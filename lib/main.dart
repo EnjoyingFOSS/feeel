@@ -76,6 +76,8 @@ class MyApp extends StatelessWidget {
         title: 'Feeel',
         supportedLocales: [
           const Locale('en'),
+          const Locale('es'),
+          const Locale('it'),
           const Locale('ru'),
           const Locale('nl'),
           const Locale('cs'),
