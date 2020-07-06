@@ -7,7 +7,7 @@ This is a rewrite of the [original app](https://gitlab.com/enjoyingfoss/feeel-le
 
 Contribute
 ====
-ANYONE can contribute, no special skills required. Message me on [Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org) if you'd like to help.
+ANYONE can contribute, no special skills required. Message me on the [Feeel channel on Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org) if you'd like to help.
 
 You can help by donating photos of exercises, [turning photos into low-poly illustrations](https://gitlab.com/enjoyingfoss/feeel/-/wikis/Processing-photos) (which anyone can do using an application made for the purpose), participating in user testing, [translating](https://www.transifex.com/enjoying-foss/feeel/), spreading the message, programming, or doing anything else that would help the project. :)
 
