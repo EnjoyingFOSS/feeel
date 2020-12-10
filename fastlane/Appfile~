@@ -1,0 +1,2 @@
+json_key_file("/Users/mirek.mazel/Nextcloud/dev/Google\ Play\ Android\ Developer-f603339328f0.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.enjoyingfoss.feeel") # e.g. com.krausefx.app

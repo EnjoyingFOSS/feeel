@@ -1,0 +1,6 @@
+package com.enjoyingfoss.feeel
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}

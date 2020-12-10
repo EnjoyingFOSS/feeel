@@ -31,6 +31,7 @@ import 'package:feeel/enums/workout_type.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 enum _Exercises {
   JUMPING_JACKS,
@@ -94,12 +95,24 @@ class DBHelper {
   Future<Database> _createDB() async {
     String path = await getPath();
 
+    if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
+      sqfliteFfiInit();
+      return await databaseFactoryFfi.openDatabase(path, options:
+      OpenDatabaseOptions(version: 2,
+      onOpen: (db) {},
+        onCreate: _onCreate,
+        onUpgrade: _onUpgrade,
+        onDowngrade: _onUpgrade
+      ));
+    } else {
+
     return await openDatabase(path,
         version: 2,
         onOpen: (db) {},
         onCreate: _onCreate,
         onUpgrade: _onUpgrade,
         onDowngrade: _onUpgrade);
+    }
   }
 
   Future<void> _onCreate(Database db, int version) async {

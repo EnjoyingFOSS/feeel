@@ -1,4 +1,4 @@
-package com.example.feeel
+package com.enjoyingfoss.feeel
 
 import android.os.Bundle
 
