@@ -231,7 +231,7 @@ class DBHelper {
         imageSlug: "exercise_pushup.webp");
 
     await _createExercise(db,
-        name: "Ab crunches",
+        name: "Crunches",
         description:
             "1. Lie down face up on the floor with knees bent.\n2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n3. Repeat",
         imageSlug: "exercise_abcrunch.webp");

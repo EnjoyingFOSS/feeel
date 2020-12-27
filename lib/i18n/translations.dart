@@ -622,7 +622,7 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 {
 "nl": """Spiercrunches""",
 "ru": """Пресс""",
-"en": """Ab crunches""",
+"en": """Crunches""",
 "it": """Addominali""",
 "cs": """Sedolehy""",
 "es": """Abdominales""",
