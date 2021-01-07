@@ -29,29 +29,26 @@ import 'flipped.dart';
 class ExerciseEditorRow extends StatelessWidget {
   final WorkoutExercise workoutExercise;
   final Widget trailing;
-  final Widget handle;
+  final Widget? handle;
 
   const ExerciseEditorRow(
-      {Key key,
-      @required this.workoutExercise,
-      @required this.trailing,
+      {Key? key,
+      required this.workoutExercise,
+      required this.trailing,
       this.handle})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var imageSlug = workoutExercise.exercise.imageSlug;
     return Row(children: [
       Padding(
-        child: workoutExercise.exercise.imageSlug == null
+        child: imageSlug == null
             ? Container()
             : workoutExercise.exercise.twoSided
-                ? Flipped(
-                    child: Image.asset(AssetHelper.getThumb(
-                        workoutExercise.exercise.imageSlug)))
-                : Image.asset(
-                    AssetHelper.getThumb(workoutExercise.exercise.imageSlug),
-                    width: 72,
-                    height: 72),
+                ? Flipped(child: Image.asset(AssetHelper.getThumb(imageSlug)))
+                : Image.asset(AssetHelper.getThumb(imageSlug),
+                    width: 72, height: 72),
         padding: EdgeInsets.symmetric(horizontal: 16),
       ),
       Expanded(

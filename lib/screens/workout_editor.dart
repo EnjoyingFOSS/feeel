@@ -38,9 +38,9 @@ import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class WorkoutEditorScreen extends StatefulWidget {
-  final WorkoutListed workoutListed;
+  final WorkoutListed? workoutListed;
 
-  const WorkoutEditorScreen({Key key, this.workoutListed}) : super(key: key);
+  const WorkoutEditorScreen({Key? key, this.workoutListed}) : super(key: key);
 
   @override
   _WorkoutEditorScreenState createState() {
@@ -55,8 +55,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   final _titleController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _timingFormKey = GlobalKey<FormState>();
-  Workout _editableWorkout;
-  Future<Workout> _future;
+  Workout? _editableWorkout;
+  late Future<Workout?> _future;
   bool _editingTimeMode = false;
 
   @override
@@ -64,13 +64,13 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
     _future = (widget.workoutListed == null)
         ? Future.value(Workout(
             type: WorkoutType.CUSTOM,
-            workoutExercises: List<WorkoutExercise>(),
+            workoutExercises: List<WorkoutExercise>.empty(growable: true),
             countdownDuration: _DEFAULT_COUNTDOWN_DURATION,
             breakDuration: _DEFAULT_BREAK_DURATION,
             exerciseDuration: _DEFAULT_EXERCISE_DURATION,
             category: WorkoutCategory.FULL_BODY))
-        : DBHelper.db
-            .queryWorkout(widget.workoutListed.dbId, widget.workoutListed.type);
+        : DBHelper.db.queryWorkout(
+            widget.workoutListed!.dbId, widget.workoutListed!.type);
     super.initState();
   }
 
@@ -79,14 +79,14 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
     return Scaffold(
       body: SafeArea(
           bottom: false,
-          child: FutureBuilder<Workout>(
+          child: FutureBuilder<Workout?>(
               future: _future,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   if (_editableWorkout == null) {
                     //todo is this right, if I want to prevent overriding after first load?
-                    _editableWorkout = snapshot.data;
-                    _titleController.text = _editableWorkout.title;
+                    _editableWorkout = snapshot.data!;
+                    _titleController.text = _editableWorkout!.title ?? "";
                   }
 
                   var header = Row(children: <Widget>[
@@ -100,30 +100,30 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                             style: Theme.of(context)
                                 .appBarTheme
                                 .textTheme
-                                .headline6
-                                .copyWith(
+                                ?.headline6
+                                ?.copyWith(
                                     color: Theme.of(context).primaryColor),
                             controller: _titleController,
                             decoration: InputDecoration(
                                 hintStyle: Theme.of(context)
                                     .appBarTheme
                                     .textTheme
-                                    .headline6
-                                    .copyWith(
+                                    ?.headline6
+                                    ?.copyWith(
                                         color: Theme.of(context)
                                             .primaryColor
                                             .withAlpha(64)),
                                 // border: InputBorder.none,
                                 filled: false,
                                 hintText: 'Workout title'.i18n),
-                            validator: (String input) {
-                              if (input.isEmpty) {
+                            validator: (String? input) {
+                              if (input == null || input.isEmpty) {
                                 return "Please specify a workout title".i18n;
                               }
                               return null;
                             },
-                            onSaved: (String text) {
-                              _editableWorkout.title = text;
+                            onSaved: (String? text) {
+                              if (text != null) _editableWorkout!.title = text;
                             },
                           ),
                           padding: EdgeInsets.only(left: 16, right: 16)),
@@ -134,14 +134,14 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                       key: _formKey,
                       child: FormField<void>(
                         validator: (_) {
-                          if (_editableWorkout.workoutExercises.isEmpty) {
+                          if (_editableWorkout!.workoutExercises.isEmpty) {
                             return "Please add at least 1 exercise".i18n;
                           }
                           return null;
                         },
                         builder: (FormFieldState state) {
                           //todo not sure if using formfield and its state correctly, should probably hold _editableWorkout.workoutExercises in state
-                          return (_editableWorkout.workoutExercises.isEmpty)
+                          return (_editableWorkout!.workoutExercises.isEmpty)
                               ? EmptyPlaceholder(
                                   header: header,
                                   heading: "Be your own coach!".i18n,
@@ -160,7 +160,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                               children: <Widget>[
                                                 Expanded(
                                                     child: DurationDropdown(
-                                                  chosenValue: _editableWorkout
+                                                  chosenValue: _editableWorkout!
                                                       .exerciseDuration,
                                                   predefinedValues: [
                                                     15,
@@ -175,7 +175,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                       filled: true),
                                                   onChanged: (int value) {
                                                     setState(() {
-                                                      _editableWorkout
+                                                      _editableWorkout!
                                                               .exerciseDuration =
                                                           value;
                                                     });
@@ -186,7 +186,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                 ),
                                                 Expanded(
                                                     child: DurationDropdown(
-                                                  chosenValue: _editableWorkout
+                                                  chosenValue: _editableWorkout!
                                                       .breakDuration,
                                                   predefinedValues: [5, 10, 15],
                                                   decoration: InputDecoration(
@@ -197,7 +197,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                       filled: true),
                                                   onChanged: (int value) {
                                                     setState(() {
-                                                      _editableWorkout
+                                                      _editableWorkout!
                                                               .breakDuration =
                                                           value;
                                                     });
@@ -215,10 +215,10 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             final workoutExercise =
-                                                _editableWorkout
+                                                _editableWorkout!
                                                     .workoutExercises[index];
                                             final initialValue =
-                                                workoutExercise?.duration;
+                                                workoutExercise.duration;
                                             return ExerciseEditorRow(
                                                 workoutExercise:
                                                     workoutExercise,
@@ -241,7 +241,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                                 hintText: initialValue !=
                                                                         null
                                                                     ? ""
-                                                                    : _editableWorkout
+                                                                    : _editableWorkout!
                                                                         .exerciseDuration
                                                                         .toString(),
                                                                 //todo i18n annotation
@@ -250,12 +250,12 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                             TextInputType
                                                                 .number,
                                                         validator:
-                                                            (String input) {
+                                                            (String? input) {
                                                           if (input == "")
                                                             return null;
                                                           var secs =
                                                               int.tryParse(
-                                                                  input);
+                                                                  input ?? "");
                                                           if (secs == null) {
                                                             //todo upper bound?
                                                             return "Non-numeric"
@@ -268,10 +268,10 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                           return null;
                                                         },
                                                         onSaved:
-                                                            (String input) {
+                                                            (String? input) {
                                                           var secs =
                                                               int.tryParse(
-                                                                  input);
+                                                                  input ?? "");
                                                           workoutExercise
                                                               .duration = secs;
                                                         },
@@ -279,7 +279,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                       Text(" s")
                                                     ])));
                                           },
-                                          itemCount: _editableWorkout
+                                          itemCount: _editableWorkout!
                                               .workoutExercises.length,
                                         ))
                                       ]))
@@ -292,7 +292,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                           child: DragList<WorkoutExercise>(
                                         padding: EdgeInsets.only(bottom: 32),
                                         items:
-                                            _editableWorkout.workoutExercises,
+                                            _editableWorkout!.workoutExercises,
                                         itemExtent: 72.0,
                                         itemBuilder: (context, item, handle) {
                                           return ExerciseEditorRow(
@@ -303,7 +303,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                 tooltip: "Delete".i18n,
                                                 onPressed: () {
                                                   setState(() {
-                                                    _editableWorkout
+                                                    _editableWorkout!
                                                         .workoutExercises
                                                         .remove(item);
                                                   });
@@ -334,7 +334,10 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                 onPressed: () {
                   setState(() {
                     final timingForm = _timingFormKey.currentState;
-                    if (_editableWorkout.workoutExercises.length > 0 &&
+                    if ((_editableWorkout != null
+                            ? _editableWorkout!.workoutExercises.length > 0
+                            : false) &&
+                        timingForm != null &&
                         timingForm.validate()) {
                       timingForm.save();
                       _editingTimeMode = false;
@@ -370,10 +373,12 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
               child: Icon(Icons.done),
               onPressed: () {
                 final form = _formKey.currentState;
-                if (form.validate()) {
+                if (form != null &&
+                    form.validate() &&
+                    _editableWorkout != null) {
                   form.save();
                   DBHelper.db
-                      .createOrUpdateCustomWorkout(_editableWorkout)
+                      .createOrUpdateCustomWorkout(_editableWorkout!)
                       .then((_) {
                     Navigator.pop(context);
                   });
@@ -384,7 +389,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
 
   Future<void> _addExercisesOnPressed() async {
     // _saveTempState(); todo not needed
-    List<Exercise> exercises = await Navigator.push(
+    List<Exercise>? exercises = await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ExercisePickerScreen(),
@@ -392,7 +397,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
         ));
     setState(() {
       if (exercises != null) {
-        _editableWorkout.workoutExercises.addAll(
+        _editableWorkout?.workoutExercises.addAll(
             exercises.map((Exercise e) => WorkoutExercise(
                 exercise: e)) // todo make sure list works with zero exercise
             );
@@ -401,12 +406,13 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   }
 
   void _adjustTimingOnPressed(BuildContext context) {
-    if (_editableWorkout.workoutExercises.length > 0) {
+    if (_editableWorkout != null &&
+        _editableWorkout!.workoutExercises.length > 0) {
       setState(() {
         _editingTimeMode = true;
       });
     } else {
-      Scaffold.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Add an exercise first".i18n),
         duration: Duration(seconds: 2),
       ));

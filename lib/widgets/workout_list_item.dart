@@ -29,16 +29,16 @@ import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class WorkoutListItem extends StatelessWidget {
-  final Widget trailing;
+  final Widget? trailing;
   final WorkoutListed workoutListed;
 
-  const WorkoutListItem(this.workoutListed, {Key key, this.trailing})
+  const WorkoutListItem(this.workoutListed, {Key? key, this.trailing})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var title = workoutListed.title;
-    var subtitle = workoutListed.category.translationKey?.i18n;
+    var subtitle = workoutListed.category.translationKey.i18n;
 
     return Material(
         color: Theme.of(context).backgroundColor,
@@ -83,7 +83,7 @@ class WorkoutListItem extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .subtitle2
-                                      .copyWith(
+                                      ?.copyWith(
                                           fontWeight: FontWeight.bold,
                                           color: Color(
                                               workoutListed.category.colorInt)),

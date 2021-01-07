@@ -35,22 +35,22 @@ class ExerciseIllustration extends StatelessWidget {
   final Widget expandIcon;
 
   const ExerciseIllustration(
-      {Key key,
-      @required this.color,
-      @required this.exercise,
-      @required this.expandIcon})
+      {Key? key,
+      required this.color,
+      required this.exercise,
+      required this.expandIcon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var imageSlug = exercise.imageSlug;
     return IllustrationLayout(
       color: color,
       expandIcon: expandIcon,
-      illustrationImage: exercise.imageSlug != null
+      illustrationImage: imageSlug != null
           ? (exercise.twoSided
-              ? Flipped(
-                  child: Image.asset(AssetHelper.getImage(exercise.imageSlug)))
-              : Image.asset(AssetHelper.getImage(exercise.imageSlug)))
+              ? Flipped(child: Image.asset(AssetHelper.getImage(imageSlug)))
+              : Image.asset(AssetHelper.getImage(imageSlug)))
           : Text("Image missing".i18n),
       illustrationTitle: Text(exercise.name.i18n,
           textAlign: TextAlign.center,

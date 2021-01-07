@@ -1,7 +1,7 @@
 // Copyright (C) 2020 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,38 +11,39 @@
 // are incompatible with the AGPL, provided that the source is also
 // available under the AGPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/workout_exercise.dart';
-import 'package:flutter/foundation.dart';
 
 class Workout {
-  final int dbId;
-  String title;
+  //todo split into workout and editable workout
   List<WorkoutExercise> workoutExercises;
   int countdownDuration;
   int exerciseDuration;
   int breakDuration;
   WorkoutCategory category;
   WorkoutType type;
+
+  final int? dbId;
+  String? title;
 //  final int length; //todo compute during init
 
   Workout(
       {this.dbId,
       this.title,
-      @required this.workoutExercises,
-      @required this.countdownDuration,
-      @required this.breakDuration,
-      @required this.exerciseDuration,
-      this.category,
-      @required this.type});
+      required this.workoutExercises,
+      required this.countdownDuration,
+      required this.breakDuration,
+      required this.exerciseDuration,
+      required this.category,
+      required this.type});
 }

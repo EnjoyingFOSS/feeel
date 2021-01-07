@@ -62,7 +62,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
             builder: (BuildContext context,
                 AsyncSnapshot<List<WorkoutListed>> snapshot) {
               if (snapshot.hasData) {
-                var workoutsListed = snapshot.data;
+                var workoutsListed = snapshot.data!;
 
                 return CustomScrollView(slivers: <Widget>[
                   SliverPadding(
@@ -78,8 +78,8 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                             style: Theme.of(context)
                                 .appBarTheme
                                 .textTheme
-                                .headline6
-                                .copyWith(
+                                ?.headline6
+                                ?.copyWith(
                                     color:
                                         Theme.of(context).colorScheme.primary),
                           ),

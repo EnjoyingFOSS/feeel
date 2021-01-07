@@ -30,16 +30,17 @@ import 'package:image_picker/image_picker.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class ExerciseCreatorScreen extends StatefulWidget {
-  ExerciseCreatorScreen({Key key}) : super(key: key);
+  ExerciseCreatorScreen({Key? key}) : super(key: key);
 
   @override
   _ExerciseCreatorScreenState createState() => _ExerciseCreatorScreenState();
 }
 
 class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
-  final _imageFiles = List<File>();
+  final List<File> _imageFiles = [];
   final _nameController = TextEditingController();
   final _stepsController = TextEditingController();
+  final _imagePicker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -86,17 +87,16 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
               Container(
                 height: 16,
               ),
-              if (_imageFiles != null)
-                ..._imageFiles.map((File imageFile) => Padding(
-                    padding: EdgeInsets.only(bottom: 8),
-                    child: ImageRow(
-                      imageFile: imageFile,
-                      onDelete: () {
-                        setState(() {
-                          _imageFiles.remove(imageFile);
-                        });
-                      },
-                    ))), //todo allow deletion
+              ..._imageFiles.map((File imageFile) => Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: ImageRow(
+                    imageFile,
+                    onDelete: () {
+                      setState(() {
+                        _imageFiles.remove(imageFile);
+                      });
+                    },
+                  ))), //todo allow deletion
               ListTile(
                 leading: Icon(Icons.add_photo_alternate),
                 title: Text(
@@ -109,11 +109,6 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
                 title: Text("Take a photo".i18n),
                 onTap: _addPhotoFromCamera,
               ),
-              // ListTile(
-              //   //todo
-              //   leading: Icon(Icons.insert_link),
-              //   title: Text("Add a link to your photo(s)".i18n),
-              // )
             ],
           )),
         ))
@@ -131,8 +126,9 @@ I'm sending a proposal of an exercise. I hereby declare that all of it is my own
 Exercise name: ${_nameController.text}
 Exercise steps:
 ${_stepsController.text} """ +
-                  Localizations.localeOf(context).languageCode ==
-              "en" // todo TEST !!!
+                  "en" ==
+              (Localizations.localeOf(context)?.languageCode)
+          // todo TEST !!!
           ? ""
           : ("""-----
 
@@ -149,7 +145,7 @@ TRANSLATION:
       attachments: _imageFiles.map((File imageFile) => imageFile.path).toList(),
     );
     await FlutterMailer.send(mailOptions).catchError((Object error) {
-      Scaffold.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Email could not be sent".i18n),
       ));
     });
@@ -158,8 +154,8 @@ TRANSLATION:
   }
 
   Future _addPhotoFromGallery() async {
-    ImagePicker.pickImage(source: ImageSource.gallery).catchError((dynamic e) {
-      Scaffold.of(context).showSnackBar(SnackBar(
+    _imagePicker.getImage(source: ImageSource.gallery).catchError((dynamic e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Can't take photos without camera permission".i18n)));
     }
         //, test: (e) => e is PlatformException && e.code == "photo_access_denied");
@@ -169,14 +165,14 @@ TRANSLATION:
   }
 
   Future _addPhotoFromCamera() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    var image = await _imagePicker.getImage(source: ImageSource.camera);
     _addPhoto(image);
   }
 
-  void _addPhoto(File image) {
+  void _addPhoto(PickedFile? image) {
     if (image != null) {
       setState(() {
-        _imageFiles.add(image);
+        _imageFiles.add(File(image.path));
       });
     }
   }

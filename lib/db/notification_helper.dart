@@ -29,7 +29,7 @@ class NotificationHelper {
   static final NotificationHelper helper = NotificationHelper._();
   static const _NOTIFICATION_CHANNEL_ID = "exercise_reminder";
   static const _NOTIFICATION_INT_ID = 0;
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   NotificationHelper._() {
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -46,7 +46,7 @@ class NotificationHelper {
         requestBadgePermission: false,
         requestSoundPermission: false);
     var initializationSettings = InitializationSettings(
-        initializationSettingsAndroid, initializationSettingsIOS);
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (String payload) async {
       //todo right?
@@ -57,7 +57,7 @@ class NotificationHelper {
     });
   }
 
-  void setNotification(BuildContext context, TimeOfDay timeOfDay) async {
+  void setNotification(BuildContext context, TimeOfDay? timeOfDay) async {
     await flutterLocalNotificationsPlugin.cancel(_NOTIFICATION_INT_ID);
 
     if (timeOfDay != null) {
@@ -70,7 +70,8 @@ class NotificationHelper {
           color: Theme.of(context).primaryColor);
       var iOSPlatformChannelSpecifics = IOSNotificationDetails();
       var platformChannelSpecifics = NotificationDetails(
-          androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+          android: androidPlatformChannelSpecifics,
+          iOS: iOSPlatformChannelSpecifics);
       await flutterLocalNotificationsPlugin.showDailyAtTime(
           _NOTIFICATION_INT_ID,
           "Time to put on workout clothes!".i18n,
@@ -91,7 +92,7 @@ class NotificationHelper {
         );
   }
 
-  static TimeOfDay timeFromInt(int mins) =>
+  static TimeOfDay? timeFromInt(int? mins) =>
       mins != null ? TimeOfDay(hour: mins ~/ 60, minute: mins % 60) : null;
 
   static int timeToInt(TimeOfDay time) => time.hour * 60 + time.minute;

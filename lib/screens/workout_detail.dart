@@ -1,7 +1,7 @@
 // Copyright (C) 2020 Miroslav Mazel
-// 
+//
 // This file is part of Feeel.
-// 
+//
 // Feeel is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -11,12 +11,12 @@
 // are incompatible with the AGPL, provided that the source is also
 // available under the AGPL with or without this permission through a
 // channel without those restrictive terms and conditions.
-// 
+//
 // Feeel is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -31,7 +31,8 @@ import 'package:wakelock/wakelock.dart';
 class WorkoutDetailScreen extends StatefulWidget {
   final WorkoutListed workoutListed;
 
-  const WorkoutDetailScreen({Key key, this.workoutListed}) : super(key: key);
+  const WorkoutDetailScreen({Key? key, required this.workoutListed})
+      : super(key: key);
 
   @override
   _WorkoutDetailScreenState createState() {
@@ -40,7 +41,7 @@ class WorkoutDetailScreen extends StatefulWidget {
 }
 
 class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
-  Future<Workout> _future;
+  late Future<Workout?> _future;
 
   @override
   void initState() {
@@ -53,15 +54,15 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-          Wakelock.toggle(on: false);
+          Wakelock.disable();
           return true;
         },
         child: Scaffold(
-            body: FutureBuilder<Workout>(
+            body: FutureBuilder<Workout?>(
                 future: _future,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    Workout workout = snapshot.data;
+                    Workout workout = snapshot.data!;
 
                     if (workout.workoutExercises.length <= 0) {
                       return Center(
@@ -81,9 +82,11 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                                 RaisedButton(
                                   child: Text("Delete this workout"),
                                   onPressed: () {
-                                    DBHelper.db
-                                        .deleteCustomWorkout(workout.dbId);
-                                    Navigator.pop(context);
+                                    if (workout.dbId != null) {
+                                      DBHelper.db
+                                          .deleteCustomWorkout(workout.dbId!);
+                                      Navigator.pop(context);
+                                    }
                                   },
                                 )
                             ],

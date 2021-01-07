@@ -49,7 +49,7 @@ class TTSHelper {
   }
 
   Future speak(String message) async {
-    if (message != null && message.isNotEmpty) {
+    if (message.isNotEmpty) {
       if (ttsState == _TtsState.PLAYING) await _flutterTts.stop();
       dynamic result = await _flutterTts.speak(message);
       if (result == 1) ttsState = _TtsState.PLAYING;

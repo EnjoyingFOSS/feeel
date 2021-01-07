@@ -35,25 +35,25 @@ class BreakIllustration extends StatelessWidget {
   final Widget expandIcon;
 
   const BreakIllustration(
-      {Key key,
-      @required this.color,
-      @required this.nextExercise,
-      @required this.expandIcon})
+      {Key? key,
+      required this.color,
+      required this.nextExercise,
+      required this.expandIcon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var nextImageSlug = nextExercise.imageSlug;
     return IllustrationLayout(
       color: color,
       expandIcon: expandIcon,
-      illustrationImage: nextExercise.imageSlug != null
+      illustrationImage: nextImageSlug != null
           ? Opacity(
               opacity: 0.4,
               child: (nextExercise.twoSided
                   ? Flipped(
-                      child: Image.asset(
-                          AssetHelper.getImage(nextExercise.imageSlug)))
-                  : Image.asset(AssetHelper.getImage(nextExercise.imageSlug))),
+                      child: Image.asset(AssetHelper.getImage(nextImageSlug)))
+                  : Image.asset(AssetHelper.getImage(nextImageSlug))),
             )
           : Text("Image missing".i18n),
       illustrationTitle: Column(

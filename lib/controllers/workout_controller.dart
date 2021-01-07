@@ -36,12 +36,12 @@ enum ViewTypes { GUI, AUDIO }
 
 class WorkoutController {
   final Workout _workout;
-  List<Function> _onFinishes = List(ViewTypes.values.length);
-  List<WorkoutView> _views =
-      List(ViewTypes.values.length); //todo weak references + NOT NULL SAFE!
+  List<Function?> _onFinishes = List.filled(ViewTypes.values.length, null);
+  List<WorkoutView?> _views = List.filled(
+      ViewTypes.values.length, null); //todo weak references + NOT NULL SAFE!
   int _exercisePos = 0;
   WorkoutStage _stage = WorkoutStage.READY;
-  WorkoutTimer _timer; //todo init timer
+  late WorkoutTimer _timer; //todo init timer
 
   WorkoutController(this._workout) {
     if (_workout.workoutExercises.length == 0)
@@ -118,9 +118,9 @@ class WorkoutController {
       _exercisePos--;
       _setUpExerciseStage();
     } else {
-      _timer.timeRemaining = _getCurWorkoutExercise().duration == null
-          ? _workout.exerciseDuration
-          : _getCurWorkoutExercise().duration;
+      var tempDuration = _getCurWorkoutExercise().duration;
+      _timer.timeRemaining =
+          tempDuration == null ? _workout.exerciseDuration : tempDuration;
     }
   }
 
@@ -148,7 +148,7 @@ class WorkoutController {
               curWorkoutExercise,
               curWorkoutExercise.breakBeforeDuration == null
                   ? _workout.countdownDuration
-                  : curWorkoutExercise.breakBeforeDuration);
+                  : curWorkoutExercise.breakBeforeDuration!);
         break;
       case WorkoutStage.EXERCISE:
         for (var view in _views)
@@ -157,7 +157,7 @@ class WorkoutController {
               curWorkoutExercise,
               curWorkoutExercise.duration == null
                   ? _workout.exerciseDuration
-                  : curWorkoutExercise.duration);
+                  : curWorkoutExercise.duration!);
         break;
       case WorkoutStage.BREAK:
         for (var view in _views)
@@ -166,7 +166,7 @@ class WorkoutController {
               curWorkoutExercise,
               curWorkoutExercise.breakBeforeDuration == null
                   ? _workout.breakDuration
-                  : curWorkoutExercise.breakBeforeDuration);
+                  : curWorkoutExercise.breakBeforeDuration!);
         break;
       case WorkoutStage.END:
         for (var onFinish in _onFinishes) if (onFinish != null) onFinish();
@@ -189,9 +189,9 @@ class WorkoutController {
     _stage = WorkoutStage.EXERCISE;
     _renderStage();
 
-    _timer.timeRemaining = _getCurWorkoutExercise().duration == null
-        ? _workout.exerciseDuration
-        : _getCurWorkoutExercise().duration;
+    var tempDuration = _getCurWorkoutExercise().duration;
+    _timer.timeRemaining =
+        tempDuration == null ? _workout.exerciseDuration : tempDuration;
     _renderSeconds();
 
     _renderPausePlay();
@@ -201,9 +201,9 @@ class WorkoutController {
     _stage = WorkoutStage.BREAK;
     _renderStage();
 
-    _timer.timeRemaining = _getCurWorkoutExercise().breakBeforeDuration == null
-        ? _workout.breakDuration
-        : _getCurWorkoutExercise().breakBeforeDuration;
+    var tempDuration = _getCurWorkoutExercise().breakBeforeDuration;
+    _timer.timeRemaining =
+        tempDuration == null ? _workout.breakDuration : tempDuration;
     _renderSeconds();
 
     _renderPausePlay();
@@ -213,9 +213,9 @@ class WorkoutController {
     _renderStage();
     _stage = WorkoutStage.BREAK;
 
-    _timer.timeRemaining = _getCurWorkoutExercise().breakBeforeDuration == null
-        ? _workout.countdownDuration
-        : _getCurWorkoutExercise().breakBeforeDuration;
+    var tempDuration = _getCurWorkoutExercise().breakBeforeDuration;
+    _timer.timeRemaining =
+        tempDuration == null ? _workout.countdownDuration : tempDuration;
     _renderSeconds();
 
     _renderPausePlay();
@@ -244,6 +244,7 @@ class WorkoutController {
     _timer.stop();
     clearView();
     _views[ViewTypes.AUDIO.index] = null;
+    _onFinishes[ViewTypes.AUDIO.index] = null;
     TTSHelper.tts.stop(); //todo once stopped, does it restart?
     // todo views.clear() needed?
   }

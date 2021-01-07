@@ -29,10 +29,10 @@ import 'package:feeel/i18n/translations.dart';
 class WorkoutCover extends StatelessWidget {
   final Color color;
   final Workout workout;
-  final void Function() onPressed;
+  final void Function()? onPressed;
 
   WorkoutCover(
-      {Key key, @required this.workout, @required this.color, this.onPressed})
+      {Key? key, required this.workout, required this.color, this.onPressed})
       : super(key: key);
 
   @override
@@ -73,9 +73,10 @@ class WorkoutCover extends StatelessWidget {
 
               child: Center(
                   child: Text(
-            workout.type == WorkoutType.DEFAULT
-                ? workout.title.i18n
-                : workout.title,
+            (workout.type == WorkoutType.DEFAULT
+                    ? workout.title?.i18n
+                    : workout.title) ??
+                "",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 40, fontWeight: FontWeight.w900, color: color),

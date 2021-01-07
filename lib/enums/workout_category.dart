@@ -30,7 +30,7 @@ extension WorkoutCategoryExtension on WorkoutCategory {
       case WorkoutCategory.LEGS:
         return "Legs";
       default:
-        return null;
+        throw ArgumentError("Invalid workout category");
     }
   }
 

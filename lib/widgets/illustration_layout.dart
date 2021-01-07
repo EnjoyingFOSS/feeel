@@ -26,15 +26,15 @@ class IllustrationLayout extends StatelessWidget {
   static const double BOTTOM_PADDING = 16;
   final Widget illustrationImage;
   final Widget illustrationTitle;
-  final Widget expandIcon;
+  final Widget? expandIcon;
 
   final Color color;
 
   const IllustrationLayout(
-      {Key key,
-      this.color,
-      this.illustrationImage,
-      this.illustrationTitle,
+      {Key? key,
+      required this.color,
+      required this.illustrationImage,
+      required this.illustrationTitle,
       this.expandIcon})
       : super(key: key);
 

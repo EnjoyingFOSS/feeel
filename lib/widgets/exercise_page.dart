@@ -35,10 +35,10 @@ class ExercisePage extends StatefulWidget {
   final WorkoutController workoutController;
 
   const ExercisePage(
-      {Key key,
-      @required this.workout,
-      @required this.color,
-      @required this.workoutController})
+      {Key? key,
+      required this.workout,
+      required this.color,
+      required this.workoutController})
       : super(key: key);
 
   @override
@@ -49,15 +49,16 @@ class ExercisePage extends StatefulWidget {
 
 class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   //todo ban swipe to go back unless controls are shown?
-  bool _paused = false;
-  bool _infoShown = false;
-  int _seconds;
-  PageController _pageController = PageController();
   static const Duration TRANSITION_DURATION = Duration(microseconds: 600);
   static const Curve TRANSITION_CURVE = Curves.easeIn;
-  String _descriptionText;
-  double _dragYStart;
-  Color descriptionColor;
+
+  bool _paused = false;
+  bool _infoShown = false;
+  late int _seconds;
+  PageController _pageController = PageController();
+  late Color _descriptionColor;
+  String? _descriptionText;
+  double? _dragYStart;
 
   // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
 
@@ -68,7 +69,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     super.initState();
 
     final hslColor = HSLColor.fromColor(widget.color); //todo test, tweak
-    descriptionColor = hslColor
+    _descriptionColor = hslColor
         .withLightness((hslColor.lightness - 0.1).clamp(0.0, 1.0).toDouble())
         .toColor();
   }
@@ -154,14 +155,14 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
               ), // todo show drag handle
               if (_infoShown)
                 Container(
-                  color: descriptionColor,
+                  color: _descriptionColor,
                   width: double.infinity,
                   height: 200, //todo style, height
                   child: _descriptionText != null
                       ? SingleChildScrollView(
                           child: Padding(
                               padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
-                              child: Text(_descriptionText,
+                              child: Text(_descriptionText!,
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white))))
                       : Container(),
@@ -179,7 +180,8 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
         _dragYStart = details.globalPosition.dy;
       },
       onVerticalDragUpdate: (DragUpdateDetails details) {
-        _infoShown = _dragYStart > details.globalPosition.dy;
+        if (_dragYStart != null)
+          _infoShown = _dragYStart! > details.globalPosition.dy;
       },
       // todo ? onVerticalDragCancel: ,
       onVerticalDragEnd: (DragEndDetails details) {
@@ -251,7 +253,11 @@ class ExerciseHeader extends StatelessWidget {
   final Color color;
   final bool paused;
 
-  ExerciseHeader({Key key, this.color, this.counterText, this.paused = false})
+  ExerciseHeader(
+      {Key? key,
+      required this.color,
+      required this.counterText,
+      this.paused = false})
       : super(key: key);
 
   @override

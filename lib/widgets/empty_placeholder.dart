@@ -25,11 +25,17 @@ import 'package:flutter/material.dart';
 class EmptyPlaceholder extends StatelessWidget {
   final Widget header;
   final Widget image;
-  final String errorMessage;
   final String heading;
   final String subheading;
+  final String? errorMessage;
 
-  const EmptyPlaceholder({Key key, this.header, this.image, this.errorMessage, this.heading, this.subheading})
+  const EmptyPlaceholder(
+      {Key? key,
+      required this.header,
+      required this.image,
+      required this.heading,
+      required this.subheading,
+      this.errorMessage})
       : super(key: key);
 
   @override
@@ -48,25 +54,25 @@ class EmptyPlaceholder extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .display1
-                  .copyWith(fontWeight: FontWeight.w500, fontSize: 24)),
+                  ?.copyWith(fontWeight: FontWeight.w500, fontSize: 24)),
           padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
         ),
         Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Text(subheading,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                style: Theme.of(context).textTheme.subtitle1?.copyWith(
                     color: Theme.of(context)
                         .colorScheme
                         .onBackground
                         .withAlpha(162)))),
         if (errorMessage != null)
           Padding(
-              child: Text(errorMessage,
+              child: Text(errorMessage!,
                   style: Theme.of(context)
                       .textTheme
                       .caption
-                      .copyWith(color: Theme.of(context).colorScheme.error)),
+                      ?.copyWith(color: Theme.of(context).colorScheme.error)),
               padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8)),
         Spacer()
       ],

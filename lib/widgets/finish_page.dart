@@ -26,7 +26,7 @@ import 'package:feeel/i18n/translations.dart';
 class FinishPage extends StatelessWidget {
   final Color color;
 
-  const FinishPage({Key key, this.color}) : super(key: key);
+  const FinishPage({Key? key, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

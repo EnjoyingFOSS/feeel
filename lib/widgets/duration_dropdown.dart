@@ -30,17 +30,16 @@ class DurationDropdown extends StatelessWidget {
   final int chosenValue;
   final List<int> predefinedValues;
   final _durationController = TextEditingController();
-  bool _chosenIsPredefined;
+  final bool _chosenIsPredefined;
 
   DurationDropdown(
-      {Key key,
-      this.decoration,
-      this.onChanged,
-      this.chosenValue,
-      @required this.predefinedValues})
-      : super(key: key) {
-    _chosenIsPredefined = predefinedValues.contains(chosenValue);
-  }
+      {Key? key,
+      required this.decoration,
+      required this.onChanged,
+      required this.chosenValue,
+      required this.predefinedValues})
+      : _chosenIsPredefined = predefinedValues.contains(chosenValue),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +58,8 @@ class DurationDropdown extends StatelessWidget {
           value: CUSTOM,
         )
       ],
-      onChanged: (int value) {
-        _onChanged(context, value);
+      onChanged: (int? value) {
+        if (value != null) _onChanged(context, value);
       },
       decoration: decoration,
     );

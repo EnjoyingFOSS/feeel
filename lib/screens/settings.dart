@@ -29,14 +29,14 @@ import 'package:feeel/i18n/translations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends StatefulWidget {
-  SettingsScreen({Key key}) : super(key: key);
+  SettingsScreen({Key? key}) : super(key: key);
 
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  Future<SharedPreferences> _preferencesFuture;
+  late Future<SharedPreferences> _preferencesFuture;
   static const _DEFAULT_NOTIFICATION_TIME = TimeOfDay(hour: 20, minute: 10);
 
   @override
@@ -59,7 +59,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             builder: (BuildContext context,
                 AsyncSnapshot<SharedPreferences> snapshot) {
               if (snapshot.hasData) {
-                SharedPreferences preferences = snapshot.data;
+                SharedPreferences preferences = snapshot.data!;
                 final notificationTime = NotificationHelper.timeFromInt(
                     preferences.getInt(PreferenceKeys.NOTIFICATION_TIME_PREF));
                 return ListView(
@@ -143,12 +143,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _setNotificationTime(BuildContext context, TimeOfDay timeOfDay,
+  void _setNotificationTime(BuildContext context, TimeOfDay? timeOfDay,
       SharedPreferences preferences) {
     setState(() {
       if (timeOfDay == null) {
-        preferences.setInt(PreferenceKeys.NOTIFICATION_TIME_PREF, null);
-        //todo unset notification !
+        preferences.remove(PreferenceKeys.NOTIFICATION_TIME_PREF);
         NotificationHelper.helper.setNotification(context, null);
       } else {
         preferences.setInt(PreferenceKeys.NOTIFICATION_TIME_PREF,

@@ -36,9 +36,10 @@ class ExercisePickerScreen extends StatefulWidget {
 }
 
 class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
-  List<Exercise> _exercises;
-  List<int> _chosenExerciseIndices = List<int>(); //todo use boolean array
-  Future<List<Exercise>> _future;
+  List<Exercise>? _exercises;
+  List<int> _chosenExerciseIndices =
+      List.empty(growable: true); //todo use boolean array
+  late Future<List<Exercise>> _future;
 
   @override
   void initState() {
@@ -63,7 +64,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
           onPressed: () {
             List<Exercise> chosenExercises =
                 List.generate(_chosenExerciseIndices.length, (index) {
-              return _exercises[_chosenExerciseIndices[index]];
+              return _exercises![_chosenExerciseIndices[index]];
             });
             Navigator.pop(context, chosenExercises);
           },
@@ -72,13 +73,16 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
             future: _future,
             builder: (context, AsyncSnapshot<List<Exercise>> snapshot) {
               if (snapshot.hasData) {
-                _exercises = snapshot.data;
+                _exercises = snapshot.data!;
+
                 return ListView.builder(
                     padding: EdgeInsets.fromLTRB(0, 16, 0, 64),
-                    itemCount: _exercises.length + 1,
+                    itemCount: _exercises!.length + 1,
                     itemBuilder: (context, i) {
-                      if (i < _exercises.length) {
-                        var exercise = _exercises[i];
+                      if (i < _exercises!.length) {
+                        var exercise = _exercises![i];
+                        var imageSlug = exercise.imageSlug;
+
                         return CheckboxListTile(
                           value: _chosenExerciseIndices.contains(i),
                           title: Row(children: [
@@ -96,19 +100,19 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                                       )),
                             ),
                           ]),
-                          secondary: exercise.imageSlug == null
+                          secondary: imageSlug == null
                               ? Container(
                                   width: 0,
                                 )
                               : (exercise.twoSided
                                   ? Flipped(
-                                      child: Image.asset(AssetHelper.getThumb(
-                                          exercise.imageSlug)))
-                                  : Image.asset(AssetHelper.getThumb(
-                                      exercise.imageSlug))),
+                                      child: Image.asset(
+                                          AssetHelper.getThumb(imageSlug)))
+                                  : Image.asset(
+                                      AssetHelper.getThumb(imageSlug))),
                           onChanged: (chosen) {
                             setState(() {
-                              if (chosen) {
+                              if (chosen != null && chosen) {
                                 _chosenExerciseIndices.add(i);
                               } else {
                                 _chosenExerciseIndices.remove(i);
