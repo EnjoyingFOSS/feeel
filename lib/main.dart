@@ -88,6 +88,7 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         theme: ThemeData(
+            visualDensity: VisualDensity.standard,
             backgroundColor: colors.background,
             brightness: colors.brightness,
             colorScheme: colors,
