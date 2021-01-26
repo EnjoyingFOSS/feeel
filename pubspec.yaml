@@ -19,7 +19,7 @@ dependencies:
   sqflite_common_ffi: ^2.0.0-nullsafety.6
   path_provider: ^1.6.24
   i18n_extension: ^1.4.6
-  drag_list: 1.0.7
+  drag_list: 1.0.7 #todo use an alternative library, e.g. drag_and_drop_lists
   flutter_mailer: ^1.0.1
   image_picker: ^0.6.7+20
   shared_preferences: ^0.5.12+4

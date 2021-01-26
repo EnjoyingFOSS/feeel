@@ -45,6 +45,7 @@
     "btnAddExercise": "Add exercises",
     "btnEdit": "Edit",
     "btnDelete": "Delete",
+    "btnDuplicate": "Duplicate",
     "btnDone": "Done",
     "btnMoreInfo": "More info",
     "btnCreateCustomWorkout": "Create custom workout",

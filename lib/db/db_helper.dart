@@ -672,6 +672,25 @@ class DBHelper {
         : null;
   }
 
+  Future<WorkoutListed?> duplicateWorkout(
+      int workoutId, WorkoutType type) async {
+    // query
+    final orig = await queryWorkout(workoutId, type);
+    if (orig == null) return null;
+    final duplicate = Workout(
+        dbId: null,
+        type: WorkoutType.CUSTOM,
+        title: orig.title,
+        workoutExercises: orig.workoutExercises,
+        breakDuration: orig.breakDuration,
+        category: orig.category,
+        countdownDuration: orig.countdownDuration,
+        exerciseDuration: orig.exerciseDuration);
+    final id = await createOrUpdateCustomWorkout(duplicate);
+    return WorkoutListed(
+        id, duplicate.type, duplicate.title!, duplicate.category);
+  }
+
   Future close() async {
     var db = await database;
     await db.close();

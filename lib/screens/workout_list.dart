@@ -39,6 +39,7 @@ class WorkoutListScreen extends StatefulWidget {
 class _WorkoutListScreenState extends State<WorkoutListScreen> {
   static const String _MENU_DELETE = "delete";
   static const String _MENU_EDIT = "edit";
+  static const String _MENU_DUPLICATE = "duplicate";
 
   @override
   Widget build(BuildContext context) {
@@ -115,34 +116,44 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
                             WorkoutListed workoutListed = workoutsListed[index];
-                            if (workoutListed.type == WorkoutType.CUSTOM)
-                              return WorkoutListItem(
-                                workoutListed,
-                                trailing: PopupMenuButton(
-                                  itemBuilder: (context) {
-                                    return [
-                                      PopupMenuItem<String>(
-                                          child: Text("Edit".i18n),
-                                          value: _MENU_EDIT),
-                                      PopupMenuItem<String>(
-                                          child: Text("Delete".i18n),
-                                          value: _MENU_DELETE),
-                                    ];
-                                  },
-                                  onSelected: (String value) {
-                                    switch (value) {
-                                      case _MENU_DELETE:
-                                        _onDeleteCustom(workoutListed);
-                                        break;
-                                      case _MENU_EDIT:
-                                        _onEditCustom(workoutListed);
-                                        break;
-                                    }
-                                  },
-                                ),
-                              );
-                            else
-                              return WorkoutListItem(workoutListed);
+                            return WorkoutListItem(
+                              workoutListed,
+                              trailing: PopupMenuButton(
+                                itemBuilder: (context) {
+                                  return workoutListed.type ==
+                                          WorkoutType.CUSTOM
+                                      ? [
+                                          PopupMenuItem<String>(
+                                              child: Text("Edit".i18n),
+                                              value: _MENU_EDIT),
+                                          PopupMenuItem<String>(
+                                              child: Text("Delete".i18n),
+                                              value: _MENU_DELETE),
+                                          PopupMenuItem<String>(
+                                              child: Text("Duplicate".i18n),
+                                              value: _MENU_DUPLICATE),
+                                        ]
+                                      : [
+                                          PopupMenuItem<String>(
+                                              child: Text("Duplicate".i18n),
+                                              value: _MENU_DUPLICATE),
+                                        ];
+                                },
+                                onSelected: (String value) {
+                                  switch (value) {
+                                    case _MENU_DELETE:
+                                      _onDeleteCustom(workoutListed);
+                                      break;
+                                    case _MENU_EDIT:
+                                      _onEditCustom(workoutListed);
+                                      break;
+                                    case _MENU_DUPLICATE:
+                                      _onDuplicate(workoutListed);
+                                      break;
+                                  }
+                                },
+                              ),
+                            );
                           },
                           childCount: workoutsListed.length,
                         ),
@@ -169,6 +180,19 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
         MaterialPageRoute(
             builder: (context) => WorkoutEditorScreen(
                   workoutListed: workoutListed,
+                ))).then((_) {
+      setState(() {});
+    });
+  }
+
+  void _onDuplicate(WorkoutListed origListed) async {
+    final newListed =
+        await DBHelper.db.duplicateWorkout(origListed.dbId, origListed.type);
+    Navigator.push<void>(
+        context,
+        MaterialPageRoute(
+            builder: (context) => WorkoutEditorScreen(
+                  workoutListed: newListed,
                 ))).then((_) {
       setState(() {});
     });
