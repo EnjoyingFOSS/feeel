@@ -33,7 +33,7 @@
     "txtNotificationTitle": "Tijd om je sportkleding aan te trekken!",
     "txtNotificationDesc": "Het kost slechts een paar minuten van je tijd om je weer fris en fruitig te voelen",
     "txtRemindMe": "Dagelijkse herinnering sturen",
-    "txtNeedCameraPermission": "Zonder cameramachtiging kunnen er geen foto's worden gemaakt",
+    "txtNeedCameraPermission": "Zonder camerarechten kunnen er geen foto's worden gemaakt",
     "txtNotificationTime": "Tijdstip",
     "txtAddExerciseFirst": "Voeg eerst een oefening toe",
     "btnStartWorkout": "Workout starten",
@@ -96,5 +96,7 @@
     "stepsKneelingKickback": "1. Ga op zijn hondjes zitten en plaats één voet tegen iets met weerstand, zoals een kabel.\n2. Duw je voet naar achteren, zo ver totdat je been volledig gestrekt is.\n3. Houd één seconde vol en keer terug naar de startpositie.\n4. Herhaal, en wissel steeds van voet.",
     "exerciseSingleLegCalfRaiseLeft": "Kuitoptrekken (links)",
     "exerciseSingleLegCalfRaiseRight": "Kuitoptrekken (rechts)",
-    "stepsSingleLegCalfRaise": "1. Ga op de grond staan of op de rand van een opstapje. Til één voet op en houd hem tegen op je kuit.\n2. Til je hielen op, zo ver totdat je op je tenen staat.\n3. Houd dit drie seconden vol. Duw je voet weer naar omlaag zonder de grond te raken met je hiel."
+    "stepsSingleLegCalfRaise": "1. Ga op de grond staan of op de rand van een opstapje. Til één voet op en houd hem tegen op je kuit.\n2. Til je hielen op, zo ver totdat je op je tenen staat.\n3. Houd dit drie seconden vol. Duw je voet weer naar omlaag zonder de grond te raken met je hiel.",
+    "txtFeeelDescription": "Een open source workout-app die je privacy respecteert",
+    "txtAboutFeeel": "Over Feeel"
 }
