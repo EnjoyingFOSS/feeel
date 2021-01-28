@@ -25,5 +25,20 @@
     "txtBreak": "הפסקה!",
     "txtSecondsLeft5plus": "נותרו %d שניות",
     "txtNextUp": "הבא בתור:",
-    "txtYouDidIt": "עשית את זה!"
+    "txtYouDidIt": "עשית את זה!",
+    "exerciseAbCrunches": "כפיפות בטן",
+    "exercisePushups": "שכיבות סמיכה",
+    "btnAdjustTiming": "התאמת התזמון",
+    "btnDisableTTS": "שימוש בצלילים במקום דיבור",
+    "btnTakeAPhoto": "צילום תמונה",
+    "btnAddPhotoFromGallery": "הוספת תמונה מהגלריה",
+    "btnCreateCustomWorkout": "יצירת אימון מותאם אישית",
+    "btnMoreInfo": "מידע נוסף",
+    "btnDone": "סיום",
+    "btnDuplicate": "שכפול",
+    "btnDelete": "מחיקה",
+    "btnEdit": "עריכה",
+    "btnAddExercise": "הוספת תרגילים",
+    "btnNextExercise": "התרגיל הבא",
+    "btnPreviousExercise": "התרגיל הקודם"
 }
