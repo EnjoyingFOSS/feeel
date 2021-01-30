@@ -78,5 +78,6 @@
     "txtBreak": "Pause !",
     "txtSecondsLeft5plus": "Encore %d secondes",
     "txtLetsGoFirstUp": "Allons-y ! Première étape : %s",
-    "txtNextUp": "Ensuite :"
+    "txtNextUp": "Ensuite :",
+    "btnDuplicate": "Dupliquer"
 }
