@@ -98,5 +98,6 @@
     "txtBreak": "Mola zamanı!",
     "txtSecondsLeft5plus": "%d saniye kaldı",
     "txtLetsGoFirstUp": "Haydi başlayalım. Birinci: %s",
-    "txtNextUp": "Sonraki:"
+    "txtNextUp": "Sonraki:",
+    "btnDuplicate": "Çoğalt"
 }
