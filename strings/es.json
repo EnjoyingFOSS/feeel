@@ -61,15 +61,15 @@
     "exerciseWallSit": "Asiento en pared",
     "stepsWallSit": "1. Apóyese en la pared, mirando hacia adelante y con los pies plantados firmemente en el suelo, sus hombros deben separarse y estar a 50 centímetros de la pared\n2. Deslízate por la pared, manteniendo la espalda presionada a ella, hasta que las piernas estén en ángulo recto. Las rodillas deben estar directamente sobre los tobillos\nEl dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o en la rótula",
     "exercisePushups": "Lagartijas",
-    "stepsPushups": "1. Acuéstese boca abajo.\n2. Ponga sus manos cerca de sus orejas.\n3. Usa los brazos para levantar el estómago hasta que los brazos estén rectos, manteniendo la espalda recta\n4. Doble los brazos hasta que el pecho casi toque el suelo, asegurándose de que la espalda esté recta.\n5. Repita desde el paso 3.",
+    "stepsPushups": "1. Acuéstese boca abajo.\n2. Ponga sus manos cerca de sus orejas.\n3. Usa los brazos para levantar el estómago hasta que los brazos estén rectos, manteniendo la espalda recta\n4. Doble los brazos hasta que el pecho casi toque el suelo, asegurándose de que la espalda esté recta.\n5. Repita desde el paso 3",
     "exerciseAbCrunches": "Abdominales",
-    "stepsAbCrunches": "1. Acuéstese boca arriba en el suelo con las rodillas dobladas\n2. Flexione los hombros hacia la pelvis. Las manos pueden estar detrás o al costado del cuello o cruzadas sobre el pecho\n3. Repita\n",
+    "stepsAbCrunches": "1. Acuéstese boca arriba en el suelo con las rodillas dobladas.\n2. Flexione los hombros hacia la pelvis. Las manos pueden estar detrás o al costado del cuello o cruzadas sobre el pecho.\n3. Repita",
     "exerciseStepups": "Subida a peldaño",
     "stepsStepups": "1. Párese frente a una silla\n2. Súbase a la silla\n3. Bájese de la silla\n4. Repita",
     "exerciseSquats": "Sentadillas",
-    "stepsSquats": "1. Levántese con los pies separados al ancho de hombros\n2. Mueva las caderas hacia atrás y doble las rodillas y caderas para bajar el torso\n3. Repita\n",
+    "stepsSquats": "1. Levántese con los pies separados al ancho de hombros\n2. Mueva las caderas hacia atrás y doble las rodillas y caderas para bajar el torso\n3. Repita",
     "exerciseChairDips": "Bajadas en silla",
-    "stepsChairDips": "1. Siéntese en el borde delantero de una silla, con la espalda recta y las manos sosteniendo el borde delantero\n2. Sujetando el borde de la silla, con los brazos extendidos, levante los glúteos y camine un poco hacia adelante para que esté a unos centímetros de la silla\n3. Baje lentamente su cuerpo, manteniendo la espalda recta, hasta que los brazos estén en ángulo recto\n4. Levante el cuerpo de nuevo a la posición anterior con los brazos extendidos.\n5. Repita los pasos 3 y 4\n",
+    "stepsChairDips": "1. Siéntese en el borde delantero de una silla, con la espalda recta y las manos sosteniendo el borde delantero\n2. Sujetando el borde de la silla, con los brazos extendidos, levante los glúteos y camine un poco hacia adelante para que esté a unos centímetros de la silla\n3. Baje lentamente su cuerpo, manteniendo la espalda recta, hasta que los brazos estén en ángulo recto\n4. Levante el cuerpo de nuevo a la posición anterior con los brazos extendidos.\n5. Repita los pasos 3 y 4",
     "exercisePlank": "Plancha",
     "stepsPlank": "1. Póngase en cuatro patas, con los brazos rectos y las rodillas flexionadas\n2. Camine con los pies hacia atrás hasta que estén extendidos\n3. Mantenga esta posición",
     "exerciseHighKnees": "Rodillas elevadas",
@@ -97,5 +97,7 @@
     "stepsKneelingKickback": "1. Ponga a cuatro patas\n2. Empuje un pie hacia atrás hasta que se extienda completamente, concentrándose en los músculos de los glúteos\n3. Quédese un segundo, y luego vuelva a la posición inicial\n4. Repita, alternando los pies",
     "exerciseSingleLegCalfRaiseLeft": "Elevación de pantorrilla izquierda",
     "exerciseSingleLegCalfRaiseRight": "Elevación de pantorrilla derecha",
-    "stepsSingleLegCalfRaise": "1. Párese en el suelo o en el borde de un escalón para aumentar el rango de movimiento. Levante un pie, colocando la parte superior de su pantorrilla\n2. Levante los talones hasta que esté de pie\n3. Manténgase en esta posición durante tres segundos, luego baje el pie sin tocar el suelo con el talón."
+    "stepsSingleLegCalfRaise": "1. Párese en el suelo o en el borde de un escalón para aumentar el rango de movimiento. Levante un pie, colocando la parte superior de su pantorrilla\n2. Levante los talones hasta que esté de pie\n3. Manténgase en esta posición durante tres segundos, luego baje el pie sin tocar el suelo con el talón.",
+    "txtFeeelDescription": "Una app de rutinas de ejercicio de código abierto que respeta tu privacidad tu privacidad",
+    "txtAboutFeeel": "Acerca de Feeel"
 }
