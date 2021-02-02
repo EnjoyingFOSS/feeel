@@ -20,7 +20,7 @@
     "txtHowToPerformExercise": "איך לעשות את התרגיל (רשות)",
     "txtExerciseName": "שם התרגיל",
     "txtCategoryLegs": "רגליים",
-    "txtBeYourOwnCoach": "לאמן את עצמך!",
+    "txtBeYourOwnCoach": "תהיו המאמנים של עצמכם!",
     "txtWorkoutTitle": "כותרת האימון",
     "txtBreak": "הפסקה!",
     "txtSecondsLeft5plus": "נותרו %d שניות",
@@ -41,5 +41,13 @@
     "btnAddExercise": "הוספת תרגילים",
     "btnNextExercise": "התרגיל הבא",
     "btnPreviousExercise": "התרגיל הקודם",
-    "exercisePlank": "פלאנק"
+    "exercisePlank": "פלאנק",
+    "workoutLeg": "אימון רגליים",
+    "btnAddALinkToPhotos": "הוספת קישור לתמונה/ות שלך",
+    "btnSubmitViaEmail": "שליחה בדוא״ל",
+    "txtFeeelDescription": "יישום אימונים ביתיים בקוד פתוח אשר מכבד את הפרטיות שלך",
+    "txtSubmitNewExercise": "תרומה",
+    "txtCategoryFullBody": "כל הגוף",
+    "txtImageMissing": "חסרה תמונה",
+    "txtLetsGoFirstUp": "קדימה! התרגיל הראשון: %s"
 }
