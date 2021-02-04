@@ -49,5 +49,12 @@
     "txtSubmitNewExercise": "תרומה",
     "txtCategoryFullBody": "כל הגוף",
     "txtImageMissing": "חסרה תמונה",
-    "txtLetsGoFirstUp": "קדימה! התרגיל הראשון: %s"
+    "txtLetsGoFirstUp": "קדימה! התרגיל הראשון: %s",
+    "txtWorkoutToMakeYouFeelBest": "עצבו את האימון שגורם לכם להרגיש הכי טוב שאפשר",
+    "exerciseSidePlankRight": "פלאנק על צד ימין",
+    "exerciseSidePlankLeft": "פלאנק על צד שמאל",
+    "exerciseHighKnees": "ברכיים גבוהות",
+    "exerciseSquats": "סקוואט",
+    "workoutScientific7Minute": "אימון מדעי של 7 דקות",
+    "txtNotificationDesc": "זה לוקח רק כמה דקות עד שמרגישים רעננים ובכושר"
 }
