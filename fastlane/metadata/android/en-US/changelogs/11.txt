@@ -1,0 +1,3 @@
+Completely rewritten app, now allowing you to create your own workout, including being able to set the length of each exercise. It also supports notifications.
+
+Also comes with various new translations — thanks to all the volunteer translators involved!
