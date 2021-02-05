@@ -1,21 +1,31 @@
 Feeel
 =====
 
-Feeel is an open-source app for doing simple at-home exercises.
+Feeel is an open-source workout app for doing simple at-home exercises.
 
 This is a rewrite of the [original app](https://gitlab.com/enjoyingfoss/feeel-legacy) in Flutter, to make development easier and allow for an iOS version. Still free as in freedom.
 
 Contribute
 ====
-ANYONE can contribute, no special skills required. Message me on the [Feeel channel on Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org) if you'd like to help.
 
-You can help by donating photos of exercises, [turning photos into low-poly illustrations](https://gitlab.com/enjoyingfoss/feeel/-/wikis/Processing-photos) (which anyone can do using an application made for the purpose), participating in user testing, [translating](https://hosted.weblate.org/projects/feeel/strings/), spreading the message, programming, or doing anything else that would help the project. :)
+Submit exercise photos
+--------------
+Exercise photos are sorely needed. See [this issue](https://gitlab.com/enjoyingfoss/feeel/-/issues/10) for a list.
 
-[More about contributing](https://gitlab.com/enjoyingfoss/feeel/-/wikis/home)
+The photos you submit must be your copyright.
+
+Translation
+----------
+You can help translate through [Weblate](https://hosted.weblate.org/projects/feeel/strings/).
 
 Donate
-====
-If you'd prefer to donate instead, you can donate through **[Liberapay](https://liberapay.com/Feeel/)**.
+------
+Support the project via **[Liberapay](https://liberapay.com/Feeel/)**. Every bit helps. The more money is donated, the more time I can afford to work on this project.
+
+Other ways to help
+-------------------
+
+ANYONE can contribute, no special skills required. Message me on the [Feeel channel on Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org) if you'd like to help.
 
 Install
 ====
