@@ -2,7 +2,7 @@
     "btnResumeWorkout": "המשך האימון",
     "btnStartWorkout": "התחלת האימון",
     "txtAboutFeeel": "על אודות Feeel",
-    "txtAddExerciseFirst": "יש להוסיף אימון תחילה",
+    "txtAddExerciseFirst": "יש להוסיף תרגיל תחילה",
     "txtNotificationTime": "זמן ההתראה",
     "txtNeedCameraPermission": "לא ניתן לצלם תמונות בלי הרשאת הגישה למצלמה",
     "txtRemindMe": "להזכיר לי להתאמן כל יום",
@@ -13,7 +13,7 @@
     "txtBreakDuration": "משך ההפסקות",
     "txtExerciseDuration": "משך התרגילים",
     "txtDuration": "משך",
-    "txtWorkoutExercisesEmpty": "נא להוסיף אימון אחד לפחות",
+    "txtWorkoutExercisesEmpty": "נא להוסיף תרגיל אחד לפחות",
     "txtWorkoutTitleEmpty": "נא לתת לאימון כותרת",
     "txtSettings": "הגדרות",
     "txtEmailCouldNotBeSent": "לא היה ניתן לשלוח את הדוא״ל",
@@ -56,5 +56,12 @@
     "exerciseHighKnees": "ברכיים גבוהות",
     "exerciseSquats": "סקוואט",
     "workoutScientific7Minute": "אימון מדעי של 7 דקות",
-    "txtNotificationDesc": "זה לוקח רק כמה דקות עד שמרגישים רעננים ובכושר"
+    "txtNotificationDesc": "זה לוקח רק כמה דקות עד שמרגישים רעננים ובכושר",
+    "exerciseWallSit": "ישיבת קיר",
+    "exercisePushupRotations": "שכיבות סמיכה עם סיבוב",
+    "stepsStepups": "1. לעמוד מול כיסא\n2. לעלות על הכיסא\n3. לרדת מהכיסא\n4. לחזור על הפעולות",
+    "exerciseStepups": "עליות מדרגה",
+    "btnAddCustomExerice": "הצעת תרגיל מותאם אישית",
+    "txtNegativeNumber": "לא חיובי",
+    "txtTapForControls": "להצגת הפקדים יש ללחוץ"
 }
