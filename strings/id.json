@@ -1,1 +1,9 @@
-{}
+{
+    "txtImageMissing": "Gambar hilang",
+    "txtTapForControls": "Ketuk untuk kontrol",
+    "txtBreak": "Istirahat!",
+    "txtSecondsLeft5plus": "%d detik tersisa",
+    "txtLetsGoFirstUp": "Ayo! Pertama: %s",
+    "txtNextUp": "Berikutnya:",
+    "txtYouDidIt": "Kamu berhasil!"
+}
