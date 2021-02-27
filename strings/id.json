@@ -18,7 +18,7 @@
     "exercisePlank": "Plank",
     "stepsChairDips": "1. Duduklah di tepi depan kursi, punggung tegak, tangan memegang tepi depan\n2. Masih memegang tepi kursi, tangan terentang, angkat pantat dan badan maju sedikit ke depan sehingga berjarak beberapa jari dari kursi.\n3. Turunkan badan perlahan-lahan, jaga agar punggung tetap lurus, sampai lengan membentuk sudut siku\n4. Angkat kembali badan ke posisi sebelumnya, lengan direntangkan\n5. Ulangi langkah 3 dan 4",
     "exerciseAbCrunches": "Crunch",
-    "exerciseChairDips": "Chair dips",
+    "exerciseChairDips": "Kursi dips",
     "stepsSquats": "1. Berdiri dengan kaki dibuka selebar bahu\n2. Gerakkan pinggul ke belakang dan tekuk lutut dan pinggul untuk menurunkan batang tubuh\n3. Ulangi",
     "exerciseSquats": "Squat",
     "stepsStepups": "1. Berdiri menghadap kursi\n2. Naik ke kursi\n3. Turun dari kursi\n4. Ulangi",
@@ -44,7 +44,7 @@
     "btnDone": "Selesai",
     "btnDuplicate": "Duplikat",
     "btnDelete": "Hapus",
-    "btnEdit": "Edit",
+    "btnEdit": "Sunting",
     "btnAddExercise": "Tambahkan latihan",
     "btnNextExercise": "Latihan berikutnya",
     "btnPreviousExercise": "Latihan sebelumnya",
@@ -81,5 +81,13 @@
     "txtCategoryFullBody": "Seluruh tubuh",
     "txtWorkoutToMakeYouFeelBest": "Rancang latihan yang membuatmu merasa yang terbaik",
     "txtBeYourOwnCoach": "Jadilah pelatihmu sendiri!",
-    "txtWorkoutTitle": "Judul latihan"
+    "txtWorkoutTitle": "Judul latihan",
+    "exerciseSideSplitSquatsRight": "Squat split samping kanan",
+    "stepsSingleLegCalfRaise": "1. Berdiri di lantai atau di tepi langkah untuk meningkatkan jangkauan gerakan. Angkat satu kaki, letakkan bagian atas pada betis Anda.\n2. Angkat tumit Anda sampai Anda berdiri di atas jari kaki.\n3. Tetap di posisi ini selama tiga detik, lalu turunkan kaki Anda tanpa menyentuh tanah dengan tumit Anda.",
+    "exerciseSingleLegCalfRaiseRight": "Angkat betis kaki kanan",
+    "exerciseSideSplitSquatsLeft": "Squat split samping kiri",
+    "stepsSidePlank": "1. Berbaringlah, dengan siku bawah Anda di sudut kanan, lengan mencuat\n2. Angkat panggul Anda dari lantai dengan mengangkat bahu bawah Anda ke atas, menjaga lengan bawah di lantai; kepala, panggul, dan kaki Anda harus berada dalam garis lurus\n3. Tahan posisi",
+    "exerciseSidePlankRight": "Plank samping kanan",
+    "exerciseSidePlankLeft": "Plank samping kiri",
+    "stepsPushupRotations": "1. Lakukan push-up:\n1.a Berbaring tengkurap\n1.b Letakkan tangan Anda di dekat telinga\n1.c Gunakan lengan Anda untuk mengangkat perut ke atas sampai lengan lurus, jaga agar punggung tetap lurus\n1.d Tekuk lengan hingga dada hampir menyentuh lantai, pastikan punggung lurus\n1.e Angkat kembali perut Anda, kembali ke langkah 3\n2. Putar badan ke samping agar punggung lurus, tangan bawah yang menopang badan terentang penuh, dan hanya tangan dan kaki bagian bawah yang menyentuh lantai\n3. Ulangi, berganti sisi pada langkah 2 setiap kali"
 }
