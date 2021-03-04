@@ -28,6 +28,7 @@ dependencies:
   flutter_local_notifications: ^4.0.0-dev.2
   about: ^1.4.0
   url_launcher: ^6.0.0-nullsafety.1
+  flutter_audio_desktop: ^0.0.8
 
 dependency_overrides:
   url_launcher: ^6.0.0-nullsafety.1
