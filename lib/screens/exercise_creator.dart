@@ -127,7 +127,7 @@ Exercise name: ${_nameController.text}
 Exercise steps:
 ${_stepsController.text} """ +
                   "en" ==
-              (Localizations.localeOf(context)?.languageCode)
+              (Localizations.localeOf(context).languageCode)
           // todo TEST !!!
           ? ""
           : ("""-----
