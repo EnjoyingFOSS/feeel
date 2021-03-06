@@ -43,12 +43,16 @@ class LinuxSoundView implements WorkoutView {
 
   LinuxSoundView() {
     if (!_initialized) {
-      _exercisePlayer.load(await AudioSource.fromAsset(SOUND_EXERCISE));
-      _breakPlayer.load(await AudioSource.fromAsset(SOUND_BREAK));
-      _tickPlayer.load(await AudioSource.fromAsset(SOUND_TICK));
-      _finishPlayer.load(await AudioSource.fromAsset(SOUND_FINISH));
-      _initialized = true;
+      initialize();
     }
+  }
+
+  Future<void> initialize() async {
+    _exercisePlayer.load(await AudioSource.fromAsset(SOUND_EXERCISE));
+    _breakPlayer.load(await AudioSource.fromAsset(SOUND_BREAK));
+    _tickPlayer.load(await AudioSource.fromAsset(SOUND_TICK));
+    _finishPlayer.load(await AudioSource.fromAsset(SOUND_FINISH));
+    _initialized = true;
   }
 
   @override
