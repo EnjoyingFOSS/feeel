@@ -463,11 +463,19 @@ class DBHelper {
             workout.category)
         : workout.dbId!;
 
+    // modify workout meta and delete original exercises if it exists
     if (workout.dbId != null) {
       await _deleteWorkoutExercises(workoutId, WorkoutType.CUSTOM);
-      await _renameWorkout(workoutId, WorkoutType.CUSTOM, workout.title ?? "");
+      await _modifyWorkout(
+          workoutId,
+          WorkoutType.CUSTOM,
+          workout.title ?? "",
+          workout.exerciseDuration,
+          workout.breakDuration,
+          workout.countdownDuration);
     }
 
+    // create exercises
     for (int i = 0; i < workout.workoutExercises.length; i++) {
       var we = workout.workoutExercises[i];
       await _createWorkoutExercise(db,
@@ -491,10 +499,22 @@ class DBHelper {
         whereArgs: <int>[workoutId, WorkoutType.CUSTOM.index]);
   }
 
-  Future<void> _renameWorkout(
-      int workoutId, WorkoutType workoutType, String workoutTitle) async {
+  Future<void> _modifyWorkout(
+      int workoutId,
+      WorkoutType workoutType,
+      String workoutTitle,
+      int exerciseDuration,
+      int breakDuration,
+      int countdownDuration) async {
     final db = await database;
-    await db.update(_WORKOUT_TABLE, <String, String>{_TITLE_COL: workoutTitle},
+    await db.update(
+        _WORKOUT_TABLE,
+        <String, String>{
+          _TITLE_COL: workoutTitle,
+          _EXERCISE_DURATION_COL: exerciseDuration.toString(),
+          _BREAK_DURATION_COL: breakDuration.toString(),
+          _COUNTDOWN_DURATION_COL: countdownDuration.toString()
+        },
         where: "$_ID_COL = ? and $_TYPE_COL = ?",
         whereArgs: <int>[workoutId, workoutType.index]);
   }
