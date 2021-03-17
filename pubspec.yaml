@@ -1,7 +1,7 @@
 name: feeel
 description: Feeel is an open-source Android app for doing simple at-home exercises.
 
-version: 2.0.1+12
+version: 2.0.2+13
 
 environment:
   sdk: ">=2.12.0-0 <3.0.0"
@@ -14,28 +14,29 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_cupertino_localizations: ^1.0.1
   http: ^0.13.0
-  flutter_tts: ^2.1.0
-  wakelock: ^0.4.0
+  flutter_tts: ^3.0.0
+  wakelock: ^0.5.0
   sqflite: ^2.0.0
   sqflite_common_ffi: ^2.0.0
   path_provider: ^2.0.1
-  i18n_extension: ^3.0.0-dev.1
+  i18n_extension: ^4.0.0
   drag_list: 1.0.7 #todo use an alternative library, e.g. drag_and_drop_lists
   flutter_mailer: ^2.0.0-null-safe
-  image_picker: ^0.7.2
-  shared_preferences: ^2.0.3
+  image_picker: ^0.7.3
+  shared_preferences: ^2.0.5
   audioplayers: ^0.17.4
-  flutter_local_notifications: ^5.0.0-nullsafety.0
+  flutter_local_notifications: ^5.0.0-nullsafety.1
   about: ^2.0.0
   url_launcher: ^6.0.2
-  flutter_audio_desktop: ^0.1.0
+  flutter_audio_desktop: ^0.1.1
 
 dependency_overrides:
   path_provider: ^2.0.1
   args: ^2.0.0
+  crypto: ^3.0.0
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.8.1
+  flutter_launcher_icons: ^0.9.0
   flutter_test:
     sdk: flutter
 
