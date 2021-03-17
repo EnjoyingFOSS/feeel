@@ -1,0 +1,20 @@
+{
+    "exerciseSquats": "Kalkansidoj",
+    "exercisePushups": "Puŝlevoj",
+    "workoutLeg": "Krura ekzercado",
+    "btnDone": "Farite",
+    "btnDelete": "Forigi",
+    "btnEdit": "Redakti",
+    "btnAddExercise": "Aldoni ekzercojn",
+    "btnNextExercise": "Antaŭa ekzerco",
+    "btnPreviousExercise": "Malantaŭa ekzerco",
+    "btnStartWorkout": "Komenci ekzercadon",
+    "txtAboutFeeel": "Pri Feeel",
+    "txtAddExerciseFirst": "Aldoni ekzercon unue",
+    "txtNotificationTime": "Sciiga tempo",
+    "txtSettings": "Agordoj",
+    "txtExerciseName": "Ekzerca nomo",
+    "txtSubmitNewExercise": "Kontribui",
+    "txtCategoryLegs": "Kruroj",
+    "txtCategoryFullBody": "Tuta korpo"
+}
