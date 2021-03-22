@@ -81,18 +81,19 @@ class DurationDropdown extends StatelessWidget {
             return AlertDialog(
                 //todo save custom value
                 content: TextField(
+                  decoration: InputDecoration(labelText: "Custom duration (s.)".i18n),
                   keyboardType: TextInputType.number,
                   controller: _durationController,
                 ) //todo use validation for text field
                 ,
                 actions: [
-                  FlatButton(
-                      child: Text("Cancel"),
+                  TextButton(
+                      child: Text("Cancel".i18n),
                       onPressed: () {
                         Navigator.pop(context);
                       }),
-                  FlatButton(
-                    child: Text("OK"),
+                  TextButton(
+                    child: Text("OK".i18n),
                     onPressed: () {
                       var value =
                           int.tryParse(_durationController.text.toString());

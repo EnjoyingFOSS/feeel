@@ -323,9 +323,10 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
       bottomNavigationBar: _editingTimeMode
           ? BottomAppBar(
               color: Theme.of(context).primaryColor,
-              child: FlatButton.icon(
+              child: TextButton.icon(
                 label: Text("Done editing timing".i18n,
                     style: TextStyle(
+                        //todo use button style in the future (in other buttons too)
                         color: Theme.of(context).colorScheme.onPrimary)),
                 icon: Icon(
                   Icons.done,
@@ -350,14 +351,22 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   color: Color(0xffD9E9FF), //todo make theming-friendly
                   child: Row(
                     children: <Widget>[
-                      FlatButton.icon(
-                          label: Text("Add exercises".i18n),
-                          icon: Icon(Icons.add),
+                      TextButton.icon(
+                          label: Text("Add exercises".i18n,
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface)),
+                          icon: Icon(Icons.add,
+                              color: Theme.of(context).colorScheme.onSurface),
                           onPressed: _addExercisesOnPressed),
                       //todo if (_editableWorkout.workoutExercises.length > 0)
-                      FlatButton.icon(
-                          label: Text("Adjust timing".i18n),
-                          icon: Icon(Icons.timer),
+                      TextButton.icon(
+                          label: Text("Adjust timing".i18n,
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface)),
+                          icon: Icon(Icons.timer,
+                              color: Theme.of(context).colorScheme.onSurface),
                           onPressed: () {
                             _adjustTimingOnPressed(context);
                           }),

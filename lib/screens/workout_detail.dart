@@ -72,14 +72,14 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              FlatButton(
+                              TextButton(
                                 child: Text("Back to workout list"),
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
                               ),
                               if (workout.type == WorkoutType.CUSTOM)
-                                RaisedButton(
+                                ElevatedButton(
                                   child: Text("Delete this workout"),
                                   onPressed: () {
                                     if (workout.dbId != null) {
