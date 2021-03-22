@@ -202,7 +202,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void onStart(int workoutPos, WorkoutExercise nextExercise, int duration) {
     setState(() {
       _seconds = duration;
-      _descriptionText = nextExercise.exercise.description;
+      _descriptionText = nextExercise.exercise.description.i18n;
     });
   }
 
@@ -210,7 +210,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void onBreak(int workoutPos, WorkoutExercise nextExercise, int duration) {
     setState(() {
       _seconds = duration;
-      _descriptionText = nextExercise.exercise.description;
+      _descriptionText = nextExercise.exercise.description.i18n;
     });
     _pageController.animateToPage(workoutPos * 2,
         duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
@@ -220,7 +220,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void onExercise(int workoutPos, WorkoutExercise exercise, int duration) {
     setState(() {
       _seconds = duration;
-      _descriptionText = exercise.exercise.description;
+      _descriptionText = exercise.exercise.description.i18n;
     });
     _pageController.animateToPage(workoutPos * 2 + 1,
         duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
