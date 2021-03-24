@@ -23,6 +23,9 @@
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_page_types.dart';
 import 'package:feeel/models/workout.dart';
+import 'package:feeel/theming/feeel_colors.dart';
+import 'package:feeel/theming/feeel_shade.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/widgets/workout_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
@@ -45,12 +48,12 @@ class WorkoutPager extends StatefulWidget {
 class _WorkoutPagerState extends State<WorkoutPager> {
   PageController _pageController = PageController();
   late WorkoutController _workoutController;
-  late Color color;
+  late FeeelSwatch colorSwatch;
 
   @override
   void initState() {
     super.initState();
-    color = Color(widget.workout.category.colorInt);
+    colorSwatch = widget.workout.category.colorSwatch;
     _workoutController = WorkoutController(widget.workout);
   }
 
@@ -67,7 +70,8 @@ class _WorkoutPagerState extends State<WorkoutPager> {
       children: <Widget>[
         WorkoutCover(
           workout: widget.workout,
-          color: color,
+          color: colorSwatch.getColorByBrightness(
+              FeeelShade.DARK, Theme.of(context).brightness),
           onPressed: () {
             _pageController.jumpToPage(WorkoutPageTypes.EXERCISE.index);
             _workoutController.start();
@@ -77,9 +81,10 @@ class _WorkoutPagerState extends State<WorkoutPager> {
         ExercisePage(
             workoutController: _workoutController,
             workout: widget.workout,
-            color: color),
+            colorSwatch: colorSwatch),
         FinishPage(
-          color: color,
+          color: colorSwatch.getColorByBrightness(
+              FeeelShade.DARK, Theme.of(context).brightness),
         )
       ],
       // physics: NeverScrollableScrollPhysics(),

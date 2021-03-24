@@ -20,32 +20,26 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/theming/feeel_colors.dart';
-import 'package:feeel/theming/feeel_swatch.dart';
+import 'dart:ui';
 
-enum WorkoutCategory { FULL_BODY, LEGS }
+import 'feeel_swatch.dart';
 
-extension WorkoutCategoryExtension on WorkoutCategory {
-  String get translationKey {
-    switch (this) {
-      case WorkoutCategory.FULL_BODY:
-        return "Full body";
-      case WorkoutCategory.LEGS:
-        return "Legs";
-      default:
-        throw ArgumentError("Invalid workout category");
-    }
-  }
+class FeeelColors {
+  //500 should be dark enough to be usable on light surfaces, 300 light enough for dark surfaces
+  static final blue = FeeelSwatch(
+    lightest: Color(0xffE0EDFF), // 0xffD9E9FF ?
+    lighter: Color(0xffB6D1F4),
+    light: Color(0xff5493E6),
+    dark: Color(0xff0B65DB),
+    darker: Color(0xff0050BA), //0853D2?
+    darkest: Color(0xff002794), //todo less saturation for darkest shades in general
+  );
 
-  FeeelSwatch get colorSwatch {
-    //todo refactor, move to colors?
-    switch (this) {
-      case WorkoutCategory.FULL_BODY:
-        return FeeelColors.blue;
-      case WorkoutCategory.LEGS:
-        return FeeelColors.orange;
-      default:
-        return FeeelColors.blue;
-    }
-  }
+  static final orange = FeeelSwatch(
+      lightest: Color(0xffFAEBE0),
+      lighter: Color(0xffF3CEB3),
+      light: Color(0xffE96216),
+      dark: Color(0xffCC4800), //E96216 D65A00 c45300 CC4800
+      darker: Color(0xffAD2100), // C03800
+      darkest: Color(0xff830B00));
 }

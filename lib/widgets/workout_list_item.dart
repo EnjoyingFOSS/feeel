@@ -24,6 +24,8 @@ import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/workout_listed.dart';
 import 'package:feeel/screens/workout_detail.dart';
+import 'package:feeel/theming/feeel_colors.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/widgets/triangle.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -37,11 +39,12 @@ class WorkoutListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var title = workoutListed.title;
-    var subtitle = workoutListed.category.translationKey.i18n;
+    final title = workoutListed.title;
+    final subtitle = workoutListed.category.translationKey.i18n;
+    final theme = Theme.of(context);
 
     return Material(
-        color: Theme.of(context).backgroundColor,
+        color: theme.backgroundColor,
         child: // Row(children: [
             InkWell(
                 onTap: () {
@@ -58,8 +61,9 @@ class WorkoutListItem extends StatelessWidget {
                         Padding(
                           child: Triangle(
                             dimension: 96,
-                            color: Color(workoutListed.category.colorInt)
-                                .withAlpha(38),
+                            color: workoutListed.category.colorSwatch
+                                .getColorByBrightness(
+                                    FeeelShade.LIGHTEST, theme.brightness),
                             seed: title.hashCode,
                           ),
                           padding:
@@ -73,20 +77,18 @@ class WorkoutListItem extends StatelessWidget {
                                     (workoutListed.type == WorkoutType.DEFAULT)
                                         ? title.i18n
                                         : title,
-                                    style:
-                                        Theme.of(context).textTheme.headline6),
+                                    style: theme.textTheme.headline6),
                                 Container(
                                   height: 8,
                                 ),
                                 Text(
                                   subtitle,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle2
-                                      ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(
-                                              workoutListed.category.colorInt)),
+                                  style: theme.textTheme.subtitle2?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: workoutListed.category.colorSwatch
+                                          .getColorByBrightness(
+                                              FeeelShade.DARKER,
+                                              theme.brightness)),
                                 )
                               ],
                               mainAxisSize: MainAxisSize.min,

@@ -22,6 +22,8 @@
 
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/screens/workout_list.dart';
+import 'package:feeel/theming/feeel_colors.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -33,36 +35,6 @@ import 'db/notification_helper.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final dayColors = ColorScheme(
-      primary: Color(0xFF0B65DB),
-      primaryVariant: Color(0xFF0050BA), //used as primaryColorDark in theme
-      secondary: Color(0xffE96216),
-      secondaryVariant: Color(0xFFE96216),
-      surface: Colors.white,
-      background: Colors.white,
-      error: Color(0xFFB00020),
-      onPrimary: Colors.white,
-      onSecondary: Colors.white,
-      onSurface: Colors.black87,
-      onBackground: Colors.black87,
-      onError: Colors.black87,
-      brightness: Brightness.light);
-
-  final nightColors = ColorScheme(
-      primary: Color(0xFF0B65DB),
-      primaryVariant: Color(0xFF0050BA), //used as primaryColorDark in theme
-      secondary: Color(0xffE96216),
-      secondaryVariant: Color(0xFFE96216),
-      surface: Colors.black87,
-      background: Colors.black87,
-      error: Color(0xFFB00020),
-      onPrimary: Colors.white,
-      onSecondary: Colors.white,
-      onSurface: Colors.white,
-      onBackground: Colors.white,
-      onError: Colors.white,
-      brightness: Brightness.dark);
-
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
@@ -71,6 +43,40 @@ class MyApp extends StatelessWidget {
         statusBarBrightness: Brightness.light));
     NotificationHelper.helper.init(context);
     TTSHelper.tts.init(context);
+
+    final dayColors = ColorScheme(
+        //todo extract colors to separate file
+        primary: FeeelColors.blue.getColor(FeeelShade.DARK),
+        primaryVariant: FeeelColors.blue
+            .getColor(FeeelShade.DARKER), //used as primaryColorDark in theme
+        secondary: FeeelColors.orange.getColor(FeeelShade.DARK),
+        secondaryVariant: FeeelColors.orange.getColor(FeeelShade.DARKER),
+        surface: Colors.white,
+        background: Colors.white,
+        error: Color(0xFFB00020),
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+        onSurface: Colors.black87,
+        onBackground: Colors.black87,
+        onError: Colors.black87,
+        brightness: Brightness.light);
+
+    final nightColors = ColorScheme(
+        primary: FeeelColors.blue.getColor(FeeelShade.LIGHT),
+        primaryVariant: FeeelColors.blue
+            .getColor(FeeelShade.LIGHTER), //used as primaryColorDark in theme
+        secondary: FeeelColors.orange.getColor(FeeelShade.LIGHT),
+        secondaryVariant: FeeelColors.orange.getColor(FeeelShade.LIGHTER),
+        surface: Colors.black87,
+        background: Colors.black87,
+        error: Color(0xFFB00020),
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+        onSurface: Colors.white,
+        onBackground: Colors.white,
+        onError: Colors.white,
+        brightness: Brightness.dark);
+
     var colors = dayColors;
     return MaterialApp(
         title: 'Feeel',

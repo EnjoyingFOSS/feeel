@@ -20,32 +20,6 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/theming/feeel_colors.dart';
-import 'package:feeel/theming/feeel_swatch.dart';
-
-enum WorkoutCategory { FULL_BODY, LEGS }
-
-extension WorkoutCategoryExtension on WorkoutCategory {
-  String get translationKey {
-    switch (this) {
-      case WorkoutCategory.FULL_BODY:
-        return "Full body";
-      case WorkoutCategory.LEGS:
-        return "Legs";
-      default:
-        throw ArgumentError("Invalid workout category");
-    }
-  }
-
-  FeeelSwatch get colorSwatch {
-    //todo refactor, move to colors?
-    switch (this) {
-      case WorkoutCategory.FULL_BODY:
-        return FeeelColors.blue;
-      case WorkoutCategory.LEGS:
-        return FeeelColors.orange;
-      default:
-        return FeeelColors.blue;
-    }
-  }
+enum FeeelShade {
+  LIGHTEST, LIGHTER, LIGHT, DARK, DARKER, DARKEST
 }

@@ -23,6 +23,8 @@
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/models/workout.dart';
 import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/theming/feeel_shade.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/widgets/break_illustration.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -31,13 +33,13 @@ import 'exercise_illustration.dart';
 
 class ExercisePage extends StatefulWidget {
   final Workout workout;
-  final Color color;
+  final FeeelSwatch colorSwatch;
   final WorkoutController workoutController;
 
   const ExercisePage(
       {Key? key,
       required this.workout,
-      required this.color,
+      required this.colorSwatch,
       required this.workoutController})
       : super(key: key);
 
@@ -56,7 +58,6 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   bool _infoShown = false;
   late int _seconds;
   PageController _pageController = PageController();
-  late Color _descriptionColor;
   String? _descriptionText;
   double? _dragYStart;
 
@@ -67,28 +68,26 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     widget.workoutController.setView(this);
     _seconds = widget.workout.countdownDuration;
     super.initState();
-
-    final hslColor = HSLColor.fromColor(widget.color); //todo test, tweak
-    _descriptionColor = hslColor
-        .withLightness((hslColor.lightness - 0.1).clamp(0.0, 1.0).toDouble())
-        .toColor();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final themeDarkColor = widget.colorSwatch
+        .getColorByBrightness(FeeelShade.DARK, theme.brightness);
     var expandIcon = Icon(
       !_infoShown ? Icons.expand_less : Icons.expand_more,
       color: _paused
-          ? Theme.of(context).colorScheme.onPrimary
-          : Theme.of(context).colorScheme.onPrimary.withAlpha(127),
+          ? theme.colorScheme.onPrimary
+          : theme.colorScheme.onPrimary.withAlpha(127),
     );
     return GestureDetector(
       child: Material(
-          color: Theme.of(context).backgroundColor,
+          color: theme.backgroundColor,
           child: Column(
             children: <Widget>[
               ExerciseHeader(
-                  color: widget.color,
+                  color: themeDarkColor,
                   paused: _paused,
                   counterText: _seconds.toString()),
               _paused
@@ -96,7 +95,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                       Expanded(
                           child: IconButton(
                         iconSize: 32,
-                        color: widget.color,
+                        color: themeDarkColor,
                         tooltip: "Previous exercise".i18n,
                         icon: Icon(Icons.skip_previous),
                         onPressed: () {
@@ -106,7 +105,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                       Expanded(
                         child: IconButton(
                             iconSize: 64,
-                            color: widget.color,
+                            color: themeDarkColor,
                             tooltip: "Resume workout".i18n,
                             icon: Icon(Icons.play_arrow),
                             onPressed: () {
@@ -116,7 +115,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                       Expanded(
                         child: IconButton(
                             iconSize: 32,
-                            color: widget.color,
+                            color: themeDarkColor,
                             tooltip: "Next exercise".i18n,
                             icon: Icon(
                               Icons.skip_next,
@@ -128,7 +127,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                     ])
                   : Text(
                       "Tap for controls".i18n,
-                      style: TextStyle(color: widget.color),
+                      style: TextStyle(color: themeDarkColor),
                     ),
               Expanded(
                 child: PageView.builder(
@@ -141,12 +140,12 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                     if (i % 2 == 0) {
                       return BreakIllustration(
                           expandIcon: expandIcon,
-                          color: widget.color,
+                          color: widget.colorSwatch.getColor(FeeelShade.DARK),
                           nextExercise: exercise);
                     } else
                       return ExerciseIllustration(
                         expandIcon: expandIcon,
-                        color: widget.color,
+                        color: widget.colorSwatch.getColor(FeeelShade.DARK),
                         exercise: exercise,
                       );
                   },
@@ -155,7 +154,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
               ), // todo show drag handle
               if (_infoShown)
                 Container(
-                  color: _descriptionColor,
+                  color: widget.colorSwatch.getColor(FeeelShade.DARKEST),
                   width: double.infinity,
                   height: 200, //todo style, height
                   child: _descriptionText != null

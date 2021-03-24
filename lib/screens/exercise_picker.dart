@@ -24,6 +24,8 @@ import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/screens/exercise_creator.dart';
+import 'package:feeel/theming/feeel_colors.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/widgets/flipped.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -49,12 +51,14 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
         appBar: AppBar(
-          iconTheme: Theme.of(context).iconTheme,
-          textTheme: Theme.of(context).textTheme,
-          brightness: Theme.of(context).brightness,
-          backgroundColor: Color(0xffD9E9FF),
+          iconTheme: theme.iconTheme,
+          textTheme: theme.textTheme,
+          brightness: theme.brightness,
+          backgroundColor: FeeelColors.blue
+              .getColorByBrightness(FeeelShade.LIGHTEST, theme.brightness),
           title: Text("Add exercises".i18n),
           centerTitle: false,
         ),

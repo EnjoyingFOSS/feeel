@@ -27,6 +27,8 @@ import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/exercise.dart';
 import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/screens/exercise_picker.dart';
+import 'package:feeel/theming/feeel_colors.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/widgets/duration_dropdown.dart';
 import 'package:feeel/widgets/empty_placeholder.dart';
 import 'package:feeel/widgets/exercise_editor_row.dart';
@@ -76,6 +78,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: SafeArea(
           bottom: false,
@@ -97,22 +100,20 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                     Expanded(
                       child: Padding(
                           child: TextFormField(
-                            style: Theme.of(context)
-                                .appBarTheme
-                                .textTheme
-                                ?.headline6
+                            style: theme.appBarTheme.textTheme?.headline6
                                 ?.copyWith(
-                                    color: Theme.of(context).primaryColor),
+                                    color:
+                                        FeeelColors.blue.getColorByBrightness(
+                                            FeeelShade.DARK, theme.brightness)),
                             controller: _titleController,
                             decoration: InputDecoration(
-                                hintStyle: Theme.of(context)
-                                    .appBarTheme
-                                    .textTheme
-                                    ?.headline6
+                                hintStyle: theme
+                                    .appBarTheme.textTheme?.headline6
                                     ?.copyWith(
-                                        color: Theme.of(context)
-                                            .primaryColor
-                                            .withAlpha(64)),
+                                        color: FeeelColors.blue
+                                            .getColorByBrightness(
+                                                FeeelShade.LIGHTER,
+                                                theme.brightness)),
                                 // border: InputBorder.none,
                                 filled: false,
                                 hintText: 'Workout title'.i18n),
@@ -322,15 +323,16 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
               })),
       bottomNavigationBar: _editingTimeMode
           ? BottomAppBar(
-              color: Theme.of(context).primaryColor,
+              color: FeeelColors.blue
+                  .getColorByBrightness(FeeelShade.DARK, theme.brightness),
               child: TextButton.icon(
                 label: Text("Done editing timing".i18n,
                     style: TextStyle(
                         //todo use button style in the future (in other buttons too)
-                        color: Theme.of(context).colorScheme.onPrimary)),
+                        color: theme.colorScheme.onPrimary)),
                 icon: Icon(
                   Icons.done,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: theme.colorScheme.onPrimary,
                 ), //todo color into separate variable
                 onPressed: () {
                   setState(() {
@@ -348,25 +350,24 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
               ))
           : Builder(
               builder: (context) => BottomAppBar(
-                  color: Color(0xffD9E9FF), //todo make theming-friendly
+                  color: FeeelColors.blue.getColorByBrightness(
+                      FeeelShade.LIGHTEST, theme.brightness),
                   child: Row(
                     children: <Widget>[
                       TextButton.icon(
                           label: Text("Add exercises".i18n,
                               style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.onSurface)),
+                                  color: theme.colorScheme.onSurface)),
                           icon: Icon(Icons.add,
-                              color: Theme.of(context).colorScheme.onSurface),
+                              color: theme.colorScheme.onSurface),
                           onPressed: _addExercisesOnPressed),
                       //todo if (_editableWorkout.workoutExercises.length > 0)
                       TextButton.icon(
                           label: Text("Adjust timing".i18n,
                               style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.onSurface)),
+                                  color: theme.colorScheme.onSurface)),
                           icon: Icon(Icons.timer,
-                              color: Theme.of(context).colorScheme.onSurface),
+                              color: theme.colorScheme.onSurface),
                           onPressed: () {
                             _adjustTimingOnPressed(context);
                           }),
@@ -377,7 +378,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
       floatingActionButton: _editingTimeMode
           ? null
           : FloatingActionButton(
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: FeeelColors.blue
+                  .getColorByBrightness(FeeelShade.DARK, theme.brightness),
               tooltip: "Done".i18n,
               child: Icon(Icons.done),
               onPressed: () {
