@@ -23,7 +23,6 @@
 import 'dart:io';
 
 import 'package:feeel/audio/sound_view.dart';
-import 'package:feeel/audio/sound_view_linux.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
@@ -80,9 +79,7 @@ class WorkoutController {
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
       if (prefs.getBool(PreferenceKeys.TTS_DISABLED_PREF) ?? false) {
-        final WorkoutView soundView = (Platform.isLinux || Platform.isWindows)
-            ? LinuxSoundView()
-            : SoundView();
+        final WorkoutView soundView = SoundView();
         _views[ViewTypes.AUDIO.index] = soundView;
         _onFinishes[ViewTypes.AUDIO.index] = () {
           (soundView as dynamic).onFinish(); //todo typing to dynamic is ugly

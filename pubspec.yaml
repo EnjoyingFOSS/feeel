@@ -20,15 +20,14 @@ dependencies:
   sqflite_common_ffi: ^2.0.0
   path_provider: ^2.0.1
   i18n_extension: ^4.0.0
-  drag_list: 1.0.7 #todo use an alternative library, e.g. drag_and_drop_lists
+  drag_list: 1.0.7 #todo use the native solution instead
   flutter_mailer: ^2.0.0-null-safe
-  image_picker: ^0.7.3
+  image_picker: ^0.7.4
   shared_preferences: ^2.0.5
-  audioplayers: ^0.18.0
+  audioplayers: ^0.18.3
   flutter_local_notifications: ^5.0.0
   about: ^2.0.0
-  url_launcher: ^6.0.2
-  flutter_audio_desktop: ^0.1.1
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_launcher_icons: ^0.9.0
