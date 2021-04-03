@@ -32,6 +32,8 @@ import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/widgets/duration_dropdown.dart';
 import 'package:feeel/widgets/empty_placeholder.dart';
 import 'package:feeel/widgets/exercise_editor_row.dart';
+import 'package:feeel/widgets/timing_header.dart';
+import 'package:feeel/widgets/trailing_seconds_input.dart';
 
 import '../models/workout.dart';
 
@@ -156,58 +158,25 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                   ? Form(
                                       key: _timingFormKey,
                                       child: Column(children: [
-                                        Padding(
-                                            child: Row(
-                                              children: <Widget>[
-                                                Expanded(
-                                                    child: DurationDropdown(
-                                                  chosenValue: _editableWorkout!
-                                                      .exerciseDuration,
-                                                  predefinedValues: [
-                                                    15,
-                                                    30,
-                                                    60
-                                                  ],
-                                                  decoration: InputDecoration(
-                                                      //todo i18n annotation
-                                                      labelText:
-                                                          "Exercise duration"
-                                                              .i18n,
-                                                      filled: true),
-                                                  onChanged: (int value) {
-                                                    setState(() {
-                                                      _editableWorkout!
-                                                              .exerciseDuration =
-                                                          value;
-                                                    });
-                                                  },
-                                                )),
-                                                Container(
-                                                  width: 16,
-                                                ),
-                                                Expanded(
-                                                    child: DurationDropdown(
-                                                  chosenValue: _editableWorkout!
-                                                      .breakDuration,
-                                                  predefinedValues: [5, 10, 15],
-                                                  decoration: InputDecoration(
-                                                      //todo ellipsize
-                                                      //todo i18n annotation
-                                                      labelText:
-                                                          "Break duration".i18n,
-                                                      filled: true),
-                                                  onChanged: (int value) {
-                                                    setState(() {
-                                                      _editableWorkout!
-                                                              .breakDuration =
-                                                          value;
-                                                    });
-                                                  },
-                                                ))
-                                              ],
-                                            ),
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 16)),
+                                        TimingHeader(
+                                          exerciseDuration: _editableWorkout!
+                                              .exerciseDuration,
+                                          onExerciseDurationChanged:
+                                              (int value) {
+                                            setState(() {
+                                              _editableWorkout!
+                                                  .exerciseDuration = value;
+                                            });
+                                          },
+                                          breakDuration:
+                                              _editableWorkout!.breakDuration,
+                                          onBreakDurationChanged: (int value) {
+                                            setState(() {
+                                              _editableWorkout!.breakDuration =
+                                                  value;
+                                            });
+                                          },
+                                        ),
                                         Container(
                                           height: 16,
                                         ),
@@ -218,67 +187,22 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                             final workoutExercise =
                                                 _editableWorkout!
                                                     .workoutExercises[index];
-                                            final initialValue =
-                                                workoutExercise.duration;
                                             return ExerciseEditorRow(
                                                 workoutExercise:
                                                     workoutExercise,
-                                                trailing: Container(
-                                                    width: 68,
-                                                    child: Row(children: [
-                                                      Expanded(
-                                                          child: TextFormField(
-                                                        textAlign:
-                                                            TextAlign.end,
-                                                        initialValue: initialValue
-                                                                ?.toString() ??
-                                                            "",
-                                                        decoration:
-                                                            InputDecoration(
-                                                                hintStyle: TextStyle(
-                                                                    fontStyle:
-                                                                        FontStyle
-                                                                            .italic),
-                                                                hintText: initialValue !=
-                                                                        null
-                                                                    ? ""
-                                                                    : _editableWorkout!
-                                                                        .exerciseDuration
-                                                                        .toString(),
-                                                                //todo i18n annotation
-                                                                filled: true),
-                                                        keyboardType:
-                                                            TextInputType
-                                                                .number,
-                                                        validator:
-                                                            (String? input) {
-                                                          if (input == "")
-                                                            return null;
-                                                          var secs =
-                                                              int.tryParse(
-                                                                  input ?? "");
-                                                          if (secs == null) {
-                                                            //todo upper bound?
-                                                            return "Non-numeric"
-                                                                .i18n;
-                                                          }
-                                                          if (secs < 1) {
-                                                            return "Nonpositive"
-                                                                .i18n;
-                                                          }
-                                                          return null;
-                                                        },
-                                                        onSaved:
-                                                            (String? input) {
-                                                          var secs =
-                                                              int.tryParse(
-                                                                  input ?? "");
-                                                          workoutExercise
-                                                              .duration = secs;
-                                                        },
-                                                      )),
-                                                      Text(" s")
-                                                    ])));
+                                                trailing: TrailingSecondsInput(
+                                                    initialValue:
+                                                        workoutExercise
+                                                            .duration,
+                                                    defaultDuration:
+                                                        _editableWorkout!
+                                                            .exerciseDuration,
+                                                    onSaved: (String? input) {
+                                                      var secs = int.tryParse(
+                                                          input ?? "");
+                                                      workoutExercise.duration =
+                                                          secs;
+                                                    }));
                                           },
                                           itemCount: _editableWorkout!
                                               .workoutExercises.length,
@@ -291,6 +215,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                       ),
                                       Expanded(
                                           child: DragList<WorkoutExercise>(
+                                        //todo use ReorderableListView.builder with custom drag handles instead
                                         padding: EdgeInsets.only(bottom: 32),
                                         items:
                                             _editableWorkout!.workoutExercises,
