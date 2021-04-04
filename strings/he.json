@@ -63,5 +63,10 @@
     "exerciseStepups": "עליות מדרגה",
     "btnAddCustomExerice": "הצעת תרגיל מותאם אישית",
     "txtNegativeNumber": "לא חיובי",
-    "txtTapForControls": "להצגת הפקדים יש ללחוץ"
+    "txtTapForControls": "להצגת הפקדים יש ללחוץ",
+    "exerciseLunges": "מכרעים",
+    "exerciseJumpingJacks": "קפיצות פתיחה־סגירה",
+    "txtNotANumber": "בלתי־מספרי",
+    "txtSubmitExerciseMessageTitle": "תרגיל מוצע: %s",
+    "txtYoureGlowing": "כל הכבוד!"
 }
