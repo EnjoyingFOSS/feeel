@@ -58,5 +58,7 @@
     "btnDuplicate": "Çoğalt",
     "btnOK": "Tamam",
     "btnCancel": "İptal",
-    "txtCustomDuration": "Özel süre (sn.)"
+    "txtCustomDuration": "Özel süre (sn.)",
+    "btnDiscard": "Vazgeç",
+    "txtDiscardChanges": "Değişikliklerden vazgeçilsin mi?"
 }
