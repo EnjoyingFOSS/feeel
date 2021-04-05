@@ -23,14 +23,10 @@
 import 'exercise.dart';
 
 class WorkoutExercise {
-  final int? dbId;
   final Exercise exercise;
   int? duration;
   int? breakBeforeDuration;
 
   WorkoutExercise(
-      {this.dbId,
-      required this.exercise,
-      this.duration,
-      this.breakBeforeDuration});
+      {required this.exercise, this.duration, this.breakBeforeDuration});
 }
