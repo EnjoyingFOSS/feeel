@@ -58,5 +58,7 @@
     "txtAboutFeeel": "Over Feeel",
     "btnOK": "Oké",
     "btnCancel": "Annuleren",
-    "txtCustomDuration": "Aangepaste duur (in sec.)"
+    "txtCustomDuration": "Aangepaste duur (in sec.)",
+    "btnDiscard": "Verwerpen",
+    "txtDiscardChanges": "Wijzigingen verwerpen?"
 }
