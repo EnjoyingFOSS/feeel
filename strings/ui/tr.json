@@ -55,5 +55,8 @@
     "txtSecondsLeft5plus": "%d saniye kaldı",
     "txtLetsGoFirstUp": "Haydi başlayalım. Birinci: %s",
     "txtNextUp": "Sonraki:",
-    "btnDuplicate": "Çoğalt"
+    "btnDuplicate": "Çoğalt",
+    "btnOK": "Tamam",
+    "btnCancel": "İptal",
+    "txtCustomDuration": "Özel süre (sn.)"
 }
