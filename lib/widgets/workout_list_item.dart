@@ -24,7 +24,6 @@ import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/workout_listed.dart';
 import 'package:feeel/screens/workout_detail.dart';
-import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/widgets/triangle.dart';
 import 'package:flutter/material.dart';
