@@ -60,5 +60,6 @@
     "btnTakeAPhoto": "Take a photo",
     "btnAddALinkToPhotos": "Add a link to your photo(s)",
     "btnDisableTTS": "Use sounds instead of speech",
-    "btnAdjustTiming": "Adjust timing"
+    "btnAdjustTiming": "Adjust timing",
+    "btnDoneEditingTiming": "Done editing timing"
 }
