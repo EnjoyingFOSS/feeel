@@ -8,52 +8,79 @@ Translations
 ============
 Translations in "strings/ui" are released under the AGPLv3, those in "strings/exercises" under CC BY-SA 4.0.
 
-Basque
+Basque - ui strings
 ------
+* "mondstern"
 * "Osoitz"
 
-Dutch
+Chinese (Simplified) - ui strings
+-------
+* Liu Tao
+
+Czech - ui strings
+-----
+* "mondstern"
+
+Dutch - ui strings
 -----
 * Heimen Stoffels
 
-French
+Esperanto - ui strings
+------
+* Jakub Fabijan
+* mondstern
+
+French - ui strings
 ------
 * Max Garret
 * Jonathan D.
 * J. Lavoie
 * "T_Zocker"
 
-German
+German - ui strings
 ------
+* K. Herbert
+* "mondstern"
 * "mv87"
 * "premier.lifeboat"
 * "prem hassel"
 * Titus Jonas
 
-Hebrew
+Hebrew - ui strings
 ------
 * Omer I.S.
 
-Italian
+Indonesian - ui strings
+----------
+* Reza Almanda
+* SiegbjornSitumeang
+
+Italian - ui strings
 -----
 * Gianluca Vespignani
 * J. Lavoie
 
-Norwegian
+Norwegian - ui strings
 ---------
 * Allan Nordhøy 
+* "mondstern"
 
-Russian
+Persian - ui strings
+-------
+* Mohammad H. Tajaddini
+
+Russian - ui strings
 -----
-* "Invisible Man"
 * Artem
+* "Invisible Man"
+* "mondstern"
 
-Spanish
+Spanish - ui strings
 -----
 * Gabriel Tandil
 * Diego Sanguinetti
 
-Turkish
+Turkish - both ui and exercise strings
 ------
 * Oğuz Ersen
 
