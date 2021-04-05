@@ -20,7 +20,6 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:drag_list/drag_list.dart';
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
@@ -29,7 +28,6 @@ import 'package:feeel/models/workout_exercise.dart';
 import 'package:feeel/screens/exercise_picker.dart';
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';
-import 'package:feeel/widgets/duration_dropdown.dart';
 import 'package:feeel/widgets/empty_placeholder.dart';
 import 'package:feeel/widgets/exercise_editor_row.dart';
 import 'package:feeel/widgets/timing_header.dart';
@@ -214,29 +212,55 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                         height: 16,
                                       ),
                                       Expanded(
-                                          child: DragList<WorkoutExercise>(
-                                        //todo use ReorderableListView.builder with custom drag handles instead
-                                        padding: EdgeInsets.only(bottom: 32),
-                                        items:
-                                            _editableWorkout!.workoutExercises,
-                                        itemExtent: 72.0,
-                                        itemBuilder: (context, item, handle) {
-                                          return ExerciseEditorRow(
-                                              workoutExercise: item,
-                                              handle: handle,
-                                              trailing: IconButton(
-                                                icon: Icon(Icons.delete),
-                                                tooltip: "Delete".i18n,
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _editableWorkout!
-                                                        .workoutExercises
-                                                        .remove(item);
-                                                  });
-                                                },
-                                              ));
-                                        },
-                                      ))
+                                        child: ReorderableListView.builder(
+                                            buildDefaultDragHandles: false,
+                                            itemBuilder: (context, i) =>
+                                                ExerciseEditorRow(
+                                                    key: UniqueKey(),
+                                                    workoutExercise:
+                                                        _editableWorkout!
+                                                            .workoutExercises
+                                                            .elementAt(i),
+                                                    trailing: Row(children: [
+                                                      IconButton(
+                                                          icon: Icon(
+                                                              Icons.delete),
+                                                          tooltip:
+                                                              "Delete".i18n,
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              _editableWorkout!
+                                                                  .workoutExercises
+                                                                  .removeAt(i);
+                                                            });
+                                                          }),
+                                                      ReorderableDragStartListener(
+                                                        index: i,
+                                                        child: const Icon(
+                                                            Icons.drag_handle),
+                                                      )
+                                                    ])),
+                                            itemCount: _editableWorkout!
+                                                .workoutExercises.length,
+                                            onReorder: (oldI, newI) { //todo solve drag bug — might have to do with this: https://github.com/flutter/flutter/issues/67044
+                                              if (newI > oldI) newI--;
+
+                                              setState(() {
+                                                final temp = _editableWorkout!
+                                                    .workoutExercises
+                                                    .removeAt(oldI);
+                                                _editableWorkout!
+                                                    .workoutExercises
+                                                    .insert(newI, temp);
+                                              });
+                                            }),
+                                        // child: ReorderableListView.builder(
+                                        //     itemBuilder: (context, i) =>
+                                        //         ListTile(title: Text(i.toString()), key: Key(i.toString())),
+                                        //     itemCount: 24,
+                                        //     onReorder: (oldI, newI) {}
+                                        //     )
+                                      )
                                     ]);
                         },
                       ));
