@@ -142,7 +142,7 @@ class DBHelper {
       "$_IMAGE_SLUG_COL TEXT, " // todo what do I get from the server, really? actually, should split this up!
       "$_IMAGE_AUTHOR_COL TEXT, "
       "$_IMAGE_LICENSE_COL INTEGER, "
-      "$_CATEGORY_COL INTEGER" //todo not null?
+      "$_CATEGORY_COL INTEGER" //todo REMOVE THIS COLUMN
       ")");
 
   Future<void> _createWorkoutTable(Database db) async =>
@@ -587,9 +587,9 @@ class DBHelper {
                 description: map[_DESCRIPTION_COL] as String,
                 twoSided: map[_FLIPPED_COL] == 1,
                 imageSlug: map[_IMAGE_SLUG_COL] as String,
-                imageAuthor: map[_IMAGE_AUTHOR_COL] as String,
-                imageLicense: map[_IMAGE_LICENSE_COL] as int,
-                category: map[_CATEGORY_COL] as int))
+                imageAuthor: map[_IMAGE_AUTHOR_COL] as String?,
+                imageLicense: map[_IMAGE_LICENSE_COL]
+                    as int?)) //todo category should be everywhere
             .toList()
         : [];
     return list;
@@ -606,9 +606,8 @@ class DBHelper {
                 description: map[_DESCRIPTION_COL] as String,
                 twoSided: map[_FLIPPED_COL] == 1,
                 imageSlug: map[_IMAGE_SLUG_COL] as String,
-                imageAuthor: map[_IMAGE_AUTHOR_COL] as String,
-                imageLicense: map[_IMAGE_LICENSE_COL] as int,
-                category: map[_CATEGORY_COL] as int))
+                imageAuthor: map[_IMAGE_AUTHOR_COL] as String?,
+                imageLicense: map[_IMAGE_LICENSE_COL] as int?))
             .toList()
         : [];
     return list;
@@ -623,7 +622,7 @@ class DBHelper {
                 map[_ID_COL] as int,
                 WorkoutType.values[map[_TYPE_COL] as int],
                 map[_TITLE_COL] as String,
-                WorkoutCategory.values[map[_CATEGORY_COL] as int]))
+                WorkoutCategory.values[map[_CATEGORY_COL] as int? ?? 0]))
             .toList()
         : [];
     return list;
@@ -640,9 +639,8 @@ class DBHelper {
             description: res.first[_DESCRIPTION_COL] as String,
             twoSided: res.first[_FLIPPED_COL] == 1,
             imageSlug: res.first[_IMAGE_SLUG_COL] as String,
-            imageAuthor: res.first[_IMAGE_AUTHOR_COL] as String,
-            imageLicense: res.first[_IMAGE_LICENSE_COL] as int,
-            category: res.first[_CATEGORY_COL] as int)
+            imageAuthor: res.first[_IMAGE_AUTHOR_COL] as String?,
+            imageLicense: res.first[_IMAGE_LICENSE_COL] as int?)
         : null;
   }
 
@@ -653,25 +651,16 @@ class DBHelper {
         whereArgs: <int>[workoutId, type.index],
         orderBy: _ORDER_COL);
 
-    List<WorkoutExercise?> workoutExercises =
-        List.filled(weRes.length, null, growable: true);
-    int r = 0;
-    Exercise? exercise;
-    Map<String, dynamic> item;
-    for (int e = 0; e < weRes.length; e++) {
-      do {
-        item = weRes[r];
-        exercise = await queryExercise(item[_EXERCISE_COL] as int);
-        r++;
-      } while (exercise == null && r < weRes.length);
+    final List<WorkoutExercise> workoutExercises = List.empty(growable: true);
+    for (Map<String, dynamic> item in weRes) {
+      final exercise = await queryExercise(item[_EXERCISE_COL] as int);
 
-      if (exercise == null) break;
-
-      workoutExercises[e] = WorkoutExercise(
-          dbId: item[_ID_COL] as int,
-          exercise: exercise,
-          duration: item[_EXERCISE_DURATION_COL] as int,
-          breakBeforeDuration: item[_BREAK_DURATION_COL] as int);
+      if (exercise != null) {
+        workoutExercises.add(WorkoutExercise(
+            exercise: exercise,
+            duration: item[_EXERCISE_DURATION_COL] as int?,
+            breakBeforeDuration: item[_BREAK_DURATION_COL] as int?));
+      }
     }
 
     var workoutRes = await db.query(_WORKOUT_TABLE,
@@ -682,7 +671,7 @@ class DBHelper {
         ? Workout(
             dbId: workoutRes[0][_ID_COL] as int,
             title: workoutRes[0][_TITLE_COL] as String,
-            workoutExercises: workoutExercises as List<WorkoutExercise>,
+            workoutExercises: workoutExercises,
             countdownDuration: workoutRes[0][_COUNTDOWN_DURATION_COL] as int,
             breakDuration: workoutRes[0][_BREAK_DURATION_COL] as int,
             exerciseDuration: workoutRes[0][_EXERCISE_DURATION_COL] as int,
@@ -697,6 +686,7 @@ class DBHelper {
     // query
     final orig = await queryWorkout(workoutId, type);
     if (orig == null) return null;
+
     final duplicate = Workout(
         dbId: null,
         type: WorkoutType.CUSTOM,

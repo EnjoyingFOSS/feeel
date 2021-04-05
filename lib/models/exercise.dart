@@ -28,7 +28,6 @@ class Exercise {
   final String? imageSlug;
   final String? imageAuthor;
   final int? imageLicense;
-  final int category;
 
   Exercise(
       {required this.dbId,
@@ -37,6 +36,5 @@ class Exercise {
       required this.twoSided,
       this.imageSlug,
       this.imageAuthor,
-      this.imageLicense,
-      required this.category});
+      this.imageLicense});
 }
