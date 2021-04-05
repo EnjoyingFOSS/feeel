@@ -55,5 +55,8 @@
     "btnDisableTTS": "Geluiden afspelen in plaats van oefening voor te lezen",
     "btnAdjustTiming": "Timing aanpassen",
     "txtFeeelDescription": "Een open source workout-app die je privacy respecteert",
-    "txtAboutFeeel": "Over Feeel"
+    "txtAboutFeeel": "Over Feeel",
+    "btnOK": "Oké",
+    "btnCancel": "Annuleren",
+    "txtCustomDuration": "Aangepaste duur (in sec.)"
 }
