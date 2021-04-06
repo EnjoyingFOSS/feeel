@@ -99,5 +99,11 @@
     "stepsPistolSquat": "1. Berdiri pada satu kaki, dengan kaki yang lain lurus dan sedikit ke depan.\n2. Bend satu lutut perlahan-lahan, turun ke dalam jongkok dan menjaga punggung dan kaki Anda yang lain lurus.\n3. Perlahan-lahan angkat dirimu dari jongkok, meluruskan lutut yang bengkok dan menjaga kaki yang lain lurus.\n4. Ulangi",
     "exerciseKneelingKickback": "Kickbacks berlutut",
     "stepsKneelingKickback": "1. Merangkak turun.\n2. Dorong satu kaki ke belakang hingga diperluas, konsentrasi pada otot gluteus.\n3. Tunggu sebentar, kemudian kembali ke posisi awal.\n4. Ulangi, alternating feet",
-    "exerciseSingleLegCalfRaiseLeft": "Angkat kaki kiri anak sapi"
+    "exerciseSingleLegCalfRaiseLeft": "Angkat kaki kiri anak sapi",
+    "btnDoneEditingTiming": "Waktu pengeditan selesai",
+    "btnOK": "Ok",
+    "btnDiscard": "Buang",
+    "btnCancel": "Batal",
+    "txtDiscardChanges": "Batalkan perubahan?",
+    "txtCustomDuration": "Durasi kustom (s.)"
 }
