@@ -60,5 +60,6 @@
     "btnCancel": "İptal",
     "txtCustomDuration": "Özel süre (sn.)",
     "btnDiscard": "Vazgeç",
-    "txtDiscardChanges": "Değişikliklerden vazgeçilsin mi?"
+    "txtDiscardChanges": "Değişikliklerden vazgeçilsin mi?",
+    "btnDoneEditingTiming": "Zamanlamayı düzenleme tamamlandı"
 }
