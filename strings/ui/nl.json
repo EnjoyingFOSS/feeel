@@ -60,5 +60,6 @@
     "btnCancel": "Annuleren",
     "txtCustomDuration": "Aangepaste duur (in sec.)",
     "btnDiscard": "Verwerpen",
-    "txtDiscardChanges": "Wijzigingen verwerpen?"
+    "txtDiscardChanges": "Wijzigingen verwerpen?",
+    "btnDoneEditingTiming": "Aanpassen afronden"
 }
