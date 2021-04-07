@@ -19,7 +19,6 @@
 // 
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
-
 import 'package:i18n_extension/i18n_extension.dart';
 extension Localization on String {
 static var t = Translations("en") + 
@@ -34,7 +33,6 @@ static var t = Translations("en") +
 "eu": """Lortu duzu!""",
 "cs": """Dobrá práce!""",
 "es": """¡Lo ha conseguido!""",
-"nb": """Du klarte det!""",
 } +
 {
 "tr": """Sonraki:""",
@@ -47,7 +45,6 @@ static var t = Translations("en") +
 "eu": """Hurrengoa:""",
 "cs": """Další cvik:""",
 "es": """A continuación:""",
-"nb": """Neste:""",
 } +
 {
 "tr": """Haydi başlayalım. Birinci: %s""",
@@ -60,7 +57,6 @@ static var t = Translations("en") +
 "eu": """Goazen! Lehena: %s""",
 "cs": """Pojďme na to! První cvik: %s""",
 "es": """¡Vamos! Primer paso: %s""",
-"nb": """La oss begynne. Først: %s""",
 } +
 {
 "tr": """%d saniye kaldı""",
@@ -73,7 +69,6 @@ static var t = Translations("en") +
 "eu": """%d segundo geratzen dira""",
 "cs": """Zbývá %d vteřin""",
 "es": """%d segundos restante""",
-"nb": """%d sekunder igjen""",
 } +
 {
 "tr": """Mola zamanı!""",
@@ -86,7 +81,6 @@ static var t = Translations("en") +
 "eu": """Atsedenaldia!""",
 "cs": """Pauza!""",
 "es": """¡Descanso!""",
-"nb": """Pause!""",
 } +
 {
 "tr": """Denetimler için dokunun""",
@@ -99,7 +93,6 @@ static var t = Translations("en") +
 "eu": """Sakatu kontroletarako""",
 "cs": """Ťukněte pro ovládání""",
 "es": """Tocar para controles""",
-"nb": """Trykk for kontroller""",
 } +
 {
 "tr": """Resim eksik""",
@@ -112,7 +105,6 @@ static var t = Translations("en") +
 "eu": """Irudia falta da""",
 "cs": """Chybí fotka""",
 "es": """Imagen faltante""",
-"nb": """Bilde mangler""",
 } +
 {
 "tr": """Antrenman başlığı""",
@@ -125,7 +117,6 @@ static var t = Translations("en") +
 "eu": """Entrenamenduaren izenburua""",
 "cs": """Název tréninku""",
 "es": """Título del entrenamiento""",
-"nb": """Treningsøkt-tittel""",
 } +
 {
 "tr": """Kendi koçunuz olun!""",
@@ -138,7 +129,6 @@ static var t = Translations("en") +
 "eu": """Izan zure entrenatzaile!""",
 "cs": """Buď vlastním trenérem!""",
 "es": """¡Se su propio entrenador!""",
-"nb": """Vær din egen trener.""",
 } +
 {
 "tr": """Kendinizi en iyi hissettiren egzersizi tasarlayın""",
@@ -151,7 +141,6 @@ static var t = Translations("en") +
 "eu": """Diseinatu hoberen datorkizun entrenamendua""",
 "cs": """Navrhni si takový trénink, po kterém se budeš cítit nejlépe""",
 "es": """Diseñe el entrenamiento que le sentirá mejor""",
-"nb": """Design treningsøkten som får deg til å føle deg best mulig""",
 } +
 {
 "tr": """Tüm vücut""",
@@ -164,7 +153,6 @@ static var t = Translations("en") +
 "eu": """Gorputz osoa""",
 "cs": """Celé tělo""",
 "es": """De cuerpo entero""",
-"nb": """Hele kroppen""",
 } +
 {
 "tr": """Bacaklar""",
@@ -177,7 +165,6 @@ static var t = Translations("en") +
 "eu": """Hankak""",
 "cs": """Nohy""",
 "es": """Piernas""",
-"nb": """Bein""",
 } +
 {
 "tr": """Parlıyorsunuz!""",
@@ -190,7 +177,6 @@ static var t = Translations("en") +
 "eu": """Primeran zabiltza!""",
 "cs": """Dobrá práce!""",
 "es": """¡Está brillando!""",
-"nb": """Du gløder!""",
 } +
 {
 "tr": """Katkıda bulunun""",
@@ -203,7 +189,6 @@ static var t = Translations("en") +
 "eu": """Partekatu ariketa bat""",
 "cs": """Přispěj nový cvik""",
 "es": """Contribuir un ejercicio""",
-"nb": """Bidra""",
 } +
 {
 "tr": """Feeel, sizin gibi gönüllülerin egzersizler ve egzersiz fotoğrafları göndermesine güvenir. Gönderdiğiniz tüm fotoğraflar önce özel olarak işlenecek, ardından onay için size gönderilecek ve ancak daha sonra uygulamada yayınlanacaktır. Katkıda bulunduğunuz için teşekkürler!""",
@@ -216,7 +201,6 @@ static var t = Translations("en") +
 "eu": """Feeel aplikazioak zu bezalako boluntarioek bidalitako ariketa eta ariketen argazkiekin elikatzen da. Bidaltzen dituzun argazkian pribatuki prozesatuko dira, eta zuri bueltan bidaliko zaizkizu onarpenerako, eta soilik orduan argitaratuko dira aplikazioan. Eskerrik asko laguntzeagatik!""",
 "cs": """Feeel relies on volunteers like you to submit exercises and exercise photos. Any photos you submit will first be privately processed, then sent to you for approval, and only then released in the app. Thanks for contributing!""",
 "es": """Feeel depende de voluntarios como usted para enviar ejercicios y fotografías de ellos. Las fotos que envíe primero se procesarán de forma privada, luego se le solicitará para su aprobación y solo se publicarán en la aplicación. ¡Gracias por contribuir!""",
-"nb": """Feeel avhenger av frivillige som deg for innsendelse av øvelser og tilhørende bilder. Alle bilder du sender inn blir behandlet for personvern, og så sendt til deg for godkjennelse, for så å bli brukt i programmet. Takk for at du bidrar.""",
 } +
 {
 "tr": """Egzersiz adı""",
@@ -229,7 +213,6 @@ static var t = Translations("en") +
 "eu": """Ariketaren izena""",
 "cs": """Název cviku""",
 "es": """Nombre del ejercicio""",
-"nb": """Øvelsesnavn""",
 } +
 {
 "tr": """Egzersiz nasıl yapılır (isteğe bağlı)""",
@@ -242,7 +225,6 @@ static var t = Translations("en") +
 "eu": """Nola burutu ariketa (aukerakoa)""",
 "cs": """Jak provést cvik (nepovinné)""",
 "es": """Cómo se realiza el ejercicio (opcional)""",
-"nb": """Hvordan utføre øvelse (valgfritt)""",
 } +
 {
 "tr": """E-posta gönderilemedi""",
@@ -255,7 +237,6 @@ static var t = Translations("en") +
 "eu": """Ezin izan da e-maila bidali""",
 "cs": """E-mail se nepovedlo odeslat""",
 "es": """Correo no podría ser enviado""",
-"nb": """Kunne ikke sende e-post""",
 } +
 {
 "tr": """Egzersiz önerisi: %s""",
@@ -268,85 +249,57 @@ static var t = Translations("en") +
 "eu": """Ariketa proposamena: %s""",
 "cs": """Návrh cviku: %s""",
 "es": """Ejercicio propuesto: %s""",
-"nb": """Øvelsesforslag: %s""",
 } +
 {
 "tr": """Merhaba,
-
 Bir egzersiz önerisi gönderiyorum. İşbu belge ile bunların hepsinin sadece kendi çalışmam olduğunu beyan ederim. Bu mesajı göndererek, gönderilen adın ve açıklamanın CC BY-SA lisansı ve uygulama mağazası istisnası ile AGPLv3 altında yayınlanmasını geri alınamaz şekilde kabul ediyorum. Ekteki resimlerin düşük çözünürlüklü çeşitlere dönüştürülmesine de izin veriyorum. İşlendikten sonra, onları CC BY-SA lisansı altında lisanslamaya istekli olup olmadığımı değerlendireceğim.
-
 Egzersiz adı: %1s
 Egzersiz adımları:
 %2s""",
 "nl": """Hallo,
-
 Hierbij dien ik een voorstel in voor een oefening. Ik begrijp dat ik alleen mijn *eigen* werk mag indienen. Als ik dit bericht verstuur, ga ik onherroepelijk akkoord met het feit dat de naam en omschrijving van de oefening worden vrijgegeven onder de CC BY-SA- en GPLv3-licentie, met uitzondering van de appwinkel. Ik geef tevens toestemming om de bijgevoegde afbeelding(en) anoniem te verwerken. Daarna worden ze door mij geëvalueerd om ze al dan niet vrij te geven onder de CC BY-SA-licentie.
-
 Naam van de oefening: %1s
 Uitleg:
 %2s""",
 "de": """Hallo,
-
 ich sende einen Übungsvorschlag. Hiermit erkläre ich, dass ich die vorliegende Arbeit ausschließlich eigenständig angefertigt habe. Mit dem Absenden dieser Nachricht erkläre ich mich unwiderruflich damit einverstanden, dass der eingereichte Name und die Beschreibung unter einer CC BY-SA-Lizenz und einer AGPLv3-Lizenz mit Ausnahmegenehmigung für den App-Store veröffentlicht werden. Ich gebe außerdem die Erlaubnis, sämtliche angehängte Bilder in Low-Poly-Grafiken zu konvertieren. Nachdem sie verarbeitet wurden, werde ich prüfen, ob ich bereit bin, sie unter der CC BY-SA-Lizenz zu lizenzieren.
-
 Name der Übung:  %1s
 Übungsschritte:
 %2s""",
 "ru": """Здравствуйте,
-
 Я представляю свой вариант упражнения. Настоящим я заявляю, что все это только моя собственная работа. Отправляя это сообщение, я соглашаюсь на то, что представленное имя и описание упражнения будут опубликованы под лицензией CC BY-SA и AGPLv3 без лицензии магазина приложений. Я также даю разрешение на обработку прикрепленных изображений в низкополигональные варианты. Я также разрешаю обработку прилагаемых изображений и рассмотрю и оценю возможность их публикации под лицензией CC BY-SA. 
-
 Название упражнения: %1s
 Шаги упражнений:
 %2s""",
 "en": """Hello,
-
 I'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.
-
 Exercise name: %1s
 Exercise steps:
 %2s""",
 "it": """Ciao
-
 Sto inviando una proposta di esercizio. Con la presente dichiaro che tutto è solo opera mia. Con l'invio di questo messaggio, acconsento irrevocabilmente a far rilasciare il nome e la descrizione forniti secondo una licenza CC BY-SA e una AGPLv3 con una licenza di eccezione dell'app store. Inoltre do il permesso di elaborare l'immagine o le immagini allegate in varianti low-poly. Dopo che saranno state elaborate, valuterò se sono disposto a concederle in licenza secondo la licenza CC BY-SA.
-
 Nome dell'esercizio: %1s
 Passaggi:
 %2s""",
 "fr": """Bonjour,
-
 J’envoie une proposition d’exercice. Je déclare par la présente que tout ceci n’est que mon propre travail. En envoyant ce message, j’accepte irrévocablement que le nom et la description soumis soient publiés sous une licence CC BY-SA et un AGPLv3 avec une licence d’exception de magasin d’applications. Je donne également la permission de traiter les images jointes en variantes low-poly. Après leur traitement, j’évaluerai si je suis prêt·e à les autoriser sous la licence CC BY-SA.
-
 Nom de l’exercice : %1s
 Étapes de l’exercice :
 % 2s""",
 "eu": """Kaixo,
-
 Ariketa proposamen bat bidaltzen du. Honen bidez nik neuk egindako lana dela adierazten dut- Mezu hau bidaliz, izena eta azalpena CC BY-SA eta AGPLv3 lizentzizentziekin, app store salbuespena barne, argitaratzea onartzen dut, atzera botatzeko aukera gabe. Erantsitako irudiak prozesatzeko baimena ematen dut ere, eta CC BY-SA lizentziarekin argitaratzea onartzea aztertuko dut.
-
 Ariketaren izena: %1s
 Ariketaren urratsak:
 %2s""",
 "cs": """Hello,
-
 I'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.
-
 Exercise name: %1s
 Exercise steps:
 %2s""",
 "es": """Hola,
-
 Estoy enviando una propuesta de un ejercicio. Por lo presente declaro que lo hice por cuenta propia. Al enviar este mensaje, de forma irreversible acepto que el nombre y la descripción presentados se publiquen bajo una licencia CC BY-SA y la licencia AGPLv3 con excepción de la tienda de aplicaciones. También doy consentimiento para procesar la(s) imágen(es) adjunta(s) en variante(s) low-poly. Después de que se procesen, evaluaré si estoy dispuesto a licenciarlos bajo la licencia CC BY-SA.
-
 Nombre del ejercicio: %1s
 Pasos del ejercicio:
-%2s""",
-"nb": """Hei,
-
-Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i sin helhet er mitt arbeide. Ved å sende denne meldinger, samtykker jeg til å ha innsendt navn og beskrivelse utgitt under en CC BY-SA-lisens, og en AGPLv3 med programbutikk-unntak. Jeg gir også tilgang til å behandle vedlagte bilde(r) i lavoppløsningsvarianter. Etter at de er behandlet, vil jeg vurdere hvorvidt jeg ønsker å gi dem ut under CC BY-SA-lisens.
-
-Øvelsesnavn: %1s
-Øvelsessteg:
 %2s""",
 } +
 {
@@ -360,7 +313,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Ezarpenak""",
 "cs": """Nastavení""",
 "es": """Ajustes""",
-"nb": """Innstillinger""",
 } +
 {
 "tr": """Lütfen bir antrenman başlığı belirtin""",
@@ -373,7 +325,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Zehaztu entrenamenduaren izenburua""",
 "cs": """Prosím poskytněte název tréninku""",
 "es": """Por favor especifica el título del entrenamiento""",
-"nb": """Angi en treningsøkt-tittel""",
 } +
 {
 "tr": """Lütfen en az 1 egzersiz ekleyin""",
@@ -386,7 +337,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Gehitu ariketa 1 gutxienez""",
 "cs": """Prosím přidejte alespoň 1 cvik""",
 "es": """Por favor añade al menos 1 ejercicio""",
-"nb": """Legg til minst én øvelse""",
 } +
 {
 "tr": """Süre""",
@@ -399,7 +349,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Iraupena""",
 "cs": """Délka""",
 "es": """Duración""",
-"nb": """Varighet""",
 } +
 {
 "tr": """Egzersiz süresi""",
@@ -412,7 +361,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Ariketaren iraupena""",
 "cs": """Délka cviku""",
 "es": """Duración del ejercicio""",
-"nb": """Øvelsesvarighet""",
 } +
 {
 "tr": """Mola süresi""",
@@ -425,7 +373,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Atsedenaldiaren iraupena""",
 "cs": """Délka přestávky""",
 "es": """Duración del descanso""",
-"nb": """Pauselengde""",
 } +
 {
 "tr": """Özel""",
@@ -438,7 +385,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Pertsonalizatua""",
 "cs": """Vlastní""",
 "es": """Personalizado""",
-"nb": """Tilpasset""",
 } +
 {
 "tr": """Sayısal olmayan""",
@@ -451,7 +397,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Ez-zenbakizkoa""",
 "cs": """Není číslo""",
 "es": """No numérico""",
-"nb": """Ikke tallbasert""",
 } +
 {
 "tr": """Pozitif olmayan""",
@@ -464,7 +409,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Ez positiboa""",
 "cs": """Není kladné""",
 "es": """No positivo""",
-"nb": """Ikke positiv""",
 } +
 {
 "tr": """Günlük bildirim""",
@@ -477,7 +421,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Eguneroko jakinarazpena""",
 "cs": """Denní upozornění""",
 "es": """Notificaciones diarias""",
-"nb": """Daglig merknad""",
 } +
 {
 "tr": """Antrenman yapmak için günlük bir hatırlatma""",
@@ -490,7 +433,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Eguneroko ariketarako oroigarria""",
 "cs": """Denní připomenutí jít cvičit""",
 "es": """Un recordatorio para entrenar""",
-"nb": """En daglig påminnelse om å trene""",
 } +
 {
 "tr": """Antrenman kıyafetlerini giyme zamanı!""",
@@ -503,7 +445,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Ariketarako janzteko unea!""",
 "cs": """Čas obléknout cvičební úbor!""",
 "es": """¡Tiempo para llevar ropa de entrenamiento!""",
-"nb": """På tide å få på seg treningstøyet!""",
 } +
 {
 "tr": """Taze ve zinde hissetmek sadece birkaç dakikanızı alır""",
@@ -516,7 +457,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Minutu gutxi batzuk nahikoa dira berritua eta indartsu sentitzeko""",
 "cs": """Stačí jen pár minut, abyste se cítil/a svěží a fit""",
 "es": """Este toma solo unos minutos para refrescarse y estar en forma""",
-"nb": """Det tar kun et par minutter å få godfølelsen""",
 } +
 {
 "tr": """Bana her gün egzersiz yapmayı hatırlat""",
@@ -529,7 +469,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Gogoratu nazazu eguneroko ariketa""",
 "cs": """Připomínat, abych cvičil/a denně""",
 "es": """Recuérdeme hacer ejercicio diario""",
-"nb": """Minn meg på å trene hver dag""",
 } +
 {
 "tr": """Kamera izni olmadan fotoğraf çekilemez""",
@@ -542,7 +481,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Ezin dira argazkiak atera kamera baimenik gabe""",
 "cs": """Nelze fotografovat bez povolení fotoaparátu""",
 "es": """No se puede tomar fotos sin el permiso de cámara""",
-"nb": """Kan ikke ta bilder uten kameratilgang""",
 } +
 {
 "tr": """Bildirim zamanı""",
@@ -555,7 +493,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Jakinarazpen ordua""",
 "cs": """Čas upozornění""",
 "es": """Hora de notificación""",
-"nb": """Merknadstid""",
 } +
 {
 "tr": """Önce bir egzersiz ekleyin""",
@@ -568,7 +505,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Gehitu ariketa lehenbizi""",
 "cs": """Nejprve musíte přidat cvičení""",
 "es": """Añadir un ejercicio primero""",
-"nb": """Legg til en øvelse først""",
 } +
 {
 "tr": """Feeel hakkında""",
@@ -581,7 +517,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Feeel-i buruz""",
 "cs": """O Feeel""",
 "es": """Acerca de Feeel""",
-"nb": """Om Feeel""",
 } +
 {
 "tr": """Gizliliğinize saygı duyan açık kaynaklı bir evde antrenman uygulaması""",
@@ -594,7 +529,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """An open-source home workout app that respects your privacy""",
 "cs": """Open-source fitness aplikace, která respektuje vaše soukromí""",
 "es": """Una app de rutinas de ejercicio de código abierto que respeta tu privacidad tu privacidad""",
-"nb": """Et gemenhetslig fritt treningsprogram som tar hensyn til ditt personvern""",
 } +
 {
 "tr": """Antrenmanı başlat""",
@@ -607,7 +541,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Hasi entrenamendua""",
 "cs": """Spustit trénink""",
 "es": """Iniciar entrenamiento""",
-"nb": """Start treningsøkt""",
 } +
 {
 "tr": """Antrenmanı devam ettir""",
@@ -620,7 +553,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Berrekin entrenamendua""",
 "cs": """Pokračovat v tréninku""",
 "es": """Continuar entrenamiento""",
-"nb": """Fortsett treningsøkt""",
 } +
 {
 "tr": """Önceki egzersiz""",
@@ -633,7 +565,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Aurreko ariketa""",
 "cs": """Předchozí cvik""",
 "es": """Ejercicio anterior""",
-"nb": """Forrige øvelse""",
 } +
 {
 "tr": """Sonraki egzersiz""",
@@ -646,7 +577,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Hurrengo ariketa""",
 "cs": """Další cvik""",
 "es": """Ejercicio siguiente""",
-"nb": """Neste øvelse""",
 } +
 {
 "tr": """Egzersiz ekle""",
@@ -659,7 +589,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Gehitu ariketak""",
 "cs": """Přidat cviky""",
 "es": """Añadir ejercicios""",
-"nb": """Legg til øvelser""",
 } +
 {
 "tr": """Düzenle""",
@@ -672,7 +601,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Editatu""",
 "cs": """Upravit""",
 "es": """Editar""",
-"nb": """Rediger""",
 } +
 {
 "tr": """Sil""",
@@ -685,7 +613,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Ezabatu""",
 "cs": """Odstranit""",
 "es": """Borrar""",
-"nb": """Slett""",
 } +
 {
 "tr": """Çoğalt""",
@@ -698,7 +625,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Bikoiztu""",
 "cs": """Duplikovat""",
 "es": """Duplicar""",
-"nb": """Duplisere""",
 } +
 {
 "tr": """Bitti""",
@@ -711,7 +637,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Egina""",
 "cs": """Hotovo""",
 "es": """Hecho""",
-"nb": """Ferdig""",
 } +
 {
 "tr": """Daha fazla bilgi""",
@@ -724,7 +649,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Informazio gehiago""",
 "cs": """Více info""",
 "es": """Más info""",
-"nb": """Mer info""",
 } +
 {
 "tr": """Özel antrenman oluştur""",
@@ -737,7 +661,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Sortu entrenamendu pertsonala""",
 "cs": """Vytvořit vlastní trénink""",
 "es": """Crear entrenamiento personalizado""",
-"nb": """Opprett tilpasset treningsøkt""",
 } +
 {
 "tr": """Özel egzersiz öner""",
@@ -750,7 +673,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Proposatu ariketa pertsonalizatua""",
 "cs": """Navrhnout vlastní cvik""",
 "es": """Proponer ejercicio personalizado""",
-"nb": """Foreslå tilpasset øvelse""",
 } +
 {
 "tr": """E-posta ile gönder""",
@@ -763,7 +685,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Bidali e-mail bidez""",
 "cs": """Odeslat e-mailem""",
 "es": """Enviar por correo""",
-"nb": """Send inn via e-post""",
 } +
 {
 "tr": """Galeriden fotoğraf ekle""",
@@ -776,7 +697,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Gehitu argazkia galeriatik""",
 "cs": """Přidat fotku z galerie""",
 "es": """Añadir foto desde galería""",
-"nb": """Legg til bilde fra galleri""",
 } +
 {
 "tr": """Fotoğraf çek""",
@@ -789,7 +709,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Atera argazkia""",
 "cs": """Vyfotit cvik""",
 "es": """Tomar una foto""",
-"nb": """Ta et bilde""",
 } +
 {
 "tr": """Fotoğraf(lar)ınıza bir bağlantı ekleyin""",
@@ -802,7 +721,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Gehitu esteka zure argazkietara""",
 "cs": """Přidat odkaz k fotce/fotkám""",
 "es": """Añadir un enlace a su(s) foto(s)""",
-"nb": """Legg til en lenke for alle bilder""",
 } +
 {
 "tr": """Konuşma yerine sesleri kullan""",
@@ -815,7 +733,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Erabili soinuak hizketaren ordez""",
 "cs": """Používat zvuky namísto mluveného slova""",
 "es": """Usar sonidos en lugar del habla""",
-"nb": """Bruk lyder istedenfor tale""",
 } +
 {
 "tr": """Zamanlamayı ayarla""",
@@ -828,7 +745,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Doitu denbora""",
 "cs": """Upravit časování""",
 "es": """Ajustar ritmo""",
-"nb": """Juster rytme""",
 } +
 {
 "tr": """Bilimsel 7 dakikalık antrenman""",
@@ -841,7 +757,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """7 minututako entrenamendu zientifikoa""",
 "cs": """Vědecký sedmiminutový trénink""",
 "es": """Entrenamiento científico de 7 minutos""",
-"nb": """Vitenskapelig 7-minutters treningsøkt""",
 } +
 {
 "tr": """Bacak antrenmanı""",
@@ -854,7 +769,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Hanketarako entrenamendua""",
 "cs": """Trénink nohou""",
 "es": """Entrenamiento de piernas""",
-"nb": """Treningsøkt for bein""",
 } +
 {
 "tr": """Jack zıplama""",
@@ -867,7 +781,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Jumping jacks""",
 "cs": """Skákací panák""",
 "es": """Polichilenas""",
-"nb": """Hoppende snøengel""",
 } +
 {
 "tr": """1. Ayaklar bir arada ve kollar yanlarda olacak şekilde ayakta durun
@@ -901,9 +814,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "es": """1. Párese con los pies juntos y los brazos a los lados
 2. Salte a una posición con las piernas abiertas y las manos tocandose por encima de la cabeza
 3. Repita""",
-"nb": """1. Stå med føttene sammen og armene på sidene.
-2. Hopp utover med føttene, og la hendene røre ved hverandre over hodet.
-3. Gjenta""",
 } +
 {
 "tr": """Duvara yaslanarak oturma""",
@@ -916,7 +826,6 @@ Jeg sender deg et forslag til en øvelse. Jeg gjør oppmerksom på at dette i si
 "eu": """Horman eseri""",
 "cs": """Sed u stěny""",
 "es": """Asiento en pared""",
-"nb": """Sitt mot vegg""",
 } +
 {
 "tr": """1. Öne bakacak şekilde duvara yaslanın, ayaklar yere sıkıca oturtulmuş, omuz genişliğinde açılmış ve duvardan yaklaşık 60 cm uzakta olsun
@@ -941,7 +850,6 @@ Il dolore al quadricipite è normale, interrompi se avverti dolore al ginocchio 
 2. Descendez en gardant le dos contre le mur, jusqu'à faire un angle droit avec vos jambes. Vos genoux doivent être verticalement alignées avec vos chevilles
 Une douleur aux quadriceps est normale mais arrêtez vous si avez mal aux genoux""",
 "eu": """1. Jarri hormaren kontra, kanpora begira, oinen platak lurrean tinko, besaburuen altuerara zabalduta eta hormatik gutxi gora behera 60 zentimetrotara
-
 2. Irristatu hormatik behera, bizkarra hormaren kontra mantenduz, hankak angelu zuzenean dauden arte. Belaunak zuzenean orkatilen gainean egon beharko lukete.
 Koadrizepsean mina arrunta da, baina gelditu mina belaunean edo errotulan nabarituz gero.""",
 "cs": """1. Opři svá záda o stěnu s nohama pevně na zemi, od sebe vzdálenými asi o šířku ramen a přibližně ??????????? cm od stěny.
@@ -950,9 +858,6 @@ Bolest v ??????????????? je běžná. Přestaňte, pokud cítíte bolest v kolen
 "es": """1. Apóyese en la pared, mirando hacia adelante y con los pies plantados firmemente en el suelo, sus hombros deben separarse y estar a 50 centímetros de la pared
 2. Deslízate por la pared, manteniendo la espalda presionada a ella, hasta que las piernas estén en ángulo recto. Las rodillas deben estar directamente sobre los tobillos
 El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o en la rótula""",
-"nb": """1. Len deg mot en vegg, med hodet fra veggen og med godt feste for føttene i skulderbred avstand fra hverandre, og et stykke ut fra veggen
-2. Gli ned veggen, mens du har ryggen mot den, til føttene er i rett vinkel. Knærne skal være rett over anklene.
-At det gjør vondt i kvadriseps er normalt, stopp hvis du får vondt i kneet eller kneskåla""",
 } +
 {
 "tr": """Şınav""",
@@ -965,7 +870,6 @@ At det gjør vondt i kvadriseps er normalt, stopp hvis du får vondt i kneet ell
 "eu": """Flexioak""",
 "cs": """Kliky""",
 "es": """Lagartijas""",
-"nb": """Armhevinger""",
 } +
 {
 "tr": """1. Karnınız üzerine uzanın
@@ -1017,11 +921,6 @@ At det gjør vondt i kvadriseps er normalt, stopp hvis du får vondt i kneet ell
 3. Usa los brazos para levantar el estómago hasta que los brazos estén rectos, manteniendo la espalda recta
 4. Doble los brazos hasta que el pecho casi toque el suelo, asegurándose de que la espalda esté recta.
 5. Repita desde el paso 3""",
-"nb": """1. Ligg på magen
-2. Plasser hendene nært ørene
-3. Bruk armene til å lefte magen opp til armene er rette, mens du holder ryggen rett
-4. Bøy armene til brystet nesten rører bakken, og forsikre deg om at ryggen fremdeles er ret
-5. Gjenta fra steg 3""",
 } +
 {
 "tr": """Yarım mekik""",
@@ -1034,7 +933,6 @@ At det gjør vondt i kvadriseps er normalt, stopp hvis du får vondt i kneet ell
 "eu": """Abdominal karraskak""",
 "cs": """Sedolehy""",
 "es": """Abdominales""",
-"nb": """Bukbøy""",
 } +
 {
 "tr": """1. Dizlerinizi bükerek yere sırtüstü yatın.
@@ -1067,9 +965,6 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "es": """1. Acuéstese boca arriba en el suelo con las rodillas dobladas.
 2. Flexione los hombros hacia la pelvis. Las manos pueden estar detrás o al costado del cuello o cruzadas sobre el pecho.
 3. Repita""",
-"nb": """1. Legg deg med ansiktet ned mot gulvet og med knærne bøyd
-2. Bøy skuldrene mot bekkenet. Hendene kan være bak eller ved siden av nakken, eller i kryss over brystet
-3. Gjenta""",
 } +
 {
 "tr": """Adım atma""",
@@ -1082,7 +977,6 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "eu": """Eskailerak""",
 "cs": """Výšlapy""",
 "es": """Subida a peldaño""",
-"nb": """Steg""",
 } +
 {
 "tr": """1. Sandalyeye dönük şekilde durun
@@ -1127,10 +1021,6 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 2. Súbase a la silla
 3. Bájese de la silla
 4. Repita""",
-"nb": """1. Stå med ansiktet mot en stol
-2. Tre opp på stolen
-3. Tre ned fra stolen
-4. Gjenta""",
 } +
 {
 "tr": """Çömelme""",
@@ -1143,7 +1033,6 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "eu": """Makurtzeak""",
 "cs": """Dřepy""",
 "es": """Sentadillas""",
-"nb": """Knebøy""",
 } +
 {
 "tr": """1. Ayaklar omuz genişliğinde açık durun
@@ -1176,9 +1065,6 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "es": """1. Levántese con los pies separados al ancho de hombros
 2. Mueva las caderas hacia atrás y doble las rodillas y caderas para bajar el torso
 3. Repita""",
-"nb": """1. Stå med føttene i skulderbreddes avstand
-2. Flytt hoftene frem og bøy knærne og hoftene for å senke overkroppen
-3. Gjenta""",
 } +
 {
 "tr": """Sandalye ile dalma""",
@@ -1191,7 +1077,6 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "eu": """Aulki sartu-irtenak""",
 "cs": """Dipy na židli""",
 "es": """Bajadas en silla""",
-"nb": """Stolpress""",
 } +
 {
 "tr": """1. Sırt düz, eller ön kısmını tutacak şekilde bir sandalyenin ön tarafına oturun
@@ -1245,11 +1130,6 @@ omhoog en loop een stukje naar voren.
 3. Baje lentamente su cuerpo, manteniendo la espalda recta, hasta que los brazos estén en ángulo recto
 4. Levante el cuerpo de nuevo a la posición anterior con los brazos extendidos.
 5. Repita los pasos 3 y 4""",
-"nb": """1. Sitt ned på, og forparten av en stol med hendene, mens du har ryggen rett
-2. Mens du fremdeles holder forparten, med armene utstrakt, løft rumpen og gå 10 cm forover slik at den er litt løftet fra stolen.
-3. Senk kroppen sakte, mens du holder ryggen rett, til armene er i rett vinkel
-4. Løft kroppen igjen til forrige posisjon, med armene utstrakt
-5. Gjenta steg 3 og 4""",
 } +
 {
 "tr": """Plank hareketi""",
@@ -1262,7 +1142,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Ohola""",
 "cs": """Prkno""",
 "es": """Plancha""",
-"nb": """Planke""",
 } +
 {
 "tr": """1. Kollar düz ve dizler bükülü olarak dört ayak üzerine eğilin
@@ -1296,9 +1175,6 @@ omhoog en loop een stukje naar voren.
 "es": """1. Póngase en cuatro patas, con los brazos rectos y las rodillas flexionadas
 2. Camine con los pies hacia atrás hasta que estén extendidos
 3. Mantenga esta posición""",
-"nb": """1. Gå ned på alle fire, med armene rett, og knærne bøyd
-2. Strekk føttene bakover til de er rette
-3. Holde denne posisjonen""",
 } +
 {
 "tr": """Yüksek dizler""",
@@ -1311,7 +1187,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Belaun garaiak""",
 "cs": """Vysoká kolena""",
 "es": """Rodillas elevadas""",
-"nb": """Høy knebøy""",
 } +
 {
 "tr": """1. Dizleri kaldırabildiğiniz kadar yukarı kaldırarak ve bacakları hızlı bir şekilde değiştirerek olduğunuz yerde koşun""",
@@ -1324,7 +1199,6 @@ omhoog en loop een stukje naar voren.
 "eu": """1. Egin korrika tokian, belaunak eroso den bezain beste altxatuz hanka batetik bestera erritmo bizian""",
 "cs": """1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace""",
 "es": """1. Trote en el lugar, con las rodillas tan altas como pueda y cambie de pierna a un ritmo rápido""",
-"nb": """1. Jogg der du er, ved å sende knærne så høyt opp som det er komfortabelt, der du veksler mellom dem raskt""",
 } +
 {
 "tr": """Lunge hareketi""",
@@ -1337,7 +1211,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Lunges""",
 "cs": """Výpady""",
 "es": """Estocadas""",
-"nb": """Utfall""",
 } +
 {
 "tr": """1. Sırtınız düz bir şekilde durun
@@ -1399,12 +1272,6 @@ omhoog en loop een stukje naar voren.
 4. Vuelva a subir la pelvis
 5. Vuelva a la posición con el pie hacia atrás
 6. Repita, cambiando de pierna cada vez""",
-"nb": """1. Stå med ryggen rett
-2. Ta et stort steg forover med venstrefoten
-3. Press ned bekkenet til du nesten rører bakken med høyre kne
-4. Hev bekkenet igjen
-5. Gå tilbake til stående posisjon ved å ta et steg tilbake
-6. Gjenta, og bytt bein for hver gang""",
 } +
 {
 "tr": """Tek bacaklı çömelme (sol)""",
@@ -1417,7 +1284,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Split squats left""",
 "cs": """Dřep ve výpadu nalevo""",
 "es": """Media sentadillas izquierda""",
-"nb": """Ettbeinsknebøy, venstre""",
 } +
 {
 "tr": """Tek bacaklı çömelme (sağ)""",
@@ -1430,7 +1296,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Split squats right""",
 "cs": """Dřep ve výpadu napravo""",
 "es": """Media sentadillas derecha""",
-"nb": """Ettbeinsknebøy, høyre""",
 } +
 {
 "tr": """1. Sırtınız düz bir şekilde durun
@@ -1483,11 +1348,6 @@ omhoog en loop een stukje naar voren.
 3. Baje la pelvis hasta que casi toque el suelo con la rodilla derecha
 4. Suba la pelvis
 5. Repita desde el paso 3""",
-"nb": """1. Stå med ryggen rett
-2. Ta et stort skritt forover med venstre bein
-3. Senk bekkenet ned til du nesten rører gulvet med høyre kne
-4. Hev bekkenet igjen
-5. Gjenta fra steg 3""",
 } +
 {
 "tr": """Dönerek şınav""",
@@ -1500,7 +1360,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Push-up rotations""",
 "cs": """Kliky s rotací""",
 "es": """Flexiones a rotación""",
-"nb": """Armhevingsrotasjoner""",
 } +
 {
 "tr": """1. Normal bir şınav yapın:
@@ -1578,14 +1437,6 @@ omhoog en loop een stukje naar voren.
 1.e Levante el estómago de nuevo, volviendo al paso 3
 2. Gire el cuerpo hacia un lado para que la espalda quede recta, la mano inferior que sostiene el cuerpo esté completamente extendida y sólo las extremidades inferiores toquen el suelo
 3. Repita, cambiando de lado en el paso 2 otra vez""",
-"nb": """1. Utfør vanlig armheving
-1.a Legg deg ned på magen
-1.b Plasser hendene nært ørene
-1.c Bruk armene til å løfte magen opp, til armene er rette, mens du holder ryggen rett
-1.d Bøy armene til brystet nesten rører bakken, mens du holder ryggen rett
-1.e Løfte magen opp igjen, og gå tilbake til steg 3
-2. Roter kroppen til siden, slik at ryggen er rett, nederste hånd som støtter kroppen er helt utstrakt, og kun nederste hånd og fot rører gulvet
-3. Gjenta, og bytt side i steg 2 hver gang""",
 } +
 {
 "tr": """Yan plank hareketi (sol)""",
@@ -1598,7 +1449,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Side plank left""",
 "cs": """Prkno na levém boku""",
 "es": """Plancha de lado izquierdo""",
-"nb": """Sideplanke, venstre""",
 } +
 {
 "tr": """Yan plank hareketi (sağ)""",
@@ -1611,7 +1461,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Side plank right""",
 "cs": """Prkno na pravém boku""",
 "es": """Plancha de lado derecho""",
-"nb": """Sideplanke, høyre""",
 } +
 {
 "tr": """1. Alt dirseğiniz dik açıyla, kolunuz dışarı çıkacak şekilde yan tarafınıza uzanın
@@ -1644,9 +1493,6 @@ omhoog en loop een stukje naar voren.
 "es": """1. Acuéstese sobre su lado correspondiente, con el codo en ángulo recto y el brazo hacia afuera
 2. Levante la pelvis del suelo levantando el hombro hacia arriba, manteniendo el antebrazo en el suelo; la cabeza, la pelvis y los pies deben estar en línea recta
 3. Mantenga esta posición""",
-"nb": """1. Legg deg på siden, med nederste albue i rett vinkel, med armen utover
-2. Løft bekkenet fra bakken, ved å løfte din nederste skulder oppover, mens du har underarmen i bakken; hode; bekken; og føtter skal være i rett linje
-3. Hold denne posisjonen""",
 } +
 {
 "tr": """Yana tek bacaklı çömelme (sol)""",
@@ -1659,7 +1505,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Side split squats left""",
 "cs": """Boční výpady nalevo""",
 "es": """Sentadilla de lado izquierdo""",
-"nb": """Ettbeinssideknebøy, venstre""",
 } +
 {
 "tr": """Yana tek bacaklı çömelme (sağ)""",
@@ -1672,7 +1517,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Side split squats right""",
 "cs": """Boční výpady napravo""",
 "es": """Sentadilla de lado derecho""",
-"nb": """Ettbeinssideknebøy, høyre""",
 } +
 {
 "tr": """1. Dik durun ve omuz genişliğinden biraz daha geniş bir yan adım atın.
@@ -1700,16 +1544,11 @@ omhoog en loop een stukje naar voren.
 2. Tolestu belaun bat izterra lurrarekiko paralelo dagoen arte. Tolestutako belauna oinarekin lerrokatuta egon behar du.
 3. Itzuli hasierako posiziora eta errepikatu.""",
 "cs": """1. Stand tall and take a wide lateral stride, just greater than shoulder width. 
-
         2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.
-
         3. Press up and repeat, switching feet.""",
 "es": """1. Póngase de pie y dé un amplio paso lateral, un poco más grande que el ancho de los hombros
 2. Doble una rodilla hasta que su muslo esté paralelo al suelo. La rodilla doblada debe estar en línea con el pie
 3. Vuelva a la posición inicial y repita""",
-"nb": """1. Stå rett og ta et stor skritt ut til siden, litt større enn skulderbredde
-2. Bøy ett kne til låret er parallelt med gulvet. Kneet må være på linje med foten.
-3. Dytt deg tilbake til startposisjon og gjenta.""",
 } +
 {
 "tr": """Bulgar tek bacaklı çömelmesi (sol)""",
@@ -1722,7 +1561,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Bulgarian split squats left""",
 "cs": """Bulharské dřepy na levé noze""",
 "es": """Sentadilla búlgara izquierda""",
-"nb": """Bulgarske ettbeinsknebøy, venstre""",
 } +
 {
 "tr": """Bulgar tek bacaklı çömelmesi (sağ)""",
@@ -1735,7 +1573,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Bulgarian split squats right""",
 "cs": """Bulharské dřepy na pravé noze""",
 "es": """Sentadilla búlgara derecha""",
-"nb": """Bulgarske ettbeinsknebøy, høyre""",
 } +
 {
 "tr": """1. Bir sandalyenin önünde dik durun ve büyük bir adım atın. Ayaklarınızdan birinin üst kısmını sandalyenin üzerine koyun.
@@ -1768,9 +1605,6 @@ omhoog en loop een stukje naar voren.
 "es": """1. Póngase de pie delante de una silla y dé un largo paso. Ponga la parte superior de uno de sus pies en la silla
 2. Doble la rodilla delantera, balanceando los brazos hasta que la rodilla trasera casi toque el suelo.
 3. Empuje hacia atrás a la posición inicial y repita""",
-"nb": """1. Stå rett foran en stol og ta et stort steg. Putt øvre del av en av beina dine på stolen.
-2. Bøy det fremste kneet, der du balanserer med armene til bakre kne nesten rører bakken
-3. Dytt deg tilbake til startposisjon og gjenta""",
 } +
 {
 "tr": """Tabanca pozisyonunda çömelme (sol)""",
@@ -1783,7 +1617,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Pistol squats left""",
 "cs": """Dřep na levé noze""",
 "es": """Sentadillas en pistol izquierda""",
-"nb": """Pistolknebøy, venstre""",
 } +
 {
 "tr": """Tabanca pozisyonunda çömelme (sağ)""",
@@ -1796,7 +1629,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Pistol squats right""",
 "cs": """Dřep na pravé noze""",
 "es": """Sentadillas en pistol derecha""",
-"nb": """Pistolknebøy, høyre""",
 } +
 {
 "tr": """1. Diğer bacağınız düz ve hafifçe öne gelecek şekilde tek ayak üzerinde durun.
@@ -1839,10 +1671,6 @@ omhoog en loop een stukje naar voren.
 2. Doble una rodilla lentamente, bajando en sentadilla y manteniendo la espalda y la otra pierna estirada.
 3. Levántese lentamente de la sentadilla, enderezando la rodilla doblada y manteniendo la otra pierna recta.
 4. Repita""",
-"nb": """1. Stå på ett ben, med det andre benet rett, og litt forover
-2. Bøy ett kne sakte, og gå ned i en knebøy, mens du holder ryggen og det andre benet rett
-3. Reis deg sakte fra knebøyen, der du retter det bøyde kneet og holder det andre benet rett
-4. Gjenta""",
 } +
 {
 "tr": """Diz çöküp geri tepme""",
@@ -1855,7 +1683,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Kneeling kickbacks""",
 "cs": """Kickbacky v kleku""",
 "es": """Patada de rodilla""",
-"nb": """Knelende bakspark""",
 } +
 {
 "tr": """1. Dört ayak üzerine eğilin.
@@ -1898,10 +1725,6 @@ omhoog en loop een stukje naar voren.
 2. Empuje un pie hacia atrás hasta que se extienda completamente, concentrándose en los músculos de los glúteos
 3. Quédese un segundo, y luego vuelva a la posición inicial
 4. Repita, alternando los pies""",
-"nb": """1. Legg deg på alle fire
-2. Dytt en fot bakover til den er rett, og konsentrer deg om setemusklene
-3. Hold i ett sekund, og gå så tilbake til opprinnelig posisjon
-4. Gjenta, og veksle bein for hver gang""",
 } +
 {
 "tr": """Sol bacak baldır kaldırma""",
@@ -1914,7 +1737,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Left leg calf raises""",
 "cs": """Výpony na levé noze""",
 "es": """Elevación de pantorrilla izquierda""",
-"nb": """Legghevinger, venstre""",
 } +
 {
 "tr": """Sağ bacak baldır kaldırma""",
@@ -1927,7 +1749,6 @@ omhoog en loop een stukje naar voren.
 "eu": """Right leg calf raises""",
 "cs": """Výpony na pravé noze""",
 "es": """Elevación de pantorrilla derecha""",
-"nb": """Legghevinger, høyre""",
 } +
 {
 "tr": """1. Hareket aralığını artırmak için yerde veya bir basamağın kenarında durun. Üst kısmı baldırınızın üzerine koyarak bir ayağınızı kaldırın.
@@ -1960,9 +1781,6 @@ omhoog en loop een stukje naar voren.
 "es": """1. Párese en el suelo o en el borde de un escalón para aumentar el rango de movimiento. Levante un pie, colocando la parte superior de su pantorrilla
 2. Levante los talones hasta que esté de pie
 3. Manténgase en esta posición durante tres segundos, luego baje el pie sin tocar el suelo con el talón.""",
-"nb": """1. Stå på gulvet eller på kanten av et steg for å øke bevegelsesfriheten. Hev ett bein, og plasser øvre del på leggen
-2. Løfte hælene til du står på tærne
-3. Hold denne posisjonen i tre sekunder, og senk så foten uten å røre bakken med hælen""",
 };
 String get i18n => localize(this, t);
 }
