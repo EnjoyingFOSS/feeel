@@ -99,5 +99,11 @@
     "exerciseSingleLegCalfRaiseLeft": "Wadenheben linkes Bein",
     "exerciseSingleLegCalfRaiseRight": "Wadenheben rechtes Bein",
     "stepsSingleLegCalfRaise": "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n2. Lift your heels until you're standing on toes.\n3. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.",
-    "btnDuplicate": "verdoppeln"
+    "btnDuplicate": "verdoppeln",
+    "btnDoneEditingTiming": "Fertig mit der Bearbeitung",
+    "btnOK": "OK",
+    "btnDiscard": "Verwerfen",
+    "btnCancel": "Abbrechen",
+    "txtDiscardChanges": "Änderungen verwerfen?",
+    "txtCustomDuration": "Benutzerdefinierte Dauer (Sek.)"
 }

@@ -99,5 +99,10 @@
     "exerciseSingleLegCalfRaiseRight": "Elevación de pantorrilla derecha",
     "stepsSingleLegCalfRaise": "1. Párese en el suelo o en el borde de un escalón para aumentar el rango de movimiento. Levante un pie, colocando la parte superior de su pantorrilla\n2. Levante los talones hasta que esté de pie\n3. Manténgase en esta posición durante tres segundos, luego baje el pie sin tocar el suelo con el talón.",
     "txtFeeelDescription": "Una app de rutinas de ejercicio de código abierto que respeta tu privacidad tu privacidad",
-    "txtAboutFeeel": "Acerca de Feeel"
+    "txtAboutFeeel": "Acerca de Feeel",
+    "btnOK": "Okey",
+    "btnDiscard": "Descartar",
+    "btnCancel": "Cancelar",
+    "txtDiscardChanges": "¿Descartar cambios?",
+    "txtCustomDuration": "Duración personalizada (s.)"
 }
