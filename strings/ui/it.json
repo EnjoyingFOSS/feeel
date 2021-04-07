@@ -55,5 +55,11 @@
     "btnDisableTTS": "Usa suoni invece del parlato",
     "btnAdjustTiming": "Regola i tempi",
     "txtFeeelDescription": "Un'applicazione di allenamento a casa con codice aperto che rispetta la tua privacy",
-    "txtAboutFeeel": "Informazioni su Feeel"
+    "txtAboutFeeel": "Informazioni su Feeel",
+    "btnDoneEditingTiming": "Modifica dei tempi finita",
+    "btnOK": "OK",
+    "txtDiscardChanges": "Abbandonare le modifiche?",
+    "btnDiscard": "Abbandona",
+    "btnCancel": "Annulla",
+    "txtCustomDuration": "Durata personalizzata (s.)"
 }

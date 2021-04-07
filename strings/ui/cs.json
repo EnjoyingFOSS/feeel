@@ -55,5 +55,11 @@
     "btnDisableTTS": "Používat zvuky namísto mluveného slova",
     "btnAdjustTiming": "Upravit časování",
     "txtFeeelDescription": "Open-source fitness aplikace, která respektuje vaše soukromí",
-    "txtAboutFeeel": "O Feeel"
+    "txtAboutFeeel": "O Feeel",
+    "btnDoneEditingTiming": "Časování upraveno",
+    "btnOK": "OK",
+    "btnDiscard": "Zahodit",
+    "btnCancel": "Zrušit",
+    "txtDiscardChanges": "Zahodit změny?",
+    "txtCustomDuration": "Vlastní délka (s.)"
 }
