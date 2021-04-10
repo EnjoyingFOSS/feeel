@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/screens/workout_list.dart';
 import 'package:feeel/theming/feeel_colors.dart';
@@ -27,14 +28,22 @@ import 'package:feeel/theming/feeel_shade.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'package:i18n_extension/i18n_widget.dart';
-
 import 'db/notification_helper.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final themeMode =
+      await AdaptiveTheme.getThemeMode() ?? AdaptiveThemeMode.light;
+  runApp(MyApp(themeMode: themeMode));
+}
 
 class MyApp extends StatelessWidget {
+  final AdaptiveThemeMode themeMode;
+
+  const MyApp({Key? key, this.themeMode = AdaptiveThemeMode.light})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
@@ -44,11 +53,10 @@ class MyApp extends StatelessWidget {
     NotificationHelper.helper.init(context);
     TTSHelper.tts.init(context);
 
-    final dayColors = ColorScheme(
+    final lightColors = ColorScheme(
         //todo extract colors to separate file
         primary: FeeelColors.blue.getColor(FeeelShade.DARK),
-        primaryVariant: FeeelColors.blue
-            .getColor(FeeelShade.DARKER), //used as primaryColorDark in theme
+        primaryVariant: FeeelColors.blue.getColor(FeeelShade.DARKER),
         secondary: FeeelColors.orange.getColor(FeeelShade.DARK),
         secondaryVariant: FeeelColors.orange.getColor(FeeelShade.DARKER),
         surface: Colors.white,
@@ -61,10 +69,9 @@ class MyApp extends StatelessWidget {
         onError: Colors.black87,
         brightness: Brightness.light);
 
-    final nightColors = ColorScheme(
+    final darkColors = ColorScheme(
         primary: FeeelColors.blue.getColor(FeeelShade.LIGHT),
-        primaryVariant: FeeelColors.blue
-            .getColor(FeeelShade.LIGHTER), //used as primaryColorDark in theme
+        primaryVariant: FeeelColors.blue.getColor(FeeelShade.LIGHTER),
         secondary: FeeelColors.orange.getColor(FeeelShade.LIGHT),
         secondaryVariant: FeeelColors.orange.getColor(FeeelShade.LIGHTER),
         surface: Colors.black87,
@@ -77,52 +84,62 @@ class MyApp extends StatelessWidget {
         onError: Colors.white,
         brightness: Brightness.dark);
 
-    var colors = dayColors;
-    return MaterialApp(
-        title: 'Feeel',
-        supportedLocales: [
-          const Locale('en'),
-          const Locale('cs'),
-          const Locale('de'),
-          const Locale('es'),
-          const Locale('eu'),
-          const Locale('fr'),
-          const Locale('it'),
-          const Locale('nb'),
-          const Locale('nl'),
-          const Locale('ru'),
-          const Locale('tr'),
-        ],
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        theme: ThemeData(
-            visualDensity: VisualDensity.standard,
-            backgroundColor: colors.background,
-            brightness: colors.brightness,
-            colorScheme: colors,
-            primaryColor: colors.primary,
-            primaryColorDark: colors.primaryVariant,
-            accentColor: colors.secondary,
-            scaffoldBackgroundColor: colors.background,
-            cardColor: colors.surface,
-            errorColor: colors.error,
-            buttonColor: colors.primary,
-            toggleableActiveColor: colors.primary,
-            textSelectionHandleColor: colors.secondary,
-            appBarTheme: AppBarTheme(
-                color: colors.background,
-                iconTheme: IconThemeData(color: colors.onBackground),
-                textTheme: TextTheme(
-                    headline6: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900,
-                        color: colors.onBackground)),
-                elevation: 0,
-                brightness: Brightness.light)),
-        home:
-            I18n(child: WorkoutListScreen())); //todo not seeing current locale!
+    final lightTheme = getThemeFromScheme(lightColors);
+    final darkTheme = getThemeFromScheme(darkColors);
+
+    return AdaptiveTheme(
+        light: lightTheme,
+        dark: darkTheme,
+        initial: AdaptiveThemeMode.light,
+        builder: (theme, darkTheme) => MaterialApp(
+            title: 'Feeel',
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            supportedLocales: [
+              const Locale('en'),
+              const Locale('cs'),
+              const Locale('de'),
+              const Locale('es'),
+              const Locale('eu'),
+              const Locale('fr'),
+              const Locale('it'),
+              const Locale('nb'),
+              const Locale('nl'),
+              const Locale('ru'),
+              const Locale('tr'),
+            ],
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            home: I18n(
+                child: WorkoutListScreen()))); //todo not seeing current locale!
+  }
+
+  ThemeData getThemeFromScheme(ColorScheme colors) {
+    return ThemeData(
+        visualDensity: VisualDensity.standard,
+        backgroundColor: colors.background,
+        brightness: colors.brightness,
+        colorScheme: colors,
+        primaryColor: colors.primary,
+        primaryColorDark: colors.primaryVariant,
+        accentColor: colors.secondary,
+        scaffoldBackgroundColor: colors.background,
+        cardColor: colors.surface,
+        errorColor: colors.error,
+        buttonColor: colors.primary,
+        toggleableActiveColor: colors.primary,
+        appBarTheme: AppBarTheme(
+            color: colors.background,
+            iconTheme: IconThemeData(color: colors.onBackground),
+            textTheme: TextTheme(
+                headline6: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w900,
+                    color: colors.onBackground)),
+            elevation: 0,
+            brightness: Brightness.light));
   }
 }

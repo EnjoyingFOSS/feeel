@@ -21,12 +21,15 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:about/about.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/db/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
+import 'package:feeel/widgets/theme_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:feeel/theming/theme_mode_extensions.dart';
 
 class SettingsScreen extends StatefulWidget {
   SettingsScreen({Key? key}) : super(key: key);
@@ -35,14 +38,22 @@ class SettingsScreen extends StatefulWidget {
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
+class _SettingsBundle {
+  final SharedPreferences preferences;
+  final AdaptiveThemeMode? themeMode;
+
+  _SettingsBundle(this.preferences, this.themeMode);
+}
+
 class _SettingsScreenState extends State<SettingsScreen> {
-  late Future<SharedPreferences> _preferencesFuture;
+  late Future<_SettingsBundle> _preferencesFuture;
   static const _DEFAULT_NOTIFICATION_TIME = TimeOfDay(hour: 20, minute: 10);
+  AdaptiveThemeMode? curTheme;
 
   @override
   void initState() {
     super.initState();
-    _preferencesFuture = SharedPreferences.getInstance();
+    _preferencesFuture = _getSettingsBundle();
   }
 
   @override
@@ -57,21 +68,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
         body: FutureBuilder(
             future: _preferencesFuture,
             builder: (BuildContext context,
-                AsyncSnapshot<SharedPreferences> snapshot) {
+                AsyncSnapshot<_SettingsBundle> snapshot) {
               if (snapshot.hasData) {
-                SharedPreferences preferences = snapshot.data!;
+                final settingsBundle = snapshot.data!;
                 final notificationTime = NotificationHelper.timeFromInt(
-                    preferences.getInt(PreferenceKeys.NOTIFICATION_TIME_PREF));
+                    settingsBundle.preferences
+                        .getInt(PreferenceKeys.NOTIFICATION_TIME_PREF));
+                curTheme = settingsBundle.themeMode;
                 return ListView(
                   children: <Widget>[
                     SwitchListTile.adaptive(
-                      value: preferences
+                      value: settingsBundle.preferences
                               .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
                           false,
                       title: Text("Use sounds instead of speech".i18n),
                       onChanged: (bool newValue) {
                         setState(() {
-                          preferences.setBool(
+                          settingsBundle.preferences.setBool(
                               PreferenceKeys.TTS_DISABLED_PREF, newValue);
                         });
                       },
@@ -83,7 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         _setNotificationTime(
                             context,
                             newValue ? _DEFAULT_NOTIFICATION_TIME : null,
-                            preferences);
+                            settingsBundle.preferences);
                       },
                     ),
                     if (notificationTime != null)
@@ -94,11 +107,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           var selectedTime = await showTimePicker(
                               context: context, initialTime: notificationTime);
                           if (selectedTime != null) {
-                            _setNotificationTime(
-                                context, selectedTime, preferences);
+                            _setNotificationTime(context, selectedTime,
+                                settingsBundle.preferences);
                           }
                         },
                       ),
+                    ListTile(
+                      title: Text("Theme".i18n),
+                      subtitle: Text(curTheme?.uiName().i18n ?? ""),
+                      onTap: () async {
+                        await showDialog<void>(
+                            context: context,
+                            builder: (context) =>
+                                ThemeDialog(curTheme: curTheme));
+                        setState(() {
+                          _preferencesFuture = _getSettingsBundle();
+                        });
+                      },
+                    ),
                     ListTile(
                       title: Text("About Feeel".i18n),
                       onTap: _showAboutScreen,
@@ -155,5 +181,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
         NotificationHelper.helper.setNotification(context, timeOfDay);
       }
     });
+  }
+
+  Future<_SettingsBundle> _getSettingsBundle() async {
+    final preferences = await SharedPreferences.getInstance();
+    final themeMode = await AdaptiveTheme.getThemeMode();
+    return _SettingsBundle(preferences, themeMode);
   }
 }

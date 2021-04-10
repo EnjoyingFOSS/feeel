@@ -154,7 +154,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
               ), // todo show drag handle
               if (_infoShown)
                 Container(
-                  color: widget.colorSwatch.getColor(FeeelShade.DARKEST),
+                  color: widget.colorSwatch.getColor(FeeelShade.DARKER),
                   width: double.infinity,
                   height: 200, //todo style, height
                   child: _descriptionText != null
