@@ -22,6 +22,8 @@
 
 import 'dart:io';
 
+import 'package:feeel/theming/feeel_colors.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/widgets/image_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,6 +46,7 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     //todo add some explainer text !!!
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
@@ -57,11 +60,13 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
       ),
       body: Column(children: [
         Material(
-          color: Theme.of(context).primaryColorDark,
+          color: FeeelColors.blue
+              .getColorByBrightness(FeeelShade.LIGHTEST, theme.brightness),
           child: Padding(
             child: Text(
-              "Feeel relies on volunteers like you to submit exercises and exercise photos. Any photos you submit will first be privately processed, then sent to you for approval, and only then released in the app. Thanks for contributing!",
-              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+              "Feeel relies on volunteers like you to submit exercises and exercise photos. Photos will first be privately processed into triangulated versions, then sent to you for approval, and only then released in the app. All submitted photos and text must be solely your work. Thanks for contributing!"
+                  .i18n,
+              style: TextStyle(color: theme.colorScheme.onSurface),
             ),
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           ),
@@ -121,7 +126,7 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
       //todo TRANSLATE !!!
       body: """Hello,
 
-I'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.
+I'm sending a proposal of an exercise. I hereby declare that both the attached images and the description are completely my own work. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA 4.0 license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA 4.0 license.
 
 Exercise name: ${_nameController.text}
 Exercise steps:
@@ -135,7 +140,7 @@ ${_stepsController.text} """ +
 TRANSLATION:
 
 """ +
-              "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that all of it is my own work only. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA license.\n\nExercise name: %1s\nExercise steps:\n%2s"
+              "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that both the attached images and the description are completely my own work. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA 4.0 license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA 4.0 license.\n\nExercise name: %1s\nExercise steps:\n%2s"
                   .i18n
                   .replaceFirst("%1s", _nameController.text)
                   .replaceFirst("%2s", _stepsController.text)),
