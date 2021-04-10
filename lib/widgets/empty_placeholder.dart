@@ -53,8 +53,7 @@ class EmptyPlaceholder extends StatelessWidget {
           child: Text(heading,
               style: Theme.of(context)
                   .textTheme
-                  .display1
-                  ?.copyWith(fontWeight: FontWeight.w500, fontSize: 24)),
+                  .headline5),
           padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
         ),
         Padding(
