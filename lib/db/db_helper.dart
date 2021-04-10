@@ -50,15 +50,17 @@ enum _Exercises {
   SIDE_SPLIT_SQUATS_L,
   BULGARIAN_SPLIT_SQUATS_L,
   BULGARIAN_SPLIT_SQUATS_R,
-  PISTOL_SQUATS_L,
-  PISTOL_SQUATS_R,
   KNEELING_KICKBACKS,
   CALF_RAISES_L,
   CALF_RAISES_R,
   SIDE_SPLIT_SQUATS_R,
   SPLIT_SQUATS_L,
   SPLIT_SQUATS_R,
-} // order CANNOT BE CHANGED, as that would effect custom workouts
+  // Not appearing in any workout:
+  // PISTOL_SQUATS_L,
+  // PISTOL_SQUATS_R,
+  // JUMP_ROPE_BASIC
+} // order CANNOT BE CHANGED, as that would affect custom workouts
 
 class DBHelper {
   DBHelper._();
@@ -367,13 +369,13 @@ class DBHelper {
         description: splitSquatsDesc,
         imageSlug: "exercise_splitsquat.webp");
     
-    final jumpingRopeDesc =
+    final jumpRopeBasicDesc =
         "This exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.\n1. Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n2. Spin only your wrists with enough force to make the rope spin.\n3. Jump just high enough to pass the rope below your feet.\n4. Repeat from step 2.";
 
     await _createExercise(db,
         name: "Jump rope: basic jumps",
-        description: jumpingRopeDesc,
-        imageSlug: "exercise_jumpingrope.webp");
+        description: jumpRopeBasicDesc,
+        imageSlug: "exercise_jumpropebasic.webp");
   }
 
   Future<void> _createWorkoutFromList(
