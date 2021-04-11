@@ -98,6 +98,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                               onPressed: () => showDialog<void>(
                                   context: context,
                                   builder: (context) => AlertDialog(
+                                        scrollable: true,
                                         title: Text(exercise.name.i18n),
                                         content:
                                             Text(exercise.description.i18n),
