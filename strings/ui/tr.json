@@ -36,12 +36,12 @@
     "txtWorkoutTitleEmpty": "Lütfen bir antrenman başlığı belirtin",
     "txtWorkoutTitle": "Antrenman başlığı",
     "txtSettings": "Ayarlar",
-    "txtSubmitExerciseMessageContents": "Merhaba,\n\nBir egzersiz önerisi gönderiyorum. İşbu belge ile bunların hepsinin sadece kendi çalışmam olduğunu beyan ederim. Bu mesajı göndererek, gönderilen adın ve açıklamanın CC BY-SA lisansı ve uygulama mağazası istisnası ile AGPLv3 altında yayınlanmasını geri alınamaz şekilde kabul ediyorum. Ekteki resimlerin düşük çözünürlüklü çeşitlere dönüştürülmesine de izin veriyorum. İşlendikten sonra, onları CC BY-SA lisansı altında lisanslamaya istekli olup olmadığımı değerlendireceğim.\n\nEgzersiz adı: %1s\nEgzersiz adımları:\n%2s",
+    "txtSubmitExerciseMessageContents": "Merhaba,\n\nBir egzersiz önerisi gönderiyorum. Hem ekli resimlerin hem de açıklamanın tamamen kendi çalışmam olduğunu beyan ederim. Bu mesajı göndererek, gönderilen adın ve açıklamanın CC BY-SA 4.0 lisansı ve uygulama mağazası istisnası ile AGPLv3 altında yayınlanmasını geri alınamaz şekilde kabul ediyorum. Ekteki resimlerin düşük çözünürlüklü çeşitlere dönüştürülmesine de izin veriyorum. İşlendikten sonra, onları CC BY-SA 4.0 lisansı altında lisanslamaya istekli olup olmadığımı değerlendireceğim.\n\nEgzersiz adı: %1s\nEgzersiz adımları:\n%2s",
     "txtSubmitExerciseMessageTitle": "Egzersiz önerisi: %s",
     "txtEmailCouldNotBeSent": "E-posta gönderilemedi",
     "txtHowToPerformExercise": "Egzersiz nasıl yapılır (isteğe bağlı)",
     "txtExerciseName": "Egzersiz adı",
-    "txtContributeExerciseExplainer": "Feeel, sizin gibi gönüllülerin egzersizler ve egzersiz fotoğrafları göndermesine güvenir. Gönderdiğiniz tüm fotoğraflar önce özel olarak işlenecek, ardından onay için size gönderilecek ve ancak daha sonra uygulamada yayınlanacaktır. Katkıda bulunduğunuz için teşekkürler!",
+    "txtContributeExerciseExplainer": "Feeel, sizin gibi gönüllülerin egzersizler ve egzersiz fotoğrafları göndermesine güvenir. Fotoğraflar önce özel olarak üçlü sürümler halinde işlenecek, ardından onay için size gönderilecek ve ancak daha sonra uygulamada yayınlanacaktır. Gönderilen tüm fotoğraflar ve metinler yalnızca sizin çalışmanız olmalıdır. Katkıda bulunduğunuz için teşekkürler!",
     "txtYouDidIt": "Başardınız!",
     "txtYoureGlowing": "Parlıyorsunuz!",
     "txtSubmitNewExercise": "Katkıda bulunun",
@@ -61,5 +61,9 @@
     "txtCustomDuration": "Özel süre (sn.)",
     "btnDiscard": "Vazgeç",
     "txtDiscardChanges": "Değişikliklerden vazgeçilsin mi?",
-    "btnDoneEditingTiming": "Zamanlamayı düzenleme tamamlandı"
+    "btnDoneEditingTiming": "Zamanlamayı düzenleme tamamlandı",
+    "txtThemeDark": "Koyu",
+    "txtThemeLight": "Açık",
+    "txtThemeSystem": "Sistem öntanımlı değeri",
+    "txtTheme": "Tema"
 }
