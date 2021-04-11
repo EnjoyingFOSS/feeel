@@ -44,6 +44,7 @@
     "txtThemeSystem": "System default",
     "txtThemeLight": "Light",
     "txtThemeDark": "Dark",
+    "txtBatteryOptimization": "On some devices, you may need to disable battery optimization for Feeel for this to work reliably.",
     "btnStartWorkout": "Start workout",
     "btnResumeWorkout": "Resume workout",
     "btnPreviousExercise": "Previous exercise",

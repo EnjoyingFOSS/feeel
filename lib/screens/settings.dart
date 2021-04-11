@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:io';
+
 import 'package:about/about.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/db/notification_helper.dart';
@@ -99,6 +101,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             settingsBundle.preferences);
                       },
                     ),
+                    if (notificationTime != null && Platform.isAndroid)
+                      Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            "On some devices, you may need to disable battery optimization for Feeel for this to work reliably."
+                                .i18n,
+                            style: Theme.of(context).textTheme.caption,
+                          )),
                     if (notificationTime != null)
                       ListTile(
                         title: Text("Notification time".i18n),
