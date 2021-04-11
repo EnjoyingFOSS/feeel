@@ -22,13 +22,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:i18n_extension/i18n_widget.dart';
+import 'package:feeel/i18n/translations.dart';
 
 enum _TtsState { PLAYING, STOPPED }
 
 class TTSHelper {
   TTSHelper._();
-  static final TTSHelper tts = TTSHelper._();
-  static final FlutterTts _flutterTts = FlutterTts();
+  static final tts = TTSHelper._();
+  static final _flutterTts = FlutterTts();
 
   _TtsState ttsState = _TtsState.STOPPED; //todo see if I need this
 
@@ -45,6 +47,19 @@ class TTSHelper {
     _flutterTts.setErrorHandler((dynamic msg) {
       ttsState = _TtsState.STOPPED;
     });
+
+    _initLanguage(context);
+  }
+
+  void _initLanguage(BuildContext context) async {
+    final curLanguage = I18n.language;
+    final isLanguageAvailable =
+        await _flutterTts.isLanguageAvailable(curLanguage) as bool;
+
+    if (isLanguageAvailable)
+      _flutterTts.setLanguage(curLanguage);
+    else
+      _flutterTts.setLanguage(I18n.defaultLocale.toLanguageTag());
   }
 
   Future speak(String message) async {
