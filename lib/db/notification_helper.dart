@@ -24,6 +24,9 @@ import 'package:feeel/screens/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationHelper {
   static final NotificationHelper helper = NotificationHelper._();
@@ -36,9 +39,10 @@ class NotificationHelper {
   }
 
   void init(BuildContext context) async {
-    // todo look at example notification project
+    tz.initializeTimeZones();
+    tz.setLocalLocation(
+        tz.getLocation(await FlutterNativeTimezone.getLocalTimezone()));
 
-// initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     var initializationSettingsAndroid =
         AndroidInitializationSettings('icon_notification');
     var initializationSettingsIOS = IOSInitializationSettings(
@@ -63,22 +67,37 @@ class NotificationHelper {
     if (timeOfDay != null) {
       _requestIOSPermissions();
 
-      var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      final androidPlatformChannelSpecifics = AndroidNotificationDetails(
           _NOTIFICATION_CHANNEL_ID,
           "Daily notification".i18n,
           "A daily reminder to work out".i18n,
           color: Theme.of(context).primaryColor);
-      var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-      var platformChannelSpecifics = NotificationDetails(
+      final iOSPlatformChannelSpecifics = IOSNotificationDetails();
+      final platformChannelSpecifics = NotificationDetails(
           android: androidPlatformChannelSpecifics,
           iOS: iOSPlatformChannelSpecifics);
-      await flutterLocalNotificationsPlugin.showDailyAtTime(
+
+      await flutterLocalNotificationsPlugin.zonedSchedule(
           _NOTIFICATION_INT_ID,
           "Time to put on workout clothes!".i18n,
           "It takes just a few minutes to feel fresh and fit".i18n,
-          Time(timeOfDay.hour, timeOfDay.minute),
-          platformChannelSpecifics);
+          _nextDailyInstance(Time(timeOfDay.hour, timeOfDay.minute)),
+          platformChannelSpecifics,
+          androidAllowWhileIdle: true,
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime,
+          matchDateTimeComponents: DateTimeComponents.time);
     }
+  }
+
+  tz.TZDateTime _nextDailyInstance(Time time) {
+    final now = tz.TZDateTime.now(tz.local);
+    tz.TZDateTime scheduledDate = tz.TZDateTime(
+        tz.local, now.year, now.month, now.day, time.hour, time.minute);
+    if (scheduledDate.isBefore(now)) {
+      scheduledDate = scheduledDate.add(const Duration(days: 1));
+    }
+    return scheduledDate;
   }
 
   void _requestIOSPermissions() {
