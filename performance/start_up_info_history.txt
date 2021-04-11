@@ -1,0 +1,40 @@
+Theming (commit "Scrollable info dialogs")
+-------
+Light
+{
+  "engineEnterTimestampMicros": 840964071574,
+  "timeToFrameworkInitMicros": 352550,
+  "timeToFirstFrameRasterizedMicros": 808910,
+  "timeToFirstFrameMicros": 795383,
+  "timeAfterFrameworkInitMicros": 442833
+}
+
+Dark
+{
+  "engineEnterTimestampMicros": 841037710511,
+  "timeToFrameworkInitMicros": 294851,
+  "timeToFirstFrameRasterizedMicros": 744791,
+  "timeToFirstFrameMicros": 726382,
+  "timeAfterFrameworkInitMicros": 431531
+}
+
+Adding _onWidgetBuilt
+-------------
+
+Light
+{
+  "engineEnterTimestampMicros": 840499798518,
+  "timeToFrameworkInitMicros": 283086,
+  "timeToFirstFrameRasterizedMicros": 719961,
+  "timeToFirstFrameMicros": 375863,
+  "timeAfterFrameworkInitMicros": 92777
+}
+
+Dark
+{
+  "engineEnterTimestampMicros": 840604983022,
+  "timeToFrameworkInitMicros": 286053,
+  "timeToFirstFrameRasterizedMicros": 735945,
+  "timeToFirstFrameMicros": 382986,
+  "timeAfterFrameworkInitMicros": 96933
+}
