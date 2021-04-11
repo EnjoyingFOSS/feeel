@@ -32,9 +32,8 @@ class TTSHelper {
 
   _TtsState ttsState = _TtsState.STOPPED; //todo see if I need this
 
-  void init(BuildContext context) {
-    // todo need to get language? _flutterTts.setLanguage(Localizations.localeOf(context).languageCode);
-
+  void init(BuildContext context) async {
+    // todo set to current language ONLY IF translations are available; _flutterTts.setLanguage(Localizations.localeOf(context).languageCode);
     _flutterTts.setStartHandler(() {
       ttsState = _TtsState.PLAYING;
     });

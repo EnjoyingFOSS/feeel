@@ -23,77 +23,36 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/screens/workout_list.dart';
-import 'package:feeel/theming/feeel_colors.dart';
-import 'package:feeel/theming/feeel_shade.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'db/notification_helper.dart';
+import 'theming/feeel_themes.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final themeMode =
-      await AdaptiveTheme.getThemeMode() ?? AdaptiveThemeMode.light;
-  runApp(MyApp(themeMode: themeMode));
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final AdaptiveThemeMode themeMode;
-
-  const MyApp({Key? key, this.themeMode = AdaptiveThemeMode.light})
-      : super(key: key);
+  //todo implement adaptive theme myself, speed up startup time by starting up dark theme first, then later switching to the preset theme
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) => _onWidgetBuilt(context));
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.light));
-    NotificationHelper.helper.init(context);
-    TTSHelper.tts.init(context);
-
-    final lightColors = ColorScheme(
-        //todo extract colors to separate file
-        primary: FeeelColors.blue.getColor(FeeelShade.DARK),
-        primaryVariant: FeeelColors.blue.getColor(FeeelShade.DARKER),
-        secondary: FeeelColors.orange.getColor(FeeelShade.DARK),
-        secondaryVariant: FeeelColors.orange.getColor(FeeelShade.DARKER),
-        surface: Colors.white,
-        background: Colors.white,
-        error: Color(0xFFB00020),
-        onPrimary: Colors.white,
-        onSecondary: Colors.white,
-        onSurface: Colors.black87,
-        onBackground: Colors.black87,
-        onError: Colors.black87,
-        brightness: Brightness.light);
-
-    final darkColors = ColorScheme(
-        primary: FeeelColors.blue.getColor(FeeelShade.LIGHT),
-        primaryVariant: FeeelColors.blue.getColor(FeeelShade.LIGHTER),
-        secondary: FeeelColors.orange.getColor(FeeelShade.LIGHT),
-        secondaryVariant: FeeelColors.orange.getColor(FeeelShade.LIGHTER),
-        surface: Colors.black87,
-        background: Colors.black87,
-        error: Color(0xFFB00020),
-        onPrimary: Colors.white,
-        onSecondary: Colors.white,
-        onSurface: Colors.white,
-        onBackground: Colors.white,
-        onError: Colors.white,
-        brightness: Brightness.dark);
-
-    final lightTheme = getThemeFromScheme(lightColors);
-    final darkTheme = getThemeFromScheme(darkColors);
 
     return AdaptiveTheme(
-        light: lightTheme,
-        dark: darkTheme,
+        light: FeeelThemes.lightTheme,
+        dark: FeeelThemes.darkTheme,
         initial: AdaptiveThemeMode.light,
         builder: (theme, darkTheme) => MaterialApp(
             title: 'Feeel',
-            theme: lightTheme,
+            theme: theme,
             darkTheme: darkTheme,
             supportedLocales: [
               const Locale('en'),
@@ -117,29 +76,8 @@ class MyApp extends StatelessWidget {
                 child: WorkoutListScreen()))); //todo not seeing current locale!
   }
 
-  ThemeData getThemeFromScheme(ColorScheme colors) {
-    return ThemeData(
-        visualDensity: VisualDensity.standard,
-        backgroundColor: colors.background,
-        brightness: colors.brightness,
-        colorScheme: colors,
-        primaryColor: colors.primary,
-        primaryColorDark: colors.primaryVariant,
-        accentColor: colors.secondary,
-        scaffoldBackgroundColor: colors.background,
-        cardColor: colors.surface,
-        errorColor: colors.error,
-        buttonColor: colors.primary,
-        toggleableActiveColor: colors.primary,
-        appBarTheme: AppBarTheme(
-            color: colors.background,
-            iconTheme: IconThemeData(color: colors.onBackground),
-            textTheme: TextTheme(
-                headline6: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w900,
-                    color: colors.onBackground)),
-            elevation: 0,
-            brightness: Brightness.light));
+  void _onWidgetBuilt(BuildContext context) {
+    NotificationHelper.helper.init(context);
+    TTSHelper.tts.init(context);
   }
 }
