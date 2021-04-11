@@ -59,12 +59,12 @@
     "txtWorkoutExercisesEmpty": "Veuillez ajouter au moins 1 exercice",
     "txtWorkoutTitleEmpty": "Veuillez préciser un titre pour l’entraînement",
     "txtSettings": "Paramètres",
-    "txtSubmitExerciseMessageContents": "Bonjour,\n\nJ’envoie une proposition d’exercice. Je déclare par la présente que tout ceci n’est que mon propre travail. En envoyant ce message, j’accepte irrévocablement que le nom et la description soumis soient publiés sous une licence CC BY-SA et un AGPLv3 avec une licence d’exception de magasin d’applications. Je donne également la permission de traiter les images jointes en variantes low-poly. Après leur traitement, j’évaluerai si je suis prêt·e à les autoriser sous la licence CC BY-SA.\n\nNom de l’exercice : %1s\nÉtapes de l’exercice :\n% 2s",
+    "txtSubmitExerciseMessageContents": "Bonjour,\n\nJe vous envoie une proposition d’exercice. Je déclare par la présente que les images jointes et la description sont entièrement de mon travail personnel. En envoyant ce message, j’accepte irrévocablement que le nom et la description soumis soient publiés sous une licence CC BY-SA 4.0 et une licence AGPLv3 avec exception magasin d’applications. Je donne également l’autorisation de traiter la ou les images ci-jointes pour en faire des variantes à faible polysémie. Après leur traitement, j’évaluerai si je suis prêt·e à les diffuser sous la licence CC BY-SA 4.0.\n\nNom de l’exercice : %1s\nÉtapes de l’exercice :\n%2s",
     "txtSubmitExerciseMessageTitle": "Proposition d’exercice : %s",
     "txtEmailCouldNotBeSent": "Le courriel n’a pas pu être envoyé",
     "txtHowToPerformExercise": "Comment faire l’exercice (facultatif)",
     "txtExerciseName": "Nom de l’exercice",
-    "txtContributeExerciseExplainer": "Feeel compte sur des bénévoles comme vous pour soumettre des exercices et des photos d’exercices. Toutes les photos que vous soumettez seront d’abord traitées en privé, puis vous seront envoyées pour approbation, et ensuite seulement publiées dans l’application. Merci de contribuer !",
+    "txtContributeExerciseExplainer": "Feeel compte sur des volontaires comme vous pour soumettre des exercices et des photos d’exercices. Les photos seront d’abord traitées de manière privée pour obtenir des versions triangulées, puis elles vous seront envoyées pour approbation, et seulement ensuite elles seront publiées dans l’application. Toutes les photos et le texte soumis doivent être de vous. Merci de votre contribution !",
     "txtSubmitNewExercise": "Contribuez",
     "txtYoureGlowing": "Vous êtes rayonnant·e !",
     "txtCategoryLegs": "Jambes",
@@ -105,5 +105,9 @@
     "btnDiscard": "Abandonner",
     "btnCancel": "Annuler",
     "txtDiscardChanges": "Abandonner les modifications ?",
-    "txtCustomDuration": "Durée personnalisée (s.)"
+    "txtCustomDuration": "Durée personnalisée (s.)",
+    "txtThemeDark": "Sombre",
+    "txtThemeLight": "Clair",
+    "txtThemeSystem": "Par défaut du système",
+    "txtTheme": "Thème"
 }
