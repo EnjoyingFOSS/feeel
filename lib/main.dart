@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
   }
 
   void _onWidgetBuilt(BuildContext context) {
-    NotificationHelper.helper.init(context);
     TTSHelper.tts.init(context);
+    NotificationHelper.helper.init(context);
   }
 }
