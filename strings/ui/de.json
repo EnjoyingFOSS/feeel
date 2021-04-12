@@ -1,5 +1,5 @@
 {
-    "txtFeeelDescription": "Eine open-source Workout-App für zu Hause, die deine Privatsphäre respektiert",
+    "txtFeeelDescription": "Eine quelloffene Workout-Anwendung für zu Hause, die deine Privatsphäre respektiert",
     "txtAboutFeeel": "Über Feeel",
     "txtYouDidIt": "Geschafft!",
     "txtNextUp": "Als nächstes:",
@@ -105,5 +105,9 @@
     "btnDiscard": "Verwerfen",
     "btnCancel": "Abbrechen",
     "txtDiscardChanges": "Änderungen verwerfen?",
-    "txtCustomDuration": "Benutzerdefinierte Dauer (Sek.)"
+    "txtCustomDuration": "Benutzerdefinierte Dauer (Sek.)",
+    "txtThemeDark": "Dunkel",
+    "txtThemeLight": "Hell",
+    "txtThemeSystem": "Systemstandard",
+    "txtTheme": "Design"
 }
