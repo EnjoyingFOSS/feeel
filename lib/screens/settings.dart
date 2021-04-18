@@ -80,6 +80,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 return ListView(
                   children: <Widget>[
                     SwitchListTile.adaptive(
+                      secondary: Icon(Icons.audiotrack),
                       value: settingsBundle.preferences
                               .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
                           false,
@@ -92,6 +93,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                     ),
                     SwitchListTile.adaptive(
+                      secondary: Icon(Icons.notifications),
                       value: notificationTime != null,
                       title: Text("Remind me to exercise daily".i18n),
                       onChanged: (bool newValue) {
@@ -103,7 +105,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     if (notificationTime != null && Platform.isAndroid)
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          padding: EdgeInsets.only(left: 72, right: 16),
                           child: Text(
                             "On some devices, you may need to disable battery optimization for Feeel for this to work reliably."
                                 .i18n,
@@ -111,6 +113,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           )),
                     if (notificationTime != null)
                       ListTile(
+                        contentPadding: EdgeInsets.only(left: 72, right: 24),
                         title: Text("Notification time".i18n),
                         trailing: Text(notificationTime.format(context)),
                         onTap: () async {
@@ -123,6 +126,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         },
                       ),
                     ListTile(
+                      leading: Icon(Icons.palette),
                       title: Text("Theme".i18n),
                       subtitle: Text(curTheme?.uiName().i18n ?? ""),
                       onTap: () async {
@@ -136,6 +140,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                     ),
                     ListTile(
+                      leading: Icon(Icons.code),
+                      title: Text("Source code".i18n),
+                      onTap: () =>
+                          _launchURL("https://gitlab.com/enjoyingfoss/feeel/"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.volunteer_activism),
+                      title: Text("Participate".i18n),
+                      onTap: () =>
+                          _launchURL("https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.attach_money),
+                      title: Text("Donate".i18n),
+                      onTap: () => _launchURL("https://liberapay.com/Feeel/"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.info),
                       title: Text("About Feeel".i18n),
                       onTap: _showAboutDialog,
                     )
@@ -145,6 +167,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 return Center(child: CircularProgressIndicator());
               }
             }));
+  }
+
+  void _launchURL(String url) async {
+    await canLaunch(url)
+        ? await launch(url)
+        : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Could not open $url."),
+          ));
   }
 
   void _showAboutDialog() async {
