@@ -33,7 +33,6 @@ import 'theming/feeel_themes.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  //todo implement adaptive theme myself, speed up startup time by starting up dark theme first, then later switching to the preset theme
   const MyApp({Key? key}) : super(key: key);
 
   @override

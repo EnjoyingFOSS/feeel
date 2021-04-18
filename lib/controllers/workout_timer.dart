@@ -37,10 +37,10 @@ class WorkoutTimer {
   void _countSecond(Timer t) {
     if (timeRemaining == 1) {
       timeRemaining = 0;
-      onTimerZero?.call(); //todo does this yield a null exception if null?
+      onTimerZero?.call();
     } else if (timeRemaining > 0) {
       timeRemaining--;
-      onSecondDecrease?.call(); //todo does this yield a null exception if null?
+      onSecondDecrease?.call();
     }
   }
 
