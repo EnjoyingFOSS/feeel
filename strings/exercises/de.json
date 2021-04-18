@@ -1,1 +1,22 @@
-{}
+{
+    "exercisePushupRotations": "Liegestütz-Drehungen",
+    "exerciseLunges": "Ausfallschritte",
+    "exerciseHighKnees": "Knie hoch",
+    "exerciseSquats": "Kniebeugen",
+    "exerciseAbCrunches": "Bauchpressen",
+    "exercisePushups": "Liegestütze",
+    "exerciseWallSit": "Wand sitzen",
+    "stepsJumpingJacks": "1. Stehe mit den Füßen zusammen und den Armen an den Seiten.\n2. Springe in eine Position, in der die Beine weit gespreizt sind und die Hände sich über Kopf berühren.\n3. Wiederhole",
+    "exerciseJumpingJacks": "Hampelmänner",
+    "workoutLeg": "Bein-Training",
+    "workoutScientific7Minute": "Klassisches 7-Minuten-Training",
+    "exerciseSidePlankLeft": "Seitenplanke links",
+    "exerciseSidePlankRight": "Seitenplanke rechts",
+    "exerciseSideSplitSquatsLeft": "Seitliche Kniebeugen links",
+    "exerciseSideSplitSquatsRight": "Seitliche Kniebeugen rechts",
+    "exercisePistolSquatLeft": "Kniebeugen links",
+    "exercisePistolSquatRight": "Kniebeugen rechts",
+    "exerciseSingleLegCalfRaiseLeft": "Wadenheben linkes Bein",
+    "exerciseSingleLegCalfRaiseRight": "Wadenheben rechtes Bein",
+    "exerciseJumpingRope": "Springseil: einfache Sprünge"
+}
