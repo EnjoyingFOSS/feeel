@@ -1,5 +1,5 @@
 {
-    "txtFeeelDescription": "Eine open-source Workout-App für zu Hause, die deine Privatsphäre respektiert",
+    "txtFeeelDescription": "Eine quelloffene Workout-Anwendung für zu Hause, die deine Privatsphäre respektiert",
     "txtAboutFeeel": "Über Feeel",
     "txtYouDidIt": "Geschafft!",
     "txtNextUp": "Als nächstes:",
@@ -15,12 +15,12 @@
     "txtCategoryLegs": "Beine",
     "txtYoureGlowing": "Du strahlst!",
     "txtSubmitNewExercise": "Eine Übung beitragen",
-    "txtContributeExerciseExplainer": "Feeel ist auf die Mitarbeit von Freiwilligen wie dich angewiesen, die Übungen und Fotos von Übungen beisteuern. Alle Fotos die du hochlädst werden zunächst bearbeitet und dir dann zur Freigabe zurückgesandt. Erst danach werden sie in der App hinterlegt. Danke für deine Unterstützung!",
+    "txtContributeExerciseExplainer": "Feeel ist auf die Mitarbeit von Freiwilligen wie dich angewiesen, die Übungen und Fotos von Übungen beisteuern. Alle Fotos die du hochlädst werden zunächst privat zu triangulierten Versionen verarbeitet und dir dann zur Freigabe zurückgesandt. Erst danach werden sie in der App hinterlegt. Alle eingereichten Fotos und Texte müssen ausschließlich deineArbeit sein. Danke für deine Unterstützung!",
     "txtExerciseName": "Name der Übung",
     "txtHowToPerformExercise": "Beschreibung der Übung (optional)",
     "txtEmailCouldNotBeSent": "E-Mail konnte nicht versendet werden",
     "txtSubmitExerciseMessageTitle": "Übungsvorschlag %s",
-    "txtSubmitExerciseMessageContents": "Hallo,\n\nich sende einen Übungsvorschlag. Hiermit erkläre ich, dass ich die vorliegende Arbeit ausschließlich eigenständig angefertigt habe. Mit dem Absenden dieser Nachricht erkläre ich mich unwiderruflich damit einverstanden, dass der eingereichte Name und die Beschreibung unter einer CC BY-SA-Lizenz und einer AGPLv3-Lizenz mit Ausnahmegenehmigung für den App-Store veröffentlicht werden. Ich gebe außerdem die Erlaubnis, sämtliche angehängte Bilder in Low-Poly-Grafiken zu konvertieren. Nachdem sie verarbeitet wurden, werde ich prüfen, ob ich bereit bin, sie unter der CC BY-SA-Lizenz zu lizenzieren.\n\nName der Übung: %1s\nÜbungsschritte:\n%2s",
+    "txtSubmitExerciseMessageContents": "Hallo,\n\nich sende einen Übungsvorschlag. Hiermit erkläre ich, dass ich die vorliegende Arbeit ausschließlich eigenständig angefertigt habe. Mit dem Absenden dieser Nachricht erkläre ich mich unwiderruflich damit einverstanden, dass der eingereichte Name und die Beschreibung unter einer CC BY-SA-4.0-Lizenz und einer AGPLv3-Lizenz mit Ausnahmegenehmigung für den App-Store veröffentlicht werden. Ich gebe außerdem die Erlaubnis, sämtliche angehängte Bilder in Low-Poly-Grafiken zu konvertieren. Nachdem sie verarbeitet wurden, werde ich prüfen, ob ich bereit bin, sie unter der CC BY-SA-4.0-Lizenz zu lizenzieren.\n\nName der Übung: %1s\nÜbungsschritte:\n%2s",
     "txtSettings": "Einstellungen",
     "txtWorkoutTitleEmpty": "Bitte einen Namen für das Training eingeben",
     "txtWorkoutExercisesEmpty": "Bitte mindestens 1 Übung hinzufügen",
@@ -105,5 +105,9 @@
     "btnDiscard": "Verwerfen",
     "btnCancel": "Abbrechen",
     "txtDiscardChanges": "Änderungen verwerfen?",
-    "txtCustomDuration": "Benutzerdefinierte Dauer (Sek.)"
+    "txtCustomDuration": "Benutzerdefinierte Dauer (Sek.)",
+    "txtThemeDark": "Dunkel",
+    "txtThemeLight": "Hell",
+    "txtThemeSystem": "Systemstandard",
+    "txtTheme": "Design"
 }

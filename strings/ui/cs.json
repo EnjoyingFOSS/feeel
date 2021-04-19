@@ -61,5 +61,9 @@
     "btnDiscard": "Zahodit",
     "btnCancel": "Zrušit",
     "txtDiscardChanges": "Zahodit změny?",
-    "txtCustomDuration": "Vlastní délka (s.)"
+    "txtCustomDuration": "Vlastní délka (s.)",
+    "txtThemeDark": "Tmavý",
+    "txtThemeLight": "Světlý",
+    "txtThemeSystem": "Dle systému",
+    "txtTheme": "Vzhled"
 }
