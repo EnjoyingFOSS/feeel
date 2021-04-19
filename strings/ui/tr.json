@@ -65,5 +65,10 @@
     "txtThemeDark": "Koyu",
     "txtThemeLight": "Açık",
     "txtThemeSystem": "Sistem öntanımlı değeri",
-    "txtTheme": "Tema"
+    "txtTheme": "Tema",
+    "txtCouldNotOpenURL": "$url açılamadı.",
+    "txtDonate": "Bağış yapın",
+    "txtSourceCode": "Kaynak kodları",
+    "txtParticipate": "Katılın",
+    "txtBatteryOptimization": "Bazı aygıtlarda, bunun güvenilir bir şekilde çalışması için pil iyileştirmesini Feeel için devre dışı bırakmanız gerekebilir."
 }
