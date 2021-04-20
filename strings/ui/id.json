@@ -74,7 +74,7 @@
     "txtEmailCouldNotBeSent": "Email tidak dapat dikirim",
     "txtHowToPerformExercise": "Cara melakukan olahraga (opsional)",
     "txtExerciseName": "Nama latihan",
-    "txtContributeExerciseExplainer": "Feeel mengandalkan sukarelawan sepertimu untuk mengirimkan latihan dan foto latihan. Setiap foto yang kamu kirimkan akan diproses secara pribadi, lalu dikirimkan kepadamu untuk disetujui, lalu kemudian dirilis di aplikasi. Terima kasih telah berkontribusi!",
+    "txtContributeExerciseExplainer": "Feeel mengandalkan para sukarelawan sepertimu untuk mengirimkan latihan-latihan dan foto-foto latihan. Setiap foto yang kamu kirimkan akan diproses secara pribadi, lalu dikirimkan kepadamu untuk disetujui, lalu kemudian diluncurkan di aplikasi. Semua foto dan teks yang diserahkan harus menjadi hasil pekerjaan kamu sendiri. Terima kasih telah berkontribusi!",
     "txtSubmitNewExercise": "Berkontribusi",
     "txtYoureGlowing": "Kamu bersinar!",
     "txtCategoryLegs": "Kaki",
@@ -105,5 +105,9 @@
     "btnDiscard": "Buang",
     "btnCancel": "Batal",
     "txtDiscardChanges": "Batalkan perubahan?",
-    "txtCustomDuration": "Durasi kustom (s.)"
+    "txtCustomDuration": "Durasi kustom (s.)",
+    "txtThemeDark": "Gelap",
+    "txtThemeLight": "Cerah",
+    "txtThemeSystem": "Default sistem",
+    "txtTheme": "Tema"
 }
