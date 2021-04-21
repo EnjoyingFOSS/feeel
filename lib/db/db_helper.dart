@@ -23,10 +23,10 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:feeel/enums/workout_category.dart';
-import 'package:feeel/models/exercise.dart';
-import 'package:feeel/models/workout.dart';
-import 'package:feeel/models/workout_exercise.dart';
-import 'package:feeel/models/workout_listed.dart';
+import 'package:feeel/models/view/exercise.dart';
+import 'package:feeel/models/view/workout.dart';
+import 'package:feeel/models/view/workout_exercise.dart';
+import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -220,7 +220,7 @@ class DBHelper {
     await _createExercise(db,
         name: "Wall sit",
         description:
-            "1. Lean against the wall, facing forward and with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n2. Slide down the wall, keeping the back pressed to it, until \n. The knees should be directly above the ankles\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
+            "1. Lean against the wall, facing forward and with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n2. Slide down the wall, keeping the back pressed to it, until legs are at a right angle. The knees should be directly above the ankles\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
         imageSlug: "exercise_wallsit.webp");
 
     await _createExercise(db,
@@ -301,7 +301,7 @@ class DBHelper {
         imageSlug: "exercise_sidesplitsquat.webp");
 
     final bulgarianSquatsDesc =
-        "1. Stand tall in front of a chair and take a large step. Put the upper part of your left foot on the chair.\n2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n3. Push back to the starting position and repeat.";
+        "1. Stand tall in front of a chair and take a large step. Put the upper part of one of your feet on the chair.\n2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n3. Push back to the starting position and repeat.";
 
     await _createExercise(db,
         name: "Bulgarian split squats left",
@@ -455,7 +455,7 @@ class DBHelper {
     int workoutId = workout.dbId == null
         ? await _createWorkout(
             db,
-            workout.title ?? "",
+            workout.title,
             workout.countdownDuration,
             workout.exerciseDuration,
             workout.breakDuration,
@@ -469,7 +469,7 @@ class DBHelper {
       await _modifyWorkout(
           workoutId,
           WorkoutType.CUSTOM,
-          workout.title ?? "",
+          workout.title,
           workout.exerciseDuration,
           workout.breakDuration,
           workout.countdownDuration);
@@ -698,7 +698,7 @@ class DBHelper {
         exerciseDuration: orig.exerciseDuration);
     final id = await createOrUpdateCustomWorkout(duplicate);
     return WorkoutListed(
-        id, duplicate.type, duplicate.title!, duplicate.category);
+        id, duplicate.type, duplicate.title, duplicate.category);
   }
 
   Future close() async {

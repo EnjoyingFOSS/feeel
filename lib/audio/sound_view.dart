@@ -23,7 +23,7 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:feeel/controllers/workout_controller.dart';
-import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/models/view/workout_exercise.dart';
 
 import 'audio_helper.dart';
 

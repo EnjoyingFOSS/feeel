@@ -21,8 +21,8 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/controllers/workout_controller.dart';
-import 'package:feeel/models/workout.dart';
-import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/models/view/workout.dart';
+import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/widgets/break_illustration.dart';

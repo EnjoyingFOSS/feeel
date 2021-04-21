@@ -25,8 +25,8 @@ import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
 import 'package:feeel/db/preference_keys.dart';
-import 'package:feeel/models/workout.dart';
-import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/models/view/workout.dart';
+import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

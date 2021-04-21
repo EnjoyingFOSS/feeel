@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:flutter/material.dart';
 
 import 'flipped.dart';
@@ -46,7 +46,9 @@ class ExerciseEditorRow extends StatelessWidget {
         child: imageSlug == null
             ? Container()
             : workoutExercise.exercise.twoSided
-                ? Flipped(child: Image.asset(AssetHelper.getThumb(imageSlug)))
+                ? Flipped(
+                    child: Image.asset(AssetHelper.getThumb(imageSlug),
+                        width: 72, height: 72))
                 : Image.asset(AssetHelper.getThumb(imageSlug),
                     width: 72, height: 72),
         padding: EdgeInsets.symmetric(horizontal: 16),
