@@ -22,7 +22,7 @@
 
 import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/db/db_helper.dart';
-import 'package:feeel/models/exercise.dart';
+import 'package:feeel/models/view/exercise.dart';
 import 'package:feeel/screens/exercise_creator.dart';
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';

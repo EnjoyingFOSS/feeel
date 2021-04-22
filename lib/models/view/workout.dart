@@ -22,24 +22,21 @@
 
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/models/view/workout_exercise.dart';
 
 class Workout {
-  //todo split into workout and editable workout
-  List<WorkoutExercise> workoutExercises;
-  int countdownDuration;
-  int exerciseDuration;
-  int breakDuration;
-  WorkoutCategory category;
-  WorkoutType type;
-
+  final List<WorkoutExercise> workoutExercises;
+  final int countdownDuration;
+  final int exerciseDuration;
+  final int breakDuration;
+  final WorkoutCategory category;
+  final WorkoutType type;
   final int? dbId;
-  String? title;
-//  final int length; //todo compute during init
+  final String title;
 
   Workout(
-      {this.dbId,
-      this.title,
+      {required this.dbId,
+      required this.title,
       required this.workoutExercises,
       required this.countdownDuration,
       required this.breakDuration,

@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:flutter/material.dart';
 
 import 'flipped.dart';

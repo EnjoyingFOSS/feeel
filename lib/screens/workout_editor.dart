@@ -20,12 +20,14 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:drag_list/drag_list.dart';
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/exercise.dart';
-import 'package:feeel/models/workout_exercise.dart';
+import 'package:feeel/models/editor/editable_workout.dart';
+import 'package:feeel/models/editor/editor_workout_exercise.dart';
+import 'package:feeel/models/view/exercise.dart';
+import 'package:feeel/models/view/workout_exercise.dart';
+import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/screens/exercise_picker.dart';
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';
@@ -34,9 +36,6 @@ import 'package:feeel/widgets/exercise_editor_row.dart';
 import 'package:feeel/widgets/timing_header.dart';
 import 'package:feeel/widgets/trailing_seconds_input.dart';
 
-import '../models/workout.dart';
-
-import '../models/workout_listed.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
@@ -58,23 +57,37 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   final _titleController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _timingFormKey = GlobalKey<FormState>();
-  Workout? _editableWorkout;
-  late Future<Workout?> _future;
+  EditableWorkout? _editableWorkout;
+  late Future<EditableWorkout> _future;
   bool _editingTimeMode = false;
 
   @override
   void initState() {
-    _future = (widget.workoutListed == null)
-        ? Future.value(Workout(
-            type: WorkoutType.CUSTOM,
-            workoutExercises: List<WorkoutExercise>.empty(growable: true),
-            countdownDuration: _DEFAULT_COUNTDOWN_DURATION,
-            breakDuration: _DEFAULT_BREAK_DURATION,
-            exerciseDuration: _DEFAULT_EXERCISE_DURATION,
-            category: WorkoutCategory.FULL_BODY))
-        : DBHelper.db.queryWorkout(
-            widget.workoutListed!.dbId, widget.workoutListed!.type);
+    if (widget.workoutListed == null)
+      _future = Future.value(_getDefaultEditableWorkout());
+    else {
+      _future = _queryEditableWorkout();
+    }
     super.initState();
+  }
+
+  EditableWorkout _getDefaultEditableWorkout() {
+    return EditableWorkout(
+        type: WorkoutType.CUSTOM,
+        workoutExercises: List<EditorWorkoutExercise>.empty(growable: true),
+        countdownDuration: _DEFAULT_COUNTDOWN_DURATION,
+        breakDuration: _DEFAULT_BREAK_DURATION,
+        exerciseDuration: _DEFAULT_EXERCISE_DURATION,
+        category: WorkoutCategory.FULL_BODY);
+  }
+
+  Future<EditableWorkout> _queryEditableWorkout() async {
+    final workout = await DBHelper.db
+        .queryWorkout(widget.workoutListed!.dbId, widget.workoutListed!.type);
+    if (workout != null)
+      return EditableWorkout.fromWorkout(workout);
+    else
+      return _getDefaultEditableWorkout();
   }
 
   @override
@@ -85,14 +98,13 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
         child: Scaffold(
           body: SafeArea(
               bottom: false,
-              child: FutureBuilder<Workout?>(
+              child: FutureBuilder<EditableWorkout>(
                   future: _future,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       if (_editableWorkout == null) {
-                        //todo is this right, if I want to prevent overriding after first load?
-                        _editableWorkout = snapshot.data!;
-                        _titleController.text = _editableWorkout!.title ?? "";
+                        _editableWorkout = snapshot.data;
+                        _titleController.text = _editableWorkout!.title;
                       }
 
                       var header = Row(children: <Widget>[
@@ -195,8 +207,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                                       int index) {
                                                 final workoutExercise =
                                                     _editableWorkout!
-                                                            .workoutExercises[
-                                                        index];
+                                                        .workoutExercises[index]
+                                                        .exercise;
                                                 return ExerciseEditorRow(
                                                     workoutExercise:
                                                         workoutExercise,
@@ -229,31 +241,69 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                             height: 16,
                                           ),
                                           Expanded(
-                                              child: DragList<WorkoutExercise>(
-                                            //todo use ReorderableListView.builder with custom drag handles instead
-                                            padding:
-                                                EdgeInsets.only(bottom: 32),
-                                            items: _editableWorkout!
-                                                .workoutExercises,
-                                            itemExtent: 72.0,
-                                            itemBuilder:
-                                                (context, item, handle) {
-                                              return ExerciseEditorRow(
-                                                  workoutExercise: item,
-                                                  handle: handle,
-                                                  trailing: IconButton(
-                                                    icon: Icon(Icons.delete),
-                                                    tooltip: "Delete".i18n,
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        _editableWorkout!
-                                                            .workoutExercises
-                                                            .remove(item);
-                                                      });
-                                                    },
-                                                  ));
-                                            },
-                                          ))
+                                              child:
+                                                  ReorderableListView.builder(
+                                                      buildDefaultDragHandles:
+                                                          false,
+                                                      padding: EdgeInsets.only(
+                                                          bottom: 32),
+                                                      itemBuilder:
+                                                          (context, i) {
+                                                        final editableExercise =
+                                                            _editableWorkout!
+                                                                .workoutExercises[i];
+                                                        return ExerciseEditorRow(
+                                                            key:
+                                                                editableExercise
+                                                                    .key,
+                                                            workoutExercise:
+                                                                editableExercise
+                                                                    .exercise,
+                                                            trailing: Row(
+                                                                children: [
+                                                                  IconButton(
+                                                                      icon: Icon(
+                                                                          Icons
+                                                                              .delete),
+                                                                      tooltip:
+                                                                          "Delete"
+                                                                              .i18n,
+                                                                      onPressed:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          _editableWorkout!
+                                                                              .workoutExercises
+                                                                              .removeAt(i);
+                                                                        });
+                                                                      }),
+                                                                  ReorderableDragStartListener(
+                                                                    index: i,
+                                                                    child: const Icon(
+                                                                        Icons
+                                                                            .drag_handle),
+                                                                  )
+                                                                ]));
+                                                      },
+                                                      itemCount:
+                                                          _editableWorkout!
+                                                              .workoutExercises
+                                                              .length,
+                                                      onReorder: (oldI, newI) {
+                                                        if (newI > oldI) newI--;
+
+                                                        setState(() {
+                                                          final temp =
+                                                              _editableWorkout!
+                                                                  .workoutExercises
+                                                                  .removeAt(
+                                                                      oldI);
+                                                          _editableWorkout!
+                                                              .workoutExercises
+                                                              .insert(
+                                                                  newI, temp);
+                                                        });
+                                                      }))
                                         ]);
                             },
                           ));
@@ -331,7 +381,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                         _editableWorkout != null) {
                       form.save();
                       DBHelper.db
-                          .createOrUpdateCustomWorkout(_editableWorkout!)
+                          .createOrUpdateCustomWorkout(
+                              _editableWorkout!.toWorkout())
                           .then((_) {
                         Navigator.pop(context);
                       });
@@ -351,8 +402,9 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
     setState(() {
       if (exercises != null) {
         _editableWorkout?.workoutExercises.addAll(
-            exercises.map((Exercise e) => WorkoutExercise(
-                exercise: e)) // todo make sure list works with zero exercise
+            exercises.map((Exercise e) => EditorWorkoutExercise(
+                WorkoutExercise(exercise: e),
+                UniqueKey())) // todo make sure list works with zero exercise
             );
       }
     });

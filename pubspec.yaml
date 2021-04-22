@@ -11,8 +11,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  flutter_cupertino_localizations: ^1.0.1
   http: ^0.13.1
   flutter_tts: ^3.0.0
   wakelock: ^0.5.1
@@ -20,7 +18,6 @@ dependencies:
   sqflite_common_ffi: ^2.0.0
   path_provider: ^2.0.1
   i18n_extension: ^4.0.3
-  drag_list: 1.0.7
   flutter_mailer: ^2.0.0-null-safe
   image_picker: ^0.7.4
   shared_preferences: ^2.0.5

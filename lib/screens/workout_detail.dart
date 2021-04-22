@@ -22,8 +22,8 @@
 
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/workout.dart';
-import 'package:feeel/models/workout_listed.dart';
+import 'package:feeel/models/view/workout.dart';
+import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/widgets/workout_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';

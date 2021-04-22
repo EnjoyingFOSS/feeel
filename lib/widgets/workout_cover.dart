@@ -23,7 +23,7 @@
 import 'package:feeel/enums/workout_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:feeel/models/workout.dart';
+import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class WorkoutCover extends StatelessWidget {
@@ -73,10 +73,9 @@ class WorkoutCover extends StatelessWidget {
 
               child: Center(
                   child: Text(
-            (workout.type == WorkoutType.DEFAULT
-                    ? workout.title?.i18n
-                    : workout.title) ??
-                "",
+            workout.type == WorkoutType.DEFAULT
+                ? workout.title.i18n
+                : workout.title,
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 40, fontWeight: FontWeight.w900, color: color),
