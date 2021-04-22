@@ -77,16 +77,23 @@ class NotificationHelper {
           android: androidPlatformChannelSpecifics,
           iOS: iOSPlatformChannelSpecifics);
 
-      await flutterLocalNotificationsPlugin.zonedSchedule(
+      await flutterLocalNotificationsPlugin.showDailyAtTime(
           _NOTIFICATION_INT_ID,
           "Time to put on workout clothes!".i18n,
           "It takes just a few minutes to feel fresh and fit".i18n,
-          _nextDailyInstance(Time(timeOfDay.hour, timeOfDay.minute)),
-          platformChannelSpecifics,
-          androidAllowWhileIdle: true,
-          uiLocalNotificationDateInterpretation:
-              UILocalNotificationDateInterpretation.absoluteTime,
-          matchDateTimeComponents: DateTimeComponents.time);
+          Time(timeOfDay.hour, timeOfDay.minute),
+          platformChannelSpecifics);
+
+      // todo DEBUG await flutterLocalNotificationsPlugin.zonedSchedule(
+      //     _NOTIFICATION_INT_ID,
+      //     "Time to put on workout clothes!".i18n,
+      //     "It takes just a few minutes to feel fresh and fit".i18n,
+      //     _nextDailyInstance(Time(timeOfDay.hour, timeOfDay.minute)),
+      //     platformChannelSpecifics,
+      //     androidAllowWhileIdle: true,
+      //     uiLocalNotificationDateInterpretation:
+      //         UILocalNotificationDateInterpretation.absoluteTime,
+      //     matchDateTimeComponents: DateTimeComponents.time);
     }
   }
 
