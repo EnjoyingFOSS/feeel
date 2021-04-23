@@ -368,14 +368,16 @@ class DBHelper {
         flipped: true,
         description: splitSquatsDesc,
         imageSlug: "exercise_splitsquat.webp");
-    
-    final jumpRopeBasicDesc =
-        "This exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.\n1. Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n2. Spin only your wrists with enough force to make the rope spin.\n3. Jump just high enough to pass the rope below your feet.\n4. Repeat from step 2.";
 
     await _createExercise(db,
         name: "Jump rope: basic jumps",
-        description: jumpRopeBasicDesc,
+        description: "This exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.\n1. Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n2. Spin only your wrists with enough force to make the rope spin.\n3. Jump just high enough to pass the rope below your feet.\n4. Repeat from step 2.",
         imageSlug: "exercise_jumpropebasic.webp");
+
+    await _createExercise(db,
+        name: "Arm circles",
+        description: "1. Stand up tall with your back straight.\n2. Bring your arms forward, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
+        imageSlug: "exercise_armcircles.webp");
   }
 
   Future<void> _createWorkoutFromList(

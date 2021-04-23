@@ -23,7 +23,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:i18n_extension/i18n_widget.dart';
-import 'package:feeel/i18n/translations.dart';
 
 enum _TtsState { PLAYING, STOPPED }
 

@@ -4,6 +4,8 @@ Code is licensed under the **GNU AGPL v3 or any later version with an app store 
 
 As an additional permission under section 7, you are allowed to distribute the software through an app store, even if that store has restrictive terms and conditions that are incompatible with the AGPL, provided that the source is also available under the AGPL with or without this permission through a channel without those restrictive terms and conditions.
 
+All unofficial builds of the app must be clearly labeled as such in the app's title. (E.g. "Feeel UNOFFICIAL" rather than just "Feeel", or a different name altogether.)
+
 Translations
 ============
 Translations in "strings/ui" are released under the AGPLv3, those in "strings/exercises" under CC BY-SA 4.0.
@@ -189,7 +191,7 @@ Derivative work of:
 * Author: Miroslav Mazel
 
 **Jump rope: Basic jumps**
-* Author of triangulation: Mohammad Hossein Tajaddini
+* Triangulation author: Mohammad Hossein Tajaddini, adjustments by Miroslav Mazel
 * License: CC BY-SA 4.0
 
 Derivative work of:
@@ -198,6 +200,17 @@ Derivative work of:
 * License: CC BY 2.0
 * Author: [Drew and Merissa](https://www.flickr.com/photos/90177949@N00)
 * Title: Jump rope - skipping
+
+**Arm circles**
+* Triangulation authors: “kettenfett”, Miroslav Mazel
+* License: CC BY-SA 4.0
+
+Derivative work of:
+
+* Source: https://www.youtube.com/watch?v=PD3P7zWzzg8
+* License: CC BY 3.0
+* Author: Heartmybody Fitness
+* Title: Arm Circle to Shoulder Press Down
 
 **Success image**
 Derivative work of:
