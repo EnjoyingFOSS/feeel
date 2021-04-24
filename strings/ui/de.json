@@ -109,5 +109,10 @@
     "txtThemeDark": "Dunkel",
     "txtThemeLight": "Hell",
     "txtThemeSystem": "Systemstandard",
-    "txtTheme": "Design"
+    "txtTheme": "Design",
+    "txtParticipate": "Mitmachen",
+    "txtCouldNotOpenURL": "Kann $url nicht öffnen.",
+    "txtBatteryOptimization": "Auf einigen Geräten muss möglicherweise die Batterieoptimierung für Feeel deaktiviert werden, damit dies zuverlässig funktioniert.",
+    "txtSourceCode": "Quellcode",
+    "txtDonate": "Spenden"
 }
