@@ -65,5 +65,10 @@
     "txtThemeDark": "Scuro",
     "txtThemeLight": "Chiaro",
     "txtThemeSystem": "Predefinito del sistema",
-    "txtTheme": "Tema"
+    "txtTheme": "Tema",
+    "txtCouldNotOpenURL": "Impossibile aprire $url.",
+    "txtDonate": "Dona",
+    "txtSourceCode": "Codice sorgente",
+    "txtParticipate": "Partecipa",
+    "txtBatteryOptimization": "Su alcuni dispositivi, potrebbe essere necessario disabilitare l'ottimizzazione della batteria per Feeel affinché questo funzioni in modo affidabile."
 }
