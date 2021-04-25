@@ -69,7 +69,7 @@
     "txtWorkoutExercisesEmpty": "Harap tambahkan setidaknya 1 latihan",
     "txtWorkoutTitleEmpty": "Tentukan judul latihan",
     "txtSettings": "Pengaturan",
-    "txtSubmitExerciseMessageContents": "Halo,\n\nSaya mengirimkan usulan latihan. Dengan ini saya nyatakan bahwa semua ini adalah pekerjaan saya sendiri. Dengan mengirimkan pesan ini, saya setuju secara tidak dapat ditarik kembali untuk merilis nama dan deskripsi yang dikirimkan di bawah lisensi CC BY-SA dan AGPLv3 dengan lisensi pengecualian toko aplikasi. Saya juga memberikan izin untuk memproses gambar terlampir menjadi varian poli rendah. Setelah diproses, saya akan mengevaluasi apakah saya bersedia melisensikannya di bawah lisensi CC BY-SA.\n\nNama latihan:% 1s\nLangkah-langkah latihan:\n% 2s",
+    "txtSubmitExerciseMessageContents": "Halo,\n\nAku mengirim proposal latihan. Saya dengan ini menyatakan bahwa kedua gambar terpasang dan Deskripsi Benar-benar pekerjaan saya sendiri. Dengan mengirim pesan ini, Aku Tak dapat ditarik kembali setuju untuk memiliki nama yang dikirimkan dan deskripsi dirilis di bawah lisensi CC BY-SA 4.0 dan AGPLv3 dengan lisensi app store. Saya juga memberikan izin untuk memproses image yang terpasang ke varian sederhana. Setelah diproses, saya akan mengevaluasi apakah saya bersedia untuk lisensi mereka di bawah izin CC BY-SA 4.0.\n\nNama latihan: %1s\nLangkah latihan:\n%2s",
     "txtSubmitExerciseMessageTitle": "Usulan latihan:% s",
     "txtEmailCouldNotBeSent": "Email tidak dapat dikirim",
     "txtHowToPerformExercise": "Cara melakukan olahraga (opsional)",
@@ -109,5 +109,10 @@
     "txtThemeDark": "Gelap",
     "txtThemeLight": "Cerah",
     "txtThemeSystem": "Default sistem",
-    "txtTheme": "Tema"
+    "txtTheme": "Tema",
+    "txtParticipate": "Berpartisipasi",
+    "txtSourceCode": "Kode sumber",
+    "txtDonate": "Donasi",
+    "txtCouldNotOpenURL": "Tidak dapat membuka $url.",
+    "txtBatteryOptimization": "Pada beberapa perangkat, Anda mungkin perlu menonaktifkan optimisasi baterai untuk Feel Bagi ini untuk bekerja dapat dipercaya."
 }
