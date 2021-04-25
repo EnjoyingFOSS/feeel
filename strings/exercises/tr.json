@@ -44,5 +44,7 @@
     "workoutLeg": "Bacak antrenmanı",
     "workoutScientific7Minute": "Bilimsel 7 dakikalık antrenman",
     "stepsJumpRopeBasic": "Bu egzersiz bir atlama ipi gerektirir. İp uzunluğunun boyunuza göre ayarlandığından emin olun. Bunu denetlemenin bir yolu, ipin her iki kulpunu tek elle tutup tek ayakla yerde serili halatın ortasında durmaktır. İp (kulplar hariç) göğsünüzün hemen altına ulaşırsa, uzunluğu doğrudur. Daha kısa bir ip, kendinize çarpabileceğiniz için tehlikeli olacaktır ve daha uzun bir ip kötü bir biçim oluşturacaktır.\n1. Ayaklarınızı birbirine yaklaştırın, dizlerinizi biraz bükün, başınızı ve vücudunuzu düz tutun, dirseklerinizi içeride tutun, kollarınızı açın.\n2. İpin dönmesi için yeterli kuvvetle sadece bileklerinizi döndürün.\n3. İpi ayaklarınızın altından geçirecek kadar yükseğe zıplayın.\n4. 2. adımdan itibaren tekrarlayın.",
-    "exerciseJumpRopeBasic": "İp atlama: temel atlamalar"
+    "exerciseJumpRopeBasic": "İp atlama: temel atlamalar",
+    "stepsArmCircles": "1. Sırtınız düz olacak şekilde dik durun.\n2. Kollarınızı öne doğru getirin, başınızın üzerine kaldırın, ardından hareketi arkanıza doğru ve başlangıç pozisyonuna kadar devam ettirin.\n3. 2. adımda anlatıldığı gibi kollarınızı çevirmeye devam edin.",
+    "exerciseArmCircles": "Kolları çevirme"
 }
