@@ -11,7 +11,7 @@
     "stepsAbCrunches": "1. Sdraiati a pancia in su sul pavimento con le ginocchia piegate.\n2. Solleva il busto verso il bacino, a 30° / 40° dal suolo. Le mani possono essere dietro o accanto al collo o incrociate sul petto.\n3. Ripeti",
     "exerciseStepups": "Step",
     "stepsStepups": "1. Stare in piedi di fronte a una sedia\n2. Salire sulla sedia\n3. Scendere dalla sedia\n4. Ripeti",
-    "exerciseSquats": "Squats (Stacchi)",
+    "exerciseSquats": "Squat (Stacchi)",
     "stepsSquats": "1. Stai con i piedi alla larghezza delle spalle\n2. Sposta i fianchi indietro e piega le ginocchia e i fianchi per abbassare il busto\n3. Ripeti",
     "exerciseChairDips": "Piegamenti sulla sedia",
     "stepsChairDips": "1. Siediti sul bordo anteriore di una sedia, con la schiena dritta, le mani che tengono il bordo anteriore\n2. Tenendo ancora il bordo della sedia, le braccia tese, solleva il sedere e cammina leggermente in avanti in modo che si trovi a pochi centimetri dalla sedia.\n3. Abbassa lentamente il corpo, mantenendo la schiena dritta, fino a quando le braccia sono ad angolo retto\n4. Solleva nuovamente il corpo nella posizione precedente, le braccia estese\n5. Ripetere i passaggi 3 e 4",
@@ -43,5 +43,8 @@
     "exerciseSingleLegCalfRaiseLeft": "Sollevamento del polpaccio gamba sinistra",
     "exerciseSingleLegCalfRaiseRight": "Sollevamento del polpaccio gamba destra",
     "stepsSingleLegCalfRaise": "1. Stare in piedi sul pavimento o sul bordo di un gradino per aumentare il raggio di movimento. Sollevare un piede, appoggiando la parte superiore sul polpaccio.\n2. Sollevare i talloni fino a stare in piedi sulle punte dei piedi.\n3. Resta in questa posizione per tre secondi, poi abbassa il piede senza toccare il suolo con il tallone.",
-    "exerciseJumpRopeBasic": "Corda per saltare: salti di base"
+    "exerciseJumpRopeBasic": "Corda per saltare: salti di base",
+    "stepsArmCircles": "1. Stai in piedi con la schiena dritta.\n2. Porta le braccia in avanti, alzale sopra la testa, poi continua il movimento dietro la schiena e giù fino alla posizione iniziale.\n3. Continua a far girare le braccia come descritto al punto 2.",
+    "stepsJumpRopeBasic": "Questo esercizio richiede una corda per saltare. Assicuratevi che la lunghezza della corda sia adatta alla vostra altezza. Un modo per controllare è quello di afferrare entrambe le maniglie con una mano e stare al centro della corda appesa a terra con un piede. Se la corda (escluse le maniglie) arriva appena sotto il tuo petto, la sua lunghezza è giusta. Una corda più corta sarebbe pericolosa, perché potreste colpirvi, e una corda più lunga sarebbe una cattiva forma.\n1. Metti i piedi vicini, piega un po' le ginocchia, tieni la testa e il corpo dritti, tieni i gomiti in dentro, apri le braccia.\n2. Fai girare solo i polsi con abbastanza forza da far girare la corda.\n3. Salta appena abbastanza in alto da far passare la corda sotto i tuoi piedi.\n4. Ripetere dal punto 2.",
+    "exerciseArmCircles": "Cerchi del braccio"
 }

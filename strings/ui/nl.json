@@ -65,5 +65,10 @@
     "txtThemeDark": "Donker",
     "txtThemeLight": "Licht",
     "txtThemeSystem": "Systeemthema",
-    "txtTheme": "Thema"
+    "txtTheme": "Thema",
+    "txtCouldNotOpenURL": "$url kan niet worden geopend.",
+    "txtParticipate": "Bijdragen",
+    "txtDonate": "Doneren",
+    "txtSourceCode": "Broncode",
+    "txtBatteryOptimization": "Op sommige apparaten is het verstandig accu-optimalisatie uit te schakelen zodat Feeel betrouwbaar kan werken."
 }
