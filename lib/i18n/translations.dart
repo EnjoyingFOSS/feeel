@@ -463,7 +463,7 @@ Pasos del ejercicio:
 "nl": """Dagelijkse herinnering sturen""",
 "de": """Erinnere mich täglich zu trainieren""",
 "ru": """Отправлять ежедневное напоминание""",
-"en": """Remind me to exercise daily""",
+"en": """Daily reminder""",
 "it": """Ricordami di allenarmi tutti i giorni""",
 "fr": """Me rappeler de faire de l’exercice quotidiennement""",
 "eu": """Gogoratu nazazu eguneroko ariketa""",

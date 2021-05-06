@@ -50,7 +50,6 @@ class _SettingsBundle {
 class _SettingsScreenState extends State<SettingsScreen> {
   late Future<_SettingsBundle> _preferencesFuture;
   static const _DEFAULT_NOTIFICATION_TIME = TimeOfDay(hour: 20, minute: 10);
-  AdaptiveThemeMode? curTheme;
 
   @override
   void initState() {
@@ -76,26 +75,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 final notificationTime = NotificationHelper.timeFromInt(
                     settingsBundle.preferences
                         .getInt(PreferenceKeys.NOTIFICATION_TIME_PREF));
-                curTheme = settingsBundle.themeMode;
+                final curTheme = settingsBundle.themeMode;
                 return ListView(
                   children: <Widget>[
                     SwitchListTile.adaptive(
-                      secondary: Icon(Icons.audiotrack),
-                      value: settingsBundle.preferences
+                      secondary: Icon(Icons.record_voice_over),
+                      value: !(settingsBundle.preferences
                               .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
-                          false,
-                      title: Text("Use sounds instead of speech".i18n),
+                          false),
+                      title: Text("Use voice commands".i18n),
                       onChanged: (bool newValue) {
                         setState(() {
                           settingsBundle.preferences.setBool(
-                              PreferenceKeys.TTS_DISABLED_PREF, newValue);
+                              PreferenceKeys.TTS_DISABLED_PREF, !newValue);
                         });
                       },
                     ),
                     SwitchListTile.adaptive(
                       secondary: Icon(Icons.notifications),
                       value: notificationTime != null,
-                      title: Text("Remind me to exercise daily".i18n),
+                      title: Text("Daily reminder".i18n),
                       onChanged: (bool newValue) {
                         _setNotificationTime(
                             context,
@@ -148,8 +147,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ListTile(
                       leading: Icon(Icons.volunteer_activism),
                       title: Text("Participate".i18n),
-                      onTap: () =>
-                          _launchURL("https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
+                      onTap: () => _launchURL(
+                          "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
                     ),
                     ListTile(
                       leading: Icon(Icons.attach_money),

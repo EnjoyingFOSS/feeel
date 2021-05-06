@@ -32,7 +32,7 @@
     "txtNotificationInfoDesc": "A daily reminder to work out",
     "txtNotificationTitle": "Time to put on workout clothes!",
     "txtNotificationDesc": "It takes just a few minutes to feel fresh and fit",
-    "txtRemindMe": "Remind me to exercise daily",
+    "txtRemindMe": "Daily reminder",
     "txtNeedCameraPermission": "Can't take photos without camera permission",
     "txtNotificationTime": "Notification time",
     "txtAddExerciseFirst": "Add an exercise first",
@@ -68,7 +68,7 @@
     "btnAddPhotoFromGallery": "Add photo from gallery",
     "btnTakeAPhoto": "Take a photo",
     "btnAddALinkToPhotos": "Add a link to your photo(s)",
-    "btnDisableTTS": "Use sounds instead of speech",
+    "btnEnableTTS": "Use voice commands",
     "btnAdjustTiming": "Adjust timing",
     "btnDoneEditingTiming": "Done editing timing"
 }
