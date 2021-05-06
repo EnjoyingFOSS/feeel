@@ -49,7 +49,6 @@ class _SettingsBundle {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   late Future<_SettingsBundle> _preferencesFuture;
-  static const _DEFAULT_NOTIFICATION_TIME = TimeOfDay(hour: 20, minute: 10);
 
   @override
   void initState() {
@@ -95,10 +94,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       secondary: Icon(Icons.notifications),
                       value: notificationTime != null,
                       title: Text("Daily reminder".i18n),
-                      onChanged: (bool newValue) {
+                      onChanged: (bool setOn) {
                         _setNotificationTime(
                             context,
-                            newValue ? _DEFAULT_NOTIFICATION_TIME : null,
+                            setOn ? _getDefaultNotificationTime(): null,
                             settingsBundle.preferences);
                       },
                     ),
@@ -166,6 +165,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 return Center(child: CircularProgressIndicator());
               }
             }));
+  }
+
+  TimeOfDay _getDefaultNotificationTime() {
+    final now = TimeOfDay.now();
+    return TimeOfDay(hour: now.hour, minute: (now.minute ~/ 30) * 30);
   }
 
   void _launchURL(String url) async {
