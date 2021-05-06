@@ -6,14 +6,22 @@ As an additional permission under section 7, you are allowed to distribute the s
 
 All unofficial builds of the app must be clearly labeled as such in the app's title. (E.g. "Feeel UNOFFICIAL" rather than just "Feeel", or a different name altogether.)
 
+Exercise descriptions
+=====================
+Exercise descriptions in "strings/exercises/en.json" are released under the CC BY-SA 4.0 license.
+
+* Mountain climbers – mondstern
+
+All other English exercise descriptions were written by Miroslav Mazel.
+
 Translations
 ============
 Translations in "strings/ui" are released under the AGPLv3, those in "strings/exercises" under CC BY-SA 4.0.
 
 Basque - ui strings
 ------
-* "mondstern"
-* "Osoitz"
+* mondstern
+* Osoitz
 
 Chinese (Simplified) - ui strings
 -------
@@ -21,7 +29,7 @@ Chinese (Simplified) - ui strings
 
 Czech - both ui and exercise strings
 -----
-* "mondstern"
+* mondstern
 * Miroslav Mazel
 
 Dutch - both ui and exercise strings
@@ -44,7 +52,7 @@ French - ui strings
 * Jonathan D.
 * J. Lavoie
 * mondstern
-* "T_Zocker"
+* T_Zocker
 
 German - exercise strings
 -----
@@ -55,9 +63,9 @@ German - ui strings
 * K. Herbert
 * J. Lavoie
 * mondstern
-* "mv87"
-* "premier.lifeboat"
-* "prem hassel"
+* mv87
+* premier.lifeboat
+* prem hassel
 * Titus Jonas
 * Roland Geider
 
@@ -102,7 +110,7 @@ Portuguese - both ui and exercise strings
 Russian - ui strings
 -----
 * Artem
-* "Invisible Man"
+* Invisible Man
 * mondstern
 
 Spanish - exercise strings
