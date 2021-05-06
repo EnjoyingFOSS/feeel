@@ -86,6 +86,6 @@ class FeeelThemes {
                     fontWeight: FontWeight.w900,
                     color: colors.onBackground)),
             elevation: 0,
-            brightness: Brightness.light));
+            brightness: colors.brightness));
   }
 }

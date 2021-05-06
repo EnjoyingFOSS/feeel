@@ -42,8 +42,7 @@ class MyApp extends StatelessWidget {
     WidgetsBinding.instance?.addPostFrameCallback((_) => _onWidgetBuilt(context));
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.transparent,
-        statusBarBrightness: Brightness.light));
+        statusBarColor: Colors.transparent));
 
     return AdaptiveTheme(
         light: FeeelThemes.lightTheme,
