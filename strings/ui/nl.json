@@ -32,7 +32,7 @@
     "txtNotificationInfoDesc": "Wordt dagelijks herinnerd om een workout te doen",
     "txtNotificationTitle": "Tijd om je sportkleding aan te trekken!",
     "txtNotificationDesc": "Het kost slechts een paar minuten van je tijd om je weer fris en fruitig te voelen",
-    "txtRemindMe": "Dagelijkse herinnering sturen",
+    "txtRemindMe": "Dagelijkse herinnering",
     "txtNeedCameraPermission": "Zonder camerarechten kunnen er geen foto's worden gemaakt",
     "txtNotificationTime": "Tijdstip",
     "txtAddExerciseFirst": "Voeg eerst een oefening toe",
@@ -70,5 +70,6 @@
     "txtParticipate": "Bijdragen",
     "txtDonate": "Doneren",
     "txtSourceCode": "Broncode",
-    "txtBatteryOptimization": "Op sommige apparaten is het verstandig accu-optimalisatie uit te schakelen zodat Feeel betrouwbaar kan werken."
+    "txtBatteryOptimization": "Op sommige apparaten is het verstandig accu-optimalisatie uit te schakelen zodat Feeel betrouwbaar kan werken.",
+    "btnEnableTTS": "Stembediening gebruiken"
 }
