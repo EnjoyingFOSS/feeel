@@ -39,7 +39,7 @@
     "txtYouDidIt": "Vi faris ĝin!",
     "txtNotificationTitle": "Tempo por meti sur workout clothes!",
     "txtNotificationDesc": "Ĝi prenas nur kelkajn minutojn por senti freŝan kaj persvadi",
-    "txtRemindMe": "Memorigas min al ĉiutaga ekzerco",
+    "txtRemindMe": "Ĉiutaga rememorigo",
     "txtNeedCameraPermission": "Malferma-fonto hejmo workout app kiu respektas vian privatecan",
     "txtDiscardChanges": "Forĵeti ŝanĝojn?",
     "txtTheme": "Temo",
@@ -73,5 +73,6 @@
     "btnAddALinkToPhotos": "Aldoni ligon al via foto(j)",
     "btnDisableTTS": "Uzi sonoj anstataŭe de parolado",
     "btnAdjustTiming": "Alĝustigu kalendaro",
-    "btnDoneEditingTiming": "Farita redaktado kalendaro"
+    "btnDoneEditingTiming": "Farita redaktado kalendaro",
+    "btnEnableTTS": "Uzi voĉajn komandojn"
 }
