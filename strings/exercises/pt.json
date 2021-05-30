@@ -23,7 +23,7 @@
     "exerciseSplitSquatsLeft": "Split squats esquerda",
     "exerciseLunges": "Investidas",
     "exerciseHighKnees": "Joelhos para cima",
-    "exerciseStepups": "Step-ups",
+    "exerciseStepups": "Progressos",
     "stepsLunges": "1. Fique de pé com as costas retas\n2. Dê um grande passo adiante com sua perna esquerda\n3. Desça com sua pélvis até quase tocar o chão com o seu joelho direito\n4. Leve sua pélvis de volta para cima\n5. Retorne para a posição de pé, dando um passo atrás\n6. Repita, trocando de pernas a cada vez",
     "stepsHighKnees": "1. Corra no lugar, colocando os joelhos o mais alto o confortável e trocando de pernas a um ritmo rápido",
     "stepsPlank": "1. Desça de quatro, com os braços retos e os joelhos flexionados\n2. Mova seus pés para trás até que eles sejam estendidos\n3. Mantenha esta posição",
@@ -46,5 +46,7 @@
     "stepsJumpRopeBasic": "Este exercício requer uma corda de salto. Certifique-se de que o comprimento da corda é ajustado à sua altura. Uma maneira de verificar é agarrar ambas as pegas com uma mão e ficar no meio da corda pendurada no chão com um pé. Se a corda (excluindo as pegas) chegar mesmo abaixo do seu peito, o seu comprimento é o correcto. Uma corda mais curta seria perigosa, pois poderia atingir-se a si próprio, e uma corda mais comprida seria uma má forma.\n1. Coloque os pés juntos, dobre um pouco os joelhos, mantenha a cabeça e o corpo direitos, mantenha os cotovelos para dentro, abra os braços.\n2. Rodar apenas os pulsos com força suficiente para fazer girar a corda.\n3. Saltem só com força suficiente para passar a corda por baixo dos pés.\n4. Repita a partir do passo 2.",
     "stepsArmCircles": "1. Levante-se com as costas direitas.\n2. Traga os braços para a frente, levante-os sobre a cabeça, depois continue o movimento atrás das costas e para baixo até à posição inicial.\n3. Continuem a contornar os braços, tal como descrito no passo 2.",
     "exerciseArmCircles": "Círculos de braço",
-    "exerciseJumpRopeBasic": "Corda de Salto: saltos básicos"
+    "exerciseJumpRopeBasic": "Corda de Salto: saltos básicos",
+    "stepsMountainClimbers": "Posição inicial:\nComeçar na posição vertical de flexão, ou na prancha alta.\nAs mãos devem estar directamente debaixo dos seus ombros.\nManter a cabeça alinhada com as costas, virada para o chão.\nOs pés devem estar aproximadamente à largura da anca separados.\n\nPassos:\n1. Mova um joelho em direcção ao centro do corpo, em direcção aos cotovelos, mantendo a outra perna estendida.\n2. Num movimento de salto rápido, endireite a perna dobrada para fora e puxe o outro joelho em direcção ao seu corpo.\n3. Continue a repetir o passo 2, alternando as pernas.\n\nNotas:\nDurante todo o exercício, as costas devem permanecer o mais direitas possível - evitar uma corcunda ou uma flacidez nas costas.",
+    "exerciseMountainClimbers": "Montanhistas"
 }

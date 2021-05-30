@@ -21,7 +21,7 @@
     "txtAddExerciseFirst": "Önce bir egzersiz ekleyin",
     "txtNotificationTime": "Bildirim zamanı",
     "txtNeedCameraPermission": "Kamera izni olmadan fotoğraf çekilemez",
-    "txtRemindMe": "Bana her gün egzersiz yapmayı hatırlat",
+    "txtRemindMe": "Günlük hatırlatma",
     "txtNotificationDesc": "Taze ve zinde hissetmek sadece birkaç dakikanızı alır",
     "txtNotificationTitle": "Antrenman kıyafetlerini giyme zamanı!",
     "txtNotificationInfoDesc": "Antrenman yapmak için günlük bir hatırlatma",
@@ -70,5 +70,6 @@
     "txtDonate": "Bağış yapın",
     "txtSourceCode": "Kaynak kodları",
     "txtParticipate": "Katılın",
-    "txtBatteryOptimization": "Bazı aygıtlarda, bunun güvenilir bir şekilde çalışması için pil iyileştirmesini Feeel için devre dışı bırakmanız gerekebilir."
+    "txtBatteryOptimization": "Bazı aygıtlarda, bunun güvenilir bir şekilde çalışması için pil iyileştirmesini Feeel için devre dışı bırakmanız gerekebilir.",
+    "btnEnableTTS": "Sesli komutları kullan"
 }

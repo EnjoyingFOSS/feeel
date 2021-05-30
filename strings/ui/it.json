@@ -32,7 +32,7 @@
     "txtNotificationInfoDesc": "Un promemoria quotidiano per allenarti",
     "txtNotificationTitle": "È ora di indossare abiti da allenamento!",
     "txtNotificationDesc": "Bastano pochi minuti per sentirsi freschi e in forma",
-    "txtRemindMe": "Ricordami di allenarmi tutti i giorni",
+    "txtRemindMe": "Promemoria giornaliero",
     "txtNeedCameraPermission": "Non è possibile scattare foto senza il permesso della fotocamera",
     "txtNotificationTime": "Tempo di notifica",
     "txtAddExerciseFirst": "Prima aggiungi un esercizio",
@@ -70,5 +70,6 @@
     "txtDonate": "Dona",
     "txtSourceCode": "Codice sorgente",
     "txtParticipate": "Partecipa",
-    "txtBatteryOptimization": "Su alcuni dispositivi, potrebbe essere necessario disabilitare l'ottimizzazione della batteria per Feeel affinché questo funzioni in modo affidabile."
+    "txtBatteryOptimization": "Su alcuni dispositivi, potrebbe essere necessario disabilitare l'ottimizzazione della batteria per Feeel affinché questo funzioni in modo affidabile.",
+    "btnEnableTTS": "Usa comandi vocali"
 }

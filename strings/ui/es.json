@@ -32,7 +32,7 @@
     "txtNotificationInfoDesc": "Un recordatorio para entrenar",
     "txtNotificationTitle": "¡Tiempo para llevar ropa de entrenamiento!",
     "txtNotificationDesc": "Este toma solo unos minutos para refrescarse y estar en forma",
-    "txtRemindMe": "Recuérdeme hacer ejercicio diario",
+    "txtRemindMe": "Recordatorio diario",
     "txtNeedCameraPermission": "No se puede tomar fotos sin el permiso de cámara",
     "txtNotificationTime": "Hora de notificación",
     "txtAddExerciseFirst": "Añadir un ejercicio primero",
@@ -70,5 +70,6 @@
     "txtSourceCode": "Código fuente",
     "txtThemeDark": "Oscuro",
     "txtThemeLight": "Claro",
-    "txtTheme": "Tema"
+    "txtTheme": "Tema",
+    "btnEnableTTS": "Usar comandos de voz"
 }

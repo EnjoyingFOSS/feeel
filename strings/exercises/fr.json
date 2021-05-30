@@ -12,7 +12,7 @@
     "stepsChairDips": "1. Asseyez-vous sur le bord avant d'une chaise, le dos droit, les mains tenant le bord avant.\n2. Toujours en tenant le bord de la chaise, bras tendus, soulevez vos fesses et avancez légèrement de façon à ce qu'elles soient à quelques centimètres de la chaise.\n3. Abaissez lentement votre corps, en gardant le dos droit, jusqu'à ce que les bras forment un angle droit.\n4. Relevez votre corps jusqu'à la position précédente, bras tendus.\n5. Répétez les étapes 3 et 4",
     "exerciseChairDips": "Dips sur chaise",
     "stepsSquats": "1. Debout, les pieds écartés à la largeur des épaules\n2. Déplacez les hanches vers l'arrière et pliez les genoux et les hanches pour abaisser le torse.\n3. Répétez",
-    "exerciseSquats": "Squats",
+    "exerciseSquats": "Accroupi",
     "stepsStepups": "1. Tenez-vous debout face à une chaise\n2. Montez sur la chaise\n3. Descendez de la chaise\n4. Répétez",
     "exerciseStepups": "Marches",
     "stepsAbCrunches": "1. Allongez-vous sur le sol, face contre terre, genoux pliés.\n2. Courbez les épaules vers le bassin. Les mains peuvent être derrière ou à côté du cou ou croisées sur la poitrine.\n3. Répétez",
@@ -46,5 +46,7 @@
     "stepsJumpRopeBasic": "Cet exercice nécessite une corde à sauter. Assurez-vous que la longueur de la corde est adaptée à votre taille. Une mamière de vérifier est de saisir les deux poignées d'une main et de se tenir au milieu de la corde suspendue au sol avec un pied. Si la corde (sans les poignées) arrive juste sous votre poitrine, sa longueur est correcte. Une corde plus courte serait dangereuse, car vous risqueriez de vous cogner, et une corde plus longue serait mauvaise pour la forme.\n1. Rapprochez vos pieds, pliez un peu les genoux, gardez la tête et le corps droits, gardez les coudes rentrés, ouvrez les bras.\n2. Faites tourner uniquement vos poignets avec suffisamment de force pour faire tourner la corde.\n3. Sautez juste assez haut pour faire passer la corde sous vos pieds.\n4. Répétez à partir de l'étape 2.",
     "exerciseJumpRopeBasic": "Corde à sauter : sauts de base",
     "exerciseArmCircles": "Cercles avec les bras",
-    "stepsArmCircles": "1. Tenez-vous debout, le dos bien droit.\n2. Amenez vos bras vers l'avant, levez-les au-dessus de votre tête, puis continuez le mouvement derrière votre dos et vers le bas jusqu'à la position initiale.\n3. Continuez à faire des cercles avec vos bras comme décrit à l'étape 2."
+    "stepsArmCircles": "1. Tenez-vous debout, le dos bien droit.\n2. Amenez vos bras vers l'avant, levez-les au-dessus de votre tête, puis continuez le mouvement derrière votre dos et vers le bas jusqu'à la position initiale.\n3. Continuez à faire des cercles avec vos bras comme décrit à l'étape 2.",
+    "stepsMountainClimbers": "Position de départ :\nCommencez par la position debout des pompes ou de la planche haute.\nLes mains doivent se trouver directement sous vos épaules.\nGardez la tête dans le prolongement du dos, face au sol.\nLes pieds doivent être écartés d'environ la largeur des hanches.\n\nÉtapes :\n1. Déplacez un genou vers le centre de votre corps, vers vos coudes, en gardant l'autre jambe tendue.\n2. Dans un mouvement de saut rapide, redressez la jambe pliée et tirez l'autre genou vers votre corps.\n3. Répétez l'étape 2 en alternant les jambes.\n\nRemarques :\nTout au long de l'exercice, votre dos doit rester aussi droit que possible - évitez d'avoir une bosse ou un dos affaissé.",
+    "exerciseMountainClimbers": "Escaladeurs de montagne"
 }
