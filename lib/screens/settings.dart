@@ -176,7 +176,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     await canLaunch(url)
         ? await launch(url)
         : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Could not open $url."),
+            content: Text("Could not open URL."),
           ));
   }
 
