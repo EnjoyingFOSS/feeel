@@ -1,4 +1,4 @@
-// Copyright (C) 2019-2021 Miroslav Mazel
+// Copyright (C) 2019–2021 Miroslav Mazel
 // 
 // This file is part of Feeel.
 // 
@@ -1559,8 +1559,8 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 5. Repita los pasos 3 y 4""",
 } +
 {
-"tr": """Plank hareketi""",
-"nl": """Planken""",
+"tr": """Ön kol plank hareketi""",
+"nl": """Onderarmplanken""",
 "de": """Unterarmstütz""",
 "ru": """Планка""",
 "pt": """Prancha horizontal""",
@@ -1573,12 +1573,19 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "es": """Plancha""",
 } +
 {
-"tr": """1. Kollar düz ve dizler bükülü olarak dört ayak üzerine eğilin
-2. Bacaklarınız düz olana kadar ayaklarınızı geriye doğru yürütün
-3. Bu durumda kalın""",
-"nl": """1. Ga op z'n hondjes zitten, strek je armen en buig je benen.
-2. Loop met je voeten naar achteren totdat je benen gestrekt zijn.
-3. Houd deze positie vast""",
+"tr": """Başlangıç durumu:
+1. Dört ayak üzerinde başlayın.
+Kollar, omuzlar dirseklerin tam üzerinde olacak şekilde dik açıyla bükülmelidir.
+Sırt düz olmalı, tüm vücut düz bir çizgide olmalıdır.
+
+Adımlar: 1. Bu durumda kalın.""",
+"nl": """Startpositie:
+1. Ga op z'n hondjes zitten.
+Buig je armen en zet je schouders gelijk met je ellebogen.
+Je rug en de rest van je lichaam moeten gestrekt zijn.
+
+Stappen:
+1. Houd deze positie vast""",
 "de": """1. Gehe auf alle Viere, mit gestreckten Armen und gebeugten Knien.
 2. Gehe mit den Füßen nach hinten, bis sie gestreckt sind.
 3. Halte diese Position""",
@@ -2638,7 +2645,7 @@ Notas:
 Durante todo el ejercicio, la espalda debe permanecer lo más recta posible: evite una joroba o una espalda flácida.""",
 } +
 {
-"tr": """Pike push-ups""",
+"tr": """Pike şınav""",
 "nl": """Pike push-ups""",
 "de": """Pike push-ups""",
 "ru": """Pike push-ups""",
@@ -2652,14 +2659,14 @@ Durante todo el ejercicio, la espalda debe permanecer lo más recta posible: evi
 "es": """Pike push-ups""",
 } +
 {
-"tr": """Staring position:
-Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
-You can get to this position by walking your hands back from a high plank.
+"tr": """Başlangıç durumu:
+Aşağı bakan köpek: Vücudunuz sırt, kollar ve bacaklarla düz olacak şekilde bir V şekli oluşturmalıdır. Kalçaların havada olmalıdır.
+Yüksek plank durumunda ellerinizi geriye doğru yürüterek bu duruma gelebilirsiniz.
 
-Steps:
-1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
-2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
-3. Repeat.""",
+Adımlar:
+1. Dirseklerinizi yana doğru bükün, sırtınızı ve bacaklarınızı düz tutun ve başınızı yere yaklaştırın.
+2. Kollarınızı düzeltin, kalçalarınızı geriye doğru itin ve sırtınızı ve bacaklarınızı düz tutun.
+3. Tekrarlayın.""",
 "nl": """Staring position:
 Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
 You can get to this position by walking your hands back from a high plank.
