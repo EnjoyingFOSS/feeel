@@ -1,7 +1,7 @@
 {
     "stepsSingleLegCalfRaise": "1. Hareket aralığını artırmak için yerde veya bir basamağın kenarında durun. Üst kısmı baldırınızın üzerine koyarak bir ayağınızı kaldırın.\n2. Ayak parmaklarınız üzerinde durana kadar topuklarınızı kaldırın.\n3. Bu durumda üç saniye kalın, ardından topuğunuz yere değmeden ayağınızı indirin.",
     "stepsKneelingKickback": "1. Dört ayak üzerine eğilin.\n2. Kalça kaslarına odaklanarak bir ayağınızı tamamen uzayıncaya kadar geriye doğru itin.\n3. Bir saniye kalın, ardından başlangıç durumuna geri dönün.\n4. Ayakları değiştirerek tekrarlayın",
-    "stepsPlank": "1. Kollar düz ve dizler bükülü olarak dört ayak üzerine eğilin\n2. Bacaklarınız düz olana kadar ayaklarınızı geriye doğru yürütün\n3. Bu durumda kalın",
+    "stepsPlank": "Başlangıç durumu:\n1. Dört ayak üzerinde başlayın.\nKollar, omuzlar dirseklerin tam üzerinde olacak şekilde dik açıyla bükülmelidir.\nSırt düz olmalı, tüm vücut düz bir çizgide olmalıdır.\n\nAdımlar: 1. Bu durumda kalın.",
     "exerciseSingleLegCalfRaiseRight": "Sağ bacak baldır kaldırma",
     "exerciseSingleLegCalfRaiseLeft": "Sol bacak baldır kaldırma",
     "exerciseKneelingKickback": "Diz çöküp geri tepme",
@@ -11,7 +11,7 @@
     "stepsBulgarianSplitSquat": "1. Bir sandalyenin önünde dik durun ve büyük bir adım atın. Ayaklarınızdan birinin üst kısmını sandalyenin üzerine koyun.\n2. Arka diz neredeyse yere değene kadar kollarla dengeleyerek ön dizinizi bükün\n3. Başlangıç durumuna geri itin ve tekrarlayın.",
     "exerciseSidePlankRight": "Yan plank hareketi (sağ)",
     "exerciseSidePlankLeft": "Yan plank hareketi (sol)",
-    "exercisePlank": "Plank hareketi",
+    "exercisePlank": "Ön kol plank hareketi",
     "exerciseBulgarianSplitSquatRight": "Bulgar tek bacaklı çömelmesi (sağ)",
     "exerciseBulgarianSplitSquatLeft": "Bulgar tek bacaklı çömelmesi (sol)",
     "exerciseSideSplitSquatsRight": "Yana tek bacaklı çömelme (sağ)",
@@ -47,6 +47,16 @@
     "exerciseJumpRopeBasic": "İp atlama: temel atlamalar",
     "stepsArmCircles": "1. Sırtınız düz olacak şekilde dik durun.\n2. Kollarınızı öne doğru getirin, başınızın üzerine kaldırın, ardından hareketi arkanıza doğru ve başlangıç durumuna kadar devam ettirin.\n3. 2. adımda anlatıldığı gibi kollarınızı çevirmeye devam edin.",
     "exerciseArmCircles": "Kolları çevirme",
-    "stepsMountainClimbers": "Başlangıç konumu:\nDik şınav durumunda veya yüksek plankta başlayın.\nEller doğrudan omuzlarınızın altında olmalıdır.\nBaşınızı yere bakacak şekilde sırtınızla aynı hizada tutun.\nAyaklar yaklaşık kalça genişliğinde olmalıdır.\n\nAdımlar:\n1. Bir dizinizi vücudunuzun ortasına, dirseklerinize doğru hareket ettirin, diğer bacağınızı uzatın.\n2. Hızlı bir zıplama hareketinde, bükülmüş bacağı düzeltin ve diğer dizinizi vücudunuza doğru çekin.\n3. Adım 2'yi, bacakları değiştirerek tekrarlamaya devam edin.\n\nNotlar:\nEgzersiz boyunca sırtınız olabildiğince düz kalmalıdır – kamburluktan veya sırtınızın sarkmasından kaçının.",
-    "exerciseMountainClimbers": "Dağ tırmanışı"
+    "stepsMountainClimbers": "Başlangıç durumu:\nDik şınav durumunda veya yüksek plankta başlayın.\nEller doğrudan omuzlarınızın altında olmalıdır.\nBaşınızı yere bakacak şekilde sırtınızla aynı hizada tutun.\nAyaklar yaklaşık kalça genişliğinde olmalıdır.\n\nAdımlar:\n1. Bir dizinizi vücudunuzun ortasına, dirseklerinize doğru hareket ettirin, diğer bacağınızı uzatın.\n2. Hızlı bir zıplama hareketinde, bükülmüş bacağı düzeltin ve diğer dizinizi vücudunuza doğru çekin.\n3. Adım 2'yi, bacakları değiştirerek tekrarlamaya devam edin.\n\nNotlar:\nEgzersiz boyunca sırtınız olabildiğince düz kalmalıdır – kamburluktan veya sırtınızın sarkmasından kaçının.",
+    "exerciseMountainClimbers": "Dağ tırmanışı",
+    "stepsPikePushups": "Başlangıç durumu:\nAşağı bakan köpek: Vücudunuz sırt, kollar ve bacaklarla düz olacak şekilde bir V şekli oluşturmalıdır. Kalçaların havada olmalıdır.\nYüksek plank durumunda ellerinizi geriye doğru yürüterek bu duruma gelebilirsiniz.\n\nAdımlar:\n1. Dirseklerinizi yana doğru bükün, sırtınızı ve bacaklarınızı düz tutun ve başınızı yere yaklaştırın.\n2. Kollarınızı düzeltin, kalçalarınızı geriye doğru itin ve sırtınızı ve bacaklarınızı düz tutun.\n3. Tekrarlayın.",
+    "stepsBurpees": "Başlangıç durumu:\nAyaklar kalça genişliğinde açık olacak şekilde düz durun.\n\nAdımlar:\n1. Çömelin ve elleriniz dizlerinizin arasında ve ayaklarınızın önünde, sırtınız düz olacak şekilde yerde kendinizi destekleyin.\n2. Ellerinizi yerde tutarak bacaklarınızı geriye doğru yüksek plank pozisyonuna atın.\n3. Bir tane şınav çekin.\n4. Çömelme pozisyonuna dönmek için ayaklarınızı öne doğru atın.\n5. Yukarı zıplayın.\n6. Tekrarlayın.",
+    "exercisePikePushups": "Pike şınav",
+    "stepsFloorDips": "Başlangıç durumu:\nSırtınızı destekleyerek kollarınız arkanızda oturun.\nParmaklarınız öne doğru bakmalıdır.\nDizleriniz bükülmeli, ayaklarınız birbirine yapışmalıdır.\n\nAdımlar:\n1. Kollarınızı düzleştirerek kalçalarınızı yerden kaldırın.\n2. Kalçalarınızı aşağı indirerek dirseklerinizi bükün.\n3. Bir önceki duruma dönerek kollarınızı düzeltin.\n4. 2. ve 3. adımları tekrarlayın.\n\nNotlar:\nEgzersizin zorluğu kalçalarınızı ne kadar yükseğe çıkardığınıza bağlıdır.",
+    "exerciseFloorDips": "Yere dalma",
+    "stepsLegRaises": "Başlangıç durumu:\nAyaklar bitişik, kollarınız yan tarafınızda olacak şekilde sırt üstü uzanın.\n\nAdımlar:\n1. Dizlerinizi bükün, ardından yukarı bakacak şekilde düzeltin.\n2. Bacaklarınızı düz tutarak, yere değdirmeden birlikte aşağı indirin. Ne kadar aşağı indirirseniz egzersiz o kadar yoğun olur.\n3. Tekrar yukarı bakacak şekilde her iki bacağı birlikte kaldırın.\n4. 2. adımdan itibaren tekrarlayın.",
+    "exerciseLegRaises": "Bacak kaldırmaları",
+    "stepsReverseLunges": "Başlangıç durumu:\nAyaklar kalça genişliğinde açık olacak şekilde düz durun.\n\nAdımlar:\n1. 90 derecelik bir açıyla rahatça bükülebilmesi için tek ayakla geriye doğru adım atın.\n2. 90 derecelik açılar oluşturmak için her iki dizinizi de yavaşça bükün.\n3. Başlangıç durumuna geri dönün.\n4. Bacakları dönüşümlü olarak tekrarlayın.",
+    "exerciseReverseLunges": "Ters lunge hareketi",
+    "exerciseBurpees": "Burpee"
 }
