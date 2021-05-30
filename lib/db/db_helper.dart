@@ -257,7 +257,7 @@ class DBHelper {
         imageSlug: "exercise_tricepsdip.webp");
 
     await _createExercise(db,
-        name: "Plank",
+        name: "Forearm plank",
         description:
             "1. Get down on all fours, with arms straight and knees bent\n2. Walk your feet back until they are extended\n3. Hold this position",
         imageSlug: "exercise_plank.webp");
@@ -378,6 +378,16 @@ class DBHelper {
         name: "Arm circles",
         description: "1. Stand up tall with your back straight.\n2. Bring your arms forward, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
         imageSlug: "exercise_armcircles.webp");
+
+    await _createExercise(db,
+        name: "Pike push-ups",
+        description: "Staring position:\nDownward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.\nYou can get to this position by walking your hands back from a high plank.\n\nSteps:\n1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.\n2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.\n3. Repeat.",
+        imageSlug: "exercise_pikepushup.webp");
+
+    await _createExercise(db,
+        name: "Mountain climbers",
+        description: "Starting position:\nStart in the upright push-up position, or the high plank.\nHands should be directly under your shoulders.\nKeep your head in line with your back, facing the floor.\nFeet should be about hip-width apart.\n\nSteps:\n1. Move one knee toward the center of your body, towards your elbows, keeping the other leg extended.\n2. In a quick jumping movement, straighten the bent leg out and pull the other knee toward your body.\n3. Keep repeating step 2, alternating legs.\n\nNotes:\nThroughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.",
+        imageSlug: "exercise_mountainclimber.webp");
   }
 
   Future<void> _createWorkoutFromList(
