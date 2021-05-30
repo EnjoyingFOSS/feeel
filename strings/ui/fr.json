@@ -45,7 +45,7 @@
     "txtAddExerciseFirst": "Ajoutez d’abord un exercice",
     "txtNotificationTime": "Heure de la notification",
     "txtNeedCameraPermission": "Impossible de prendre des photos sans l’autorisation de l’appareil photo",
-    "txtRemindMe": "Me rappeler de faire de l’exercice quotidiennement",
+    "txtRemindMe": "Rappel quotidien",
     "txtNotificationDesc": "Il ne faut que quelques minutes pour se sentir frais et en forme",
     "txtNotificationTitle": "Il est temps de mettre des vêtements de sport !",
     "txtNotificationInfoDesc": "Un rappel quotidien pour s’entraîner",
@@ -114,5 +114,6 @@
     "txtDonate": "Faire un don",
     "txtCouldNotOpenURL": "Impossible d'ouvrir URL.",
     "txtBatteryOptimization": "Sur certains appareils, il se peut que vous deviez désactiver l'optimisation de la batterie pour Feeel pour que ceci fonctionne de manière fiable.",
-    "txtParticipate": "Rejoignez"
+    "txtParticipate": "Rejoignez",
+    "btnEnableTTS": "Utiliser les commandes vocales"
 }

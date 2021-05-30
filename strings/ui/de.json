@@ -34,7 +34,7 @@
     "txtNotificationInfoDesc": "Tägliche Trainingserinnerung",
     "txtNotificationTitle": "Es ist Zeit die Trainingsklamottten anzuziehen!",
     "txtNotificationDesc": "Es dauert nur ein paar Minuten, um sich frisch und gesund zu fühlen",
-    "txtRemindMe": "Erinnere mich täglich zu trainieren",
+    "txtRemindMe": "Tägliche Erinnerung",
     "txtNeedCameraPermission": "Um Fotos aufnehmen zu können, werden Berechtigungen für die Kamera benötigt",
     "txtNotificationTime": "Benachrichtigungszeitpunkt",
     "txtAddExerciseFirst": "Zuerst eine Übung hinzufügen",
@@ -114,5 +114,6 @@
     "txtCouldNotOpenURL": "Kann URL nicht öffnen.",
     "txtBatteryOptimization": "Auf einigen Geräten muss möglicherweise die Batterieoptimierung für Feeel deaktiviert werden, damit dies zuverlässig funktioniert.",
     "txtSourceCode": "Quellcode",
-    "txtDonate": "Spenden"
+    "txtDonate": "Spenden",
+    "btnEnableTTS": "Sprachbefehle verwenden"
 }

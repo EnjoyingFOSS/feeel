@@ -114,5 +114,6 @@
     "txtSourceCode": "Kode sumber",
     "txtDonate": "Donasi",
     "txtCouldNotOpenURL": "Tidak dapat membuka URL.",
-    "txtBatteryOptimization": "Pada beberapa perangkat, Anda mungkin perlu menonaktifkan optimisasi baterai untuk Feel Bagi ini untuk bekerja dapat dipercaya."
+    "txtBatteryOptimization": "Pada beberapa perangkat, Anda mungkin perlu menonaktifkan optimisasi baterai untuk Feel Bagi ini untuk bekerja dapat dipercaya.",
+    "btnEnableTTS": "Gunakan perintah suara"
 }

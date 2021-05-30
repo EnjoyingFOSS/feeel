@@ -65,5 +65,10 @@
     "txtThemeDark": "Tmavý",
     "txtThemeLight": "Světlý",
     "txtThemeSystem": "Dle systému",
-    "txtTheme": "Vzhled"
+    "txtTheme": "Vzhled",
+    "txtCouldNotOpenURL": "Nelze otevřít $url.",
+    "txtDonate": "Darovat",
+    "txtSourceCode": "Zdrojový kód",
+    "txtParticipate": "Účastněte se",
+    "txtBatteryOptimization": "Na některých zařízeních může být nutné vypnout optimalizaci baterie pro Feeel, aby tato funkce spolehlivě fungovala."
 }
