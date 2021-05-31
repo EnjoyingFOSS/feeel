@@ -60,6 +60,7 @@
     "btnOK": "OK",
     "btnDiscard": "Zahodit",
     "btnCancel": "Zrušit",
+    "btnEnableTTS": "Použít hlas",
     "txtDiscardChanges": "Zahodit změny?",
     "txtCustomDuration": "Vlastní délka (s.)",
     "txtThemeDark": "Tmavý",
