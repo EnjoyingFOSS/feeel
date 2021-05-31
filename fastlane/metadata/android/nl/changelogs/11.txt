@@ -1,0 +1,3 @@
+Volledig herschreven app, nu kunt u uw eigen workout te creëren, met inbegrip van de mogelijkheid om de lengte van elke oefening in te stellen. Het ondersteunt ook meldingen.
+
+Komt ook met verschillende nieuwe vertalingen - dank aan alle vrijwillige vertalers betrokken!
