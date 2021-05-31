@@ -1,0 +1,3 @@
+Nouvelles langues : Français, allemand et espagnol
+Sauvegarde du réglage de la case à cocher TTS maintenant
+Boutons vers le haut

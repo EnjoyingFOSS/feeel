@@ -1,0 +1,1 @@
+增加了德语和法语的翻译，感谢Jonathan D., Max Garret, Titus Jonas, J. Lavoie, "mv87", "premier.lifeboat", "prem hassel", and "T_Zocker"

@@ -1,0 +1,3 @@
+Secara lengkap menulis ulang app, sekarang memungkinkan Anda untuk membuat latihan sendiri, termasuk mampu mengatur panjang setiap latihan. Hal ini juga mendukung pemberitahuan.
+
+Juga datang dengan berbagai Terjemahan Baru-Terima kasih untuk semua penerjemah sukarelawan yang terlibat!

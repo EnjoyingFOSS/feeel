@@ -1,0 +1,1 @@
+Handiago bat refactor, aukerako TTS, eta mantentzen pantaila uneoro (esker Joseph Nuthalapati!)

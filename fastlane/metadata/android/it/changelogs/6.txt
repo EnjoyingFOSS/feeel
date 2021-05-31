@@ -1,0 +1,3 @@
+Nuove lingue: Francese, tedesco e spagnolo
+Salvataggio dell'impostazione della casella di controllo TTS ora
+Pulsanti in alto

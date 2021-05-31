@@ -1,0 +1,3 @@
+L'application a été entièrement réécrite et vous permet désormais de créer votre propre séance d'entraînement et de définir la durée de chaque exercice. Elle prend également en charge les notifications.
+
+Plusieurs nouvelles traductions sont également disponibles - merci à tous les traducteurs bénévoles !

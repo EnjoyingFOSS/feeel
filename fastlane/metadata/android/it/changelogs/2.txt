@@ -1,0 +1,1 @@
+Un refactor più grande, TTS opzionale, e mantiene lo schermo sempre acceso (grazie a Joseph Nuthalapati!)

@@ -1,0 +1,3 @@
+Aplicación completamente reescrita, que ahora te permite crear tu propio entrenamiento, incluyendo la posibilidad de establecer la duración de cada ejercicio. También es compatible con las notificaciones.
+
+También viene con varias traducciones nuevas - ¡gracias a todos los traductores voluntarios involucrados!

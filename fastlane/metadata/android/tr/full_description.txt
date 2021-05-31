@@ -1,0 +1,3 @@
+Feeel, evde basit egzersizler yapmak için açık kaynaklı bir Android uygulamasıdır. Çok beğenilen bilimsel 7 dakikalık tam vücut antrenmanı düzenini sunar ve aynı zamanda özel antrenmanlar oluşturmanıza da izin verir. Uygulama şu anda sınırlı sayıda egzersiz içeriyor olsa da, topluluğun yardımıyla hem egzersizlerin hem de antrenmanların sayısının büyük ölçüde arttırılması planlanmaktadır.
+
+https://gitlab.com/enjoyingfoss/feeel/wikis adresinde katkıda bulunun.

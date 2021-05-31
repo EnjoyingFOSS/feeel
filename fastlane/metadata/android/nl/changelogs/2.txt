@@ -1,0 +1,1 @@
+Een grotere refactor, optionele TTS, en houdt het scherm te allen tijde aan (met dank aan Joseph Nuthalapati!)
