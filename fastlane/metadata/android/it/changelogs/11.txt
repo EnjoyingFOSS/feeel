@@ -1,0 +1,3 @@
+App completamente riscritta, ora permette di creare il proprio allenamento, compresa la possibilità di impostare la durata di ogni esercizio. Supporta anche le notifiche.
+
+Viene anche fornito con varie nuove traduzioni - grazie a tutti i traduttori volontari coinvolti!
