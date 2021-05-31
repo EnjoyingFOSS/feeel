@@ -1,0 +1,1 @@
+Jednoduchá aplikace se cviky/tréninky na doma, která respektuje Vaše soukromí
