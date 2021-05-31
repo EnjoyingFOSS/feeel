@@ -1,0 +1,1 @@
+Thème sombre, nouvelle boîte de dialogue À propos, paramètres légèrement remaniés et 4 nouveaux exercices : corde à sauter, cercles de bras, pompes en brochet et escalade. Suppression des traductions du Bokmal norvégien en raison d'un désaccord sur la licence.

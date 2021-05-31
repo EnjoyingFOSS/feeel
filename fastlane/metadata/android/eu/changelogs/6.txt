@@ -1,0 +1,3 @@
+Berri hizkuntzak: frantziako, alemaniako, espainiako eta
+Aurrezteko TTS kontrol-laukia ezarpena orain
+Botoiak Up

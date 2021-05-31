@@ -1,0 +1,1 @@
+Tema scuro, nuova finestra di dialogo About, impostazioni leggermente ridisegnate e 4 nuovi esercizi: corda per saltare, cerchi per le braccia, pike push-up e scalatori di montagne. Rimozione delle traduzioni di Bokmal norvegese a causa di un disaccordo sulle licenze.

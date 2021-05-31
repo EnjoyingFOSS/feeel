@@ -1,0 +1,3 @@
+Komplett neu geschriebene App, mit der Du jetzt Dein eigenes Training erstellen kannst, einschließlich der Möglichkeit, die Länge jeder Übung einzustellen. Unterstützt auch Benachrichtigungen.
+
+Außerdem gibt es verschiedene neue Übersetzungen - vielen Dank an alle beteiligten freiwilligen Übersetzer!

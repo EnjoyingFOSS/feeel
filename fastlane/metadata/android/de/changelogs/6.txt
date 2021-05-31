@@ -1,0 +1,3 @@
+Neue Sprachen: Französisch, Deutsch und Spanisch
+Speichert jetzt die TTS-Checkbox-Einstellung
+Aufwärts-Tasten

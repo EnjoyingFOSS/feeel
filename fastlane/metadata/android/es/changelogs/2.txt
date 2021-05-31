@@ -1,0 +1,1 @@
+Una refactorización mayor, TTS opcional, y mantiene la pantalla encendida en todo momento (¡gracias a Joseph Nuthalapati!)

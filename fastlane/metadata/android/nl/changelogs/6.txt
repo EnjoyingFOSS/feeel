@@ -1,0 +1,3 @@
+Nieuwe talen: Frans, Duits en Spaans
+TTS checkbox instelling nu opslaan
+Knoppen omhoog

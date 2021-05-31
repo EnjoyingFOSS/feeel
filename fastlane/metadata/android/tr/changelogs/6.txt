@@ -1,0 +1,3 @@
+Yeni diller: Fransızca, Almanca ve İspanyolca
+Metinden konuşmaya (TTS) onay kutusu ayarını kaydetme
+Yukarı düğmeleri

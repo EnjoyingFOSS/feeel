@@ -1,0 +1,1 @@
+更大的重构，可选的TTS，并保持屏幕一直开着（感谢Joseph Nuthalapati！）

@@ -1,0 +1,3 @@
+Nuevos idiomas: Francés, alemán y español
+Guardar la configuración de la casilla TTS ahora
+Botones superiores

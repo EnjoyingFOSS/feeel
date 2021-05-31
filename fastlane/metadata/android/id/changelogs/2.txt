@@ -1,0 +1,1 @@
+Perbaikan yang lebih besar, TTS opsional, dan tetap tampilkan layar setiap saat (berkat Joseph Nuthalapati!)
