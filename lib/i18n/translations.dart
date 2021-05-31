@@ -794,7 +794,7 @@ Pasos del ejercicio:
 "it": """Impossibile aprire URL.""",
 "fr": """Impossible d'ouvrir URL.""",
 "eu": """Ezin ireki URL.""",
-"cs": """Nelze otevřít $url.""",
+"cs": """Nelze otevřít URL.""",
 "id": """Tidak dapat membuka URL.""",
 "es": """No es posible abrir URL.""",
 } +
