@@ -1,0 +1,1 @@
+Koyu tema, yeni Hakkında iletişim kutusu, biraz yeniden tasarlanan ayarlar ve 4 yeni egzersiz: ip atlama, kolları çevirme, pike şınav ve dağ tırmanışı. Lisans anlaşmazlığı nedeniyle Norveççe Bokmal çevirileri kaldırıldı.

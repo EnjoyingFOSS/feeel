@@ -1,0 +1,3 @@
+Uygulama tamamen yeniden yazıldı, artık her egzersizin uzunluğunu ayarlayabilmek de dahil olmak üzere kendi antrenmanınızı oluşturmanıza olanak tanıyor. Ayrıca bildirimleri de destekliyor.
+
+Ayrıca çeşitli yeni çevirilerle birlikte geliyor — dahil olan tüm gönüllü çevirmenlere teşekkürler!

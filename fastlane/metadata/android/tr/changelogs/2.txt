@@ -1,0 +1,1 @@
+Daha geniş bir yeniden yapılandırma, isteğe bağlı metinden konuşmaya (TTS) seçeneği ve ekranın her zaman açık tutulması (teşekkürler Joseph Nuthalapati!)
