@@ -1,0 +1,3 @@
+Feeel bat da, kode irekiko Android app egiten simple-etxean ariketak. It dauka txalotua gorputz osoa zientifiko 7 minutuko entrenamendu erregimen eta sortzea baimentzen ohiko workouts baita. Bitartean, app, gaur egun, bat dauka kopuru mugatu ariketak, plana da erabat zabaltzeko kopurua, bai ariketak eta workouts duen komunitatearen laguntza.
+
+Lagundu at https://gitlab.com/enjoyingfoss/feeel/wikis .
