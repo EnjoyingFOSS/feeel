@@ -1,0 +1,3 @@
+Feeel er en åpen-kilde Android-app for å gjøre enkle hjem øvelser. Det har den kritikerroste full body vitenskapelige 7-minutters trening regime og lar opprette egendefinerte treningsøkter som godt. Mens app som inneholder en begrenset mengde øvelser, planen er å drastisk øke antall både øvelser og trening med hjelp av fellesskapet.
+
+Bidra i https://gitlab.com/enjoyingfoss/feeel/wikis .
