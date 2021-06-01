@@ -1,1 +1,13 @@
-{}
+{
+    "txtNotificationInfoDesc": "En daglig påminnelse om å trene",
+    "txtNotificationInfoTitle": "Daglig varsling",
+    "txtNotANumber": "Ikke-numeriske",
+    "txtCustom": "Tilpasset",
+    "txtBreakDuration": "Bryte varighet",
+    "txtExerciseDuration": "Trening varighet",
+    "txtDuration": "Varighet",
+    "txtWorkoutExercisesEmpty": "Legg til minst 1 trening",
+    "txtWorkoutTitleEmpty": "Vennligst angi en treningsøkt tittel",
+    "txtSettings": "Innstilling",
+    "txtSubmitExerciseMessageContents": "Hei,\n\nJeg sender et forslag til en øvelse. Jeg erklærer herved at både den vedlagte bilder og beskrivelse er helt mitt eget arbeid. Ved å sende denne meldingen, jeg godtar ugjenkallelig har sendt inn navn og beskrivelse utgitt under CC-BY-SA-4.0-lisens og en AGPLv3 med en app store unntak lisens. Jeg vil også gi tillatelse til å behandle den vedlagte bilde(r) i low-poly-varianter. Etter at de er behandlet, vil jeg vurdere om jeg er villig til å lisensiere disse under CC-BY-SA-4.0-lisens.\n\nØvelse navn: %1s\nØvelse trinn:\n%2s"
+}
