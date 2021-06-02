@@ -1,0 +1,3 @@
+Fullstendig omskrevet app, nå slik at du kan lage din egen treningsøkt, herunder være i stand til å angi lengden av hver øvelse. Den støtter også varsler.
+
+Også kommer med flere nye oversettelser — takk til alle de frivillige oversettere involvert!
