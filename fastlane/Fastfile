@@ -17,18 +17,49 @@ platform :android do
     gradle(task: "test")
   end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
+    gradle(
+      task: 'assemble',
+      build_type: 'Release',
+      project_dir: 'android/'
+    )
+    upload_to_play_store(
+      track: 'beta',
+      apk_paths: [
+        'build/app/outputs/apk/release/app-arm64-v8a-release.apk',
+        'build/app/outputs/apk/release/app-x86_64-release.apk',
+        'build/app/outputs/apk/release/app-armeabi-v7a-release.apk',
+        'build/app/outputs/apk/release/app-x86-release.apk'
+      ]
+    )
+  end
+
+  lane :playtest do
+    upload_to_play_store(
+      track: 'beta',
+      apk_paths: [
+        'build/app/outputs/apk/release/app-arm64-v8a-release.apk',
+        'build/app/outputs/apk/release/app-x86_64-release.apk',
+        'build/app/outputs/apk/release/app-armeabi-v7a-release.apk',
+        'build/app/outputs/apk/release/app-x86-release.apk'
+      ]
+    )
   end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+    gradle(
+      task: 'assemble',
+      build_type: 'Release',
+      project_dir: 'android/'
+    )
+    upload_to_play_store(
+      apk_paths: [
+        'build/app/outputs/apk/release/app-arm64-v8a-release.apk',
+        'build/app/outputs/apk/release/app-x86_64-release.apk',
+        'build/app/outputs/apk/release/app-armeabi-v7a-release.apk',
+        'build/app/outputs/apk/release/app-x86-release.apk'
+      ]
+    )
   end
 end
