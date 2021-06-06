@@ -1,3 +1,0 @@
-New languages: French, German, and Spanish
-Saving TTS checkbox setting now
-Up buttons
