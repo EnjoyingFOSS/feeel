@@ -1,0 +1,3 @@
+Nové jazyky: francouzština, němčina a španělština
+Nastavení hlasových příkazů se nyní ukládá
+Přidaná navigace nahoru

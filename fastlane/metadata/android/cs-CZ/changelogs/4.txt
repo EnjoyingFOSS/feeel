@@ -1,0 +1,1 @@
+Běh aplikace na pozadí, pokročilý trénink a opravy pro lepší kompatibilitu

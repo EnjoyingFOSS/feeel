@@ -1,0 +1,3 @@
+Kompletně přepsaná aplikace, která nyní umožňuje vytvořit si vlastní trénink včetně nastavení si délky každého ze cviků. Také podporuje upozornění.
+
+Také obsahuje různorodé nové překlady — díky všem zapojeným překladatelům!

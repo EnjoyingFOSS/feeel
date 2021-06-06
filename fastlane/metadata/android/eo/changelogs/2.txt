@@ -1,1 +1,0 @@
-Pli granda refaktoro, laŭvola TTS, kaj tenas la ekranon ĉiam (dankon al Jozef Nuthalapati!)

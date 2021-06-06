@@ -1,3 +1,5 @@
-Feeel is an open-source Android app for doing simple at-home exercises. It holds the acclaimed full body scientific 7-minute workout regime and allows creating custom workouts as well. While the app currently contains a limited amount of exercises, the plan is to drastically expand the number of both exercises and workouts with the help of the community.
+Feeel is an open-source Android app for doing simple at-home exercises. While it currently only holds the scientific 7-minute workout regime, the hope is to expand the amount of available exercises with the help of the community and to allow creating custom regimes, with an assortment of handful time-proven regimes built-in to start with.
 
-Contribute at https://gitlab.com/enjoyingfoss/feeel/wikis .
+Contribute at https://gitlab.com/enjoyingfoss/feeel .
+
+Donate at https://liberapay.com/Feeel/ . Donations help me be able to dedicate more time to working on the app.

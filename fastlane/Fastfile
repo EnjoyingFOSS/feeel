@@ -1,13 +1,4 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:android)
 
@@ -17,49 +8,37 @@ platform :android do
     gradle(task: "test")
   end
 
-  lane :beta do
+  lane :internal do
     gradle(
-      task: 'assemble',
+      task: 'bundle',
       build_type: 'Release',
       project_dir: 'android/'
     )
     upload_to_play_store(
-      track: 'beta',
-      apk_paths: [
-        'build/app/outputs/apk/release/app-arm64-v8a-release.apk',
-        'build/app/outputs/apk/release/app-x86_64-release.apk',
-        'build/app/outputs/apk/release/app-armeabi-v7a-release.apk',
-        'build/app/outputs/apk/release/app-x86-release.apk'
-      ]
+      track: "internal",
+      aab: "build/app/outputs/bundle/release/app-release.aab"
     )
   end
 
-  lane :playtest do
+  lane :tobeta do
     upload_to_play_store(
-      track: 'beta',
-      apk_paths: [
-        'build/app/outputs/apk/release/app-arm64-v8a-release.apk',
-        'build/app/outputs/apk/release/app-x86_64-release.apk',
-        'build/app/outputs/apk/release/app-armeabi-v7a-release.apk',
-        'build/app/outputs/apk/release/app-x86-release.apk'
-      ]
+      track: "internal",
+      track_promote_to: "beta",
+      version_code: 4014
+    )
+  end
+
+  lane :toproduction do
+    upload_to_play_store(
+      track: "beta",
+      track_promote_to: "production",
+      version_code: 4014
     )
   end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(
-      task: 'assemble',
-      build_type: 'Release',
-      project_dir: 'android/'
-    )
-    upload_to_play_store(
-      apk_paths: [
-        'build/app/outputs/apk/release/app-arm64-v8a-release.apk',
-        'build/app/outputs/apk/release/app-x86_64-release.apk',
-        'build/app/outputs/apk/release/app-armeabi-v7a-release.apk',
-        'build/app/outputs/apk/release/app-x86-release.apk'
-      ]
-    )
+    gradle(task: "clean assembleRelease")
+    upload_to_play_store
   end
 end
