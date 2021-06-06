@@ -2,4 +2,4 @@ Feeel is an open-source Android app for doing simple at-home exercises. It holds
 
 Contribute at https://gitlab.com/enjoyingfoss/feeel/wikis
 
-Donate at https://liberapay.com/Feeel/ . Donations will let me work on the app regularly, rather than just when I have free time.
+Donate at https://liberapay.com/Feeel/ . Donations will let me work on the app regularly, rather than just in my free time.
