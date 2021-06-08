@@ -68,7 +68,7 @@
     "btnAddPhotoFromGallery": "Add photo from gallery",
     "btnTakeAPhoto": "Take a photo",
     "btnAddALinkToPhotos": "Add a link to your photo(s)",
-    "btnEnableTTS": "Use voice commands",
+    "btnDisableTTS": "Sounds instead of voice",
     "btnAdjustTiming": "Adjust timing",
     "btnDoneEditingTiming": "Done editing timing"
 }

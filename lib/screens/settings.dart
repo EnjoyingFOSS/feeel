@@ -78,15 +78,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 return ListView(
                   children: <Widget>[
                     SwitchListTile.adaptive(
-                      secondary: Icon(Icons.record_voice_over),
-                      value: !(settingsBundle.preferences
+                      secondary: Icon(Icons.music_note),
+                      value: (settingsBundle.preferences
                               .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
                           false),
-                      title: Text("Use voice commands".i18n),
+                      title: Text("Sounds instead of voice".i18n),
                       onChanged: (bool newValue) {
                         setState(() {
                           settingsBundle.preferences.setBool(
-                              PreferenceKeys.TTS_DISABLED_PREF, !newValue);
+                              PreferenceKeys.TTS_DISABLED_PREF, newValue);
                         });
                       },
                     ),
@@ -138,12 +138,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       },
                     ),
                     ListTile(
-                      leading: Icon(Icons.code),
-                      title: Text("Source code".i18n),
-                      onTap: () =>
-                          _launchURL("https://gitlab.com/enjoyingfoss/feeel/"),
-                    ),
-                    ListTile(
                       leading: Icon(Icons.volunteer_activism),
                       title: Text("Participate".i18n),
                       onTap: () => _launchURL(
@@ -153,6 +147,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       leading: Icon(Icons.attach_money),
                       title: Text("Donate".i18n),
                       onTap: () => _launchURL("https://liberapay.com/Feeel/"),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.code),
+                      title: Text("Source code".i18n),
+                      onTap: () =>
+                          _launchURL("https://gitlab.com/enjoyingfoss/feeel/"),
                     ),
                     ListTile(
                       leading: Icon(Icons.info),

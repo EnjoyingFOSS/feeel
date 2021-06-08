@@ -1070,7 +1070,7 @@ Pasos del ejercicio:
 "de": """Sprachbefehle verwenden""",
 "ru": """Используйте голосовые команды""",
 "pt": """Usar comandos de voz""",
-"en": """Use voice commands""",
+"en": """Sounds instead of voice""",
 "it": """Usa comandi vocali""",
 "fr": """Utiliser les commandes vocales""",
 "eu": """Erabili ahots-komandoak""",
