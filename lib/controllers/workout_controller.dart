@@ -77,10 +77,10 @@ class WorkoutController {
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
       if (prefs.getBool(PreferenceKeys.TTS_DISABLED_PREF) ?? false) {
-        final WorkoutView soundView = SoundView();
+        final SoundView soundView = SoundView();
         _views[ViewTypes.AUDIO.index] = soundView;
         _onFinishes[ViewTypes.AUDIO.index] = () {
-          (soundView as dynamic).onFinish(); //todo typing to dynamic is ugly
+          soundView.onFinish();
         };
       } else {
         _views[ViewTypes.AUDIO.index] = TTSView(); //todo allow audio setting

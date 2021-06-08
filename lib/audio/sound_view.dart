@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
