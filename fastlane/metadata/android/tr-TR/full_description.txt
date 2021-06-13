@@ -2,4 +2,4 @@ Feeel, evde basit egzersizler yapmak için açık kaynaklı bir Android uygulama
 
 https://gitlab.com/enjoyingfoss/feeel/wikis adresinde katkıda bulunun.
 
-https://liberapay.com/Feeel/ adresinden bağış yapın. Bağışlar, uygulama üzerinde yalnızca boş zamanım olduğunda değil, düzenli olarak çalışmama olanak sağlayacaktır.
+https://liberapay.com/Feeel/ adresinden bağış yapın. Bağışlar, uygulama üzerinde yalnızca boş zamanlarımda değil, düzenli olarak çalışmama olanak sağlayacaktır.
