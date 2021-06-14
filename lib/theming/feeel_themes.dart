@@ -79,12 +79,12 @@ class FeeelThemes {
         toggleableActiveColor: colors.primary,
         appBarTheme: AppBarTheme(
             color: colors.background,
-            iconTheme: IconThemeData(color: colors.onBackground),
+            iconTheme: IconThemeData(color: colors.primary),
             textTheme: TextTheme(
                 headline6: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
-                    color: colors.onBackground)),
+                    color: colors.primary)),
             elevation: 0,
             brightness: colors.brightness));
   }
