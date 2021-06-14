@@ -21,15 +21,16 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/controllers/workout_controller.dart';
+import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
-import 'package:feeel/widgets/break_illustration.dart';
+import 'package:feeel/widgets/exercise_layout.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'exercise_illustration.dart';
+import 'flipped.dart';
 
 class ExercisePage extends StatefulWidget {
   final Workout workout;
@@ -75,12 +76,6 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     final theme = Theme.of(context);
     final themeDarkColor = widget.colorSwatch
         .getColorByBrightness(FeeelShade.DARK, theme.brightness);
-    var expandIcon = Icon(
-      !_infoShown ? Icons.expand_less : Icons.expand_more,
-      color: _paused
-          ? theme.colorScheme.onPrimary
-          : theme.colorScheme.onPrimary.withAlpha(127),
-    );
     return GestureDetector(
       child: Material(
           color: theme.backgroundColor,
@@ -135,19 +130,27 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                   physics: NeverScrollableScrollPhysics(),
                   controller: _pageController,
                   itemBuilder: (context, i) {
-                    var exercise = widget
+                    final exercise = widget
                         .workout.workoutExercises[(i / 2).floor()].exercise;
-                    if (i % 2 == 0) {
-                      return BreakIllustration(
-                          expandIcon: expandIcon,
-                          color: widget.colorSwatch.getColor(FeeelShade.DARK),
-                          nextExercise: exercise);
-                    } else
-                      return ExerciseIllustration(
-                        expandIcon: expandIcon,
-                        color: widget.colorSwatch.getColor(FeeelShade.DARK),
-                        exercise: exercise,
-                      );
+                    final imageSlug = exercise.imageSlug;
+                    final headOnly = false; //todo
+                    return ExerciseLayout(
+                      expanded: _infoShown,
+                      paused: _paused,
+                      colorSwatch: widget.colorSwatch,
+                      title: exercise.name,
+                      headOnly: headOnly,
+                      onBreak: (i % 2 == 0),
+                      triangleSeed:
+                          headOnly ? exercise.name.hashCode : 0,
+                      illustration: imageSlug != null
+                          ? exercise.twoSided
+                              ? Flipped(
+                                  child: Image.asset(
+                                      AssetHelper.getImage(imageSlug)))
+                              : Image.asset(AssetHelper.getImage(imageSlug))
+                          : Text("Image missing".i18n),
+                    );
                   },
                   itemCount: widget.workout.workoutExercises.length * 2,
                 ),

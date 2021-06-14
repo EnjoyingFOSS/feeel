@@ -20,42 +20,33 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/models/view/exercise.dart';
 import 'package:flutter/material.dart';
 
-import 'flipped.dart';
-import 'illustration_layout.dart';
-import 'package:feeel/i18n/translations.dart';
-
-class ExerciseIllustration extends StatelessWidget {
-  static const double BOTTOM_PADDING = 32;
+class BodyExerciseContent extends StatelessWidget {
   final Color color;
-  final Exercise exercise;
-  final Widget expandIcon;
+  final bool onBreak;
+  final Widget illustration;
 
-  const ExerciseIllustration(
-      {Key? key,
-      required this.color,
-      required this.exercise,
-      required this.expandIcon})
-      : super(key: key);
+  const BodyExerciseContent({Key? key, required this.color, required this.onBreak, required this.illustration}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var imageSlug = exercise.imageSlug;
-    return IllustrationLayout(
-      color: color,
-      expandIcon: expandIcon,
-      illustrationImage: imageSlug != null
-          ? (exercise.twoSided
-              ? Flipped(child: Image.asset(AssetHelper.getImage(imageSlug)))
-              : Image.asset(AssetHelper.getImage(imageSlug)))
-          : Text("Image missing".i18n),
-      illustrationTitle: Text(exercise.name.i18n,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 40, fontWeight: FontWeight.w900, color: Colors.white)),
-    );
+    return Expanded(
+          child: Stack(
+        children: <Widget>[
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                color: color,
+                height: MediaQuery.of(context).size.width * 0.372,
+              )),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Opacity(
+                      opacity: onBreak ? 0.5 : 1.0, child: illustration)))
+        ],
+      ));
   }
 }
