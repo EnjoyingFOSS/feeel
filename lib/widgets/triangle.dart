@@ -27,42 +27,40 @@ import 'package:flutter/material.dart';
 class Triangle extends StatelessWidget {
   final Color color;
   final int seed;
-  final double dimension;
 
-  Triangle({required this.dimension, required this.color, this.seed = 0});
+  Triangle({required this.color, this.seed = 0});
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-        size: Size(dimension, dimension),
         painter: TrianglePainter(color, seed));
   }
 }
 
 class TrianglePainter extends CustomPainter {
-  Paint _paint = Paint();
-  late double rx, ry, rr;
+  final Paint _paint = Paint();
+  late final double rX, rY, rRotation;
 
   TrianglePainter(Color color, int seed) {
     var random = Random(seed);
     _paint.color = color;
     _paint.style = PaintingStyle.fill;
-    rx = random.nextDouble();
-    ry = random.nextDouble();
-    rr = random.nextDouble();
+    rX = random.nextDouble();
+    rY = random.nextDouble();
+    rRotation = random.nextDouble();
   }
 
   @override
   void paint(Canvas canvas, Size size) {
     var path = Path();
-    path.lineTo(rx * size.width, size.height);
-    if (rx < 0.5)
-      path.lineTo(size.width, (ry + 1) * size.height / 2);
+    path.lineTo(rX * size.width, size.height);
+    if (rX < 0.5)
+      path.lineTo(size.width, (rY + 1) * size.height / 2);
     else
-      path.lineTo(size.width, ry * size.height / 2);
+      path.lineTo(size.width, rY * size.height / 2);
     path.close();
 
-    int rotation = (rr * 4).floor();
+    int rotation = (rRotation * 4).floor();
     canvas.translate(size.width / 2, size.height / 2);
     canvas.rotate(rotation * pi / 2);
     canvas.translate(-size.width / 2, -size.height / 2);

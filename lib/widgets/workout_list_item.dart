@@ -57,17 +57,17 @@ class WorkoutListItem extends StatelessWidget {
                     width: double.infinity,
                     child: Stack(
                       children: [
-                        Padding(
-                          child: Triangle(
-                            dimension: 96,
-                            color: workoutListed.category.colorSwatch
-                                .getColorByBrightness(
-                                    FeeelShade.LIGHTEST, theme.brightness),
-                            seed: title.hashCode,
-                          ),
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-                        ),
+                        Container(
+                            width: 96,
+                            height: 96,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 0),
+                            child: Triangle(
+                              color: workoutListed.category.colorSwatch
+                                  .getColorByBrightness(
+                                      FeeelShade.LIGHTEST, theme.brightness),
+                              seed: title.hashCode,
+                            )),
                         Padding(
                             padding: EdgeInsets.fromLTRB(16, 8, 40, 8),
                             child: Column(
