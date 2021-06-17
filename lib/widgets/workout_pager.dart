@@ -69,9 +69,8 @@ class _WorkoutPagerState extends State<WorkoutPager> {
       children: <Widget>[
         WorkoutCover(
           workout: widget.workout,
-          color: colorSwatch.getColorByBrightness(
-              FeeelShade.DARK, Theme.of(context).brightness),
-          onPressed: () {
+          colorSwatch: colorSwatch,
+          startWorkout: () {
             _pageController.jumpToPage(WorkoutPageTypes.EXERCISE.index);
             _workoutController.start();
             Wakelock.enable();

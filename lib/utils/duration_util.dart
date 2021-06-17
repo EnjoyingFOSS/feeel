@@ -20,35 +20,16 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/enums/workout_category.dart';
-import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
+class DurationUtil {
+  static String getDurationLongform(int durationSecs) {
+    final mins = durationSecs ~/ 60;
+    final secs = durationSecs % 60;
+    return "$mins min. $secs s.";
+  }
 
-class Workout {
-  final List<WorkoutExercise> workoutExercises;
-  final int countdownDuration;
-  final int exerciseDuration;
-  final int breakDuration;
-  final WorkoutCategory category;
-  final WorkoutType type;
-  final int? dbId;
-  final String title;
-  late int _duration;
-  int get duration => _duration;
-
-  Workout(
-      {required this.dbId,
-      required this.title,
-      required this.workoutExercises,
-      required this.countdownDuration,
-      required this.breakDuration,
-      required this.exerciseDuration,
-      required this.category,
-      required this.type}) {
-    _duration = workoutExercises[0].duration ?? exerciseDuration;
-    for (var i = 1; i < workoutExercises.length; i++) {
-      _duration += workoutExercises[i].duration ?? exerciseDuration;
-      _duration += workoutExercises[i].breakBeforeDuration ?? breakDuration;
-    }
+  static String getDurationShortform(int durationSecs) {
+    final mins = (durationSecs ~/ 60).toString().padLeft(2, "0");
+    final secs = (durationSecs % 60).toString().padLeft(2, "0");
+    return "$mins:$secs";
   }
 }

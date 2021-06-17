@@ -62,24 +62,27 @@ class WorkoutListItem extends StatelessWidget {
                             height: 96,
                             margin: EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 0),
+                            // todo child: Hero(tag: title + "\triangle/",
                             child: Triangle(
                               color: workoutListed.category.colorSwatch
                                   .getColorByBrightness(
                                       FeeelShade.LIGHTEST, theme.brightness),
                               seed: title.hashCode,
-                            )),
+                            )), //),
                         Padding(
                             padding: EdgeInsets.fromLTRB(16, 8, 40, 8),
                             child: Column(
                               children: [
+                                // Hero(tag: title + "\title/", child:
                                 Text(
                                     (workoutListed.type == WorkoutType.DEFAULT)
                                         ? title.i18n
                                         : title,
-                                    style: theme.textTheme.headline6),
+                                    style: theme.textTheme.headline6), //),
                                 Container(
                                   height: 8,
                                 ),
+                                // Hero(tag: subtitle + "\subtitle/", child:
                                 Text(
                                   subtitle,
                                   style: theme.textTheme.subtitle2?.copyWith(
@@ -88,7 +91,7 @@ class WorkoutListItem extends StatelessWidget {
                                           .getColorByBrightness(
                                               FeeelShade.DARKER,
                                               theme.brightness)),
-                                )
+                                ), //)
                               ],
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
