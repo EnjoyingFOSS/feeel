@@ -1,4 +1,4 @@
-// Copyright (C) 2019–2021 Miroslav Mazel
+// Copyright (C) 2019-2021 Miroslav Mazel
 // 
 // This file is part of Feeel.
 // 
@@ -36,6 +36,7 @@ static var t = Translations("en") +
 "it": """Ce l'hai fatta!""",
 "fr": """Vous avez réussi !""",
 "eu": """Lortu duzu!""",
+"nb_NO": """Du gjorde det!""",
 "cs": """Dobrá práce!""",
 "id": """Kamu berhasil!""",
 "es": """¡Lo ha conseguido!""",
@@ -50,6 +51,7 @@ static var t = Translations("en") +
 "it": """Preparati per:""",
 "fr": """Ensuite :""",
 "eu": """Hurrengoa:""",
+"nb_NO": """Neste opp:""",
 "cs": """Další cvik:""",
 "id": """Berikutnya:""",
 "es": """A continuación:""",
@@ -64,6 +66,7 @@ static var t = Translations("en") +
 "it": """Si parte! Primo esercizio: %s""",
 "fr": """Allons-y ! Première étape : %s""",
 "eu": """Goazen! Lehena: %s""",
+"nb_NO": """La oss gå! Først opp: %s""",
 "cs": """Pojďme na to! První cvik: %s""",
 "id": """Ayo! Pertama: %s""",
 "es": """¡Vamos! Primer paso: %s""",
@@ -78,6 +81,7 @@ static var t = Translations("en") +
 "it": """Mancano %d secondi""",
 "fr": """Encore %d secondes""",
 "eu": """%d segundo geratzen dira""",
+"nb_NO": """%d sekunder igjen""",
 "cs": """Zbývá %d vteřin""",
 "id": """%d detik tersisa""",
 "es": """%d segundos restante""",
@@ -92,6 +96,7 @@ static var t = Translations("en") +
 "it": """Pausa!""",
 "fr": """Pause !""",
 "eu": """Atsedenaldia!""",
+"nb_NO": """Pause!""",
 "cs": """Pauza!""",
 "id": """Istirahat!""",
 "es": """¡Descanso!""",
@@ -106,6 +111,7 @@ static var t = Translations("en") +
 "it": """Tocca per i controlli""",
 "fr": """Appuyez pour les commandes""",
 "eu": """Sakatu kontroletarako""",
+"nb_NO": """Trykk for kontroller""",
 "cs": """Ťukněte pro ovládání""",
 "id": """Ketuk untuk kontrol""",
 "es": """Tocar para controles""",
@@ -120,6 +126,7 @@ static var t = Translations("en") +
 "it": """Immagine mancante""",
 "fr": """Images manquantes""",
 "eu": """Irudia falta da""",
+"nb_NO": """Bilde mangler""",
 "cs": """Chybí fotka""",
 "id": """Gambar hilang""",
 "es": """Imagen faltante""",
@@ -134,6 +141,7 @@ static var t = Translations("en") +
 "it": """Titolo dell'esercizio""",
 "fr": """Titre de l’exercice""",
 "eu": """Entrenamenduaren izenburua""",
+"nb_NO": """Trening tittel""",
 "cs": """Název tréninku""",
 "id": """Judul latihan""",
 "es": """Título del entrenamiento""",
@@ -148,6 +156,7 @@ static var t = Translations("en") +
 "it": """Sii l'allenatore di te stesso!""",
 "fr": """Soyez votre propre entraîneur !""",
 "eu": """Izan zure entrenatzaile!""",
+"nb_NO": """Bli din egen coach!""",
 "cs": """Buď vlastním trenérem!""",
 "id": """Jadilah pelatihmu sendiri!""",
 "es": """¡Se su propio entrenador!""",
@@ -162,6 +171,7 @@ static var t = Translations("en") +
 "it": """Progetta l'allenamento che ti fa sentire il migliore""",
 "fr": """Concevez l’entraînement qui vous fait vous sentir le mieux""",
 "eu": """Diseinatu hoberen datorkizun entrenamendua""",
+"nb_NO": """Design er treningen som gjør at du føler deg den beste""",
 "cs": """Navrhni si takový trénink, po kterém se budeš cítit nejlépe""",
 "id": """Rancang latihan yang membuatmu merasa yang terbaik""",
 "es": """Diseñe el entrenamiento que le sentirá mejor""",
@@ -176,6 +186,7 @@ static var t = Translations("en") +
 "it": """Tutto il corpo""",
 "fr": """Tout le corps""",
 "eu": """Gorputz osoa""",
+"nb_NO": """Full kropp""",
 "cs": """Celé tělo""",
 "id": """Seluruh tubuh""",
 "es": """De cuerpo entero""",
@@ -190,6 +201,7 @@ static var t = Translations("en") +
 "it": """Gambe""",
 "fr": """Jambes""",
 "eu": """Hankak""",
+"nb_NO": """Bein""",
 "cs": """Nohy""",
 "id": """Kaki""",
 "es": """Piernas""",
@@ -204,6 +216,7 @@ static var t = Translations("en") +
 "it": """Stai splendendo!""",
 "fr": """Vous êtes rayonnant·e !""",
 "eu": """Primeran zabiltza!""",
+"nb_NO": """Du er strålende!""",
 "cs": """Dobrá práce!""",
 "id": """Kamu bersinar!""",
 "es": """¡Estás brillando!""",
@@ -218,6 +231,7 @@ static var t = Translations("en") +
 "it": """Contribuisci a un esercizio""",
 "fr": """Contribuez""",
 "eu": """Partekatu ariketa bat""",
+"nb_NO": """Bidra""",
 "cs": """Přispěj nový cvik""",
 "id": """Berkontribusi""",
 "es": """Contribuir un ejercicio""",
@@ -232,6 +246,7 @@ static var t = Translations("en") +
 "it": """Feeel si affida a volontari come te per inviare esercizi e foto di esercizi. Le foto saranno prima elaborate privatamente in versioni triangolate, poi inviate a te per l'approvazione, e solo allora rilasciate nell'applicazione. Tutte le foto e i testi inviati devono essere esclusivamente opera tua. Grazie per aver contribuito!""",
 "fr": """Feeel compte sur des volontaires comme vous pour soumettre des exercices et des photos d’exercices. Les photos seront d’abord traitées de manière privée pour obtenir des versions triangulées, puis elles vous seront envoyées pour approbation, et seulement ensuite elles seront publiées dans l’application. Toutes les photos et le texte soumis doivent être de vous. Merci de votre contribution !""",
 "eu": """Feeel oinarritzen boluntario bezala aurkeztu behar duzu, ariketa eta ariketa argazkiak. Argazkiak izango da lehen izan pribatuan sartu prozesatu triangulated bertsioak, eta gero bidali behar duzu onespena, eta orduan bakarrik kaleratu aplikazioa. Guztiak aurkeztu argazkiak eta testua behar da soilik zure lana. Eskerrik asko laguntzen!""",
+"nb_NO": """Feeel er avhengig av frivillige som du sender inn til øvelser og trening bilder. Bilder vil først bli fortrolig behandlet i triangulated versjoner, og blir deretter sendt til deg for godkjenning, og bare så ut i appen. Alle innsendte bilder og tekst må være utelukkende ditt arbeid. Takk for innspill!""",
 "cs": """Feeel spoléhá na dobrovolníky, jako jste vy, aby předložili cvičení a cvičili fotografie. Jakékoli fotografie, které odešlete, budou nejprve soukromě zpracovány, poté Vám zaslány ke schválení a teprve poté uvolněny v aplikaci. Díky za přispění!""",
 "id": """Feeel mengandalkan para sukarelawan sepertimu untuk mengirimkan latihan-latihan dan foto-foto latihan. Setiap foto yang kamu kirimkan akan diproses secara pribadi, lalu dikirimkan kepadamu untuk disetujui, lalu kemudian diluncurkan di aplikasi. Semua foto dan teks yang diserahkan harus menjadi hasil pekerjaan kamu sendiri. Terima kasih telah berkontribusi!""",
 "es": """Feeel depende de voluntarios como usted para enviar ejercicios y fotografías de ellos. Las fotos que envíe primero se procesarán de forma privada, luego se le solicitará su aprobación y solo se publicarán en la aplicación. ¡Gracias por contribuir!""",
@@ -246,6 +261,7 @@ static var t = Translations("en") +
 "it": """Nome dell'esercizio""",
 "fr": """Nom de l’exercice""",
 "eu": """Ariketaren izena""",
+"nb_NO": """Øvelse navn""",
 "cs": """Název cviku""",
 "id": """Nama latihan""",
 "es": """Nombre del ejercicio""",
@@ -260,6 +276,7 @@ static var t = Translations("en") +
 "it": """Come svolgere l'esercizio (opzionale)""",
 "fr": """Comment faire l’exercice (facultatif)""",
 "eu": """Nola burutu ariketa (aukerakoa)""",
+"nb_NO": """Hvordan til å utføre øvelsen (tilleggsutstyr)""",
 "cs": """Jak provést cvik (nepovinné)""",
 "id": """Cara melakukan olahraga (opsional)""",
 "es": """Cómo se realiza el ejercicio (opcional)""",
@@ -274,6 +291,7 @@ static var t = Translations("en") +
 "it": """Non è stato possibile inviare l'e-mail""",
 "fr": """Le courriel n’a pas pu être envoyé""",
 "eu": """Ezin izan da e-maila bidali""",
+"nb_NO": """E-post kan ikke sendes""",
 "cs": """E-mail se nepovedlo odeslat""",
 "id": """Email tidak dapat dikirim""",
 "es": """Correo no podría ser enviado""",
@@ -288,6 +306,7 @@ static var t = Translations("en") +
 "it": """Proposta di esercizio: %s""",
 "fr": """Proposition d’exercice : %s""",
 "eu": """Ariketa proposamena: %s""",
+"nb_NO": """Øvelse forslag: %s""",
 "cs": """Návrh cviku: %s""",
 "id": """Usulan latihan:% s""",
 "es": """Ejercicio propuesto: %s""",
@@ -356,6 +375,13 @@ I bidaliz naiz proposamena ariketa bat. Jakinarazten dut deklaratzeko, bai erant
 Ariketa izena: %1s
 Ariketa urratsak:
 %2s""",
+"nb_NO": """Hei,
+
+Jeg sender et forslag til en øvelse. Jeg erklærer herved at både den vedlagte bilder og beskrivelse er helt mitt eget arbeid. Ved å sende denne meldingen, jeg godtar ugjenkallelig har sendt inn navn og beskrivelse utgitt under CC-BY-SA-4.0-lisens og en AGPLv3 med en app store unntak lisens. Jeg vil også gi tillatelse til å behandle den vedlagte bilde(r) i low-poly-varianter. Etter at de er behandlet, vil jeg vurdere om jeg er villig til å lisensiere disse under CC-BY-SA-4.0-lisens.
+
+Øvelse navn: %1s
+Øvelse trinn:
+%2s""",
 "cs": """Zdraví,
 
 Posílám návrh na cvičení. Tímto prohlašuji, že to všechno je jen moje vlastní práce. Odesláním této zprávy neodvolatelně souhlasím s tím, aby předložené jméno a popis byly uvolněny pod licencí CC BY-SA a AGPLv3 s licencí App store exception. Také dávám svolení zpracovat připojený obrázek(y)do variant s nízkým poly. Po jejich zpracování vyhodnotím, zda jsem ochoten je licencovat na základě licence CC BY-SA.
@@ -388,6 +414,7 @@ Pasos del ejercicio:
 "it": """Impostazioni""",
 "fr": """Paramètres""",
 "eu": """Ezarpenak""",
+"nb_NO": """Innstilling""",
 "cs": """Nastavení""",
 "id": """Pengaturan""",
 "es": """Ajustes""",
@@ -402,6 +429,7 @@ Pasos del ejercicio:
 "it": """Indica un titolo all'allenamento""",
 "fr": """Veuillez préciser un titre pour l’entraînement""",
 "eu": """Zehaztu entrenamenduaren izenburua""",
+"nb_NO": """Vennligst angi en treningsøkt tittel""",
 "cs": """Prosím poskytněte název tréninku""",
 "id": """Tentukan judul latihan""",
 "es": """Por favor especifica el título del entrenamiento""",
@@ -416,6 +444,7 @@ Pasos del ejercicio:
 "it": """Aggiungi almeno un esercizio""",
 "fr": """Veuillez ajouter au moins 1 exercice""",
 "eu": """Gehitu ariketa 1 gutxienez""",
+"nb_NO": """Legg til minst 1 trening""",
 "cs": """Prosím přidejte alespoň 1 cvik""",
 "id": """Harap tambahkan setidaknya 1 latihan""",
 "es": """Por favor añade al menos 1 ejercicio""",
@@ -430,6 +459,7 @@ Pasos del ejercicio:
 "it": """Durata""",
 "fr": """Durée""",
 "eu": """Iraupena""",
+"nb_NO": """Varighet""",
 "cs": """Délka""",
 "id": """Durasi""",
 "es": """Duración""",
@@ -444,6 +474,7 @@ Pasos del ejercicio:
 "it": """Durata esercizio""",
 "fr": """Durée de l’exercice""",
 "eu": """Ariketaren iraupena""",
+"nb_NO": """Trening varighet""",
 "cs": """Délka cviku""",
 "id": """Durasi latihan""",
 "es": """Duración del ejercicio""",
@@ -458,6 +489,7 @@ Pasos del ejercicio:
 "it": """Durata della pausa""",
 "fr": """Durée de la pause""",
 "eu": """Atsedenaldiaren iraupena""",
+"nb_NO": """Bryte varighet""",
 "cs": """Délka přestávky""",
 "id": """Durasi istirahat""",
 "es": """Duración del descanso""",
@@ -472,6 +504,7 @@ Pasos del ejercicio:
 "it": """Personalizza""",
 "fr": """Personnaliser""",
 "eu": """Pertsonalizatua""",
+"nb_NO": """Tilpasset""",
 "cs": """Vlastní""",
 "id": """Kustom""",
 "es": """Personalizado""",
@@ -486,6 +519,7 @@ Pasos del ejercicio:
 "it": """Non-numerico""",
 "fr": """Non numérique""",
 "eu": """Ez-zenbakizkoa""",
+"nb_NO": """Ikke-numeriske""",
 "cs": """Není číslo""",
 "id": """Non-numerik""",
 "es": """No numérico""",
@@ -500,6 +534,7 @@ Pasos del ejercicio:
 "it": """Non positivo""",
 "fr": """Non positif""",
 "eu": """Ez positiboa""",
+"nb_NO": """Ikke-positiv""",
 "cs": """Není kladné""",
 "id": """Nonpositif""",
 "es": """No positivo""",
@@ -514,6 +549,7 @@ Pasos del ejercicio:
 "it": """Notifica giornaliera""",
 "fr": """Notification journalière""",
 "eu": """Eguneroko jakinarazpena""",
+"nb_NO": """Daglig varsling""",
 "cs": """Denní upozornění""",
 "id": """Pemberitahuan harian""",
 "es": """Notificaciones diarias""",
@@ -528,6 +564,7 @@ Pasos del ejercicio:
 "it": """Un promemoria quotidiano per allenarti""",
 "fr": """Un rappel quotidien pour s’entraîner""",
 "eu": """Eguneroko ariketarako oroigarria""",
+"nb_NO": """En daglig påminnelse om å trene""",
 "cs": """Denní připomenutí jít cvičit""",
 "id": """Pengingat harian untuk berolahraga""",
 "es": """Un recordatorio para entrenar""",
@@ -542,6 +579,7 @@ Pasos del ejercicio:
 "it": """È ora di indossare abiti da allenamento!""",
 "fr": """Il est temps de mettre des vêtements de sport !""",
 "eu": """Ariketarako janzteko unea!""",
+"nb_NO": """På tide å sette på treningsklær!""",
 "cs": """Čas obléknout cvičební úbor!""",
 "id": """Waktunya memakai pakaian olahraga!""",
 "es": """¡Tiempo para llevar ropa de entrenamiento!""",
@@ -556,6 +594,7 @@ Pasos del ejercicio:
 "it": """Bastano pochi minuti per sentirsi freschi e in forma""",
 "fr": """Il ne faut que quelques minutes pour se sentir frais et en forme""",
 "eu": """Minutu gutxi batzuk nahikoa dira berritua eta indartsu sentitzeko""",
+"nb_NO": """Det tar bare noen minutter å bare føle seg frisk og passform""",
 "cs": """Stačí jen pár minut, abyste se cítil/a svěží a fit""",
 "id": """Hanya perlu beberapa menit untuk merasa segar dan bugar""",
 "es": """Este toma solo unos minutos para refrescarse y estar en forma""",
@@ -565,11 +604,12 @@ Pasos del ejercicio:
 "nl": """Dagelijkse herinnering""",
 "de": """Tägliche Erinnerung""",
 "ru": """Ежедневное напоминание""",
-"pt": """Lembre-me de exercitar diariamente""",
+"pt": """Lembrete diário""",
 "en": """Daily reminder""",
 "it": """Promemoria giornaliero""",
 "fr": """Rappel quotidien""",
 "eu": """Eguneroko oroigarri""",
+"nb_NO": """Daglig påminnelse""",
 "cs": """Připomínat, abych cvičil/a denně""",
 "id": """Ingatkan saya untuk berolahraga setiap hari""",
 "es": """Recordatorio diario""",
@@ -584,6 +624,7 @@ Pasos del ejercicio:
 "it": """Non è possibile scattare foto senza il permesso della fotocamera""",
 "fr": """Impossible de prendre des photos sans l’autorisation de l’appareil photo""",
 "eu": """Ezin dira argazkiak atera kamera baimenik gabe""",
+"nb_NO": """Kan ikke ta bilder uten at kameraet tillatelse""",
 "cs": """Nelze fotografovat bez povolení fotoaparátu""",
 "id": """Tidak dapat mengambil foto tanpa izin kamera""",
 "es": """No se puede tomar fotos sin el permiso de cámara""",
@@ -598,6 +639,7 @@ Pasos del ejercicio:
 "it": """Tempo di notifica""",
 "fr": """Heure de la notification""",
 "eu": """Jakinarazpen ordua""",
+"nb_NO": """Varslingstid""",
 "cs": """Čas upozornění""",
 "id": """Waktu pemberitahuan""",
 "es": """Hora de notificación""",
@@ -612,6 +654,7 @@ Pasos del ejercicio:
 "it": """Prima aggiungi un esercizio""",
 "fr": """Ajoutez d’abord un exercice""",
 "eu": """Gehitu ariketa lehenbizi""",
+"nb_NO": """Legge til en øvelse først""",
 "cs": """Nejprve musíte přidat cvičení""",
 "id": """Tambahkan latihan terlebih dahulu""",
 "es": """Añadir un ejercicio primero""",
@@ -626,6 +669,7 @@ Pasos del ejercicio:
 "it": """Informazioni su Feeel""",
 "fr": """À propos de Feeel""",
 "eu": """Buruz Feeel""",
+"nb_NO": """Om Feeel""",
 "cs": """O Feeel""",
 "id": """Tentang Feeel""",
 "es": """Acerca de Feeel""",
@@ -640,6 +684,7 @@ Pasos del ejercicio:
 "it": """Un'applicazione di allenamento a casa con codice aperto che rispetta la tua riservatezza""",
 "fr": """Une application d’exercice à domicile à code source ouvert qui respecte votre vie privée""",
 "eu": """Irekia-iturri etxeko entrenamendu aplikazio hori zure pribatutasuna errespetatzen""",
+"nb_NO": """Et åpen-kilde hjem treningsøkt app som respekterer ditt personvern""",
 "cs": """Open-source fitness aplikace, která respektuje vaše soukromí""",
 "id": """Aplikasi olahraga dari rumah open-source yang menghormati privasi Anda""",
 "es": """Una app de rutinas de ejercicio de código abierto que respeta tu privacidad tu privacidad""",
@@ -654,6 +699,7 @@ Pasos del ejercicio:
 "it": """Durata personalizzata (s.)""",
 "fr": """Durée personnalisée (s.)""",
 "eu": """Ohiko iraupena (s.)""",
+"nb_NO": """Tilpasset varighet (s.)""",
 "cs": """Vlastní délka (s.)""",
 "id": """Durasi kustom (s.)""",
 "es": """Duración personalizada (s.)""",
@@ -668,6 +714,7 @@ Pasos del ejercicio:
 "it": """Abbandonare le modifiche?""",
 "fr": """Abandonner les modifications ?""",
 "eu": """Baztertu aldaketak?""",
+"nb_NO": """Forkast endringer?""",
 "cs": """Zahodit změny?""",
 "id": """Batalkan perubahan?""",
 "es": """¿Descartar cambios?""",
@@ -682,6 +729,7 @@ Pasos del ejercicio:
 "it": """Tema""",
 "fr": """Thème""",
 "eu": """Gaia""",
+"nb_NO": """Tema""",
 "cs": """Vzhled""",
 "id": """Tema""",
 "es": """Tema""",
@@ -696,6 +744,7 @@ Pasos del ejercicio:
 "it": """Predefinito del sistema""",
 "fr": """Par défaut du système""",
 "eu": """Sistema lehenetsia""",
+"nb_NO": """Systemet standard""",
 "cs": """Dle systému""",
 "id": """Default sistem""",
 "es": """Por defecto""",
@@ -710,6 +759,7 @@ Pasos del ejercicio:
 "it": """Chiaro""",
 "fr": """Clair""",
 "eu": """Argi""",
+"nb_NO": """Lys""",
 "cs": """Světlý""",
 "id": """Cerah""",
 "es": """Claro""",
@@ -724,6 +774,7 @@ Pasos del ejercicio:
 "it": """Scuro""",
 "fr": """Sombre""",
 "eu": """Ilun""",
+"nb_NO": """Mørk""",
 "cs": """Tmavý""",
 "id": """Gelap""",
 "es": """Oscuro""",
@@ -738,6 +789,7 @@ Pasos del ejercicio:
 "it": """Su alcuni dispositivi, potrebbe essere necessario disabilitare l'ottimizzazione della batteria per Feeel affinché questo funzioni in modo affidabile.""",
 "fr": """Sur certains appareils, il se peut que vous deviez désactiver l'optimisation de la batterie pour Feeel pour que ceci fonctionne de manière fiable.""",
 "eu": """Gailu batzuk, behar ahal izango duzu desgaitu bateria optimizazioa Feeel hau fidagarrian lan egiteko.""",
+"nb_NO": """På noen enheter, du kan få behov for å deaktivere batteriet optimalisering for Feeel for at dette skal fungere pålitelig.""",
 "cs": """Na některých zařízeních může být nutné vypnout optimalizaci baterie pro Feeel, aby tato funkce spolehlivě fungovala.""",
 "id": """Pada beberapa perangkat, Anda mungkin perlu menonaktifkan optimisasi baterai untuk Feel Bagi ini untuk bekerja dapat dipercaya.""",
 "es": """En algunos dispositivos, es posible que necesites desactivar la optimización de batería para Feeel para que funcione correctamente.""",
@@ -752,6 +804,7 @@ Pasos del ejercicio:
 "it": """Partecipa""",
 "fr": """Rejoignez""",
 "eu": """Parte hartzeko""",
+"nb_NO": """Delta""",
 "cs": """Účastněte se""",
 "id": """Berpartisipasi""",
 "es": """Participar""",
@@ -766,6 +819,7 @@ Pasos del ejercicio:
 "it": """Codice sorgente""",
 "fr": """Code source""",
 "eu": """Iturburu kodea""",
+"nb_NO": """Kildekode""",
 "cs": """Zdrojový kód""",
 "id": """Kode sumber""",
 "es": """Código fuente""",
@@ -780,6 +834,7 @@ Pasos del ejercicio:
 "it": """Dona""",
 "fr": """Faire un don""",
 "eu": """Eman""",
+"nb_NO": """Donere""",
 "cs": """Darovat""",
 "id": """Donasi""",
 "es": """Donar""",
@@ -794,6 +849,7 @@ Pasos del ejercicio:
 "it": """Impossibile aprire URL.""",
 "fr": """Impossible d'ouvrir URL.""",
 "eu": """Ezin ireki URL.""",
+"nb_NO": """Kunne ikke åpne URL-adresse.""",
 "cs": """Nelze otevřít URL.""",
 "id": """Tidak dapat membuka URL.""",
 "es": """No es posible abrir URL.""",
@@ -808,6 +864,7 @@ Pasos del ejercicio:
 "it": """Inizia l'allenamento""",
 "fr": """Démarrer l’entraînement""",
 "eu": """Hasi entrenamendua""",
+"nb_NO": """Start treningen""",
 "cs": """Spustit trénink""",
 "id": """Mulai berolahraga""",
 "es": """Iniciar entrenamiento""",
@@ -822,6 +879,7 @@ Pasos del ejercicio:
 "it": """Riprendi l'allenamento""",
 "fr": """Reprendre l’entraînement""",
 "eu": """Berrekin entrenamendua""",
+"nb_NO": """Gjenoppta trening""",
 "cs": """Pokračovat v tréninku""",
 "id": """Lanjutkan latihan""",
 "es": """Continuar entrenamiento""",
@@ -836,6 +894,7 @@ Pasos del ejercicio:
 "it": """Esercizio precedente""",
 "fr": """Exercice précédent""",
 "eu": """Aurreko ariketa""",
+"nb_NO": """Forrige øvelse""",
 "cs": """Předchozí cvik""",
 "id": """Latihan sebelumnya""",
 "es": """Ejercicio anterior""",
@@ -850,6 +909,7 @@ Pasos del ejercicio:
 "it": """Esercizio successivo""",
 "fr": """Exercice suivant""",
 "eu": """Hurrengo ariketa""",
+"nb_NO": """Neste øvelse""",
 "cs": """Další cvik""",
 "id": """Latihan berikutnya""",
 "es": """Ejercicio siguiente""",
@@ -864,6 +924,7 @@ Pasos del ejercicio:
 "it": """Aggiungi esercizi""",
 "fr": """Ajouter des exercices""",
 "eu": """Gehitu ariketak""",
+"nb_NO": """Legg til øvelser""",
 "cs": """Přidat cviky""",
 "id": """Tambahkan latihan""",
 "es": """Añadir ejercicios""",
@@ -878,6 +939,7 @@ Pasos del ejercicio:
 "it": """Modifica""",
 "fr": """Modifier""",
 "eu": """Editatu""",
+"nb_NO": """Redigere""",
 "cs": """Upravit""",
 "id": """Sunting""",
 "es": """Editar""",
@@ -892,6 +954,7 @@ Pasos del ejercicio:
 "it": """Elimina""",
 "fr": """Supprimer""",
 "eu": """Ezabatu""",
+"nb_NO": """Slette""",
 "cs": """Odstranit""",
 "id": """Hapus""",
 "es": """Borrar""",
@@ -906,6 +969,7 @@ Pasos del ejercicio:
 "it": """Duplicare""",
 "fr": """Dupliquer""",
 "eu": """Bikoiztu""",
+"nb_NO": """Duplisere""",
 "cs": """Duplikovat""",
 "id": """Duplikat""",
 "es": """Duplicar""",
@@ -920,6 +984,7 @@ Pasos del ejercicio:
 "it": """Fatto""",
 "fr": """Terminé""",
 "eu": """Egina""",
+"nb_NO": """Gjøre""",
 "cs": """Hotovo""",
 "id": """Selesai""",
 "es": """Hecho""",
@@ -934,6 +999,7 @@ Pasos del ejercicio:
 "it": """Annulla""",
 "fr": """Annuler""",
 "eu": """Utzi""",
+"nb_NO": """Avbryte""",
 "cs": """Zrušit""",
 "id": """Batal""",
 "es": """Cancelar""",
@@ -948,6 +1014,7 @@ Pasos del ejercicio:
 "it": """Abbandona""",
 "fr": """Abandonner""",
 "eu": """Baztertu""",
+"nb_NO": """Forkaste""",
 "cs": """Zahodit""",
 "id": """Buang""",
 "es": """Descartar""",
@@ -962,6 +1029,7 @@ Pasos del ejercicio:
 "it": """OK""",
 "fr": """OK""",
 "eu": """OK""",
+"nb_NO": """OK""",
 "cs": """OK""",
 "id": """Ok""",
 "es": """Listo""",
@@ -976,6 +1044,7 @@ Pasos del ejercicio:
 "it": """Maggiori info""",
 "fr": """Plus d’infos""",
 "eu": """Informazio gehiago""",
+"nb_NO": """Mer info""",
 "cs": """Více info""",
 "id": """Info lebih lanjut""",
 "es": """Más información""",
@@ -990,6 +1059,7 @@ Pasos del ejercicio:
 "it": """Crea un allenamento personalizzato""",
 "fr": """Créer un entraînement personnalisé""",
 "eu": """Sortu entrenamendu pertsonala""",
+"nb_NO": """Opprette egendefinerte trening""",
 "cs": """Vytvořit vlastní trénink""",
 "id": """Buat latihan khusus""",
 "es": """Crear entrenamiento personalizado""",
@@ -1004,6 +1074,7 @@ Pasos del ejercicio:
 "it": """Proponi un esercizio personalizzato""",
 "fr": """Proposer un exercice personnalisé""",
 "eu": """Proposatu ariketa pertsonalizatua""",
+"nb_NO": """Foreslå tilpasset trening""",
 "cs": """Navrhnout vlastní cvik""",
 "id": """Usulkan latihan khusus""",
 "es": """Proponer ejercicio personalizado""",
@@ -1018,6 +1089,7 @@ Pasos del ejercicio:
 "it": """Invia via e-mail""",
 "fr": """Soumettre par courriel""",
 "eu": """Bidali e-mail bidez""",
+"nb_NO": """Sende via e-post""",
 "cs": """Odeslat e-mailem""",
 "id": """Kirim melalui email""",
 "es": """Enviar por correo""",
@@ -1032,6 +1104,7 @@ Pasos del ejercicio:
 "it": """Aggiungi foto dalla Galleria""",
 "fr": """Ajouter une photo de la galerie""",
 "eu": """Gehitu argazkia galeriatik""",
+"nb_NO": """Legg til bilde fra galleri""",
 "cs": """Přidat fotku z galerie""",
 "id": """Tambahkan foto dari galeri""",
 "es": """Añadir foto desde galería""",
@@ -1046,6 +1119,7 @@ Pasos del ejercicio:
 "it": """Scatta una foto""",
 "fr": """Prendre une photo""",
 "eu": """Atera argazkia""",
+"nb_NO": """Ta et bilde""",
 "cs": """Vyfotit cvik""",
 "id": """Ambil foto""",
 "es": """Tomar una foto""",
@@ -1060,23 +1134,25 @@ Pasos del ejercicio:
 "it": """Aggiungi un link alla tua(e) foto""",
 "fr": """Ajouter un lien vers vos photos""",
 "eu": """Gehitu esteka zure argazkietara""",
+"nb_NO": """Legg til en link til bildet(s)""",
 "cs": """Přidat odkaz k fotce/fotkám""",
 "id": """Tambahkan tautan ke foto Anda""",
 "es": """Añadir un enlace a su(s) foto(s)""",
 } +
 {
-"tr": """Sesli komutları kullan""",
-"nl": """Stembediening gebruiken""",
-"de": """Sprachbefehle verwenden""",
-"ru": """Используйте голосовые команды""",
-"pt": """Usar comandos de voz""",
+"tr": """Konuşma yerine sesleri kullan""",
+"nl": """Geluiden afspelen in plaats van oefening voor te lezen""",
+"de": """Sounds anstelle von Sprache ausgeben""",
+"ru": """Использовать сигналы вместо TTS""",
+"pt": """Use sons ao vez de fala""",
 "en": """Sounds instead of voice""",
-"it": """Usa comandi vocali""",
-"fr": """Utiliser les commandes vocales""",
-"eu": """Erabili ahots-komandoak""",
-"cs": """Použít hlasové příkazy""",
-"id": """Gunakan perintah suara""",
-"es": """Usar comandos de voz""",
+"it": """Usa suoni invece del parlato""",
+"fr": """Utiliser des sons au lieu de la parole""",
+"eu": """Erabili soinuak hizketaren ordez""",
+"nb_NO": """Sounds instead of voice""",
+"cs": """Používat zvuky namísto mluveného slova""",
+"id": """Gunakan suara alih-alih ucapan""",
+"es": """Usar sonidos en lugar del habla""",
 } +
 {
 "tr": """Zamanlamayı ayarla""",
@@ -1088,6 +1164,7 @@ Pasos del ejercicio:
 "it": """Regola i tempi""",
 "fr": """Ajuster le minutage""",
 "eu": """Doitu denbora""",
+"nb_NO": """Justere timing""",
 "cs": """Upravit časování""",
 "id": """Sesuaikan waktu""",
 "es": """Ajustar ritmo""",
@@ -1102,6 +1179,7 @@ Pasos del ejercicio:
 "it": """Modifica dei tempi finita""",
 "fr": """Modification de la durée terminée""",
 "eu": """Egin editatzeko denbora""",
+"nb_NO": """Ferdig med å redigere timing""",
 "cs": """Časování upraveno""",
 "id": """Waktu pengeditan selesai""",
 "es": """Edición de tiempo terminada""",
@@ -1116,6 +1194,7 @@ Pasos del ejercicio:
 "it": """Allenamento scientifico di 7 minuti""",
 "fr": """Entraînement scientifique de 7 min""",
 "eu": """7 minututako entrenamendu zientifikoa""",
+"nb_NO": """Vitenskapelig 7 minutters treningsøkt""",
 "cs": """Vědecký sedmiminutový trénink""",
 "id": """Latihan ilmiah 7 menit""",
 "es": """Entrenamiento científico de 7 minutos""",
@@ -1130,6 +1209,7 @@ Pasos del ejercicio:
 "it": """Allenamento delle gambe""",
 "fr": """Entraînement des jambes""",
 "eu": """Hanketarako entrenamendua""",
+"nb_NO": """Ben trening""",
 "cs": """Trénink nohou""",
 "id": """Latihan kaki""",
 "es": """Entrenamiento de piernas""",
@@ -1144,6 +1224,7 @@ Pasos del ejercicio:
 "it": """Jumping jack""",
 "fr": """Sauts en étoile""",
 "eu": """Saltoka katu""",
+"nb_NO": """Hopping knekt""",
 "cs": """Skákací panák""",
 "id": """Jumping jack""",
 "es": """Polichilenas""",
@@ -1176,6 +1257,9 @@ Pasos del ejercicio:
 "eu": """1. Jarri tente, oinak elkarrekin eta besoak alboetan
 2. Saltatu hankan zabalduz eta eskuak buruaren gainetik elkartuz
 3. Errepikatu""",
+"nb_NO": """1. Stå med føttene sammen og armene på sidene
+2. Hoppe til en stilling med bena spredt bredt og hender berøre overhead
+3. Gjenta""",
 "cs": """1. Stůj vzpřímeně, nohy těsně vedle sebe a ruce podél těla
 2. Skoč na místě a roztáhni přitom nohy bez prohnutí kolen a rukama tleskni nad hlavou
 3. Skoč zpět a neustále opakuj""",
@@ -1196,6 +1280,7 @@ Pasos del ejercicio:
 "it": """Seduta a muro""",
 "fr": """Assis dos au mur""",
 "eu": """Horman eseri""",
+"nb_NO": """Veggen sitte""",
 "cs": """Sed u stěny""",
 "id": """Duduk di dinding""",
 "es": """Asiento en pared""",
@@ -1228,6 +1313,9 @@ La douleur au quadriceps est normale, arrêtez si vous ressentez une douleur au 
 "eu": """1. Jarri hormaren kontra, kanpora begira, oinen platak lurrean tinko, besaburuen altuerara zabalduta eta hormatik gutxi gora behera 60 zentimetrotara
 2. Irristatu hormatik behera, bizkarra hormaren kontra mantenduz, hankak angelu zuzenean dauden arte. Belaunak zuzenean orkatilen gainean egon beharko lukete.
 Koadrizepsean mina arrunta da, baina gelditu mina belaunean edo errotulan nabarituz gero""",
+"nb_NO": """1. Lener seg mot veggen, vendt forover og med føttene godt plantet på bakken, skulder bredde hverandre og om lag 2 meter bort fra veggen
+2. Skyv nedover veggen, å holde tilbake trykket til det, til bena er i rett vinkel. Knærne skal være rett over anklene
+Quadricep smerte er normalt, og stopper hvis du føler smerter i kneet eller kneskålen""",
 "cs": """1. Opřete se o zeď, směřující dopředu a s nohama pevně zasazenými na zemi, šířka ramen od sebe a asi 2 nohy od zdi
 2. Posuňte dolů po stěně a držte záda přitlačenou k ní, dokud nohy nejsou v pravém úhlu. Kolena by měla být přímo nad kotníky
 Quadricep bolest je normální, zastavte se, pokud máte pocit bolesti v koleni nebo kolenním kloubu""",
@@ -1248,6 +1336,7 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 "it": """Flessioni""",
 "fr": """Pompes""",
 "eu": """Flexioak""",
+"nb_NO": """Armhevninger""",
 "cs": """Kliky""",
 "id": """Push-up""",
 "es": """Lagartijas""",
@@ -1298,6 +1387,11 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 3. erabili besoak zure sabela lurretik altxatzeko besoak zuzen jarri arte, bizkarra beti zuzen mantenduz
 4. Tolestu besoak paparrak ia lurra ukitu arte, ziurtatu bizkarra zuzen mantentzen duzula
 5. Errepikatu 3. puntutik""",
+"nb_NO": """1. Legg deg ned på magen
+2. Plasser hendene i nærheten ørene
+3. Bruk armene til å løfte magen opp til armene er rett, holde ryggen rett
+4. Bøy armene til brystet nesten berører bakken, noe som gjør at ryggen er rett
+5. Gjenta fra trinn 3""",
 "cs": """1. Lehněte si na břicho
 2. Položte ruce blízko uší
 3. Použijte ruce, abyste zvedli žaludek, dokud nejsou paže rovné, držte záda rovně
@@ -1324,6 +1418,7 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 "it": """Addominali""",
 "fr": """Abdominaux""",
 "eu": """Abdominal karraskak""",
+"nb_NO": """Knase""",
 "cs": """Sedolehy""",
 "id": """Crunch""",
 "es": """Abdominales""",
@@ -1356,6 +1451,9 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 "eu": """1. Etzan buruz gora lurrean belaunak tolestuta.
 2. Kizkurtu besaburuak pelbiserantz. Eskuak lepoaren atzean edo ondoan egon daitezke, edo bularrean gurutzatuta.
 3. Errepikatu""",
+"nb_NO": """1. Legge seg ned med ansiktet opp på gulvet med knærne bøyd.
+2. Curl skuldrene mot bekkenet. Hendene kan være bak eller ved siden av halsen eller kryss over brystet.
+3. Gjenta""",
 "cs": """1. Lehni si na zem hlavou nahoru s pokrčenými koleny.
 Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Plosky nohou včetně prstů by měly zůstat na zemi. Ruce mohou být za hlavou nebo přeložené v kříž na hrudi.
 3. Opakuj""",
@@ -1376,6 +1474,7 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "it": """Step""",
 "fr": """Marches""",
 "eu": """Eskailerak""",
+"nb_NO": """Step-Ups""",
 "cs": """Výšlapy""",
 "id": """Step-up""",
 "es": """Subida a peldaño""",
@@ -1417,6 +1516,10 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 2. Igo aulkira
 3. Jaitsi aulkitik
 4. Errepikatu""",
+"nb_NO": """1. Står overfor en stol
+2. Trinn opp på stolen
+3. Går av som styreleder
+4. Gjenta""",
 "cs": """1. Stůj čelem k židli.
 2. Stoupni si na židli
 3. Sestup dolu ze židle
@@ -1440,6 +1543,7 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "it": """Squat (Stacchi)""",
 "fr": """Accroupi""",
 "eu": """Makurtzeak""",
+"nb_NO": """Squat""",
 "cs": """Dřepy""",
 "id": """Jongkok""",
 "es": """Sentadillas""",
@@ -1472,6 +1576,9 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "eu": """1. Jarri tente oinak besaburuen altueran
 2. Bota aldaka atzera eta tolestu belaunak eta aldaka enborra jaisteko
 3. Errepikatu""",
+"nb_NO": """1. Stå med føttene skulder bredde hverandre
+2. Bevege hoftene bakover og bøy i knær og hofter til å senke overkroppen
+3. Gjenta""",
 "cs": """1. Stůj s nohama vzdálenými o šířku ramen.
 2. Posuň kyčel dozadu a pokrč kolena, dokud nebudeš mít stehna paralelně se zemí.
 3. Opakuj""",
@@ -1492,6 +1599,7 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "it": """Piegamenti sulla sedia""",
 "fr": """Dips sur chaise""",
 "eu": """Aulki sartu-irtenak""",
+"nb_NO": """Stol dips""",
 "cs": """Dipy na židli""",
 "id": """Kursi dips""",
 "es": """Bajadas en silla""",
@@ -1542,6 +1650,11 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 3. Astiro jaitsi zure gorputza, bizkarra zuzen mantenduz, besoak angelu zuzenean egon arte.
 4. Altxa zure gorputza berriro aurreko posiziora, besoak zuzen
 5. Errepikatu 3. eta 4. urratsak""",
+"nb_NO": """1. Sitte ned foran kanten av en stol med rett rygg, hender holder den fremre kanten
+2. Fortsatt holder kanten av stolen, armene utstrakt, løfte baken og gå frem litt, slik at det er et par inches fra stolen.
+3. Sakte senke kroppen, mens du holder ryggen rett, til armene er i rett vinkel
+4. Heve kroppen igjen til den tidligere stillingen, armene utstrakt
+5. Gjenta trinn 3 og 4""",
 "cs": """1. Posaďte se na přední okraj židle, záda rovně, ruce držící přední okraj
 2. Stále drží okraj židle, paže natažené, zvedněte zadek a lehce jděte dopředu, takže je to pár centimetrů od židle.
 3. Pomalu snižte své tělo a držte záda rovně, dokud nejsou ramena v pravém úhlu
@@ -1566,11 +1679,12 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "pt": """Prancha horizontal""",
 "en": """Forearm plank""",
 "it": """Tavola""",
-"fr": """Planche""",
+"fr": """Planche pour les avant-bras""",
 "eu": """Ohola""",
-"cs": """Prkno""",
+"nb_NO": """Underarm planke""",
+"cs": """Prkno na předloktí""",
 "id": """Papan""",
-"es": """Plancha""",
+"es": """Plancha de antebrazo""",
 } +
 {
 "tr": """Başlangıç durumu:
@@ -1578,47 +1692,72 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 Kollar, omuzlar dirseklerin tam üzerinde olacak şekilde dik açıyla bükülmelidir.
 Sırt düz olmalı, tüm vücut düz bir çizgide olmalıdır.
 
-Adımlar: 1. Bu durumda kalın.""",
+Adımlar:
+1. Bu durumda kalın.""",
 "nl": """Startpositie:
 1. Ga op z'n hondjes zitten.
 Buig je armen en zet je schouders gelijk met je ellebogen.
 Je rug en de rest van je lichaam moeten gestrekt zijn.
 
 Stappen:
-1. Houd deze positie vast""",
+1. Houd deze positie vast.""",
 "de": """1. Gehe auf alle Viere, mit gestreckten Armen und gebeugten Knien.
 2. Gehe mit den Füßen nach hinten, bis sie gestreckt sind.
 3. Halte diese Position""",
 "ru": """1. Встаньте на четвереньки, руки прямые, колени согнуты
 2. Отведите ноги назад, пока они не вытянутся
 3. Удерживайте это положение""",
-"pt": """1. Desça de quatro, com os braços retos e os joelhos flexionados
-2. Mova seus pés para trás até que eles sejam estendidos
-3. Mantenha esta posição""",
+"pt": """Posição inicial:
+1. Inicie na posição de quatro.
+Os braços devem dobrar-se em um ângulo reto, com os ombro alinhados aos cotovelos.
+As costas devem estar direitas, com todo o corpo em linha reta.
+
+Passos:
+1. Mantenha essa posição.""",
 "en": """Starting position:
 1. Start down on all fours.
 Arms should bent at a right angle, with shoulders right over elbows.
 Back should be straight, the whole body in a straight line.
 
-Steps: 1. Hold this position.""",
+Steps:
+1. Hold this position.""",
 "it": """1. Mettiti a quattro zampe, con gli avambracci appoggiati e le ginocchia piegate
 2. Cammina indietro fino a quando le gambe non sono estese
 3. Mantieni questa posizione""",
-"fr": """1. Mettez-vous à quatre pattes, les bras tendus et les genoux pliés.
-2. Reculez vos pieds jusqu'à ce qu'ils soient en extension
-3. Maintenez cette position""",
+"fr": """Position de départ :
+1. Commencez à quatre pattes.
+Les bras doivent être pliés à angle droit, les épaules au-dessus des coudes.
+Le dos doit être droit, le corps entier en ligne droite.
+
+Étapes :
+1. Maintenez cette position.""",
 "eu": """1. Jarri lau hankatan, besoak zuzen eta belaunak tolestuta
 2. Bota oinak atzera hankak zuzen jarri arte
 3. Eutsi posizio honetan""",
-"cs": """1. Dostat dolů na všech čtyřech, s rukama rovně a kolena ohnuté
-2. Projděte nohy zpět, dokud nejsou prodlouženy
-3. Držte tuto pozici""",
+"nb_NO": """Startposisjonen:
+1. Start ned på alle fire.
+Armene skal bøyd i rett vinkel, med skuldrene rett over albuene.
+Ryggen skal være rett, hele kroppen i en rett linje.
+
+Fremgangsmåte:
+1. Hold denne posisjonen.""",
+"cs": """Výchozí pozice:
+1. Začněte na všech čtyřech.
+Paže by měly být pokrčené v pravém úhlu, ramena přímo nad lokty.
+Záda by měla být rovná, celé tělo v přímce.
+
+Kroky:
+1. Vydržte v této poloze.""",
 "id": """1. Mendapatkan ke bawah merangkak, dengan lengan lurus dan lutut membungkuk
 2. Berjalanlah kaki Anda kembali sampai mereka diperpanjang
 3. Tahan posisi ini""",
-"es": """1. Póngase en cuatro patas, con los brazos rectos y las rodillas flexionadas
-2. Camine con los pies hacia atrás hasta que estén extendidos
-3. Mantenga esta posición""",
+"es": """Posición de salida:
+1. Empiece a cuatro patas.
+Los brazos deben estar doblados en ángulo recto, con los hombros justo sobre los codos.
+La espalda debe estar recta, todo el cuerpo en línea recta.
+
+Pasos:
+1. Mantenga esta posición.""",
 } +
 {
 "tr": """Yüksek dizler""",
@@ -1630,6 +1769,7 @@ Steps: 1. Hold this position.""",
 "it": """Corsa sul posto con ginocchia alte""",
 "fr": """Genoux hauts""",
 "eu": """Belaun garaiak""",
+"nb_NO": """Høye knær""",
 "cs": """Vysoká kolena""",
 "id": """Lutut tinggi""",
 "es": """Rodillas elevadas""",
@@ -1644,6 +1784,7 @@ Steps: 1. Hold this position.""",
 "it": """1. Fai una corsa veloce sul posto, porta in alto le ginocchia ma senza sforzare""",
 "fr": """1. Courez sur place, en plaçant les genoux aussi haut que possible et en changeant de jambe à un rythme rapide""",
 "eu": """1. Egin korrika tokian, belaunak eroso den bezain beste altxatuz hanka batetik bestera erritmo bizian""",
+"nb_NO": """1. Kjør på plass, sette knærne så høyt opp som er komfortable og slå bena på en rask tempo""",
 "cs": """1. Běh na místě, uvedení kolena tak vysoko, jak je pohodlné a přepínání nohy rychlým tempem""",
 "id": """1. Run in place, put knees as high as is comfortable and switching legs at a quick pace""",
 "es": """1. Trote en el lugar, con las rodillas tan altas como pueda y cambie de pierna a un ritmo rápido""",
@@ -1658,6 +1799,7 @@ Steps: 1. Hold this position.""",
 "it": """Affondi""",
 "fr": """Fentes""",
 "eu": """Mugitu""",
+"nb_NO": """Lunge""",
 "cs": """Výpady""",
 "id": """Paru-paru""",
 "es": """Estocadas""",
@@ -1717,6 +1859,12 @@ Steps: 1. Hold this position.""",
 4. Igo berriro zure pelbisa
 5. Itzuli tente posiziora urratsa atzera itzuliz
 6. Errepikatu aldi bakoitzean hanka aldatuz""",
+"nb_NO": """1. Stå med rett rygg
+2. Ta et stort skritt fremover med venstre ben
+3. Ta med din bekken ned til du nesten berører gulvet med høyre kne
+4. Ta med din bekkenet tilbake opp
+5. Gå tilbake til stående posisjon ved å tråkke tilbake
+6. Gjenta slår bena hver gang""",
 "cs": """1. Postavte se zády rovně
 2. Udělejte velký krok vpřed levou nohou
 3. Přiveďte pánev dolů, dokud se téměř nedotknete podlahy pravým kolenem
@@ -1746,6 +1894,7 @@ Steps: 1. Hold this position.""",
 "it": """Split squat a sinistra""",
 "fr": """Fentes avant gauches""",
 "eu": """Zatitu squats utzi""",
+"nb_NO": """Split-knebøy venstre""",
 "cs": """Dřep ve výpadu nalevo""",
 "id": """Split squats kiri""",
 "es": """Media sentadillas izquierda""",
@@ -1760,6 +1909,7 @@ Steps: 1. Hold this position.""",
 "it": """Squat laterali a sinistra""",
 "fr": """Fentes avant droites""",
 "eu": """Zatitu squats eskubidea""",
+"nb_NO": """Split-knebøy høyre""",
 "cs": """Dřep ve výpadu napravo""",
 "id": """Split squats kanan""",
 "es": """Media sentadillas derecha""",
@@ -1810,6 +1960,11 @@ Steps: 1. Hold this position.""",
 3. Ekarri zure pelbisa behera arte ia lurrean ukitu zure eskuineko belauna
 4. Ekarri zure pelbisa back up
 5. Errepikatu 3. urratsa.""",
+"nb_NO": """1. Stå med rett rygg
+2. Ta et stort skritt fremover med venstre ben
+3. Ta med din bekken ned til du nesten berører gulvet med høyre kne
+4. Ta med din bekkenet tilbake opp
+5. Gjenta fra trinn 3.""",
 "cs": """1. Postavte se zády rovně
 2. Udělejte velký krok vpřed levou nohou
 3. Přiveďte pánev dolů, dokud se téměř nedotknete podlahy pravým kolenem
@@ -1836,6 +1991,7 @@ Steps: 1. Hold this position.""",
 "it": """Flessioni con rotazione""",
 "fr": """Pompes avec rotation""",
 "eu": """Push-up errotazioak""",
+"nb_NO": """Push-up-rotasjoner""",
 "cs": """Kliky s rotací""",
 "id": """Rotasi Push-up""",
 "es": """Flexiones a rotación""",
@@ -1913,6 +2069,14 @@ Steps: 1. Hold this position.""",
 1.e Altxa berriro sabela 1.c puntura itzuliz
 2. Biratu gorputza albora, bizkarra zuzen eta pisua eusten duen beheko besoa guztiz zuzen, eta soilik beheko eskuak eta oinak ukitzen dute lurra
 3. Errepikatu, aldez aldatuz 2. puntuan""",
+"nb_NO": """1. Gjør en vanlig push-up:
+1.en legge seg ned på magen
+1.b Plasser hendene i nærheten ørene
+1.c Bruk armene til å løfte magen opp til armene er rett, holde ryggen rett
+1.d Bøye armene til brystet nesten berører bakken, noe som gjør at ryggen er rett
+1.e Heis magen opp igjen, tilbake til trinn 3
+2. Rotere kroppen til siden slik at ryggen er rett, den nederste hånden støtte kroppen er helt ute, og bare den nederste hånd og fot berøre gulvet
+3. Gjenta, bytte sider på trinn 2 hver gang""",
 "cs": """1. Proveďte standardní push-up:
 1.Lehněte si na břicho
 1.b položte ruce blízko uší
@@ -1948,6 +2112,7 @@ Steps: 1. Hold this position.""",
 "it": """Plank su lato sinistro""",
 "fr": """Planche latérale gauche""",
 "eu": """Alboko plank utzi""",
+"nb_NO": """Side planken venstre""",
 "cs": """Prkno na levém boku""",
 "id": """Plank samping kiri""",
 "es": """Plancha de lado izquierdo""",
@@ -1962,6 +2127,7 @@ Steps: 1. Hold this position.""",
 "it": """Plank sul lato destro""",
 "fr": """Planche latérale droite""",
 "eu": """Alboko plank eskubidea""",
+"nb_NO": """Side planken høyre""",
 "cs": """Prkno na pravém boku""",
 "id": """Plank samping kanan""",
 "es": """Plancha de lado derecho""",
@@ -1994,6 +2160,9 @@ Steps: 1. Hold this position.""",
 "eu": """1. Etzan alboz, azpiko ukondoa angelu zuzenean, besoa kanporantz
 2. Altza pelbisa lurretik azpialdeko besaburua altxatuz, besaurrea lurrean mantenduz; burua, pelbisa eta oinak lerro zuzena osatu behar dute
 3. Eutsi posizio honi""",
+"nb_NO": """1. Legg deg ned på din side, med din bunnen albuen i en rett vinkel, arm som stikker ut
+2. Løft bekkenet opp fra gulvet ved å løfte bunnen din skulder opp, holde underarmen på gulvet; hodet, bekkenet, og føttene skal være i en rett linje
+3. Hold denne posisjonen""",
 "cs": """1. Lehněte si na bok, se spodním loktem v pravém úhlu, paže vyčnívající
 2. Zvedněte pánev z podlahy zvedání spodní rameno, drží předloktí na podlaze, hlavu, pánev a nohy by měly být v jedné přímce
 3. Držte tuto pozici""",
@@ -2014,6 +2183,7 @@ Steps: 1. Hold this position.""",
 "it": """Squat laterale sinistro""",
 "fr": """Fentes latérales gauches""",
 "eu": """Alde zatitu squats utzi""",
+"nb_NO": """Side split-knebøy venstre""",
 "cs": """Boční výpady nalevo""",
 "id": """Squat split samping kiri""",
 "es": """Sentadilla de lado izquierdo""",
@@ -2028,6 +2198,7 @@ Steps: 1. Hold this position.""",
 "it": """Squat laterali a destra""",
 "fr": """Fentes latérales droites""",
 "eu": """Alde zatitu squats eskubidea""",
+"nb_NO": """Side split-knebøy høyre""",
 "cs": """Boční výpady napravo""",
 "id": """Squat split samping kanan""",
 "es": """Sentadilla de lado derecho""",
@@ -2060,6 +2231,9 @@ Steps: 1. Hold this position.""",
 "eu": """1. Jarri tente eta eman urrats zabal bat albora, zure sorbaldaren zabaleratik zertxobait harago.
 2. Tolestu belaun bat izterra lurrarekiko paralelo dagoen arte. Tolestutako belauna oinarekin lerrokatuta egon behar du.
 3. Itzuli hasierako posiziora eta errepikatu.""",
+"nb_NO": """1. Stå høyreist og ta et bredt lateral strak arm, bare større enn skulder bredde.
+2. Bøy det ene kneet til lårene er parallelle med gulvet. De bøyde kne må være i tråd med foten.
+3. Press tilbake til startposisjon, og gjenta.""",
 "cs": """1. Postavte se vysoko a vezměte široký boční krok, jen větší než šířka ramen.
 2. Ohněte jedno koleno, dokud vaše stehno není rovnoběžné s podlahou. Ohnuté koleno musí být v souladu s nohou.
 3. Zatlačte zpět do výchozí polohy a opakujte.""",
@@ -2080,6 +2254,7 @@ Steps: 1. Hold this position.""",
 "it": """Split squats left bulgari""",
 "fr": """Squats bulgares gauches""",
 "eu": """Bulgarian zatitu squats utzi""",
+"nb_NO": """Bulgarsk split-knebøy venstre""",
 "cs": """Bulharské dřepy na levé noze""",
 "id": """Squat split Bulgaria ke kiri""",
 "es": """Sentadilla búlgara izquierda""",
@@ -2094,6 +2269,7 @@ Steps: 1. Hold this position.""",
 "it": """Split squats right bulgari""",
 "fr": """Squats bulgares droites""",
 "eu": """Bulgarian zatitu squats eskubidea""",
+"nb_NO": """Bulgarsk split-knebøy høyre""",
 "cs": """Bulharské dřepy na pravé noze""",
 "id": """Bulgaria split squats right""",
 "es": """Sentadilla búlgara derecha""",
@@ -2126,6 +2302,9 @@ Steps: 1. Hold this position.""",
 "eu": """1. Jarri tente aulki baten aurrean eta eman urrats luze bat. Jarri zure oin baten goialdea aulki gainean.
 2. Tolestu aurreko belauna, besoekin orekatuz atzeko belaunak ia lurra ukitu arte.
 3. Itzuli hasierako posiziora eta errepikatu.""",
+"nb_NO": """1. Stå rak i fronten på en stol og ta et stort skritt. Legg den øvre delen av en av føttene på en stol.
+2. Bøy kne foran, balansering med armene til den tilbake kneet nesten berører bakken
+3. Press tilbake til startposisjon, og gjenta.""",
 "cs": """1. Postavte se vysoko před židli a udělejte velký krok. Položte horní část jedné z vašich nohou na židli.
 2. Ohněte přední koleno a vyvažujte rukama, dokud se zadní koleno téměř nedotkne země
 3. Zatlačte zpět do výchozí polohy a opakujte.""",
@@ -2146,6 +2325,7 @@ Steps: 1. Hold this position.""",
 "it": """Squat a pistola a sinistra""",
 "fr": """Pistol squats gauches""",
 "eu": """Pistola squats utzi""",
+"nb_NO": """Pistol squats venstre""",
 "cs": """Dřep na levé noze""",
 "id": """Pistol squat kiri""",
 "es": """Sentadillas en pistol izquierda""",
@@ -2160,6 +2340,7 @@ Steps: 1. Hold this position.""",
 "it": """Squat a pistola a destra""",
 "fr": """Pistol squats droites""",
 "eu": """Pistola squats eskubidea""",
+"nb_NO": """Pistol squats høyre""",
 "cs": """Dřep na pravé noze""",
 "id": """Pistol squats kanan""",
 "es": """Sentadillas en pistol derecha""",
@@ -2201,6 +2382,10 @@ Steps: 1. Hold this position.""",
 2. Okertu belauna bat, poliki-poliki, beheranzko bat sartu squat eta mantenduz, zure atzera eta zure beste hanka zuzen.
 3. Poliki-poliki igo yourself from squat, zuzenketa tolestuta belauna eta mantenduz beste hanka zuzen.
 4. Errepikatu""",
+"nb_NO": """1. Stå på ett bein med det andre benet rett og litt fremover.
+2. Bøy det ene kneet sakte ned i en knebøy og holde ryggen din og den andre benet rett.
+3. Sakte heve deg selv fra knebøy, retting de bøyde kne og å holde de andre benet rett.
+4. Gjenta""",
 "cs": """1. Postavte se na jednu nohu, druhou nohu rovně a mírně dopředu.
 2. Pomalu ohněte jedno koleno, sestupujte do dřepu a udržujte záda a druhou nohu rovně.
 3. Pomalu se zvedněte z dřepu, narovnejte ohnuté koleno a udržujte druhou nohu rovnou.
@@ -2224,6 +2409,7 @@ Steps: 1. Hold this position.""",
 "it": """Contraccolpi in ginocchio""",
 "fr": """Extensions de la hanche""",
 "eu": """Belauniko kickbacks""",
+"nb_NO": """Knelende kickbacks""",
 "cs": """Kickbacky v kleku""",
 "id": """Kickbacks berlutut""",
 "es": """Patada de rodilla""",
@@ -2265,6 +2451,10 @@ Steps: 1. Hold this position.""",
 2. Push bat oinez itzuli arte erabat luzatu, baitute glutes muskuluak.
 3. Egonaldia bigarren bat, gero itzuli hasierako posizioa.
 4. Errepikatu, oinak txandakatuz""",
+"nb_NO": """1. Få ned på alle fire.
+2. Skyv den ene foten tilbake inntil fullt utvidet, og konsentrerer seg om gluteus muskler.
+3. Opphold i ett sekund, og deretter gå tilbake til den opprinnelige posisjonen.
+4. Gjenta, alternerende føtter""",
 "cs": """1. Dolů na všech čtyřech.
 2. Zatlačte jednu nohu zpět až do úplného prodloužení a soustřeďte se na gluteusové svaly.
 3. Zůstaňte jednu sekundu a pak se vraťte do výchozí polohy.
@@ -2288,6 +2478,7 @@ Steps: 1. Hold this position.""",
 "it": """Sollevamento del polpaccio gamba sinistra""",
 "fr": """Lever du mollet gauche""",
 "eu": """Ezkerreko hanka txahal altxatzen""",
+"nb_NO": """Venstre ben kalven reiser""",
 "cs": """Výpony na levé noze""",
 "id": """Angkat kaki kiri anak sapi""",
 "es": """Elevación de pantorrilla izquierda""",
@@ -2302,6 +2493,7 @@ Steps: 1. Hold this position.""",
 "it": """Sollevamento del polpaccio gamba destra""",
 "fr": """Lever du mollet droit""",
 "eu": """Eskuineko hanka txahal altxatzen""",
+"nb_NO": """Høyre ben kalven reiser""",
 "cs": """Výpony na pravé noze""",
 "id": """Angkat betis kaki kanan""",
 "es": """Elevación de pantorrilla derecha""",
@@ -2334,6 +2526,9 @@ Steps: 1. Hold this position.""",
 "eu": """1. Zutik lurrean edo ertzean urrats bat handitzeko mugimendu sorta. Goratu bat oinez, jarriz, goiko aldean, zure txahal.
 2. Igogailua zure heels arte, ari zaren zutik behatzak.
 3. Lo jarrera hori hiru segundo, eta, ondoren, jaistea zure oinez ukitu gabe lurrean zure orpoa.""",
+"nb_NO": """1. Stå på gulvet eller på kanten av et trinn til å øke omfanget av bevegelse. Løft det ene foten, og du kan plassere den øvre delen på kalv.
+2. Løft hælene til du står på tå.
+3. Opphold i denne stillingen i tre sekunder, senk foten uten å berøre bakken med hælen.""",
 "cs": """1. Postavte se na podlahu nebo na okraj kroku, abyste zvýšili rozsah pohybu. Zvedněte jednu nohu a položte horní část na lýtko.
 2. Zvedněte paty, dokud nestojíte na prstech.
 3. Zůstaňte v této poloze po dobu tří sekund, pak spusťte nohu, aniž byste se dotýkali země patou.""",
@@ -2354,6 +2549,7 @@ Steps: 1. Hold this position.""",
 "it": """Corda per saltare: salti di base""",
 "fr": """Corde à sauter : sauts de base""",
 "eu": """Jump rope: basic jumps""",
+"nb_NO": """Hoppe tau: grunnleggende hopp""",
 "cs": """Švihadlo: základní skoky""",
 "id": """Lompat tali: basic Jump""",
 "es": """Saltar la cuerda: saltos básicos""",
@@ -2404,6 +2600,11 @@ Steps: 1. Hold this position.""",
 2. Spin only your wrists with enough force to make the rope spin.
 3. Jump just high enough to pass the rope below your feet.
 4. Repeat from step 2.""",
+"nb_NO": """Denne øvelsen krever en hoppe tau. Kontroller at tau lengde er tilpasset din høyde. En måte å sjekke på er å ta tak i begge håndtak med den ene hånden og stå på midten av tau som henger på bakken med en fot. Hvis tauet (uten håndtak) kommer rett under brystet, dens lengde som er riktig. En kortere tau ville være farlig, så du kan treffe deg, og et lengre tau ville gjøre for dårlig form.
+1. Sette føttene tett sammen, bøy knærne litt, hold hodet og kroppen rett, holde albuene på, kan du åpne armer.
+2. Spinn bare håndleddene med nok kraft til å gjøre tau spinn.
+3. Hoppe like høyt nok til å passere tau under føttene dine.
+4. Gjenta fra trinn 2.""",
 "cs": """Toto cvičení vyžaduje švihadlo. Ujistěte se, že délka švihadla je přizpůsobena vaší výšce. Jedním ze způsobů kontroly je uchopit obě rukojeti jednou rukou a postavit se jednou nohou na střed švihadla visícího na zemi. Pokud vám švihadlo (bez rukojetí) sahá těsně pod hrudník, je jeho délka správná. Kratší lano by bylo nebezpečné, protože byste se mohli udeřit, a delší lano by způsobilo špatnou formu.
 1. Dejte nohy těsně k sobě, trochu pokrčte kolena, hlavu a tělo držte rovně, lokty mějte vtažené, paže rozevřené.
 2. Točte pouze zápěstími dostatečnou silou, aby se lano roztočilo.
@@ -2430,6 +2631,7 @@ Steps: 1. Hold this position.""",
 "it": """Cerchi del braccio""",
 "fr": """Cercles avec les bras""",
 "eu": """Arm circles""",
+"nb_NO": """Arm sirkler""",
 "cs": """Kroužení pažemi""",
 "id": """Arm lingkaran""",
 "es": """Círculos de brazo""",
@@ -2462,6 +2664,9 @@ Steps: 1. Hold this position.""",
 "eu": """1. Stand up tall with your back straight.
 2. Bring your arms forward, raise them over your head, then continue the motion behind your back and down to the initial position.
 3. Keep circling your arms as described in step 2.""",
+"nb_NO": """1. Stå opp høyt med rett rygg.
+2. Tar armene frem, løfter dem over hodet, og deretter fortsette bevegelsen bak ryggen og ned til første posisjon.
+3. Holde rundt armene som beskrevet i trinn 2.""",
 "cs": """1. Postavte se zpříma a narovnejte záda.
 2. Přitáhněte paže dopředu, zvedněte je nad hlavu a pak pokračujte v pohybu za zády a dolů do výchozí polohy.
 3. Pokračujte v kroužení pažemi podle popisu v kroku 2.""",
@@ -2482,12 +2687,13 @@ Steps: 1. Hold this position.""",
 "it": """Alpinista""",
 "fr": """Escaladeurs de montagne""",
 "eu": """Mountain climbers""",
+"nb_NO": """Fjellklatrere""",
 "cs": """Horolezec""",
 "id": """Pendaki gunung""",
 "es": """Montañeros""",
 } +
 {
-"tr": """Başlangıç konumu:
+"tr": """Başlangıç durumu:
 Dik şınav durumunda veya yüksek plankta başlayın.
 Eller doğrudan omuzlarınızın altında olmalıdır.
 Başınızı yere bakacak şekilde sırtınızla aynı hizada tutun.
@@ -2541,17 +2747,17 @@ Notes:
 Throughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.""",
 "pt": """Posição inicial:
 Começar na posição vertical de flexão, ou na prancha alta.
-As mãos devem estar directamente debaixo dos seus ombros.
+As mãos devem estar diretamente abaixo dos seus ombros.
 Manter a cabeça alinhada com as costas, virada para o chão.
-Os pés devem estar aproximadamente à largura da anca separados.
+Os pés devem ter a distância entre os quadris.
 
 Passos:
-1. Mova um joelho em direcção ao centro do corpo, em direcção aos cotovelos, mantendo a outra perna estendida.
-2. Num movimento de salto rápido, endireite a perna dobrada para fora e puxe o outro joelho em direcção ao seu corpo.
+1. Mova um joelho em direção ao centro do corpo, em direção aos cotovelos, mantendo a outra perna estendida.
+2. Num movimento de salto rápido, endireite a perna dobrada para fora e puxe o outro joelho em direção ao seu corpo.
 3. Continue a repetir o passo 2, alternando as pernas.
 
 Notas:
-Durante todo o exercício, as costas devem permanecer o mais direitas possível - evitar uma corcunda ou uma flacidez nas costas.""",
+Ao longo do exercício, as costas devem permanecer o mais reto o possível - evite uma corcunda ou uma curvatura nas costas.""",
 "en": """Starting position:
 Start in the upright push-up position, or the high plank.
 Hands should be directly under your shoulders.
@@ -2590,7 +2796,7 @@ Les pieds doivent être écartés d'environ la largeur des hanches.
 3. Répétez l'étape 2 en alternant les jambes.
 
 Remarques :
-Tout au long de l'exercice, votre dos doit rester aussi droit que possible - évitez d'avoir une bosse ou un dos affaissé.""",
+Tout au long de l'exercice, votre dos doit rester aussi droit que possible – évitez d'avoir une bosse ou un dos affaissé.""",
 "eu": """Starting position:
 Start in the upright push-up position, or the high plank.
 Hands should be directly under your shoulders.
@@ -2604,6 +2810,19 @@ Steps:
 
 Notes:
 Throughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.""",
+"nb_NO": """Startposisjonen:
+Start i oppreist push-up posisjon, eller høy planke.
+Hendene skal være rett under skuldrene.
+Hold hodet i tråd med ryggen vendt mot gulvet.
+Føttene skal være om hip bredde hverandre.
+
+Fremgangsmåte:
+1. Flytte det ene kneet mot midten av kroppen, mot albuene, å holde det andre benet lengre.
+2. I en rask hoppe bevegelse, rett ut bøyde benet ut og trekk den andre kneet mot kroppen.
+3. Holde gjenta trinn 2, vekslende bein.
+
+Merk:
+Gjennom hele øvelsen, ryggen skal være så rett som mulig – unngå en pukkel eller en slapp tilbake.""",
 "cs": """Výchozí pozice:
 Začněte ve vzpřímené pozici pro kliky nebo ve vysokém prkně.
 Ruce by měly být přímo pod rameny.
@@ -2642,11 +2861,936 @@ Pasos:
 3. Sigue repitiendo el paso 2, alternando las piernas.
 
 Notas:
-Durante todo el ejercicio, la espalda debe permanecer lo más recta posible: evite una joroba o una espalda flácida.""",
+Durante todo el ejercicio, la espalda debe permanecer lo más recta posible, evitando una joroba o una espalda flácida.""",
+} +
+{
+"tr": """Push-up burpees""",
+"nl": """Push-up burpees""",
+"de": """Push-up burpees""",
+"ru": """Push-up burpees""",
+"pt": """Flexão burpee""",
+"en": """Push-up burpees""",
+"it": """Push-up burpees""",
+"fr": """Push-up burpees""",
+"eu": """Push-up burpees""",
+"nb_NO": """Push-up burpees""",
+"cs": """Push-up burpees""",
+"id": """Push-up burpees""",
+"es": """Push-up burpees""",
+} +
+{
+"tr": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"nl": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"de": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"ru": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"pt": """Posição inicial:
+Fique de pé reto, com os pés afastados alinhados ao quadris.
+
+Passos:
+1. Se agache e se apoie com as mãos no chão entre os joelhos e a frente de seus pés, mantendo as costas retas.
+2. Mantendo as mãos no chão, pule jogando as pernas para trás para a posição de prancha altas.
+3. Faça uma flexão de braços.
+4. Pule os pés para frente para voltar à posição de agachamento.
+5. Repita.""",
+"en": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"it": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"fr": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"eu": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"nb_NO": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"cs": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"id": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+"es": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Perform a push-up.
+4. Jump your feet forward to return to the squat position.
+5. Repeat.""",
+} +
+{
+"tr": """4-count burpees""",
+"nl": """4-count burpees""",
+"de": """4-count burpees""",
+"ru": """4-count burpees""",
+"pt": """4-count burpees""",
+"en": """4-count burpees""",
+"it": """4-count burpees""",
+"fr": """4-count burpees""",
+"eu": """4-count burpees""",
+"nb_NO": """4-count burpees""",
+"cs": """4-count burpees""",
+"id": """4-count burpees""",
+"es": """4-count burpees""",
+} +
+{
+"tr": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"nl": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"de": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"ru": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"pt": """Posição inicial:
+Fique de pé reto, com os pés afastados alinhados ao quadris.
+
+Passos:
+1. Se agache e se apoie com as mãos no chão entre os joelhos e a frente de seus pés, mantendo as costas retas.
+2. Mantendo as mãos no chão, pule jogando as pernas para trás para a posição de prancha altas
+3. Pule os pés para frente para voltar à posição de agachamento.
+4. Repita.""",
+"en": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"it": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"fr": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"eu": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"nb_NO": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"cs": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"id": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+"es": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Repeat.""",
+} +
+{
+"tr": """No push-up burpees""",
+"nl": """No push-up burpees""",
+"de": """No push-up burpees""",
+"ru": """No push-up burpees""",
+"pt": """Burpee sem flexão""",
+"en": """No push-up burpees""",
+"it": """No push-up burpees""",
+"fr": """No push-up burpees""",
+"eu": """No push-up burpees""",
+"nb_NO": """No push-up burpees""",
+"cs": """No push-up burpees""",
+"id": """No push-up burpees""",
+"es": """No push-up burpees""",
+} +
+{
+"tr": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"nl": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"de": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"ru": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"pt": """Posição inicial:
+Fique de pé reto, com os pés afastados alinhados ao quadris.
+
+Passos:
+1. Se agache e se apoie com as mãos no chão entre os joelhos e a frente de seus pés, mantendo as costas retas.
+2. Mantendo as mãos no chão, pule jogando as pernas para trás para a posição de prancha altas.
+3. Pule os pés para frente para voltar à posição de agachamento.
+4. Salte.
+5. Repita.""",
+"en": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"it": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"fr": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"eu": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"nb_NO": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"cs": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"id": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+"es": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
+} +
+{
+"tr": """Squat thrusts""",
+"nl": """Squat thrusts""",
+"de": """Squat thrusts""",
+"ru": """Squat thrusts""",
+"pt": """Squat thrusts""",
+"en": """Squat thrusts""",
+"it": """Squat thrusts""",
+"fr": """Squat thrusts""",
+"eu": """Squat thrusts""",
+"nb_NO": """Squat thrusts""",
+"cs": """Squat thrusts""",
+"id": """Squat thrusts""",
+"es": """Squat thrusts""",
+} +
+{
+"tr": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"nl": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"de": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"ru": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"pt": """Posição inicial:
+Comece na posição de prancha alta: costas, braços e pernas retos e as mãos afastadas alinhadas aos ombros.
+
+Passos:
+1. Pule jogando seus pés para frente entre os braços, mantendo as costas reta.
+2. Mantendo suas mãos no chão, retorne suas pernas para a posição de prancha altas.
+3. Repita.""",
+"en": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"it": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"fr": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"eu": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"nb_NO": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"cs": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"id": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+"es": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
+} +
+{
+"tr": """Ters lunge hareketi""",
+"nl": """Omgekeerde lunges""",
+"de": """Reverse lunges""",
+"ru": """Reverse lunges""",
+"pt": """Lunge reverso""",
+"en": """Reverse lunges""",
+"it": """Reverse lunges""",
+"fr": """Reverse lunges""",
+"eu": """Reverse lunges""",
+"nb_NO": """Omvendt lunges""",
+"cs": """Reverzní výpady""",
+"id": """Reverse lunges""",
+"es": """Arremetidas inversas""",
+} +
+{
+"tr": """Başlangıç durumu:
+Ayaklar kalça genişliğinde açık olacak şekilde düz durun.
+
+Adımlar:
+1. 90 derecelik bir açıyla rahatça bükülebilmesi için tek ayakla geriye doğru adım atın.
+2. 90 derecelik açılar oluşturmak için her iki dizinizi de yavaşça bükün.
+3. Başlangıç durumuna geri dönün.
+4. Bacakları dönüşümlü olarak tekrarlayın.""",
+"nl": """Beginpositie:
+Sta recht, voeten op heupbreedte uit elkaar.
+
+Stappen:
+1. Stap naar achteren met één been, zodat het comfortabel kan buigen tot een hoek van 90 graden.
+2. Buig langzaam beide knieën tot een hoek van 90 graden.
+3. Keer terug naar de uitgangspositie.
+4. Herhaal, afwisselend met de benen.""",
+"de": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Step backward with one leg so it can bend comfortably to a 90 degree angle.
+2. Slowly bend both knees to form 90 degree angles.
+3. Return to the starting position.
+4. Repeat, alternating legs.""",
+"ru": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Step backward with one leg so it can bend comfortably to a 90 degree angle.
+2. Slowly bend both knees to form 90 degree angles.
+3. Return to the starting position.
+4. Repeat, alternating legs.""",
+"pt": """Posição inicial:
+Fique de pé reto, com os pés afastados.
+
+Passos:
+1. Dê um passo para trás com uma perna para que você possa dobrar-se confortavelmente a um ângulo de 90 graus.
+2. Dobre lentamente ambos os joelhos para formar ângulos de 90 graus.
+3. Retorne para a posição inicial.
+4. Repita, alternando as pernas.""",
+"en": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Step backward with one leg so it can bend comfortably to a 90 degree angle.
+2. Slowly bend both knees to form 90 degree angles.
+3. Return to the starting position.
+4. Repeat, alternating legs.""",
+"it": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Step backward with one leg so it can bend comfortably to a 90 degree angle.
+2. Slowly bend both knees to form 90 degree angles.
+3. Return to the starting position.
+4. Repeat, alternating legs.""",
+"fr": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Step backward with one leg so it can bend comfortably to a 90 degree angle.
+2. Slowly bend both knees to form 90 degree angles.
+3. Return to the starting position.
+4. Repeat, alternating legs.""",
+"eu": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Step backward with one leg so it can bend comfortably to a 90 degree angle.
+2. Slowly bend both knees to form 90 degree angles.
+3. Return to the starting position.
+4. Repeat, alternating legs.""",
+"nb_NO": """Startposisjonen:
+Stå rett, føttene i hoftebreddes avstand.
+
+Fremgangsmåte:
+1. Trinn bakover med ett ben slik at den kan bøye seg komfortabelt til en 90-graders vinkel.
+2. Sakte bøy begge knærne danner en 90-graders vinkel.
+3. Gå tilbake til startposisjon.
+4. Gjenta, vekslende bein.""",
+"cs": """Výchozí pozice:
+Stoj rozkročný, chodidla na šířku boků.
+
+Kroky:
+1. Udělejte krok vzad jednou nohou tak, abyste ji mohli pohodlně pokrčit do pravého úhlu.
+2. Pomalu pokrčte obě kolena do úhlu 90 stupňů.
+3. Vraťte se do výchozí polohy.
+4. Opakujte, střídejte nohy.""",
+"id": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Step backward with one leg so it can bend comfortably to a 90 degree angle.
+2. Slowly bend both knees to form 90 degree angles.
+3. Return to the starting position.
+4. Repeat, alternating legs.""",
+"es": """Posición inicial:
+De pie, con los pies separados a la altura de las caderas.
+
+Pasos:
+1. Da un paso hacia atrás con una pierna para que pueda doblarse cómodamente hasta un ángulo de 90 grados.
+2. Doble lentamente ambas rodillas hasta formar un ángulo de 90 grados.
+3. Vuelva a la posición inicial.
+4. Repita, alternando las piernas.""",
+} +
+{
+"tr": """Bacak kaldırmaları""",
+"nl": """Been strekken""",
+"de": """Leg raises""",
+"ru": """Leg raises""",
+"pt": """Levantamento de pernas""",
+"en": """Leg raises""",
+"it": """Leg raises""",
+"fr": """Leg raises""",
+"eu": """Leg raises""",
+"nb_NO": """Ben reiser""",
+"cs": """Zvedání nohou""",
+"id": """Leg raises""",
+"es": """Levantamiento de piernas""",
+} +
+{
+"tr": """Başlangıç durumu:
+Ayaklar bitişik, kollarınız yan tarafınızda olacak şekilde sırt üstü uzanın.
+
+Adımlar:
+1. Dizlerinizi bükün, ardından yukarı bakacak şekilde düzeltin.
+2. Bacaklarınızı düz tutarak, yere değdirmeden birlikte aşağı indirin. Ne kadar aşağı indirirseniz egzersiz o kadar yoğun olur.
+3. Tekrar yukarı bakacak şekilde her iki bacağı birlikte kaldırın.
+4. 2. adımdan itibaren tekrarlayın.""",
+"nl": """Beginpositie:
+Ga op je rug liggen, voeten bij elkaar, armen langs je zij.
+
+Stappen:
+1. Buig uw knieën, strek ze dan tot ze recht omhoog wijzen.
+2. Houd je benen recht, laat ze samen naar beneden zakken zonder de vloer te raken. Hoe lager je gaat, hoe intensiever de oefening.
+3. 3. Breng beide benen weer recht omhoog.
+4. Herhaal vanaf stap 2.""",
+"de": """Starting position:
+Lie down on your back, feet together, arms by your sides.
+
+Steps:
+1. Bend your knees, then straighten them to point straight up.
+2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
+3. Raise both legs together to point straight up again.
+4. Repeat from step 2.""",
+"ru": """Starting position:
+Lie down on your back, feet together, arms by your sides.
+
+Steps:
+1. Bend your knees, then straighten them to point straight up.
+2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
+3. Raise both legs together to point straight up again.
+4. Repeat from step 2.""",
+"pt": """Posição inicial:
+Deite-se de costas, com os pés juntos, e os braços ao seu lado.
+
+Passos:
+1. Dobre os joelhos, depois os endireite para apontar para cima.
+2. Mantenha as pernas retas, abaixe-as juntas, sem tocar o chão. Quanto mais baixo você for, mais intenso será o exercício.
+3. Levante as duas pernas juntas para apontar para cima novamente.
+4. Repita a partir do passo 2.""",
+"en": """Starting position:
+Lie down on your back, feet together, arms by your sides.
+
+Steps:
+1. Bend your knees, then straighten them to point straight up.
+2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
+3. Raise both legs together to point straight up again.
+4. Repeat from step 2.""",
+"it": """Starting position:
+Lie down on your back, feet together, arms by your sides.
+
+Steps:
+1. Bend your knees, then straighten them to point straight up.
+2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
+3. Raise both legs together to point straight up again.
+4. Repeat from step 2.""",
+"fr": """Starting position:
+Lie down on your back, feet together, arms by your sides.
+
+Steps:
+1. Bend your knees, then straighten them to point straight up.
+2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
+3. Raise both legs together to point straight up again.
+4. Repeat from step 2.""",
+"eu": """Starting position:
+Lie down on your back, feet together, arms by your sides.
+
+Steps:
+1. Bend your knees, then straighten them to point straight up.
+2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
+3. Raise both legs together to point straight up again.
+4. Repeat from step 2.""",
+"nb_NO": """Startposisjonen:
+Legg deg ned på ryggen, føttene sammen, armene dine sider.
+
+Fremgangsmåte:
+1. Bøy knærne, deretter rette dem til å peke rett opp.
+2. Å holde bena rett, senke dem ned sammen uten å berøre gulvet. Nedre du går, jo mer intens trening.
+3. Heve begge beina sammen for å peke rett opp igjen.
+4. Gjenta fra trinn 2.""",
+"cs": """Výchozí pozice:
+Lehněte si na záda, nohy k sobě, ruce podél těla.
+
+Kroky:
+1. Pokrčte kolena a poté je narovnejte tak, aby směřovala přímo vzhůru.
+2. Držte nohy rovně a spusťte je společně dolů, aniž byste se dotkli podlahy. Čím níže jdete, tím je cvičení intenzivnější.
+3. Zvedněte obě nohy společně tak, aby opět směřovaly rovně nahoru.
+4. Opakujte od kroku 2.""",
+"id": """Starting position:
+Lie down on your back, feet together, arms by your sides.
+
+Steps:
+1. Bend your knees, then straighten them to point straight up.
+2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
+3. Raise both legs together to point straight up again.
+4. Repeat from step 2.""",
+"es": """Posición inicial:
+Túmbate de espaldas, con los pies juntos y los brazos a los lados.
+
+Pasos:
+1. Dobla las rodillas y luego enderézalas para que apunten hacia arriba.
+2. Manteniendo las piernas rectas, bájalas juntas sin tocar el suelo. Cuanto más bajes, más intenso será el ejercicio.
+3. Sube las dos piernas juntas hasta que vuelvan a apuntar hacia arriba.
+4. Repite desde el paso 2.""",
+} +
+{
+"tr": """Yere dalma""",
+"nl": """Vloer dips""",
+"de": """Floor dips""",
+"ru": """Floor dips""",
+"pt": """Floor dips""",
+"en": """Floor dips""",
+"it": """Floor dips""",
+"fr": """Floor dips""",
+"eu": """Floor dips""",
+"nb_NO": """Etasje dips""",
+"cs": """Dipy na podlaze""",
+"id": """Floor dips""",
+"es": """Bajadas al suelo""",
+} +
+{
+"tr": """Başlangıç durumu:
+Sırtınızı destekleyerek kollarınız arkanızda oturun.
+Parmaklarınız öne doğru bakmalıdır.
+Dizleriniz bükülmeli, ayaklarınız birbirine yapışmalıdır.
+
+Adımlar:
+1. Kollarınızı düzleştirerek kalçalarınızı yerden kaldırın.
+2. Kalçalarınızı aşağı indirerek dirseklerinizi bükün.
+3. Bir önceki duruma dönerek kollarınızı düzeltin.
+4. 2. ve 3. adımları tekrarlayın.
+
+Notlar:
+Egzersizin zorluğu kalçalarınızı ne kadar yükseğe çıkardığınıza bağlıdır.""",
+"nl": """Start positie:
+Ga zitten met je armen achter je en ondersteun je rug.
+Je vingers moeten naar voren wijzen.
+Je knieën moeten gebogen zijn, voeten bij elkaar.
+
+Stappen:
+1. Hef je heupen van de grond en strek je armen.
+2. Buig je ellebogen en breng je heupen naar beneden.
+3. Strek je armen en keer terug naar de vorige positie.
+4. Herhaal stap 2 en 3.
+
+Opmerkingen:
+De moeilijkheidsgraad van de oefening hangt af van hoe hoog je je heupen brengt.""",
+"de": """Starting position:
+Sit with your arms behind you, supporting your back.
+Your fingers should point forward.
+Your knees should be bent, feet together.
+
+Steps:
+1. Raise your hips off the ground, straightening your arms.
+2. Bend your elbows, bringing your hips down.
+3. Straighten your arms, returning to the previous position.
+4. Repeat steps 2 and 3.
+
+Notes:
+The exercise's difficulty depends on how high you bring your hips.""",
+"ru": """Starting position:
+Sit with your arms behind you, supporting your back.
+Your fingers should point forward.
+Your knees should be bent, feet together.
+
+Steps:
+1. Raise your hips off the ground, straightening your arms.
+2. Bend your elbows, bringing your hips down.
+3. Straighten your arms, returning to the previous position.
+4. Repeat steps 2 and 3.
+
+Notes:
+The exercise's difficulty depends on how high you bring your hips.""",
+"pt": """Starting position:
+Sit with your arms behind you, supporting your back.
+Your fingers should point forward.
+Your knees should be bent, feet together.
+
+Steps:
+1. Raise your hips off the ground, straightening your arms.
+2. Bend your elbows, bringing your hips down.
+3. Straighten your arms, returning to the previous position.
+4. Repeat steps 2 and 3.
+
+Notes:
+The exercise's difficulty depends on how high you bring your hips.""",
+"en": """Starting position:
+Sit with your arms behind you, supporting your back.
+Your fingers should point forward.
+Your knees should be bent, feet together.
+
+Steps:
+1. Raise your hips off the ground, straightening your arms.
+2. Bend your elbows, bringing your hips down.
+3. Straighten your arms, returning to the previous position.
+4. Repeat steps 2 and 3.
+
+Notes:
+The exercise's difficulty depends on how high you bring your hips.""",
+"it": """Starting position:
+Sit with your arms behind you, supporting your back.
+Your fingers should point forward.
+Your knees should be bent, feet together.
+
+Steps:
+1. Raise your hips off the ground, straightening your arms.
+2. Bend your elbows, bringing your hips down.
+3. Straighten your arms, returning to the previous position.
+4. Repeat steps 2 and 3.
+
+Notes:
+The exercise's difficulty depends on how high you bring your hips.""",
+"fr": """Starting position:
+Sit with your arms behind you, supporting your back.
+Your fingers should point forward.
+Your knees should be bent, feet together.
+
+Steps:
+1. Raise your hips off the ground, straightening your arms.
+2. Bend your elbows, bringing your hips down.
+3. Straighten your arms, returning to the previous position.
+4. Repeat steps 2 and 3.
+
+Notes:
+The exercise's difficulty depends on how high you bring your hips.""",
+"eu": """Starting position:
+Sit with your arms behind you, supporting your back.
+Your fingers should point forward.
+Your knees should be bent, feet together.
+
+Steps:
+1. Raise your hips off the ground, straightening your arms.
+2. Bend your elbows, bringing your hips down.
+3. Straighten your arms, returning to the previous position.
+4. Repeat steps 2 and 3.
+
+Notes:
+The exercise's difficulty depends on how high you bring your hips.""",
+"nb_NO": """Startposisjonen:
+Sitte med armene bak deg, støtter deg tilbake.
+Fingrene skal peke fremover.
+Knærne skal bøyes, føttene sammen.
+
+Fremgangsmåte:
+1. Heve hoftene av bakken, retting armene.
+2. Bøy albuene, bringe hoftene ned.
+3. Rett i armene dine, gå tilbake til den forrige posisjonen.
+4. Gjenta trinn 2 og 3.
+
+Merk:
+Øvelsen er problemer med, avhenger av hvor høy du ta med hoftene.""",
+"cs": """Výchozí pozice:
+Sedněte si s rukama za zády, podporující tělo.
+Prsty by měly směřovat dopředu.
+Kolena by měla být pokrčená, chodidla u sebe.
+
+Kroky:
+1. Zvedněte boky nad zem a narovnejte paže.
+2. Pokrčte lokty a boky stáhněte dolů.
+3. Narovnejte paže a vraťte se do předchozí polohy.
+4. Opakujte kroky 2 a 3.
+
+Poznámky:
+Obtížnost cviku závisí na tom, jak vysoko vynesete boky.""",
+"id": """Starting position:
+Sit with your arms behind you, supporting your back.
+Your fingers should point forward.
+Your knees should be bent, feet together.
+
+Steps:
+1. Raise your hips off the ground, straightening your arms.
+2. Bend your elbows, bringing your hips down.
+3. Straighten your arms, returning to the previous position.
+4. Repeat steps 2 and 3.
+
+Notes:
+The exercise's difficulty depends on how high you bring your hips.""",
+"es": """Posición inicial:
+Siéntate con los brazos detrás de ti, apoyando la espalda.
+Los dedos deben apuntar hacia adelante.
+Las rodillas deben estar dobladas y los pies juntos.
+
+Pasos:
+1. Levanta las caderas del suelo, estirando los brazos.
+2. Dobla los codos, llevando las caderas hacia abajo.
+3. Endereza los brazos, volviendo a la posición anterior.
+4. Repita los pasos 2 y 3.
+
+Notas:
+La dificultad del ejercicio depende de la altura de las caderas.""",
 } +
 {
 "tr": """Pike şınav""",
-"nl": """Pike push-ups""",
+"nl": """Snoekpush-ups""",
 "de": """Pike push-ups""",
 "ru": """Pike push-ups""",
 "pt": """Pike push-ups""",
@@ -2654,9 +3798,10 @@ Durante todo el ejercicio, la espalda debe permanecer lo más recta posible: evi
 "it": """Pike push-ups""",
 "fr": """Pike push-ups""",
 "eu": """Pike push-ups""",
-"cs": """Pike push-ups""",
+"nb_NO": """Gjedde push-ups""",
+"cs": """Kliky ve střeše""",
 "id": """Pike push-ups""",
-"es": """Pike push-ups""",
+"es": """Flexiones de pica""",
 } +
 {
 "tr": """Başlangıç durumu:
@@ -2667,14 +3812,14 @@ Adımlar:
 1. Dirseklerinizi yana doğru bükün, sırtınızı ve bacaklarınızı düz tutun ve başınızı yere yaklaştırın.
 2. Kollarınızı düzeltin, kalçalarınızı geriye doğru itin ve sırtınızı ve bacaklarınızı düz tutun.
 3. Tekrarlayın.""",
-"nl": """Staring position:
-Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
-You can get to this position by walking your hands back from a high plank.
+"nl": """Startpositie:
+Zet je lichaam in een omlaagwijzende V-positie, met rechte rug en gestrekte armen en benen. Je heupen moeten omhoogstaan.
+Je kunt deze positie aannemen door een hoge plank te doen en met je handen naar achteren te lopen.
 
 Steps:
-1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
-2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
-3. Repeat.""",
+1. Buig je ellebogen opzij, houd je rug recht en benen gestrekt en breng je hoofd dichter naar de grond;
+2. Strek je armen, duw je heupen omhoog en houd je rug recht en benen gestrekt;
+3. Herhaal.""",
 "de": """Staring position:
 Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
 You can get to this position by walking your hands back from a high plank.
@@ -2731,14 +3876,22 @@ Steps:
 1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
 2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
 3. Repeat.""",
-"cs": """Staring position:
-Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
-You can get to this position by walking your hands back from a high plank.
+"nb_NO": """Stirrer posisjon:
+Nedover hund: kroppen skal lage en V-form, med en rett rygg, armer, og ben. Hoftene skal være opp i luften.
+Du kan komme til denne posisjonen ved å gå deres hender tilbake fra en høy planke.
 
-Steps:
-1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
-2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
-3. Repeat.""",
+Fremgangsmåte:
+1.Bøy albuene ut til siden, holde ryggen og bena rett og flytte hodet nærmere gulvet.
+2. Rett ut armene, og presser hoftene tilbake, opp og holde ryggen og bena rett.
+3. Gjenta.""",
+"cs": """Výchozí pozice:
+Střecha: Tělo ve tvaru písmene V – rovná záda, paže a nohy, boky ve vzduchu.
+Do této pozice se dostanete tak, že z vysokého prkna postupně popojdete rukami k tělu.
+
+Kroky:
+1. Pokrčte lokty do stran, záda a nohy držte rovné a hlavu přibližte k podlaze.
+2. Narovnejte paže, boky pohněte zpět nahoru a záda a nohy mějte stále rovné.
+3. Opakujte.""",
 "id": """Staring position:
 Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
 You can get to this position by walking your hands back from a high plank.
@@ -2747,14 +3900,14 @@ Steps:
 1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
 2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
 3. Repeat.""",
-"es": """Staring position:
-Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
-You can get to this position by walking your hands back from a high plank.
+"es": """Posición de mirada fija:
+Perro mirando hacia abajo: Tu cuerpo debe hacer una forma de V, con la espalda, los brazos y las piernas rectas. Las caderas deben estar en el aire.
+Puedes llegar a esta posición caminando con las manos hacia atrás desde una plancha alta.
 
-Steps:
-1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
-2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
-3. Repeat.""",
+Pasos:
+1.Dobla los codos hacia los lados, manteniendo la espalda y las piernas rectas y acercando la cabeza al suelo.
+2. Estira los brazos, empujando las caderas hacia atrás y manteniendo la espalda y las piernas rectas.
+3. 3. Repite la operación.""",
 };
 String get i18n => localize(this, t);
 }

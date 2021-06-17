@@ -93,7 +93,7 @@ class DBHelper {
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
-  static const int _DATABASE_VERSION = 3;
+  static const int _DATABASE_VERSION = 4;
 
   Future<Database> _createDB() async {
     String path = await getPath();
@@ -371,23 +371,63 @@ class DBHelper {
 
     await _createExercise(db,
         name: "Jump rope: basic jumps",
-        description: "This exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.\n1. Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n2. Spin only your wrists with enough force to make the rope spin.\n3. Jump just high enough to pass the rope below your feet.\n4. Repeat from step 2.",
+        description:
+            "This exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.\n1. Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n2. Spin only your wrists with enough force to make the rope spin.\n3. Jump just high enough to pass the rope below your feet.\n4. Repeat from step 2.",
         imageSlug: "exercise_jumpropebasic.webp");
 
     await _createExercise(db,
         name: "Arm circles",
-        description: "1. Stand up tall with your back straight.\n2. Bring your arms forward, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
+        description:
+            "1. Stand up tall with your back straight.\n2. Bring your arms forward, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
         imageSlug: "exercise_armcircles.webp");
 
     await _createExercise(db,
         name: "Pike push-ups",
-        description: "Staring position:\nDownward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.\nYou can get to this position by walking your hands back from a high plank.\n\nSteps:\n1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.\n2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.\n3. Repeat.",
+        description:
+            "Staring position:\nDownward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.\nYou can get to this position by walking your hands back from a high plank.\n\nSteps:\n1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.\n2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.\n3. Repeat.",
         imageSlug: "exercise_pikepushup.webp");
 
     await _createExercise(db,
         name: "Mountain climbers",
-        description: "Starting position:\nStart in the upright push-up position, or the high plank.\nHands should be directly under your shoulders.\nKeep your head in line with your back, facing the floor.\nFeet should be about hip-width apart.\n\nSteps:\n1. Move one knee toward the center of your body, towards your elbows, keeping the other leg extended.\n2. In a quick jumping movement, straighten the bent leg out and pull the other knee toward your body.\n3. Keep repeating step 2, alternating legs.\n\nNotes:\nThroughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.",
+        description:
+            "Starting position:\nStart in the upright push-up position, or the high plank.\nHands should be directly under your shoulders.\nKeep your head in line with your back, facing the floor.\nFeet should be about hip-width apart.\n\nSteps:\n1. Move one knee toward the center of your body, towards your elbows, keeping the other leg extended.\n2. In a quick jumping movement, straighten the bent leg out and pull the other knee toward your body.\n3. Keep repeating step 2, alternating legs.\n\nNotes:\nThroughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.",
         imageSlug: "exercise_mountainclimber.webp");
+
+    await _createExercise(db,
+        name: "4-count burpees",
+        description:
+            "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Repeat.",
+        imageSlug: "exercise_4countburpee.webp");
+
+    await _createExercise(db,
+        name: "No push-up burpees",
+        description:
+            "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Jump up.\n5. Repeat.",
+        imageSlug: "exercise_nopushupburpee.webp");
+
+    await _createExercise(db,
+        name: "Squat thrusts",
+        description:
+            "Starting position:\nStart in high plank position: back, arms, and legs straight and hands shoulder-width apart.\n\nSteps:\n1. Jump your feet forward between your arms, keeping your back flat.\n2. Keeping your hands on the floor, jump your legs back into high plank position.\n3. Repeat.",
+        imageSlug: "exercise_squatthrusts.webp");
+
+    await _createExercise(db,
+        name: "Reverse lunges",
+        description:
+            "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Step backward with one leg so it can bend comfortably to a 90 degree angle.\n2. Slowly bend both knees to form 90 degree angles.\n3. Return to the starting position.\n4. Repeat, alternating legs.",
+        imageSlug: "exercise_reverselunge.webp");
+
+    await _createExercise(db,
+        name: "Leg raises",
+        description:
+            "Starting position:\nLie down on your back, feet together, arms by your sides.\n\nSteps:\n1. Bend your knees, then straighten them to point straight up.\n2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.\n3. Raise both legs together to point straight up again.\n4. Repeat from step 2.",
+        imageSlug: "exercise_legraise.webp");
+
+    await _createExercise(db,
+        name: "Floor dips",
+        description:
+            "Starting position:\nSit with your arms behind you, supporting your back.\nYour fingers should point forward.\nYour knees should be bent, feet together.\n\nSteps:\n1. Raise your hips off the ground, straightening your arms.\n2. Bend your elbows, bringing your hips down.\n3. Straighten your arms, returning to the previous position.\n4. Repeat steps 2 and 3.\n\nNotes:\nThe exercise's difficulty depends on how high you bring your hips.",
+        imageSlug: "exercise_floordip.webp");
   }
 
   Future<void> _createWorkoutFromList(
