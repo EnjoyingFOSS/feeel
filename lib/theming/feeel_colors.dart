@@ -36,10 +36,28 @@ class FeeelColors {
   );
 
   static final orange = FeeelSwatch(
-    lightest: Color(0xffFAEBE0),
-    lighter: Color(0xffF3CEB3),
-    light: Color(0xffE96216),
-    dark: Color(0xffCC4800), //E96216 D65A00 c45300 CC4800
-    darker: Color(0xffAD2100), // C03800
-    darkest: Color(0xff371407)); // 830B00 48140F 2B0400 2A0C09
+      lightest: Color(0xffFAEBE0), //FFE9D6
+      lighter: Color(0xffFFC799), //F3CEB3
+      light: Color(0xffE96216), //F56E00
+      dark: Color(0xffC35400), //CC4800 E96216 D65A00 c45300 CC4800
+      darker: Color(0xffAD2100), // 8F3E00 C03800
+      darkest: Color(0xff3D1B00)); // 371407 830B00 48140F 2B0400 2A0C09
+
+  static final green = FeeelSwatch(
+    lightest: Color(0xffE2F1EB),
+    lighter: Color(0xff9BE9C7), //85FFCA
+    light: Color(0xff00cc74), //07B067
+    dark: Color(0xff00854B),
+    darker: Color(0xff00662C), //00663A
+    darkest: Color(0xff003D23),
+  );
+
+  static final gray = FeeelSwatch(
+    lightest: Color(0xffE9EDED),
+    lighter: Color(0xffC7D1D0),
+    light: Color(0xff859997),
+    dark: Color(0xff343E3D),
+    darker: Color(0xff252c2c),
+    darkest: Color(0xff131616),
+  );
 }
