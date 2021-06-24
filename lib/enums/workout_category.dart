@@ -23,15 +23,19 @@
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 
-enum WorkoutCategory { FULL_BODY, LEGS }
+enum WorkoutCategory { STRENGTH, STRETCHING, CARDIO, OTHER}
 
 extension WorkoutCategoryExtension on WorkoutCategory {
   String get translationKey {
     switch (this) {
-      case WorkoutCategory.FULL_BODY:
-        return "Full body";
-      case WorkoutCategory.LEGS:
-        return "Legs";
+      case WorkoutCategory.STRENGTH:
+        return "Strength";
+      case WorkoutCategory.STRETCHING:
+        return "Stretching & yoga";
+      case WorkoutCategory.CARDIO:
+        return "Cardio";
+      case WorkoutCategory.OTHER:
+        return "Other";
       default:
         throw ArgumentError("Invalid workout category");
     }
@@ -40,10 +44,14 @@ extension WorkoutCategoryExtension on WorkoutCategory {
   FeeelSwatch get colorSwatch {
     //todo refactor, move to colors?
     switch (this) {
-      case WorkoutCategory.FULL_BODY:
+      case WorkoutCategory.STRENGTH:
         return FeeelColors.blue;
-      case WorkoutCategory.LEGS:
+      case WorkoutCategory.STRETCHING:
         return FeeelColors.orange;
+      case WorkoutCategory.CARDIO:
+        return FeeelColors.green;
+      case WorkoutCategory.OTHER:
+        return FeeelColors.gray;
       default:
         return FeeelColors.blue;
     }

@@ -89,11 +89,12 @@ class DBHelper {
   static const String _BREAK_DURATION_COL = 'breakDuration';
   static const String _EXERCISE_DURATION_COL = 'exerciseDuration';
   static const String _FLIPPED_COL = 'flipped';
+  static const String _ILLUSTRATION_TYPE = 'illustrationType';
 
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
-  static const int _DATABASE_VERSION = 4;
+  static const int _DATABASE_VERSION = 5;
 
   Future<Database> _createDB() async {
     String path = await getPath();
@@ -134,6 +135,10 @@ class DBHelper {
 
     await _deleteDefaultWorkouts(db);
     await _addDefaultWorkouts(db);
+
+    if (oldVersion < 5) {
+      await _removeLegWorkoutCategory(db);
+    }
   }
 
   Future<void> _createExerciseTable(Database db) async => await db.execute(
@@ -175,7 +180,7 @@ class DBHelper {
     await _createWorkoutFromList(
       db,
       "Scientific 7 minute workout",
-      WorkoutCategory.FULL_BODY,
+      WorkoutCategory.STRENGTH,
       [
         _Exercises.JUMPING_JACKS,
         _Exercises.WALL_SIT,
@@ -196,7 +201,7 @@ class DBHelper {
     await _createWorkoutFromList(
       db,
       "Leg workout",
-      WorkoutCategory.LEGS,
+      WorkoutCategory.STRENGTH,
       [
         _Exercises.SPLIT_SQUATS_L,
         _Exercises.SPLIT_SQUATS_R,
@@ -580,6 +585,12 @@ class DBHelper {
         },
         where: "$_ID_COL = ? and $_TYPE_COL = ?",
         whereArgs: <int>[workoutId, workoutType.index]);
+  }
+
+  Future<void> _removeLegWorkoutCategory(Database db) async {
+    await db.update(_WORKOUT_TABLE,
+        <String, int>{_CATEGORY_COL: WorkoutCategory.STRENGTH.index},
+        where: "$_CATEGORY_COL = 1");
   }
 
   Future<void> _deleteWorkoutExercises(int workoutId, WorkoutType type) async {

@@ -78,7 +78,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
         countdownDuration: _DEFAULT_COUNTDOWN_DURATION,
         breakDuration: _DEFAULT_BREAK_DURATION,
         exerciseDuration: _DEFAULT_EXERCISE_DURATION,
-        category: WorkoutCategory.FULL_BODY);
+        category: WorkoutCategory.STRENGTH);
   }
 
   Future<EditableWorkout> _queryEditableWorkout() async {
@@ -164,7 +164,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                       .workoutExercises.isEmpty)
                                   ? EmptyPlaceholder(
                                       header: header,
-                                      heading: "Be your own coach!".i18n,
+                                      heading: "Be your own coach!".i18n, //todo use TriangleFrame here
                                       subheading:
                                           "Design the workout that makes you feel the best"
                                               .i18n,
@@ -201,7 +201,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                               height: 16,
                                             ),
                                             Expanded(
-                                                child: ListView.builder(
+                                                child: ListView.builder(//todo add itemExtent here, but test for responsiveness
                                               itemBuilder:
                                                   (BuildContext context,
                                                       int index) {
