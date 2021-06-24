@@ -1,3 +1,6 @@
 Feeel est une application Android à code source ouvert permettant de faire des exercices simples à domicile. Elle contient le célèbre programme d'entraînement scientifique de 7 minutes pour tout le corps et permet également de créer des entraînements personnalisés. Bien que l'application contienne actuellement un nombre limité d'exercices, l'objectif est d'augmenter considérablement le nombre d'exercices et de séances d'entraînement avec l'aide de la communauté.
 
-Contribuez à l'adresse https://gitlab.com/enjoyingfoss/feeel/wikis .
+Contribuez à l'adresse https://gitlab.com/enjoyingfoss/feeel/wikis
+
+Faites un don sur https://liberapay.com/Feeel/
+Les dons me permettront de travailler sur l'appli régulièrement, llutôt que seulement pendant mon temps libre.
