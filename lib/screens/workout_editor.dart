@@ -121,7 +121,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                               child: TextFormField(
                                 style: theme.appBarTheme.textTheme?.headline6
                                     ?.copyWith(
-                                        color: FeeelColors.blue
+                                        color: _colorSwatch
                                             .getColorByBrightness(
                                                 FeeelShade.DARK,
                                                 theme.brightness)),
@@ -130,7 +130,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                     hintStyle: theme
                                         .appBarTheme.textTheme?.headline6
                                         ?.copyWith(
-                                            color: FeeelColors.blue
+                                            color: _colorSwatch
                                                 .getColorByBrightness(
                                                     FeeelShade.LIGHTER,
                                                     theme.brightness)),
@@ -178,7 +178,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                         child: Image.asset(
                                             "assets/image_coach.png"),
                                         seed: 10,
-                                        color: FeeelColors.blue
+                                        color: _colorSwatch
                                             .getColorByBrightness(
                                                 FeeelShade.LIGHTEST,
                                                 Theme.of(context).brightness),
@@ -328,7 +328,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   })),
           bottomNavigationBar: _editingTimeMode
               ? BottomAppBar(
-                  color: FeeelColors.blue
+                  color: _colorSwatch
                       .getColorByBrightness(FeeelShade.DARK, theme.brightness),
                   child: TextButton.icon(
                     label: Text("Done editing timing".i18n,
@@ -355,7 +355,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   ))
               : Builder(
                   builder: (context) => BottomAppBar(
-                      color: FeeelColors.blue.getColorByBrightness(
+                      color: _colorSwatch.getColorByBrightness(
                           FeeelShade.LIGHTEST, theme.brightness),
                       child: Row(
                         children: <Widget>[
@@ -383,7 +383,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
           floatingActionButton: _editingTimeMode
               ? null
               : FloatingActionButton(
-                  backgroundColor: FeeelColors.blue
+                  backgroundColor: _colorSwatch
                       .getColorByBrightness(FeeelShade.DARK, theme.brightness),
                   tooltip: "Done".i18n,
                   child: Icon(Icons.done),
