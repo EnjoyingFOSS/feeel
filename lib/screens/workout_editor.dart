@@ -31,10 +31,12 @@ import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/screens/exercise_picker.dart';
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/widgets/empty_placeholder.dart';
 import 'package:feeel/widgets/exercise_editor_row.dart';
 import 'package:feeel/widgets/timing_header.dart';
 import 'package:feeel/widgets/trailing_seconds_input.dart';
+import 'package:feeel/widgets/triangle_frame.dart';
 
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -54,6 +56,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
+  late final FeeelSwatch _colorSwatch;
   final _titleController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _timingFormKey = GlobalKey<FormState>();
@@ -63,6 +66,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
 
   @override
   void initState() {
+    _colorSwatch = widget.workoutListed?.category.colorSwatch ?? FeeelColors.blue;
     if (widget.workoutListed == null)
       _future = Future.value(_getDefaultEditableWorkout());
     else {
@@ -164,13 +168,21 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                       .workoutExercises.isEmpty)
                                   ? EmptyPlaceholder(
                                       header: header,
-                                      heading: "Be your own coach!".i18n, //todo use TriangleFrame here
+                                      heading: "Be your own coach!"
+                                          .i18n,
                                       subheading:
                                           "Design the workout that makes you feel the best"
                                               .i18n,
                                       errorMessage: state.errorText,
-                                      image:
-                                          Image.asset("assets/image_coach.png"),
+                                      image: TriangleFrame(
+                                        child: Image.asset(
+                                            "assets/image_coach.png"),
+                                        seed: 10,
+                                        color: FeeelColors.blue
+                                            .getColorByBrightness(
+                                                FeeelShade.LIGHTEST,
+                                                Theme.of(context).brightness),
+                                      ),
                                     )
                                   : _editingTimeMode
                                       ? Form(
@@ -201,7 +213,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                               height: 16,
                                             ),
                                             Expanded(
-                                                child: ListView.builder(//todo add itemExtent here, but test for responsiveness
+                                                child: ListView.builder(
+                                              //todo add itemExtent here, but test for responsiveness
                                               itemBuilder:
                                                   (BuildContext context,
                                                       int index) {

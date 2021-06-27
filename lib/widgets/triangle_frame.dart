@@ -42,16 +42,19 @@ class TriangleFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final offsetYRatio = 1 - 0.25 * rYOffset;
-    return Stack(
-      children: [
-        AspectRatio(
-          aspectRatio: 1,
-          child:
-        CustomPaint(
-            painter: _BackgroundPainter(color, rRightLean, offsetYRatio, rPeakX))),
-        ClipPath(clipper: _TriangleClipper(rRightLean, offsetYRatio), child: child)
-      ],
-    );
+    return AspectRatio(
+        aspectRatio: 1,
+        child: Stack(
+          children: [
+            Positioned.fill(
+                child: CustomPaint(
+                    painter: _BackgroundPainter(
+                        color, rRightLean, offsetYRatio, rPeakX))),
+            ClipPath(
+                clipper: _TriangleClipper(rRightLean, offsetYRatio),
+                child: child)
+          ],
+        ));
   }
 }
 
@@ -90,7 +93,8 @@ class _BackgroundPainter extends CustomPainter {
   final bool rightLean;
   final double offsetYRatio, peakXRatio;
 
-  _BackgroundPainter(Color color, this.rightLean, this.offsetYRatio, this.peakXRatio) {
+  _BackgroundPainter(
+      Color color, this.rightLean, this.offsetYRatio, this.peakXRatio) {
     // init triangle paint
     _trianglePaint.color = color;
     _trianglePaint.style = PaintingStyle.fill;
