@@ -47,9 +47,9 @@ extension WorkoutCategoryExtension on WorkoutCategory {
       case WorkoutCategory.STRENGTH:
         return FeeelColors.blue;
       case WorkoutCategory.STRETCHING:
-        return FeeelColors.orange;
-      case WorkoutCategory.CARDIO:
         return FeeelColors.green;
+      case WorkoutCategory.CARDIO:
+        return FeeelColors.orange;
       case WorkoutCategory.OTHER:
         return FeeelColors.gray;
       default:
