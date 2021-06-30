@@ -166,7 +166,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                               //todo not sure if using formfield and its state correctly, should probably hold _editableWorkout.workoutExercises in state
                               return (_editableWorkout!
                                       .workoutExercises.isEmpty)
-                                  ? EmptyPlaceholder(
+                                  ? EmptyPlaceholder( //todo fix scrollable problem
                                       header: header,
                                       heading: "Be your own coach!"
                                           .i18n,
@@ -176,7 +176,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                       errorMessage: state.errorText,
                                       image: TriangleFrame(
                                         child: Image.asset(
-                                            "assets/image_coach.png"),
+                                            "assets/image_coach.webp"),
                                         seed: 10,
                                         color: _colorSwatch
                                             .getColorByBrightness(
