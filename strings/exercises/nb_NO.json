@@ -58,5 +58,13 @@
     "stepsJumpingJacks": "1. Stå med føttene sammen og armene på sidene\n2. Hoppe til en stilling med bena spredt bredt og hender berøre overhead\n3. Gjenta",
     "exerciseJumpingJacks": "Hopping knekt",
     "workoutLeg": "Ben trening",
-    "workoutScientific7Minute": "Vitenskapelig 7 minutters treningsøkt"
+    "workoutScientific7Minute": "Vitenskapelig 7 minutters treningsøkt",
+    "exercise4countBurpees": "4-talls burpees",
+    "exerciseNoPushupBurpees": "Ingen push-up burpees",
+    "exerciseSquatThrusts": "Knebøy stakk",
+    "stepsSquatThrusts": "Startposisjon:\nStart i høy plankeposisjon: rygg, armer og ben rett og hendene skulderbredde fra hverandre.\n\nFremgangsmåte:\n1. Hopp føttene fremover mellom armene, og hold ryggen flat.\n2. Hold hendene på gulvet, hopp bena tilbake i høy plankeposisjon.\n3. Gjenta.",
+    "stepsNoPushupBurpees": "Startposisjon:\nStå rett, føttene i hoftebredde fra hverandre.\n\nFremgangsmåte:\n1. Huk lavt og støtt deg selv på gulvet med hendene mellom knærne og foran føttene, ryggen rett.\n2. Hold hendene på gulvet, hopp bena bakover i høy plankeposisjon.\n3. Hopp føttene fremover for å gå tilbake til knebøyposisjonen.\n4. Hopp opp.\n5. Gjenta.",
+    "steps4countBurpees": "Startposisjon:\nStå rett, føttene i hoftebredde fra hverandre.\n\nFremgangsmåte:\n1. Huk lavt og støtt deg selv på gulvet med hendene mellom knærne og foran føttene, ryggen rett.\n2. Hold hendene på gulvet, hopp bena bakover i høy plankeposisjon.\n3. Hopp føttene fremover for å gå tilbake til knebøyposisjonen.\n4. Gjenta.",
+    "stepsPushupBurpees": "Startposisjon:\nStå rett, føttene i hoftebredde fra hverandre.\n\nFremgangsmåte:\n1. Huk lavt og støtt deg selv på gulvet med hendene mellom knærne og foran føttene, ryggen rett.\n2. Hold hendene på gulvet, hopp bena bakover i høy plankeposisjon.\n3. Utfør en push-up.\n4. Hopp føttene fremover for å gå tilbake til knebøyposisjonen.\n5. Gjenta.",
+    "exercisePushupBurpees": "Skyv opp burpees"
 }
