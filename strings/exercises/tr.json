@@ -58,5 +58,13 @@
     "exerciseLegRaises": "Bacak kaldırmaları",
     "stepsReverseLunges": "Başlangıç durumu:\nAyaklar kalça genişliğinde açık olacak şekilde düz durun.\n\nAdımlar:\n1. 90 derecelik bir açıyla rahatça bükülebilmesi için tek ayakla geriye doğru adım atın.\n2. 90 derecelik açılar oluşturmak için her iki dizinizi de yavaşça bükün.\n3. Başlangıç durumuna geri dönün.\n4. Bacakları dönüşümlü olarak tekrarlayın.",
     "exerciseReverseLunges": "Ters lunge hareketi",
-    "exerciseBurpees": "Burpee"
+    "exerciseBurpees": "Burpee",
+    "exercise4countBurpees": "4-burpees sayısı",
+    "exercisePushupBurpees": "Şınav geğirmek",
+    "stepsPushupBurpees": "Başlangıç pozisyonu:\nDüz durun, ayaklar kalça genişliğinde.\n\nAdımlar:\n1. Düşük çömelin ve ellerinizi dizlerinizin arasında ve ayaklarınızın önünde, sırtınızı düz tutarak yere yaslanın.\n2. Ellerinizi yerde tutarak, bacaklarınızı yüksek tahta pozisyonuna geri atlayın.\n3. Bir şınav yapın.\n4. Çömelme pozisyonuna geri dönmek için ayaklarınızı öne doğru atlayın.\n5. Tekrarlamak.",
+    "steps4countBurpees": "Başlangıç pozisyonu:\nDüz durun, ayaklar kalça genişliğinde.\n\nAdımlar:\n1. Düşük çömelin ve ellerinizi dizlerinizin arasında ve ayaklarınızın önünde, sırtınızı düz tutarak yere yaslanın.\n2. Ellerinizi yerde tutarak, bacaklarınızı yüksek tahta pozisyonuna geri atlayın.\n3. Çömelme pozisyonuna geri dönmek için ayaklarınızı öne doğru atlayın.\n4. Tekrarlamak.",
+    "exerciseNoPushupBurpees": "Hiçbir şınav burpees",
+    "stepsNoPushupBurpees": "Başlangıç pozisyonu:\nDüz durun, ayaklar kalça genişliğinde.\n\nAdımlar:\n1. Düşük çömelin ve ellerinizi dizlerinizin arasında ve ayaklarınızın önünde, sırtınızı düz tutarak yere yaslayın.\n2. Ellerinizi yerde tutarak, bacaklarınızı yüksek tahta pozisyonuna geri atlayın.\n3. Çömelme pozisyonuna geri dönmek için ayaklarınızı öne doğru atlayın.\n4. Zıpla.\n5. Tekrarlamak.",
+    "exerciseSquatThrusts": "Çömelme iter",
+    "stepsSquatThrusts": "Başlangıç pozisyonu:\nYüksek tahta pozisyonunda başlayın:sırt, kollar ve bacaklar düz ve eller omuz genişliğinde.\n\nAdımlar:\n1. Sırtınızı düz tutarak ayaklarınızı kollarınız arasında öne doğru atlayın.\n2. Ellerinizi yerde tutarak, bacaklarınızı yüksek tahta pozisyonuna geri atlayın.\n3. Tekrarlamak."
 }
