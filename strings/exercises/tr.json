@@ -60,11 +60,11 @@
     "exerciseReverseLunges": "Ters lunge hareketi",
     "exerciseBurpees": "Burpee",
     "exercise4countBurpees": "4 adım burpee",
-    "exercisePushupBurpees": "Şınav geğirmek",
-    "stepsPushupBurpees": "Başlangıç pozisyonu:\nDüz durun, ayaklar kalça genişliğinde.\n\nAdımlar:\n1. Düşük çömelin ve ellerinizi dizlerinizin arasında ve ayaklarınızın önünde, sırtınızı düz tutarak yere yaslanın.\n2. Ellerinizi yerde tutarak, bacaklarınızı yüksek tahta pozisyonuna geri atlayın.\n3. Bir şınav yapın.\n4. Çömelme pozisyonuna geri dönmek için ayaklarınızı öne doğru atlayın.\n5. Tekrarlamak.",
-    "steps4countBurpees": "Başlangıç pozisyonu:\nDüz durun, ayaklar kalça genişliğinde.\n\nAdımlar:\n1. Düşük çömelin ve ellerinizi dizlerinizin arasında ve ayaklarınızın önünde, sırtınızı düz tutarak yere yaslanın.\n2. Ellerinizi yerde tutarak, bacaklarınızı yüksek tahta pozisyonuna geri atlayın.\n3. Çömelme pozisyonuna geri dönmek için ayaklarınızı öne doğru atlayın.\n4. Tekrarlamak.",
-    "exerciseNoPushupBurpees": "Hiçbir şınav burpees",
-    "stepsNoPushupBurpees": "Başlangıç pozisyonu:\nDüz durun, ayaklar kalça genişliğinde.\n\nAdımlar:\n1. Düşük çömelin ve ellerinizi dizlerinizin arasında ve ayaklarınızın önünde, sırtınızı düz tutarak yere yaslayın.\n2. Ellerinizi yerde tutarak, bacaklarınızı yüksek tahta pozisyonuna geri atlayın.\n3. Çömelme pozisyonuna geri dönmek için ayaklarınızı öne doğru atlayın.\n4. Zıpla.\n5. Tekrarlamak.",
-    "exerciseSquatThrusts": "Çömelme iter",
-    "stepsSquatThrusts": "Başlangıç pozisyonu:\nYüksek tahta pozisyonunda başlayın:sırt, kollar ve bacaklar düz ve eller omuz genişliğinde.\n\nAdımlar:\n1. Sırtınızı düz tutarak ayaklarınızı kollarınız arasında öne doğru atlayın.\n2. Ellerinizi yerde tutarak, bacaklarınızı yüksek tahta pozisyonuna geri atlayın.\n3. Tekrarlamak."
+    "exercisePushupBurpees": "Şınavlı burpee",
+    "stepsPushupBurpees": "Başlangıç durumu:\nAyaklar kalça genişliğinde açık olacak şekilde düz durun. \n\nAdımlar:\n1. Aşağı doğru çömelin ve elleriniz dizlerinizin arasında ve ayaklarınızın önünde sırtınız düz olacak şekilde kendinizi yerde destekleyin.\n2. Ellerinizi yerde tutarak bacaklarınızı geriye doğru yüksek plank durumuna atlayın.\n3. Bir şınav çekin.\n4. Çömelme durumuna geri dönmek için ayaklarınızı ileri atın.\n5. Tekrarlayın.",
+    "steps4countBurpees": "Başlangıç durumu:\nAyaklar kalça genişliğinde açık olacak şekilde düz durun.\n\nAdımlar:\n1. Aşağı doğru çömelin ve elleriniz dizlerinizin arasında ve ayaklarınızın önünde sırtınız düz olacak şekilde kendinizi yerde destekleyin.\n2. Ellerinizi yerde tutarak bacaklarınızı geriye doğru yüksek plank pozisyonuna atlayın.\n3. Çömelme pozisyonuna geri dönmek için ayaklarınızı ileri atın.\n4. Tekrarlayın.",
+    "exerciseNoPushupBurpees": "Şınavsız burpee",
+    "stepsNoPushupBurpees": "Başlangıç durumu:\nAyaklar kalça genişliğinde açık olacak şekilde düz durun.\n\nAdımlar:\n1. Aşağı doğru çömelin ve elleriniz dizlerinizin arasında ve ayaklarınızın önünde sırtınız düz olacak şekilde kendinizi yerde destekleyin.\n2. Ellerinizi yerde tutarak bacaklarınızı geriye doğru yüksek plank pozisyonuna atlayın.\n3. Çömelme pozisyonuna geri dönmek için ayaklarınızı ileri atın.\n4. Yukarı zıplayın.\n5. Tekrarlayın.",
+    "exerciseSquatThrusts": "Çömelip itme",
+    "stepsSquatThrusts": "Başlangıç durumu:\nYüksek plank durumunda başlayın: sırt, kollar ve bacaklar düz ve eller omuz genişliğinde açık.\n\nAdımlar:\n1. Sırtınızı düz tutarak ayaklarınız kollarınızın arasında öne doğru atlayın.\n2. Ellerinizi yerde tutarak bacaklarınızı tekrar yüksek plank durumuna atın.\n3. Tekrarlayın."
 }
