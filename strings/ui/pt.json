@@ -71,5 +71,9 @@
     "btnOK": "OK",
     "btnDoneEditingTiming": "Cronograma de edição",
     "txtBatteryOptimization": "Em alguns dispositivos, pode ser necessário desactivar a optimização da bateria para que o Feeel funcione de forma fiável.",
-    "btnEnableTTS": "Usar comandos de voz"
+    "btnEnableTTS": "Usar comandos de voz",
+    "txtOther": "Outro",
+    "txtCardio": "Cardio",
+    "txtStretchingAndYoga": "Alongamento e yoga",
+    "txtStrength": "Resistência"
 }
