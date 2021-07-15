@@ -71,5 +71,9 @@
     "txtSourceCode": "Kaynak kodları",
     "txtParticipate": "Katılın",
     "txtBatteryOptimization": "Bazı aygıtlarda, bunun güvenilir bir şekilde çalışması için pil iyileştirmesini Feeel için devre dışı bırakmanız gerekebilir.",
-    "btnEnableTTS": "Sesli komutları kullan"
+    "btnEnableTTS": "Sesli komutları kullan",
+    "txtOther": "Diğer",
+    "txtCardio": "Kardiyo",
+    "txtStretchingAndYoga": "Esneme ve yoga",
+    "txtStrength": "Güç"
 }

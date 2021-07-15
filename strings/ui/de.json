@@ -38,10 +38,10 @@
     "txtNeedCameraPermission": "Um Fotos aufnehmen zu können, werden Berechtigungen für die Kamera benötigt",
     "txtNotificationTime": "Benachrichtigungszeitpunkt",
     "txtAddExerciseFirst": "Zuerst eine Übung hinzufügen",
-    "btnStartWorkout": "Starte Training",
+    "btnStartWorkout": "Training starten",
     "btnResumeWorkout": "Training fortsetzen",
-    "btnPreviousExercise": "vorherige Übung",
-    "btnNextExercise": "nächste Übung",
+    "btnPreviousExercise": "Vorherige Übung",
+    "btnNextExercise": "Nächste Übung",
     "btnAddExercise": "Übung hinzufügen",
     "btnEdit": "Bearbeiten",
     "btnDelete": "Löschen",
@@ -55,7 +55,7 @@
     "btnAddALinkToPhotos": "Link zu deinem/n Foto(s) hinzufügen",
     "btnDisableTTS": "Sounds anstelle von Sprache ausgeben",
     "btnAdjustTiming": "Zeiten anpassen",
-    "btnDuplicate": "verdoppeln",
+    "btnDuplicate": "Verdoppeln",
     "btnDoneEditingTiming": "Fertig mit der Bearbeitung",
     "btnOK": "OK",
     "btnDiscard": "Verwerfen",
@@ -71,5 +71,9 @@
     "txtBatteryOptimization": "Auf einigen Geräten muss möglicherweise die Batterieoptimierung für Feeel deaktiviert werden, damit dies zuverlässig funktioniert.",
     "txtSourceCode": "Quellcode",
     "txtDonate": "Spenden",
-    "btnEnableTTS": "Sprachbefehle verwenden"
+    "btnEnableTTS": "Sprachbefehle verwenden",
+    "txtOther": "Anderes",
+    "txtCardio": "Cardio",
+    "txtStretchingAndYoga": "Dehngymnastik und Yoga",
+    "txtStrength": "Stärke"
 }
