@@ -1,1 +1,0 @@
-Dark theme, new About dialog, slightly redesigned settings, and 4 new exercises: jump rope, arm circles, pike push-ups, and mountain climbers. Removing Norwegian Bokmal translations due to a licensing disagreement.
