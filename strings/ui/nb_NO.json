@@ -70,5 +70,10 @@
     "btnAddALinkToPhotos": "Legg til en link til bildet(s)",
     "btnEnableTTS": "Bruk talekommandoer",
     "btnAdjustTiming": "Justere timing",
-    "btnDoneEditingTiming": "Ferdig med å redigere timing"
+    "btnDoneEditingTiming": "Ferdig med å redigere timing",
+    "txtCardio": "Kardio",
+    "btnDisableTTS": "Lyder i stedet for å stemme",
+    "txtOther": "Andre",
+    "txtStretchingAndYoga": "Strekke & yoga",
+    "txtStrength": "Styrke"
 }
