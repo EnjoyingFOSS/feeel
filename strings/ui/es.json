@@ -61,8 +61,8 @@
     "btnCancel": "Cancelar",
     "txtDiscardChanges": "¿Descartar cambios?",
     "txtCustomDuration": "Duración personalizada (s.)",
-    "btnDoneEditingTiming": "Edición de tiempo terminada",
-    "txtParticipate": "Participar",
+    "btnDoneEditingTiming": "Terminado de editar el tiempo",
+    "txtParticipate": "Participe",
     "txtCouldNotOpenURL": "No es posible abrir URL.",
     "txtBatteryOptimization": "En algunos dispositivos, es posible que necesites desactivar la optimización de batería para Feeel para que funcione correctamente.",
     "txtThemeSystem": "Por defecto",
@@ -71,5 +71,9 @@
     "txtThemeDark": "Oscuro",
     "txtThemeLight": "Claro",
     "txtTheme": "Tema",
-    "btnEnableTTS": "Usar comandos de voz"
+    "btnEnableTTS": "Usar comandos de voz",
+    "txtOther": "Otras",
+    "txtCardio": "Cardo",
+    "txtStretchingAndYoga": "Estiramiento y yoga",
+    "txtStrength": "Fuerza"
 }
