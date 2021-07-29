@@ -115,5 +115,9 @@
     "txtDiscardChanges": "Baztertu aldaketak?",
     "txtCustomDuration": "Ohiko iraupena (s.)",
     "txtBatteryOptimization": "Gailu batzuk, behar ahal izango duzu desgaitu bateria optimizazioa Feeel hau fidagarrian lan egiteko.",
-    "btnEnableTTS": "Erabili ahots-komandoak"
+    "btnEnableTTS": "Erabili ahots-komandoak",
+    "txtOther": "Beste",
+    "txtCardio": "Kardio",
+    "txtStretchingAndYoga": "Luzatze & yoga",
+    "txtStrength": "Indarra"
 }
