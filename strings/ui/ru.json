@@ -115,5 +115,9 @@
     "txtDiscardChanges": "Отбрасывать изменения?",
     "txtCustomDuration": "Индивидуальная продолжительность (ы)",
     "txtBatteryOptimization": "На некоторых устройствах для надежной работы Feeel может потребоваться отключить оптимизацию батареи.",
-    "btnEnableTTS": "Используйте голосовые команды"
+    "btnEnableTTS": "Используйте голосовые команды",
+    "txtOther": "Другие",
+    "txtCardio": "Кардио",
+    "txtStretchingAndYoga": "Растяжка и йога",
+    "txtStrength": "Прочность"
 }
