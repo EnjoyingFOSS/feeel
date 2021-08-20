@@ -3,5 +3,15 @@
     "txtSubmitNewExercise": "贡献",
     "txtYoureGlowing": "你在发光！",
     "txtCategoryLegs": "腿部",
-    "txtCategoryFullBody": "全身"
+    "txtCategoryFullBody": "全身",
+    "txtExerciseName": "锻炼名称",
+    "txtWorkoutTitle": "锻炼组合标题",
+    "txtWorkoutToMakeYouFeelBest": "设计让你自己感觉最好的锻炼组合",
+    "txtBeYourOwnCoach": "做你自己的教练!",
+    "txtImageMissing": "图片缺失",
+    "txtTapForControls": "点击以控制",
+    "txtSecondsLeft5plus": "剩余 %d 秒",
+    "txtLetsGoFirstUp": "开始吧!第一个:%s",
+    "txtNextUp": "下 一个:",
+    "txtYouDidIt": "你完成了!"
 }
