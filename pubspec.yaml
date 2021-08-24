@@ -13,16 +13,16 @@ dependencies:
     sdk: flutter
   http: ^0.13.3
   flutter_tts: ^3.2.2
-  wakelock: ^0.5.2
+  wakelock: ^0.5.3
   sqflite: ^2.0.0
   sqflite_common_ffi: ^2.0.0
   path_provider: ^2.0.2
-  i18n_extension: ^4.0.3
+  i18n_extension: ^4.1.1
   flutter_mailer: ^2.0.0
-  image_picker: ^0.8.2
-  shared_preferences: ^2.0.6
+  image_picker: ^0.8.3
+  shared_preferences: ^2.0.7
   audioplayers: ^0.19.1
-  flutter_local_notifications: ^8.0.0
+  flutter_local_notifications: ^8.1.1
   flutter_native_timezone: ^2.0.0
   url_launcher: ^6.0.9
   adaptive_theme: ^2.2.0
