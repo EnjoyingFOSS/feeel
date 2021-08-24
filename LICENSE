@@ -36,6 +36,7 @@ Czech - both ui and exercise strings
 Dutch - both ui and exercise strings
 -----
 * Heimen Stoffels
+* Daan Vervacke
 
 Esperanto - ui strings
 ------
@@ -52,6 +53,7 @@ French - exercise strings
 * J. Lavoie
 * Jonathan D.
 * mondstern
+* Miroslav Mazel
 
 French - ui strings
 ------
@@ -64,6 +66,7 @@ French - ui strings
 German - exercise strings
 -----
 * mondstern
+* Miroslav Mazel
 
 German - ui strings
 ------
@@ -92,16 +95,18 @@ Indonesian - ui strings
 * mondstern
 * liimee
 
-Italian - ui strings
------
-* Gianluca Vespignani
-* J. Lavoie
-
 Italian - exercise strings
 -----
 * Gianluca Vespignani
 * J. Lavoie
 * mondstern
+* Marco Galli
+
+Italian - ui strings
+-----
+* Gianluca Vespignani
+* J. Lavoie
+* Marco Galli
 
 Norwegian Bokmål - both ui and exercise strings
 -----
@@ -138,7 +143,12 @@ Spanish - ui strings
 * martingetzel
 * mondstern
 
-Turkish - both ui and exercise strings
+Turkish - exercise strings
+------
+* Oğuz Ersen
+* mondstern
+
+Turkish - ui strings
 ------
 * Oğuz Ersen
 

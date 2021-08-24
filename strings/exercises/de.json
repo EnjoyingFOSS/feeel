@@ -19,8 +19,8 @@
     "exerciseSingleLegCalfRaiseLeft": "Wadenheben linkes Bein",
     "exerciseSingleLegCalfRaiseRight": "Wadenheben rechtes Bein",
     "exerciseJumpingRope": "Springseil: einfache Sprünge",
-    "exerciseSplitSquatsLeft": "Geteilte Kniebeugen links",
-    "exerciseSplitSquatsRight": "Geteilte Kniebeugen rechts",
+    "exerciseSplitSquatsLeft": "geteilte Kniebeugen links",
+    "exerciseSplitSquatsRight": "geteilte Kniebeugen rechts",
     "exerciseBulgarianSplitSquatLeft": "Bulgarische geteilte Kniebeugen links",
     "exerciseBulgarianSplitSquatRight": "Bulgarische geteilte Kniebeugen rechts",
     "stepsJumpRopeBasic": "Für diese Übung benötigst Du ein Springseil. Stelle sicher, dass die Seillänge auf Deine Körpergröße abgestimmt ist. Eine Möglichkeit, dies zu überprüfen, ist, beide Griffe mit einer Hand zu greifen und sich mit einem Fuß auf die Mitte des am Boden hängenden Seils zu stellen. Wenn das Seil (ohne die Griffe) bis knapp unter Deine Brust reicht, ist die Länge richtig. Ein kürzeres Seil wäre gefährlich, da Du Dich stoßen könntest und ein längeres Seil würde eine schlechte Form ergeben.\n1. Stelle Deine Füße eng zusammen, beuge Deine Knie ein wenig, halte Deinen Kopf und Körper gerade, lege deine Ellnogen an und öffne Deine Arme.\n2. Drehe nur die Handgelenke mit so viel Kraft, dass sich das Seil dreht.\n3. Springe nur so hoch, dass das Seil unter Deinen Füßen vorbeigeht.\n4. Wiederhole ab Schritt 2.",
@@ -31,7 +31,7 @@
     "stepsPushupRotations": "1. Mache einen Standard-Liegestütz:\n1.a Lege Dich auf den Bauch\n1.b Lege Deine Hände in die Nähe Ihrer Ohren\n1.c Hebe Deinen Bauch mit den Armen an, bis die Arme gerade sind und halte den Rücken gerade\n1.d Biege die Arme, bis die Brust fast den Boden berührt, und achte darauf, dass der Rücken gerade ist\n1.e Hebe den Bauch wieder an und kehre zu Schritt 3 zurück\n2. Drehe Deinen Körper zur Seite, so dass der Rücken gerade ist, die untere Hand, die den Körper stützt, vollständig gestreckt ist und nur die untere Hand und der untere Fuß den Boden berühren\n3. Wiederhole und wechsel jedes Mal die Seiten in Schritt 2",
     "stepsKneelingKickback": "1.Lege Dich auf alle Viere.\n2. Drücke einen Fuß nach hinten, bis er vollständig gestreckt ist und konzentriere Dich dabei auf die Gesäßmuskeln.\n3. Bleibe eine Sekunde so und kehre dann in die Ausgangsposition zurück.\n4. Wiederhole indem Du die Füße abwechselst",
     "stepsPistolSquat": "1. Stelle Dich auf ein Bein, wobei das andere Bein gerade und leicht nach vorne zeigt.\n2. Beuge langsam ein Knie, gehen in die Hocke und halte den Rücken und das andere Bein gerade.\n3. Gehe langsam aus der Hocke, strecke das gebeugte Knie und halte das andere Bein gerade.\n4. Wiederhole",
-    "exerciseKneelingKickback": "Kniende Rückschläge",
+    "exerciseKneelingKickback": "kniende Rückschläge",
     "stepsBulgarianSplitSquat": "1. Stelle Dich aufrecht vor einen Stuhl und machen einen großen Schritt. Stelle den oberen Teil einer Deiner Füße auf den Stuhl.\n2. Beuge das vordere Knie und balanciere mit den Armen, bis das hintere Knie fast den Boden berührt\n3. Gehe in die Ausgangsposition zurück und wiederhole.",
     "stepsSideSplitSquats": "1. Stellen Dich aufrecht hin und mache einen weiten Seitenschritt, etwas größer als schulterbreit.\n2. Beuge ein Knie, bis Dein Oberschenkel parallel zum Boden ist. Das gebeugte Knie muss in einer Linie mit dem Fuß stehen.\n3. Gehe in die Ausgangsposition zurück und wiederhole.",
     "stepsSidePlank": "1. Lege Dich auf die Seite, der untere Ellbogen ist rechtwinklig, der Arm ragt heraus.\n2. Hebe das Becken vom Boden ab, indem Du die untere Schulter anhebst und den Unterarm auf dem Boden lässt; Dein Kopf, Dein Becken und Deine Füße sollten sich in einer geraden Linie befinden.\n3. Halte diese Position",
@@ -49,8 +49,5 @@
     "stepsStepups": "1. Stelle Dich vor einen Stuhl\n2. Steige auf den Stuhl\n3. Steige vom Stuhl\n4. Wiederhole",
     "stepsPushups": "1. Lege Dich auf den Bauch\n2. Lege Deine Hände in die Nähe der Ohren\n3. Hebe mit den Armen den Bauch an, bis die Arme gerade sind, und halte den Rücken gerade\n4. Beuge die Arme bis die Brust fast den Boden berührt und stelle sicher, dass der Rücken gerade ist\n5. Wiederhole ab Schritt 3",
     "stepsMountainClimbers": "Ausgangsposition:\nBeginne mit der aufrechten Liegestützposition oder mit der hohen Planke.\nDie Hände sollten sich direkt unter Deinen Schultern befinden.\nHalte den Kopf in einer Linie mit dem Rücken und schaue zum Boden.\nDie Füße sollten etwa hüftbreit auseinander stehen.\n\nSchritte:\n1. Bewege ein Knie zur Körpermitte hin zu den Ellenbogen, das andere Bein bleibt gestreckt.\n2. Strecke in einer schnellen Sprungbewegung das gebeugte Bein aus und ziehe das andere Knie zum Körper.\n3. Wiederhole Schritt 2 im Wechsel mit dem anderen Bein.\n\nHinweise:\nWährend der gesamten Übung sollte Dein Rücken möglichst gerade bleiben - vermeide einen Buckel oder einen durchhängenden Rücken.",
-    "exerciseMountainClimbers": "Bergsteiger",
-    "exerciseReverseLunges": "Umgekehrte Ausfallschritte",
-    "exerciseLegRaises": "Beine heben",
-    "stepsLegRaises": "Ausgangsposition:\nLege Dich auf den Rücken, Füße zusammen, Arme an den Seiten.\n\nSchritte:\n1. Beuge die Knie, dann strecke sie gerade nach oben.\n2. Halte die Beine gerade und senke sie gemeinsam ab, ohne den Boden zu berühren. Je tiefer Du gehst, desto intensiver ist die Übung.\n3. Hebe beide Beine gemeinsam wieder gerade nach oben.\n4. Wiederhole den Vorgang ab Schritt 2."
+    "exerciseMountainClimbers": "Bergsteiger"
 }
