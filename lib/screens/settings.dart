@@ -190,7 +190,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           width: 48,
           height: 48,
           child: Image(
-            image: AssetImage('assets/icon_android_legacy.png'),
+            image: AssetImage('assets/icon_generic.png'),
           ),
         ),
         applicationLegalese: "© Miroslav Mazel et al., 2021");
