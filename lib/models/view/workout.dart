@@ -45,7 +45,7 @@ class Workout {
       required this.exerciseDuration,
       required this.category,
       required this.type}) {
-    _duration = workoutExercises[0].duration ?? exerciseDuration;
+    _duration = (workoutExercises.length > 0) ? workoutExercises[0].duration ?? exerciseDuration : 0;
     for (var i = 1; i < workoutExercises.length; i++) {
       _duration += workoutExercises[i].duration ?? exerciseDuration;
       _duration += workoutExercises[i].breakBeforeDuration ?? breakDuration;
