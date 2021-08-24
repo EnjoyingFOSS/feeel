@@ -20,11 +20,14 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/enums/exercise_type.dart';
+
 class Exercise {
   final int dbId;
   final String name;
   final String description;
   final bool twoSided;
+  final ExerciseType type;
   final String? imageSlug;
   final String? imageAuthor;
   final int? imageLicense;
@@ -34,6 +37,7 @@ class Exercise {
       required this.name,
       required this.description,
       required this.twoSided,
+      required this.type,
       this.imageSlug,
       this.imageAuthor,
       this.imageLicense});

@@ -71,6 +71,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                       sliver: SliverAppBar(
                         brightness: Theme.of(context).brightness,
                         centerTitle: false,
+                        //todo add floating: true, but with dynamic shadow
                         title: Text.rich(
                             //todo add varying spans, e.g. "Feeel energized", "Feeel goood", "Feeel fresh" ,"Feeel the burn", ...
                             TextSpan(children: <InlineSpan>[
@@ -112,7 +113,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                       )),
                   SliverPadding(
                       padding: EdgeInsets.only(bottom: 80),
-                      sliver: SliverList(
+                      sliver: SliverList( //todo consider using SliverFixedExtentList in the future, but still allow large text
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
                             WorkoutListed workoutListed = workoutsListed[index];

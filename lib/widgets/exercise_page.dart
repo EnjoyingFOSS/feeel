@@ -22,6 +22,7 @@
 
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/db/asset_helper.dart';
+import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/theming/feeel_shade.dart';
@@ -56,7 +57,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   static const Curve TRANSITION_CURVE = Curves.easeIn;
 
   bool _paused = false;
-  bool _infoShown = false;
+  bool _infoShown = false; //todo redesign with DraggableScrollableSheet
   late int _seconds;
   PageController _pageController = PageController();
   String? _descriptionText;
@@ -133,12 +134,12 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                     final exercise = widget
                         .workout.workoutExercises[(i / 2).floor()].exercise;
                     final imageSlug = exercise.imageSlug;
-                    final headOnly = false; //todo
+                    final headOnly = exercise.type == ExerciseType.HEAD;
                     return ExerciseLayout(
                       expanded: _infoShown,
                       paused: _paused,
                       colorSwatch: widget.colorSwatch,
-                      title: exercise.name,
+                      title: exercise.name.i18n,
                       headOnly: headOnly,
                       onBreak: (i % 2 == 0),
                       triangleSeed:

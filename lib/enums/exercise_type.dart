@@ -1,0 +1,1 @@
+enum ExerciseType { FULL_BODY, HEAD }

@@ -22,6 +22,7 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/models/view/exercise.dart';
 import 'package:feeel/models/view/workout.dart';
@@ -33,34 +34,53 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-enum _Exercises {
-  JUMPING_JACKS,
-  WALL_SIT,
-  PUSH_UPS,
-  AB_CRUNCHES,
-  STEP_UPS,
-  SQUATS,
-  CHAIR_DIPS,
-  PLANK,
-  HIGH_KNEES,
-  LUNGES,
-  PUSH_UP_ROTATIONS,
-  SIDE_PLANK_L,
-  SIDE_PLANK_R,
-  SIDE_SPLIT_SQUATS_L,
-  BULGARIAN_SPLIT_SQUATS_L,
-  BULGARIAN_SPLIT_SQUATS_R,
-  KNEELING_KICKBACKS,
-  CALF_RAISES_L,
-  CALF_RAISES_R,
-  SIDE_SPLIT_SQUATS_R,
-  SPLIT_SQUATS_L,
-  SPLIT_SQUATS_R,
-  // Not appearing in any workout:
-  // PISTOL_SQUATS_L,
-  // PISTOL_SQUATS_R,
-  // JUMP_ROPE_BASIC
-} // order CANNOT BE CHANGED, as that would affect custom workouts
+class _Exercises {
+  static const int JUMPING_JACKS = 1,
+      WALL_SIT = 2,
+      PUSH_UPS = 3,
+      AB_CRUNCHES = 4,
+      STEP_UPS = 5,
+      SQUATS = 6,
+      CHAIR_DIPS = 7,
+      PLANK = 8,
+      HIGH_KNEES = 9,
+      LUNGES = 10,
+      PUSH_UP_ROTATIONS = 11,
+      SIDE_PLANK_L = 12,
+      SIDE_PLANK_R = 13,
+      SIDE_SPLIT_SQUATS_L = 14,
+      BULGARIAN_SPLIT_SQUATS_L = 15,
+      BULGARIAN_SPLIT_SQUATS_R = 16,
+      // PISTOL_SQUATS_L = 17,
+      // PISTOL_SQUATS_R = 18,
+      KNEELING_KICKBACKS = 19,
+      CALF_RAISES_L = 20,
+      CALF_RAISES_R = 21,
+      SIDE_SPLIT_SQUATS_R = 22,
+      SPLIT_SQUATS_L = 23,
+      SPLIT_SQUATS_R = 24,
+      // JUMP_ROPE_BASIC = 25,
+      ARM_CIRCLES = 26,
+      // PIKE_PUSHUPS = 27,
+      // MOUNTAIN_CLIMBERS = 28,
+      // FOURCOUNT_BURPEES = 29,
+      // NO_PUSHUP_BURPEES = 30,
+      // SQUAT_THRUSTS = 31,
+      // REVERSE_LUNGES = 32,
+      // LEG_RAISES = 33,
+      // FLOOR_DIPS = 34,
+      CHIN_TUCK = 35,
+      HEAD_TURN = 36,
+      NECK_FLEXION = 37,
+      LATERAL_NECK_STRETCH = 38,
+      SHOULDER_SHRUG = 39,
+      FRONT_NECK_STRETCH = 40,
+      BACK_AND_LATERAL_NECK_STRETCH = 41,
+      NECK_STRETCH_WITH_ROTATION = 42,
+      SHOULDER_ROTATION = 43
+      // HIGH_PLANK = 44
+      ;
+}
 
 class DBHelper {
   DBHelper._();
@@ -89,7 +109,6 @@ class DBHelper {
   static const String _BREAK_DURATION_COL = 'breakDuration';
   static const String _EXERCISE_DURATION_COL = 'exerciseDuration';
   static const String _FLIPPED_COL = 'flipped';
-  static const String _ILLUSTRATION_TYPE = 'illustrationType';
 
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
@@ -146,6 +165,7 @@ class DBHelper {
       "$_ID_COL INTEGER PRIMARY KEY, "
       "$_NAME_COL TEXT, "
       "$_DESCRIPTION_COL TEXT, "
+      "$_TYPE_COL INTEGER NOT NULL, "
       "$_FLIPPED_COL INTEGER NOT NULL, "
       "$_IMAGE_SLUG_COL TEXT, " // todo what do I get from the server, really? actually, should split this up!
       "$_IMAGE_AUTHOR_COL TEXT, "
@@ -215,6 +235,24 @@ class DBHelper {
         _Exercises.CALF_RAISES_R
       ],
     );
+
+    // todo await _createWorkoutFromList(
+    //   db,
+    //   "Neck stretch",
+    //   WorkoutCategory.STRETCHING,
+    //   [
+    //     _Exercises.CHIN_TUCK,
+    //     _Exercises.ARM_CIRCLES, //should be to from end, actually
+    //     _Exercises.HEAD_TURN,
+    //     _Exercises.NECK_FLEXION,
+    //     _Exercises.LATERAL_NECK_STRETCH,
+    //     _Exercises.SHOULDER_SHRUG,
+    //     _Exercises.FRONT_NECK_STRETCH,
+    //     _Exercises.BACK_AND_LATERAL_NECK_STRETCH,
+    //     _Exercises.NECK_STRETCH_WITH_ROTATION,
+    //     _Exercises.SHOULDER_ROTATION,
+    //   ],
+    // );
   }
 
   Future<void> _addExercises(Database db) async {
@@ -234,7 +272,7 @@ class DBHelper {
     await _createExercise(db,
         name: "Push-ups",
         description:
-            "1. Lie down on your stomach\n2. Place your hands near your ears\n3. Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n4. Bend arms until chest almost touches the ground, making sure the back is straight\n5. Repeat from step 3",
+            "Starting position:\nGet into the starting push-up position, with your hands and toes touching the ground and back, arms and legs straight. To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.\n\nSteps:\n1. Bend at the elbows until your chest almost touches the ground, making sure your back is straight at all times.\n2. Use your arms to lift yourself back up to starting position.\n3. Repeat.",
         imageSlug: "exercise_pushup.webp");
 
     await _createExercise(db,
@@ -433,13 +471,82 @@ class DBHelper {
         description:
             "Starting position:\nSit with your arms behind you, supporting your back.\nYour fingers should point forward.\nYour knees should be bent, feet together.\n\nSteps:\n1. Raise your hips off the ground, straightening your arms.\n2. Bend your elbows, bringing your hips down.\n3. Straighten your arms, returning to the previous position.\n4. Repeat steps 2 and 3.\n\nNotes:\nThe exercise's difficulty depends on how high you bring your hips.",
         imageSlug: "exercise_floordip.webp");
+
+    await _createExercise(db,
+        name: "Chin tuck",
+        type: ExerciseType.HEAD,
+        description:
+            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.\n2. Hold for 5 seconds.\n3. Go back to normal head position and repeat.",
+        imageSlug: "exercise_chintuck.webp");
+
+    await _createExercise(db,
+        name: "Head turn",
+        type: ExerciseType.HEAD,
+        description:
+            "Starting position:\nSit or stand with your back straight and shoulders down.\n\nSteps:\n1. Sit or stand up straight. Shoulders dropped.\n2. Turn head to the left as far as possible. Stop when you hit a barrier and hold for 5 seconds.\n3. Return to center position.\n4. Repeat, changing sides.",
+        imageSlug: "exercise_headturn.webp");
+
+    // await _createExercise(db,
+    //     name: "Neck flexion",
+    //     type: ExerciseType.HEAD,
+    //     description:
+    //         "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, with hands behind your head.\n2. Use hands to pull head down very slightly. Hold 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold 5 seconds.\n4. Now gently push your head back up, while also pulling it down with your hands. Balance both powers so the head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
+    //     imageSlug: "exercise_neckflexion.webp");
+
+    // await _createExercise(db,
+    //     name: "Lateral neck stretch",
+    //     type: ExerciseType.HEAD,
+    //     description:
+    //         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt head to the left and hold 8 seconds to stretch the right side of your neck.\n2. With your left hand on top of your head, gently pull to stretch further. Hold for 8 seconds.\n3. Turn your chin to your left shoulder. Hold for 8 seconds.\n4. Release and return to starting position.",
+    //     imageSlug: "exercise_lateralneckstretch.webp");
+
+    // await _createExercise(db,
+    //     name: "Shoulder shrug",
+    //     type: ExerciseType.HEAD,
+    //     description:
+    //         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Lift shoulders straight up as far as possible and hold for 5 sec.\n2. Release shoulders back down to a relaxed position.\n3. Repeat.",
+    //     imageSlug: "exercise_shouldershrug.webp");
+
+    await _createExercise(db,
+        name: "Front neck stretch",
+        type: ExerciseType.HEAD,
+        description:
+            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Open mouth wide.\n2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.\n3. Very slowly close and open your mouth.\n4. At the end, slowly return to starting position and close mouth.",
+        imageSlug: "exercise_neckstretch_front.webp");
+
+    // await _createExercise(db,
+    //     name: "Back and lateral neck stretch",
+    //     type: ExerciseType.HEAD,
+    //     description:
+    //         "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt head forward, chin to chest, with hands behind your head.\n2. Keeping head forward, use waist muscles to turn as far as comfortable to the left.\n3. Use hands to pull head down very slightly, controlling the stretch.\n4. Draw shoulders back and down using the muscles in your back. Hold 5 seconds.\n5. Turn back into center position.\n6. Bring your hands to your forehead and push head upright again into normal position. Repeat with the other side.",
+    //     imageSlug: "exercise_backandlateralneckstretch.webp");
+
+    await _createExercise(db,
+        name: "Chin tuck with flexion with rotation",
+        type: ExerciseType.HEAD,
+        description:
+            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tuck your chin in, moving your head back.\n2. Tilt your head forward until you feel a stretch in the back of your neck.\n3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.\n4. Hold for 5 seconds.\n5. Rotate back, keeping your head down.\n6. Repeat from step 3, switching sides.",
+        imageSlug: "exercise_chintuck+flextion+rotation.webp");
+
+    // await _createExercise(db,
+    //     name: "Shoulder rotation",
+    //     type: ExerciseType.HEAD,
+    //     description:
+    //         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Place and hold your hands on your shoulders.\n2. Rotate both shoulder joints in a circular motion with moderate pace for 10 rotations.\n3. Repeat, circle in the opposite direction for 10 rotations.",
+    //     imageSlug: "exercise_shoulderrotation.webp");
+
+    // await _createExercise(db,
+    //     name: "High plank",
+    //     description:
+    //         "Starting position:\nGet into the high plank position, with your hands and toes touching the ground and back, arms and legs straight. To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.\n\nSteps:\n1. Maintain the starting position for the entire duration of the exercise.",
+    //     imageSlug: "exercise_highplank.webp");
   }
 
   Future<void> _createWorkoutFromList(
     Database db,
     String workoutName,
     WorkoutCategory category,
-    List<_Exercises> _exercises,
+    List<int> _exercises,
   ) async {
     int workoutId = await _createWorkout(
         db,
@@ -456,8 +563,7 @@ class DBHelper {
           workoutId: workoutId,
           workoutType: WorkoutType.DEFAULT,
           order: workoutOrder,
-          exerciseId: _exercises[i].index +
-              1); //todo does enum start at 0 or at 1 ? !!!
+          exerciseId: _exercises[i]);
     }
   }
 
@@ -498,6 +604,7 @@ class DBHelper {
       required String description,
       bool flipped = false,
       required String imageSlug,
+      ExerciseType type = ExerciseType.FULL_BODY,
       String? imageAuthor,
       int? imageLicense,
       int? category}) async {
@@ -508,6 +615,7 @@ class DBHelper {
       _ID_COL: id,
       _NAME_COL: name,
       _DESCRIPTION_COL: description,
+      _TYPE_COL: type.index,
       _FLIPPED_COL: flipped ? 1 : 0,
       _IMAGE_SLUG_COL: imageSlug,
       _IMAGE_AUTHOR_COL: imageAuthor,
@@ -540,7 +648,8 @@ class DBHelper {
           workout.title,
           workout.exerciseDuration,
           workout.breakDuration,
-          workout.countdownDuration);
+          workout.countdownDuration,
+          workout.category);
     }
 
     // create exercises
@@ -573,7 +682,8 @@ class DBHelper {
       String workoutTitle,
       int exerciseDuration,
       int breakDuration,
-      int countdownDuration) async {
+      int countdownDuration,
+      WorkoutCategory category) async {
     final db = await database;
     await db.update(
         _WORKOUT_TABLE,
@@ -581,7 +691,8 @@ class DBHelper {
           _TITLE_COL: workoutTitle,
           _EXERCISE_DURATION_COL: exerciseDuration.toString(),
           _BREAK_DURATION_COL: breakDuration.toString(),
-          _COUNTDOWN_DURATION_COL: countdownDuration.toString()
+          _COUNTDOWN_DURATION_COL: countdownDuration.toString(),
+          _CATEGORY_COL: category.index.toString()
         },
         where: "$_ID_COL = ? and $_TYPE_COL = ?",
         whereArgs: <int>[workoutId, workoutType.index]);
@@ -660,6 +771,7 @@ class DBHelper {
                 name: map[_NAME_COL] as String,
                 description: map[_DESCRIPTION_COL] as String,
                 twoSided: map[_FLIPPED_COL] == 1,
+                type: ExerciseType.values[map[_TYPE_COL] as int? ?? 0],
                 imageSlug: map[_IMAGE_SLUG_COL] as String,
                 imageAuthor: map[_IMAGE_AUTHOR_COL] as String?,
                 imageLicense: map[_IMAGE_LICENSE_COL]
@@ -679,6 +791,7 @@ class DBHelper {
                 name: map[_NAME_COL] as String,
                 description: map[_DESCRIPTION_COL] as String,
                 twoSided: map[_FLIPPED_COL] == 1,
+                type: ExerciseType.values[map[_TYPE_COL] as int? ?? 0],
                 imageSlug: map[_IMAGE_SLUG_COL] as String,
                 imageAuthor: map[_IMAGE_AUTHOR_COL] as String?,
                 imageLicense: map[_IMAGE_LICENSE_COL] as int?))
@@ -712,6 +825,7 @@ class DBHelper {
             name: res.first[_NAME_COL] as String,
             description: res.first[_DESCRIPTION_COL] as String,
             twoSided: res.first[_FLIPPED_COL] == 1,
+            type: ExerciseType.values[res.first[_TYPE_COL] as int? ?? 0],
             imageSlug: res.first[_IMAGE_SLUG_COL] as String,
             imageAuthor: res.first[_IMAGE_AUTHOR_COL] as String?,
             imageLicense: res.first[_IMAGE_LICENSE_COL] as int?)
