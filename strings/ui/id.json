@@ -71,5 +71,9 @@
     "txtDonate": "Donasi",
     "txtCouldNotOpenURL": "Tidak dapat membuka URL.",
     "txtBatteryOptimization": "Pada beberapa perangkat, Anda mungkin perlu menonaktifkan optimisasi baterai untuk Feel Bagi ini untuk bekerja dapat dipercaya.",
-    "btnEnableTTS": "Gunakan perintah suara"
+    "btnEnableTTS": "Gunakan perintah suara",
+    "txtOther": "Lainnya",
+    "txtCardio": "Kardio",
+    "txtStretchingAndYoga": "Peregangan & yoga",
+    "txtStrength": "Kekuatan"
 }

@@ -71,5 +71,9 @@
     "txtBatteryOptimization": "Auf einigen Geräten muss möglicherweise die Batterieoptimierung für Feeel deaktiviert werden, damit dies zuverlässig funktioniert.",
     "txtSourceCode": "Quellcode",
     "txtDonate": "Spenden",
-    "btnEnableTTS": "Sprachbefehle verwenden"
+    "btnEnableTTS": "Sprachbefehle verwenden",
+    "txtOther": "Anderes",
+    "txtCardio": "Kardio",
+    "txtStretchingAndYoga": "Dehngymnastik und Yoga",
+    "txtStrength": "Stärke"
 }
