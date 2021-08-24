@@ -32,11 +32,12 @@ import 'package:feeel/screens/exercise_picker.dart';
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/widgets/editor_header.dart';
+import 'package:feeel/widgets/editor_subheader.dart';
 import 'package:feeel/widgets/empty_placeholder.dart';
-import 'package:feeel/widgets/exercise_editor_row.dart';
-import 'package:feeel/widgets/timing_header.dart';
-import 'package:feeel/widgets/trailing_seconds_input.dart';
 import 'package:feeel/widgets/triangle_frame.dart';
+import 'package:feeel/widgets/workout_content_editor.dart';
+import 'package:feeel/widgets/workout_timing_editor.dart';
 
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -56,7 +57,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
-  late final FeeelSwatch _colorSwatch;
+  late FeeelSwatch _colorSwatch;
   final _titleController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _timingFormKey = GlobalKey<FormState>();
@@ -66,7 +67,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
 
   @override
   void initState() {
-    _colorSwatch = widget.workoutListed?.category.colorSwatch ?? FeeelColors.blue;
+    _colorSwatch =
+        widget.workoutListed?.category.colorSwatch ?? FeeelColors.blue;
     if (widget.workoutListed == null)
       _future = Future.value(_getDefaultEditableWorkout());
     else {
@@ -111,48 +113,6 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                         _titleController.text = _editableWorkout!.title;
                       }
 
-                      var header = Row(children: <Widget>[
-                        Container(
-                          width: 4,
-                        ),
-                        CloseButton(onPressed: _onClose),
-                        Expanded(
-                          child: Padding(
-                              child: TextFormField(
-                                style: theme.appBarTheme.textTheme?.headline6
-                                    ?.copyWith(
-                                        color: _colorSwatch
-                                            .getColorByBrightness(
-                                                FeeelShade.DARK,
-                                                theme.brightness)),
-                                controller: _titleController,
-                                decoration: InputDecoration(
-                                    hintStyle: theme
-                                        .appBarTheme.textTheme?.headline6
-                                        ?.copyWith(
-                                            color: _colorSwatch
-                                                .getColorByBrightness(
-                                                    FeeelShade.LIGHTER,
-                                                    theme.brightness)),
-                                    // border: InputBorder.none,
-                                    filled: false,
-                                    hintText: 'Workout title'.i18n),
-                                validator: (String? input) {
-                                  if (input == null || input.isEmpty) {
-                                    return "Please specify a workout title"
-                                        .i18n;
-                                  }
-                                  return null;
-                                },
-                                onSaved: (String? text) {
-                                  if (text != null)
-                                    _editableWorkout!.title = text;
-                                },
-                              ),
-                              padding: EdgeInsets.only(left: 16, right: 16)),
-                        ),
-                      ]);
-
                       return Form(
                           key: _formKey,
                           child: FormField<void>(
@@ -166,158 +126,116 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                               //todo not sure if using formfield and its state correctly, should probably hold _editableWorkout.workoutExercises in state
                               return (_editableWorkout!
                                       .workoutExercises.isEmpty)
-                                  ? EmptyPlaceholder( //todo fix scrollable problem
-                                      header: header,
-                                      heading: "Be your own coach!"
-                                          .i18n,
-                                      subheading:
-                                          "Design the workout that makes you feel the best"
-                                              .i18n,
-                                      errorMessage: state.errorText,
-                                      image: TriangleFrame(
-                                        child: Image.asset(
-                                            "assets/image_coach.webp"),
-                                        seed: 10,
-                                        color: _colorSwatch
-                                            .getColorByBrightness(
-                                                FeeelShade.LIGHTEST,
-                                                Theme.of(context).brightness),
-                                      ),
-                                    )
-                                  : _editingTimeMode
-                                      ? Form(
-                                          key: _timingFormKey,
-                                          child: Column(children: [
-                                            TimingHeader(
-                                              exerciseDuration:
-                                                  _editableWorkout!
-                                                      .exerciseDuration,
-                                              onExerciseDurationChanged:
-                                                  (int value) {
-                                                setState(() {
-                                                  _editableWorkout!
-                                                      .exerciseDuration = value;
-                                                });
-                                              },
-                                              breakDuration: _editableWorkout!
-                                                  .breakDuration,
-                                              onBreakDurationChanged:
-                                                  (int value) {
-                                                setState(() {
-                                                  _editableWorkout!
-                                                      .breakDuration = value;
-                                                });
-                                              },
-                                            ),
-                                            Container(
-                                              height: 16,
-                                            ),
-                                            Expanded(
-                                                child: ListView.builder(
-                                              //todo add itemExtent here, but test for responsiveness
-                                              itemBuilder:
-                                                  (BuildContext context,
-                                                      int index) {
-                                                final workoutExercise =
+                                  ? CustomScrollView(slivers: [
+                                      SliverFillRemaining(
+                                          hasScrollBody: false,
+                                          child: EmptyPlaceholder(
+                                            //todo there's too much empty space in landscape view
+                                            //todo EditorHeader and EditorSubheader are used several times here; refactor to deduplicate code
+                                            header: EditorHeader(
+                                                onClose: _onClose,
+                                                onSaved: (String? text) {
+                                                  if (text != null)
+                                                    _editableWorkout!.title =
+                                                        text;
+                                                },
+                                                colorSwatch: _colorSwatch,
+                                                hintText: 'Workout title'.i18n,
+                                                emptyError:
+                                                    "Please specify a workout title"
+                                                        .i18n,
+                                                textEditingController:
+                                                    _titleController),
+                                            subheader: EditorSubheader(
+                                                workoutDuration:
                                                     _editableWorkout!
-                                                        .workoutExercises[index]
-                                                        .exercise;
-                                                return ExerciseEditorRow(
-                                                    workoutExercise:
-                                                        workoutExercise,
-                                                    trailing:
-                                                        TrailingSecondsInput(
-                                                            initialValue:
-                                                                workoutExercise
-                                                                    .duration,
-                                                            defaultDuration:
-                                                                _editableWorkout!
-                                                                    .exerciseDuration,
-                                                            onSaved: (String?
-                                                                input) {
-                                                              var secs =
-                                                                  int.tryParse(
-                                                                      input ??
-                                                                          "");
-                                                              workoutExercise
-                                                                      .duration =
-                                                                  secs;
-                                                            }));
+                                                        .getDuration(),
+                                                category:
+                                                    _editableWorkout!.category,
+                                                onCategoryChanged:
+                                                    _onCategoryChanged),
+                                            heading: "Be your own coach!".i18n,
+                                            subheading:
+                                                "Design the workout that makes you feel the best"
+                                                    .i18n,
+                                            errorMessage: state.errorText,
+                                            child: TriangleFrame(
+                                              child: Image.asset(
+                                                  "assets/image_coach.webp"),
+                                              seed: 52,
+                                              color: _colorSwatch
+                                                  .getColorByBrightness(
+                                                      FeeelShade.LIGHTEST,
+                                                      Theme.of(context)
+                                                          .brightness),
+                                            ),
+                                          ))
+                                    ])
+                                  : _editingTimeMode
+                                      ? WorkoutTimingEditor(
+                                          exerciseDuration: _editableWorkout!
+                                              .exerciseDuration,
+                                          breakDuration:
+                                              _editableWorkout!.breakDuration,
+                                          onExerciseDurationChanged:
+                                              (int value) {
+                                            setState(() {
+                                              _editableWorkout!
+                                                  .exerciseDuration = value;
+                                            });
+                                          },
+                                          onBreakDurationChanged: (int value) {
+                                            setState(() {
+                                              _editableWorkout!.breakDuration =
+                                                  value;
+                                            });
+                                          },
+                                          workoutExercises: _editableWorkout!
+                                              .workoutExercises,
+                                          timingFormKey: _timingFormKey,
+                                        )
+                                      : WorkoutContentEditor(
+                                          header: EditorHeader(
+                                              onClose: _onClose,
+                                              onSaved: (String? text) {
+                                                if (text != null)
+                                                  _editableWorkout!.title =
+                                                      text;
                                               },
-                                              itemCount: _editableWorkout!
-                                                  .workoutExercises.length,
-                                            ))
-                                          ]))
-                                      : Column(children: [
-                                          header,
-                                          Container(
-                                            height: 16,
-                                          ),
-                                          Expanded(
-                                              child:
-                                                  ReorderableListView.builder(
-                                                      buildDefaultDragHandles:
-                                                          false,
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 32),
-                                                      itemBuilder:
-                                                          (context, i) {
-                                                        final editableExercise =
-                                                            _editableWorkout!
-                                                                .workoutExercises[i];
-                                                        return ExerciseEditorRow(
-                                                            key:
-                                                                editableExercise
-                                                                    .key,
-                                                            workoutExercise:
-                                                                editableExercise
-                                                                    .exercise,
-                                                            trailing: Row(
-                                                                children: [
-                                                                  IconButton(
-                                                                      icon: Icon(
-                                                                          Icons
-                                                                              .delete),
-                                                                      tooltip:
-                                                                          "Delete"
-                                                                              .i18n,
-                                                                      onPressed:
-                                                                          () {
-                                                                        setState(
-                                                                            () {
-                                                                          _editableWorkout!
-                                                                              .workoutExercises
-                                                                              .removeAt(i);
-                                                                        });
-                                                                      }),
-                                                                  ReorderableDragStartListener(
-                                                                    index: i,
-                                                                    child: const Icon(
-                                                                        Icons
-                                                                            .drag_handle),
-                                                                  )
-                                                                ]));
-                                                      },
-                                                      itemCount:
-                                                          _editableWorkout!
-                                                              .workoutExercises
-                                                              .length,
-                                                      onReorder: (oldI, newI) {
-                                                        if (newI > oldI) newI--;
+                                              colorSwatch: _colorSwatch,
+                                              hintText: 'Workout title'.i18n,
+                                              emptyError:
+                                                  "Please specify a workout title"
+                                                      .i18n,
+                                              textEditingController:
+                                                  _titleController),
+                                          subheader: EditorSubheader(
+                                              workoutDuration: _editableWorkout!
+                                                  .getDuration(),
+                                              category:
+                                                  _editableWorkout!.category,
+                                              onCategoryChanged:
+                                                  _onCategoryChanged),
+                                          workoutExercises: _editableWorkout!
+                                              .workoutExercises,
+                                          onRemove: (int i) {
+                                            setState(() {
+                                              _editableWorkout!.workoutExercises
+                                                  .removeAt(i);
+                                            });
+                                          },
+                                          onReorder: (oldI, newI) {
+                                            if (newI > oldI) newI--;
 
-                                                        setState(() {
-                                                          final temp =
-                                                              _editableWorkout!
-                                                                  .workoutExercises
-                                                                  .removeAt(
-                                                                      oldI);
-                                                          _editableWorkout!
-                                                              .workoutExercises
-                                                              .insert(
-                                                                  newI, temp);
-                                                        });
-                                                      }))
-                                        ]);
+                                            setState(() {
+                                              final temp = _editableWorkout!
+                                                  .workoutExercises
+                                                  .removeAt(oldI);
+                                              _editableWorkout!.workoutExercises
+                                                  .insert(newI, temp);
+                                            });
+                                          },
+                                        );
                             },
                           ));
                     } else {
@@ -328,8 +246,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   })),
           bottomNavigationBar: _editingTimeMode
               ? BottomAppBar(
-                  color: _colorSwatch
-                      .getColorByBrightness(FeeelShade.DARK, theme.brightness),
+                  color: _colorSwatch.getColorByBrightness(
+                      FeeelShade.DARK, theme.brightness),
                   child: TextButton.icon(
                     label: Text("Done editing timing".i18n,
                         style: TextStyle(
@@ -383,8 +301,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
           floatingActionButton: _editingTimeMode
               ? null
               : FloatingActionButton(
-                  backgroundColor: _colorSwatch
-                      .getColorByBrightness(FeeelShade.DARK, theme.brightness),
+                  backgroundColor: _colorSwatch.getColorByBrightness(
+                      FeeelShade.DARK, theme.brightness),
                   tooltip: "Done".i18n,
                   child: Icon(Icons.done),
                   onPressed: () {
@@ -440,6 +358,15 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   Future<bool> _onWillPop() async {
     _onClose();
     return false;
+  }
+
+  void _onCategoryChanged(WorkoutCategory? category) {
+    if (category != null) {
+      setState(() {
+        _editableWorkout!.category = category;
+        _colorSwatch = _editableWorkout!.category.colorSwatch;
+      });
+    }
   }
 
   void _onClose() {

@@ -24,36 +24,35 @@ import 'package:flutter/material.dart';
 
 class EmptyPlaceholder extends StatelessWidget {
   final Widget header;
-  final Widget image;
+  final Widget subheader;
+  final Widget child;
   final String heading;
   final String subheading;
   final String? errorMessage;
 
-  const EmptyPlaceholder(
-      {Key? key,
-      required this.header,
-      required this.image,
-      required this.heading,
-      required this.subheading,
-      this.errorMessage})
-      : super(key: key);
+  const EmptyPlaceholder({
+    Key? key,
+    required this.header,
+    required this.subheader,
+    required this.child,
+    required this.heading,
+    required this.subheading,
+    this.errorMessage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      // todo singleChildScrollView, perhaps through the use of Centered or Flexible inside Column
       children: <Widget>[
         header,
-        Spacer(), //todo is this the right way to center column content?
+        subheader,
+        Spacer(),
         SizedBox(
-          child: image,
+          child: child,
           width: 320,
         ),
         Padding(
-          child: Text(heading,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5),
+          child: Text(heading, style: Theme.of(context).textTheme.headline5),
           padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
         ),
         Padding(
@@ -73,7 +72,7 @@ class EmptyPlaceholder extends StatelessWidget {
                       .caption
                       ?.copyWith(color: Theme.of(context).colorScheme.error)),
               padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8)),
-        Spacer()
+        Spacer(),
       ],
     );
   }

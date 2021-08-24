@@ -74,4 +74,16 @@ class EditableWorkout {
       exerciseDuration: exerciseDuration,
       category: category,
       type: type);
+
+  int getDuration() {
+    int duration = (workoutExercises.length > 0)
+        ? workoutExercises[0].exercise.duration ?? exerciseDuration
+        : 0;
+    for (var i = 1; i < workoutExercises.length; i++) {
+      duration += workoutExercises[i].exercise.duration ?? exerciseDuration;
+      duration +=
+          workoutExercises[i].exercise.breakBeforeDuration ?? breakDuration;
+    }
+    return duration;
+  }
 }
