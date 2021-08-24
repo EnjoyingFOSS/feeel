@@ -89,7 +89,7 @@ class WorkoutCover extends StatelessWidget {
                                     Expanded(
                                         child: Align(
                                       // child: Hero(tag: workout.title + "\title/",
-                                      child: Text(workout.title,
+                                      child: Text(workout.title.i18n,
                                           maxLines: 3,
                                           overflow: TextOverflow.ellipsis,
                                           style: theme

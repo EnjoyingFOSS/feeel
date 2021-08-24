@@ -43,7 +43,7 @@ class ThemeDialog extends StatelessWidget {
             return RadioListTile(
               value: index,
               groupValue: curTheme?.index,
-              title: Text(itemTheme.uiName()),
+              title: Text(itemTheme.uiName().i18n),
               onChanged: (int? newIndex) {
                 if (newIndex != null) {
                   AdaptiveThemeMode.values[newIndex].apply(context);

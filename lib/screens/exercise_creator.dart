@@ -159,7 +159,7 @@ TRANSLATION:
   }
 
   Future _addPhotoFromGallery() async {
-    _imagePicker.getImage(source: ImageSource.gallery).catchError((dynamic e) {
+    _imagePicker.getImage(source: ImageSource.gallery).catchError((dynamic e) { //todo make sure that this still works and attaches the image + move to pickImage
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Can't take photos without camera permission".i18n)));
     }

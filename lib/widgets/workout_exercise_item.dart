@@ -58,7 +58,7 @@ class WorkoutExerciseItem extends StatelessWidget {
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
-            workoutExercise.exercise.name,
+            workoutExercise.exercise.name.i18n,
             style: Theme.of(context).textTheme.bodyText1,
           ),
           Text(DurationUtil.getDurationShortform(duration))

@@ -79,7 +79,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
               if (snapshot.hasData) {
                 _exercises = snapshot.data!;
 
-                return ListView.builder(
+                return ListView.builder( //todo add itemExtent here, but test for responsiveness
                     padding: EdgeInsets.fromLTRB(0, 16, 0, 64),
                     itemCount: _exercises!.length + 1,
                     itemBuilder: (context, i) {
