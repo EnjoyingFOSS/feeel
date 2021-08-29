@@ -65,8 +65,9 @@ class WorkoutCover extends StatelessWidget {
                     switch (index) {
                       case 0:
                         return Stack(children: [
-                          Positioned(
-                              left: -12,
+                          Positioned.directional(
+                              textDirection: Directionality.of(context),
+                              start: -12,
                               width: 208,
                               height: 208,
                               //todo child: Hero(tag: workout.title + "\triangle/",
@@ -75,9 +76,10 @@ class WorkoutCover extends StatelessWidget {
                                       FeeelShade.LIGHTEST, theme.brightness),
                                   seed: title.hashCode)),
                           // ),
-                          Positioned(
+                          Positioned.directional(
+                              textDirection: Directionality.of(context),
                               top: 8,
-                              left: 8,
+                              start: 8,
                               child: BackButton(color: fgColor)),
                           Container(
                               padding: EdgeInsets.only(
@@ -95,7 +97,7 @@ class WorkoutCover extends StatelessWidget {
                                           style: theme
                                               .appBarTheme.textTheme?.headline6
                                               ?.copyWith(color: fgColor)), //),
-                                      alignment: Alignment.bottomLeft,
+                                      alignment: Alignment.bottomCenter,
                                     )),
                                     Container(
                                       height: 8,

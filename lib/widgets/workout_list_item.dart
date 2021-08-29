@@ -98,7 +98,7 @@ class WorkoutListItem extends StatelessWidget {
                             )),
                         if (trailing != null)
                           Align(
-                              alignment: Alignment.centerRight, child: trailing)
+                              alignment: AlignmentDirectional.centerEnd, child: trailing)
                       ],
                       alignment: AlignmentDirectional.centerStart,
                     )))

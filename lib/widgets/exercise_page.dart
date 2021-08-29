@@ -279,7 +279,7 @@ class ExerciseHeader extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(16),
                     ),
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                   ),
                 Align(
                     alignment: Alignment.center,
