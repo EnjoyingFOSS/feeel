@@ -1,1 +1,1 @@
-En enkel home-trening/mosjon app som respekterer ditt personvern
+Et enkelt hjemmetrening/mosjonsprogram som respekterer ditt personvern
