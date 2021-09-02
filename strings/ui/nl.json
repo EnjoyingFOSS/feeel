@@ -66,10 +66,14 @@
     "txtThemeLight": "Licht",
     "txtThemeSystem": "Systeemthema",
     "txtTheme": "Thema",
-    "txtCouldNotOpenURL": "URL kan niet worden geopend.",
+    "txtCouldNotOpenURL": "De url kan niet worden geopend.",
     "txtParticipate": "Bijdragen",
     "txtDonate": "Doneren",
     "txtSourceCode": "Broncode",
-    "txtBatteryOptimization": "Op sommige apparaten is het verstandig accu-optimalisatie uit te schakelen zodat Feeel betrouwbaar kan werken.",
-    "btnEnableTTS": "Stembediening gebruiken"
+    "txtBatteryOptimization": "Op sommige apparaten is het verstandig om accu-optimalisatie uit te schakelen zodat Feeel betrouwbaar kan werken.",
+    "btnEnableTTS": "Stembediening gebruiken",
+    "txtOther": "Andere",
+    "txtCardio": "Cardio",
+    "txtStretchingAndYoga": "Rekken en yoga",
+    "txtStrength": "Kracht"
 }
