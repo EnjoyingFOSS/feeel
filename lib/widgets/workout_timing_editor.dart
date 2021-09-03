@@ -61,6 +61,7 @@ class WorkoutTimingEditor extends StatelessWidget {
           ),
           Expanded(
               child: ListView.builder(
+                padding: EdgeInsets.only(bottom: 72),
             //todo add itemExtent here, but test for responsiveness
             itemBuilder: (BuildContext context, int index) {
               final workoutExercise = workoutExercises[index].exercise;

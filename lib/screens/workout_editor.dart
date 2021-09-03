@@ -244,35 +244,9 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                       );
                     }
                   })),
-          bottomNavigationBar: _editingTimeMode
-              ? BottomAppBar(
-                  color: _colorSwatch.getColorByBrightness(
-                      FeeelShade.DARK, theme.brightness),
-                  child: TextButton.icon(
-                    label: Text("Done editing timing".i18n,
-                        style: TextStyle(
-                            //todo use button style in the future (in other buttons too)
-                            color: theme.colorScheme.onPrimary)),
-                    icon: Icon(
-                      Icons.done,
-                      color: theme.colorScheme.onPrimary,
-                    ), //todo color into separate variable
-                    onPressed: () {
-                      setState(() {
-                        final timingForm = _timingFormKey.currentState;
-                        if ((_editableWorkout != null
-                                ? _editableWorkout!.workoutExercises.length > 0
-                                : false) &&
-                            timingForm != null &&
-                            timingForm.validate()) {
-                          timingForm.save();
-                          _editingTimeMode = false;
-                        }
-                      });
-                    },
-                  ))
-              : Builder(
-                  builder: (context) => BottomAppBar(
+          bottomNavigationBar: Builder(
+              builder: (context) => Visibility(
+                  child: BottomAppBar(
                       color: _colorSwatch.getColorByBrightness(
                           FeeelShade.LIGHTEST, theme.brightness),
                       child: Row(
@@ -296,10 +270,30 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                               }),
                         ],
                       ),
-                      shape: CircularNotchedRectangle())),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+                      shape: CircularNotchedRectangle()),
+                  visible: !_editingTimeMode)),
+          floatingActionButtonLocation: _editingTimeMode
+              ? FloatingActionButtonLocation.centerFloat
+              : FloatingActionButtonLocation.endDocked,
           floatingActionButton: _editingTimeMode
-              ? null
+              ? FloatingActionButton.extended(
+                  backgroundColor: _colorSwatch.getColorByBrightness(
+                      FeeelShade.DARK, theme.brightness),
+                  onPressed: () {
+                    setState(() {
+                      final timingForm = _timingFormKey.currentState;
+                      if ((_editableWorkout != null
+                              ? _editableWorkout!.workoutExercises.length > 0
+                              : false) &&
+                          timingForm != null &&
+                          timingForm.validate()) {
+                        timingForm.save();
+                        _editingTimeMode = false;
+                      }
+                    });
+                  },
+                  icon: Icon(Icons.done),
+                  label: Text("Done editing timing".i18n))
               : FloatingActionButton(
                   backgroundColor: _colorSwatch.getColorByBrightness(
                       FeeelShade.DARK, theme.brightness),
