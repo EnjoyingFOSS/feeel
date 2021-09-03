@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:io';
+
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/screens/workout_list.dart';
@@ -29,6 +31,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'db/notification_helper.dart';
 import 'theming/feeel_themes.dart';
+import 'package:window_size/window_size.dart';
 
 void main() => runApp(MyApp());
 
@@ -39,10 +42,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) => _onWidgetBuilt(context));
+    if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
+      setWindowTitle('Feeel');
+      setWindowMinSize(const Size(320, 568));
+      setWindowMaxSize(Size.infinite);
+    }
 
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.transparent));
+    WidgetsBinding.instance
+        ?.addPostFrameCallback((_) => _onWidgetBuilt(context));
+
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white70));
 
     return AdaptiveTheme(
         light: FeeelThemes.lightTheme,
@@ -54,14 +64,14 @@ class MyApp extends StatelessWidget {
             darkTheme: darkTheme,
             supportedLocales: [
               const Locale('en'),
+              const Locale('ar'),
               const Locale('cs'),
               const Locale('de'),
-              const Locale('es'), 
+              const Locale('es'),
               const Locale('eu'),
               const Locale('fr'),
               const Locale('id'),
               const Locale('it'),
-              const Locale('nb', 'NO'),
               const Locale('nl'),
               const Locale('pt'),
               const Locale('ru'),

@@ -3,6 +3,8 @@ description: Feeel is an open-source Android app for doing simple at-home exerci
 
 version: 2.2.0+4015
 
+publish_to: none
+
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
@@ -28,22 +30,30 @@ dependencies:
   adaptive_theme: ^2.2.0
   package_info: ^2.0.2
   # auto_size_text: ^3.0.0-nullsafety.0
+
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
   
   # moor: ^4.4.0
   # sqlite3_flutter_libs: ^0.5.0
   # path: ^1.8.0
 
 dev_dependencies:
-  # flutter_launcher_icons: ^0.9.0
   flutter_test:
     sdk: flutter
+  # flutter_launcher_icons: ^0.9.2
+
   # moor_generator: ^4.4.0
   # build_runner: ^2.0.5
 
 flutter_icons:
-  android: false
-  ios: true
+  # image_path: "assets/icon_generic.png"
   image_path_ios: "assets/icon_ios.png"
+  android: false
+  macos: false
+  ios: true
 
 flutter:
   uses-material-design: true

@@ -97,7 +97,7 @@ class WorkoutCover extends StatelessWidget {
                                           style: theme
                                               .appBarTheme.textTheme?.headline6
                                               ?.copyWith(color: fgColor)), //),
-                                      alignment: Alignment.bottomCenter,
+                                      alignment: AlignmentDirectional.bottomStart,
                                     )),
                                     Container(
                                       height: 8,

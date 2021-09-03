@@ -51,7 +51,7 @@ class NotificationHelper {
         requestSoundPermission: false);
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+    flutterLocalNotificationsPlugin.initialize(initializationSettings, //todo this is null on macOS?
         onSelectNotification: (String? payload) async {
       //todo right?
       return await Navigator.push(
