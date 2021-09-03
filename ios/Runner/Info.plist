@@ -5,6 +5,7 @@
 		<key>CFBundleLocalizations</key>
 		<array>
 			<string>en</string>
+			<string>ar</string>
 			<string>cs</string>
 			<string>de</string>
 			<string>es</string>
@@ -12,7 +13,6 @@
 			<string>fr</string>
 			<string>id</string>
 			<string>it</string>
-			<string>nb_NO</string>
 			<string>nl</string>
 			<string>pt</string>
 			<string>ru</string>
