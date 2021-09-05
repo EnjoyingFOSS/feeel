@@ -20,11 +20,16 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/i18n/translations.dart';
+
 class DurationUtil {
   static String getDurationLongform(int durationSecs) {
     final mins = durationSecs ~/ 60;
     final secs = durationSecs % 60;
-    return "$mins min. $secs s.";
+    return "%1d min., %2d sec."
+        .i18n
+        .replaceFirst("%1d", mins.toString())
+        .replaceFirst("%2d", secs.toString());
   }
 
   static String getDurationShortform(int durationSecs) {

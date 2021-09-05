@@ -53,6 +53,7 @@
     "txtStretchingAndYoga": "Stretching & yoga",
     "txtCardio": "Cardio",
     "txtOther": "Other",
+    "txtDurationLong": "%1d min., %2d sec.",
     "btnStartWorkout": "Start workout",
     "btnResumeWorkout": "Resume workout",
     "btnPreviousExercise": "Previous exercise",
