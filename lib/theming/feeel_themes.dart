@@ -50,8 +50,8 @@ class FeeelThemes {
       primaryVariant: FeeelColors.blue.getColor(FeeelShade.LIGHTER),
       secondary: FeeelColors.orange.getColor(FeeelShade.LIGHT),
       secondaryVariant: FeeelColors.orange.getColor(FeeelShade.LIGHTER),
-      surface: Colors.black87,
-      background: Colors.black87,
+      surface: Colors.black,
+      background: Colors.black,
       error: Color(0xFFB00020),
       onPrimary: Colors.black87,
       onSecondary: Colors.black87,
@@ -65,27 +65,23 @@ class FeeelThemes {
 
   static ThemeData _getThemeFromScheme(ColorScheme colors) {
     return ThemeData(
+        colorScheme: colors,
         visualDensity: VisualDensity.standard,
         backgroundColor: colors.background,
         brightness: colors.brightness,
-        colorScheme: colors,
         primaryColor: colors.primary,
         primaryColorDark: colors.primaryVariant,
-        accentColor: colors.secondary,
         scaffoldBackgroundColor: colors.background,
         cardColor: colors.surface,
         errorColor: colors.error,
-        buttonColor: colors.primary,
         toggleableActiveColor: colors.primary,
         appBarTheme: AppBarTheme(
             color: colors.background,
             iconTheme: IconThemeData(color: colors.primary),
-            textTheme: TextTheme(
-                headline6: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w900,
-                    color: colors.primary)),
-            elevation: 0,
-            brightness: colors.brightness));
+            titleTextStyle: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.w900,
+                color: colors.primary),
+            elevation: 0));
   }
 }

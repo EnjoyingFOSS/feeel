@@ -59,12 +59,11 @@ class EditorHeader extends StatelessWidget {
       Expanded(
         child: Padding(
             child: TextFormField(
-              style: theme.appBarTheme.textTheme?.headline6
-                  ?.copyWith(color: color),
+              style: theme.appBarTheme.titleTextStyle?.copyWith(color: color),
               controller: textEditingController,
               decoration: InputDecoration(
                   focusColor: color,
-                  hintStyle: theme.appBarTheme.textTheme?.headline6?.copyWith(
+                  hintStyle: theme.appBarTheme.titleTextStyle?.copyWith(
                       color: theme.brightness == Brightness.dark
                           ? colorSwatch.getColor(FeeelShade.DARKEST)
                           : colorSwatch.getColor(FeeelShade.LIGHTER)),

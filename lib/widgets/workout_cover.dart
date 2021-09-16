@@ -95,7 +95,7 @@ class WorkoutCover extends StatelessWidget {
                                           maxLines: 3,
                                           overflow: TextOverflow.ellipsis,
                                           style: theme
-                                              .appBarTheme.textTheme?.headline6
+                                              .appBarTheme.titleTextStyle
                                               ?.copyWith(color: fgColor)), //),
                                       alignment: AlignmentDirectional.bottomStart,
                                     )),

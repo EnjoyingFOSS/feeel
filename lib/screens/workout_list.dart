@@ -69,7 +69,6 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                   SliverPadding(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       sliver: SliverAppBar(
-                        brightness: Theme.of(context).brightness,
                         centerTitle: false,
                         //todo add floating: true, but with dynamic shadow
                         title: Text.rich(
@@ -79,8 +78,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                             text: "Feeel ",
                             style: Theme.of(context)
                                 .appBarTheme
-                                .textTheme
-                                ?.headline6
+                                .titleTextStyle
                                 ?.copyWith(
                                     color:
                                         Theme.of(context).colorScheme.primary),
@@ -113,7 +111,8 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                       )),
                   SliverPadding(
                       padding: EdgeInsets.only(bottom: 80),
-                      sliver: SliverList( //todo consider using SliverFixedExtentList in the future, but still allow large text
+                      sliver: SliverList(
+                        //todo consider using SliverFixedExtentList in the future, but still allow large text
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
                             WorkoutListed workoutListed = workoutsListed[index];
