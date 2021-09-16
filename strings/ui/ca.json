@@ -1,1 +1,23 @@
-{}
+{
+    "txtWorkoutTitleEmpty": "Si us plau especifica el títol de l'exercici",
+    "txtSettings": "Ajustaments",
+    "txtSubmitExerciseMessageContents": "Hola,\n\nEstic enviant una proposta d'un exercici. Pel present declaro que tant les imatges adjuntes com la descripció van ser realitzades pel meu compte. A l'enviar aquest missatge, de manera irreversible accepto que el nom i la descripció presentats es publiquin sota una llicència CC BY-SA i la llicència AGPLv3 amb excepció de la botiga d'aplicacions. També dono consentiment per processar la (les) imatge (es) adjunt (es) en variant (s) low-poly. Després que es processin, avaluaré si estic disposat a llicenciar-sota la llicència CC BY-SA.\n\nNom de l'exercici:% 1s\nPassos de l'exercici:\n% 2s",
+    "txtSubmitExerciseMessageTitle": "Exercici proposat: %s",
+    "txtEmailCouldNotBeSent": "No s'ha pogut enviar el correu electrònic",
+    "txtHowToPerformExercise": "Com es realitza l'exercici (opcional)",
+    "txtExerciseName": "Nom de l'exercici",
+    "txtContributeExerciseExplainer": "Feeel depèn de voluntaris com tu per enviar exercicis i fotografies d'ells. Les fotos que envieu primer es processaran de forma privada, després se li demanarà la seva aprovació i només es publicaran en l'aplicació. Gràcies per contribuir!",
+    "txtSubmitNewExercise": "Contribueix amb un exercici",
+    "txtYoureGlowing": "Estàs brillant!",
+    "txtCategoryLegs": "Cames",
+    "txtCategoryFullBody": "Cos sencer",
+    "txtWorkoutToMakeYouFeelBest": "Dissenya l'entrenament que et faci sentir millor",
+    "txtBeYourOwnCoach": "Siguis el teu propi entrenador!",
+    "txtWorkoutTitle": "Títol de l'entrenament",
+    "txtImageMissing": "Falta imatge",
+    "txtTapForControls": "Toca pels controls",
+    "txtBreak": "Descans!",
+    "txtSecondsLeft5plus": "%d segons restants",
+    "txtLetsGoFirstUp": "Vinga! Primer pas: %s",
+    "txtNextUp": "A continuació:"
+}
