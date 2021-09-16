@@ -82,6 +82,7 @@ class FeeelThemes {
                 fontSize: 32,
                 fontWeight: FontWeight.w900,
                 color: colors.primary),
+            centerTitle: false,
             elevation: 0));
   }
 }

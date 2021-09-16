@@ -69,7 +69,6 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                   SliverPadding(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       sliver: SliverAppBar(
-                        centerTitle: false,
                         //todo add floating: true, but with dynamic shadow
                         title: Text.rich(
                             //todo add varying spans, e.g. "Feeel energized", "Feeel goood", "Feeel fresh" ,"Feeel the burn", ...

@@ -56,7 +56,6 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
       ),
       appBar: AppBar(
         title: Text("Contribute".i18n),
-        centerTitle: false,
       ),
       body: Column(children: [
         Material(
