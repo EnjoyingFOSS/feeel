@@ -75,5 +75,6 @@
     "txtOther": "Andere",
     "txtCardio": "Cardio",
     "txtStretchingAndYoga": "Rekken en yoga",
-    "txtStrength": "Kracht"
+    "txtStrength": "Kracht",
+    "txtDurationLong": "%1d min %2d s"
 }

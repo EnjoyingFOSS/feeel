@@ -75,5 +75,6 @@
     "txtOther": "Diğer",
     "txtCardio": "Kardiyo",
     "txtStretchingAndYoga": "Esneme ve yoga",
-    "txtStrength": "Güç"
+    "txtStrength": "Güç",
+    "txtDurationLong": "%1d dak., %2d sn."
 }
