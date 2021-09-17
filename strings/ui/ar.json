@@ -74,5 +74,6 @@
     "txtSecondsLeft5plus": "٪d ثانية متبقية",
     "txtLetsGoFirstUp": "لنذهب! أولا: ٪s",
     "txtNextUp": "التالي:",
-    "txtYouDidIt": "أنت فعلت ذلك!"
+    "txtYouDidIt": "أنت فعلت ذلك!",
+    "txtDurationLong": "٪1d دقيقة، ٪2d ثانية."
 }

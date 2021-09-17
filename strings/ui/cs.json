@@ -32,7 +32,7 @@
     "txtNotificationInfoDesc": "Denní připomenutí jít cvičit",
     "txtNotificationTitle": "Čas obléknout cvičební úbor!",
     "txtNotificationDesc": "Stačí jen pár minut, abyste se cítil/a svěží a fit",
-    "txtRemindMe": "Připomínat, abych cvičil/a denně",
+    "txtRemindMe": "Denní upomenutí",
     "txtNeedCameraPermission": "Nelze fotografovat bez povolení fotoaparátu",
     "txtNotificationTime": "Čas upozornění",
     "txtAddExerciseFirst": "Nejprve musíte přidat cvičení",
@@ -71,5 +71,10 @@
     "txtDonate": "Darovat",
     "txtSourceCode": "Zdrojový kód",
     "txtParticipate": "Účastněte se",
-    "txtBatteryOptimization": "Na některých zařízeních může být nutné vypnout optimalizaci baterie pro Feeel, aby tato funkce spolehlivě fungovala."
+    "txtBatteryOptimization": "Na některých zařízeních může být nutné vypnout optimalizaci baterie pro Feeel, aby tato funkce spolehlivě fungovala.",
+    "txtOther": "Jiné",
+    "txtCardio": "Kardio",
+    "txtStretchingAndYoga": "Protahování a jóga",
+    "txtStrength": "Silové cvičení",
+    "txtDurationLong": "%1d min., %2d s."
 }

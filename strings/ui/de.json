@@ -38,7 +38,7 @@
     "txtNeedCameraPermission": "Um Fotos aufnehmen zu können, werden Berechtigungen für die Kamera benötigt",
     "txtNotificationTime": "Benachrichtigungszeitpunkt",
     "txtAddExerciseFirst": "Zuerst eine Übung hinzufügen",
-    "btnStartWorkout": "Starte Training",
+    "btnStartWorkout": "Training starten",
     "btnResumeWorkout": "Training fortsetzen",
     "btnPreviousExercise": "vorherige Übung",
     "btnNextExercise": "nächste Übung",
@@ -75,5 +75,6 @@
     "txtOther": "Anderes",
     "txtCardio": "Kardio",
     "txtStretchingAndYoga": "Dehngymnastik und Yoga",
-    "txtStrength": "Stärke"
+    "txtStrength": "Stärke",
+    "txtDurationLong": "%1d min %2d s"
 }
