@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:io';
+
 import 'package:feeel/screens/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -43,16 +45,19 @@ class NotificationHelper {
     tz.setLocalLocation(
         tz.getLocation(await FlutterNativeTimezone.getLocalTimezone()));
 
-    var initializationSettingsAndroid =
-        AndroidInitializationSettings('icon_notification');
-    var initializationSettingsIOS = IOSInitializationSettings(
-        requestAlertPermission: false,
-        requestBadgePermission: false,
-        requestSoundPermission: false);
     var initializationSettings = InitializationSettings(
-        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings, //todo this is null on macOS?
-        onSelectNotification: (String? payload) async {
+        android: AndroidInitializationSettings('icon_notification'),
+        iOS: IOSInitializationSettings(
+            requestAlertPermission: false,
+            requestBadgePermission: false,
+            requestSoundPermission: false),
+        macOS: MacOSInitializationSettings(
+            requestAlertPermission: false,
+            requestBadgePermission: false,
+            requestSoundPermission: false));
+    flutterLocalNotificationsPlugin
+        .initialize(initializationSettings,
+            onSelectNotification: (String? payload) async {
       //todo right?
       return await Navigator.push(
         context,
@@ -65,17 +70,18 @@ class NotificationHelper {
     await flutterLocalNotificationsPlugin.cancel(_NOTIFICATION_INT_ID);
 
     if (timeOfDay != null) {
-      _requestIOSPermissions();
+      if (Platform.isIOS) {
+        _requestIOSPermissions();
+      } else if (Platform.isMacOS) {
+        _requestMacOSPermissions();
+      }
 
-      final androidPlatformChannelSpecifics = AndroidNotificationDetails(
-          _NOTIFICATION_CHANNEL_ID,
-          "Daily notification".i18n,
-          "A daily reminder to work out".i18n,
-          color: Theme.of(context).primaryColor);
-      final iOSPlatformChannelSpecifics = IOSNotificationDetails();
       final platformChannelSpecifics = NotificationDetails(
-          android: androidPlatformChannelSpecifics,
-          iOS: iOSPlatformChannelSpecifics);
+          android: AndroidNotificationDetails(_NOTIFICATION_CHANNEL_ID,
+              "Daily notification".i18n, "A daily reminder to work out".i18n,
+              color: Theme.of(context).primaryColor),
+          iOS: IOSNotificationDetails(),
+          macOS: MacOSNotificationDetails());
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
           _NOTIFICATION_INT_ID,
@@ -91,12 +97,10 @@ class NotificationHelper {
   }
 
   tz.TZDateTime _nextDailyInstance(Time time) {
-    final now = tz.TZDateTime.now(tz.local);
-    tz.TZDateTime scheduledDate = tz.TZDateTime(
+    final now = tz.TZDateTime.now(tz.local).add(const Duration(
+        days: 1)); //todo is this necessary with a daily notification?
+    final tz.TZDateTime scheduledDate = tz.TZDateTime(
         tz.local, now.year, now.month, now.day, time.hour, time.minute);
-    if (scheduledDate.isBefore(now)) {
-      scheduledDate = scheduledDate.add(const Duration(days: 1));
-    }
     return scheduledDate;
   }
 
@@ -104,6 +108,17 @@ class NotificationHelper {
     flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+  }
+
+  void _requestMacOSPermissions() {
+    flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            MacOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
           alert: true,
           badge: true,
