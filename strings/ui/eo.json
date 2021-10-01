@@ -77,5 +77,11 @@
     "btnEnableTTS": "Uzi voĉajn komandojn",
     "txtOther": "Aliaj",
     "txtStretchingAndYoga": "Streĉanta & jogo",
-    "txtStrength": "Forto"
+    "txtStrength": "Forto",
+    "txtCardio": "Cardioo",
+    "txtDragToReorder": "Trenu ĉi tiun tenilon por reordigi ekzercojn.",
+    "txtDurationLong": "%1d min %2d s",
+    "txtNumberInputNonnumeric": "Devas esti nombra",
+    "txtNumberInputEmpty": "Ne povas esti malplena",
+    "txtLanguage": "Lingvo"
 }
