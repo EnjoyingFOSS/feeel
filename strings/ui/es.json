@@ -16,7 +16,7 @@
     "txtContributeExerciseExplainer": "Feeel depende de voluntarios como usted para enviar ejercicios y fotografías de ellos. Las fotos que envíe primero se procesarán de forma privada, luego se le solicitará su aprobación y solo se publicarán en la aplicación. ¡Gracias por contribuir!",
     "txtExerciseName": "Nombre del ejercicio",
     "txtHowToPerformExercise": "Cómo se realiza el ejercicio (opcional)",
-    "txtEmailCouldNotBeSent": "Correo no podría ser enviado",
+    "txtEmailCouldNotBeSent": "No se ha podido enviar el correo electrónico",
     "txtSubmitExerciseMessageTitle": "Ejercicio propuesto: %s",
     "txtSubmitExerciseMessageContents": "Hola,\n\nEstoy enviando una propuesta de un ejercicio. Por lo presente declaro que tanto las imágenes adjuntas como la descripcióm fueron realizadas por cuenta propia. Al enviar este mensaje, de forma irreversible acepto que el nombre y la descripción presentados se publiquen bajo una licencia CC BY-SA y la licencia AGPLv3 con excepción de la tienda de aplicaciones. También doy consentimiento para procesar la(s) imágen(es) adjunta(s) en variante(s) low-poly. Después de que se procesen, evaluaré si estoy dispuesto a licenciarlos bajo la licencia CC BY-SA.\n\nNombre del ejercicio: %1s\nPasos del ejercicio:\n%2s",
     "txtSettings": "Ajustes",
@@ -76,5 +76,8 @@
     "txtCardio": "Cardo",
     "txtStretchingAndYoga": "Estiramiento y yoga",
     "txtStrength": "Fuerza",
-    "txtDurationLong": "%1d min %2d s"
+    "txtDurationLong": "%1d min %2d s",
+    "txtNumberInputNonnumeric": "Debe ser numérico",
+    "txtNumberInputEmpty": "No puede estar vacío",
+    "txtLanguage": "Idioma"
 }
