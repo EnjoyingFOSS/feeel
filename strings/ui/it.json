@@ -76,5 +76,9 @@
     "txtCardio": "Cardio",
     "txtStretchingAndYoga": "Stretching e yoga",
     "txtStrength": "Forza",
-    "txtDurationLong": "%1d min %2d s"
+    "txtDurationLong": "%1d min %2d s",
+    "txtDragToReorder": "Trascina questa maniglia per riordinare gli esercizi.",
+    "txtNumberInputNonnumeric": "Deve essere numerico",
+    "txtNumberInputEmpty": "Non può essere vuoto",
+    "txtLanguage": "Lingua"
 }
