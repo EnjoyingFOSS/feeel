@@ -77,5 +77,8 @@
     "txtStretchingAndYoga": "Rekken en yoga",
     "txtStrength": "Kracht",
     "txtDurationLong": "%1d min %2d s",
-    "txtDragToReorder": "Versleep dit handvat om oefeningen anders in te delen."
+    "txtDragToReorder": "Versleep dit handvat om oefeningen anders in te delen.",
+    "txtNumberInputNonnumeric": "Moet numeriek zijn",
+    "txtNumberInputEmpty": "Kan niet leeg zijn",
+    "txtLanguage": "Taal"
 }
