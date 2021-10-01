@@ -19,5 +19,7 @@
     "txtBreak": "Descans!",
     "txtSecondsLeft5plus": "%d segons restants",
     "txtLetsGoFirstUp": "Vinga! Primer pas: %s",
-    "txtNextUp": "A continuació:"
+    "txtNextUp": "A continuació:",
+    "txtWorkoutExercisesEmpty": "Si us plau, afegeix al menys 1 exercici",
+    "txtYouDidIt": "Ho has fet!"
 }
