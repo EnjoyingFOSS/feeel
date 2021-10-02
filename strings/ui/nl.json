@@ -76,5 +76,6 @@
     "txtCardio": "Cardio",
     "txtStretchingAndYoga": "Rekken en yoga",
     "txtStrength": "Kracht",
-    "txtDurationLong": "%1d min %2d s"
+    "txtDurationLong": "%1d min %2d s",
+    "txtDragToReorder": "Versleep dit handvat om oefeningen anders in te delen."
 }
