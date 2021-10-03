@@ -75,5 +75,9 @@
     "txtLetsGoFirstUp": "لنذهب! أولا: ٪s",
     "txtNextUp": "التالي:",
     "txtYouDidIt": "أنت فعلت ذلك!",
-    "txtDurationLong": "٪1d دقيقة، ٪2d ثانية."
+    "txtDurationLong": "٪1d دقيقة، ٪2d ثانية.",
+    "txtLanguage": "اللغة",
+    "txtDragToReorder": "اسحب هذا المقبض لإعادة ترتيب التمارين.",
+    "txtNumberInputNonnumeric": "يجب أن يكون رقميا",
+    "txtNumberInputEmpty": "لا يمكن أن يكون فارغا"
 }
