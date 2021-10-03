@@ -1,0 +1,10 @@
+Lots of new stuff, including:
+* Color-coded workout categories
+* A new default workout: Neck and shoulder stretches
+* New exercises
+* Special visualization of exercise images with a close-up of a head
+* iOS support
+* New Arabic translation + RTL support
+* Theme tweaks
+* Norwegian Bokmal was deleted again
+* Various bug fixes and translation updates
