@@ -157,8 +157,8 @@ TRANSLATION:
     // todo !!!
   }
 
-  Future _addPhotoFromGallery() async {
-    _imagePicker.getImage(source: ImageSource.gallery).catchError((dynamic e) { //todo make sure that this still works and attaches the image + move to pickImage
+  Future _addPhotoFromGallery() async { //todo multiple images, for animations?
+    _imagePicker.pickImage(source: ImageSource.gallery).catchError((dynamic e) { //todo make sure that this still works and attaches the image + move to pickImage
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Can't take photos without camera permission".i18n)));
     }
@@ -169,11 +169,11 @@ TRANSLATION:
   }
 
   Future _addPhotoFromCamera() async {
-    var image = await _imagePicker.getImage(source: ImageSource.camera);
+    var image = await _imagePicker.pickImage(source: ImageSource.camera);
     _addPhoto(image);
   }
 
-  void _addPhoto(PickedFile? image) {
+  void _addPhoto(XFile? image) {
     if (image != null) {
       setState(() {
         _imageFiles.add(File(image.path));
