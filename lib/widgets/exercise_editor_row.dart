@@ -23,6 +23,7 @@
 import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:flutter/material.dart';
+import 'package:feeel/i18n/translations.dart';
 
 import 'flipped.dart';
 
@@ -56,7 +57,7 @@ class ExerciseEditorRow extends StatelessWidget {
       Expanded(
           child: Padding(
         child: Text(
-          workoutExercise.exercise.name,
+          workoutExercise.exercise.name.i18n,
           style: Theme.of(context).textTheme.bodyText1,
         ),
         padding: EdgeInsets.symmetric(horizontal: 16),
