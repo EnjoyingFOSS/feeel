@@ -30,13 +30,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'db/notification_helper.dart';
+import 'i18n/locale_helper.dart';
 import 'theming/feeel_themes.dart';
 import 'package:window_size/window_size.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Feeel());
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Feeel extends StatelessWidget {
+  const Feeel({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,21 +63,7 @@ class MyApp extends StatelessWidget {
             title: 'Feeel',
             theme: theme,
             darkTheme: darkTheme,
-            supportedLocales: [
-              const Locale('en'),
-              const Locale('ar'),
-              const Locale('cs'),
-              const Locale('de'),
-              const Locale('es'),
-              const Locale('eu'),
-              const Locale('fr'),
-              const Locale('id'),
-              const Locale('it'),
-              const Locale('nl'),
-              const Locale('pt'),
-              const Locale('ru'),
-              const Locale('tr'),
-            ],
+            supportedLocales: LocaleHelper.supportedLocales,
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
