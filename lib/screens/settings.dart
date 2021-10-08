@@ -27,7 +27,7 @@ import 'package:feeel/db/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/widgets/theme_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -60,7 +60,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          centerTitle: false,
           title: Text(
             "Settings".i18n,
           ),
@@ -97,7 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onChanged: (bool setOn) {
                         _setNotificationTime(
                             context,
-                            setOn ? _getDefaultNotificationTime(): null,
+                            setOn ? _getDefaultNotificationTime() : null,
                             settingsBundle.preferences);
                       },
                     ),
@@ -212,6 +211,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<_SettingsBundle> _getSettingsBundle() async {
+    //todo add language to bundle
     final preferences = await SharedPreferences.getInstance();
     final themeMode = await AdaptiveTheme.getThemeMode();
     return _SettingsBundle(preferences, themeMode);
