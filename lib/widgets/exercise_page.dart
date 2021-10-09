@@ -21,7 +21,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/controllers/workout_controller.dart';
-import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
@@ -31,7 +30,6 @@ import 'package:feeel/widgets/exercise_layout.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'flipped.dart';
 
 class ExercisePage extends StatefulWidget {
   final Workout workout;
@@ -142,15 +140,9 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                       title: exercise.name.i18n,
                       headOnly: headOnly,
                       onBreak: (i % 2 == 0),
-                      triangleSeed:
-                          headOnly ? exercise.name.hashCode : 0,
-                      illustration: imageSlug != null
-                          ? exercise.twoSided
-                              ? Flipped(
-                                  child: Image.asset(
-                                      AssetHelper.getImage(imageSlug)))
-                              : Image.asset(AssetHelper.getImage(imageSlug))
-                          : Text("Image missing".i18n),
+                      triangleSeed: headOnly ? exercise.name.hashCode : 0,
+                      imageSlug: imageSlug,
+                      flipped: exercise.twoSided,
                     );
                   },
                   itemCount: widget.workout.workoutExercises.length * 2,
