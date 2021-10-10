@@ -112,7 +112,7 @@
     "txtThemeLight": "Свет",
     "txtThemeSystem": "Стандартная система",
     "txtTheme": "Тема",
-    "txtDiscardChanges": "Отбрасывать изменения?",
+    "txtDiscardChanges": "Отменить изменения?",
     "txtCustomDuration": "Индивидуальная продолжительность (ы)",
     "txtBatteryOptimization": "На некоторых устройствах для надежной работы Feeel может потребоваться отключить оптимизацию батареи.",
     "btnEnableTTS": "Используйте голосовые команды",
@@ -120,5 +120,9 @@
     "txtCardio": "Кардио",
     "txtStretchingAndYoga": "Растяжка и йога",
     "txtStrength": "Прочность",
-    "txtLanguage": "Язык"
+    "txtLanguage": "Язык",
+    "txtNumberInputNonnumeric": "Должно быть числом",
+    "txtDurationLong": "%1d мин., %2d сек.",
+    "txtNumberInputEmpty": "Не может быть пустым",
+    "txtDragToReorder": "Перетащите этот маркер, чтобы изменить порядок упражнений."
 }
