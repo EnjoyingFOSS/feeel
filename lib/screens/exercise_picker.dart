@@ -20,17 +20,22 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/view/exercise.dart';
 import 'package:feeel/screens/exercise_creator.dart';
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';
-import 'package:feeel/widgets/flipped.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/widgets/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class ExercisePickerScreen extends StatefulWidget {
+  final FeeelSwatch swatch;
+
+  const ExercisePickerScreen({Key? key, required this.swatch})
+      : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _ExercisePickerScreenState();
@@ -39,8 +44,7 @@ class ExercisePickerScreen extends StatefulWidget {
 
 class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
   List<Exercise>? _exercises;
-  List<int> _chosenExerciseIndices =
-      List.empty(growable: true); //todo use boolean array
+  List<int> _chosenExerciseIndices = List.empty(growable: true);
   late Future<List<Exercise>> _future;
 
   @override
@@ -52,25 +56,31 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final bgColor = widget.swatch
+        .getColorByBrightness(FeeelShade.LIGHTEST, theme.brightness);
     return Scaffold(
+        backgroundColor: bgColor,
         appBar: AppBar(
+          backgroundColor: bgColor,
+          titleTextStyle: theme.appBarTheme.titleTextStyle?.copyWith(
+              color: widget.swatch
+                  .getColorByBrightness(FeeelShade.DARK, theme.brightness)),
           iconTheme: theme.iconTheme,
-          textTheme: theme.textTheme,
-          brightness: theme.brightness,
-          backgroundColor: FeeelColors.blue
-              .getColorByBrightness(FeeelShade.LIGHTEST, theme.brightness),
           title: Text("Add exercises".i18n),
-          centerTitle: false,
         ),
         floatingActionButton: FloatingActionButton(
+          foregroundColor: widget.swatch.getColor(FeeelShade.DARKER),
+          backgroundColor: Colors.white,
           child: Icon(Icons.done),
           tooltip: "Done".i18n,
           onPressed: () {
-            List<Exercise> chosenExercises =
-                List.generate(_chosenExerciseIndices.length, (index) {
-              return _exercises![_chosenExerciseIndices[index]];
-            });
-            Navigator.pop(context, chosenExercises);
+            if (_exercises != null) {
+              List<Exercise> chosenExercises =
+                  List.generate(_chosenExerciseIndices.length, (index) {
+                return _exercises![_chosenExerciseIndices[index]];
+              });
+              Navigator.pop(context, chosenExercises);
+            }
           },
         ),
         body: FutureBuilder(
@@ -79,52 +89,24 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
               if (snapshot.hasData) {
                 _exercises = snapshot.data!;
 
-                return ListView.builder( //todo add itemExtent here, but test for responsiveness
+                return ListView.builder(
+                    //todo add itemExtent here, but test for responsiveness
                     padding: EdgeInsets.fromLTRB(0, 16, 0, 64),
                     itemCount: _exercises!.length + 1,
                     itemBuilder: (context, i) {
                       if (i < _exercises!.length) {
-                        var exercise = _exercises![i];
-                        var imageSlug = exercise.imageSlug;
-
-                        return CheckboxListTile(
-                          value: _chosenExerciseIndices.contains(i),
-                          title: Row(children: [
-                            Expanded(child: Text(exercise.name.i18n)),
-                            IconButton(
-                              //todo add labels to all icons
-                              icon: Icon(Icons.info_outline),
-                              tooltip: "More info".i18n,
-                              onPressed: () => showDialog<void>(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                        scrollable: true,
-                                        title: Text(exercise.name.i18n),
-                                        content:
-                                            Text(exercise.description.i18n),
-                                      )),
-                            ),
-                          ]),
-                          secondary: imageSlug == null
-                              ? Container(
-                                  width: 0,
-                                )
-                              : (exercise.twoSided
-                                  ? Flipped(
-                                      child: Image.asset(
-                                          AssetHelper.getThumb(imageSlug)))
-                                  : Image.asset(
-                                      AssetHelper.getThumb(imageSlug))),
-                          onChanged: (chosen) {
-                            setState(() {
-                              if (chosen != null && chosen) {
-                                _chosenExerciseIndices.add(i);
-                              } else {
-                                _chosenExerciseIndices.remove(i);
-                              }
+                        return ExercisePickerRow(
+                            checked: _chosenExerciseIndices.contains(i),
+                            exercise: _exercises![i],
+                            onChanged: (chosen) {
+                              setState(() {
+                                if (chosen != null && chosen) {
+                                  _chosenExerciseIndices.add(i);
+                                } else {
+                                  _chosenExerciseIndices.remove(i);
+                                }
+                              });
                             });
-                          },
-                        );
                       } else {
                         return ListTile(
                           leading: Container(

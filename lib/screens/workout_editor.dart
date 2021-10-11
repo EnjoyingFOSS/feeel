@@ -321,7 +321,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
     List<Exercise>? exercises = await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ExercisePickerScreen(),
+          builder: (context) => ExercisePickerScreen(swatch: _colorSwatch),
           fullscreenDialog: true,
         ));
     setState(() {
