@@ -76,5 +76,9 @@
     "txtCardio": "Kardiyo",
     "txtStretchingAndYoga": "Esneme ve yoga",
     "txtStrength": "Güç",
-    "txtDurationLong": "%1d dak., %2d sn."
+    "txtDurationLong": "%1d dak., %2d sn.",
+    "txtDragToReorder": "Egzersizleri yeniden sıralamak için bu tutamacı sürükleyin.",
+    "txtNumberInputNonnumeric": "Sayısal olmalı",
+    "txtNumberInputEmpty": "Boş olamaz",
+    "txtLanguage": "Dil"
 }
