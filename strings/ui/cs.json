@@ -76,5 +76,9 @@
     "txtCardio": "Kardio",
     "txtStretchingAndYoga": "Protahování a jóga",
     "txtStrength": "Silové cvičení",
-    "txtDurationLong": "%1d min., %2d s."
+    "txtDurationLong": "%1d min., %2d s.",
+    "txtLanguage": "Jazyk",
+    "txtNumberInputEmpty": "Nesmí být prázdné",
+    "txtNumberInputNonnumeric": "Musí být číslo",
+    "txtDragToReorder": "Táhněte touto rukojetí pro změnu pořadí cviků."
 }
