@@ -1,0 +1,10 @@
+Banyak hal baru, antara lain:
+* Kategori latihan berkode warna
+* Latihan default baru: Peregangan leher dan bahu
+* Latihan baru
+* Visualisasi khusus gambar latihan dengan close-up kepala
+* dukungan iOS
+* Terjemahan bahasa Arab baru + dukungan RTL
+* Tweak tema
+* Bokmal Norwegia dihapus lagi
+* Berbagai perbaikan bug dan pembaruan terjemahan
