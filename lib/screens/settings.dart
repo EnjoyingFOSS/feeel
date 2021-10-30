@@ -74,6 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     settingsBundle.preferences
                         .getInt(PreferenceKeys.NOTIFICATION_TIME_PREF));
                 final curTheme = settingsBundle.themeMode;
+                final activeColor = Theme.of(context).colorScheme.primary;
                 return ListView(
                   children: <Widget>[
                     SwitchListTile.adaptive(
@@ -88,6 +89,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               PreferenceKeys.TTS_DISABLED_PREF, newValue);
                         });
                       },
+                      activeColor: activeColor
                     ),
                     SwitchListTile.adaptive(
                       secondary: Icon(Icons.notifications),
@@ -99,6 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             setOn ? _getDefaultNotificationTime() : null,
                             settingsBundle.preferences);
                       },
+                      activeColor: activeColor,
                     ),
                     if (notificationTime != null && Platform.isAndroid)
                       Padding(
