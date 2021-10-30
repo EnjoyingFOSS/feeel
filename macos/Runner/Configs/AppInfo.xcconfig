@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = feeel
+PRODUCT_NAME = Feeel
 
 // The application's bundle identifier
 PRODUCT_BUNDLE_IDENTIFIER = com.enjoyingfoss.feeel
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2021 com.enjoyingfoss. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2021 Miroslav Mazel et al. All rights reserved.
