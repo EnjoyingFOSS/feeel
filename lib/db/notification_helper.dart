@@ -55,11 +55,9 @@ class NotificationHelper {
             requestAlertPermission: false,
             requestBadgePermission: false,
             requestSoundPermission: false));
-    flutterLocalNotificationsPlugin
-        .initialize(initializationSettings,
-            onSelectNotification: (String? payload) async {
-      //todo right?
-      return await Navigator.push(
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: (String? payload) async {
+      return await Navigator.push<void>(
         context,
         MaterialPageRoute(builder: (context) => WorkoutListScreen()),
       );
@@ -77,8 +75,9 @@ class NotificationHelper {
       }
 
       final platformChannelSpecifics = NotificationDetails(
-          android: AndroidNotificationDetails(_NOTIFICATION_CHANNEL_ID,
-              "Daily notification".i18n, "A daily reminder to work out".i18n,
+          android: AndroidNotificationDetails(
+              _NOTIFICATION_CHANNEL_ID, "Daily notification".i18n,
+              channelDescription: "A daily reminder to work out".i18n,
               color: Theme.of(context).primaryColor),
           iOS: IOSNotificationDetails(),
           macOS: MacOSNotificationDetails());
