@@ -58,9 +58,9 @@ class _Exercises {
       CALF_RAISES_R = 21,
       SIDE_SPLIT_SQUATS_R = 22,
       SPLIT_SQUATS_L = 23,
-      SPLIT_SQUATS_R = 24,
+      SPLIT_SQUATS_R = 24;
       // JUMP_ROPE_BASIC = 25,
-      ARM_CIRCLES = 26,
+      // ARM_CIRCLES_FW = 26,
       // PIKE_PUSHUPS = 27,
       // MOUNTAIN_CLIMBERS = 28,
       // FOURCOUNT_BURPEES = 29,
@@ -68,32 +68,35 @@ class _Exercises {
       // SQUAT_THRUSTS = 31,
       // REVERSE_LUNGES = 32,
       // LEG_RAISES = 33,
-      // FLOOR_DIPS = 34,
+      // FLOOR_DIPS = 34, // v2.2.0
       // HIGH_PLANK = 35,
-      CHIN_TUCK = 36,
-      HEAD_TURNS = 37,
-      BACK_NECK_STRETCH = 38,
-      LATERAL_NECK_STRETCH_LEFT = 39,
-      LATERAL_NECK_STRETCH_RIGHT = 40,
-      SHOULDER_SHRUG = 41,
-      FRONT_NECK_STRETCH = 42,
-      BACK_AND_LATERAL_NECK_STRETCH_LEFT = 43,
-      BACK_AND_LATERAL_NECK_STRETCH_RIGHT = 44,
-      CHIN_TUCK_WITH_FLEXION_WITH_ROTATION = 45,
-      SHOULDER_ROTATION_FORWARD = 46,
-      SHOULDER_ROTATION_BACKWARD = 47
-      // CHILDS_POSE = 48,
-      // PULL_UP = 49,
-      // KETTLEBELL_DEADLIFT=50,
-      // SUMO_SQUAT=51
-      ;
+      // ARM_CIRCLES_BW = 36,
+      // CHILDS_POSE = 37,
+      // PULL_UP = 38,
+      // KETTLEBELL_DEADLIFT=39,
+      // SUMO_SQUAT=40,
+      // SHOULDER_ROTATION_FW = 41,
+      // SHOULDER_ROTATION_BW = 42,
+      // SHOULDER_SHRUG = 43,
+      // CHIN_TUCK = 44,
+      // HEAD_TURNS = 45;
+
+  // BACK_NECK_STRETCH = 4?,
+  // LATERAL_NECK_STRETCH_LEFT = 4?,
+  // LATERAL_NECK_STRETCH_RIGHT = 4?,
+  // FRONT_NECK_STRETCH = 4?,
+  // BACK_AND_LATERAL_NECK_STRETCH_LEFT = 4?,
+  // BACK_AND_LATERAL_NECK_STRETCH_RIGHT = 4?,
+  // CHIN_TUCK_WITH_FLEXION_WITH_ROTATION = 4?,
 }
 
-class TimingTuple {
+class TimingDefinition {
   final int id;
-  final int? duration;
+  final int? breakDuration;
+  final int? exerciseDuration;
 
-  TimingTuple(this.id, this.duration);
+  TimingDefinition(this.id,
+      {this.exerciseDuration = null, this.breakDuration = null});
 }
 
 class DBHelper {
@@ -128,7 +131,7 @@ class DBHelper {
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
   static const int _DATABASE_VERSION =
-      15; //todo DB version should match app version
+      17; //todo DB version should match app version
 
   Future<Database> _createDB() async {
     String path = await getPath();
@@ -212,26 +215,48 @@ class DBHelper {
           ")");
 
   Future<void> _addDefaultWorkouts(Database db) async {
-    await _createWorkoutFromTupleList(
+    await _createWorkoutFromList(
       db,
       "Scientific 7 minute workout",
       WorkoutCategory.STRENGTH,
       [
-        TimingTuple(_Exercises.JUMPING_JACKS, null),
-        TimingTuple(_Exercises.WALL_SIT, null),
-        TimingTuple(_Exercises.PUSH_UPS, null),
-        TimingTuple(_Exercises.AB_CRUNCHES, null),
-        TimingTuple(_Exercises.STEP_UPS, null),
-        TimingTuple(_Exercises.SQUATS, null),
-        TimingTuple(_Exercises.CHAIR_DIPS, null),
-        TimingTuple(_Exercises.PLANK, null),
-        TimingTuple(_Exercises.HIGH_KNEES, null),
-        TimingTuple(_Exercises.LUNGES, null),
-        TimingTuple(_Exercises.PUSH_UP_ROTATIONS, null),
-        TimingTuple(_Exercises.SIDE_PLANK_L, 15),
-        TimingTuple(_Exercises.SIDE_PLANK_R, 15)
+        _Exercises.JUMPING_JACKS,
+        _Exercises.WALL_SIT,
+        _Exercises.PUSH_UPS,
+        _Exercises.AB_CRUNCHES,
+        _Exercises.STEP_UPS,
+        _Exercises.SQUATS,
+        _Exercises.CHAIR_DIPS,
+        _Exercises.PLANK,
+        _Exercises.HIGH_KNEES,
+        _Exercises.LUNGES,
+        _Exercises.PUSH_UP_ROTATIONS,
+        _Exercises.SIDE_PLANK_L,
+        _Exercises.SIDE_PLANK_R,
       ],
     );
+
+    // await _createWorkoutFromTupleList(
+    //   db,
+    //   "Scientific 7 minute workout",
+    //   WorkoutCategory.STRENGTH,
+    //   [
+    //     TimingDefinition(_Exercises.JUMPING_JACKS),
+    //     TimingDefinition(_Exercises.WALL_SIT),
+    //     TimingDefinition(_Exercises.PUSH_UPS),
+    //     TimingDefinition(_Exercises.AB_CRUNCHES),
+    //     TimingDefinition(_Exercises.STEP_UPS),
+    //     TimingDefinition(_Exercises.SQUATS),
+    //     TimingDefinition(_Exercises.CHAIR_DIPS),
+    //     TimingDefinition(_Exercises.PLANK),
+    //     TimingDefinition(_Exercises.HIGH_KNEES),
+    //     TimingDefinition(_Exercises.LUNGES),
+    //     TimingDefinition(_Exercises.PUSH_UP_ROTATIONS),
+    //     TimingDefinition(_Exercises.SIDE_PLANK_L, exerciseDuration: 15),
+    //     TimingDefinition(_Exercises.SIDE_PLANK_R,
+    //         breakDuration: 5, exerciseDuration: 15)
+    //   ],
+    // );
 
     await _createWorkoutFromList(
       db,
@@ -251,29 +276,37 @@ class DBHelper {
       ],
     );
 
-    await _createWorkoutFromTupleList(
-      //todo iron out timing
-      db,
-      "Neck and shoulder stretches",
-      WorkoutCategory.STRETCHING,
-      [
-        TimingTuple(
-            _Exercises.CHIN_TUCK, null), //todo 30 should really be "null"
-        TimingTuple(
-            _Exercises.ARM_CIRCLES, null), //should be to from end, actually
-        TimingTuple(_Exercises.HEAD_TURNS, null),
-        TimingTuple(_Exercises.BACK_NECK_STRETCH, null),
-        TimingTuple(_Exercises.LATERAL_NECK_STRETCH_LEFT, null),
-        TimingTuple(_Exercises.LATERAL_NECK_STRETCH_RIGHT, null),
-        TimingTuple(_Exercises.SHOULDER_SHRUG, null),
-        TimingTuple(_Exercises.FRONT_NECK_STRETCH, null),
-        TimingTuple(_Exercises.BACK_AND_LATERAL_NECK_STRETCH_LEFT, null),
-        TimingTuple(_Exercises.BACK_AND_LATERAL_NECK_STRETCH_RIGHT, null),
-        TimingTuple(_Exercises.CHIN_TUCK_WITH_FLEXION_WITH_ROTATION, 15),
-        TimingTuple(_Exercises.SHOULDER_ROTATION_FORWARD, 15),
-        TimingTuple(_Exercises.SHOULDER_ROTATION_BACKWARD, 15),
-      ],
-    );
+    // await _createWorkoutFromTupleList(
+    //   //todo iron out timing
+    //   db,
+    //   "Neck and shoulder stretches",
+    //   WorkoutCategory.STRETCHING,
+    //   [
+    //     //todo 15 as the default here?
+    //     TimingDefinition(_Exercises.CHIN_TUCK),
+    //     TimingDefinition(_Exercises.ARM_CIRCLES_FW,
+    //         exerciseDuration: 15), //should be to from end, actually
+    //     TimingDefinition(_Exercises.ARM_CIRCLES_BW,
+    //         breakDuration: 5, exerciseDuration: 15),
+    //     TimingDefinition(_Exercises.HEAD_TURNS),
+    //     TimingDefinition(_Exercises.BACK_NECK_STRETCH, exerciseDuration: 20),
+    //     TimingDefinition(_Exercises.LATERAL_NECK_STRETCH_LEFT,
+    //         exerciseDuration: 35),
+    //     TimingDefinition(_Exercises.LATERAL_NECK_STRETCH_RIGHT,
+    //         exerciseDuration: 35),
+    //     TimingDefinition(_Exercises.SHOULDER_SHRUG),
+    //     TimingDefinition(_Exercises.FRONT_NECK_STRETCH),
+    //     TimingDefinition(_Exercises.BACK_AND_LATERAL_NECK_STRETCH_LEFT,
+    //         exerciseDuration: 8),
+    //     TimingDefinition(_Exercises.BACK_AND_LATERAL_NECK_STRETCH_RIGHT,
+    //         exerciseDuration: 8),
+    //     TimingDefinition(_Exercises.CHIN_TUCK_WITH_FLEXION_WITH_ROTATION,
+    //         exerciseDuration: 18),
+    //     TimingDefinition(_Exercises.SHOULDER_ROTATION_FW, exerciseDuration: 15),
+    //     TimingDefinition(_Exercises.SHOULDER_ROTATION_BW,
+    //         breakDuration: 5, exerciseDuration: 15),
+    //   ],
+    // );
   }
 
   Future<void> _addExercises(Database db) async {
@@ -440,10 +473,10 @@ class DBHelper {
         imageSlug: "exercise_jumpropebasic.webp");
 
     await _createExercise(db,
-        name: "Arm circles",
+        name: "Forward arm circles",
         description:
-            "1. Stand up tall with your back straight.\n2. Bring your arms forward, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
-        imageSlug: "exercise_armcircles.webp");
+            "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.\n3. Keep circling your arms as described in step 2.",
+        imageSlug: "exercise_armcircles_fw.webp");
 
     await _createExercise(db,
         name: "Pike push-ups",
@@ -500,93 +533,10 @@ class DBHelper {
         imageSlug: "exercise_highplank.webp");
 
     await _createExercise(db,
-        name: "Chin tuck",
-        type: ExerciseType.HEAD,
+        name: "Backward arm circles",
         description:
-            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.\n2. Hold for 5 seconds.\n3. Go back to normal head position and repeat.",
-        imageSlug: "exercise_chintuck.webp");
-
-    await _createExercise(db,
-        name: "Head turns",
-        type: ExerciseType.HEAD,
-        description:
-            "Starting position:\nSit or stand with your back straight and shoulders down.\n\nSteps:\n1. Sit or stand up straight, shoulders dropped.\n2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold.\n3. Return to center position and repeat, changing sides.",
-        imageSlug: "exercise_headturn.webp");
-
-    await _createExercise(db,
-        name: "Back neck stretch", //todo or flexion?
-        type: ExerciseType.HEAD,
-        description:
-            "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
-        imageSlug: "exercise_neckstretch_back.webp");
-
-    final lateralNeckStretchDesc =
-        "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to the side and hold for 9 seconds to stretch the side of your neck.\n2. With the opposite hand on top of your head, gently pull to stretch further. Hold for 9 seconds.\n3. Turn your chin to your shoulder. Hold for 9 seconds.\n4. Release and return to starting position.";
-
-    await _createExercise(db,
-        name: "Left neck stretch",
-        type: ExerciseType.HEAD,
-        description: lateralNeckStretchDesc,
-        flipped: true,
-        imageSlug: "exercise_neckstretch_lateral.webp");
-
-    await _createExercise(db,
-        name: "Right neck stretch",
-        type: ExerciseType.HEAD,
-        description: lateralNeckStretchDesc,
-        imageSlug: "exercise_neckstretch_lateral.webp");
-
-    await _createExercise(db,
-        name: "Shoulder shrugs",
-        type: ExerciseType.HEAD,
-        description:
-            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Lift shoulders straight up as far as possible and hold for 5 sec.\n2. Release shoulders back down to a relaxed position.\n3. Repeat.",
-        imageSlug: "exercise_shouldershrug.webp");
-
-    await _createExercise(db,
-        name: "Front neck stretch",
-        type: ExerciseType.HEAD,
-        description:
-            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Open mouth wide.\n2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.\n3. Very slowly close and open your mouth.\n4. At the end, slowly return to starting position and close mouth.",
-        imageSlug: "exercise_neckstretch_front.webp");
-
-    final backAndLateralNeckStretchDesc =
-        "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt head forward, chin to chest, with hands behind your head.\n2. Keeping head forward, use waist muscles to turn as far as comfortable to the left.\n3. Use hands to pull head down very slightly, controlling the stretch.\n4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.\n5. Turn back into center position.\n6. Bring your hands to your forehead and push head upright again into normal position.";
-
-    await _createExercise(db,
-        name: "Back and left neck stretch",
-        type: ExerciseType.HEAD,
-        flipped: true,
-        description: backAndLateralNeckStretchDesc,
-        imageSlug: "exercise_neckstretch_back,lateral.webp");
-
-    await _createExercise(db,
-        name: "Back and right neck stretch",
-        type: ExerciseType.HEAD,
-        description: backAndLateralNeckStretchDesc,
-        imageSlug: "exercise_neckstretch_back,lateral.webp");
-
-    await _createExercise(db,
-        name: "Chin tuck with flexion with rotation",
-        type: ExerciseType.HEAD,
-        description:
-            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tuck your chin in, moving your head back.\n2. Tilt your head forward until you feel a stretch in the back of your neck.\n3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.\n4. Hold for 5 seconds.\n5. Rotate back, keeping your head down.\n6. Repeat from step 3, switching sides.",
-        imageSlug: "exercise_chintuck+flextion+rotation.webp");
-
-    final shoulderRotationDesc =
-        "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Place your hands on your shoulders.\n2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.";
-
-    await _createExercise(db,
-        name: "Forward shoulder rotation",
-        type: ExerciseType.HEAD,
-        description: shoulderRotationDesc,
-        imageSlug: "exercise_shoulderrotation_fw.webp");
-
-    await _createExercise(db,
-        name: "Backward shoulder rotation",
-        type: ExerciseType.HEAD,
-        description: shoulderRotationDesc,
-        imageSlug: "exercise_shoulderrotation_bw.webp");
+            "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
+        imageSlug: "exercise_armcircles_bw.webp");
 
     await _createExercise(db,
         name: "Child's pose",
@@ -611,6 +561,95 @@ class DBHelper {
         description:
             "Starting position:\nStand with legs wide and toes turned outwards.\n\nSteps:\n1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.\n2. Push back up into starting position.\n3. Repeat this exercise in a pulsing motion.",
         imageSlug: "exercise_sumosquat.webp");
+
+    final shoulderRotationDesc =
+        "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Place your hands on your shoulders.\n2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.";
+
+    await _createExercise(db,
+        name: "Forward shoulder rotation",
+        type: ExerciseType.HEAD,
+        description: shoulderRotationDesc,
+        imageSlug: "exercise_shoulderrotation_fw.webp");
+
+    await _createExercise(db,
+        name: "Backward shoulder rotation",
+        type: ExerciseType.HEAD,
+        description: shoulderRotationDesc,
+        imageSlug: "exercise_shoulderrotation_bw.webp");
+
+    await _createExercise(db,
+        name: "Chin tuck",
+        type: ExerciseType.HEAD,
+        description:
+            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.\n2. Hold for 5 seconds.\n3. Go back to normal head position and repeat.",
+        imageSlug: "exercise_chintuck.webp");
+
+    await _createExercise(db,
+        name: "Shoulder shrugs",
+        type: ExerciseType.HEAD,
+        description:
+            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Lift shoulders straight up as far as possible and hold for 5 sec.\n2. Release shoulders back down to a relaxed position.\n3. Repeat.",
+        imageSlug: "exercise_shouldershrug.webp");
+
+    await _createExercise(db,
+        name: "Head turns",
+        type: ExerciseType.HEAD,
+        description:
+            "Starting position:\nSit or stand with your back straight and shoulders down.\n\nSteps:\n1. Sit or stand up straight, shoulders dropped.\n2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.\n3. Return to center position and repeat, changing sides.",
+        imageSlug: "exercise_headturn.webp");
+
+    // await _createExercise(db,
+    //     name: "Back neck stretch", //todo or flexion?
+    //     type: ExerciseType.HEAD,
+    //     description:
+    //         "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
+    //     imageSlug: "exercise_neckstretch_back.webp");
+
+    // final lateralNeckStretchDesc =
+    //     "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.\n2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.\n3. Turn your chin to your shoulder. Hold for 8 seconds.\n4. Release and return to starting position.";
+
+    // await _createExercise(db,
+    //     name: "Left neck stretch",
+    //     type: ExerciseType.HEAD,
+    //     description: lateralNeckStretchDesc,
+    //     flipped: true,
+    //     imageSlug: "exercise_neckstretch_lateral.webp");
+
+    // await _createExercise(db,
+    //     name: "Right neck stretch",
+    //     type: ExerciseType.HEAD,
+    //     description: lateralNeckStretchDesc,
+    //     imageSlug: "exercise_neckstretch_lateral.webp");
+
+    // await _createExercise(db,
+    //     name: "Front neck stretch",
+    //     type: ExerciseType.HEAD,
+    //     description:
+    //         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Open mouth wide.\n2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.\n3. Very slowly close and open your mouth.\n4. At the end, slowly return to starting position and close mouth.",
+    //     imageSlug: "exercise_neckstretch_front.webp");
+
+    // final backAndLateralNeckStretchDesc =
+    //     "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt head forward, chin to chest, with hands behind your head.\n2. Keeping head forward, use waist muscles to turn as far as comfortable to the left.\n3. Use hands to pull head down very slightly, controlling the stretch.\n4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.\n5. Turn back into center position.\n6. Bring your hands to your forehead and push head upright again into normal position.";
+
+    // await _createExercise(db,
+    //     name: "Back and left neck stretch",
+    //     type: ExerciseType.HEAD,
+    //     flipped: true,
+    //     description: backAndLateralNeckStretchDesc,
+    //     imageSlug: "exercise_neckstretch_back,lateral.webp");
+
+    // await _createExercise(db,
+    //     name: "Back and right neck stretch",
+    //     type: ExerciseType.HEAD,
+    //     description: backAndLateralNeckStretchDesc,
+    //     imageSlug: "exercise_neckstretch_back,lateral.webp");
+
+    // await _createExercise(db,
+    //     name: "Chin tuck with flexion with rotation",
+    //     type: ExerciseType.HEAD,
+    //     description:
+    //         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tuck your chin in, moving your head back.\n2. Tilt your head forward until you feel a stretch in the back of your neck.\n3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.\n4. Hold for 5 seconds.\n5. Rotate back, keeping your head down.\n6. Repeat from step 3, switching sides.",
+    //     imageSlug: "exercise_chintuck+flextion+rotation.webp");
   }
 
   Future<void> _createWorkoutFromList(
@@ -642,7 +681,7 @@ class DBHelper {
     Database db,
     String workoutName,
     WorkoutCategory category,
-    List<TimingTuple> _exerciseIDsAndDurations,
+    List<TimingDefinition> _exerciseIDsAndDurations,
   ) async {
     int workoutId = await _createWorkout(
         db,
@@ -655,13 +694,14 @@ class DBHelper {
 
     for (int i = 0; i < _exerciseIDsAndDurations.length; i++) {
       int workoutOrder = i + 1;
-      final pair = _exerciseIDsAndDurations[i];
+      final durDefinition = _exerciseIDsAndDurations[i];
       await _createWorkoutExercise(db,
           workoutId: workoutId,
           workoutType: WorkoutType.DEFAULT,
           order: workoutOrder,
-          duration: pair.duration,
-          exerciseId: pair.id);
+          duration: durDefinition.exerciseDuration,
+          breakBeforeDuration: durDefinition.breakDuration,
+          exerciseId: durDefinition.id);
     }
   }
 
