@@ -23,7 +23,6 @@
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/view/exercise.dart';
 import 'package:feeel/screens/exercise_creator.dart';
-import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/widgets/exercise_picker_row.dart';
@@ -58,13 +57,14 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
     final theme = Theme.of(context);
     final bgColor = widget.swatch
         .getColorByBrightness(FeeelShade.LIGHTEST, theme.brightness);
+    final fgColor = widget.swatch
+                  .getColorByBrightness(FeeelShade.DARK, theme.brightness);
     return Scaffold(
         backgroundColor: bgColor,
         appBar: AppBar(
           backgroundColor: bgColor,
           titleTextStyle: theme.appBarTheme.titleTextStyle?.copyWith(
-              color: widget.swatch
-                  .getColorByBrightness(FeeelShade.DARK, theme.brightness)),
+              color: fgColor),
           iconTheme: theme.iconTheme,
           title: Text("Add exercises".i18n),
         ),
@@ -98,6 +98,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                         return ExercisePickerRow(
                             checked: _chosenExerciseIndices.contains(i),
                             exercise: _exercises![i],
+                            color: fgColor,
                             onChanged: (chosen) {
                               setState(() {
                                 if (chosen != null && chosen) {

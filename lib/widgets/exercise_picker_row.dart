@@ -8,15 +8,17 @@ class ExercisePickerRow extends StatelessWidget {
   final bool checked;
   final Function(bool?)? onChanged;
   final Exercise exercise;
+  final Color color;
 
   const ExercisePickerRow(
-      {Key? key, required this.checked, this.onChanged, required this.exercise})
+      {Key? key, required this.checked, this.onChanged, required this.exercise, required this.color})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final imageSlug = exercise.imageSlug;
     return CheckboxListTile(
+      activeColor: color,
       value: checked,
       title: Row(children: [
         Expanded(child: Text(exercise.name.i18n)),
