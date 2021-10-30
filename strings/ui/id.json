@@ -29,7 +29,7 @@
     "txtAddExerciseFirst": "Tambahkan latihan terlebih dahulu",
     "txtNotificationTime": "Waktu pemberitahuan",
     "txtNeedCameraPermission": "Tidak dapat mengambil foto tanpa izin kamera",
-    "txtRemindMe": "Ingatkan saya untuk berolahraga setiap hari",
+    "txtRemindMe": "Pengingat harian",
     "txtNotificationDesc": "Hanya perlu beberapa menit untuk merasa segar dan bugar",
     "txtNotificationTitle": "Waktunya memakai pakaian olahraga!",
     "txtNotificationInfoDesc": "Pengingat harian untuk berolahraga",
@@ -75,5 +75,10 @@
     "txtOther": "Lainnya",
     "txtCardio": "Kardio",
     "txtStretchingAndYoga": "Peregangan & yoga",
-    "txtStrength": "Kekuatan"
+    "txtStrength": "Kekuatan",
+    "txtNumberInputEmpty": "Tidak boleh kosong",
+    "txtNumberInputNonnumeric": "Harus numerik",
+    "txtLanguage": "Bahasa",
+    "txtDragToReorder": "Seret ikon handle untuk menyusun ulang latihan.",
+    "txtDurationLong": "%1d mnt., %2d dtk."
 }
