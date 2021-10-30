@@ -68,7 +68,15 @@ class WorkoutContentEditor extends StatelessWidget {
                           }),
                       ReorderableDragStartListener(
                         index: i,
-                        child: const Icon(Icons.drag_handle),
+                        child: IconButton(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text(
+                                      "Drag this handle to reorder exercises."
+                                          .i18n)));
+                              //todo test this, shouldn't show up on drag
+                            },
+                            icon: Icon(Icons.drag_handle)),
                       )
                     ]));
               },
