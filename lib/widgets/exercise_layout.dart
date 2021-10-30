@@ -24,7 +24,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
-import 'package:feeel/widgets/flipped.dart';
 import 'package:feeel/widgets/illustration_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -116,6 +115,7 @@ class ExerciseLayout extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                             color: fgColor),
                         minFontSize: 14,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis)
                   ])
                 : AutoSizeText(title,
