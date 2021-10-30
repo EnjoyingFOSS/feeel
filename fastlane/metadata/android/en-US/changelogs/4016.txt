@@ -1,6 +1,5 @@
 Lots of new stuff, including:
 * Color-coded workout categories
-* A new default workout: Neck and shoulder stretches
 * New exercises
 * Special visualization of exercise images with a close-up of a head
 * iOS support
