@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleLocalizations</key>
+		<array>
+			<string>en</string>
+			<string>ar</string>
+			<string>cs</string>
+			<string>de</string>
+			<string>es</string>
+			<string>eu</string>
+			<string>fr</string>
+			<string>hr</string>
+			<string>id</string>
+			<string>it</string>
+			<string>nl</string>
+			<string>pt</string>
+			<string>ru</string>
+			<string>tr</string>
+		</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

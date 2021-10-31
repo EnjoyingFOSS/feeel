@@ -4,6 +4,7 @@ Lots of new stuff, including:
 * Special visualization of exercise images with a close-up of a head
 * iOS support
 * New Arabic translation + RTL support
+* New Croatian translation
 * Theme tweaks
 * Norwegian Bokmal was deleted again
 * Various bug fixes and translation updates

@@ -9,6 +9,7 @@ class LocaleHelper {
     const Locale('es'),
     const Locale('eu'),
     const Locale('fr'),
+    const Locale('hr'),
     const Locale('id'),
     const Locale('it'),
     const Locale('nl'),

@@ -34,12 +34,13 @@ static var t = Translations("en") +
 "pt": """Você conseguiu!""",
 "en": """You did it!""",
 "it": """Ce l'hai fatta!""",
+"hr": """Uspio/uspjela si!""",
 "fr": """Vous avez réussi !""",
 "eu": """Lortu duzu!""",
-"nb_NO": """Du gjorde det!""",
 "cs": """Dobrá práce!""",
 "id": """Kamu berhasil!""",
 "es": """¡Lo ha conseguido!""",
+"ar": """أنت فعلت ذلك!""",
 } +
 {
 "tr": """Sonraki:""",
@@ -49,12 +50,13 @@ static var t = Translations("en") +
 "pt": """Próximo:""",
 "en": """Next up:""",
 "it": """Preparati per:""",
+"hr": """Sljedeće:""",
 "fr": """Ensuite :""",
 "eu": """Hurrengoa:""",
-"nb_NO": """Neste opp:""",
 "cs": """Další cvik:""",
 "id": """Berikutnya:""",
 "es": """A continuación:""",
+"ar": """التالي:""",
 } +
 {
 "tr": """Haydi başlayalım. Birinci: %s""",
@@ -64,12 +66,13 @@ static var t = Translations("en") +
 "pt": """Vamos lá! Começando com: %s""",
 "en": """Let's go! First up: %s""",
 "it": """Si parte! Primo esercizio: %s""",
+"hr": """Započnimo! Najprije: %s""",
 "fr": """Allons-y ! Première étape : %s""",
 "eu": """Goazen! Lehena: %s""",
-"nb_NO": """La oss gå! Først opp: %s""",
 "cs": """Pojďme na to! První cvik: %s""",
 "id": """Ayo! Pertama: %s""",
 "es": """¡Vamos! Primer paso: %s""",
+"ar": """لنذهب! أولا: ٪s""",
 } +
 {
 "tr": """%d saniye kaldı""",
@@ -79,12 +82,13 @@ static var t = Translations("en") +
 "pt": """%d segundos restantes""",
 "en": """%d seconds left""",
 "it": """Mancano %d secondi""",
+"hr": """još %d s""",
 "fr": """Encore %d secondes""",
 "eu": """%d segundo geratzen dira""",
-"nb_NO": """%d sekunder igjen""",
 "cs": """Zbývá %d vteřin""",
 "id": """%d detik tersisa""",
 "es": """%d segundos restante""",
+"ar": """٪d ثانية متبقية""",
 } +
 {
 "tr": """Mola zamanı!""",
@@ -94,12 +98,13 @@ static var t = Translations("en") +
 "pt": """Pausa!""",
 "en": """Break!""",
 "it": """Pausa!""",
+"hr": """Odmor!""",
 "fr": """Pause !""",
 "eu": """Atsedenaldia!""",
-"nb_NO": """Pause!""",
 "cs": """Pauza!""",
 "id": """Istirahat!""",
 "es": """¡Descanso!""",
+"ar": """استراحة!""",
 } +
 {
 "tr": """Denetimler için dokunun""",
@@ -109,12 +114,13 @@ static var t = Translations("en") +
 "pt": """Toque para os controles""",
 "en": """Tap for controls""",
 "it": """Tocca per i controlli""",
+"hr": """Dodirni za prikaz kontrola""",
 "fr": """Appuyez pour les commandes""",
 "eu": """Sakatu kontroletarako""",
-"nb_NO": """Trykk for kontroller""",
 "cs": """Ťukněte pro ovládání""",
 "id": """Ketuk untuk kontrol""",
 "es": """Tocar para controles""",
+"ar": """اضغط على عناصر التحكم""",
 } +
 {
 "tr": """Resim eksik""",
@@ -124,12 +130,13 @@ static var t = Translations("en") +
 "pt": """Falta imagem""",
 "en": """Image missing""",
 "it": """Immagine mancante""",
+"hr": """Nedostaje slika""",
 "fr": """Images manquantes""",
 "eu": """Irudia falta da""",
-"nb_NO": """Bilde mangler""",
 "cs": """Chybí fotka""",
 "id": """Gambar hilang""",
 "es": """Imagen faltante""",
+"ar": """الصورة مفقودة""",
 } +
 {
 "tr": """Antrenman başlığı""",
@@ -139,12 +146,13 @@ static var t = Translations("en") +
 "pt": """Nome do treino""",
 "en": """Workout title""",
 "it": """Titolo dell'esercizio""",
+"hr": """Naziv vježbe""",
 "fr": """Titre de l’exercice""",
 "eu": """Entrenamenduaren izenburua""",
-"nb_NO": """Trening tittel""",
 "cs": """Název tréninku""",
 "id": """Judul latihan""",
 "es": """Título del entrenamiento""",
+"ar": """عنوان التمرين""",
 } +
 {
 "tr": """Kendi koçunuz olun!""",
@@ -154,12 +162,13 @@ static var t = Translations("en") +
 "pt": """Seja seu próprio treinador!""",
 "en": """Be your own coach!""",
 "it": """Sii l'allenatore di te stesso!""",
+"hr": """Budi svoj vlastiti trener!""",
 "fr": """Soyez votre propre entraîneur !""",
 "eu": """Izan zure entrenatzaile!""",
-"nb_NO": """Bli din egen coach!""",
 "cs": """Buď vlastním trenérem!""",
 "id": """Jadilah pelatihmu sendiri!""",
 "es": """¡Se su propio entrenador!""",
+"ar": """كن مدربك الخاص!""",
 } +
 {
 "tr": """Kendinizi en iyi hissettiren egzersizi tasarlayın""",
@@ -169,12 +178,13 @@ static var t = Translations("en") +
 "pt": """Monte o treino que te faça sentir o melhor""",
 "en": """Design the workout that makes you feel the best""",
 "it": """Progetta l'allenamento che ti fa sentire il migliore""",
+"hr": """Osmisli trening s kojim ćeš se osjećati najbolje""",
 "fr": """Concevez l’entraînement qui vous fait vous sentir le mieux""",
 "eu": """Diseinatu hoberen datorkizun entrenamendua""",
-"nb_NO": """Design er treningen som gjør at du føler deg den beste""",
 "cs": """Navrhni si takový trénink, po kterém se budeš cítit nejlépe""",
 "id": """Rancang latihan yang membuatmu merasa yang terbaik""",
 "es": """Diseñe el entrenamiento que le sentirá mejor""",
+"ar": """قم بتصميم التمرين الذي يجعلك تشعر بشكل أفضل""",
 } +
 {
 "tr": """Tüm vücut""",
@@ -184,12 +194,13 @@ static var t = Translations("en") +
 "pt": """Todo o corpo""",
 "en": """Full body""",
 "it": """Tutto il corpo""",
+"hr": """Cijelo tijelo""",
 "fr": """Tout le corps""",
 "eu": """Gorputz osoa""",
-"nb_NO": """Full kropp""",
 "cs": """Celé tělo""",
 "id": """Seluruh tubuh""",
 "es": """De cuerpo entero""",
+"ar": """كامل الجسم""",
 } +
 {
 "tr": """Bacaklar""",
@@ -199,12 +210,13 @@ static var t = Translations("en") +
 "pt": """Pernas""",
 "en": """Legs""",
 "it": """Gambe""",
+"hr": """Noge""",
 "fr": """Jambes""",
 "eu": """Hankak""",
-"nb_NO": """Bein""",
 "cs": """Nohy""",
 "id": """Kaki""",
 "es": """Piernas""",
+"ar": """السيقان""",
 } +
 {
 "tr": """Parlıyorsunuz!""",
@@ -214,12 +226,13 @@ static var t = Translations("en") +
 "pt": """Você está brilhando!""",
 "en": """You're glowing!""",
 "it": """Stai splendendo!""",
+"hr": """Blistaš!""",
 "fr": """Vous êtes rayonnant·e !""",
 "eu": """Primeran zabiltza!""",
-"nb_NO": """Du er strålende!""",
 "cs": """Dobrá práce!""",
 "id": """Kamu bersinar!""",
 "es": """¡Estás brillando!""",
+"ar": """أنت متوهج!""",
 } +
 {
 "tr": """Katkıda bulunun""",
@@ -229,12 +242,13 @@ static var t = Translations("en") +
 "pt": """Contribua""",
 "en": """Contribute""",
 "it": """Contribuisci a un esercizio""",
+"hr": """Doprinesi""",
 "fr": """Contribuez""",
 "eu": """Partekatu ariketa bat""",
-"nb_NO": """Bidra""",
 "cs": """Přispěj nový cvik""",
 "id": """Berkontribusi""",
 "es": """Contribuir un ejercicio""",
+"ar": """مساهمة""",
 } +
 {
 "tr": """Feeel, sizin gibi gönüllülerin egzersizler ve egzersiz fotoğrafları göndermesine güvenir. Fotoğraflar önce özel olarak üçlü sürümler halinde işlenecek, ardından onay için size gönderilecek ve ancak daha sonra uygulamada yayınlanacaktır. Gönderilen tüm fotoğraflar ve metinler yalnızca sizin çalışmanız olmalıdır. Katkıda bulunduğunuz için teşekkürler!""",
@@ -244,12 +258,13 @@ static var t = Translations("en") +
 "pt": """Feeel depende de voluntários como você para submeter exercícios e fotos de exercícios. As fotografias serão primeiro tratadas em privado em versões trianguladas, depois enviadas para aprovação, e só depois libertadas na aplicação. Todas as fotografias e textos submetidos devem ser exclusivamente o seu trabalho. Obrigado pela sua contribuição!""",
 "en": """Feeel relies on volunteers like you to submit exercises and exercise photos. Photos will first be privately processed into triangulated versions, then sent to you for approval, and only then released in the app. All submitted photos and text must be solely your work. Thanks for contributing!""",
 "it": """Feeel si affida a volontari come te per inviare esercizi e foto di esercizi. Le foto saranno prima elaborate privatamente in versioni triangolate, poi inviate a te per l'approvazione, e solo allora rilasciate nell'applicazione. Tutte le foto e i testi inviati devono essere esclusivamente opera tua. Grazie per aver contribuito!""",
+"hr": """Feeel relies on volunteers like you to submit exercises and exercise photos. Photos will first be privately processed into triangulated versions, then sent to you for approval, and only then released in the app. All submitted photos and text must be solely your work. Thanks for contributing!""",
 "fr": """Feeel compte sur des volontaires comme vous pour soumettre des exercices et des photos d’exercices. Les photos seront d’abord traitées de manière privée pour obtenir des versions triangulées, puis elles vous seront envoyées pour approbation, et seulement ensuite elles seront publiées dans l’application. Toutes les photos et le texte soumis doivent être de vous. Merci de votre contribution !""",
 "eu": """Feeel oinarritzen boluntario bezala aurkeztu behar duzu, ariketa eta ariketa argazkiak. Argazkiak izango da lehen izan pribatuan sartu prozesatu triangulated bertsioak, eta gero bidali behar duzu onespena, eta orduan bakarrik kaleratu aplikazioa. Guztiak aurkeztu argazkiak eta testua behar da soilik zure lana. Eskerrik asko laguntzen!""",
-"nb_NO": """Feeel er avhengig av frivillige som du sender inn til øvelser og trening bilder. Bilder vil først bli fortrolig behandlet i triangulated versjoner, og blir deretter sendt til deg for godkjenning, og bare så ut i appen. Alle innsendte bilder og tekst må være utelukkende ditt arbeid. Takk for innspill!""",
 "cs": """Feeel spoléhá na dobrovolníky, jako jste vy, aby předložili cvičení a cvičili fotografie. Jakékoli fotografie, které odešlete, budou nejprve soukromě zpracovány, poté Vám zaslány ke schválení a teprve poté uvolněny v aplikaci. Díky za přispění!""",
 "id": """Feeel mengandalkan para sukarelawan sepertimu untuk mengirimkan latihan-latihan dan foto-foto latihan. Setiap foto yang kamu kirimkan akan diproses secara pribadi, lalu dikirimkan kepadamu untuk disetujui, lalu kemudian diluncurkan di aplikasi. Semua foto dan teks yang diserahkan harus menjadi hasil pekerjaan kamu sendiri. Terima kasih telah berkontribusi!""",
 "es": """Feeel depende de voluntarios como usted para enviar ejercicios y fotografías de ellos. Las fotos que envíe primero se procesarán de forma privada, luego se le solicitará su aprobación y solo se publicarán en la aplicación. ¡Gracias por contribuir!""",
+"ar": """Feeel يعتمد على المتطوعين مثلك لتقديم التدريبات وصور التدريبات. ستتم معالجة الصور أولا بشكل خاص في إصدارات مثلثة ، ثم يتم إرسالها إليك للموافقة عليها ، ثم يتم إصدارها فقط في التطبيق. يجب أن تكون جميع الصور والنصوص المقدمة من عملك فقط. شكرا للمساهمة!""",
 } +
 {
 "tr": """Egzersiz adı""",
@@ -259,12 +274,13 @@ static var t = Translations("en") +
 "pt": """Nome do exercício""",
 "en": """Exercise name""",
 "it": """Nome dell'esercizio""",
+"hr": """Naziv vježbe""",
 "fr": """Nom de l’exercice""",
 "eu": """Ariketaren izena""",
-"nb_NO": """Øvelse navn""",
 "cs": """Název cviku""",
 "id": """Nama latihan""",
 "es": """Nombre del ejercicio""",
+"ar": """اسم التمرين""",
 } +
 {
 "tr": """Egzersiz nasıl yapılır (isteğe bağlı)""",
@@ -274,12 +290,13 @@ static var t = Translations("en") +
 "pt": """Como realizar o exercício (opcional)""",
 "en": """How to perform exercise (optional)""",
 "it": """Come svolgere l'esercizio (opzionale)""",
+"hr": """Kako izvesti vježbu (opcionalno)""",
 "fr": """Comment faire l’exercice (facultatif)""",
 "eu": """Nola burutu ariketa (aukerakoa)""",
-"nb_NO": """Hvordan til å utføre øvelsen (tilleggsutstyr)""",
 "cs": """Jak provést cvik (nepovinné)""",
 "id": """Cara melakukan olahraga (opsional)""",
 "es": """Cómo se realiza el ejercicio (opcional)""",
+"ar": """كيفية أداء التمرين (اختياري)""",
 } +
 {
 "tr": """E-posta gönderilemedi""",
@@ -289,12 +306,13 @@ static var t = Translations("en") +
 "pt": """O e-mail não pôde ser enviado""",
 "en": """Email could not be sent""",
 "it": """Non è stato possibile inviare l'e-mail""",
+"hr": """Nije bilo moguće poslati e-mal""",
 "fr": """Le courriel n’a pas pu être envoyé""",
 "eu": """Ezin izan da e-maila bidali""",
-"nb_NO": """E-post kan ikke sendes""",
 "cs": """E-mail se nepovedlo odeslat""",
 "id": """Email tidak dapat dikirim""",
-"es": """Correo no podría ser enviado""",
+"es": """No se ha podido enviar el correo electrónico""",
+"ar": """تعذر إرسال البريد الإلكتروني""",
 } +
 {
 "tr": """Egzersiz önerisi: %s""",
@@ -304,12 +322,13 @@ static var t = Translations("en") +
 "pt": """Proposta de exercício: %s""",
 "en": """Exercise proposal: %s""",
 "it": """Proposta di esercizio: %s""",
+"hr": """Predlaganje vježbe: %s""",
 "fr": """Proposition d’exercice : %s""",
 "eu": """Ariketa proposamena: %s""",
-"nb_NO": """Øvelse forslag: %s""",
 "cs": """Návrh cviku: %s""",
 "id": """Usulan latihan:% s""",
 "es": """Ejercicio propuesto: %s""",
+"ar": """اقتراح التمرين: ٪s""",
 } +
 {
 "tr": """Merhaba,
@@ -361,6 +380,13 @@ Sto inviando una proposta di un esercizio. Dichiaro che sia le immagini allegate
 Nome dell'esercizio: %1s
 Passi dell'esercizio:
 %2s""",
+"hr": """Hello,
+
+I'm sending a proposal of an exercise. I hereby declare that both the attached images and the description are completely my own work. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA 4.0 license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA 4.0 license.
+
+Exercise name: %1s
+Exercise steps:
+%2s""",
 "fr": """Bonjour,
 
 Je vous envoie une proposition d’exercice. Je déclare par la présente que les images jointes et la description sont entièrement de mon travail personnel. En envoyant ce message, j’accepte irrévocablement que le nom et la description soumis soient publiés sous une licence CC BY-SA 4.0 et une licence AGPLv3 avec exception magasin d’applications. Je donne également l’autorisation de traiter la ou les images ci-jointes pour en faire des variantes à faible polysémie. Après leur traitement, j’évaluerai si je suis prêt·e à les diffuser sous la licence CC BY-SA 4.0.
@@ -374,13 +400,6 @@ I bidaliz naiz proposamena ariketa bat. Jakinarazten dut deklaratzeko, bai erant
 
 Ariketa izena: %1s
 Ariketa urratsak:
-%2s""",
-"nb_NO": """Hei,
-
-Jeg sender et forslag til en øvelse. Jeg erklærer herved at både den vedlagte bilder og beskrivelse er helt mitt eget arbeid. Ved å sende denne meldingen, jeg godtar ugjenkallelig har sendt inn navn og beskrivelse utgitt under CC-BY-SA-4.0-lisens og en AGPLv3 med en app store unntak lisens. Jeg vil også gi tillatelse til å behandle den vedlagte bilde(r) i low-poly-varianter. Etter at de er behandlet, vil jeg vurdere om jeg er villig til å lisensiere disse under CC-BY-SA-4.0-lisens.
-
-Øvelse navn: %1s
-Øvelse trinn:
 %2s""",
 "cs": """Zdraví,
 
@@ -403,6 +422,13 @@ Estoy enviando una propuesta de un ejercicio. Por lo presente declaro que tanto 
 Nombre del ejercicio: %1s
 Pasos del ejercicio:
 %2s""",
+"ar": """مرحبًا
+
+سأرسل اقتراحا بممارسة التمارين أعلن بموجب هذا أن كلا من الصور المرفقة والوصف هي تماما عملي الخاص. من خلال إرسال هذه الرسالة ، أوافق بشكل لا رجعة فيه على إصدار الاسم والوصف المقدم بموجب ترخيص CC BY-SA 4.0 و AGPLv3 مع ترخيص استثناء متجر التطبيقات. أعطي أيضا الإذن لمعالجة الصورة المرفقة بدقة غير واضحة. بعد معالجتها ، سأقيم ما إذا كنت على استعداد لترخيصها بموجب ترخيص CC BY-SA 4.0.
+
+اسم التمرين: ٪1s
+خطوات التمرين:
+٪2s""",
 } +
 {
 "tr": """Ayarlar""",
@@ -412,12 +438,13 @@ Pasos del ejercicio:
 "pt": """Configurações""",
 "en": """Settings""",
 "it": """Impostazioni""",
+"hr": """Postavke""",
 "fr": """Paramètres""",
 "eu": """Ezarpenak""",
-"nb_NO": """Innstilling""",
 "cs": """Nastavení""",
 "id": """Pengaturan""",
 "es": """Ajustes""",
+"ar": """الإعدادات""",
 } +
 {
 "tr": """Lütfen bir antrenman başlığı belirtin""",
@@ -427,12 +454,13 @@ Pasos del ejercicio:
 "pt": """Por favor especifique o nome do treino""",
 "en": """Please specify a workout title""",
 "it": """Indica un titolo all'allenamento""",
+"hr": """Odredi naslov treninga""",
 "fr": """Veuillez préciser un titre pour l’entraînement""",
 "eu": """Zehaztu entrenamenduaren izenburua""",
-"nb_NO": """Vennligst angi en treningsøkt tittel""",
 "cs": """Prosím poskytněte název tréninku""",
 "id": """Tentukan judul latihan""",
 "es": """Por favor especifica el título del entrenamiento""",
+"ar": """الرجاء تحديد عنوان التمرين""",
 } +
 {
 "tr": """Lütfen en az 1 egzersiz ekleyin""",
@@ -442,12 +470,13 @@ Pasos del ejercicio:
 "pt": """Por favor adicione ao menos um exercício""",
 "en": """Please add at least 1 exercise""",
 "it": """Aggiungi almeno un esercizio""",
+"hr": """Dadaj barem jednu vježbu""",
 "fr": """Veuillez ajouter au moins 1 exercice""",
 "eu": """Gehitu ariketa 1 gutxienez""",
-"nb_NO": """Legg til minst 1 trening""",
 "cs": """Prosím přidejte alespoň 1 cvik""",
 "id": """Harap tambahkan setidaknya 1 latihan""",
 "es": """Por favor añade al menos 1 ejercicio""",
+"ar": """يرجى إضافة تمرين واحد على الأقل""",
 } +
 {
 "tr": """Süre""",
@@ -457,12 +486,13 @@ Pasos del ejercicio:
 "pt": """Duração""",
 "en": """Duration""",
 "it": """Durata""",
+"hr": """Trajanje""",
 "fr": """Durée""",
 "eu": """Iraupena""",
-"nb_NO": """Varighet""",
 "cs": """Délka""",
 "id": """Durasi""",
 "es": """Duración""",
+"ar": """المدة""",
 } +
 {
 "tr": """Egzersiz süresi""",
@@ -472,12 +502,13 @@ Pasos del ejercicio:
 "pt": """Duração do exercício""",
 "en": """Exercise duration""",
 "it": """Durata esercizio""",
+"hr": """Trajanje vježbe""",
 "fr": """Durée de l’exercice""",
 "eu": """Ariketaren iraupena""",
-"nb_NO": """Trening varighet""",
 "cs": """Délka cviku""",
 "id": """Durasi latihan""",
 "es": """Duración del ejercicio""",
+"ar": """مدة التمرين""",
 } +
 {
 "tr": """Mola süresi""",
@@ -487,12 +518,13 @@ Pasos del ejercicio:
 "pt": """Duração da pausa""",
 "en": """Break duration""",
 "it": """Durata della pausa""",
+"hr": """Trajanje odmora""",
 "fr": """Durée de la pause""",
 "eu": """Atsedenaldiaren iraupena""",
-"nb_NO": """Bryte varighet""",
 "cs": """Délka přestávky""",
 "id": """Durasi istirahat""",
 "es": """Duración del descanso""",
+"ar": """مدة الاستراحة""",
 } +
 {
 "tr": """Özel""",
@@ -502,12 +534,13 @@ Pasos del ejercicio:
 "pt": """Customizado""",
 "en": """Custom""",
 "it": """Personalizza""",
+"hr": """Prilagođeno""",
 "fr": """Personnaliser""",
 "eu": """Pertsonalizatua""",
-"nb_NO": """Tilpasset""",
 "cs": """Vlastní""",
 "id": """Kustom""",
 "es": """Personalizado""",
+"ar": """مخصص""",
 } +
 {
 "tr": """Sayısal olmayan""",
@@ -517,12 +550,13 @@ Pasos del ejercicio:
 "pt": """Não numérico""",
 "en": """Non-numeric""",
 "it": """Non-numerico""",
+"hr": """Nenumerički""",
 "fr": """Non numérique""",
 "eu": """Ez-zenbakizkoa""",
-"nb_NO": """Ikke-numeriske""",
 "cs": """Není číslo""",
 "id": """Non-numerik""",
 "es": """No numérico""",
+"ar": """غير رقمي""",
 } +
 {
 "tr": """Pozitif olmayan""",
@@ -532,12 +566,13 @@ Pasos del ejercicio:
 "pt": """Não positivo""",
 "en": """Nonpositive""",
 "it": """Non positivo""",
+"hr": """Ne-pozitivno""",
 "fr": """Non positif""",
 "eu": """Ez positiboa""",
-"nb_NO": """Ikke-positiv""",
 "cs": """Není kladné""",
 "id": """Nonpositif""",
 "es": """No positivo""",
+"ar": """غير إيجابي""",
 } +
 {
 "tr": """Günlük bildirim""",
@@ -547,12 +582,13 @@ Pasos del ejercicio:
 "pt": """Notificação diária""",
 "en": """Daily notification""",
 "it": """Notifica giornaliera""",
+"hr": """Dnevno obavještavanje""",
 "fr": """Notification journalière""",
 "eu": """Eguneroko jakinarazpena""",
-"nb_NO": """Daglig varsling""",
 "cs": """Denní upozornění""",
 "id": """Pemberitahuan harian""",
 "es": """Notificaciones diarias""",
+"ar": """التنبيه اليومي""",
 } +
 {
 "tr": """Antrenman yapmak için günlük bir hatırlatma""",
@@ -562,12 +598,13 @@ Pasos del ejercicio:
 "pt": """Um lembrete diário para fazer exercícios""",
 "en": """A daily reminder to work out""",
 "it": """Un promemoria quotidiano per allenarti""",
+"hr": """Dnevni podsjetnik za vježbanje""",
 "fr": """Un rappel quotidien pour s’entraîner""",
 "eu": """Eguneroko ariketarako oroigarria""",
-"nb_NO": """En daglig påminnelse om å trene""",
 "cs": """Denní připomenutí jít cvičit""",
 "id": """Pengingat harian untuk berolahraga""",
 "es": """Un recordatorio para entrenar""",
+"ar": """تذكير يومي بالتمرين""",
 } +
 {
 "tr": """Antrenman kıyafetlerini giyme zamanı!""",
@@ -577,12 +614,13 @@ Pasos del ejercicio:
 "pt": """Hora de colocar roupas de treino!""",
 "en": """Time to put on workout clothes!""",
 "it": """È ora di indossare abiti da allenamento!""",
+"hr": """Vrijeme je da obučeš odjeću za vježbanje!""",
 "fr": """Il est temps de mettre des vêtements de sport !""",
 "eu": """Ariketarako janzteko unea!""",
-"nb_NO": """På tide å sette på treningsklær!""",
 "cs": """Čas obléknout cvičební úbor!""",
 "id": """Waktunya memakai pakaian olahraga!""",
 "es": """¡Tiempo para llevar ropa de entrenamiento!""",
+"ar": """حان الوقت لارتداء ملابس التمرين!""",
 } +
 {
 "tr": """Taze ve zinde hissetmek sadece birkaç dakikanızı alır""",
@@ -592,12 +630,13 @@ Pasos del ejercicio:
 "pt": """Leva apenas alguns minutos para se sentir fresco e em forma""",
 "en": """It takes just a few minutes to feel fresh and fit""",
 "it": """Bastano pochi minuti per sentirsi freschi e in forma""",
+"hr": """Potrebno je samo nekoliko minuta da bi se čovjek osjećao svježe i u dobroj formi""",
 "fr": """Il ne faut que quelques minutes pour se sentir frais et en forme""",
 "eu": """Minutu gutxi batzuk nahikoa dira berritua eta indartsu sentitzeko""",
-"nb_NO": """Det tar bare noen minutter å bare føle seg frisk og passform""",
 "cs": """Stačí jen pár minut, abyste se cítil/a svěží a fit""",
 "id": """Hanya perlu beberapa menit untuk merasa segar dan bugar""",
 "es": """Este toma solo unos minutos para refrescarse y estar en forma""",
+"ar": """يستغرق الأمر بضع دقائق فقط لتشعر بالانتعاش واللياقة""",
 } +
 {
 "tr": """Günlük hatırlatma""",
@@ -607,12 +646,13 @@ Pasos del ejercicio:
 "pt": """Lembrete diário""",
 "en": """Daily reminder""",
 "it": """Promemoria giornaliero""",
+"hr": """Dnevni podsjetnik""",
 "fr": """Rappel quotidien""",
 "eu": """Eguneroko oroigarri""",
-"nb_NO": """Daglig påminnelse""",
-"cs": """Připomínat, abych cvičil/a denně""",
-"id": """Ingatkan saya untuk berolahraga setiap hari""",
+"cs": """Denní upomenutí""",
+"id": """Pengingat harian""",
 "es": """Recordatorio diario""",
+"ar": """التذكير اليومي""",
 } +
 {
 "tr": """Kamera izni olmadan fotoğraf çekilemez""",
@@ -622,12 +662,13 @@ Pasos del ejercicio:
 "pt": """Não posso tirar fotos sem a permissão de câmera""",
 "en": """Can't take photos without camera permission""",
 "it": """Non è possibile scattare foto senza il permesso della fotocamera""",
+"hr": """Snimanje fotografija nije moguće bez dozvole za kameru""",
 "fr": """Impossible de prendre des photos sans l’autorisation de l’appareil photo""",
 "eu": """Ezin dira argazkiak atera kamera baimenik gabe""",
-"nb_NO": """Kan ikke ta bilder uten at kameraet tillatelse""",
 "cs": """Nelze fotografovat bez povolení fotoaparátu""",
 "id": """Tidak dapat mengambil foto tanpa izin kamera""",
 "es": """No se puede tomar fotos sin el permiso de cámara""",
+"ar": """لا يمكن التقاط الصور بدون إذن الكاميرا""",
 } +
 {
 "tr": """Bildirim zamanı""",
@@ -637,12 +678,13 @@ Pasos del ejercicio:
 "pt": """Tempo de notificação""",
 "en": """Notification time""",
 "it": """Tempo di notifica""",
+"hr": """Modus obavještavanja""",
 "fr": """Heure de la notification""",
 "eu": """Jakinarazpen ordua""",
-"nb_NO": """Varslingstid""",
 "cs": """Čas upozornění""",
 "id": """Waktu pemberitahuan""",
 "es": """Hora de notificación""",
+"ar": """وقت التنبيه""",
 } +
 {
 "tr": """Önce bir egzersiz ekleyin""",
@@ -652,12 +694,13 @@ Pasos del ejercicio:
 "pt": """Adicione um exercício primeiro""",
 "en": """Add an exercise first""",
 "it": """Prima aggiungi un esercizio""",
+"hr": """Najprije dodaj vježbu""",
 "fr": """Ajoutez d’abord un exercice""",
 "eu": """Gehitu ariketa lehenbizi""",
-"nb_NO": """Legge til en øvelse først""",
 "cs": """Nejprve musíte přidat cvičení""",
 "id": """Tambahkan latihan terlebih dahulu""",
 "es": """Añadir un ejercicio primero""",
+"ar": """إضافة تمرين أولا""",
 } +
 {
 "tr": """Feeel hakkında""",
@@ -667,12 +710,13 @@ Pasos del ejercicio:
 "pt": """Sobre Feeel""",
 "en": """About Feeel""",
 "it": """Informazioni su Feeel""",
+"hr": """O programu Feeel""",
 "fr": """À propos de Feeel""",
 "eu": """Buruz Feeel""",
-"nb_NO": """Om Feeel""",
 "cs": """O Feeel""",
 "id": """Tentang Feeel""",
 "es": """Acerca de Feeel""",
+"ar": """حول تطبيق Feeel""",
 } +
 {
 "tr": """Gizliliğinize saygı duyan açık kaynaklı bir evde antrenman uygulaması""",
@@ -682,12 +726,13 @@ Pasos del ejercicio:
 "pt": """Um aplicativo de código aberto para treinar em casa que respeita a sua privacidade""",
 "en": """An open-source home workout app that respects your privacy""",
 "it": """Un'applicazione di allenamento a casa con codice aperto che rispetta la tua riservatezza""",
+"hr": """Program otvorenog koda za vježbanje koji poštuje tvoju privatnost""",
 "fr": """Une application d’exercice à domicile à code source ouvert qui respecte votre vie privée""",
 "eu": """Irekia-iturri etxeko entrenamendu aplikazio hori zure pribatutasuna errespetatzen""",
-"nb_NO": """Et åpen-kilde hjem treningsøkt app som respekterer ditt personvern""",
 "cs": """Open-source fitness aplikace, která respektuje vaše soukromí""",
 "id": """Aplikasi olahraga dari rumah open-source yang menghormati privasi Anda""",
 "es": """Una app de rutinas de ejercicio de código abierto que respeta tu privacidad tu privacidad""",
+"ar": """تطبيق تمرين منزلي مفتوح المصدر يحترم خصوصيتك""",
 } +
 {
 "tr": """Özel süre (sn.)""",
@@ -697,27 +742,29 @@ Pasos del ejercicio:
 "pt": """Duração personalizada (s.)""",
 "en": """Custom duration (s.)""",
 "it": """Durata personalizzata (s.)""",
+"hr": """Prilagođeno trajanje (s.)""",
 "fr": """Durée personnalisée (s.)""",
 "eu": """Ohiko iraupena (s.)""",
-"nb_NO": """Tilpasset varighet (s.)""",
 "cs": """Vlastní délka (s.)""",
 "id": """Durasi kustom (s.)""",
 "es": """Duración personalizada (s.)""",
+"ar": """مدة مخصصة (s.)""",
 } +
 {
 "tr": """Değişikliklerden vazgeçilsin mi?""",
 "nl": """Wijzigingen verwerpen?""",
 "de": """Änderungen verwerfen?""",
-"ru": """Отбрасывать изменения?""",
+"ru": """Отменить изменения?""",
 "pt": """Descarte alterações?""",
 "en": """Discard changes?""",
 "it": """Abbandonare le modifiche?""",
+"hr": """Odbaciti promjene?""",
 "fr": """Abandonner les modifications ?""",
 "eu": """Baztertu aldaketak?""",
-"nb_NO": """Forkast endringer?""",
 "cs": """Zahodit změny?""",
 "id": """Batalkan perubahan?""",
 "es": """¿Descartar cambios?""",
+"ar": """تجاهل التغييرات؟""",
 } +
 {
 "tr": """Tema""",
@@ -727,12 +774,13 @@ Pasos del ejercicio:
 "pt": """Tema""",
 "en": """Theme""",
 "it": """Tema""",
+"hr": """Tema""",
 "fr": """Thème""",
 "eu": """Gaia""",
-"nb_NO": """Tema""",
 "cs": """Vzhled""",
 "id": """Tema""",
 "es": """Tema""",
+"ar": """السمة""",
 } +
 {
 "tr": """Sistem öntanımlı değeri""",
@@ -742,12 +790,13 @@ Pasos del ejercicio:
 "pt": """Padrão do sistema""",
 "en": """System default""",
 "it": """Predefinito del sistema""",
+"hr": """Standard sustava""",
 "fr": """Par défaut du système""",
 "eu": """Sistema lehenetsia""",
-"nb_NO": """Systemet standard""",
 "cs": """Dle systému""",
 "id": """Default sistem""",
 "es": """Por defecto""",
+"ar": """افتراضيات النظام""",
 } +
 {
 "tr": """Açık""",
@@ -757,12 +806,13 @@ Pasos del ejercicio:
 "pt": """Luz""",
 "en": """Light""",
 "it": """Chiaro""",
+"hr": """Svijetla""",
 "fr": """Clair""",
 "eu": """Argi""",
-"nb_NO": """Lys""",
 "cs": """Světlý""",
 "id": """Cerah""",
 "es": """Claro""",
+"ar": """مضيء""",
 } +
 {
 "tr": """Koyu""",
@@ -772,27 +822,29 @@ Pasos del ejercicio:
 "pt": """Escuro""",
 "en": """Dark""",
 "it": """Scuro""",
+"hr": """Tamna""",
 "fr": """Sombre""",
 "eu": """Ilun""",
-"nb_NO": """Mørk""",
 "cs": """Tmavý""",
 "id": """Gelap""",
 "es": """Oscuro""",
+"ar": """داكن""",
 } +
 {
 "tr": """Bazı aygıtlarda, bunun güvenilir bir şekilde çalışması için pil iyileştirmesini Feeel için devre dışı bırakmanız gerekebilir.""",
-"nl": """Op sommige apparaten is het verstandig accu-optimalisatie uit te schakelen zodat Feeel betrouwbaar kan werken.""",
+"nl": """Op sommige apparaten is het verstandig om accu-optimalisatie uit te schakelen zodat Feeel betrouwbaar kan werken.""",
 "de": """Auf einigen Geräten muss möglicherweise die Batterieoptimierung für Feeel deaktiviert werden, damit dies zuverlässig funktioniert.""",
 "ru": """На некоторых устройствах для надежной работы Feeel может потребоваться отключить оптимизацию батареи.""",
 "pt": """Em alguns dispositivos, pode ser necessário desactivar a optimização da bateria para que o Feeel funcione de forma fiável.""",
 "en": """On some devices, you may need to disable battery optimization for Feeel for this to work reliably.""",
 "it": """Su alcuni dispositivi, potrebbe essere necessario disabilitare l'ottimizzazione della batteria per Feeel affinché questo funzioni in modo affidabile.""",
+"hr": """Na nekim uređajima možda moraš deaktivirati optimizaciju baterije da bi Feeel mogao pouzdano raditi.""",
 "fr": """Sur certains appareils, il se peut que vous deviez désactiver l'optimisation de la batterie pour Feeel pour que ceci fonctionne de manière fiable.""",
 "eu": """Gailu batzuk, behar ahal izango duzu desgaitu bateria optimizazioa Feeel hau fidagarrian lan egiteko.""",
-"nb_NO": """På noen enheter, du kan få behov for å deaktivere batteriet optimalisering for Feeel for at dette skal fungere pålitelig.""",
 "cs": """Na některých zařízeních může být nutné vypnout optimalizaci baterie pro Feeel, aby tato funkce spolehlivě fungovala.""",
 "id": """Pada beberapa perangkat, Anda mungkin perlu menonaktifkan optimisasi baterai untuk Feel Bagi ini untuk bekerja dapat dipercaya.""",
 "es": """En algunos dispositivos, es posible que necesites desactivar la optimización de batería para Feeel para que funcione correctamente.""",
+"ar": """على بعض الأجهزة، قد تحتاج إلى تعطيل تحسين البطارية لتطبيق Feeel لكي يعمل هذا بشكل موثوق.""",
 } +
 {
 "tr": """Katılın""",
@@ -802,12 +854,13 @@ Pasos del ejercicio:
 "pt": """Participe""",
 "en": """Participate""",
 "it": """Partecipa""",
+"hr": """Sudjeluj""",
 "fr": """Rejoignez""",
 "eu": """Parte hartzeko""",
-"nb_NO": """Delta""",
 "cs": """Účastněte se""",
 "id": """Berpartisipasi""",
-"es": """Participar""",
+"es": """Participe""",
+"ar": """مشاركة""",
 } +
 {
 "tr": """Kaynak kodları""",
@@ -817,12 +870,13 @@ Pasos del ejercicio:
 "pt": """Código fonte""",
 "en": """Source code""",
 "it": """Codice sorgente""",
+"hr": """Izvorni kod""",
 "fr": """Code source""",
 "eu": """Iturburu kodea""",
-"nb_NO": """Kildekode""",
 "cs": """Zdrojový kód""",
 "id": """Kode sumber""",
 "es": """Código fuente""",
+"ar": """الشفرة المصدرية""",
 } +
 {
 "tr": """Bağış yapın""",
@@ -832,42 +886,189 @@ Pasos del ejercicio:
 "pt": """Doação""",
 "en": """Donate""",
 "it": """Dona""",
+"hr": """Doniraj""",
 "fr": """Faire un don""",
 "eu": """Eman""",
-"nb_NO": """Donere""",
 "cs": """Darovat""",
 "id": """Donasi""",
 "es": """Donar""",
+"ar": """تبرّع""",
 } +
 {
 "tr": """URL açılamadı.""",
-"nl": """URL kan niet worden geopend.""",
+"nl": """De url kan niet worden geopend.""",
 "de": """Kann URL nicht öffnen.""",
 "ru": """Не смог открыть URL.""",
 "pt": """Não foi possível abrir URL.""",
 "en": """Could not open URL.""",
 "it": """Impossibile aprire URL.""",
+"hr": """URL se nije mogao otvoriti.""",
 "fr": """Impossible d'ouvrir URL.""",
 "eu": """Ezin ireki URL.""",
-"nb_NO": """Kunne ikke åpne URL-adresse.""",
 "cs": """Nelze otevřít URL.""",
 "id": """Tidak dapat membuka URL.""",
 "es": """No es posible abrir URL.""",
+"ar": """تعذر فتح عنوان URL.""",
+} +
+{
+"tr": """Güç""",
+"nl": """Kracht""",
+"de": """Stärke""",
+"ru": """Прочность""",
+"pt": """Resistência""",
+"en": """Strength""",
+"it": """Forza""",
+"hr": """Snaga""",
+"fr": """Force""",
+"eu": """Indarra""",
+"cs": """Silové cvičení""",
+"id": """Kekuatan""",
+"es": """Fuerza""",
+"ar": """القوة""",
+} +
+{
+"tr": """Esneme ve yoga""",
+"nl": """Rekken en yoga""",
+"de": """Dehngymnastik und Yoga""",
+"ru": """Растяжка и йога""",
+"pt": """Alongamento e ioga""",
+"en": """Stretching & yoga""",
+"it": """Stretching e yoga""",
+"hr": """Istezanje i joga""",
+"fr": """Étirement et yoga""",
+"eu": """Luzatze & yoga""",
+"cs": """Protahování a jóga""",
+"id": """Peregangan & yoga""",
+"es": """Estiramiento y yoga""",
+"ar": """تمارين الإطالة واليوغا""",
+} +
+{
+"tr": """Kardiyo""",
+"nl": """Cardio""",
+"de": """Kardio""",
+"ru": """Кардио""",
+"pt": """Cardio""",
+"en": """Cardio""",
+"it": """Cardio""",
+"hr": """Kardio""",
+"fr": """Cardio""",
+"eu": """Kardio""",
+"cs": """Kardio""",
+"id": """Kardio""",
+"es": """Cardo""",
+"ar": """القلب""",
+} +
+{
+"tr": """Diğer""",
+"nl": """Andere""",
+"de": """Anderes""",
+"ru": """Другие""",
+"pt": """Outro""",
+"en": """Other""",
+"it": """Altro""",
+"hr": """Drugo""",
+"fr": """Autre""",
+"eu": """Beste""",
+"cs": """Jiné""",
+"id": """Lainnya""",
+"es": """Otras""",
+"ar": """آخر""",
+} +
+{
+"tr": """Dil""",
+"nl": """Taal""",
+"de": """Sprache""",
+"ru": """Язык""",
+"pt": """Idioma""",
+"en": """Language""",
+"it": """Lingua""",
+"hr": """Jezik""",
+"fr": """Langue""",
+"eu": """Language""",
+"cs": """Jazyk""",
+"id": """Bahasa""",
+"es": """Idioma""",
+"ar": """اللغة""",
+} +
+{
+"tr": """Boş olamaz""",
+"nl": """Kan niet leeg zijn""",
+"de": """Darf nicht leer sein""",
+"ru": """Не может быть пустым""",
+"pt": """Não pode estar vazio""",
+"en": """Can't be empty""",
+"it": """Non può essere vuoto""",
+"hr": """Ne može biti prazno""",
+"fr": """Ne peut pas être vide""",
+"eu": """Can't be empty""",
+"cs": """Nesmí být prázdné""",
+"id": """Tidak boleh kosong""",
+"es": """No puede estar vacío""",
+"ar": """لا يمكن أن يكون فارغا""",
+} +
+{
+"tr": """Sayısal olmalı""",
+"nl": """Moet numeriek zijn""",
+"de": """Muss numerisch sein""",
+"ru": """Должно быть числом""",
+"pt": """Deve ser numérico""",
+"en": """Must be numeric""",
+"it": """Deve essere numerico""",
+"hr": """Mora biti numerički""",
+"fr": """Doit être numérique""",
+"eu": """Must be numeric""",
+"cs": """Musí být číslo""",
+"id": """Harus numerik""",
+"es": """Debe ser numérico""",
+"ar": """يجب أن يكون رقميا""",
+} +
+{
+"tr": """%1d dak., %2d sn.""",
+"nl": """%1d min %2d s""",
+"de": """%1d min %2d s""",
+"ru": """%1d мин., %2d сек.""",
+"pt": """%1d min %2d s""",
+"en": """%1d min., %2d sec.""",
+"it": """%1d min %2d s""",
+"hr": """%1d min, %2d s""",
+"fr": """%1d min %2d s""",
+"eu": """%1d min., %2d s.""",
+"cs": """%1d min., %2d s.""",
+"id": """%1d mnt., %2d dtk.""",
+"es": """%1d min %2d s""",
+"ar": """٪1d دقيقة، ٪2d ثانية.""",
+} +
+{
+"tr": """Egzersizleri yeniden sıralamak için bu tutamacı sürükleyin.""",
+"nl": """Versleep dit handvat om oefeningen anders in te delen.""",
+"de": """Ziehen Sie diesen Griff, um die Übungen neu anzuordnen.""",
+"ru": """Перетащите этот маркер, чтобы изменить порядок упражнений.""",
+"pt": """Drag this handle to reorder exercises.""",
+"en": """Drag this handle to reorder exercises.""",
+"it": """Trascina questa maniglia per riordinare gli esercizi.""",
+"hr": """Povuci ovu ručku za mijenjanje redoslijeda vježbi.""",
+"fr": """Faites glisser cette poignée pour réorganiser les exercices.""",
+"eu": """Drag this handle to reorder exercises.""",
+"cs": """Táhněte touto rukojetí pro změnu pořadí cviků.""",
+"id": """Seret ikon handle untuk menyusun ulang latihan.""",
+"es": """Drag this handle to reorder exercises.""",
+"ar": """اسحب هذا المقبض لإعادة ترتيب التمارين.""",
 } +
 {
 "tr": """Antrenmanı başlat""",
 "nl": """Workout starten""",
-"de": """Starte Training""",
+"de": """Training starten""",
 "ru": """Начать тренировку""",
 "pt": """Começar treino""",
 "en": """Start workout""",
 "it": """Inizia l'allenamento""",
+"hr": """Započni s treningom""",
 "fr": """Démarrer l’entraînement""",
 "eu": """Hasi entrenamendua""",
-"nb_NO": """Start treningen""",
 "cs": """Spustit trénink""",
 "id": """Mulai berolahraga""",
 "es": """Iniciar entrenamiento""",
+"ar": """ابدأ التمرين""",
 } +
 {
 "tr": """Antrenmanı devam ettir""",
@@ -877,12 +1078,13 @@ Pasos del ejercicio:
 "pt": """Resumir treino""",
 "en": """Resume workout""",
 "it": """Riprendi l'allenamento""",
+"hr": """Nastavi s treningom""",
 "fr": """Reprendre l’entraînement""",
 "eu": """Berrekin entrenamendua""",
-"nb_NO": """Gjenoppta trening""",
 "cs": """Pokračovat v tréninku""",
 "id": """Lanjutkan latihan""",
 "es": """Continuar entrenamiento""",
+"ar": """استئناف التمرين""",
 } +
 {
 "tr": """Önceki egzersiz""",
@@ -892,12 +1094,13 @@ Pasos del ejercicio:
 "pt": """Exercício anterior""",
 "en": """Previous exercise""",
 "it": """Esercizio precedente""",
+"hr": """Prethodna vježba""",
 "fr": """Exercice précédent""",
 "eu": """Aurreko ariketa""",
-"nb_NO": """Forrige øvelse""",
 "cs": """Předchozí cvik""",
 "id": """Latihan sebelumnya""",
 "es": """Ejercicio anterior""",
+"ar": """التمرين السابق""",
 } +
 {
 "tr": """Sonraki egzersiz""",
@@ -907,12 +1110,13 @@ Pasos del ejercicio:
 "pt": """Próximo exercício""",
 "en": """Next exercise""",
 "it": """Esercizio successivo""",
+"hr": """Sljedeća vježba""",
 "fr": """Exercice suivant""",
 "eu": """Hurrengo ariketa""",
-"nb_NO": """Neste øvelse""",
 "cs": """Další cvik""",
 "id": """Latihan berikutnya""",
 "es": """Ejercicio siguiente""",
+"ar": """التمرين التالي""",
 } +
 {
 "tr": """Egzersiz ekle""",
@@ -922,12 +1126,13 @@ Pasos del ejercicio:
 "pt": """Adicionar exercício""",
 "en": """Add exercises""",
 "it": """Aggiungi esercizi""",
+"hr": """Dodaj vježbe""",
 "fr": """Ajouter des exercices""",
 "eu": """Gehitu ariketak""",
-"nb_NO": """Legg til øvelser""",
 "cs": """Přidat cviky""",
 "id": """Tambahkan latihan""",
 "es": """Añadir ejercicios""",
+"ar": """أضف تمارين""",
 } +
 {
 "tr": """Düzenle""",
@@ -937,12 +1142,13 @@ Pasos del ejercicio:
 "pt": """Editar""",
 "en": """Edit""",
 "it": """Modifica""",
+"hr": """Uredi""",
 "fr": """Modifier""",
 "eu": """Editatu""",
-"nb_NO": """Redigere""",
 "cs": """Upravit""",
 "id": """Sunting""",
 "es": """Editar""",
+"ar": """تعديل""",
 } +
 {
 "tr": """Sil""",
@@ -952,12 +1158,13 @@ Pasos del ejercicio:
 "pt": """Apagar""",
 "en": """Delete""",
 "it": """Elimina""",
+"hr": """Izbriži""",
 "fr": """Supprimer""",
 "eu": """Ezabatu""",
-"nb_NO": """Slette""",
 "cs": """Odstranit""",
 "id": """Hapus""",
 "es": """Borrar""",
+"ar": """حذف""",
 } +
 {
 "tr": """Çoğalt""",
@@ -967,12 +1174,13 @@ Pasos del ejercicio:
 "pt": """Duplicar""",
 "en": """Duplicate""",
 "it": """Duplicare""",
+"hr": """Dupliciraj""",
 "fr": """Dupliquer""",
 "eu": """Bikoiztu""",
-"nb_NO": """Duplisere""",
 "cs": """Duplikovat""",
 "id": """Duplikat""",
 "es": """Duplicar""",
+"ar": """مكرره""",
 } +
 {
 "tr": """Bitti""",
@@ -982,12 +1190,13 @@ Pasos del ejercicio:
 "pt": """Pronto""",
 "en": """Done""",
 "it": """Fatto""",
+"hr": """Gotovo""",
 "fr": """Terminé""",
 "eu": """Egina""",
-"nb_NO": """Gjøre""",
 "cs": """Hotovo""",
 "id": """Selesai""",
 "es": """Hecho""",
+"ar": """إنتهى""",
 } +
 {
 "tr": """İptal""",
@@ -997,12 +1206,13 @@ Pasos del ejercicio:
 "pt": """Cancelar""",
 "en": """Cancel""",
 "it": """Annulla""",
+"hr": """Odustani""",
 "fr": """Annuler""",
 "eu": """Utzi""",
-"nb_NO": """Avbryte""",
 "cs": """Zrušit""",
 "id": """Batal""",
 "es": """Cancelar""",
+"ar": """إلغاء""",
 } +
 {
 "tr": """Vazgeç""",
@@ -1012,12 +1222,13 @@ Pasos del ejercicio:
 "pt": """Descartar""",
 "en": """Discard""",
 "it": """Abbandona""",
+"hr": """Odbaci""",
 "fr": """Abandonner""",
 "eu": """Baztertu""",
-"nb_NO": """Forkaste""",
 "cs": """Zahodit""",
 "id": """Buang""",
 "es": """Descartar""",
+"ar": """تجاهل""",
 } +
 {
 "tr": """Tamam""",
@@ -1027,12 +1238,13 @@ Pasos del ejercicio:
 "pt": """OK""",
 "en": """OK""",
 "it": """OK""",
+"hr": """U redu""",
 "fr": """OK""",
 "eu": """OK""",
-"nb_NO": """OK""",
 "cs": """OK""",
 "id": """Ok""",
 "es": """Listo""",
+"ar": """حسنا""",
 } +
 {
 "tr": """Daha fazla bilgi""",
@@ -1042,12 +1254,13 @@ Pasos del ejercicio:
 "pt": """Mais informação""",
 "en": """More info""",
 "it": """Maggiori info""",
+"hr": """Daljnje informacije""",
 "fr": """Plus d’infos""",
 "eu": """Informazio gehiago""",
-"nb_NO": """Mer info""",
 "cs": """Více info""",
 "id": """Info lebih lanjut""",
 "es": """Más información""",
+"ar": """المزيد من المعلومات""",
 } +
 {
 "tr": """Özel antrenman oluştur""",
@@ -1057,12 +1270,13 @@ Pasos del ejercicio:
 "pt": """Criar treino customizado""",
 "en": """Create custom workout""",
 "it": """Crea un allenamento personalizzato""",
+"hr": """Stvori prilagođen trening""",
 "fr": """Créer un entraînement personnalisé""",
 "eu": """Sortu entrenamendu pertsonala""",
-"nb_NO": """Opprette egendefinerte trening""",
 "cs": """Vytvořit vlastní trénink""",
 "id": """Buat latihan khusus""",
 "es": """Crear entrenamiento personalizado""",
+"ar": """إنشاء تمرين مخصص""",
 } +
 {
 "tr": """Özel egzersiz öner""",
@@ -1072,12 +1286,13 @@ Pasos del ejercicio:
 "pt": """Propor exercício customizado""",
 "en": """Propose custom exercise""",
 "it": """Proponi un esercizio personalizzato""",
+"hr": """Predloži prilagođenu vježbu""",
 "fr": """Proposer un exercice personnalisé""",
 "eu": """Proposatu ariketa pertsonalizatua""",
-"nb_NO": """Foreslå tilpasset trening""",
 "cs": """Navrhnout vlastní cvik""",
 "id": """Usulkan latihan khusus""",
 "es": """Proponer ejercicio personalizado""",
+"ar": """اقتراح تمرين مخصص""",
 } +
 {
 "tr": """E-posta ile gönder""",
@@ -1087,12 +1302,13 @@ Pasos del ejercicio:
 "pt": """Enviar via e-mail""",
 "en": """Submit via email""",
 "it": """Invia via e-mail""",
+"hr": """Pošalji putem e-maila""",
 "fr": """Soumettre par courriel""",
 "eu": """Bidali e-mail bidez""",
-"nb_NO": """Sende via e-post""",
 "cs": """Odeslat e-mailem""",
 "id": """Kirim melalui email""",
 "es": """Enviar por correo""",
+"ar": """إرسال عبر البريد الإلكتروني""",
 } +
 {
 "tr": """Galeriden fotoğraf ekle""",
@@ -1102,12 +1318,13 @@ Pasos del ejercicio:
 "pt": """Adicionar foto da galeria""",
 "en": """Add photo from gallery""",
 "it": """Aggiungi foto dalla Galleria""",
+"hr": """Dodaj fotografiju iz galerije""",
 "fr": """Ajouter une photo de la galerie""",
 "eu": """Gehitu argazkia galeriatik""",
-"nb_NO": """Legg til bilde fra galleri""",
 "cs": """Přidat fotku z galerie""",
 "id": """Tambahkan foto dari galeri""",
 "es": """Añadir foto desde galería""",
+"ar": """إضافة صورة من المعرض""",
 } +
 {
 "tr": """Fotoğraf çek""",
@@ -1117,12 +1334,13 @@ Pasos del ejercicio:
 "pt": """Tirar foto""",
 "en": """Take a photo""",
 "it": """Scatta una foto""",
+"hr": """Snimi fotografiju""",
 "fr": """Prendre une photo""",
 "eu": """Atera argazkia""",
-"nb_NO": """Ta et bilde""",
 "cs": """Vyfotit cvik""",
 "id": """Ambil foto""",
 "es": """Tomar una foto""",
+"ar": """التقاط صورة""",
 } +
 {
 "tr": """Fotoğraf(lar)ınıza bir bağlantı ekleyin""",
@@ -1132,12 +1350,13 @@ Pasos del ejercicio:
 "pt": """Adicionar um link para sua(s) foto(s)""",
 "en": """Add a link to your photo(s)""",
 "it": """Aggiungi un link alla tua(e) foto""",
+"hr": """Dodaj poveznice na svoje fotografije""",
 "fr": """Ajouter un lien vers vos photos""",
 "eu": """Gehitu esteka zure argazkietara""",
-"nb_NO": """Legg til en link til bildet(s)""",
 "cs": """Přidat odkaz k fotce/fotkám""",
 "id": """Tambahkan tautan ke foto Anda""",
 "es": """Añadir un enlace a su(s) foto(s)""",
+"ar": """أضف ارتباطًا إلى صورتك (صورك)""",
 } +
 {
 "tr": """Konuşma yerine sesleri kullan""",
@@ -1147,12 +1366,13 @@ Pasos del ejercicio:
 "pt": """Use sons ao vez de fala""",
 "en": """Sounds instead of voice""",
 "it": """Usa suoni invece del parlato""",
+"hr": """Zvukovi umjesto glasa""",
 "fr": """Utiliser des sons au lieu de la parole""",
 "eu": """Erabili soinuak hizketaren ordez""",
-"nb_NO": """Sounds instead of voice""",
 "cs": """Používat zvuky namísto mluveného slova""",
 "id": """Gunakan suara alih-alih ucapan""",
 "es": """Usar sonidos en lugar del habla""",
+"ar": """موسيقى بدلا من الصوت""",
 } +
 {
 "tr": """Zamanlamayı ayarla""",
@@ -1162,12 +1382,13 @@ Pasos del ejercicio:
 "pt": """Ajustar tempo""",
 "en": """Adjust timing""",
 "it": """Regola i tempi""",
+"hr": """Podesi vrijeme""",
 "fr": """Ajuster le minutage""",
 "eu": """Doitu denbora""",
-"nb_NO": """Justere timing""",
 "cs": """Upravit časování""",
 "id": """Sesuaikan waktu""",
 "es": """Ajustar ritmo""",
+"ar": """ضبط التوقيت""",
 } +
 {
 "tr": """Zamanlamayı düzenleme tamamlandı""",
@@ -1177,27 +1398,29 @@ Pasos del ejercicio:
 "pt": """Cronograma de edição""",
 "en": """Done editing timing""",
 "it": """Modifica dei tempi finita""",
+"hr": """Uređivanje vremena je gotovo""",
 "fr": """Modification de la durée terminée""",
 "eu": """Egin editatzeko denbora""",
-"nb_NO": """Ferdig med å redigere timing""",
 "cs": """Časování upraveno""",
 "id": """Waktu pengeditan selesai""",
-"es": """Edición de tiempo terminada""",
+"es": """Terminado de editar el tiempo""",
+"ar": """انتهى تعديل التوقيت""",
 } +
 {
 "tr": """Bilimsel 7 dakikalık antrenman""",
 "nl": """Wetenschappelijk bewezen 7-minutenworkout""",
 "de": """Klassisches 7-Minuten-Training""",
-"ru": """7 минут тренировки""",
+"ru": """Научно-доказанная 7-минутная тренировка""",
 "pt": """Treino científico de 7 minutos""",
 "en": """Scientific 7 minute workout""",
 "it": """Allenamento scientifico di 7 minuti""",
+"hr": """Znanstveno 7-minutno vježbanje""",
 "fr": """Entraînement scientifique de 7 min""",
 "eu": """7 minututako entrenamendu zientifikoa""",
-"nb_NO": """Vitenskapelig 7 minutters treningsøkt""",
 "cs": """Vědecký sedmiminutový trénink""",
 "id": """Latihan ilmiah 7 menit""",
 "es": """Entrenamiento científico de 7 minutos""",
+"ar": """تمرين علمي لمدة 7 دقائق""",
 } +
 {
 "tr": """Bacak antrenmanı""",
@@ -1207,27 +1430,45 @@ Pasos del ejercicio:
 "pt": """Treino de perna""",
 "en": """Leg workout""",
 "it": """Allenamento delle gambe""",
+"hr": """Vježba za noge""",
 "fr": """Entraînement des jambes""",
 "eu": """Hanketarako entrenamendua""",
-"nb_NO": """Ben trening""",
 "cs": """Trénink nohou""",
 "id": """Latihan kaki""",
 "es": """Entrenamiento de piernas""",
+"ar": """تمرين الساق""",
+} +
+{
+"tr": """Neck and shoulder stretches""",
+"nl": """Neck and shoulder stretches""",
+"de": """Nacken- und Schulterdehnungen""",
+"ru": """Растяжка шеи и плеч""",
+"pt": """Neck and shoulder stretches""",
+"en": """Neck and shoulder stretches""",
+"it": """Neck and shoulder stretches""",
+"hr": """Istezanje vrata i ramena""",
+"fr": """Étirements de la nuque et des épaules""",
+"eu": """Neck and shoulder stretches""",
+"cs": """Protažení krku a ramen""",
+"id": """Peregangan leher dan bahu""",
+"es": """Neck and shoulder stretches""",
+"ar": """تمتد الرقبة والكتف""",
 } +
 {
 "tr": """Jack zıplama""",
 "nl": """Klapsprongen""",
 "de": """Hampelmänner""",
-"ru": """Прыжки""",
+"ru": """Джампинг-Джек""",
 "pt": """Polichinelos""",
 "en": """Jumping jacks""",
 "it": """Jumping jack""",
+"hr": """Skokovi s raskorakom""",
 "fr": """Sauts en étoile""",
 "eu": """Saltoka katu""",
-"nb_NO": """Hopping knekt""",
 "cs": """Skákací panák""",
 "id": """Jumping jack""",
 "es": """Polichilenas""",
+"ar": """قفز الرافعات""",
 } +
 {
 "tr": """1. Ayaklar bir arada ve kollar yanlarda olacak şekilde ayakta durun
@@ -1239,8 +1480,8 @@ Pasos del ejercicio:
 "de": """1. Stehe mit den Füßen zusammen und den Armen an den Seiten.
 2. Springe in eine Position, in der die Beine weit gespreizt sind und die Hände sich über Kopf berühren.
 3. Wiederhole""",
-"ru": """1. Встаньте, ноги вместе, руки по бокам.
-2. Прыгните в положение с широко расставленными ногами и руками, соприкасающимися над головой.
+"ru": """1. Встаньте так, чтобы ноги были вместе, а руки по бокам
+2. Прыгните в положение, когда ноги широко расставлены, а руки касаются над головой
 3. Повторите""",
 "pt": """1. Fique com seus pés juntos e os braços em repouso de cada lado
 2. Pule para uma posição em que suas pernas fiquem abertas e as mãos toquem sob sua cabeça
@@ -1251,15 +1492,15 @@ Pasos del ejercicio:
 "it": """1. Stai in piedi, a piedi uniti e con le braccia lunghi i fianchi, ginocchia e gomiti leggermente piegati
 2. Fai un piccolo salto, nel mentre divarica le gambe alla larghezza delle spalle e porta le braccia sopra la testa fino a toccarsi
 3. Ripeti""",
+"hr": """1. Stand with feet together and arms at the sides
+2. Jump to a position with the legs spread wide and the hands touching overhead
+3. Repeat""",
 "fr": """1. Debout, pieds joints et bras le long du corps
 2. Sauter jusqu'à une position où les jambes sont écartées et les mains se touchent au-dessus de la tête.
 3. Répétez""",
 "eu": """1. Jarri tente, oinak elkarrekin eta besoak alboetan
 2. Saltatu hankan zabalduz eta eskuak buruaren gainetik elkartuz
 3. Errepikatu""",
-"nb_NO": """1. Stå med føttene sammen og armene på sidene
-2. Hoppe til en stilling med bena spredt bredt og hender berøre overhead
-3. Gjenta""",
 "cs": """1. Stůj vzpřímeně, nohy těsně vedle sebe a ruce podél těla
 2. Skoč na místě a roztáhni přitom nohy bez prohnutí kolen a rukama tleskni nad hlavou
 3. Skoč zpět a neustále opakuj""",
@@ -1269,21 +1510,25 @@ Pasos del ejercicio:
 "es": """1. Párese con los pies juntos y los brazos a los lados
 2. Salte a una posición con las piernas abiertas y las manos tocandose por encima de la cabeza
 3. Repita""",
+"ar": """1. الوقوف مع القدمين والذراعين على الجانبين
+2. القفز إلى وضع مع تمديد الساقين على نطاق واسع وتلامس اليدين فوق الرأس
+3. كرر التمرين""",
 } +
 {
 "tr": """Duvara yaslanarak oturma""",
 "nl": """Muurzitten""",
 "de": """Wand sitzen""",
-"ru": """Стенка""",
+"ru": """Приседание у стены""",
 "pt": """Agachamento parede""",
 "en": """Wall sit""",
 "it": """Seduta a muro""",
+"hr": """Čučnjevi uz zid""",
 "fr": """Assis dos au mur""",
 "eu": """Horman eseri""",
-"nb_NO": """Veggen sitte""",
 "cs": """Sed u stěny""",
 "id": """Duduk di dinding""",
 "es": """Asiento en pared""",
+"ar": """الجلوس على الحائط""",
 } +
 {
 "tr": """1. Öne bakacak şekilde duvara yaslanın, ayaklar yere sıkıca oturtulmuş, omuz genişliğinde açılmış ve duvardan yaklaşık 60 cm uzakta olsun
@@ -1307,15 +1552,15 @@ Quadricep pain is normal, stop if feeling pain in the knee or kneecap""",
 "it": """1. Appoggiati al muro, rivolto in avanti e con i piedi ben piantati sul terreno, le spalle divaricate e a circa 2 piedi di distanza dal muro
 2. Scivola giù lungo il muro, tenendo la schiena premuta contro di esso, fino a quando le gambe sono ad angolo retto. Le ginocchia dovrebbero essere direttamente sopra le caviglie
 Il dolore al quadricipite è normale, interrompi se avverti dolore al ginocchio o alla rotula""",
+"hr": """1. Lean against the wall, facing forward and with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall
+2. Slide down the wall, keeping the back pressed to it, until legs are at a right angle. The knees should be directly above the ankles
+Quadricep pain is normal, stop if feeling pain in the knee or kneecap""",
 "fr": """1. Appuyez-vous contre le mur, en regardant vers l'avant, les pieds fermement plantés au sol, écartés de la largeur des épaules et à une distance d'environ 60 cm du mur.
 2. Glissez le long du mur, en gardant le dos appuyé contre lui, jusqu'à ce que les jambes forment un angle droit. Les genoux doivent être directement au-dessus des chevilles.
 La douleur au quadriceps est normale, arrêtez si vous ressentez une douleur au genou ou à la rotule""",
 "eu": """1. Jarri hormaren kontra, kanpora begira, oinen platak lurrean tinko, besaburuen altuerara zabalduta eta hormatik gutxi gora behera 60 zentimetrotara
 2. Irristatu hormatik behera, bizkarra hormaren kontra mantenduz, hankak angelu zuzenean dauden arte. Belaunak zuzenean orkatilen gainean egon beharko lukete.
 Koadrizepsean mina arrunta da, baina gelditu mina belaunean edo errotulan nabarituz gero""",
-"nb_NO": """1. Lener seg mot veggen, vendt forover og med føttene godt plantet på bakken, skulder bredde hverandre og om lag 2 meter bort fra veggen
-2. Skyv nedover veggen, å holde tilbake trykket til det, til bena er i rett vinkel. Knærne skal være rett over anklene
-Quadricep smerte er normalt, og stopper hvis du føler smerter i kneet eller kneskålen""",
 "cs": """1. Opřete se o zeď, směřující dopředu a s nohama pevně zasazenými na zemi, šířka ramen od sebe a asi 2 nohy od zdi
 2. Posuňte dolů po stěně a držte záda přitlačenou k ní, dokud nohy nejsou v pravém úhlu. Kolena by měla být přímo nad kotníky
 Quadricep bolest je normální, zastavte se, pokud máte pocit bolesti v koleni nebo kolenním kloubu""",
@@ -1325,6 +1570,9 @@ Nyeri paha depan normal, hentikan jika merasakan nyeri pada lutut atau tempurung
 "es": """1. Apóyese en la pared, mirando hacia adelante y con los pies plantados firmemente en el suelo, sus hombros deben separarse y estar a 50 centímetros de la pared
 2. Deslízate por la pared, manteniendo la espalda presionada a ella, hasta que las piernas estén en ángulo recto. Las rodillas deben estar directamente sobre los tobillos
 El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o en la rótula""",
+"ar": """1. استند على الحائط ، ووجهك للأمام مع تثبيت القدمين بإحكام على الأرض ، والكتفين متباعدان عن بعضهما البعض ، وعلى بُعد حوالي قدمين من الحائط
+2. انزلق على الحائط ، مع الاستمرار في الضغط على الظهر ، حتى تصبح الأرجل في الزاوية اليمنى. يجب أن تكون الركبتان فوق الكاحلين مباشرة
+ألم العضلة الرباعية طبيعي ، توقف إذا شعرت بألم في الركبة أو الرضفة""",
 } +
 {
 "tr": """Şınav""",
@@ -1334,12 +1582,13 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 "pt": """Flexão de braços""",
 "en": """Push-ups""",
 "it": """Flessioni""",
+"hr": """Sklekovi""",
 "fr": """Pompes""",
 "eu": """Flexioak""",
-"nb_NO": """Armhevninger""",
 "cs": """Kliky""",
 "id": """Push-up""",
 "es": """Lagartijas""",
+"ar": """تمرين الضغط""",
 } +
 {
 "tr": """1. Karnınız üzerine uzanın
@@ -1352,11 +1601,13 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 3. Gebruik je armen om je buik omhoog te duwen totdat je armen gestrekt zijn - houd je rug recht.
 4. Buig je armen totdat je borstkas bijna de grond raakt - houd je rug recht.
 5. Herhaal vanaf stap 3""",
-"de": """1. Lege Dich auf den Bauch
-2. Lege Deine Hände in die Nähe der Ohren
-3. Hebe mit den Armen den Bauch an, bis die Arme gerade sind, und halte den Rücken gerade
-4. Beuge die Arme bis die Brust fast den Boden berührt und stelle sicher, dass der Rücken gerade ist
-5. Wiederhole ab Schritt 3""",
+"de": """Ausgangsposition:
+Starte mit der Ausgangsposition für Liegestütze, wobei Hände und Zehen den Boden berühren und Arme und Beine gerade sind. Um diese Position zu erreichen, kannst Du Dich auf den Bauch legen, die Hände nach unten neben den Kopf legen und die Arme nach oben heben, bis sie gerade sind.
+
+Die Schritte:
+1. Beuge den Ellbogen, bis die Brust fast den Boden berührt. Achte darauf, dass der Rücken immer gerade ist.
+2. Hebe Dich mit den Armen wieder in die Ausgangsposition.
+3. Wiederhole.""",
 "ru": """1. Лечь на горизонтальную ровную поверхность.
 2. Руки при этом должны быть на ширине плеч.
 3. Разогните руки, пока руки и спина не выпрямятся.
@@ -1367,16 +1618,25 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 3. Use suas mão para levantar a barriga até que os braços estejam retos, mantendo as costas retas
 4. Dobre os braços até que o peito quase toque o chão, certificando-se de que as costas estejam retas
 5. Repita a partir do passo 3""",
-"en": """1. Lie down on your stomach
-2. Place your hands near your ears
-3. Use your arms to lift your stomach up until the arms are straight, keeping the back straight
-4. Bend arms until chest almost touches the ground, making sure the back is straight
-5. Repeat from step 3""",
+"en": """Starting position:
+Get into the starting push-up position, with your hands and toes touching the ground and back, arms and legs straight. To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Bend at the elbows until your chest almost touches the ground, making sure your back is straight at all times.
+2. Use your arms to lift yourself back up to starting position.
+3. Repeat.""",
 "it": """1. Sdraiati a pancia in giù
 2. Metti le mani vicino alle orecchie
 3. Usa le braccia per sollevare il torace fino a quando le braccia sono dritte, mantenendo la schiena dritta
 4. Piega le braccia fino a quando il torace tocca quasi il suolo, assicurandoti che la schiena sia dritta
 5. Ripeti dal passaggio 3""",
+"hr": """Starting position:
+Get into the starting push-up position, with your hands and toes touching the ground and back, arms and legs straight. To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Bend at the elbows until your chest almost touches the ground, making sure your back is straight at all times.
+2. Use your arms to lift yourself back up to starting position.
+3. Repeat.""",
 "fr": """1. Allongez-vous sur le ventre
 2. Placez vos mains près de vos oreilles
 3. Utilisez vos bras pour soulever votre ventre jusqu'à ce que les bras soient droits, en gardant le dos droit.
@@ -1387,41 +1647,48 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 3. erabili besoak zure sabela lurretik altxatzeko besoak zuzen jarri arte, bizkarra beti zuzen mantenduz
 4. Tolestu besoak paparrak ia lurra ukitu arte, ziurtatu bizkarra zuzen mantentzen duzula
 5. Errepikatu 3. puntutik""",
-"nb_NO": """1. Legg deg ned på magen
-2. Plasser hendene i nærheten ørene
-3. Bruk armene til å løfte magen opp til armene er rett, holde ryggen rett
-4. Bøy armene til brystet nesten berører bakken, noe som gjør at ryggen er rett
-5. Gjenta fra trinn 3""",
-"cs": """1. Lehněte si na břicho
-2. Položte ruce blízko uší
-3. Použijte ruce, abyste zvedli žaludek, dokud nejsou paže rovné, držte záda rovně
-4. Ohněte paže, dokud se hrudník téměř nedotkne země, ujistěte se, že záda je rovná
-5. Opakujte od kroku 3""",
-"id": """1. Berbaringlah di perut Anda
-2. Letakkan tangan Anda di dekat telinga Anda
-3. Gunakan lengan Anda untuk mengangkat perut Anda sampai lengan lurus, menjaga punggung lurus
-4. Tekuk lengan sampai dada hampir menyentuh tanah, memastikan punggung lurus
-5. Ulangi dari Langkah 3""",
+"cs": """Výchozí poloha:
+Zaujměte výchozí polohu kliku, s dlaněmi a prsty na nohou dotýkajícími se země a rovnými zády, pažemi a nohama. Pro dosažení této pozice si můžete lehnout na břicho, dlaně položit na zem vedle hlavy, a postupně se rukama zvednout, dokud nebudou rovné.
+
+Kroky:
+1. Ohněte postupně lokty dokud se vaše hruď nedotkne země. Vaše záda by měla být rovná během celého pohybu.
+2. Zvedněte se pažemi zpět do výchozí polohy.
+3. Opakujte od začátku.""",
+"id": """Posisi awal:
+Masuk ke posisi push-up awal, dengan tangan dan kaki menyentuh tanah dan punggung, lengan dan kaki lurus. Untuk mencapai posisi ini, Anda bisa berbaring tengkurap, meletakkan tangan menghadap ke bawah di samping kepala, dan mengangkat tangan ke atas hingga lurus.
+
+Langkah:
+1. Tekuk siku hingga dada hampir menyentuh lantai, pastikan punggung selalu lurus.
+2. Gunakan lengan Anda untuk mengangkat diri kembali ke posisi awal.
+3. Ulangi.""",
 "es": """1. Acuéstese boca abajo.
 2. Ponga sus manos cerca de sus orejas.
 3. Usa los brazos para levantar el estómago hasta que los brazos estén rectos, manteniendo la espalda recta
 4. Doble los brazos hasta que el pecho casi toque el suelo, asegurándose de que la espalda esté recta.
 5. Repita desde el paso 3""",
+"ar": """وضع البداية:
+ادخل إلى وضع بدء الدفع ، بحيث تلامس يديك وأصابع قدمك الأرض والظهر ، وذراعيك وساقيك مستقيمة. للوصول إلى هذا الوضع ، يمكنك الاستلقاء على بطنك ، ووضع يديك في مواجهة رأسك ، ورفع ذراعيك لأعلى حتى تستقيم.
+
+خطوات:
+1. انحنى عند المرفقين حتى يلمس صدرك الأرض تقريبًا ، وتأكد من أن ظهرك مستقيم في جميع الأوقات.
+2. استخدم ذراعيك لرفع نفسك احتياطيًا إلى وضع البداية.
+3. كرر.""",
 } +
 {
 "tr": """Yarım mekik""",
 "nl": """Crunch""",
 "de": """Bauchpressen""",
-"ru": """Хрустит""",
+"ru": """Скручивания""",
 "pt": """Abdominal""",
 "en": """Crunches""",
 "it": """Addominali""",
+"hr": """Trbušnjaci""",
 "fr": """Abdominaux""",
 "eu": """Abdominal karraskak""",
-"nb_NO": """Knase""",
 "cs": """Sedolehy""",
 "id": """Crunch""",
 "es": """Abdominales""",
+"ar": """الطحن""",
 } +
 {
 "tr": """1. Dizlerinizi bükerek yere sırtüstü yatın.
@@ -1445,15 +1712,15 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 "it": """1. Sdraiati a pancia in su sul pavimento con le ginocchia piegate.
 2. Solleva il busto verso il bacino, a 30° / 40° dal suolo. Le mani possono essere dietro o accanto al collo o incrociate sul petto.
 3. Ripeti""",
+"hr": """1. Lie down face up on the floor with knees bent.
+2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.
+3. Repeat""",
 "fr": """1. Allongez-vous sur le sol, face contre terre, genoux pliés.
 2. Courbez les épaules vers le bassin. Les mains peuvent être derrière ou à côté du cou ou croisées sur la poitrine.
 3. Répétez""",
 "eu": """1. Etzan buruz gora lurrean belaunak tolestuta.
 2. Kizkurtu besaburuak pelbiserantz. Eskuak lepoaren atzean edo ondoan egon daitezke, edo bularrean gurutzatuta.
 3. Errepikatu""",
-"nb_NO": """1. Legge seg ned med ansiktet opp på gulvet med knærne bøyd.
-2. Curl skuldrene mot bekkenet. Hendene kan være bak eller ved siden av halsen eller kryss over brystet.
-3. Gjenta""",
 "cs": """1. Lehni si na zem hlavou nahoru s pokrčenými koleny.
 Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Plosky nohou včetně prstů by měly zůstat na zemi. Ruce mohou být za hlavou nebo přeložené v kříž na hrudi.
 3. Opakuj""",
@@ -1463,6 +1730,9 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "es": """1. Acuéstese boca arriba en el suelo con las rodillas dobladas.
 2. Flexione los hombros hacia la pelvis. Las manos pueden estar detrás o al costado del cuello o cruzadas sobre el pecho.
 3. Repita""",
+"ar": """1. الاستلقاء على الأرض مع ثني الركبتين.
+2. لف الكتفين نحو الحوض. يمكن أن تكون اليدين خلف العنق أو بجانبه أو متقاطعتين فوق الصدر.
+3. كرر التمرين""",
 } +
 {
 "tr": """Adım atma""",
@@ -1472,12 +1742,13 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "pt": """Progressos""",
 "en": """Step-ups""",
 "it": """Step""",
+"hr": """Stupanje na stolicu""",
 "fr": """Marches""",
 "eu": """Eskailerak""",
-"nb_NO": """Step-Ups""",
 "cs": """Výšlapy""",
 "id": """Step-up""",
 "es": """Subida a peldaño""",
+"ar": """صعود-الكرسي""",
 } +
 {
 "tr": """1. Sandalyeye dönük şekilde durun
@@ -1508,6 +1779,10 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 2. Salire sulla sedia
 3. Scendere dalla sedia
 4. Ripeti""",
+"hr": """1. Stani ispred stolca
+2. Zakorači na stolac
+3. Siđi sa stolca
+4. Ponovi""",
 "fr": """1. Tenez-vous debout face à une chaise
 2. Montez sur la chaise
 3. Descendez de la chaise
@@ -1516,10 +1791,6 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 2. Igo aulkira
 3. Jaitsi aulkitik
 4. Errepikatu""",
-"nb_NO": """1. Står overfor en stol
-2. Trinn opp på stolen
-3. Går av som styreleder
-4. Gjenta""",
 "cs": """1. Stůj čelem k židli.
 2. Stoupni si na židli
 3. Sestup dolu ze židle
@@ -1532,6 +1803,10 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 2. Súbase a la silla
 3. Bájese de la silla
 4. Repita""",
+"ar": """1. الوقوف في مواجهة كرسي
+2. اصعد على الكرسي
+3. انزل عن الكرسي
+4. كرر التمرين""",
 } +
 {
 "tr": """Çömelme""",
@@ -1541,12 +1816,13 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "pt": """Agachamentos""",
 "en": """Squats""",
 "it": """Squat (Stacchi)""",
+"hr": """Čučnjevi""",
 "fr": """Accroupi""",
 "eu": """Makurtzeak""",
-"nb_NO": """Squat""",
 "cs": """Dřepy""",
 "id": """Jongkok""",
 "es": """Sentadillas""",
+"ar": """القرفصاء""",
 } +
 {
 "tr": """1. Ayaklar omuz genişliğinde açık durun
@@ -1570,15 +1846,15 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "it": """1. Stai con i piedi alla larghezza delle spalle
 2. Sposta i fianchi indietro e piega le ginocchia e i fianchi per abbassare il busto
 3. Ripeti""",
+"hr": """1. Stand with feet shoulder-width apart
+2. Move the hips back and bend the knees and hips to lower the torso
+3. Repeat""",
 "fr": """1. Debout, les pieds écartés à la largeur des épaules
 2. Déplacez les hanches vers l'arrière et pliez les genoux et les hanches pour abaisser le torse.
 3. Répétez""",
 "eu": """1. Jarri tente oinak besaburuen altueran
 2. Bota aldaka atzera eta tolestu belaunak eta aldaka enborra jaisteko
 3. Errepikatu""",
-"nb_NO": """1. Stå med føttene skulder bredde hverandre
-2. Bevege hoftene bakover og bøy i knær og hofter til å senke overkroppen
-3. Gjenta""",
 "cs": """1. Stůj s nohama vzdálenými o šířku ramen.
 2. Posuň kyčel dozadu a pokrč kolena, dokud nebudeš mít stehna paralelně se zemí.
 3. Opakuj""",
@@ -1588,21 +1864,25 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 "es": """1. Levántese con los pies separados al ancho de hombros
 2. Mueva las caderas hacia atrás y doble las rodillas y caderas para bajar el torso
 3. Repita""",
+"ar": """1. الوقوف مع مباعدة قدميه عرض الكتفين
+2. حرك الوركين للخلف وثني الركبتين والوركين لخفض الجذع
+3. كرر التمرين""",
 } +
 {
 "tr": """Sandalye ile dalma""",
 "nl": """Stoelzakken""",
 "de": """Stuhl Stütze""",
-"ru": """Обратное отжимание от скамьи""",
+"ru": """Обратные отжимания от стула""",
 "pt": """Tríceps no banco""",
 "en": """Chair dips""",
 "it": """Piegamenti sulla sedia""",
+"hr": """Propadanje ut pomoć stolice""",
 "fr": """Dips sur chaise""",
 "eu": """Aulki sartu-irtenak""",
-"nb_NO": """Stol dips""",
 "cs": """Dipy na židli""",
 "id": """Kursi dips""",
 "es": """Bajadas en silla""",
+"ar": """تراجع كرسي""",
 } +
 {
 "tr": """1. Sırt düz, eller ön kısmını tutacak şekilde bir sandalyenin ön tarafına oturun
@@ -1640,6 +1920,11 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 3. Abbassa lentamente il corpo, mantenendo la schiena dritta, fino a quando le braccia sono ad angolo retto
 4. Solleva nuovamente il corpo nella posizione precedente, le braccia estese
 5. Ripetere i passaggi 3 e 4""",
+"hr": """1. Sit down on the front edge of a chair, back straight, hands holding the front edge
+2. Still holding the edge of the chair, arms extended, lift your butt and walk forward slightly so that it is a few inches from the chair.
+3. Slowly lower your body, keeping the back straight, until arms are at a right angle
+4. Raise your body again to the previous position, arms extended
+5. Repeat steps 3 and 4""",
 "fr": """1. Asseyez-vous sur le bord avant d'une chaise, le dos droit, les mains tenant le bord avant.
 2. Toujours en tenant le bord de la chaise, bras tendus, soulevez vos fesses et avancez légèrement de façon à ce qu'elles soient à quelques centimètres de la chaise.
 3. Abaissez lentement votre corps, en gardant le dos droit, jusqu'à ce que les bras forment un angle droit.
@@ -1650,11 +1935,6 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 3. Astiro jaitsi zure gorputza, bizkarra zuzen mantenduz, besoak angelu zuzenean egon arte.
 4. Altxa zure gorputza berriro aurreko posiziora, besoak zuzen
 5. Errepikatu 3. eta 4. urratsak""",
-"nb_NO": """1. Sitte ned foran kanten av en stol med rett rygg, hender holder den fremre kanten
-2. Fortsatt holder kanten av stolen, armene utstrakt, løfte baken og gå frem litt, slik at det er et par inches fra stolen.
-3. Sakte senke kroppen, mens du holder ryggen rett, til armene er i rett vinkel
-4. Heve kroppen igjen til den tidligere stillingen, armene utstrakt
-5. Gjenta trinn 3 og 4""",
 "cs": """1. Posaďte se na přední okraj židle, záda rovně, ruce držící přední okraj
 2. Stále drží okraj židle, paže natažené, zvedněte zadek a lehce jděte dopředu, takže je to pár centimetrů od židle.
 3. Pomalu snižte své tělo a držte záda rovně, dokud nejsou ramena v pravém úhlu
@@ -1670,21 +1950,27 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 3. Baje lentamente su cuerpo, manteniendo la espalda recta, hasta que los brazos estén en ángulo recto
 4. Levante el cuerpo de nuevo a la posición anterior con los brazos extendidos.
 5. Repita los pasos 3 y 4""",
+"ar": """1. اجلس على الحافة الأمامية للكرسي ، وظهرك مستقيماً ، وتمسك يديك بالحافة الأمامية
+2. استمر في الإمساك بحافة الكرسي ، وتمدد الذراعين ، وارفع مؤخرتك وامش للأمام قليلًا بحيث تكون على بعد بضع بوصات من الكرسي.
+3. أنزل جسمك ببطء ، مع الحفاظ على استقامة الظهر ، حتى تصبح الذراعين في الزاوية اليمنى
+4. ارفع جسمك مرة أخرى إلى الوضع السابق ، مد الذراعين
+5. كرر الخطوتين 3 و 4""",
 } +
 {
 "tr": """Ön kol plank hareketi""",
 "nl": """Onderarmplanken""",
-"de": """Unterarmstütz""",
+"de": """Unterarmplanke""",
 "ru": """Планка""",
 "pt": """Prancha horizontal""",
 "en": """Forearm plank""",
 "it": """Tavola""",
+"hr": """Izdržaj na podlakticama""",
 "fr": """Planche pour les avant-bras""",
 "eu": """Ohola""",
-"nb_NO": """Underarm planke""",
 "cs": """Prkno na předloktí""",
-"id": """Papan""",
+"id": """Forearm plank""",
 "es": """Plancha de antebrazo""",
+"ar": """لوح الساعد""",
 } +
 {
 "tr": """Başlangıç durumu:
@@ -1701,9 +1987,13 @@ Je rug en de rest van je lichaam moeten gestrekt zijn.
 
 Stappen:
 1. Houd deze positie vast.""",
-"de": """1. Gehe auf alle Viere, mit gestreckten Armen und gebeugten Knien.
-2. Gehe mit den Füßen nach hinten, bis sie gestreckt sind.
-3. Halte diese Position""",
+"de": """Ausgangsposition:
+1. Beginne auf allen Vieren.
+Die Arme sind rechtwinklig angewinkelt, die Schultern befinden sich direkt über den Ellbogen.
+Der Rücken sollte gerade sein, der ganze Körper in einer geraden Linie.
+
+Schritte:
+1. Halte diese Position.""",
 "ru": """1. Встаньте на четвереньки, руки прямые, колени согнуты
 2. Отведите ноги назад, пока они не вытянутся
 3. Удерживайте это положение""",
@@ -1724,6 +2014,13 @@ Steps:
 "it": """1. Mettiti a quattro zampe, con gli avambracci appoggiati e le ginocchia piegate
 2. Cammina indietro fino a quando le gambe non sono estese
 3. Mantieni questa posizione""",
+"hr": """Starting position:
+1. Start down on all fours.
+Arms should bent at a right angle, with shoulders right over elbows.
+Back should be straight, the whole body in a straight line.
+
+Steps:
+1. Hold this position.""",
 "fr": """Position de départ :
 1. Commencez à quatre pattes.
 Les bras doivent être pliés à angle droit, les épaules au-dessus des coudes.
@@ -1734,13 +2031,6 @@ Le dos doit être droit, le corps entier en ligne droite.
 "eu": """1. Jarri lau hankatan, besoak zuzen eta belaunak tolestuta
 2. Bota oinak atzera hankak zuzen jarri arte
 3. Eutsi posizio honetan""",
-"nb_NO": """Startposisjonen:
-1. Start ned på alle fire.
-Armene skal bøyd i rett vinkel, med skuldrene rett over albuene.
-Ryggen skal være rett, hele kroppen i en rett linje.
-
-Fremgangsmåte:
-1. Hold denne posisjonen.""",
 "cs": """Výchozí pozice:
 1. Začněte na všech čtyřech.
 Paže by měly být pokrčené v pravém úhlu, ramena přímo nad lokty.
@@ -1748,9 +2038,13 @@ Záda by měla být rovná, celé tělo v přímce.
 
 Kroky:
 1. Vydržte v této poloze.""",
-"id": """1. Mendapatkan ke bawah merangkak, dengan lengan lurus dan lutut membungkuk
-2. Berjalanlah kaki Anda kembali sampai mereka diperpanjang
-3. Tahan posisi ini""",
+"id": """Posisi awal:
+1. Mulai dengan posisi merangkak.
+Lengan harus ditekuk pada sisi kanan, dengan bahu tepat di atas siku.
+Punggung harus lurus, seluruh tubuh dalam garis lurus.
+
+Langkah:
+1. Tahan posisi ini.""",
 "es": """Posición de salida:
 1. Empiece a cuatro patas.
 Los brazos deben estar doblados en ángulo recto, con los hombros justo sobre los codos.
@@ -1758,6 +2052,13 @@ La espalda debe estar recta, todo el cuerpo en línea recta.
 
 Pasos:
 1. Mantenga esta posición.""",
+"ar": """وضع البداية:
+1. ابدأ بيديك وساقيك على الارض.
+يجب ثني الذراعين بزاوية قائمة مع وضع الكتفين فوق المرفقين.
+يجب أن يكون الظهر مستقيمًا والجسم كله في خط مستقيم.
+
+خطوات:
+1. الثبوت على هذا الوضع.""",
 } +
 {
 "tr": """Yüksek dizler""",
@@ -1767,12 +2068,13 @@ Pasos:
 "pt": """Joelhos para cima""",
 "en": """High knees""",
 "it": """Corsa sul posto con ginocchia alte""",
+"hr": """Trčanje na mjestu""",
 "fr": """Genoux hauts""",
 "eu": """Belaun garaiak""",
-"nb_NO": """Høye knær""",
 "cs": """Vysoká kolena""",
 "id": """Lutut tinggi""",
 "es": """Rodillas elevadas""",
+"ar": """الركبتين العالية""",
 } +
 {
 "tr": """1. Dizleri kaldırabildiğiniz kadar yukarı kaldırarak ve bacakları hızlı bir şekilde değiştirerek olduğunuz yerde koşun""",
@@ -1782,12 +2084,13 @@ Pasos:
 "pt": """1. Corra no lugar, colocando os joelhos o mais alto o confortável e trocando de pernas a um ritmo rápido""",
 "en": """1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace""",
 "it": """1. Fai una corsa veloce sul posto, porta in alto le ginocchia ma senza sforzare""",
+"hr": """1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace""",
 "fr": """1. Courez sur place, en plaçant les genoux aussi haut que possible et en changeant de jambe à un rythme rapide""",
 "eu": """1. Egin korrika tokian, belaunak eroso den bezain beste altxatuz hanka batetik bestera erritmo bizian""",
-"nb_NO": """1. Kjør på plass, sette knærne så høyt opp som er komfortable og slå bena på en rask tempo""",
 "cs": """1. Běh na místě, uvedení kolena tak vysoko, jak je pohodlné a přepínání nohy rychlým tempem""",
 "id": """1. Run in place, put knees as high as is comfortable and switching legs at a quick pace""",
 "es": """1. Trote en el lugar, con las rodillas tan altas como pueda y cambie de pierna a un ritmo rápido""",
+"ar": """1. الجري في المكان، وضع الركبتين عاليا كما هو مريح وتبديل بين الساقين بوتيرة سريعة""",
 } +
 {
 "tr": """Lunge hareketi""",
@@ -1797,12 +2100,13 @@ Pasos:
 "pt": """Investidas""",
 "en": """Lunges""",
 "it": """Affondi""",
+"hr": """Iskoraci""",
 "fr": """Fentes""",
 "eu": """Mugitu""",
-"nb_NO": """Lunge""",
 "cs": """Výpady""",
 "id": """Paru-paru""",
 "es": """Estocadas""",
+"ar": """الطعنات""",
 } +
 {
 "tr": """1. Sırtınız düz bir şekilde durun
@@ -1847,6 +2151,12 @@ Pasos:
 4. Tendi il bacino in avanti
 5. Ritorna in posizione eretta facendo un passo indietro
 6. Ripeti, alternando le gambe ogni volta""",
+"hr": """1. Stand with back straight
+2. Take a large step forward with your left leg
+3. Bring your pelvis down until you almost touch the floor with your right knee
+4. Bring your pelvis back up
+5. Return to standing position by stepping back
+6. Repeat, switching legs each time""",
 "fr": """1. Tenez-vous debout, le dos droit
 2. Faites un grand pas en avant avec votre jambe gauche
 3. Descendez votre bassin jusqu'à ce que votre genou droit touche presque le sol.
@@ -1859,12 +2169,6 @@ Pasos:
 4. Igo berriro zure pelbisa
 5. Itzuli tente posiziora urratsa atzera itzuliz
 6. Errepikatu aldi bakoitzean hanka aldatuz""",
-"nb_NO": """1. Stå med rett rygg
-2. Ta et stort skritt fremover med venstre ben
-3. Ta med din bekken ned til du nesten berører gulvet med høyre kne
-4. Ta med din bekkenet tilbake opp
-5. Gå tilbake til stående posisjon ved å tråkke tilbake
-6. Gjenta slår bena hver gang""",
 "cs": """1. Postavte se zády rovně
 2. Udělejte velký krok vpřed levou nohou
 3. Přiveďte pánev dolů, dokud se téměř nedotknete podlahy pravým kolenem
@@ -1883,6 +2187,12 @@ Pasos:
 4. Vuelva a subir la pelvis
 5. Vuelva a la posición con el pie hacia atrás
 6. Repita, cambiando de pierna cada vez""",
+"ar": """1. الوقوف ب ظهر مستو
+2. اتخاذ خطوة كبيرة إلى الأمام ب ساقك اليسرى
+3. جلب الحوض الخاص بك إلى أسفل حتى تلامس الارض بركبتك اليمنى
+4. جلب الحوض الخاص بك مرة أخرى
+5. العودة إلى وضعية الوقوف بالتراجع
+6. كرر، مع التبديل الساقين في كل مرة""",
 } +
 {
 "tr": """Tek bacaklı çömelme (sol)""",
@@ -1892,12 +2202,13 @@ Pasos:
 "pt": """Split squats esquerda""",
 "en": """Split squats left""",
 "it": """Split squat a sinistra""",
+"hr": """Podijeljeni čučnjevi lijevo""",
 "fr": """Fentes avant gauches""",
 "eu": """Zatitu squats utzi""",
-"nb_NO": """Split-knebøy venstre""",
 "cs": """Dřep ve výpadu nalevo""",
 "id": """Split squats kiri""",
 "es": """Media sentadillas izquierda""",
+"ar": """انقسام القرفصاء اليسار""",
 } +
 {
 "tr": """Tek bacaklı çömelme (sağ)""",
@@ -1907,12 +2218,13 @@ Pasos:
 "pt": """Split squats direita""",
 "en": """Split squats right""",
 "it": """Squat laterali a sinistra""",
+"hr": """Podijeljeni čučnjevi desno""",
 "fr": """Fentes avant droites""",
 "eu": """Zatitu squats eskubidea""",
-"nb_NO": """Split-knebøy høyre""",
 "cs": """Dřep ve výpadu napravo""",
 "id": """Split squats kanan""",
 "es": """Media sentadillas derecha""",
+"ar": """تقسيم القرفصاء اليمين""",
 } +
 {
 "tr": """1. Sırtınız düz bir şekilde durun
@@ -1950,6 +2262,11 @@ Pasos:
 3. Abbassa il bacino fino a toccare quasi il pavimento con il ginocchio destro
 4. Riporta il bacino verso l'alto
 5. Ripetere dal passaggio 3.""",
+"hr": """1. Stand with back straight
+2. Take a large step forward with your left leg
+3. Bring your pelvis down until you almost touch the floor with your right knee
+4. Bring your pelvis back up
+5. Repeat from step 3.""",
 "fr": """1. Tenez-vous debout avec le dos droit
 2. Faites un grand pas en avant avec votre jambe gauche
 3. Abaissez votre bassin jusqu'à ce que vous touchiez presque le sol avec votre genou droit
@@ -1960,11 +2277,6 @@ Pasos:
 3. Ekarri zure pelbisa behera arte ia lurrean ukitu zure eskuineko belauna
 4. Ekarri zure pelbisa back up
 5. Errepikatu 3. urratsa.""",
-"nb_NO": """1. Stå med rett rygg
-2. Ta et stort skritt fremover med venstre ben
-3. Ta med din bekken ned til du nesten berører gulvet med høyre kne
-4. Ta med din bekkenet tilbake opp
-5. Gjenta fra trinn 3.""",
 "cs": """1. Postavte se zády rovně
 2. Udělejte velký krok vpřed levou nohou
 3. Přiveďte pánev dolů, dokud se téměř nedotknete podlahy pravým kolenem
@@ -1980,6 +2292,11 @@ Pasos:
 3. Baje la pelvis hasta que casi toque el suelo con la rodilla derecha
 4. Suba la pelvis
 5. Repita desde el paso 3.""",
+"ar": """1. الوقوف بظهر مستو
+2. اتخاذ خطوة كبيرة إلى الأمام بساقك اليسرى
+3. جلب الحوض الخاص بك إلى أسفل حتى تلامس الاض بركبتك اليمنى
+4. جلب الحوض الخاص بك مرة أخرى
+5. كرر الخطوة 3.""",
 } +
 {
 "tr": """Dönerek şınav""",
@@ -1989,12 +2306,13 @@ Pasos:
 "pt": """Flexão em T""",
 "en": """Push-up rotations""",
 "it": """Flessioni con rotazione""",
+"hr": """Sklekovi s okretanjem""",
 "fr": """Pompes avec rotation""",
 "eu": """Push-up errotazioak""",
-"nb_NO": """Push-up-rotasjoner""",
 "cs": """Kliky s rotací""",
 "id": """Rotasi Push-up""",
 "es": """Flexiones a rotación""",
+"ar": """تمرين الضغط المتناوب""",
 } +
 {
 "tr": """1. Normal bir şınav yapın:
@@ -2053,6 +2371,14 @@ Pasos:
 1.e Solleva di nuovo il torace (vedi 1.c)
 2. Ruota il corpo di lato in modo che la schiena sia dritta: la mano inferiore che sostiene il corpo è completamente estesa e solo la mano inferiore e i piedi toccano il pavimento
 3. Ripeti, cambiando lato ogni volta al passaggio 2""",
+"hr": """1. Do a standard push-up:
+1.a Lie down on your stomach
+1.b Place your hands near your ears
+1.c Use your arms to lift your stomach up until the arms are straight, keeping the back straight
+1.d Bend arms until chest almost touches the ground, making sure the back is straight
+1.e Lift your stomach up again, returning to step 3
+2. Rotate your body to the side so that the back is straight, the bottom hand supporting the body is fully extended, and only the bottom hand and foot touch the floor
+3. Repeat, changing sides at step 2 each time""",
 "fr": """1. Faites une pompe standard :
 1.a Allongez-vous sur le ventre
 1.b Placez vos mains près de vos oreilles
@@ -2069,14 +2395,6 @@ Pasos:
 1.e Altxa berriro sabela 1.c puntura itzuliz
 2. Biratu gorputza albora, bizkarra zuzen eta pisua eusten duen beheko besoa guztiz zuzen, eta soilik beheko eskuak eta oinak ukitzen dute lurra
 3. Errepikatu, aldez aldatuz 2. puntuan""",
-"nb_NO": """1. Gjør en vanlig push-up:
-1.en legge seg ned på magen
-1.b Plasser hendene i nærheten ørene
-1.c Bruk armene til å løfte magen opp til armene er rett, holde ryggen rett
-1.d Bøye armene til brystet nesten berører bakken, noe som gjør at ryggen er rett
-1.e Heis magen opp igjen, tilbake til trinn 3
-2. Rotere kroppen til siden slik at ryggen er rett, den nederste hånden støtte kroppen er helt ute, og bare den nederste hånd og fot berøre gulvet
-3. Gjenta, bytte sider på trinn 2 hver gang""",
 "cs": """1. Proveďte standardní push-up:
 1.Lehněte si na břicho
 1.b položte ruce blízko uší
@@ -2101,6 +2419,14 @@ Pasos:
 1.e Levante el estómago de nuevo, volviendo al paso 3
 2. Gire el cuerpo hacia un lado para que la espalda quede recta, la mano inferior que sostiene el cuerpo esté completamente extendida y sólo las extremidades inferiores toquen el suelo
 3. Repita, cambiando de lado en el paso 2 otra vez""",
+"ar": """1. قم بتمرين الضغط القياسي:
+1.a الاستلقاء على بطنك
+1.b ضع يديك بالقرب من أذنيك
+1.c استخدم ذراعيك لرفع معدتك حتى تصبح الذراعين مستقيمين ، مع الحفاظ على استقامة الظهر
+1.d ثني الذراعين حتى يلمس الصدر الأرض تقريبًا ، مع التأكد من أن الظهر مستقيم
+1.e ارفع معدتك مرة أخرى ، والعودة إلى الخطوة 3
+2. قم بتدوير جسمك إلى الجانب بحيث يكون الظهر مستقيمًا ، ويتم تمديد اليد السفلية التي تدعم الجسم بالكامل ، ولا تلمس الأرض سوى اليد السفلية والقدم
+3. كرر مع تغيير الجوانب في الخطوة 2 في كل مرة""",
 } +
 {
 "tr": """Yan plank hareketi (sol)""",
@@ -2110,12 +2436,13 @@ Pasos:
 "pt": """Prancha lateral esquerda""",
 "en": """Side plank left""",
 "it": """Plank su lato sinistro""",
+"hr": """Bočni izdržaj lijevo""",
 "fr": """Planche latérale gauche""",
 "eu": """Alboko plank utzi""",
-"nb_NO": """Side planken venstre""",
 "cs": """Prkno na levém boku""",
 "id": """Plank samping kiri""",
 "es": """Plancha de lado izquierdo""",
+"ar": """اللوح الجانبي الأيسر""",
 } +
 {
 "tr": """Yan plank hareketi (sağ)""",
@@ -2125,12 +2452,13 @@ Pasos:
 "pt": """Prancha lateral direita""",
 "en": """Side plank right""",
 "it": """Plank sul lato destro""",
+"hr": """Bočni izdržaj desno""",
 "fr": """Planche latérale droite""",
 "eu": """Alboko plank eskubidea""",
-"nb_NO": """Side planken høyre""",
 "cs": """Prkno na pravém boku""",
 "id": """Plank samping kanan""",
 "es": """Plancha de lado derecho""",
+"ar": """اللوح الجانبي الأيمن""",
 } +
 {
 "tr": """1. Alt dirseğiniz dik açıyla, kolunuz dışarı çıkacak şekilde yan tarafınıza uzanın
@@ -2154,15 +2482,15 @@ Pasos:
 "it": """1. Sdraiati su un fianco, con il gomito inferiore ad angolo retto, con il braccio sporgente
 2. Solleva il bacino dal pavimento sollevando la parte inferiore della spalla verso l'alto, mantenendo l'avambraccio sul pavimento; la testa, il bacino e i piedi dovrebbero essere in linea retta
 3. Mantieni questa posizione""",
+"hr": """1. Lie down on your side, with your bottom elbow at a right angle, arm sticking out
+2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line
+3. Hold this position""",
 "fr": """1. Allongez-vous sur le côté, le coude inférieur à angle droit, le bras dépassant
 2. Soulevez votre bassin du sol en soulevant votre épaule inférieure, en gardant l'avant-bras sur le sol ; votre tête, votre bassin et vos pieds doivent être en ligne droite
 3. Maintenez cette position""",
 "eu": """1. Etzan alboz, azpiko ukondoa angelu zuzenean, besoa kanporantz
 2. Altza pelbisa lurretik azpialdeko besaburua altxatuz, besaurrea lurrean mantenduz; burua, pelbisa eta oinak lerro zuzena osatu behar dute
 3. Eutsi posizio honi""",
-"nb_NO": """1. Legg deg ned på din side, med din bunnen albuen i en rett vinkel, arm som stikker ut
-2. Løft bekkenet opp fra gulvet ved å løfte bunnen din skulder opp, holde underarmen på gulvet; hodet, bekkenet, og føttene skal være i en rett linje
-3. Hold denne posisjonen""",
 "cs": """1. Lehněte si na bok, se spodním loktem v pravém úhlu, paže vyčnívající
 2. Zvedněte pánev z podlahy zvedání spodní rameno, drží předloktí na podlaze, hlavu, pánev a nohy by měly být v jedné přímce
 3. Držte tuto pozici""",
@@ -2172,6 +2500,9 @@ Pasos:
 "es": """1. Acuéstese sobre su lado correspondiente, con el codo en ángulo recto y el brazo hacia afuera
 2. Levante la pelvis del suelo levantando el hombro hacia arriba, manteniendo el antebrazo en el suelo; la cabeza, la pelvis y los pies deben estar en línea recta
 3. Mantenga esta posición""",
+"ar": """1. الاستلقاء على الجانب الخاص بك، مع الكوع السفلي الخاص بك في الزاوية اليمنى، الذراع ممدودة
+2. رفع الحوض الخاص بك من على الأرض عن طريق رفع الكتف السفلي الخاص بك حتى، والحفاظ على الساعد على الأرض. يجب أن يكون رأسك وحوضك وقدميك في خط مستقيم
+3. الثبات على هذه الوضعية""",
 } +
 {
 "tr": """Yana tek bacaklı çömelme (sol)""",
@@ -2181,12 +2512,13 @@ Pasos:
 "pt": """Side split squats esquerda""",
 "en": """Side split squats left""",
 "it": """Squat laterale sinistro""",
+"hr": """Bočni podijeljeni čučnjevi lijevo""",
 "fr": """Fentes latérales gauches""",
 "eu": """Alde zatitu squats utzi""",
-"nb_NO": """Side split-knebøy venstre""",
 "cs": """Boční výpady nalevo""",
 "id": """Squat split samping kiri""",
 "es": """Sentadilla de lado izquierdo""",
+"ar": """انقسام القرفصاء اليسار""",
 } +
 {
 "tr": """Yana tek bacaklı çömelme (sağ)""",
@@ -2196,12 +2528,13 @@ Pasos:
 "pt": """Side split squats direita""",
 "en": """Side split squats right""",
 "it": """Squat laterali a destra""",
+"hr": """Bočni podijeljeni čučnjevi desno""",
 "fr": """Fentes latérales droites""",
 "eu": """Alde zatitu squats eskubidea""",
-"nb_NO": """Side split-knebøy høyre""",
 "cs": """Boční výpady napravo""",
 "id": """Squat split samping kanan""",
 "es": """Sentadilla de lado derecho""",
+"ar": """انقسام القرفصاء اليمين""",
 } +
 {
 "tr": """1. Dik durun ve omuz genişliğinden biraz daha geniş bir yan adım atın.
@@ -2225,15 +2558,15 @@ Pasos:
 "it": """1. Stai in piedi e fai un ampio passo laterale, appena superiore alla larghezza delle spalle.
 2. Piega un ginocchio finché la coscia non è parallela al pavimento. Il ginocchio piegato deve essere in linea con il piede.
 3. Spingi indietro alla posizione di partenza e ripetere.""",
+"hr": """1. Stand tall and take a wide lateral stride, just greater than shoulder width.
+2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.
+3. Push back to the starting position and repeat.""",
 "fr": """1. Tenez-vous droit et faites une large foulée latérale, juste supérieure à la largeur des épaules
 2. Pliez un genou jusqu'à ce que votre cuisse soit parallèle au sol. Le genou plié doit être aligné avec le pied
 3. Revenez à la position de départ et répétez.""",
 "eu": """1. Jarri tente eta eman urrats zabal bat albora, zure sorbaldaren zabaleratik zertxobait harago.
 2. Tolestu belaun bat izterra lurrarekiko paralelo dagoen arte. Tolestutako belauna oinarekin lerrokatuta egon behar du.
 3. Itzuli hasierako posiziora eta errepikatu.""",
-"nb_NO": """1. Stå høyreist og ta et bredt lateral strak arm, bare større enn skulder bredde.
-2. Bøy det ene kneet til lårene er parallelle med gulvet. De bøyde kne må være i tråd med foten.
-3. Press tilbake til startposisjon, og gjenta.""",
 "cs": """1. Postavte se vysoko a vezměte široký boční krok, jen větší než šířka ramen.
 2. Ohněte jedno koleno, dokud vaše stehno není rovnoběžné s podlahou. Ohnuté koleno musí být v souladu s nohou.
 3. Zatlačte zpět do výchozí polohy a opakujte.""",
@@ -2243,6 +2576,9 @@ Pasos:
 "es": """1. Póngase de pie y dé un amplio paso lateral, un poco más grande que el ancho de los hombros
 2. Doble una rodilla hasta que su muslo esté paralelo al suelo. La rodilla doblada debe estar en línea con el pie
 3. Vuelva a la posición inicial y repita.""",
+"ar": """1. قف منتصبًا وخذ خطوة جانبية واسعة ، أكبر بقليل من عرض الكتفين.
+2. اثنِ ركبة واحدة حتى يصبح فخذك موازيًا للأرض. يجب أن تكون الركبة المنحنية على نفس الخط مع القدم.
+3. ادفع للخلف إلى وضع البداية وكرر العملية.""",
 } +
 {
 "tr": """Bulgar tek bacaklı çömelmesi (sol)""",
@@ -2252,12 +2588,13 @@ Pasos:
 "pt": """Bulgarian split squats esquerda""",
 "en": """Bulgarian split squats left""",
 "it": """Split squats left bulgari""",
+"hr": """Bugarski podijeljeni čučanj lijevo""",
 "fr": """Squats bulgares gauches""",
 "eu": """Bulgarian zatitu squats utzi""",
-"nb_NO": """Bulgarsk split-knebøy venstre""",
 "cs": """Bulharské dřepy na levé noze""",
 "id": """Squat split Bulgaria ke kiri""",
 "es": """Sentadilla búlgara izquierda""",
+"ar": """الرفع القرفصاء البلغارية""",
 } +
 {
 "tr": """Bulgar tek bacaklı çömelmesi (sağ)""",
@@ -2267,12 +2604,13 @@ Pasos:
 "pt": """Bulgarian split squats direita""",
 "en": """Bulgarian split squats right""",
 "it": """Split squats right bulgari""",
+"hr": """Bugarski podijeljeni čučanj desno""",
 "fr": """Squats bulgares droites""",
 "eu": """Bulgarian zatitu squats eskubidea""",
-"nb_NO": """Bulgarsk split-knebøy høyre""",
 "cs": """Bulharské dřepy na pravé noze""",
 "id": """Bulgaria split squats right""",
 "es": """Sentadilla búlgara derecha""",
+"ar": """الرفع القرفصاء البلغارية اليمين""",
 } +
 {
 "tr": """1. Bir sandalyenin önünde dik durun ve büyük bir adım atın. Ayaklarınızdan birinin üst kısmını sandalyenin üzerine koyun.
@@ -2296,15 +2634,15 @@ Pasos:
 "it": """1. Mettiti di fronte a una sedia e fai un grande passo. Metti la parte superiore di uno dei tuoi piedi sulla sedia.
 2. Piegare il ginocchio anteriore, bilanciandosi con le braccia fino a quando il ginocchio posteriore tocca quasi il suolo
 3. Spingi indietro fino alla posizione di partenza e ripeti.""",
+"hr": """1. Stand tall in front of a chair and take a large step. Put the upper part of one of your feet on the chair.
+2. Bend the front knee, balancing with arms until the back knee almost touches the ground
+3. Push back to the starting position and repeat.""",
 "fr": """1. Tenez-vous droit devant une chaise et faites un grand pas. Placez la partie supérieure de l'un de vos pieds sur la chaise
 2. Pliez le genou avant, en équilibre avec les bras jusqu'à ce que le genou arrière touche presque le sol
 3. Revenez à la position de départ et répétez.""",
 "eu": """1. Jarri tente aulki baten aurrean eta eman urrats luze bat. Jarri zure oin baten goialdea aulki gainean.
 2. Tolestu aurreko belauna, besoekin orekatuz atzeko belaunak ia lurra ukitu arte.
 3. Itzuli hasierako posiziora eta errepikatu.""",
-"nb_NO": """1. Stå rak i fronten på en stol og ta et stort skritt. Legg den øvre delen av en av føttene på en stol.
-2. Bøy kne foran, balansering med armene til den tilbake kneet nesten berører bakken
-3. Press tilbake til startposisjon, og gjenta.""",
 "cs": """1. Postavte se vysoko před židli a udělejte velký krok. Položte horní část jedné z vašich nohou na židli.
 2. Ohněte přední koleno a vyvažujte rukama, dokud se zadní koleno téměř nedotkne země
 3. Zatlačte zpět do výchozí polohy a opakujte.""",
@@ -2314,6 +2652,9 @@ Pasos:
 "es": """1. Póngase de pie delante de una silla y dé un largo paso. Ponga la parte superior de uno de sus pies en la silla
 2. Doble la rodilla delantera, balanceando los brazos hasta que la rodilla trasera casi toque el suelo.
 3. Empuje hacia atrás a la posición inicial y repita.""",
+"ar": """1. قف منتصبًا أمام كرسي وخذ خطوة كبيرة. ضع الجزء العلوي من إحدى قدميك على الكرسي.
+2. ثني الركبة الأمامية ، مع موازنة الذراعين حتى تكاد الركبة الخلفية تلامس الأرض
+3. ادفع للخلف إلى وضع البداية وكرر العملية.""",
 } +
 {
 "tr": """Tabanca durumunda çömelme (sol)""",
@@ -2323,12 +2664,13 @@ Pasos:
 "pt": """Pistol squats esquerda""",
 "en": """Pistol squats left""",
 "it": """Squat a pistola a sinistra""",
+"hr": """Pištoljski čučnjevi lijevo""",
 "fr": """Pistol squats gauches""",
 "eu": """Pistola squats utzi""",
-"nb_NO": """Pistol squats venstre""",
 "cs": """Dřep na levé noze""",
 "id": """Pistol squat kiri""",
 "es": """Sentadillas en pistol izquierda""",
+"ar": """Pistol squats اليسار""",
 } +
 {
 "tr": """Tabanca durumunda çömelme (sağ)""",
@@ -2338,12 +2680,13 @@ Pasos:
 "pt": """Pistol squats direita""",
 "en": """Pistol squats right""",
 "it": """Squat a pistola a destra""",
+"hr": """Pištoljski čučnjevi desno""",
 "fr": """Pistol squats droites""",
 "eu": """Pistola squats eskubidea""",
-"nb_NO": """Pistol squats høyre""",
 "cs": """Dřep na pravé noze""",
 "id": """Pistol squats kanan""",
 "es": """Sentadillas en pistol derecha""",
+"ar": """Pistol squats اليمين""",
 } +
 {
 "tr": """1. Diğer bacağınız düz ve hafifçe öne gelecek şekilde tek ayak üzerinde durun.
@@ -2374,6 +2717,10 @@ Pasos:
 2. Piegare un ginocchio lentamente, scendendo in uno squat e mantenendo la schiena e l'altra gamba dritta.
 3. Alzati lentamente dallo squat, raddrizzando il ginocchio piegato e mantenendo l'altra gamba dritta.
 4. Ripeti""",
+"hr": """1. Stand on one leg, with your other leg straight and slightly forward.
+2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.
+3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.
+4. Repeat""",
 "fr": """1. Tenez-vous debout sur une jambe, l'autre jambe droite et légèrement en avant
 2. Pliez lentement un genou, descendez en position accroupie et gardez votre dos et votre autre jambe droits
 3. Soulevez-vous lentement du squat, en redressant le genou plié et en gardant l'autre jambe droite
@@ -2382,10 +2729,6 @@ Pasos:
 2. Okertu belauna bat, poliki-poliki, beheranzko bat sartu squat eta mantenduz, zure atzera eta zure beste hanka zuzen.
 3. Poliki-poliki igo yourself from squat, zuzenketa tolestuta belauna eta mantenduz beste hanka zuzen.
 4. Errepikatu""",
-"nb_NO": """1. Stå på ett bein med det andre benet rett og litt fremover.
-2. Bøy det ene kneet sakte ned i en knebøy og holde ryggen din og den andre benet rett.
-3. Sakte heve deg selv fra knebøy, retting de bøyde kne og å holde de andre benet rett.
-4. Gjenta""",
 "cs": """1. Postavte se na jednu nohu, druhou nohu rovně a mírně dopředu.
 2. Pomalu ohněte jedno koleno, sestupujte do dřepu a udržujte záda a druhou nohu rovně.
 3. Pomalu se zvedněte z dřepu, narovnejte ohnuté koleno a udržujte druhou nohu rovnou.
@@ -2398,6 +2741,10 @@ Pasos:
 2. Doble una rodilla lentamente, bajando en sentadilla y manteniendo la espalda y la otra pierna estirada.
 3. Levántese lentamente de la sentadilla, enderezando la rodilla doblada y manteniendo la otra pierna recta.
 4. Repita""",
+"ar": """1. قف على ساق واحدة وساقك الأخرى مستقيمة للأمام قليلًا.
+2. اثنِ ركبة واحدة ببطء ، وانزل إلى وضع القرفصاء وحافظ على استقامة ظهرك ورجلك الأخرى.
+3. ارفع نفسك ببطء من وضع القرفصاء ، مستقيم الركبة المثنية مع إبقاء الساق الأخرى مستقيمة.
+4. كرر""",
 } +
 {
 "tr": """Diz çöküp geri tepme""",
@@ -2407,12 +2754,13 @@ Pasos:
 "pt": """Coice""",
 "en": """Kneeling kickbacks""",
 "it": """Contraccolpi in ginocchio""",
+"hr": """Kneeling kickbacks""",
 "fr": """Extensions de la hanche""",
 "eu": """Belauniko kickbacks""",
-"nb_NO": """Knelende kickbacks""",
 "cs": """Kickbacky v kleku""",
 "id": """Kickbacks berlutut""",
 "es": """Patada de rodilla""",
+"ar": """الركل الى الخلف من الركوع""",
 } +
 {
 "tr": """1. Dört ayak üzerine eğilin.
@@ -2443,6 +2791,10 @@ Pasos:
 2. Spingete un piede indietro fino alla completa estensione, concentrandovi sui muscoli glutei.
 3. Rimanete per un secondo, poi tornate alla posizione iniziale.
 4. Ripetere, alternando i piedi""",
+"hr": """1. Get down on all fours.
+2. Push one foot back until fully extended, concentrating on the gluteus muscles.
+3. Stay for one second, then return to the initial position.
+4. Repeat, alternating feet""",
 "fr": """1. Mettez-vous à quatre pattes
 2. Poussez un pied en arrière jusqu'à ce qu'il soit complètement étendu, en vous concentrant sur les muscles fessiers
 3. Restez une seconde, puis revenez à la position initiale
@@ -2451,10 +2803,6 @@ Pasos:
 2. Push bat oinez itzuli arte erabat luzatu, baitute glutes muskuluak.
 3. Egonaldia bigarren bat, gero itzuli hasierako posizioa.
 4. Errepikatu, oinak txandakatuz""",
-"nb_NO": """1. Få ned på alle fire.
-2. Skyv den ene foten tilbake inntil fullt utvidet, og konsentrerer seg om gluteus muskler.
-3. Opphold i ett sekund, og deretter gå tilbake til den opprinnelige posisjonen.
-4. Gjenta, alternerende føtter""",
 "cs": """1. Dolů na všech čtyřech.
 2. Zatlačte jednu nohu zpět až do úplného prodloužení a soustřeďte se na gluteusové svaly.
 3. Zůstaňte jednu sekundu a pak se vraťte do výchozí polohy.
@@ -2467,6 +2815,10 @@ Pasos:
 2. Empuje un pie hacia atrás hasta que se extienda completamente, concentrándose en los músculos de los glúteos
 3. Quédese un segundo, y luego vuelva a la posición inicial
 4. Repita, alternando los pies""",
+"ar": """1. انزل على أربع.
+2. ادفع قدمًا واحدة للخلف حتى تمتد تمامًا ، مع التركيز على عضلات الألوية.
+3. البقاء لمدة ثانية واحدة ، ثم العودة إلى الوضع الأولي.
+4. كرر ، بالتناوب القدمين""",
 } +
 {
 "tr": """Sol bacak baldır kaldırma""",
@@ -2476,12 +2828,13 @@ Pasos:
 "pt": """Elevação da panturrilha esquerda""",
 "en": """Left leg calf raises""",
 "it": """Sollevamento del polpaccio gamba sinistra""",
+"hr": """Dizanje lijeve potkoljenice""",
 "fr": """Lever du mollet gauche""",
 "eu": """Ezkerreko hanka txahal altxatzen""",
-"nb_NO": """Venstre ben kalven reiser""",
 "cs": """Výpony na levé noze""",
 "id": """Angkat kaki kiri anak sapi""",
 "es": """Elevación de pantorrilla izquierda""",
+"ar": """رفع ربلة الساق اليسرى""",
 } +
 {
 "tr": """Sağ bacak baldır kaldırma""",
@@ -2491,12 +2844,13 @@ Pasos:
 "pt": """Elevação da panturrilha direita""",
 "en": """Right leg calf raises""",
 "it": """Sollevamento del polpaccio gamba destra""",
+"hr": """Dizanje desne potkoljenice""",
 "fr": """Lever du mollet droit""",
 "eu": """Eskuineko hanka txahal altxatzen""",
-"nb_NO": """Høyre ben kalven reiser""",
 "cs": """Výpony na pravé noze""",
 "id": """Angkat betis kaki kanan""",
 "es": """Elevación de pantorrilla derecha""",
+"ar": """رفع ربلة الساق اليمنى""",
 } +
 {
 "tr": """1. Hareket aralığını artırmak için yerde veya bir basamağın kenarında durun. Üst kısmı baldırınızın üzerine koyarak bir ayağınızı kaldırın.
@@ -2520,15 +2874,15 @@ Pasos:
 "it": """1. Stare in piedi sul pavimento o sul bordo di un gradino per aumentare il raggio di movimento. Sollevare un piede, appoggiando la parte superiore sul polpaccio.
 2. Sollevare i talloni fino a stare in piedi sulle punte dei piedi.
 3. Resta in questa posizione per tre secondi, poi abbassa il piede senza toccare il suolo con il tallone.""",
+"hr": """1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.
+2. Lift your heels until you're standing on toes.
+3. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.""",
 "fr": """1. Tenez-vous debout sur le sol ou sur le bord d'une marche pour augmenter l'amplitude des mouvements. Levez un pied en plaçant la partie supérieure sur votre mollet
 2. Soulevez vos talons jusqu'à ce que vous soyez debout sur les orteils
 3. Restez dans cette position pendant trois secondes, puis abaissez votre pied sans toucher le sol avec votre talon.""",
 "eu": """1. Zutik lurrean edo ertzean urrats bat handitzeko mugimendu sorta. Goratu bat oinez, jarriz, goiko aldean, zure txahal.
 2. Igogailua zure heels arte, ari zaren zutik behatzak.
 3. Lo jarrera hori hiru segundo, eta, ondoren, jaistea zure oinez ukitu gabe lurrean zure orpoa.""",
-"nb_NO": """1. Stå på gulvet eller på kanten av et trinn til å øke omfanget av bevegelse. Løft det ene foten, og du kan plassere den øvre delen på kalv.
-2. Løft hælene til du står på tå.
-3. Opphold i denne stillingen i tre sekunder, senk foten uten å berøre bakken med hælen.""",
 "cs": """1. Postavte se na podlahu nebo na okraj kroku, abyste zvýšili rozsah pohybu. Zvedněte jednu nohu a položte horní část na lýtko.
 2. Zvedněte paty, dokud nestojíte na prstech.
 3. Zůstaňte v této poloze po dobu tří sekund, pak spusťte nohu, aniž byste se dotýkali země patou.""",
@@ -2538,21 +2892,25 @@ Pasos:
 "es": """1. Párese en el suelo o en el borde de un escalón para aumentar el rango de movimiento. Levante un pie, colocando la parte superior de su pantorrilla
 2. Levante los talones hasta que esté de pie
 3. Manténgase en esta posición durante tres segundos, luego baje el pie sin tocar el suelo con el talón.""",
+"ar": """1. قف على الأرض أو على حافة درجة لزيادة نطاق الحركة. ارفع قدمًا واحدة مع وضع الجزء العلوي على ربلة الساق.
+2. ارفع كعبيك حتى تقف على أصابع قدميك.
+3. ابق في هذا الوضع لمدة ثلاث ثوان ، ثم أنزل قدمك دون لمس الأرض بكعبك.""",
 } +
 {
 "tr": """İp atlama: temel atlamalar""",
 "nl": """Touwtjespringen: basissprongen""",
 "de": """Seilspringen: Grundsprünge""",
-"ru": """Jump rope: basic jumps""",
+"ru": """Скакалка: базовые прыжки""",
 "pt": """Corda de Salto: saltos básicos""",
 "en": """Jump rope: basic jumps""",
 "it": """Corda per saltare: salti di base""",
+"hr": """Preskakanje užeta: osnovni skokovi""",
 "fr": """Corde à sauter : sauts de base""",
 "eu": """Jump rope: basic jumps""",
-"nb_NO": """Hoppe tau: grunnleggende hopp""",
 "cs": """Švihadlo: základní skoky""",
 "id": """Lompat tali: basic Jump""",
 "es": """Saltar la cuerda: saltos básicos""",
+"ar": """القفز على الحبل: القفزات الأساسية""",
 } +
 {
 "tr": """Bu egzersiz bir atlama ipi gerektirir. İp uzunluğunun boyunuza göre ayarlandığından emin olun. Bunu denetlemenin bir yolu, ipin her iki kulpunu tek elle tutup tek ayakla yerde serili halatın ortasında durmaktır. İp (kulplar hariç) göğsünüzün hemen altına ulaşırsa, uzunluğu doğrudur. Daha kısa bir ip, kendinize çarpabileceğiniz için tehlikeli olacaktır ve daha uzun bir ip kötü bir biçim oluşturacaktır.
@@ -2590,6 +2948,11 @@ Pasos:
 2. Fai girare solo i polsi con abbastanza forza da far girare la corda.
 3. Salta appena abbastanza in alto da far passare la corda sotto i tuoi piedi.
 4. Ripetere dal punto 2.""",
+"hr": """This exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.
+1. Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.
+2. Spin only your wrists with enough force to make the rope spin.
+3. Jump just high enough to pass the rope below your feet.
+4. Repeat from step 2.""",
 "fr": """Cet exercice nécessite une corde à sauter. Assurez-vous que la longueur de la corde est adaptée à votre taille. Une mamière de vérifier est de saisir les deux poignées d'une main et de se tenir au milieu de la corde suspendue au sol avec un pied. Si la corde (sans les poignées) arrive juste sous votre poitrine, sa longueur est correcte. Une corde plus courte serait dangereuse, car vous risqueriez de vous cogner, et une corde plus longue serait mauvaise pour la forme.
 1. Rapprochez vos pieds, pliez un peu les genoux, gardez la tête et le corps droits, gardez les coudes rentrés, ouvrez les bras.
 2. Faites tourner uniquement vos poignets avec suffisamment de force pour faire tourner la corde.
@@ -2600,11 +2963,6 @@ Pasos:
 2. Spin only your wrists with enough force to make the rope spin.
 3. Jump just high enough to pass the rope below your feet.
 4. Repeat from step 2.""",
-"nb_NO": """Denne øvelsen krever en hoppe tau. Kontroller at tau lengde er tilpasset din høyde. En måte å sjekke på er å ta tak i begge håndtak med den ene hånden og stå på midten av tau som henger på bakken med en fot. Hvis tauet (uten håndtak) kommer rett under brystet, dens lengde som er riktig. En kortere tau ville være farlig, så du kan treffe deg, og et lengre tau ville gjøre for dårlig form.
-1. Sette føttene tett sammen, bøy knærne litt, hold hodet og kroppen rett, holde albuene på, kan du åpne armer.
-2. Spinn bare håndleddene med nok kraft til å gjøre tau spinn.
-3. Hoppe like høyt nok til å passere tau under føttene dine.
-4. Gjenta fra trinn 2.""",
 "cs": """Toto cvičení vyžaduje švihadlo. Ujistěte se, že délka švihadla je přizpůsobena vaší výšce. Jedním ze způsobů kontroly je uchopit obě rukojeti jednou rukou a postavit se jednou nohou na střed švihadla visícího na zemi. Pokud vám švihadlo (bez rukojetí) sahá těsně pod hrudník, je jeho délka správná. Kratší lano by bylo nebezpečné, protože byste se mohli udeřit, a delší lano by způsobilo špatnou formu.
 1. Dejte nohy těsně k sobě, trochu pokrčte kolena, hlavu a tělo držte rovně, lokty mějte vtažené, paže rozevřené.
 2. Točte pouze zápěstími dostatečnou silou, aby se lano roztočilo.
@@ -2620,21 +2978,43 @@ Pasos:
 2. Gira sólo las muñecas con la fuerza suficiente para hacer girar la cuerda.
 3. Salta lo suficiente para pasar la cuerda por debajo de tus pies.
 4. Repite desde el paso 2.""",
+"ar": """هذا التمرين يتطلب حبل القفز. تأكد من تعديل طول الحبل إلى طولك. طريقة واحدة للتحقق هو الامساك على كل المقابض بيد واحدة والوقوف على منتصف الحبل معلقة على الأرض مع قدم واحدة. إذا كان الحبل (باستثناء المقابض) يصل إلى أسفل صدرك مباشرة ، فإن طوله صحيح. حبل أقصر سيكون خطرا، كما كنت قد ضرب نفسك، وحبل أطول من شأنه أن يجعل الوضع اسوء.
+1. ضع قدميك قريبة من بعضها البعض، وثني الركبتين قليلا، والحفاظ على رأسك والجسم مستقيم، والحفاظ على المرفقين في، وفتح ذراعيك.
+2. تدور فقط المعصمين الخاص بك مع ما يكفي من القوة لجعل الحبل يدور.
+3. القفز عاليا بما يكفي لتمرير الحبل تحت قدميك.
+4. كرر من الخطوة 2.""",
 } +
 {
 "tr": """Kolları çevirme""",
 "nl": """Armbewegingen""",
 "de": """Armkreisen""",
-"ru": """Arm circles""",
+"ru": """Forward arm circles""",
 "pt": """Círculos de braço""",
-"en": """Arm circles""",
+"en": """Forward arm circles""",
 "it": """Cerchi del braccio""",
+"hr": """Kruženje rukama""",
 "fr": """Cercles avec les bras""",
-"eu": """Arm circles""",
-"nb_NO": """Arm sirkler""",
-"cs": """Kroužení pažemi""",
-"id": """Arm lingkaran""",
+"eu": """Forward arm circles""",
+"cs": """Kroužení pažemi dopředu""",
+"id": """Forward arm circles""",
 "es": """Círculos de brazo""",
+"ar": """تدوير الذراع إلى الأمام""",
+} +
+{
+"tr": """Backward arm circles""",
+"nl": """Backward arm circles""",
+"de": """Backward arm circles""",
+"ru": """Backward arm circles""",
+"pt": """Backward arm circles""",
+"en": """Backward arm circles""",
+"it": """Backward arm circles""",
+"hr": """Backward arm circles""",
+"fr": """Backward arm circles""",
+"eu": """Backward arm circles""",
+"cs": """Kroužení pažemi dozadu""",
+"id": """Backward arm circles""",
+"es": """Backward arm circles""",
+"ar": """تدوير الذراع إلى الخلف""",
 } +
 {
 "tr": """1. Sırtınız düz olacak şekilde dik durun.
@@ -2647,35 +3027,82 @@ Pasos:
 2. Bringe die Arme nach vorne, hebe sie über den Kopf und führe die Bewegung dann hinter dem Rücken nach unten in die Ausgangsposition fort.
 3. Kreise die Arme weiter wie in Schritt 2 beschrieben.""",
 "ru": """1. Stand up tall with your back straight.
-2. Bring your arms forward, raise them over your head, then continue the motion behind your back and down to the initial position.
+2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.
 3. Keep circling your arms as described in step 2.""",
 "pt": """1. Levante-se com as costas direitas.
 2. Traga os braços para a frente, levante-os sobre a cabeça, depois continue o movimento atrás das costas e para baixo até à posição inicial.
 3. Continuem a contornar os braços, tal como descrito no passo 2.""",
 "en": """1. Stand up tall with your back straight.
-2. Bring your arms forward, raise them over your head, then continue the motion behind your back and down to the initial position.
+2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.
 3. Keep circling your arms as described in step 2.""",
 "it": """1. Stai in piedi con la schiena dritta.
 2. Porta le braccia in avanti, alzale sopra la testa, poi continua il movimento dietro la schiena e giù fino alla posizione iniziale.
 3. Continua a far girare le braccia come descritto al punto 2.""",
+"hr": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.
+3. Keep circling your arms as described in step 2.""",
 "fr": """1. Tenez-vous debout, le dos bien droit.
 2. Amenez vos bras vers l'avant, levez-les au-dessus de votre tête, puis continuez le mouvement derrière votre dos et vers le bas jusqu'à la position initiale.
 3. Continuez à faire des cercles avec vos bras comme décrit à l'étape 2.""",
 "eu": """1. Stand up tall with your back straight.
-2. Bring your arms forward, raise them over your head, then continue the motion behind your back and down to the initial position.
+2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.
 3. Keep circling your arms as described in step 2.""",
-"nb_NO": """1. Stå opp høyt med rett rygg.
-2. Tar armene frem, løfter dem over hodet, og deretter fortsette bevegelsen bak ryggen og ned til første posisjon.
-3. Holde rundt armene som beskrevet i trinn 2.""",
-"cs": """1. Postavte se zpříma a narovnejte záda.
-2. Přitáhněte paže dopředu, zvedněte je nad hlavu a pak pokračujte v pohybu za zády a dolů do výchozí polohy.
-3. Pokračujte v kroužení pažemi podle popisu v kroku 2.""",
+"cs": """1. Postavte se zpříma s rovnými zády.
+2. Dejte paže před tělo, posuňte je dolů, za záda, nad hlavu a zpět do výchozí polohy.
+3. Pokračujte v kroužení pažemi dle popisu v kroku 2.""",
 "id": """1. Berdiri tegak dengan punggung lurus.
 2. Bawa lengan ke depan, angkat di atas kepala Anda, kemudian melanjutkan gerakan di belakang punggung Anda dan ke posisi awal.
 3. Tetap lingkari tanganmu Seperti yang dijelaskan di Langkah 2.""",
 "es": """1. Ponte de pie con la espalda recta.
 2. Lleva los brazos hacia delante, levántalos por encima de la cabeza y luego continúa el movimiento por detrás de la espalda y baja a la posición inicial.
 3. Siga haciendo círculos con los brazos como se describe en el paso 2.""",
+"ar": """1. قف منتصبًا وظهرك مستقيمًا.
+2. حافظ على ذراعيك مستقيمة ، واجعلهما أمامك ، وحركهما لأسفل ، وخلف ظهرك ، ثم فوق رأسك ، ثم عد إلى الوضع الأولي.
+3. استمر في تحريك ذراعيك كما هو موضح في الخطوة 2.""",
+} +
+{
+"tr": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"nl": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"de": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"ru": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"pt": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"en": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"it": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"hr": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"fr": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"eu": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"cs": """1. Postavte se zpříma s rovnými zády.
+2. Dejte paže před tělo, zvedněte je nad hlavu a pak pokračujte v pohybu za záda a dolů do výchozí polohy.
+3. Pokračujte v kroužení pažemi dle popisu v kroku 2.""",
+"id": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"es": """1. Stand up tall with your back straight.
+2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.
+3. Keep circling your arms as described in step 2.""",
+"ar": """1. قف منتصبًا وظهرك مستقيمًا.
+2. حافظ على استقامة ذراعيك ، واجعلهما أمامك ، وارفعهما فوق رأسك ، ثم استمر في الحركة خلف ظهرك ولأسفل إلى الوضع الأولي.
+3. استمر في تحريك ذراعيك كما هو موضح في الخطوة 2.""",
 } +
 {
 "tr": """Dağ tırmanışı""",
@@ -2685,12 +3112,13 @@ Pasos:
 "pt": """Montanhistas""",
 "en": """Mountain climbers""",
 "it": """Alpinista""",
+"hr": """Planinarenje""",
 "fr": """Escaladeurs de montagne""",
 "eu": """Mountain climbers""",
-"nb_NO": """Fjellklatrere""",
 "cs": """Horolezec""",
 "id": """Pendaki gunung""",
 "es": """Montañeros""",
+"ar": """متسلقو الجبال""",
 } +
 {
 "tr": """Başlangıç durumu:
@@ -2784,6 +3212,19 @@ Scalinata:
 
 Nota:
 Durante l'esercizio la schiena dovrebbe rimanere il più dritta possibile – evitare una gobba o una schiena cascante.""",
+"hr": """Starting position:
+Start in the upright push-up position, or the high plank.
+Hands should be directly under your shoulders.
+Keep your head in line with your back, facing the floor.
+Feet should be about hip-width apart.
+
+Steps:
+1. Move one knee toward the center of your body, towards your elbows, keeping the other leg extended.
+2. In a quick jumping movement, straighten the bent leg out and pull the other knee toward your body.
+3. Keep repeating step 2, alternating legs.
+
+Notes:
+Throughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.""",
 "fr": """Position de départ :
 Commencez par la position debout des pompes ou de la planche haute.
 Les mains doivent se trouver directement sous vos épaules.
@@ -2810,19 +3251,6 @@ Steps:
 
 Notes:
 Throughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.""",
-"nb_NO": """Startposisjonen:
-Start i oppreist push-up posisjon, eller høy planke.
-Hendene skal være rett under skuldrene.
-Hold hodet i tråd med ryggen vendt mot gulvet.
-Føttene skal være om hip bredde hverandre.
-
-Fremgangsmåte:
-1. Flytte det ene kneet mot midten av kroppen, mot albuene, å holde det andre benet lengre.
-2. I en rask hoppe bevegelse, rett ut bøyde benet ut og trekk den andre kneet mot kroppen.
-3. Holde gjenta trinn 2, vekslende bein.
-
-Merk:
-Gjennom hele øvelsen, ryggen skal være så rett som mulig – unngå en pukkel eller en slapp tilbake.""",
 "cs": """Výchozí pozice:
 Začněte ve vzpřímené pozici pro kliky nebo ve vysokém prkně.
 Ruce by měly být přímo pod rameny.
@@ -2862,6 +3290,19 @@ Pasos:
 
 Notas:
 Durante todo el ejercicio, la espalda debe permanecer lo más recta posible, evitando una joroba o una espalda flácida.""",
+"ar": """وضع البداية:
+ابدأ في وضع الدفع المستقيم ، أو اللوح الخشبي المرتفع.
+يجب أن تكون اليدين تحت كتفيك مباشرة.
+حافظ على رأسك في خط مستقيم مع ظهرك ، مواجهًا للأرض.
+يجب أن تكون القدمان متباعدتين بعرض الورك.
+
+الخطوات:
+1. حرك ركبة واحدة باتجاه مركز جسمك ، باتجاه مرفقيك ، مع إبقاء الساق الأخرى ممتدة.
+2. في حركة القفز السريع ، افرد الرجل المنحنية واسحب الركبة الأخرى باتجاه جسمك.
+3. استمر في تكرار الخطوة 2 ، بالتناوب بين الأرجل.
+
+ملاحظة:
+خلال التمرين ، يجب أن يظل ظهرك مستقيمًا قدر الإمكان - تجنب حدوث حدبة أو تراجع في الظهر.""",
 } +
 {
 "tr": """Push-up burpees""",
@@ -2871,12 +3312,13 @@ Durante todo el ejercicio, la espalda debe permanecer lo más recta posible, evi
 "pt": """Flexão burpee""",
 "en": """Push-up burpees""",
 "it": """Push-up burpees""",
-"fr": """Push-up burpees""",
+"hr": """Push-up burpees""",
+"fr": """Burpees avec pompes""",
 "eu": """Push-up burpees""",
-"nb_NO": """Push-up burpees""",
 "cs": """Push-up burpees""",
 "id": """Push-up burpees""",
 "es": """Push-up burpees""",
+"ar": """الدفع burpees""",
 } +
 {
 "tr": """Starting position:
@@ -2942,7 +3384,7 @@ Steps:
 3. Perform a push-up.
 4. Jump your feet forward to return to the squat position.
 5. Repeat.""",
-"fr": """Starting position:
+"hr": """Starting position:
 Stand straight, feet hip-width apart.
 
 Steps:
@@ -2951,16 +3393,16 @@ Steps:
 3. Perform a push-up.
 4. Jump your feet forward to return to the squat position.
 5. Repeat.""",
+"fr": """Position de départ :
+Tenez-vous droit, les pieds écartés de la largeur des hanches.
+
+Étapes :
+1. Accroupissez-vous et prenez appui sur le sol avec les mains entre les genoux et devant les pieds, le dos droit.
+2. En gardant les mains sur le sol, lancez vos jambes vers l'arrière en position de planche haute.
+3. Effectuez une pompe.
+4. Remettez vos pieds vers l'avant pour revenir à la position de squat.
+5. Répétez.""",
 "eu": """Starting position:
-Stand straight, feet hip-width apart.
-
-Steps:
-1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
-2. Keeping your hands on the floor, jump your legs backward into high plank position.
-3. Perform a push-up.
-4. Jump your feet forward to return to the squat position.
-5. Repeat.""",
-"nb_NO": """Starting position:
 Stand straight, feet hip-width apart.
 
 Steps:
@@ -2996,21 +3438,31 @@ Steps:
 3. Perform a push-up.
 4. Jump your feet forward to return to the squat position.
 5. Repeat.""",
+"ar": """وضع البداية:
+الوقوف بشكل مستقيم ، والقدمين متباعدتين.
+
+الخطوات:
+1. اجلس منخفضًا وادعم نفسك على الأرض بيديك بين الركبتين وأمام قدميك ، وظهرك مستقيم.
+2. إبقاء يديك على الأرض ، قفز ساقيك إلى الوراء في وضع اللوح الخشبي العالي.
+3. أداء تمرين الضغط.
+4. اقفز قدميك للأمام للعودة إلى وضع القرفصاء.
+5. كرر.""",
 } +
 {
 "tr": """4-count burpees""",
 "nl": """4-count burpees""",
 "de": """4-count burpees""",
 "ru": """4-count burpees""",
-"pt": """4-count burpees""",
+"pt": """Burpee sem flexão""",
 "en": """4-count burpees""",
 "it": """4-count burpees""",
+"hr": """4-count burpees""",
 "fr": """4-count burpees""",
 "eu": """4-count burpees""",
-"nb_NO": """4-count burpees""",
 "cs": """4-count burpees""",
 "id": """4-count burpees""",
 "es": """4-count burpees""",
+"ar": """4-العد burpees""",
 } +
 {
 "tr": """Starting position:
@@ -3069,7 +3521,7 @@ Steps:
 2. Keeping your hands on the floor, jump your legs backward into high plank position.
 3. Jump your feet forward to return to the squat position.
 4. Repeat.""",
-"fr": """Starting position:
+"hr": """Starting position:
 Stand straight, feet hip-width apart.
 
 Steps:
@@ -3077,15 +3529,15 @@ Steps:
 2. Keeping your hands on the floor, jump your legs backward into high plank position.
 3. Jump your feet forward to return to the squat position.
 4. Repeat.""",
+"fr": """Position de départ :
+Tenez-vous droit, les pieds écartés de la largeur des hanches.
+
+Étapes :
+1. Accroupissez-vous et prenez appui sur le sol avec les mains entre les genoux et devant les pieds, le dos droit.
+2. En gardant les mains sur le sol, sautez vos jambes vers l'arrière en position de planche haute.
+3. Sautez vers l'avant pour revenir à la position de squat.
+4. Répétez l'exercice.""",
 "eu": """Starting position:
-Stand straight, feet hip-width apart.
-
-Steps:
-1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
-2. Keeping your hands on the floor, jump your legs backward into high plank position.
-3. Jump your feet forward to return to the squat position.
-4. Repeat.""",
-"nb_NO": """Starting position:
 Stand straight, feet hip-width apart.
 
 Steps:
@@ -3117,6 +3569,14 @@ Steps:
 2. Keeping your hands on the floor, jump your legs backward into high plank position.
 3. Jump your feet forward to return to the squat position.
 4. Repeat.""",
+"ar": """وضع البداية:
+الوقوف بشكل مستقيم ، والقدمين متباعدتين.
+
+الخطوات:
+1. اجلس منخفضًا وادعم نفسك على الأرض بيديك بين الركبتين وأمام قدميك ، وظهرك مستقيم.
+2. إبقاء يديك على الأرض ، قفز ساقيك إلى الوراء في وضع اللوح الخشبي العالي.
+3. اقفز قدميك للأمام للعودة إلى وضعية القرفصاء.
+4. كرر.""",
 } +
 {
 "tr": """No push-up burpees""",
@@ -3126,12 +3586,13 @@ Steps:
 "pt": """Burpee sem flexão""",
 "en": """No push-up burpees""",
 "it": """No push-up burpees""",
+"hr": """No push-up burpees""",
 "fr": """No push-up burpees""",
 "eu": """No push-up burpees""",
-"nb_NO": """No push-up burpees""",
 "cs": """No push-up burpees""",
 "id": """No push-up burpees""",
 "es": """No push-up burpees""",
+"ar": """لا push-up burpees""",
 } +
 {
 "tr": """Starting position:
@@ -3197,6 +3658,15 @@ Steps:
 3. Jump your feet forward to return to the squat position.
 4. Jump up.
 5. Repeat.""",
+"hr": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
+2. Keeping your hands on the floor, jump your legs backward into high plank position.
+3. Jump your feet forward to return to the squat position.
+4. Jump up.
+5. Repeat.""",
 "fr": """Starting position:
 Stand straight, feet hip-width apart.
 
@@ -3207,15 +3677,6 @@ Steps:
 4. Jump up.
 5. Repeat.""",
 "eu": """Starting position:
-Stand straight, feet hip-width apart.
-
-Steps:
-1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.
-2. Keeping your hands on the floor, jump your legs backward into high plank position.
-3. Jump your feet forward to return to the squat position.
-4. Jump up.
-5. Repeat.""",
-"nb_NO": """Starting position:
 Stand straight, feet hip-width apart.
 
 Steps:
@@ -3251,21 +3712,31 @@ Steps:
 3. Jump your feet forward to return to the squat position.
 4. Jump up.
 5. Repeat.""",
+"ar": """وضع البداية:
+الوقوف بشكل مستقيم ، والقدمين متباعدتين.
+
+الخطوات:
+1. اجلس منخفضًا وادعم نفسك على الأرض بيديك بين الركبتين وأمام قدميك ، وظهرك مستقيم.
+2. إبقاء يديك على الأرض ، قفز ساقيك إلى الوراء في وضع اللوح الخشبي العالي.
+3. اقفز قدميك للأمام للعودة إلى وضعية القرفصاء.
+4. القفز.
+5. كرر.""",
 } +
 {
 "tr": """Squat thrusts""",
 "nl": """Squat thrusts""",
-"de": """Squat thrusts""",
+"de": """Kniebeugen""",
 "ru": """Squat thrusts""",
 "pt": """Squat thrusts""",
 "en": """Squat thrusts""",
 "it": """Squat thrusts""",
-"fr": """Squat thrusts""",
+"hr": """Squat thrusts""",
+"fr": """Poussées de squat""",
 "eu": """Squat thrusts""",
-"nb_NO": """Squat thrusts""",
 "cs": """Squat thrusts""",
 "id": """Squat thrusts""",
 "es": """Squat thrusts""",
+"ar": """دفعات القرفصاء""",
 } +
 {
 "tr": """Starting position:
@@ -3289,13 +3760,13 @@ Steps:
 1. Jump your feet forward between your arms, keeping your back flat.
 2. Keeping your hands on the floor, jump your legs back into high plank position.
 3. Repeat.""",
-"ru": """Starting position:
-Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+"ru": """Исходное положение:
+Начните с позиции высокой планки: спина, руки и ноги прямые, руки на ширине плеч.
 
-Steps:
-1. Jump your feet forward between your arms, keeping your back flat.
-2. Keeping your hands on the floor, jump your legs back into high plank position.
-3. Repeat.""",
+Шаги:
+1. Прыгните ногами вперед между руками, держа спину ровной.
+2. Удерживая руки на полу, верните ноги в положение высокой планки.
+3. Повторите.""",
 "pt": """Posição inicial:
 Comece na posição de prancha alta: costas, braços e pernas retos e as mãos afastadas alinhadas aos ombros.
 
@@ -3317,6 +3788,13 @@ Steps:
 1. Jump your feet forward between your arms, keeping your back flat.
 2. Keeping your hands on the floor, jump your legs back into high plank position.
 3. Repeat.""",
+"hr": """Starting position:
+Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
+
+Steps:
+1. Jump your feet forward between your arms, keeping your back flat.
+2. Keeping your hands on the floor, jump your legs back into high plank position.
+3. Repeat.""",
 "fr": """Starting position:
 Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
 
@@ -3325,13 +3803,6 @@ Steps:
 2. Keeping your hands on the floor, jump your legs back into high plank position.
 3. Repeat.""",
 "eu": """Starting position:
-Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
-
-Steps:
-1. Jump your feet forward between your arms, keeping your back flat.
-2. Keeping your hands on the floor, jump your legs back into high plank position.
-3. Repeat.""",
-"nb_NO": """Starting position:
 Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
 
 Steps:
@@ -3359,21 +3830,29 @@ Steps:
 1. Jump your feet forward between your arms, keeping your back flat.
 2. Keeping your hands on the floor, jump your legs back into high plank position.
 3. Repeat.""",
+"ar": """وضع البداية:
+ابدأ في وضع اللوح الخشبي المرتفع: الظهر والذراعين والساقين مستقيمين واليدين متباعدتين بعرض الكتفين.
+
+الخطوات:
+1. اقفز قدميك للأمام بين ذراعيك ، مع الحفاظ على ظهرك مسطحًا.
+2. إبقاء يديك على الأرض ، واقفز رجليك إلى الوراء في وضع اللوح الخشبي العالي.
+3. كرر.""",
 } +
 {
 "tr": """Ters lunge hareketi""",
 "nl": """Omgekeerde lunges""",
-"de": """Reverse lunges""",
+"de": """Umgekehrte Ausfallschritte""",
 "ru": """Reverse lunges""",
 "pt": """Lunge reverso""",
 "en": """Reverse lunges""",
 "it": """Reverse lunges""",
+"hr": """Iskoraci unatrag""",
 "fr": """Reverse lunges""",
 "eu": """Reverse lunges""",
-"nb_NO": """Omvendt lunges""",
 "cs": """Reverzní výpady""",
 "id": """Reverse lunges""",
 "es": """Arremetidas inversas""",
+"ar": """الطعنات العكسية""",
 } +
 {
 "tr": """Başlangıç durumu:
@@ -3432,6 +3911,14 @@ Steps:
 2. Slowly bend both knees to form 90 degree angles.
 3. Return to the starting position.
 4. Repeat, alternating legs.""",
+"hr": """Starting position:
+Stand straight, feet hip-width apart.
+
+Steps:
+1. Step backward with one leg so it can bend comfortably to a 90 degree angle.
+2. Slowly bend both knees to form 90 degree angles.
+3. Return to the starting position.
+4. Repeat, alternating legs.""",
 "fr": """Starting position:
 Stand straight, feet hip-width apart.
 
@@ -3448,14 +3935,6 @@ Steps:
 2. Slowly bend both knees to form 90 degree angles.
 3. Return to the starting position.
 4. Repeat, alternating legs.""",
-"nb_NO": """Startposisjonen:
-Stå rett, føttene i hoftebreddes avstand.
-
-Fremgangsmåte:
-1. Trinn bakover med ett ben slik at den kan bøye seg komfortabelt til en 90-graders vinkel.
-2. Sakte bøy begge knærne danner en 90-graders vinkel.
-3. Gå tilbake til startposisjon.
-4. Gjenta, vekslende bein.""",
 "cs": """Výchozí pozice:
 Stoj rozkročný, chodidla na šířku boků.
 
@@ -3480,21 +3959,30 @@ Pasos:
 2. Doble lentamente ambas rodillas hasta formar un ángulo de 90 grados.
 3. Vuelva a la posición inicial.
 4. Repita, alternando las piernas.""",
+"ar": """وضع البداية:
+الوقوف بشكل مستقيم ، والقدمين متباعدتين.
+
+الخطوات:
+1. خطوة للخلف بساق واحدة حتى تتمكن من الانحناء بشكل مريح بزاوية 90 درجة.
+2. ثني الركبتين ببطء لتشكيل زاوية 90 درجة.
+3. العودة إلى وضع البداية.
+4. كرر ، بالتناوب على الساقين.""",
 } +
 {
 "tr": """Bacak kaldırmaları""",
 "nl": """Been strekken""",
-"de": """Leg raises""",
+"de": """Beine heben""",
 "ru": """Leg raises""",
 "pt": """Levantamento de pernas""",
 "en": """Leg raises""",
 "it": """Leg raises""",
-"fr": """Leg raises""",
+"hr": """Leg raises""",
+"fr": """Levées de jambe""",
 "eu": """Leg raises""",
-"nb_NO": """Ben reiser""",
 "cs": """Zvedání nohou""",
 "id": """Leg raises""",
 "es": """Levantamiento de piernas""",
+"ar": """رفع الساق""",
 } +
 {
 "tr": """Başlangıç durumu:
@@ -3513,14 +4001,14 @@ Stappen:
 2. Houd je benen recht, laat ze samen naar beneden zakken zonder de vloer te raken. Hoe lager je gaat, hoe intensiever de oefening.
 3. 3. Breng beide benen weer recht omhoog.
 4. Herhaal vanaf stap 2.""",
-"de": """Starting position:
-Lie down on your back, feet together, arms by your sides.
+"de": """Ausgangsposition:
+Lege Dich auf den Rücken, Füße zusammen, Arme an den Seiten.
 
-Steps:
-1. Bend your knees, then straighten them to point straight up.
-2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
-3. Raise both legs together to point straight up again.
-4. Repeat from step 2.""",
+Schritte:
+1. Beuge die Knie und strecke sie dann gerade nach oben.
+2. Halte die Beine gerade und senke sie gemeinsam ab, ohne den Boden zu berühren. Je tiefer, desto intensiver ist die Übung.
+3. Hebe beide Beine zusammen an, so dass sie wieder gerade nach oben zeigen.
+4. Wiederholen ab Schritt 2.""",
 "ru": """Starting position:
 Lie down on your back, feet together, arms by your sides.
 
@@ -3553,6 +4041,14 @@ Steps:
 2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
 3. Raise both legs together to point straight up again.
 4. Repeat from step 2.""",
+"hr": """Starting position:
+Lie down on your back, feet together, arms by your sides.
+
+Steps:
+1. Bend your knees, then straighten them to point straight up.
+2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
+3. Raise both legs together to point straight up again.
+4. Repeat from step 2.""",
 "fr": """Starting position:
 Lie down on your back, feet together, arms by your sides.
 
@@ -3569,14 +4065,6 @@ Steps:
 2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.
 3. Raise both legs together to point straight up again.
 4. Repeat from step 2.""",
-"nb_NO": """Startposisjonen:
-Legg deg ned på ryggen, føttene sammen, armene dine sider.
-
-Fremgangsmåte:
-1. Bøy knærne, deretter rette dem til å peke rett opp.
-2. Å holde bena rett, senke dem ned sammen uten å berøre gulvet. Nedre du går, jo mer intens trening.
-3. Heve begge beina sammen for å peke rett opp igjen.
-4. Gjenta fra trinn 2.""",
 "cs": """Výchozí pozice:
 Lehněte si na záda, nohy k sobě, ruce podél těla.
 
@@ -3601,21 +4089,30 @@ Pasos:
 2. Manteniendo las piernas rectas, bájalas juntas sin tocar el suelo. Cuanto más bajes, más intenso será el ejercicio.
 3. Sube las dos piernas juntas hasta que vuelvan a apuntar hacia arriba.
 4. Repite desde el paso 2.""",
+"ar": """وضع البداية:
+استلقِ على ظهرك وقدميك معًا وذراعيك بجانبك.
+
+الخطوات:
+1. اثني ركبتيك ، ثم افردهما للإشارة إلى الأعلى بشكل مستقيم.
+2. حافظ على استقامة ساقيك ، وأنزلهما معًا دون لمس الأرض. كلما انخفضت ، زادت كثافة التمرين.
+3. ارفع كلا الساقين معًا للإشارة إلى الأعلى مرة أخرى.
+4. كرر من الخطوة 2.""",
 } +
 {
 "tr": """Yere dalma""",
 "nl": """Vloer dips""",
-"de": """Floor dips""",
+"de": """Bodensenken""",
 "ru": """Floor dips""",
 "pt": """Floor dips""",
 "en": """Floor dips""",
 "it": """Floor dips""",
+"hr": """Floor dips""",
 "fr": """Floor dips""",
 "eu": """Floor dips""",
-"nb_NO": """Etasje dips""",
 "cs": """Dipy na podlaze""",
 "id": """Floor dips""",
 "es": """Bajadas al suelo""",
+"ar": """انخفاضات أرضية""",
 } +
 {
 "tr": """Başlangıç durumu:
@@ -3670,19 +4167,19 @@ Steps:
 
 Notes:
 The exercise's difficulty depends on how high you bring your hips.""",
-"pt": """Starting position:
-Sit with your arms behind you, supporting your back.
-Your fingers should point forward.
-Your knees should be bent, feet together.
+"pt": """Posição inicial:
+Sente-se com seus braços atrás de você, apoiando suas costas.
+Seus dedos devem apontar para frente.
+Seus joelhos devem estar dobrados, com os pés juntos.
 
-Steps:
-1. Raise your hips off the ground, straightening your arms.
-2. Bend your elbows, bringing your hips down.
-3. Straighten your arms, returning to the previous position.
-4. Repeat steps 2 and 3.
+Passos:
+1. Levante seus quadris do chão, endireitando seus braços.
+2. Dobre os cotovelos, abaixando os quadris.
+3. Endireite os braços, voltando à posição anterior.
+4. Repita os passos 2 e 3.
 
-Notes:
-The exercise's difficulty depends on how high you bring your hips.""",
+Notas:
+A dificuldade do exercício depende do quanto você eleva seus quadris.""",
 "en": """Starting position:
 Sit with your arms behind you, supporting your back.
 Your fingers should point forward.
@@ -3697,6 +4194,19 @@ Steps:
 Notes:
 The exercise's difficulty depends on how high you bring your hips.""",
 "it": """Starting position:
+Sit with your arms behind you, supporting your back.
+Your fingers should point forward.
+Your knees should be bent, feet together.
+
+Steps:
+1. Raise your hips off the ground, straightening your arms.
+2. Bend your elbows, bringing your hips down.
+3. Straighten your arms, returning to the previous position.
+4. Repeat steps 2 and 3.
+
+Notes:
+The exercise's difficulty depends on how high you bring your hips.""",
+"hr": """Starting position:
 Sit with your arms behind you, supporting your back.
 Your fingers should point forward.
 Your knees should be bent, feet together.
@@ -3735,19 +4245,6 @@ Steps:
 
 Notes:
 The exercise's difficulty depends on how high you bring your hips.""",
-"nb_NO": """Startposisjonen:
-Sitte med armene bak deg, støtter deg tilbake.
-Fingrene skal peke fremover.
-Knærne skal bøyes, føttene sammen.
-
-Fremgangsmåte:
-1. Heve hoftene av bakken, retting armene.
-2. Bøy albuene, bringe hoftene ned.
-3. Rett i armene dine, gå tilbake til den forrige posisjonen.
-4. Gjenta trinn 2 og 3.
-
-Merk:
-Øvelsen er problemer med, avhenger av hvor høy du ta med hoftene.""",
 "cs": """Výchozí pozice:
 Sedněte si s rukama za zády, podporující tělo.
 Prsty by měly směřovat dopředu.
@@ -3787,21 +4284,35 @@ Pasos:
 
 Notas:
 La dificultad del ejercicio depende de la altura de las caderas.""",
+"ar": """وضع البداية:
+اجلس وذراعيك خلفك ، داعمًا ظهرك.
+يجب أن تشير أصابعك إلى الأمام.
+يجب أن تكون ركبتيك مثنيتين ، وقدميك معًا.
+
+الخطوات:
+1. ارفع وركيك عن الأرض مع فرد ذراعيك.
+2. اثنِ مرفقيك ، وجلب الوركين إلى أسفل.
+3. فرد ذراعيك ، والعودة إلى الوضع السابق.
+4. كرر الخطوتين 2 و 3.
+
+تلاحظ:
+تعتمد صعوبة التمرين على مدى ارتفاع الوركين.""",
 } +
 {
 "tr": """Pike şınav""",
 "nl": """Snoekpush-ups""",
 "de": """Pike push-ups""",
 "ru": """Pike push-ups""",
-"pt": """Pike push-ups""",
+"pt": """Flexão Pike""",
 "en": """Pike push-ups""",
 "it": """Pike push-ups""",
+"hr": """Pike push-ups""",
 "fr": """Pike push-ups""",
 "eu": """Pike push-ups""",
-"nb_NO": """Gjedde push-ups""",
 "cs": """Kliky ve střeše""",
 "id": """Pike push-ups""",
 "es": """Flexiones de pica""",
+"ar": """الدراجة الضغط""",
 } +
 {
 "tr": """Başlangıç durumu:
@@ -3836,14 +4347,14 @@ Steps:
 1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
 2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
 3. Repeat.""",
-"pt": """Staring position:
-Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
-You can get to this position by walking your hands back from a high plank.
+"pt": """Posição inicial:
+Com a cara virada para baixo: Seu corpo deve fazer uma forma em V, com as costas, braços e pernas retas. Seus quadris devem estar para cima no ar.
+Você pode chegar a esta posição caminhando com as mãos para trás a partir de uma prancha alta.
 
-Steps:
-1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
-2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
-3. Repeat.""",
+Passos:
+1. Dobre os cotovelos para o lado, mantendo suas costas e pernas retas e movendo sua cabeça para mais perto do chão.
+2. Endireite os braços, empurrando os quadris para cima e mantendo as costas e as pernas retas.
+3. Repita.""",
 "en": """Staring position:
 Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
 You can get to this position by walking your hands back from a high plank.
@@ -3853,6 +4364,14 @@ Steps:
 2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
 3. Repeat.""",
 "it": """Staring position:
+Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
+You can get to this position by walking your hands back from a high plank.
+
+Steps:
+1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
+2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
+3. Repeat.""",
+"hr": """Staring position:
 Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
 You can get to this position by walking your hands back from a high plank.
 
@@ -3876,14 +4395,6 @@ Steps:
 1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.
 2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.
 3. Repeat.""",
-"nb_NO": """Stirrer posisjon:
-Nedover hund: kroppen skal lage en V-form, med en rett rygg, armer, og ben. Hoftene skal være opp i luften.
-Du kan komme til denne posisjonen ved å gå deres hender tilbake fra en høy planke.
-
-Fremgangsmåte:
-1.Bøy albuene ut til siden, holde ryggen og bena rett og flytte hodet nærmere gulvet.
-2. Rett ut armene, og presser hoftene tilbake, opp og holde ryggen og bena rett.
-3. Gjenta.""",
 "cs": """Výchozí pozice:
 Střecha: Tělo ve tvaru písmene V – rovná záda, paže a nohy, boky ve vzduchu.
 Do této pozice se dostanete tak, že z vysokého prkna postupně popojdete rukami k tělu.
@@ -3908,6 +4419,1995 @@ Pasos:
 1.Dobla los codos hacia los lados, manteniendo la espalda y las piernas rectas y acercando la cabeza al suelo.
 2. Estira los brazos, empujando las caderas hacia atrás y manteniendo la espalda y las piernas rectas.
 3. 3. Repite la operación.""",
+"ar": """موقف التحديق:
+الكلب المتجه للأسفل: يجب أن يتخذ جسمك شكل V ، مع ظهر مستقيم وذراعان وأرجل. يجب أن يكون الوركين في الهواء.
+يمكنك الوصول إلى هذا الوضع عن طريق إرجاع يديك للخلف من لوح مرتفع.
+
+الخطوات:
+1- اثنِ مرفقيك إلى الجانب ، وحافظ على استقامة ظهرك ورجليك وحرك رأسك أقرب إلى الأرض.
+2. افرد ذراعيك وادفع وركيك للخلف وحافظ على استقامة ظهرك ورجليك.
+3. كرر.""",
+} +
+{
+"tr": """Chin tuck""",
+"nl": """Chin tuck""",
+"de": """Chin tuck""",
+"ru": """Chin tuck""",
+"pt": """Chin tuck""",
+"en": """Chin tuck""",
+"it": """Chin tuck""",
+"hr": """Chin tuck""",
+"fr": """Chin tuck""",
+"eu": """Chin tuck""",
+"cs": """Chin tuck""",
+"id": """Chin tuck""",
+"es": """Chin tuck""",
+"ar": """تشين تاك""",
+} +
+{
+"tr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"nl": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"de": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"ru": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"pt": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"en": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"it": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"hr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"fr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"eu": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"cs": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"id": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"es": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.
+2. Hold for 5 seconds.
+3. Go back to normal head position and repeat.""",
+"ar": """وضع البداية:
+اجلس أو قف وظهرك مستقيم.
+
+خطوات:
+1. استخدم أصابعك على ذقنك لثني ذقنك ببطء ، وحرك رأسك للخلف لمحاذاة عمودك الفقري.
+2. استمر لمدة 5 ثوان.
+3. العودة إلى وضع الرأس الطبيعي وكرر.""",
+} +
+{
+"tr": """Head turns""",
+"nl": """Head turns""",
+"de": """Kopf drehen""",
+"ru": """Повороты головы""",
+"pt": """Head turns""",
+"en": """Head turns""",
+"it": """Head turns""",
+"hr": """Head turns""",
+"fr": """Tour de tête""",
+"eu": """Head turns""",
+"cs": """Head turns""",
+"id": """Head turns""",
+"es": """Head turns""",
+"ar": """تدوير الرأس""",
+} +
+{
+"tr": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"nl": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"de": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"ru": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"pt": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"en": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"it": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"hr": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"fr": """Position de départ :
+Asseyez-vous ou tenez-vous debout, le dos droit et les épaules basses.
+
+Étapes :
+1. Asseyez-vous ou tenez-vous debout, le dos droit. Épaules baissées.
+2. Tournez la tête vers la gauche aussi loin que possible. Arrêtez-vous lorsque vous rencontrez un obstacle et maintenez cette position pendant 5 secondes.
+3. Revenez à la position centrale.
+4. Répétez en changeant de côté.""",
+"eu": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"cs": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"id": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"es": """Starting position:
+Sit or stand with your back straight and shoulders down.
+
+Steps:
+1. Sit or stand up straight, shoulders dropped.
+2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.
+3. Return to center position and repeat, changing sides.""",
+"ar": """وضع البداية:
+اجلس أو قف وظهرك مستقيماً وكتفيك إلى أسفل.
+
+خطوات:
+1. اجلس أو قف بشكل مستقيم ، مع انخفاض الكتفين.
+2. أدر رأسك إلى الجانب إلى أقصى حد ممكن. توقف عندما تصطدم بحاجز وتثبت.
+3. عد إلى المركز وكرر الأمر مع تغيير الجوانب.""",
+} +
+{
+"tr": """Back neck stretch""",
+"nl": """Back neck stretch""",
+"de": """Nackendehnung""",
+"ru": """Back neck stretch""",
+"pt": """Back neck stretch""",
+"en": """Back neck stretch""",
+"it": """Back neck stretch""",
+"hr": """Istezanje stražnjeg vrata""",
+"fr": """Flexion du cou""",
+"eu": """Back neck stretch""",
+"cs": """Back neck stretch""",
+"id": """Back neck stretch""",
+"es": """Back neck stretch""",
+"ar": """تمتد الرقبة الخلفية""",
+} +
+{
+"tr": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"nl": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"de": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"ru": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"pt": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"en": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"it": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"hr": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"fr": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"eu": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"cs": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"id": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"es": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.
+2. Use your hands to pull your head down very lightly. Hold for 5 seconds.
+3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.
+4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.
+5. Bring your fingers to your forehead and use them to gently move your head back into original position.""",
+"ar": """وضع البداية:
+اجلس منتصبًا على كرسي أو وسادة ثابتة.
+
+خطوات:
+1. أخرج الزفير وقم بإمالة رأسك للأمام ، والذقن إلى الصدر ، ووضع يديك خلف رأسك.
+2. استخدم يديك لسحب رأسك لأسفل بخفة شديدة. استمر لمدة 5 ثوان.
+3. اسحب الكتفين للخلف والأسفل باستخدام عضلات ظهرك. هذا يجب أن يزيد من شد الرقبة. استمر لمدة 5 ثوان.
+4. الآن ادفع رأسك بلطف للخلف ، بينما اسحبه لأسفل بيديك. وازن بين القوتين بحيث لا يتحرك رأسك. استمر لمدة 5 ثوان على الأقل.
+5. اجلب أصابعك إلى جبهتك واستخدمها لتحريك رأسك برفق إلى الموضع الأصلي.""",
+} +
+{
+"tr": """Left neck stretch""",
+"nl": """Left neck stretch""",
+"de": """Linke Nackendehnung""",
+"ru": """Left neck stretch""",
+"pt": """Left neck stretch""",
+"en": """Left neck stretch""",
+"it": """Left neck stretch""",
+"hr": """Left neck stretch""",
+"fr": """Left neck stretch""",
+"eu": """Left neck stretch""",
+"cs": """Left neck stretch""",
+"id": """Left neck stretch""",
+"es": """Left neck stretch""",
+"ar": """تمتد الرقبة لليسار""",
+} +
+{
+"tr": """Right neck stretch""",
+"nl": """Right neck stretch""",
+"de": """Rechte Nackendehnung""",
+"ru": """Right neck stretch""",
+"pt": """Right neck stretch""",
+"en": """Right neck stretch""",
+"it": """Right neck stretch""",
+"hr": """Right neck stretch""",
+"fr": """Right neck stretch""",
+"eu": """Right neck stretch""",
+"cs": """Right neck stretch""",
+"id": """Right neck stretch""",
+"es": """Right neck stretch""",
+"ar": """تمدد الرقبة لليمين""",
+} +
+{
+"tr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"nl": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"de": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"ru": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"pt": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"en": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"it": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"hr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"fr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"eu": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"cs": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"id": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"es": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.
+2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.
+3. Turn your chin to your shoulder. Hold for 8 seconds.
+4. Release and return to starting position.""",
+"ar": """وضع البداية:
+اجلس أو قف وظهرك مستقيم.
+
+خطوات:
+1. قم بإمالة رأسك إلى الجانب واستمر لمدة ٨ ثوانٍ لتمديد جانب رقبتك.
+2. مع وضع اليد المعاكسة على رأسك ، اسحب برفق لتمتد أكثر. استمر لمدة ٨ ثوان.
+3. أدر ذقنك إلى كتفك. استمر لمدة ٨ ثوان.
+4. حرر والعودة إلى وضع البداية.""",
+} +
+{
+"tr": """Shoulder shrugs""",
+"nl": """Shoulder shrugs""",
+"de": """Shoulder shrugs""",
+"ru": """Shoulder shrugs""",
+"pt": """Shoulder shrugs""",
+"en": """Shoulder shrugs""",
+"it": """Shoulder shrugs""",
+"hr": """Shoulder shrugs""",
+"fr": """Haussement d'épaules""",
+"eu": """Shoulder shrugs""",
+"cs": """Shoulder shrugs""",
+"id": """Shoulder shrugs""",
+"es": """Shoulder shrugs""",
+"ar": """هز الكتفين""",
+} +
+{
+"tr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"nl": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"de": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"ru": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"pt": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"en": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"it": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"hr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"fr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"eu": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"cs": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"id": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"es": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Lift shoulders straight up as far as possible and hold for 5 sec.
+2. Release shoulders back down to a relaxed position.
+3. Repeat.""",
+"ar": """وضع البداية:
+اجلس أو قف وظهرك مستقيم.
+
+خطوات:
+1. ارفع الكتفين بشكل مستقيم إلى أقصى حد ممكن واستمر لمدة 5 ثوانٍ.
+2. حرر الكتفين لأسفل إلى وضع مريح.
+3. كرر.""",
+} +
+{
+"tr": """Front neck stretch""",
+"nl": """Front neck stretch""",
+"de": """Nackenstütze vorne""",
+"ru": """Front neck stretch""",
+"pt": """Front neck stretch""",
+"en": """Front neck stretch""",
+"it": """Front neck stretch""",
+"hr": """Istezanje vrata prema naprijed""",
+"fr": """Front neck stretch""",
+"eu": """Front neck stretch""",
+"cs": """Přední protažení krku""",
+"id": """Front neck stretch""",
+"es": """Front neck stretch""",
+"ar": """تمتد الرقبة الأمامية""",
+} +
+{
+"tr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"nl": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"de": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"ru": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"pt": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"en": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"it": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"hr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"fr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"eu": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"cs": """Výchozí poloha:
+Postavte se nebo si sedněte s narovnanými zády.
+
+Kroky:
+1. Otevřete ústa do O.
+2. Pomalu zakloňte hlavu s ústy otevřenými. Pokud potřebujete hlavu podpořit, sepněte za ní ruce.
+3. Velmi pomalu zavírejte a otevírejte ústa.
+4. Nakonec se vraťte do výchozí polohy a ústa zavřete.""",
+"id": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"es": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Open mouth wide.
+2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.
+3. Very slowly close and open your mouth.
+4. At the end, slowly return to starting position and close mouth.""",
+"ar": """وضع البداية:
+اجلس أو قف وظهرك مستقيما.
+
+الخطوات:
+1. فتح الفم على نطاق واسع.
+2. إمالة الرأس ببطء مرة أخرى مع فتح الفم. إذا كنت تشعر بالحاجة إلى الدعم، شبك يديك وراء رأسك.
+3. إغلاق ببطء شديد وفتح فمك.
+4. في النهاية، والعودة ببطء إلى موقف البداية وإغلاق الفم.""",
+} +
+{
+"tr": """Back and left neck stretch""",
+"nl": """Back and left neck stretch""",
+"de": """Rücken und linker Nacken dehnen""",
+"ru": """Back and left neck stretch""",
+"pt": """Back and left neck stretch""",
+"en": """Back and left neck stretch""",
+"it": """Back and left neck stretch""",
+"hr": """Back and left neck stretch""",
+"fr": """Back and left neck stretch""",
+"eu": """Back and left neck stretch""",
+"cs": """Back and left neck stretch""",
+"id": """Back and left neck stretch""",
+"es": """Back and left neck stretch""",
+"ar": """تمتد الرقبة للخلف واليسار""",
+} +
+{
+"tr": """Back and right neck stretch""",
+"nl": """Back and right neck stretch""",
+"de": """Rücken und rechter Nacken dehnen""",
+"ru": """Back and right neck stretch""",
+"pt": """Back and right neck stretch""",
+"en": """Back and right neck stretch""",
+"it": """Back and right neck stretch""",
+"hr": """Back and right neck stretch""",
+"fr": """Back and right neck stretch""",
+"eu": """Back and right neck stretch""",
+"cs": """Back and right neck stretch""",
+"id": """Back and right neck stretch""",
+"es": """Back and right neck stretch""",
+"ar": """تمدد الرقبة للخلف واليمين""",
+} +
+{
+"tr": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"nl": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"de": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"ru": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"pt": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"en": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"it": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"hr": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"fr": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"eu": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"cs": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"id": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"es": """Starting position:
+Sit upright on a chair or a firm pillow.
+
+Steps:
+1. Breathe out and tilt head forward, chin to chest, with hands behind your head.
+2. Keeping head forward, use waist muscles to turn as far as comfortable to the side.
+3. Use hands to pull head down very slightly, controlling the stretch.
+4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.
+5. Turn back into center position.
+6. Bring your hands to your forehead and push head upright again into normal position.""",
+"ar": """وضع البداية:
+اجلس منتصبًا على كرسي أو وسادة ثابتة.
+
+خطوات:
+1. أخرج الزفير وقم بإمالة رأسك للأمام ، والذقن إلى الصدر ، مع وضع اليدين خلف رأسك.
+2. إبقاء رأسك للأمام ، واستخدام عضلات الخصر للالتفاف بقدر مريح إلى الجنب.
+3. استخدم اليدين لسحب الرأس لأسفل قليلاً ، مع التحكم في التمدد.
+4. اسحب الكتفين للخلف والأسفل باستخدام عضلات ظهرك. امسك لمدة 5 ثوان.
+5. استدر للوضع الأوسط.
+6. اجلب يديك إلى جبهتك وادفع رأسك في وضع مستقيم مرة أخرى إلى الوضع الطبيعي.""",
+} +
+{
+"tr": """Chin tuck with flexion with rotation""",
+"nl": """Chin tuck with flexion with rotation""",
+"de": """Kinnbacken mit Beugung und Drehung""",
+"ru": """Chin tuck with flexion with rotation""",
+"pt": """Chin tuck with flexion with rotation""",
+"en": """Chin tuck with flexion with rotation""",
+"it": """Chin tuck with flexion with rotation""",
+"hr": """Chin tuck with flexion with rotation""",
+"fr": """Chin tuck with flexion with rotation""",
+"eu": """Chin tuck with flexion with rotation""",
+"cs": """Chin tuck with flexion with rotation""",
+"id": """Chin tuck with flexion with rotation""",
+"es": """Chin tuck with flexion with rotation""",
+"ar": """ثني الذقن مع التمدد و الدوران""",
+} +
+{
+"tr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"nl": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"de": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"ru": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"pt": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"en": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"it": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"hr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"fr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"eu": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"cs": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"id": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"es": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tuck your chin in, moving your head back.
+2. Tilt your head forward until you feel a stretch in the back of your neck.
+3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.
+4. Hold for 5 seconds.
+5. Rotate back, keeping your head down.
+6. Repeat from step 3, switching sides.""",
+"ar": """وضع البداية:
+اجلس أو قف وظهرك مستقيم.
+
+خطوات:
+1. ثني ذقنك ، حرك رأسك للخلف.
+2. قم بإمالة رأسك للأمام حتى تشعر بشد في مؤخرة رقبتك.
+3. قم بتدوير رأسك إلى الجانب عند الزفير. استخدم أصابعك على صدغك لتوجيه رأسك وتطبيق القليل من الضغط الزائد.
+4. استمر لمدة 5 ثوان.
+5. استدر للخلف ، مع إبقاء رأسك لأسفل.
+6. كرر من الخطوة 3 ، مع تبديل الجانبين.""",
+} +
+{
+"tr": """Forward shoulder rotation""",
+"nl": """Forward shoulder rotation""",
+"de": """Vorwärtsdrehung der Schulter""",
+"ru": """Forward shoulder rotation""",
+"pt": """Forward shoulder rotation""",
+"en": """Forward shoulder rotation""",
+"it": """Forward shoulder rotation""",
+"hr": """Okretanje ramena prema naprijed""",
+"fr": """Forward shoulder rotation""",
+"eu": """Forward shoulder rotation""",
+"cs": """Forward shoulder rotation""",
+"id": """Forward shoulder rotation""",
+"es": """Forward shoulder rotation""",
+"ar": """دوران الكتف إلى الأمام""",
+} +
+{
+"tr": """Backward shoulder rotation""",
+"nl": """Backward shoulder rotation""",
+"de": """Rückwärtsdrehung der Schulter""",
+"ru": """Backward shoulder rotation""",
+"pt": """Backward shoulder rotation""",
+"en": """Backward shoulder rotation""",
+"it": """Backward shoulder rotation""",
+"hr": """Okretanje ramena prema natrag""",
+"fr": """Backward shoulder rotation""",
+"eu": """Backward shoulder rotation""",
+"cs": """Backward shoulder rotation""",
+"id": """Backward shoulder rotation""",
+"es": """Backward shoulder rotation""",
+"ar": """دوران الكتف للخلف""",
+} +
+{
+"tr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"nl": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"de": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"ru": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"pt": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"en": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"it": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"hr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"fr": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"eu": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"cs": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"id": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"es": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Place your hands on your shoulders.
+2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.""",
+"ar": """وضع البداية:
+اجلس أو قف وظهرك مستقيم.
+
+خطوات:
+1. ضع يديك على كتفيك.
+2. قم بتدوير مفصلي الكتف بشكل متكرر في حركة دائرية بوتيرة معتدلة.""",
+} +
+{
+"tr": """High plank""",
+"nl": """High plank""",
+"de": """Hohe Planke""",
+"ru": """High plank""",
+"pt": """High plank""",
+"en": """High plank""",
+"it": """High plank""",
+"hr": """High plank""",
+"fr": """High plank""",
+"eu": """High plank""",
+"cs": """High plank""",
+"id": """High plank""",
+"es": """High plank""",
+"ar": """لوح مرتفع""",
+} +
+{
+"tr": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"nl": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"de": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"ru": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"pt": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"en": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"it": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"hr": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"fr": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"eu": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"cs": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"id": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"es": """Starting position:
+Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
+To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
+
+Steps:
+1. Maintain the starting position for the entire duration of the exercise.""",
+"ar": """وضع البداية:
+ادخل إلى وضع اللوح الخشبي المرتفع: يجب أن تكون يديك وأصابع قدمك ملامسة للأرض ، ويجب أن يكون ظهرك وذراعيك وساقيك مستقيمة.
+للوصول إلى هذا الوضع ، يمكنك الاستلقاء على بطنك ، ووضع يديك في مواجهة رأسك ، ورفع ذراعيك لأعلى حتى تستقيم.
+
+خطوات:
+1. حافظ على وضع البداية طوال مدة التمرين.""",
+} +
+{
+"tr": """Child's pose""",
+"nl": """Child's pose""",
+"de": """Child's pose""",
+"ru": """Child's pose""",
+"pt": """Child's pose""",
+"en": """Child's pose""",
+"it": """Child's pose""",
+"hr": """Child's pose""",
+"fr": """Child's pose""",
+"eu": """Child's pose""",
+"cs": """Child's pose""",
+"id": """Child's pose""",
+"es": """Child's pose""",
+"ar": """وضعية الطفل""",
+} +
+{
+"tr": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"nl": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"de": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"ru": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"pt": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"en": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"it": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"hr": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"fr": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"eu": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"cs": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"id": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"es": """Starting position:
+Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
+
+Steps:
+1. Move your knees so that they're about hip-width apart.
+2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.
+3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.
+4. Stay in this pose.
+
+Tips:
+* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.""",
+"ar": """وضع البداية:
+ابدأ في ملامسة الأرض من جميع الجهات والركب وأصابع القدم واليدين. يجب أن تكون أصابع قدميك الكبيرة ملامسة للارض.
+
+خطوات:
+1. حرك ركبتيك بحيث يكونا متباعدين بعرض الورك.
+2. عند الزفير ، حرك حوضك للخلف للجلوس على كعبيك. يجب أن تظل يداك تلمس الأرض.
+3. استرخِ الجزء العلوي من جسمك ، وأنزل جبهتك على الأرض واترك يديك تتحرك بشكل طبيعي إلى الأمام.
+4. ابق في هذا الوضع.
+
+نصائح:
+* لترك الوضع ، حرك ذراعيك للخلف تحت كتفيك وحرك الجزء العلوي من جسمك إلى وضع الجلوس.""",
+} +
+{
+"tr": """Pull-up""",
+"nl": """Pull-up""",
+"de": """Klimmzug""",
+"ru": """Pull-up""",
+"pt": """Pull-up""",
+"en": """Pull-up""",
+"it": """Pull-up""",
+"hr": """Pull-up""",
+"fr": """Pull-up""",
+"eu": """Pull-up""",
+"cs": """Pull-up""",
+"id": """Pull-up""",
+"es": """Pull-up""",
+"ar": """اسحب""",
+} +
+{
+"tr": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"nl": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"de": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"ru": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"pt": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"en": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"it": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"hr": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"fr": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"eu": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"cs": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"id": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"es": """Starting position:
+Start by hanging from the pull-up bar, palms facing away and feet off the floor.
+Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
+Your body should be straight and pointed slightly forward. Your arms should be extended.
+
+Steps:
+1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.
+2. Carefully lower your body back down to starting position.
+3. Repeat.
+
+Tips:
+- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.""",
+"ar": """وضع البداية:
+ابدأ بالتعلق من شريط السحب ، بحيث تكون راحة اليد متجهة بعيدًا والقدمين عن الأرض.
+يجب أن تكون يداك أعرض قليلاً من عرض الكتفين. بدرجة طفيفة فقط ، بحيث يظل المرفقان أمام الجسم بدلاً من الجانب بشكل مباشر.
+يجب أن يكون جسدك مستقيمًا وموجهًا للأمام قليلاً. يجب أن تمد ذراعيك.
+
+خطوات:
+1. استخدم قوتك لسحب جسمك بالتساوي ، مع تقريب صدرك من شريط السحب والذقن فوقه مباشرة. لا ترفع نفسك باستخدام الزخم ، مثل الركل.
+2. اخفض جسمك بحذر لأسفل إلى وضع البداية.
+3. كرر.
+
+نصائح:
+- للقيام بتمارين السحب بشكل صحيح ، يجب عليك أولاً بناء القوة في العديد من المجالات الرئيسية ، بما في ذلك الكتفين والذراعين والبطن. ابدأ بتمارين السحب فقط بعد أن تكون قد اكتسبت قوة كافية مع تمارين أخرى.""",
+} +
+{
+"tr": """Kettlebell deadlift""",
+"nl": """Kettlebell deadlift""",
+"de": """Kettlebell Kreuzheben""",
+"ru": """Kettlebell deadlift""",
+"pt": """Kettlebell deadlift""",
+"en": """Kettlebell deadlift""",
+"it": """Kettlebell deadlift""",
+"hr": """Kettlebell deadlift""",
+"fr": """Kettlebell deadlift""",
+"eu": """Kettlebell deadlift""",
+"cs": """Kettlebell deadlift""",
+"id": """Kettlebell deadlift""",
+"es": """Kettlebell deadlift""",
+"ar": """كيتلبيل رفع الأثقال""",
+} +
+{
+"tr": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"nl": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"de": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"ru": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"pt": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"en": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"it": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"hr": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"fr": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"eu": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"cs": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"id": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"es": """Starting position:
+Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
+
+Steps:
+1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.
+2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.
+3. While contacting your abs and glutes, stand straight up.
+4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.
+5. Repeat from step 3.
+
+Tips:
+* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.""",
+"ar": """وضع البداية:
+قف متباعدًا بمقدار عرض الورك ، مع وضع الثقل في المنتصف بين كاحليك. يجب أن يكون ظهرك مستقيمًا ورأسك متجهًا للأمام.
+
+خطوات:
+1. قم بمفصلة الوركين وانحني قليلاً عند الركبتين لوضع يديك على مقابض الثقل. يجب أن يكون ظهرك مستقيمًا أثناء أداء الحركة.
+2. أمسك بمقبض الثقل ، مع دفع يديك في اتجاهين متعاكسين كما لو كنت تبتعد عن المقبض.
+3. أثناء ملامسة عضلات البطن والألوية ، قف بشكل مستقيم.
+4. قم بمفصلة الوركين مرة أخرى لإخراج الجرس إلى أسفل ، على غرار الخطوة 1.
+5. كرر من الخطوة 3.
+
+نصائح:
+* تأكد من أداء الحركات بشكل صحيح ، لأن القيام بخلاف ذلك قد يؤدي إلى الإصابة. على سبيل المثال ، لا تقم بالقرفصاء بدلًا من التوقف عند الوركين ، ولا تلف ظهرك أثناء الوصول إلى الثقل ، ولا تميل للخلف أثناء الوقوف.""",
+} +
+{
+"tr": """Sumo squat""",
+"nl": """Sumo squat""",
+"de": """Sumo Hocke""",
+"ru": """Sumo squat""",
+"pt": """Sumo squat""",
+"en": """Sumo squat""",
+"it": """Sumo squat""",
+"hr": """Sumo squat""",
+"fr": """Sumo squat""",
+"eu": """Sumo squat""",
+"cs": """Sumo squat""",
+"id": """Sumo squat""",
+"es": """Sumo squat""",
+"ar": """قرفصاء السومو""",
+} +
+{
+"tr": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"nl": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"de": """Ausgangsposition:
+Breitbeiniger Stand mit nach außen gedrehten Zehen.
+
+Schritte:
+1. Sinke langsam nach unten, indem die Knie nach außen gebeugt werden. Arme nach vorne strecken. Halte Kopf, Brust und Hüfte in einer geraden Linie. Spanne die Gesäßmuskeln an.
+2. Bringe Dich wieder in die Ausgangsposition.
+3. Wiederhole diese Übung in einer pulsierenden Bewegung.""",
+"ru": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"pt": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"en": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"it": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"hr": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"fr": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"eu": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"cs": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"id": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"es": """Starting position:
+Stand with legs wide and toes turned outwards.
+
+Steps:
+1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.
+2. Push back up into starting position.
+3. Repeat this exercise in a pulsing motion.""",
+"ar": """وضع البداية:
+الوقوف مع الساقين واسعة وأصابع القدم إلى الخارج.
+
+خطوات:
+1. انزل ببطء عن طريق ثني ركبتيك. اثني ركبتيك للأمام. حافظ على رأسك وصدرك ووركيك في خط مستقيم. الضغط على عضلات المؤخرة.
+2. ادفع لأعلى إلى وضع البداية.
+3. كرر هذا التمرين بحركة نابضة.""",
 };
 String get i18n => localize(this, t);
 }
