@@ -31,6 +31,10 @@ class BodyExerciseContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final screenWidth = screenSize.width;
+    final screenHeight = screenSize.height;
+    final height = screenWidth/screenHeight > 0.8 ? screenHeight * 0.27 : screenWidth * 0.372;
     return Expanded(
           child: Stack(
         children: <Widget>[
@@ -38,7 +42,7 @@ class BodyExerciseContent extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Container(
                 color: color,
-                height: MediaQuery.of(context).size.width * 0.372,
+                height: height,
               )),
           Align(
               alignment: Alignment.bottomCenter,
