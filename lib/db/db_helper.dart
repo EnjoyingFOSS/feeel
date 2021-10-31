@@ -131,7 +131,7 @@ class DBHelper {
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
   static const int _DATABASE_VERSION =
-      17; //todo DB version should match app version
+      18;
 
   Future<Database> _createDB() async {
     String path = await getPath();
