@@ -1089,7 +1089,7 @@ Pasos del ejercicio:
 {
 "tr": """Önceki egzersiz""",
 "nl": """Vorige oefening""",
-"de": """vorherige Übung""",
+"de": """Vorherige Übung""",
 "ru": """Предыдущее упражнение""",
 "pt": """Exercício anterior""",
 "en": """Previous exercise""",
@@ -1105,7 +1105,7 @@ Pasos del ejercicio:
 {
 "tr": """Sonraki egzersiz""",
 "nl": """Volgende oefening""",
-"de": """nächste Übung""",
+"de": """Nächste Übung""",
 "ru": """Следующее упражнение""",
 "pt": """Próximo exercício""",
 "en": """Next exercise""",
@@ -1169,7 +1169,7 @@ Pasos del ejercicio:
 {
 "tr": """Çoğalt""",
 "nl": """Een afschrift maken""",
-"de": """verdoppeln""",
+"de": """Verdoppeln""",
 "ru": """Дублировать""",
 "pt": """Duplicar""",
 "en": """Duplicate""",
