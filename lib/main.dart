@@ -53,7 +53,7 @@ class Feeel extends StatelessWidget {
         ?.addPostFrameCallback((_) => _onWidgetBuilt(context));
 
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white70));
+        SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
 
     return AdaptiveTheme(
         light: FeeelThemes.lightTheme,
