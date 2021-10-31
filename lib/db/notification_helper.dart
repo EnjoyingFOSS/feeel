@@ -22,7 +22,7 @@
 
 import 'dart:io';
 
-import 'package:feeel/screens/workout_list.dart';
+import 'package:feeel/screens/workout_list/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:feeel/i18n/translations.dart';
