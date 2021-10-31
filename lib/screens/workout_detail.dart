@@ -27,6 +27,7 @@ import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/widgets/workout_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:feeel/i18n/translations.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
   final WorkoutListed workoutListed;
@@ -68,19 +69,19 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                       return Center(
                           child: Column(
                         children: [
-                          Text("There are no exercises in this workout. :("),
+                          Text("There are no exercises in this workout. :(".i18n),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               TextButton(
-                                child: Text("Back to workout list"),
+                                child: Text("Back to workout list".i18n),
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
                               ),
                               if (workout.type == WorkoutType.CUSTOM)
                                 ElevatedButton(
-                                  child: Text("Delete this workout"),
+                                  child: Text("Delete this workout".i18n),
                                   onPressed: () {
                                     if (workout.dbId != null) {
                                       DBHelper.db

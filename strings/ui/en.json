@@ -58,6 +58,7 @@
     "txtNumberInputNonnumeric": "Must be numeric",
     "txtDurationLong": "%1d min., %2d sec.",
     "txtDragToReorder": "Drag this handle to reorder exercises.",
+    "txtNoExercises": "There are no exercises in this workout. :(",
     "btnStartWorkout": "Start workout",
     "btnResumeWorkout": "Resume workout",
     "btnPreviousExercise": "Previous exercise",
@@ -79,5 +80,7 @@
     "btnAddALinkToPhotos": "Add a link to your photo(s)",
     "btnDisableTTS": "Sounds instead of voice",
     "btnAdjustTiming": "Adjust timing",
-    "btnDoneEditingTiming": "Done editing timing"
+    "btnDoneEditingTiming": "Done editing timing",
+    "btnDeleteThisWorkout": "Delete this workout",
+    "btnBackToWorkoutList": "Back to workout list"
 }
