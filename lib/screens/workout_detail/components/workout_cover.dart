@@ -23,7 +23,7 @@
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/duration_util.dart';
-import 'package:feeel/widgets/triangle.dart';
+import 'package:feeel/components/triangle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:feeel/models/view/workout.dart';

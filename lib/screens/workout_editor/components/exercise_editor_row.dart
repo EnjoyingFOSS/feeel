@@ -25,7 +25,7 @@ import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
-import 'flipped.dart';
+import '../../../components/flipped.dart';
 
 class ExerciseEditorRow extends StatelessWidget {
   final WorkoutExercise workoutExercise;

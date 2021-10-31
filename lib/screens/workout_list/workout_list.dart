@@ -23,9 +23,9 @@
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/view/workout_listed.dart';
-import 'package:feeel/screens/settings.dart';
-import 'package:feeel/screens/workout_editor.dart';
-import 'package:feeel/widgets/workout_list_item.dart';
+import 'package:feeel/screens/settings/settings.dart';
+import 'package:feeel/screens/workout_editor/workout_editor.dart';
+import 'package:feeel/screens/workout_list/components/workout_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 

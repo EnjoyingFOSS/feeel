@@ -22,10 +22,10 @@
 
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/view/exercise.dart';
-import 'package:feeel/screens/exercise_creator.dart';
+import 'package:feeel/screens/exercise_creator/exercise_creator.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
-import 'package:feeel/widgets/exercise_picker_row.dart';
+import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 

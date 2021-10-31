@@ -25,7 +25,7 @@ import 'package:feeel/controllers/workout_page_types.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
-import 'package:feeel/widgets/workout_cover.dart';
+import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
 import 'package:feeel/enums/workout_category.dart';

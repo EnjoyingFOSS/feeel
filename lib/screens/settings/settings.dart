@@ -25,7 +25,7 @@ import 'dart:io';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/db/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
-import 'package:feeel/widgets/theme_dialog.dart';
+import 'package:feeel/screens/settings/components/theme_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';

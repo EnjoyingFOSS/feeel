@@ -26,7 +26,7 @@ import 'package:feeel/utils/duration_util.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
-import 'flipped.dart';
+import '../../../components/flipped.dart';
 
 class WorkoutExerciseItem extends StatelessWidget {
   final WorkoutExercise workoutExercise;

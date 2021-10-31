@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/widgets/triangle_frame.dart';
+import 'package:feeel/components/triangle_frame.dart';
 import 'package:flutter/material.dart';
 
 class HeadExerciseContent extends StatelessWidget {
