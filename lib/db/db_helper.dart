@@ -59,27 +59,27 @@ class _Exercises {
       SIDE_SPLIT_SQUATS_R = 22,
       SPLIT_SQUATS_L = 23,
       SPLIT_SQUATS_R = 24;
-      // JUMP_ROPE_BASIC = 25,
-      // ARM_CIRCLES_FW = 26,
-      // PIKE_PUSHUPS = 27,
-      // MOUNTAIN_CLIMBERS = 28,
-      // FOURCOUNT_BURPEES = 29,
-      // NO_PUSHUP_BURPEES = 30,
-      // SQUAT_THRUSTS = 31,
-      // REVERSE_LUNGES = 32,
-      // LEG_RAISES = 33,
-      // FLOOR_DIPS = 34, // v2.2.0
-      // HIGH_PLANK = 35,
-      // ARM_CIRCLES_BW = 36,
-      // CHILDS_POSE = 37,
-      // PULL_UP = 38,
-      // KETTLEBELL_DEADLIFT=39,
-      // SUMO_SQUAT=40,
-      // SHOULDER_ROTATION_FW = 41,
-      // SHOULDER_ROTATION_BW = 42,
-      // SHOULDER_SHRUG = 43,
-      // CHIN_TUCK = 44,
-      // HEAD_TURNS = 45;
+  // JUMP_ROPE_BASIC = 25,
+  // ARM_CIRCLES_FW = 26,
+  // PIKE_PUSHUPS = 27,
+  // MOUNTAIN_CLIMBERS = 28,
+  // FOURCOUNT_BURPEES = 29,
+  // NO_PUSHUP_BURPEES = 30,
+  // SQUAT_THRUSTS = 31,
+  // REVERSE_LUNGES = 32,
+  // LEG_RAISES = 33,
+  // FLOOR_DIPS = 34, // v2.2.0
+  // HIGH_PLANK = 35,
+  // ARM_CIRCLES_BW = 36,
+  // CHILDS_POSE = 37,
+  // PULL_UP = 38,
+  // KETTLEBELL_DEADLIFT=39,
+  // SUMO_SQUAT=40,
+  // SHOULDER_ROTATION_FW = 41,
+  // SHOULDER_ROTATION_BW = 42,
+  // SHOULDER_SHRUG = 43,
+  // CHIN_TUCK = 44,
+  // HEAD_TURNS = 45;
 
   // BACK_NECK_STRETCH = 4?,
   // LATERAL_NECK_STRETCH_LEFT = 4?,
@@ -130,8 +130,7 @@ class DBHelper {
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
-  static const int _DATABASE_VERSION =
-      18;
+  static const int _DATABASE_VERSION = 19;
 
   Future<Database> _createDB() async {
     String path = await getPath();
@@ -171,11 +170,28 @@ class DBHelper {
     await _addExercises(db);
 
     await _deleteDefaultWorkouts(db);
+
+    if (oldVersion < 19) {
+      await _migrateWorkoutExercises(db);
+    }
+
     await _addDefaultWorkouts(db);
 
     if (oldVersion < 5) {
       await _removeLegWorkoutCategory(db);
     }
+  }
+
+  Future<void> _migrateWorkoutExercises(Database db) async {
+    final oldTable = "tempWorkoutExercises";
+    await db
+        .execute("ALTER TABLE $_WORKOUT_EXERCISE_TABLE RENAME TO $oldTable");
+    await _createWorkoutExerciseTable(db);
+    final entries = await db.query(oldTable);
+    for (final entry in entries) {
+      await db.insert(_WORKOUT_EXERCISE_TABLE, entry);
+    }
+    await db.execute("DROP TABLE IF EXISTS " + oldTable);
   }
 
   Future<void> _createExerciseTable(Database db) async => await db.execute(
@@ -211,7 +227,7 @@ class DBHelper {
           "$_EXERCISE_COL INTEGER NOT NULL, "
           "$_EXERCISE_DURATION_COL INTEGER, "
           "$_BREAK_DURATION_COL INTEGER, "
-          "PRIMARY KEY($_WORKOUT_ID_COL,$_ORDER_COL)"
+          "PRIMARY KEY($_WORKOUT_ID_COL,$_WORKOUT_TYPE_COL,$_ORDER_COL)"
           ")");
 
   Future<void> _addDefaultWorkouts(Database db) async {
