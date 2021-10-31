@@ -356,7 +356,7 @@ class DBHelper {
     await _createExercise(db,
         name: "Forearm plank",
         description:
-            "1. Get down on all fours, with arms straight and knees bent\n2. Walk your feet back until they are extended\n3. Hold this position",
+            "Starting position:\n1. Start down on all fours.\nArms should bent at a right angle, with shoulders right over elbows.\nBack should be straight, the whole body in a straight line.\n\nSteps:\n1. Hold this position.",
         imageSlug: "exercise_plank.webp");
 
     await _createExercise(db,
