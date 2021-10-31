@@ -8,24 +8,18 @@ This is a rewrite of the [original app](https://gitlab.com/enjoyingfoss/feeel-le
 Contribute
 ====
 
-Submit exercise photos
---------------
-Exercise photos are sorely needed. See [this issue](https://gitlab.com/enjoyingfoss/feeel/-/issues/10) for a list.
+ANYONE can contribute:
+- If you have a phone with a camera (or an actual camera), you can **contribute exercise photos**. (These don't need to look particularly good. Even lower resolution living room shots are fine.)
+- If you have a computer, you can **turn exercise photos into low-poly versions** using the FOSStriangulator app.
+- If you know a different language, you can **translate**.
+- UX designers can help **design UX** for new features.
+- UI designers can help with **visuals and animations**
 
-The photos you submit must be your copyright.
-
-Translation
-----------
-You can help translate through [Weblate](https://hosted.weblate.org/projects/feeel/strings/).
+See CONTRIBUTING.md for more details.
 
 Donate
-------
+=======
 Support the project via **[Liberapay](https://liberapay.com/Feeel/)**. Every bit helps. The more money is donated, the more time I can afford to work on this project.
-
-Other ways to help
--------------------
-
-ANYONE can contribute, no special skills required. Message me on the [Feeel channel on Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org) if you'd like to help.
 
 Install
 ====
