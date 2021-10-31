@@ -506,7 +506,7 @@ class DBHelper {
         name: "Squat thrusts",
         description:
             "Starting position:\nStart in high plank position: back, arms, and legs straight and hands shoulder-width apart.\n\nSteps:\n1. Jump your feet forward between your arms, keeping your back flat.\n2. Keeping your hands on the floor, jump your legs back into high plank position.\n3. Repeat.",
-        imageSlug: "exercise_squatthrusts.webp");
+        imageSlug: "exercise_squatthrust.webp");
 
     await _createExercise(db,
         name: "Reverse lunges",
