@@ -24,7 +24,7 @@ import 'dart:io';
 
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';
-import 'package:feeel/widgets/image_row.dart';
+import 'package:feeel/screens/exercise_creator/components/image_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mailer/flutter_mailer.dart';

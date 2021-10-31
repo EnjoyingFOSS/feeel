@@ -1,6 +1,6 @@
 import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/models/view/exercise.dart';
-import 'package:feeel/widgets/flipped.dart';
+import 'package:feeel/components/flipped.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 

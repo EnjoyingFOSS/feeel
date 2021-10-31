@@ -24,7 +24,7 @@ import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/audio/tts_helper.dart';
-import 'package:feeel/screens/workout_list.dart';
+import 'package:feeel/screens/workout_list/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
