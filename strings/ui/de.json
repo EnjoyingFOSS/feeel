@@ -80,5 +80,8 @@
     "txtDragToReorder": "Ziehen Sie diesen Griff, um die Übungen neu anzuordnen.",
     "txtNumberInputNonnumeric": "Muss numerisch sein",
     "txtNumberInputEmpty": "Darf nicht leer sein",
-    "txtLanguage": "Sprache"
+    "txtLanguage": "Sprache",
+    "txtNoExercises": "Es gibt keine Übungen in diesem Training :(",
+    "btnDeleteThisWorkout": "Dieses Training löschen",
+    "btnBackToWorkoutList": "Zurück zur Training-Liste"
 }
