@@ -79,5 +79,8 @@
     "txtLanguage": "اللغة",
     "txtDragToReorder": "اسحب هذا المقبض لإعادة ترتيب التمارين.",
     "txtNumberInputNonnumeric": "يجب أن يكون رقميا",
-    "txtNumberInputEmpty": "لا يمكن أن يكون فارغا"
+    "txtNumberInputEmpty": "لا يمكن أن يكون فارغا",
+    "txtNoExercises": "لا توجد تدريبات في هذا التمرين. :(",
+    "btnDeleteThisWorkout": "حذف هذا التمرين",
+    "btnBackToWorkoutList": "العودة إلى قائمة التمرين"
 }
