@@ -80,5 +80,8 @@
     "txtLanguage": "Jazyk",
     "txtNumberInputEmpty": "Nesmí být prázdné",
     "txtNumberInputNonnumeric": "Musí být číslo",
-    "txtDragToReorder": "Táhněte touto rukojetí pro změnu pořadí cviků."
+    "txtDragToReorder": "Táhněte touto rukojetí pro změnu pořadí cviků.",
+    "btnBackToWorkoutList": "Zpět na seznam tréninků",
+    "txtNoExercises": "V tomto tréninku nejsou žádné cviky. :(",
+    "btnDeleteThisWorkout": "Odstranit tento trénink"
 }
