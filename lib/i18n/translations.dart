@@ -72,7 +72,7 @@ static var t = Translations("en") +
 "cs": """Pojďme na to! První cvik: %s""",
 "id": """Ayo! Pertama: %s""",
 "es": """¡Vamos! Primer paso: %s""",
-"ar": """لنذهب! أولا: ٪s""",
+"ar": """لنذهب! أولا: %s""",
 } +
 {
 "tr": """%d saniye kaldı""",
@@ -88,7 +88,7 @@ static var t = Translations("en") +
 "cs": """Zbývá %d vteřin""",
 "id": """%d detik tersisa""",
 "es": """%d segundos restante""",
-"ar": """٪d ثانية متبقية""",
+"ar": """%d ثانية متبقية""",
 } +
 {
 "tr": """Mola zamanı!""",
@@ -328,7 +328,7 @@ static var t = Translations("en") +
 "cs": """Návrh cviku: %s""",
 "id": """Usulan latihan:% s""",
 "es": """Ejercicio propuesto: %s""",
-"ar": """اقتراح التمرين: ٪s""",
+"ar": """اقتراح التمرين: %s""",
 } +
 {
 "tr": """Merhaba,
@@ -426,9 +426,9 @@ Pasos del ejercicio:
 
 سأرسل اقتراحا بممارسة التمارين أعلن بموجب هذا أن كلا من الصور المرفقة والوصف هي تماما عملي الخاص. من خلال إرسال هذه الرسالة ، أوافق بشكل لا رجعة فيه على إصدار الاسم والوصف المقدم بموجب ترخيص CC BY-SA 4.0 و AGPLv3 مع ترخيص استثناء متجر التطبيقات. أعطي أيضا الإذن لمعالجة الصورة المرفقة بدقة غير واضحة. بعد معالجتها ، سأقيم ما إذا كنت على استعداد لترخيصها بموجب ترخيص CC BY-SA 4.0.
 
-اسم التمرين: ٪1s
+اسم التمرين: %1s
 خطوات التمرين:
-٪2s""",
+%2s""",
 } +
 {
 "tr": """Ayarlar""",
@@ -1036,7 +1036,7 @@ Pasos del ejercicio:
 "cs": """%1d min., %2d s.""",
 "id": """%1d mnt., %2d dtk.""",
 "es": """%1d min %2d s""",
-"ar": """٪1d دقيقة، ٪2d ثانية.""",
+"ar": """%1d دقيقة، %2d ثانية.""",
 } +
 {
 "tr": """Egzersizleri yeniden sıralamak için bu tutamacı sürükleyin.""",
