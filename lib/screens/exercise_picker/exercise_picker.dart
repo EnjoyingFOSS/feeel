@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:io';
+
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/view/exercise.dart';
 import 'package:feeel/screens/exercise_creator/exercise_creator.dart';
@@ -28,6 +30,7 @@ import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExercisePickerScreen extends StatefulWidget {
   final FeeelSwatch swatch;
@@ -57,14 +60,14 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
     final theme = Theme.of(context);
     final bgColor = widget.swatch
         .getColorByBrightness(FeeelShade.LIGHTEST, theme.brightness);
-    final fgColor = widget.swatch
-                  .getColorByBrightness(FeeelShade.DARK, theme.brightness);
+    final fgColor =
+        widget.swatch.getColorByBrightness(FeeelShade.DARK, theme.brightness);
     return Scaffold(
         backgroundColor: bgColor,
         appBar: AppBar(
           backgroundColor: bgColor,
-          titleTextStyle: theme.appBarTheme.titleTextStyle?.copyWith(
-              color: fgColor),
+          titleTextStyle:
+              theme.appBarTheme.titleTextStyle?.copyWith(color: fgColor),
           iconTheme: theme.iconTheme,
           title: Text("Add exercises".i18n),
         ),
@@ -109,20 +112,29 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                               });
                             });
                       } else {
-                        return ListTile(
-                          leading: Container(
-                              width: 56,
-                              alignment: Alignment.center,
-                              child: Icon(Icons.add)),
-                          title: Text("Propose custom exercise".i18n),
-                          onTap: () {
-                            Navigator.push<void>(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => ExerciseCreatorScreen(),
-                                    fullscreenDialog: true));
-                          },
-                        );
+                        if (Platform.isMacOS) {
+                          return ListTile(
+                            leading: Icon(Icons.volunteer_activism),
+                            title: Text("Participate".i18n),
+                            onTap: () => launch(
+                                "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
+                          );
+                        } else {
+                          return ListTile(
+                            leading: Container(
+                                width: 56,
+                                alignment: Alignment.center,
+                                child: Icon(Icons.add)),
+                            title: Text("Propose custom exercise".i18n),
+                            onTap: () {
+                              Navigator.push<void>(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => ExerciseCreatorScreen(),
+                                      fullscreenDialog: true));
+                            },
+                          );
+                        }
                       }
                     });
               } else {
