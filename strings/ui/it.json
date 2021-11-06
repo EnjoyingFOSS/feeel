@@ -80,5 +80,8 @@
     "txtDragToReorder": "Trascina questa maniglia per riordinare gli esercizi.",
     "txtNumberInputNonnumeric": "Deve essere numerico",
     "txtNumberInputEmpty": "Non può essere vuoto",
-    "txtLanguage": "Lingua"
+    "txtLanguage": "Lingua",
+    "txtNoExercises": "Non ci sono esercizi in questo allenamento :(",
+    "btnDeleteThisWorkout": "Elimina questo allenamento",
+    "btnBackToWorkoutList": "Torna alla lista degli allenamenti"
 }

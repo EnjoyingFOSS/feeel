@@ -80,5 +80,8 @@
     "txtDragToReorder": "Egzersizleri yeniden sıralamak için bu tutamacı sürükleyin.",
     "txtNumberInputNonnumeric": "Sayısal olmalı",
     "txtNumberInputEmpty": "Boş olamaz",
-    "txtLanguage": "Dil"
+    "txtLanguage": "Dil",
+    "txtNoExercises": "Bu antrenmanda egzersiz yok. :(",
+    "btnDeleteThisWorkout": "Bu antrenmanı sil",
+    "btnBackToWorkoutList": "Antrenman listesine geri dön"
 }
