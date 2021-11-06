@@ -24,7 +24,7 @@ platform :android do
     upload_to_play_store(
       track: "internal",
       track_promote_to: "beta",
-      version_code: 4015
+      version_code: 4017
     )
   end
 
@@ -32,7 +32,7 @@ platform :android do
     upload_to_play_store(
       track: "beta",
       track_promote_to: "production",
-      version_code: 4015
+      version_code: 4017
     )
   end
 
