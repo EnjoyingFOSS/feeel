@@ -80,5 +80,8 @@
     "txtDragToReorder": "Versleep dit handvat om oefeningen anders in te delen.",
     "txtNumberInputNonnumeric": "Moet numeriek zijn",
     "txtNumberInputEmpty": "Kan niet leeg zijn",
-    "txtLanguage": "Taal"
+    "txtLanguage": "Taal",
+    "btnDeleteThisWorkout": "Work-out verwijderen",
+    "btnBackToWorkoutList": "Terug naar overzicht",
+    "txtNoExercises": "Deze work-out bevat geen oefeningen. :("
 }

@@ -1,0 +1,10 @@
+Řada novinek, včetně:
+* Barevně kódované kategorie tréninků
+* Nové cviky
+* Zvláštní vizualizace obrázků cviků zaměřená na hlavu
+* Podpora iOS
+* Nový arabský překlad + podpora čtení zprava doleva
+* Nový chorvatský překlad
+* Úprava témat
+* Norský Bokmal znovu odstraněn
+* Různé opravy chyb a aktualizace překladů
