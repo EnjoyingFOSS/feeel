@@ -1,0 +1,10 @@
+Aşağıdakiler dahil birçok yeni şey:
+* Renk kodlu antrenman kategorileri
+* Yeni egzersizler
+* Kafanın yakın çekimi ile egzersiz görüntülerinin özel görselleştirilmesi
+* iOS desteği
+* Yeni Arapça çeviri + sağdan sola desteği
+* Yeni Hırvatça çeviri
+* Tema değişiklikleri
+* Bokmal Norveççe tekrar silindi
+* Çeşitli hata düzeltmeleri ve çeviri güncellemeleri
