@@ -21,7 +21,9 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/controllers/workout_controller.dart';
+import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/enums/exercise_type.dart';
+import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/theming/feeel_shade.dart';
@@ -212,7 +214,8 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onExercise(int workoutPos, WorkoutExercise exercise, int duration) {
+  void onExercise(int workoutPos, WorkoutExercise exercise, ExerciseStep? step,
+      int duration) {
     setState(() {
       _seconds = duration;
       _descriptionText = exercise.exercise.description.i18n;
@@ -240,6 +243,11 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     setState(() {
       _paused = false;
     });
+  }
+
+  @override
+  void onLaterStep(ExerciseStep step, String currentIllustration) {
+    // TODO: implement onLaterStep
   }
 }
 

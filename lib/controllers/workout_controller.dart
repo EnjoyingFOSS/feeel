@@ -24,7 +24,9 @@ import 'package:feeel/audio/sound_view.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
+import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/db/preference_keys.dart';
+import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -34,18 +36,62 @@ enum WorkoutStage { READY, EXERCISE, BREAK, END }
 
 enum ViewTypes { GUI, AUDIO }
 
-class WorkoutController {
+class WorkoutMeta {
+  static int _COUNTDOWN_DURATION = 5; //todo get rid of countdown duration in the database
   final Workout _workout;
+  int _exercisePos = 0;
+  int _stepPos = 0;
+  int timeRemainingInExercise = 0;
+
+  WorkoutMeta(this._workout);
+
+  void _setExercise(int exercisePos) {
+    _exercisePos = exercisePos;
+    _stepPos = 0;
+    timeRemainingInExercise =
+        _workout.workoutExercises[_exercisePos].duration ??
+            _workout.exerciseDuration;
+  }
+
+  int getPos() => _exercisePos;
+
+  int getStartDuration() => getCurWorkoutExercise().breakBeforeDuration ?? _COUNTDOWN_DURATION;
+
+  int getCurBreakDuration() => getCurWorkoutExercise().breakBeforeDuration ?? _workout.breakDuration;
+
+  int getCurExerciseDuration() => getCurWorkoutExercise().duration ?? _workout.exerciseDuration;
+
+  void next() {
+    _exercisePos++;
+  }
+
+  void previous() {
+    _exercisePos--;
+  }
+
+  bool isLastExercise() => _exercisePos == _workout.workoutExercises.length - 1;
+
+  bool isFirstExercise() => _exercisePos == 0;
+
+  WorkoutExercise getCurWorkoutExercise() =>
+      _workout.workoutExercises[_exercisePos];
+
+  ExerciseStep? getCurStep() => getCurWorkoutExercise().exercise.steps?[_stepPos];
+}
+
+class WorkoutController {
   List<Function?> _onFinishes = List.filled(ViewTypes.values.length, null);
   List<WorkoutView?> _views = List.filled(
       ViewTypes.values.length, null); //todo weak references + NOT NULL SAFE!
-  int _exercisePos = 0;
   WorkoutStage _stage = WorkoutStage.READY;
   late WorkoutTimer _timer; //todo init timer
+  late WorkoutMeta _workoutMeta;
 
-  WorkoutController(this._workout) {
-    if (_workout.workoutExercises.length == 0)
+  WorkoutController(Workout workout) {
+    if (workout.workoutExercises.length == 0)
       throw Exception("Workout must have length > 0");
+
+    _workoutMeta = WorkoutMeta(workout);
 
     _setUpAudio();
 
@@ -60,10 +106,10 @@ class WorkoutController {
           _setUpExerciseStage();
           break;
         case WorkoutStage.EXERCISE:
-          if (_isLastExercise())
+          if (_workoutMeta.isLastExercise())
             _setUpEndStage();
           else {
-            _exercisePos++;
+            _workoutMeta.next();
             _setUpBreakStage();
           }
           break;
@@ -91,15 +137,6 @@ class WorkoutController {
     });
   }
 
-  // HELPERS
-  WorkoutExercise _getCurWorkoutExercise() =>
-      _workout.workoutExercises[_exercisePos];
-
-  bool _isLastExercise() =>
-      _exercisePos == _workout.workoutExercises.length - 1;
-
-  bool _isFirstExercise() => _exercisePos == 0;
-
   // CONTROLS
   void start() {
     _setUpStart();
@@ -107,20 +144,18 @@ class WorkoutController {
   }
 
   void skipToNext() {
-    if (!_isLastExercise()) {
-      _exercisePos++;
+    if (!_workoutMeta.isLastExercise()) {
+      _workoutMeta.next();
       _setUpExerciseStage();
     }
   }
 
   void skipToPrevious() {
-    if (!_isFirstExercise()) {
-      _exercisePos--;
+    if (!_workoutMeta.isFirstExercise()) {
+      _workoutMeta.previous();
       _setUpExerciseStage();
     } else {
-      var tempDuration = _getCurWorkoutExercise().duration;
-      _timer.timeRemaining =
-          tempDuration == null ? _workout.exerciseDuration : tempDuration;
+      _timer.timeRemaining = _workoutMeta.getCurExerciseDuration();
     }
   }
 
@@ -136,37 +171,69 @@ class WorkoutController {
     }
   }
 
+  // Stage creation
+  void _setUpExerciseStage() {
+    _stage = WorkoutStage.EXERCISE;
+    _renderStage();
+
+    _timer.timeRemaining = _workoutMeta.getCurExerciseDuration();
+    _renderSeconds();
+
+    _renderPausePlay();
+  }
+
+  void _setUpBreakStage() {
+    _stage = WorkoutStage.BREAK;
+    _renderStage();
+
+    _timer.timeRemaining = _workoutMeta.getCurBreakDuration();
+    _renderSeconds();
+
+    _renderPausePlay();
+  }
+
+  void _setUpStart() {
+    _renderStage();
+    _stage = WorkoutStage.BREAK;
+
+    _timer.timeRemaining = _workoutMeta.getStartDuration();
+    _renderSeconds();
+
+    _renderPausePlay();
+  }
+
+  void _setUpEndStage() {
+    _timer.stop();
+
+    _stage = WorkoutStage.END;
+    _renderStage();
+  }
+
   // RENDER
 
   void _renderStage() {
-    var curWorkoutExercise = _getCurWorkoutExercise();
     switch (_stage) {
       case WorkoutStage.READY:
         for (var view in _views)
           view?.onStart(
-              _exercisePos,
-              curWorkoutExercise,
-              curWorkoutExercise.breakBeforeDuration == null
-                  ? _workout.countdownDuration
-                  : curWorkoutExercise.breakBeforeDuration!);
+              _workoutMeta.getPos(),
+              _workoutMeta.getCurWorkoutExercise(),
+              _workoutMeta.getStartDuration());
         break;
       case WorkoutStage.EXERCISE:
         for (var view in _views)
           view?.onExercise(
-              _exercisePos,
-              curWorkoutExercise,
-              curWorkoutExercise.duration == null
-                  ? _workout.exerciseDuration
-                  : curWorkoutExercise.duration!);
+              _workoutMeta.getPos(),
+              _workoutMeta.getCurWorkoutExercise(),
+              _workoutMeta.getCurStep(),
+              _workoutMeta.getCurExerciseDuration());
         break;
       case WorkoutStage.BREAK:
         for (var view in _views)
           view?.onBreak(
-              _exercisePos,
-              curWorkoutExercise,
-              curWorkoutExercise.breakBeforeDuration == null
-                  ? _workout.breakDuration
-                  : curWorkoutExercise.breakBeforeDuration!);
+              _workoutMeta.getPos(),
+              _workoutMeta.getCurWorkoutExercise(),
+              _workoutMeta.getCurBreakDuration());
         break;
       case WorkoutStage.END:
         for (var onFinish in _onFinishes) if (onFinish != null) onFinish();
@@ -185,48 +252,7 @@ class WorkoutController {
     for (var view in _views) view?.onCount(_timer.timeRemaining);
   }
 
-  void _setUpExerciseStage() {
-    _stage = WorkoutStage.EXERCISE;
-    _renderStage();
-
-    var tempDuration = _getCurWorkoutExercise().duration;
-    _timer.timeRemaining =
-        tempDuration == null ? _workout.exerciseDuration : tempDuration;
-    _renderSeconds();
-
-    _renderPausePlay();
-  }
-
-  void _setUpBreakStage() {
-    _stage = WorkoutStage.BREAK;
-    _renderStage();
-
-    var tempDuration = _getCurWorkoutExercise().breakBeforeDuration;
-    _timer.timeRemaining =
-        tempDuration == null ? _workout.breakDuration : tempDuration;
-    _renderSeconds();
-
-    _renderPausePlay();
-  }
-
-  void _setUpStart() {
-    _renderStage();
-    _stage = WorkoutStage.BREAK;
-
-    var tempDuration = _getCurWorkoutExercise().breakBeforeDuration;
-    _timer.timeRemaining =
-        tempDuration == null ? _workout.countdownDuration : tempDuration;
-    _renderSeconds();
-
-    _renderPausePlay();
-  }
-
-  void _setUpEndStage() {
-    _timer.stop();
-
-    _stage = WorkoutStage.END;
-    _renderStage();
-  }
+  // setters
 
   void setOnFinish(Function onFinish) {
     _onFinishes[ViewTypes.GUI.index] = onFinish;
@@ -248,16 +274,4 @@ class WorkoutController {
     TTSHelper.tts.stop(); //todo once stopped, does it restart?
     // todo views.clear() needed?
   }
-}
-
-abstract class WorkoutView {
-  void onStart(
-      int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration);
-  void onBreak(
-      int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration);
-  void onExercise(
-      int workoutPos, WorkoutExercise exercise, int defaultExerciseDuration);
-  void onCount(int seconds);
-  void onPause();
-  void onPlay();
 }

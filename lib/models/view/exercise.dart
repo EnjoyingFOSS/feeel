@@ -22,6 +22,8 @@
 
 import 'package:feeel/enums/exercise_type.dart';
 
+import 'exercise_step.dart';
+
 class Exercise {
   final int dbId;
   final String name;
@@ -31,6 +33,7 @@ class Exercise {
   final String? imageSlug;
   final String? imageAuthor;
   final int? imageLicense;
+  final List<ExerciseStep>? steps;
 
   Exercise(
       {required this.dbId,
@@ -40,5 +43,6 @@ class Exercise {
       required this.type,
       this.imageSlug,
       this.imageAuthor,
-      this.imageLicense});
+      this.imageLicense,
+      this.steps});
 }

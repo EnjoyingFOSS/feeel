@@ -25,6 +25,7 @@ import 'dart:io';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/models/view/exercise.dart';
+import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/models/view/workout_listed.dart';
@@ -108,6 +109,7 @@ class DBHelper {
   static const String _WORKOUT_TABLE = 'workouts';
   static const String _EXERCISE_TABLE = 'exercises';
   static const String _WORKOUT_EXERCISE_TABLE = 'workoutExercises';
+  static const String _EXERCISE_STEP_TABLE = 'exerciseSteps';
 
   static const String _ID_COL = 'id';
   static const String _TYPE_COL = 'type';
@@ -126,6 +128,9 @@ class DBHelper {
   static const String _BREAK_DURATION_COL = 'breakDuration';
   static const String _EXERCISE_DURATION_COL = 'exerciseDuration';
   static const String _FLIPPED_COL = 'flipped';
+  static const String _HAS_STEPS_COL = 'hasSteps';
+  static const String _STEP_DURATION_COL = 'stepDuration';
+  static const String _VOICE_HINT_COL = 'voiceHint';
 
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
@@ -156,6 +161,7 @@ class DBHelper {
 
   Future<void> _onCreate(Database db, int version) async {
     await _createExerciseTable(db);
+    await _createExerciseStepsTable(db);
     await _createWorkoutTable(db);
     await _createWorkoutExerciseTable(db);
     // todo history table with a history of workouts
@@ -166,7 +172,9 @@ class DBHelper {
 
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
     await db.execute("DROP TABLE IF EXISTS " + _EXERCISE_TABLE);
+    await db.execute("DROP TABLE IF EXISTS " + _EXERCISE_STEP_TABLE);
     await _createExerciseTable(db);
+    await _createExerciseStepsTable(db);
     await _addExercises(db);
 
     await _deleteDefaultWorkouts(db);
@@ -201,11 +209,22 @@ class DBHelper {
       "$_DESCRIPTION_COL TEXT, "
       "$_TYPE_COL INTEGER NOT NULL, "
       "$_FLIPPED_COL INTEGER NOT NULL, "
+      "$_HAS_STEPS_COL INTEGER NOT NULL, "
       "$_IMAGE_SLUG_COL TEXT, " // todo what do I get from the server, really? actually, should split this up!
       "$_IMAGE_AUTHOR_COL TEXT, "
       "$_IMAGE_LICENSE_COL INTEGER, "
       "$_CATEGORY_COL INTEGER" //todo REMOVE THIS COLUMN
       ")");
+
+  Future<void> _createExerciseStepsTable(Database db) async =>
+      await db.execute("CREATE TABLE $_EXERCISE_STEP_TABLE ("
+          "$_EXERCISE_COL INTEGER NOT NULL, "
+          "$_ORDER_COL INTEGER NOT NULL, "
+          "$_IMAGE_SLUG_COL TEXT, "
+          "$_VOICE_HINT_COL TEXT, "
+          "$_STEP_DURATION_COL INTEGER NOT NULL, "
+          "PRIMARY KEY($_EXERCISE_COL, $_ORDER_COL)"
+          ")");
 
   Future<void> _createWorkoutTable(Database db) async =>
       await db.execute("CREATE TABLE $_WORKOUT_TABLE ( "
@@ -614,12 +633,23 @@ class DBHelper {
             "Starting position:\nSit or stand with your back straight and shoulders down.\n\nSteps:\n1. Sit or stand up straight, shoulders dropped.\n2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.\n3. Return to center position and repeat, changing sides.",
         imageSlug: "exercise_headturn.webp");
 
-    // await _createExercise(db,
-    //     name: "Back neck stretch", //todo or flexion?
-    //     type: ExerciseType.HEAD,
-    //     description:
-    //         "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
-    //     imageSlug: "exercise_neckstretch_back.webp");
+    await _createExerciseWithSteps(db,
+        name: "Back neck stretch", //todo or flexion?
+        type: ExerciseType.HEAD,
+        steps: [
+          ExerciseStep(
+              illustration: "exercise_neckstretch_back-1.webp",
+              duration: 1500), //todo add images
+          ExerciseStep(
+              illustration: "exercise_neckstretch_back.webp", duration: 5000),
+          ExerciseStep(duration: 5000, voiceHint: "Shoulders down"),
+          ExerciseStep(duration: 5000, voiceHint: "Push against hands"),
+          ExerciseStep(
+              illustration: "exercise_neckstretch_back-3.webp", duration: 1500)
+        ],
+        description:
+            "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
+        imageSlug: "exercise_neckstretch_back.webp");
 
     // final lateralNeckStretchDesc =
     //     "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.\n2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.\n3. Turn your chin to your shoulder. Hold for 8 seconds.\n4. Release and return to starting position.";
@@ -771,11 +801,52 @@ class DBHelper {
       _DESCRIPTION_COL: description,
       _TYPE_COL: type.index,
       _FLIPPED_COL: flipped ? 1 : 0,
+      _HAS_STEPS_COL: 0,
       _IMAGE_SLUG_COL: imageSlug,
       _IMAGE_AUTHOR_COL: imageAuthor,
       _IMAGE_LICENSE_COL: imageLicense,
       _CATEGORY_COL: category
     });
+
+    return id;
+  }
+
+  Future<int> _createExerciseWithSteps(Database db,
+      {required String name,
+      required String description,
+      bool flipped = false,
+      required String imageSlug,
+      ExerciseType type = ExerciseType.FULL_BODY,
+      String? imageAuthor,
+      int? imageLicense,
+      int? category,
+      required List<ExerciseStep> steps}) async {
+    var table = _EXERCISE_TABLE;
+    int id = await _getNextId(db, table, _ID_COL);
+
+    await db.insert(table, <String, dynamic>{
+      _ID_COL: id,
+      _NAME_COL: name,
+      _DESCRIPTION_COL: description,
+      _TYPE_COL: type.index,
+      _FLIPPED_COL: flipped ? 1 : 0,
+      _HAS_STEPS_COL: 1,
+      _IMAGE_SLUG_COL: imageSlug,
+      _IMAGE_AUTHOR_COL: imageAuthor,
+      _IMAGE_LICENSE_COL: imageLicense,
+      _CATEGORY_COL: category
+    });
+
+    for (int i = 0; i < steps.length; i++) {
+      final step = steps[i];
+      await db.insert(_EXERCISE_STEP_TABLE, <String, dynamic>{
+        _EXERCISE_COL: id,
+        _ORDER_COL: i,
+        _IMAGE_SLUG_COL: step.illustration,
+        _VOICE_HINT_COL: step.voiceHint,
+        _STEP_DURATION_COL: step.duration
+      });
+    }
 
     return id;
   }
@@ -914,43 +985,51 @@ class DBHelper {
     });
   }
 
-  Future<List<Exercise>> queryExercisesFromCategory(int category) async {
-    final db = await database;
-    var res = await db.query(_EXERCISE_TABLE,
-        where: "$_CATEGORY_COL = ?", whereArgs: <int>[category]);
-    List<Exercise> list = res.isNotEmpty
-        ? res
-            .map((map) => Exercise(
-                dbId: map[_ID_COL] as int,
-                name: map[_NAME_COL] as String,
-                description: map[_DESCRIPTION_COL] as String,
-                twoSided: map[_FLIPPED_COL] == 1,
-                type: ExerciseType.values[map[_TYPE_COL] as int? ?? 0],
-                imageSlug: map[_IMAGE_SLUG_COL] as String,
-                imageAuthor: map[_IMAGE_AUTHOR_COL] as String?,
-                imageLicense: map[_IMAGE_LICENSE_COL]
-                    as int?)) //todo category should be everywhere
-            .toList()
-        : [];
-    return list;
+  Future<List<ExerciseStep>?> _getExerciseSteps(
+      Database db, int exerciseId) async {
+    final res = await db.query(_EXERCISE_STEP_TABLE,
+        where: "$_EXERCISE_COL = ?",
+        whereArgs: <int>[exerciseId],
+        orderBy: _ORDER_COL);
+    return res
+        .map((e) => ExerciseStep(
+            illustration: e[_IMAGE_SLUG_COL] as String?,
+            duration: e[_STEP_DURATION_COL] as int,
+            voiceHint: e[_VOICE_HINT_COL] as String?))
+        .toList();
+  }
+
+  Exercise _getExerciseFromMap(
+      Database db, Map map, List<ExerciseStep>? steps) {
+    final exerciseId = map[_ID_COL] as int;
+    return Exercise(
+        dbId: exerciseId,
+        name: map[_NAME_COL] as String,
+        description: map[_DESCRIPTION_COL] as String,
+        twoSided: map[_FLIPPED_COL] == 1,
+        type: ExerciseType.values[map[_TYPE_COL] as int? ?? 0],
+        imageSlug: map[_IMAGE_SLUG_COL] as String,
+        imageAuthor: map[_IMAGE_AUTHOR_COL] as String?,
+        imageLicense: map[_IMAGE_LICENSE_COL] as int?,
+        steps: steps);
   }
 
   Future<List<Exercise>> queryExercises() async {
+    //todo add steps
     final db = await database;
     var res = await db.query(_EXERCISE_TABLE);
-    List<Exercise> list = res.isNotEmpty
-        ? res
-            .map((map) => Exercise(
-                dbId: map[_ID_COL] as int,
-                name: map[_NAME_COL] as String,
-                description: map[_DESCRIPTION_COL] as String,
-                twoSided: map[_FLIPPED_COL] == 1,
-                type: ExerciseType.values[map[_TYPE_COL] as int? ?? 0],
-                imageSlug: map[_IMAGE_SLUG_COL] as String,
-                imageAuthor: map[_IMAGE_AUTHOR_COL] as String?,
-                imageLicense: map[_IMAGE_LICENSE_COL] as int?))
-            .toList()
-        : [];
+
+    if (res.isEmpty) return [];
+
+    final list = List<Exercise>.empty(growable: true);
+    for (final map in res) {
+      final exerciseId = map[_ID_COL] as int;
+      final steps = map[_HAS_STEPS_COL] as int == 1
+          ? await _getExerciseSteps(db, exerciseId)
+          : null;
+      list.add(_getExerciseFromMap(db, map, steps));
+    }
+
     return list;
   }
 
@@ -971,19 +1050,15 @@ class DBHelper {
 
   Future<Exercise?> queryExercise(int exerciseId) async {
     final db = await database;
-    var res = await db.query(_EXERCISE_TABLE,
+    final res = await db.query(_EXERCISE_TABLE,
         where: "$_ID_COL = ?", whereArgs: <int>[exerciseId]);
-    return res.isNotEmpty
-        ? Exercise(
-            dbId: res.first[_ID_COL] as int,
-            name: res.first[_NAME_COL] as String,
-            description: res.first[_DESCRIPTION_COL] as String,
-            twoSided: res.first[_FLIPPED_COL] == 1,
-            type: ExerciseType.values[res.first[_TYPE_COL] as int? ?? 0],
-            imageSlug: res.first[_IMAGE_SLUG_COL] as String,
-            imageAuthor: res.first[_IMAGE_AUTHOR_COL] as String?,
-            imageLicense: res.first[_IMAGE_LICENSE_COL] as int?)
+
+    if (res.isEmpty) return null;
+
+    final steps = res.first[_HAS_STEPS_COL] as int == 1
+        ? await _getExerciseSteps(db, exerciseId)
         : null;
+    return _getExerciseFromMap(db, res.first, steps);
   }
 
   Future<Workout?> queryWorkout(int workoutId, WorkoutType type) async {

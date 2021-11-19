@@ -22,6 +22,8 @@
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:feeel/controllers/workout_controller.dart';
+import 'package:feeel/controllers/workout_view.dart';
+import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 
 import 'audio_helper.dart';
@@ -31,7 +33,8 @@ class SoundView implements WorkoutView {
   static const SOUND_EXERCISE = "sound_exercise.mp3";
   static const SOUND_BREAK = "sound_break.mp3";
   static const SOUND_FINISH = "sound_finish.mp3";
-  static const SOUND_TICK = "sound_tick.mp3"; // todo use ogg, or debug how tinny it sounds
+  static const SOUND_TICK =
+      "sound_tick.mp3"; // todo use ogg, or debug how tinny it sounds
   static final AudioCache _player = AudioCache();
 
   @override
@@ -47,9 +50,10 @@ class SoundView implements WorkoutView {
   }
 
   @override
-  void onExercise(
-      int workoutPos, WorkoutExercise exercise, int defaultExerciseDuration) {
+  void onExercise(int workoutPos, WorkoutExercise exercise, ExerciseStep? firstStep,
+      int defaultExerciseDuration) {
     _player.play(SOUND_EXERCISE, mode: PlayerMode.LOW_LATENCY);
+    //todo handle step
   }
 
   @override
@@ -64,5 +68,10 @@ class SoundView implements WorkoutView {
 
   void onFinish() {
     _player.play(SOUND_FINISH, mode: PlayerMode.LOW_LATENCY);
+  }
+
+  @override
+  void onLaterStep(ExerciseStep step, String currentIllustration) {
+    // TODO: implement onLaterStep
   }
 }
