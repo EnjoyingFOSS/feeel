@@ -6,8 +6,10 @@ abstract class WorkoutView {
       int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration);
   void onBreak(
       int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration);
-  void onExercise(
-      int workoutPos, WorkoutExercise exercise, ExerciseStep? firstStep, int defaultExerciseDuration);
+  void onExercise(int workoutPos, WorkoutExercise exercise,
+      ExerciseStep? firstStep, int defaultExerciseDuration);
+  void onCountdown(
+      int workoutPos); //todo workoutPos is here only because of the non-ideal architecture of the exercise view
   void onLaterStep(ExerciseStep step);
   void onCount(int seconds);
   void onPause();

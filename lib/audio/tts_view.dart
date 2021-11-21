@@ -78,4 +78,9 @@ class TTSView implements WorkoutView {
     final hint = step.voiceHint?.i18n;
     if (hint != null) TTSHelper.tts.speak(hint);
   }
+
+  @override
+  void onCountdown(int workoutPos) {
+    TTSHelper.tts.speak("Get ready!".i18n);
+  }
 }

@@ -249,6 +249,12 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void onLaterStep(ExerciseStep step) {
     // TODO: implement onLaterStep
   }
+
+  @override
+  void onCountdown(int workoutPos) {
+    _pageController.animateToPage(workoutPos * 2,
+        duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
+  }
 }
 
 class ExerciseHeader extends StatelessWidget {

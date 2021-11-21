@@ -74,4 +74,7 @@ class SoundView implements WorkoutView {
     if (step.voiceHint != null)
       _player.play(SOUND_TICK, mode: PlayerMode.LOW_LATENCY);
   }
+
+  @override
+  void onCountdown(int workoutPos) {}
 }

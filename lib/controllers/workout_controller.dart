@@ -32,23 +32,27 @@ import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum WorkoutStage { READY, EXERCISE, BREAK, END }
+enum WorkoutStage { READY, EXERCISE, COUNTDOWN, BREAK, END }
 
 enum ViewTypes { GUI, AUDIO }
 
 class WorkoutMeta {
-  static int _COUNTDOWN_DURATION =
+  static int _START_DURATION =
       5; //todo get rid of countdown duration in the database
+  static int _COUNTDOWN_DURATION = 3;
   final Workout _workout;
   int _exercisePos = 0;
   int _stepPos = 0;
+  int? timerRestore = null;
 
   WorkoutMeta(this._workout);
 
   int getPos() => _exercisePos;
 
   int getStartDuration() =>
-      getCurWorkoutExercise().breakBeforeDuration ?? _COUNTDOWN_DURATION;
+      getCurWorkoutExercise().breakBeforeDuration ?? _START_DURATION;
+
+  int getCountdownDuration() => _COUNTDOWN_DURATION;
 
   int getCurBreakDuration() =>
       getCurWorkoutExercise().breakBeforeDuration ?? _workout.breakDuration;
@@ -122,6 +126,9 @@ class WorkoutController {
         case WorkoutStage.BREAK:
           _coordinateExerciseStage();
           break;
+        case WorkoutStage.COUNTDOWN:
+          _coordinateExerciseStage(restore: true);
+          break;
         case WorkoutStage.EXERCISE:
           if (_workoutMeta.isLastExercise())
             _coordinateEndStage();
@@ -178,25 +185,50 @@ class WorkoutController {
   }
 
   void togglePlayPause() {
-    if (_stage == WorkoutStage.EXERCISE || _stage == WorkoutStage.BREAK) {
+    if (_stage == WorkoutStage.EXERCISE ||
+        _stage == WorkoutStage.BREAK ||
+        _stage == WorkoutStage.COUNTDOWN) {
       if (_timer.isRunning()) {
         _timer.stop();
         _renderPausePlay();
       } else {
-        _timer.start();
-        _renderPausePlay();
+        if (_stage == WorkoutStage.EXERCISE) {
+          _workoutMeta.timerRestore = _timer.getTimeRemaining();
+          _coordinateCountdownStage();
+        } else {
+          _timer.start();
+          _renderPausePlay();
+        }
       }
     }
   }
 
   // Stage creation
-  void _coordinateExerciseStage() {
+  void _coordinateExerciseStage({bool restore = false}) {
     _stage = WorkoutStage.EXERCISE;
     _renderStage();
 
-    _timer.reset(_workoutMeta.getCurExerciseDuration(),
-        _workoutMeta.getCurStepDurations());
+    if (restore) {
+      _timer.reset(
+          _workoutMeta.timerRestore ?? _workoutMeta.getCurExerciseDuration(),
+          _workoutMeta.getCurStepDurations());
+      _workoutMeta.timerRestore = null;
+    } else {
+      _timer.reset(_workoutMeta.getCurExerciseDuration(),
+          _workoutMeta.getCurStepDurations());
+    }
     _renderSeconds();
+
+    _renderPausePlay();
+  }
+
+  void _coordinateCountdownStage() {
+    _stage = WorkoutStage.COUNTDOWN;
+    _renderStage();
+
+    _timer.reset(_workoutMeta.getCountdownDuration(), null);
+    _renderSeconds();
+    _timer.start(); //todo is this the right place to do this?
 
     _renderPausePlay();
   }
@@ -238,6 +270,9 @@ class WorkoutController {
               _workoutMeta.getPos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getStartDuration());
+        break;
+      case WorkoutStage.COUNTDOWN:
+        for (var view in _views) view?.onCountdown(_workoutMeta.getPos());
         break;
       case WorkoutStage.EXERCISE:
         for (var view in _views)
