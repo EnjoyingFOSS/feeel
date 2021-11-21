@@ -37,36 +37,48 @@ enum WorkoutStage { READY, EXERCISE, BREAK, END }
 enum ViewTypes { GUI, AUDIO }
 
 class WorkoutMeta {
-  static int _COUNTDOWN_DURATION = 5; //todo get rid of countdown duration in the database
+  static int _COUNTDOWN_DURATION =
+      5; //todo get rid of countdown duration in the database
   final Workout _workout;
   int _exercisePos = 0;
   int _stepPos = 0;
-  int timeRemainingInExercise = 0;
 
   WorkoutMeta(this._workout);
 
-  void _setExercise(int exercisePos) {
-    _exercisePos = exercisePos;
-    _stepPos = 0;
-    timeRemainingInExercise =
-        _workout.workoutExercises[_exercisePos].duration ??
-            _workout.exerciseDuration;
-  }
-
   int getPos() => _exercisePos;
 
-  int getStartDuration() => getCurWorkoutExercise().breakBeforeDuration ?? _COUNTDOWN_DURATION;
+  int getStartDuration() =>
+      getCurWorkoutExercise().breakBeforeDuration ?? _COUNTDOWN_DURATION;
 
-  int getCurBreakDuration() => getCurWorkoutExercise().breakBeforeDuration ?? _workout.breakDuration;
+  int getCurBreakDuration() =>
+      getCurWorkoutExercise().breakBeforeDuration ?? _workout.breakDuration;
 
-  int getCurExerciseDuration() => getCurWorkoutExercise().duration ?? _workout.exerciseDuration;
+  int getCurExerciseDuration() =>
+      getCurWorkoutExercise().duration ?? _workout.exerciseDuration;
+
+  List<int>? getCurStepDurations() => getCurWorkoutExercise()
+      .exercise
+      .steps
+      ?.map((step) => step.duration)
+      .toList();
 
   void next() {
     _exercisePos++;
+    _stepPos = 0;
   }
 
   void previous() {
     _exercisePos--;
+    _stepPos = 0;
+  }
+
+  void nextStep() {
+    final stepCount = getCurWorkoutExercise().exercise.steps?.length;
+    if (stepCount != null && _stepPos < stepCount - 1) {
+      _stepPos++;
+    } else {
+      _stepPos = 0;
+    }
   }
 
   bool isLastExercise() => _exercisePos == _workout.workoutExercises.length - 1;
@@ -76,7 +88,8 @@ class WorkoutMeta {
   WorkoutExercise getCurWorkoutExercise() =>
       _workout.workoutExercises[_exercisePos];
 
-  ExerciseStep? getCurStep() => getCurWorkoutExercise().exercise.steps?[_stepPos];
+  ExerciseStep? getCurStep() =>
+      getCurWorkoutExercise().exercise.steps?[_stepPos];
 }
 
 class WorkoutController {
@@ -95,22 +108,26 @@ class WorkoutController {
 
     _setUpAudio();
 
-    _timer = WorkoutTimer(0, onSecondDecrease: () {
+    _timer = WorkoutTimer(0, breakpoints: _workoutMeta.getCurStepDurations(),
+        onSecondDecrease: () {
       //todo initTime seems useless
-      for (var view in _views) view?.onCount(_timer.timeRemaining);
-    }, onTimerZero: () {
+      for (var view in _views) view?.onCount(_timer.getTimeRemaining());
+    }, onBreakpoint: () {
+      _workoutMeta.nextStep();
+      _renderLaterStep();
+    }, onDone: () {
       switch (_stage) {
         case WorkoutStage.READY:
           break;
         case WorkoutStage.BREAK:
-          _setUpExerciseStage();
+          _coordinateExerciseStage();
           break;
         case WorkoutStage.EXERCISE:
           if (_workoutMeta.isLastExercise())
-            _setUpEndStage();
+            _coordinateEndStage();
           else {
             _workoutMeta.next();
-            _setUpBreakStage();
+            _coordinateBreakStage();
           }
           break;
         case WorkoutStage.END:
@@ -139,23 +156,24 @@ class WorkoutController {
 
   // CONTROLS
   void start() {
-    _setUpStart();
+    _coordinateStart();
     _timer.start();
   }
 
   void skipToNext() {
     if (!_workoutMeta.isLastExercise()) {
       _workoutMeta.next();
-      _setUpExerciseStage();
+      _coordinateExerciseStage();
     }
   }
 
   void skipToPrevious() {
     if (!_workoutMeta.isFirstExercise()) {
       _workoutMeta.previous();
-      _setUpExerciseStage();
+      _coordinateExerciseStage();
     } else {
-      _timer.timeRemaining = _workoutMeta.getCurExerciseDuration();
+      _timer.reset(_workoutMeta.getCurExerciseDuration(),
+          _workoutMeta.getCurStepDurations());
     }
   }
 
@@ -172,37 +190,38 @@ class WorkoutController {
   }
 
   // Stage creation
-  void _setUpExerciseStage() {
+  void _coordinateExerciseStage() {
     _stage = WorkoutStage.EXERCISE;
     _renderStage();
 
-    _timer.timeRemaining = _workoutMeta.getCurExerciseDuration();
+    _timer.reset(_workoutMeta.getCurExerciseDuration(),
+        _workoutMeta.getCurStepDurations());
     _renderSeconds();
 
     _renderPausePlay();
   }
 
-  void _setUpBreakStage() {
+  void _coordinateBreakStage() {
     _stage = WorkoutStage.BREAK;
     _renderStage();
 
-    _timer.timeRemaining = _workoutMeta.getCurBreakDuration();
+    _timer.reset(_workoutMeta.getCurBreakDuration(), null);
     _renderSeconds();
 
     _renderPausePlay();
   }
 
-  void _setUpStart() {
+  void _coordinateStart() {
     _renderStage();
     _stage = WorkoutStage.BREAK;
 
-    _timer.timeRemaining = _workoutMeta.getStartDuration();
+    _timer.reset(_workoutMeta.getStartDuration(), null);
     _renderSeconds();
 
     _renderPausePlay();
   }
 
-  void _setUpEndStage() {
+  void _coordinateEndStage() {
     _timer.stop();
 
     _stage = WorkoutStage.END;
@@ -248,8 +267,13 @@ class WorkoutController {
       for (var view in _views) view?.onPause();
   }
 
+  void _renderLaterStep() {
+    final step = _workoutMeta.getCurStep();
+    if (step != null) for (var view in _views) view?.onLaterStep(step);
+  }
+
   void _renderSeconds() {
-    for (var view in _views) view?.onCount(_timer.timeRemaining);
+    for (var view in _views) view?.onCount(_timer.getTimeRemaining());
   }
 
   // setters

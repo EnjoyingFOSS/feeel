@@ -135,7 +135,7 @@ class DBHelper {
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
-  static const int _DATABASE_VERSION = 19;
+  static const int _DATABASE_VERSION = 20;
 
   Future<Database> _createDB() async {
     String path = await getPath();
@@ -639,13 +639,13 @@ class DBHelper {
         steps: [
           ExerciseStep(
               illustration: "exercise_neckstretch_back-1.webp",
-              duration: 1500), //todo add images
+              duration: 1), //todo add images
           ExerciseStep(
-              illustration: "exercise_neckstretch_back.webp", duration: 5000),
-          ExerciseStep(duration: 5000, voiceHint: "Shoulders down"),
-          ExerciseStep(duration: 5000, voiceHint: "Push against hands"),
+              illustration: "exercise_neckstretch_back.webp", duration: 5),
+          ExerciseStep(duration: 5, voiceHint: "Shoulders down"),
+          ExerciseStep(duration: 5, voiceHint: "Push against hands"),
           ExerciseStep(
-              illustration: "exercise_neckstretch_back-3.webp", duration: 1500)
+              illustration: "exercise_neckstretch_back-3.webp", duration: 1)
         ],
         description:
             "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",

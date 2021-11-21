@@ -246,7 +246,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onLaterStep(ExerciseStep step, String currentIllustration) {
+  void onLaterStep(ExerciseStep step) {
     // TODO: implement onLaterStep
   }
 }

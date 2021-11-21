@@ -8,7 +8,7 @@ abstract class WorkoutView {
       int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration);
   void onExercise(
       int workoutPos, WorkoutExercise exercise, ExerciseStep? firstStep, int defaultExerciseDuration);
-  void onLaterStep(ExerciseStep step, String currentIllustration);
+  void onLaterStep(ExerciseStep step);
   void onCount(int seconds);
   void onPause();
   void onPlay();

@@ -21,7 +21,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
@@ -50,8 +49,8 @@ class SoundView implements WorkoutView {
   }
 
   @override
-  void onExercise(int workoutPos, WorkoutExercise exercise, ExerciseStep? firstStep,
-      int defaultExerciseDuration) {
+  void onExercise(int workoutPos, WorkoutExercise exercise,
+      ExerciseStep? firstStep, int defaultExerciseDuration) {
     _player.play(SOUND_EXERCISE, mode: PlayerMode.LOW_LATENCY);
     //todo handle step
   }
@@ -71,7 +70,8 @@ class SoundView implements WorkoutView {
   }
 
   @override
-  void onLaterStep(ExerciseStep step, String currentIllustration) {
-    // TODO: implement onLaterStep
+  void onLaterStep(ExerciseStep step) {
+    if (step.voiceHint != null)
+      _player.play(SOUND_TICK, mode: PlayerMode.LOW_LATENCY);
   }
 }
