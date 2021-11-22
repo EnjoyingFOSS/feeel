@@ -21,6 +21,10 @@ Donate
 =======
 Support the project via **[Liberapay](https://liberapay.com/Feeel/)**. Every bit helps. The more money is donated, the more time I can afford to work on this project.
 
+Get in touch
+=======
+You can chat with the community on **[Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org)**.
+
 Install
 ====
 [<img src="https://f-droid.org/badge/get-it-on.png"
