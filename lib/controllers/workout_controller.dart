@@ -46,7 +46,9 @@ class WorkoutMeta {
 
   WorkoutMeta(this._workout);
 
-  int getPos() => _exercisePos;
+  int getExercisePos() => _exercisePos;
+
+  int getStepPos() => _stepPos;
 
   int getStartDuration() =>
       getCurWorkoutExercise().breakBeforeDuration ?? _START_DURATION;
@@ -266,17 +268,18 @@ class WorkoutController {
       case WorkoutStage.READY:
         for (var view in _views)
           view?.onStart(
-              _workoutMeta.getPos(),
+              _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getStartDuration());
         break;
       case WorkoutStage.COUNTDOWN:
-        for (var view in _views) view?.onCountdown(_workoutMeta.getPos());
+        for (var view in _views)
+          view?.onCountdown(_workoutMeta.getExercisePos());
         break;
       case WorkoutStage.EXERCISE:
         for (var view in _views)
           view?.onExercise(
-              _workoutMeta.getPos(),
+              _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getCurStep(),
               _workoutMeta.getCurExerciseDuration());
@@ -284,7 +287,7 @@ class WorkoutController {
       case WorkoutStage.BREAK:
         for (var view in _views)
           view?.onBreak(
-              _workoutMeta.getPos(),
+              _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getCurBreakDuration());
         break;
@@ -303,7 +306,8 @@ class WorkoutController {
 
   void _renderLaterStep() {
     final step = _workoutMeta.getCurStep();
-    if (step != null) for (var view in _views) view?.onLaterStep(step);
+    if (step != null)
+      for (var view in _views) view?.onLaterStep(_workoutMeta._stepPos, step);
   }
 
   void _renderSeconds() {

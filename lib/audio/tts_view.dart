@@ -31,13 +31,13 @@ class TTSView implements WorkoutView {
   int _halfTime = 0;
 
   @override
-  void onStart(int workoutPos, WorkoutExercise nextExercise, int duration) {
+  void onStart(int exercisePos, WorkoutExercise nextExercise, int duration) {
     TTSHelper.tts.speak("Let's go! First up: %s".i18n.replaceFirst(
         "%s", nextExercise.exercise.name.i18n)); //todo internationalization
   }
 
   @override
-  void onBreak(int workoutPos, WorkoutExercise nextExercise, int duration) {
+  void onBreak(int exercisePos, WorkoutExercise nextExercise, int duration) {
     TTSHelper.tts.speak("Break!".i18n +
         " " +
         "Next up:".i18n +
@@ -47,6 +47,7 @@ class TTSView implements WorkoutView {
 
   @override
   void onCount(int seconds) {
+    //todo eliminate conflicts with step content
     if (seconds <= AudioHelper.COUNTDOWN)
       TTSHelper.tts.speak(seconds.toString());
     else if (seconds == _halfTime) {
@@ -56,7 +57,7 @@ class TTSView implements WorkoutView {
   }
 
   @override
-  void onExercise(int workoutPos, WorkoutExercise exercise,
+  void onExercise(int exercisePos, WorkoutExercise exercise,
       ExerciseStep? firstStep, int duration) {
     if (firstStep?.voiceHint != null) {
       TTSHelper.tts.speak(firstStep!.voiceHint!.i18n);
@@ -74,13 +75,13 @@ class TTSView implements WorkoutView {
   void onPlay() {}
 
   @override
-  void onLaterStep(ExerciseStep step) {
+  void onLaterStep(int stepPos, ExerciseStep step) {
     final hint = step.voiceHint?.i18n;
     if (hint != null) TTSHelper.tts.speak(hint);
   }
 
   @override
-  void onCountdown(int workoutPos) {
+  void onCountdown(int exercisePos) {
     TTSHelper.tts.speak("Get ready!".i18n);
   }
 }

@@ -3,14 +3,14 @@ import 'package:feeel/models/view/workout_exercise.dart';
 
 abstract class WorkoutView {
   void onStart(
-      int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration);
+      int exercisePos, WorkoutExercise nextExercise, int defaultBreakDuration);
   void onBreak(
-      int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration);
-  void onExercise(int workoutPos, WorkoutExercise exercise,
+      int exercisePos, WorkoutExercise nextExercise, int defaultBreakDuration);
+  void onExercise(int exercisePos, WorkoutExercise exercise,
       ExerciseStep? firstStep, int defaultExerciseDuration);
   void onCountdown(
-      int workoutPos); //todo workoutPos is here only because of the non-ideal architecture of the exercise view
-  void onLaterStep(ExerciseStep step);
+      int exercisePos); //todo exercisePos is here only because of the non-ideal architecture of the exercise view
+  void onLaterStep(int stepPos, ExerciseStep step);
   void onCount(int seconds);
   void onPause();
   void onPlay();

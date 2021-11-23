@@ -38,7 +38,7 @@ class SoundView implements WorkoutView {
 
   @override
   void onBreak(
-      int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration) {
+      int exercisePos, WorkoutExercise nextExercise, int defaultBreakDuration) {
     _player.play(SOUND_BREAK, mode: PlayerMode.LOW_LATENCY);
   }
 
@@ -49,7 +49,7 @@ class SoundView implements WorkoutView {
   }
 
   @override
-  void onExercise(int workoutPos, WorkoutExercise exercise,
+  void onExercise(int exercisePos, WorkoutExercise exercise,
       ExerciseStep? firstStep, int defaultExerciseDuration) {
     _player.play(SOUND_EXERCISE, mode: PlayerMode.LOW_LATENCY);
     //todo handle step
@@ -63,18 +63,18 @@ class SoundView implements WorkoutView {
 
   @override
   void onStart(
-      int workoutPos, WorkoutExercise nextExercise, int defaultBreakDuration) {}
+      int exercisePos, WorkoutExercise nextExercise, int defaultBreakDuration) {}
 
   void onFinish() {
     _player.play(SOUND_FINISH, mode: PlayerMode.LOW_LATENCY);
   }
 
   @override
-  void onLaterStep(ExerciseStep step) {
+  void onLaterStep(int stepPos, ExerciseStep step) {
     if (step.voiceHint != null)
       _player.play(SOUND_TICK, mode: PlayerMode.LOW_LATENCY);
   }
 
   @override
-  void onCountdown(int workoutPos) {}
+  void onCountdown(int exercisePos) {}
 }

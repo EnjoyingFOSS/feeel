@@ -638,14 +638,14 @@ class DBHelper {
         type: ExerciseType.HEAD,
         steps: [
           ExerciseStep(
-              illustration: "exercise_neckstretch_back-1.webp",
+              imageSlug: "exercise_neckstretch_back-1.webp",
               duration: 1), //todo add images
           ExerciseStep(
-              illustration: "exercise_neckstretch_back.webp", duration: 5),
+              imageSlug: "exercise_neckstretch_back.webp", duration: 5),
           ExerciseStep(duration: 5, voiceHint: "Shoulders down"),
           ExerciseStep(duration: 5, voiceHint: "Push against hands"),
           ExerciseStep(
-              illustration: "exercise_neckstretch_back-3.webp", duration: 1)
+              imageSlug: "exercise_neckstretch_back-3.webp", duration: 1)
         ],
         description:
             "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
@@ -842,7 +842,7 @@ class DBHelper {
       await db.insert(_EXERCISE_STEP_TABLE, <String, dynamic>{
         _EXERCISE_COL: id,
         _ORDER_COL: i,
-        _IMAGE_SLUG_COL: step.illustration,
+        _IMAGE_SLUG_COL: step.imageSlug,
         _VOICE_HINT_COL: step.voiceHint,
         _STEP_DURATION_COL: step.duration
       });
@@ -993,7 +993,7 @@ class DBHelper {
         orderBy: _ORDER_COL);
     return res
         .map((e) => ExerciseStep(
-            illustration: e[_IMAGE_SLUG_COL] as String?,
+            imageSlug: e[_IMAGE_SLUG_COL] as String?,
             duration: e[_STEP_DURATION_COL] as int,
             voiceHint: e[_VOICE_HINT_COL] as String?))
         .toList();

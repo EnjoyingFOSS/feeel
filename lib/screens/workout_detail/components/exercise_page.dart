@@ -25,6 +25,7 @@ import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/workout_stage.dart';
+import 'package:feeel/models/view/exercise.dart';
 import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
@@ -60,6 +61,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   String? _descriptionText;
   double? _dragYStart;
   int _exercisePos = 0;
+  int _stepPos = 0;
   WorkoutStage _stage = WorkoutStage.BREAK;
 
   // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
@@ -77,8 +79,10 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     final theme = Theme.of(context);
     final themeDarkColor = widget.colorSwatch
         .getColorByBrightness(FeeelShade.DARK, theme.brightness);
-    final exercise = widget.workout.workoutExercises[_exercisePos].exercise;
-    final imageSlug = exercise.imageSlug;
+    final exercise = _getExercise(_exercisePos);
+    final imageSlug = (exercise.steps?[_stepPos].imageSlug != null)
+        ? exercise.steps![_stepPos].imageSlug
+        : exercise.imageSlug;
     final headOnly = exercise.type == ExerciseType.HEAD;
     return GestureDetector(
       child: Material(
@@ -187,42 +191,60 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onStart(int workoutPos, WorkoutExercise nextExercise, int duration) {
+  void onStart(int exercisePos, WorkoutExercise nextExercise, int duration) {
     setState(() {
       _seconds = duration;
       _descriptionText = nextExercise.exercise.description.i18n;
-      _exercisePos = workoutPos;
+      _exercisePos = exercisePos;
       _stage = WorkoutStage.BREAK;
     });
   }
 
   @override
-  void onBreak(int workoutPos, WorkoutExercise nextExercise, int duration) {
+  void onBreak(int exercisePos, WorkoutExercise nextExercise, int duration) {
     setState(() {
       _seconds = duration;
       _descriptionText = nextExercise.exercise.description.i18n;
-      _exercisePos = workoutPos;
+      _exercisePos = exercisePos;
       _stage = WorkoutStage.BREAK;
     });
   }
 
   @override
-  void onExercise(int workoutPos, WorkoutExercise exercise, ExerciseStep? step,
+  void onExercise(int exercisePos, WorkoutExercise exercise, ExerciseStep? step,
       int duration) {
     setState(() {
-      _preloadUpcomingExercise();
+      if ((exercise.exercise.steps?.length ?? 0) > 1)
+        _preloadUpcomingStep();
+      else
+        _preloadUpcomingExercise();
 
       _seconds = duration;
       _descriptionText = exercise.exercise.description.i18n;
-      _exercisePos = workoutPos;
+      _exercisePos = exercisePos;
       _stage = WorkoutStage.EXERCISE;
+      _stepPos = 0; //todo should I do this for the break too?
     });
+  }
+
+  Exercise _getExercise(int i) => widget.workout.workoutExercises[i].exercise;
+
+  void _preloadUpcomingStep() {
+    final steps = _getExercise(_exercisePos).steps;
+    if (steps != null) {
+      final nextImageSlug = (_stepPos + 1 < steps.length)
+          ? steps[_stepPos + 1].imageSlug
+          : steps[0].imageSlug;
+      if (nextImageSlug != null) {
+        precacheImage(
+            Image.asset(AssetHelper.getImage(nextImageSlug)).image, context);
+      }
+    }
   }
 
   void _preloadUpcomingExercise() {
     if (_exercisePos + 1 < widget.workout.workoutExercises.length) {
-      final nextImageSlug =
-          widget.workout.workoutExercises[_exercisePos + 1].exercise.imageSlug;
+      final nextImageSlug = _getExercise(_exercisePos + 1).imageSlug;
       if (nextImageSlug != null) {
         precacheImage(
             Image.asset(AssetHelper.getImage(nextImageSlug)).image, context);
@@ -252,14 +274,16 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onLaterStep(ExerciseStep step) {
-    // TODO: implement onLaterStep
+  void onLaterStep(int stepPos, ExerciseStep step) {
+    setState(() {
+      _stepPos = stepPos;
+    });
   }
 
   @override
-  void onCountdown(int workoutPos) {
+  void onCountdown(int exercisePos) {
     setState(() {
-      _exercisePos = workoutPos;
+      _exercisePos = exercisePos;
       _stage = WorkoutStage.COUNTDOWN;
     });
   }
