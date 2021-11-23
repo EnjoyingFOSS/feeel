@@ -26,13 +26,12 @@ import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
 import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/db/preference_keys.dart';
+import 'package:feeel/enums/workout_stage.dart';
 import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-enum WorkoutStage { READY, EXERCISE, COUNTDOWN, BREAK, END }
 
 enum ViewTypes { GUI, AUDIO }
 

@@ -22,7 +22,9 @@
 
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_view.dart';
+import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/enums/exercise_type.dart';
+import 'package:feeel/enums/workout_stage.dart';
 import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
@@ -52,16 +54,13 @@ class ExercisePage extends StatefulWidget {
 }
 
 class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
-  //todo ban swipe to go back unless controls are shown?
-  static const Duration TRANSITION_DURATION = Duration(microseconds: 600);
-  static const Curve TRANSITION_CURVE = Curves.easeIn;
-
   bool _paused = false;
   bool _infoShown = false; //todo redesign with DraggableScrollableSheet
   late int _seconds;
-  PageController _pageController = PageController();
   String? _descriptionText;
   double? _dragYStart;
+  int _exercisePos = 0;
+  WorkoutStage _stage = WorkoutStage.BREAK;
 
   // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
 
@@ -69,6 +68,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void initState() {
     widget.workoutController.setView(this);
     _seconds = widget.workout.countdownDuration;
+
     super.initState();
   }
 
@@ -77,6 +77,9 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     final theme = Theme.of(context);
     final themeDarkColor = widget.colorSwatch
         .getColorByBrightness(FeeelShade.DARK, theme.brightness);
+    final exercise = widget.workout.workoutExercises[_exercisePos].exercise;
+    final imageSlug = exercise.imageSlug;
+    final headOnly = exercise.type == ExerciseType.HEAD;
     return GestureDetector(
       child: Material(
           color: theme.backgroundColor,
@@ -126,30 +129,18 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                       style: TextStyle(color: themeDarkColor),
                     ),
               Expanded(
-                child: PageView.builder(
-                  //todo
-                  physics: NeverScrollableScrollPhysics(),
-                  controller: _pageController,
-                  itemBuilder: (context, i) {
-                    final exercise = widget
-                        .workout.workoutExercises[(i / 2).floor()].exercise;
-                    final imageSlug = exercise.imageSlug;
-                    final headOnly = exercise.type == ExerciseType.HEAD;
-                    return ExerciseLayout(
-                      expanded: _infoShown,
-                      paused: _paused,
-                      colorSwatch: widget.colorSwatch,
-                      title: exercise.name.i18n,
-                      headOnly: headOnly,
-                      onBreak: (i % 2 == 0),
-                      triangleSeed: headOnly ? exercise.name.hashCode : 0,
-                      imageSlug: imageSlug,
-                      flipped: exercise.twoSided,
-                    );
-                  },
-                  itemCount: widget.workout.workoutExercises.length * 2,
-                ),
-              ), // todo show drag handle
+                  child: ExerciseLayout(
+                expanded: _infoShown,
+                paused: _paused,
+                colorSwatch: widget.colorSwatch,
+                title: exercise.name.i18n,
+                headOnly: headOnly,
+                onBreak: _stage == WorkoutStage.BREAK ||
+                    _stage == WorkoutStage.COUNTDOWN,
+                triangleSeed: headOnly ? exercise.name.hashCode : 0,
+                imageSlug: imageSlug,
+                flipped: exercise.twoSided,
+              )), // todo show drag handle
               if (_infoShown)
                 Container(
                   color: widget.colorSwatch.getColor(FeeelShade.DARKER),
@@ -200,6 +191,8 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     setState(() {
       _seconds = duration;
       _descriptionText = nextExercise.exercise.description.i18n;
+      _exercisePos = workoutPos;
+      _stage = WorkoutStage.BREAK;
     });
   }
 
@@ -208,20 +201,33 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     setState(() {
       _seconds = duration;
       _descriptionText = nextExercise.exercise.description.i18n;
+      _exercisePos = workoutPos;
+      _stage = WorkoutStage.BREAK;
     });
-    _pageController.animateToPage(workoutPos * 2,
-        duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
   }
 
   @override
   void onExercise(int workoutPos, WorkoutExercise exercise, ExerciseStep? step,
       int duration) {
     setState(() {
+      _preloadUpcomingExercise();
+
       _seconds = duration;
       _descriptionText = exercise.exercise.description.i18n;
+      _exercisePos = workoutPos;
+      _stage = WorkoutStage.EXERCISE;
     });
-    _pageController.animateToPage(workoutPos * 2 + 1,
-        duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
+  }
+
+  void _preloadUpcomingExercise() {
+    if (_exercisePos + 1 < widget.workout.workoutExercises.length) {
+      final nextImageSlug =
+          widget.workout.workoutExercises[_exercisePos + 1].exercise.imageSlug;
+      if (nextImageSlug != null) {
+        precacheImage(
+            Image.asset(AssetHelper.getImage(nextImageSlug)).image, context);
+      }
+    }
   }
 
   @override
@@ -252,8 +258,10 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
 
   @override
   void onCountdown(int workoutPos) {
-    _pageController.animateToPage(workoutPos * 2,
-        duration: TRANSITION_DURATION, curve: TRANSITION_CURVE);
+    setState(() {
+      _exercisePos = workoutPos;
+      _stage = WorkoutStage.COUNTDOWN;
+    });
   }
 }
 
