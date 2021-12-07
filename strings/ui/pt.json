@@ -72,12 +72,16 @@
     "btnDoneEditingTiming": "Cronograma de edição",
     "txtBatteryOptimization": "Em alguns dispositivos, pode ser necessário desactivar a optimização da bateria para que o Feeel funcione de forma fiável.",
     "btnEnableTTS": "Usar comandos de voz",
-    "txtDurationLong": "%1d min %2d s",
+    "txtDurationLong": "%1d min, %2d s",
     "txtNumberInputNonnumeric": "Deve ser numérico",
     "txtNumberInputEmpty": "Não pode estar vazio",
     "txtLanguage": "Idioma",
     "txtOther": "Outro",
     "txtCardio": "Cardio",
     "txtStretchingAndYoga": "Alongamento e ioga",
-    "txtStrength": "Resistência"
+    "txtStrength": "Resistência",
+    "txtDragToReorder": "Arraste esta alça para reordenar os exercícios.",
+    "txtNoExercises": "Não há exercícios neste treino. :(",
+    "btnDeleteThisWorkout": "Excluir este exercício",
+    "btnBackToWorkoutList": "Voltar para a lista de exercícios"
 }
