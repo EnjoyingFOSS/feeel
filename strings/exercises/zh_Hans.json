@@ -6,5 +6,12 @@
     "exerciseJumpingJacks": "跳爆竹",
     "exerciseWallSit": "直角坐墙",
     "exercisePushups": "俯卧撑",
-    "exerciseAbCrunches": "仰卧起坐"
+    "exerciseAbCrunches": "仰卧起坐",
+    "exerciseSquats": "深蹲",
+    "stepsSquats": "1. 双脚打开与肩同宽站立\n2. 后移臀部并屈膝，同时降低躯干\n3. 重复",
+    "stepsChairDips": "1. 坐在椅子前部边缘，挺直后背，手撑着椅子前部边缘\n2. 保持手撑着椅子边缘，伸直手臂以抬起臀部，将臀部往前移使其距离椅子几英寸远\n3. 挺直后背并缓慢的降低身体，直到手臂呈直角\n4. 再次抬升身体到之前的位置，手臂伸直\n5. 重复第 3 步与第 4 步",
+    "stepsPlank": "起始姿势:\n1. 四肢着地.\n手臂弯曲成直角，肩部应该正好在肘部上方.\n背部挺直，整个身体在一条直线上.\n\n步骤:\n1. 保持该姿势.",
+    "exerciseHighKnees": "高抬腿",
+    "stepsHighKnees": "1. 原地跑, 将膝盖尽量抬高，并快速地切换抬起来的腿",
+    "stepsLunges": "1. 背部挺直站立\n2. 左腿大步向前迈\n3. 身体下压，直到右膝快接触到地面\n4. 身体上抬\n5. 后移左脚以恢复站立姿势\n6. 重复，每次换腿"
 }
