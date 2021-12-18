@@ -77,5 +77,8 @@
     "btnDone": "Gotovo",
     "btnSubmitViaEmail": "Pošalji putem e-maila",
     "btnAddCustomExerice": "Predloži prilagođenu vježbu",
-    "btnAddPhotoFromGallery": "Dodaj fotografiju iz galerije"
+    "btnAddPhotoFromGallery": "Dodaj fotografiju iz galerije",
+    "txtNoExercises": "U ovom treningu nema vježbi. :(",
+    "btnDeleteThisWorkout": "Izbriši ovaj trening",
+    "btnBackToWorkoutList": "Natrag na popis treninga"
 }
