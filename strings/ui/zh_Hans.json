@@ -80,5 +80,6 @@
     "btnAdjustTiming": "调整时间",
     "btnDoneEditingTiming": "完成编辑时间",
     "btnDeleteThisWorkout": "删除此锻炼",
-    "btnBackToWorkoutList": "返回锻炼列表"
+    "btnBackToWorkoutList": "返回锻炼列表",
+    "txtContributeExerciseExplainer": "Feeel依靠像您这样的志愿者提交锻炼内容和锻炼照片。照片将首先被非公开地处理成三角形多面体版本，然后发送给您进行审批，您同意后再在应用程序中发布。所有提交的照片和文字必须完全是您的作品。感谢您的贡献！"
 }
