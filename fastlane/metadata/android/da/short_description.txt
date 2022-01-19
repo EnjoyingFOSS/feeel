@@ -1,0 +1,1 @@
+En simpel app til hjemmetræning/øvelse, der respekterer dit privatliv
