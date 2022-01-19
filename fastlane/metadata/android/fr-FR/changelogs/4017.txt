@@ -1,0 +1,10 @@
+Paljon uutta tavaraa, 
+* Värikoodatut harjoitusluokat
+* Uudet harjoitukset
+* Harjoituskuvien erityinen visualisointi pään lähikuvalla
+* iOS-tuki
+* Uusi arabian käännökset + RTL-tuki
+* Uusi kroaatinkielinen käännös
+* Teeman hienosäädöt
+* Norjalainen Bokmal poistettiin jälleen
+* Erilaisia bugikorjauksia ja käännöspäivityksiä
