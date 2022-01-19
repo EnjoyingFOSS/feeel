@@ -1,0 +1,10 @@
+Massor av nya saker, bland annat:
+* Färgkodade träningskategorier
+* Nya övningar
+* Särskild visualisering av övningsbilder med en närbild av ett huvud.
+* Stöd för iOS
+* Ny arabisk översättning + stöd för RTL
+* Ny översättning till kroatiska
+* Tema justeringar
+* Norska Bokmal har tagits bort igen
+* Olika felrättningar och översättningsuppdateringar
