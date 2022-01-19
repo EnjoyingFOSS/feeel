@@ -1,0 +1,5 @@
+Feeel és un codi obert i l'aplicació d'Android per fer simple en-casa d'exercicis. Es manté la aclamat per tot el cos científic 7 minuts de l'entrenament del règim i permet la creació de custom entrenaments així. Mentre que l'aplicació actualment conté una quantitat limitada d'exercicis, el pla és dràsticament ampliar el nombre d'ambdós exercicis i entrenaments amb l'ajuda de la comunitat.
+
+Contribuir a https://gitlab.com/enjoyingfoss/feeel/wikis
+
+Donar a https://liberapay.com/Feeel/ . Donacions em permeti treballar en l'aplicació regularment, en lloc de només en el meu temps lliure.

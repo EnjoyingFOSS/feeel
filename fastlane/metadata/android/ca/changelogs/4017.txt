@@ -1,0 +1,10 @@
+Un munt de coses noves, incloent-hi:
+* Codi de colors entrenament categories
+* Nous exercicis
+* Especial visualització de l'exercici de les imatges amb prop d'un cap
+* iOS suport
+* Nova traducció a l'àrab + RTL suport
+* Nova traducció de croàcia
+* Tema retocs
+* Noruec Bokmal va ser eliminat de nou
+* Diverses correccions d'errors i traducció actualitzacions
