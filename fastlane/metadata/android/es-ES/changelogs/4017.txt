@@ -1,0 +1,10 @@
+Un montón de cosas nuevas, incluyendo:
+* Categorías de ejercicios codificadas por colores
+* Nuevos ejercicios
+* Visualización especial de las imágenes de los ejercicios con un primer plano de una cabeza
+* Soporte para iOS
+* Nueva traducción al árabe + soporte RTL
+* Nueva traducción al croata
+* Ajustes del tema
+* Se ha vuelto a eliminar el Bokmal noruego
+* Varias correcciones de errores y actualizaciones de la traducción
