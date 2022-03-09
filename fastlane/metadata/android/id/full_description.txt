@@ -1,3 +1,5 @@
-Feel adalah aplikasi Android Open-source karena melakukan latihan sederhana di rumah. Ini memegang pujian seluruh tubuh penuh ilmiah 7-menit latihan rezim dan memungkinkan menciptakan pengerjaan kustom juga. Sementara aplikasi ini memuat sejumlah latihan yang terbatas, rencananya adalah untuk memperluas jumlah latihan dan latihan secara drastis dengan bantuan masyarakat.
+Feeel adalah aplikasi Android open-source untuk melakukan latihan sederhana di rumah. Ini memegang rezim latihan 7 menit ilmiah seluruh tubuh yang diakui dan memungkinkan pembuatan latihan khusus juga. Sementara aplikasi saat ini berisi jumlah latihan yang terbatas, rencananya adalah untuk secara drastis memperluas jumlah latihan dan latihan dengan bantuan komunitas.
 
-Berkontribusi pada https://gitlab.com/enjoyingfoss/feeel/wikis .
+Berkontribusi di https://gitlab.com/enjoyingfoss/feeel/wikis
+
+Donasi di https://liberapay.com/Feeel/ . Sumbangan akan membiarkan saya bekerja pada aplikasi secara teratur, bukan hanya di waktu luang saya.
