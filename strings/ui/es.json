@@ -61,8 +61,8 @@
     "btnCancel": "Cancelar",
     "txtDiscardChanges": "¿Descartar cambios?",
     "txtCustomDuration": "Duración personalizada (s.)",
-    "btnDoneEditingTiming": "Terminado de editar el tiempo",
-    "txtParticipate": "Participe",
+    "btnDoneEditingTiming": "Tiempo de edición terminado",
+    "txtParticipate": "Participar",
     "txtCouldNotOpenURL": "No es posible abrir URL.",
     "txtBatteryOptimization": "En algunos dispositivos, es posible que necesites desactivar la optimización de batería para Feeel para que funcione correctamente.",
     "txtThemeSystem": "Por defecto",
@@ -76,8 +76,12 @@
     "txtCardio": "Cardo",
     "txtStretchingAndYoga": "Estiramiento y yoga",
     "txtStrength": "Fuerza",
-    "txtDurationLong": "%1d min %2d s",
+    "txtDurationLong": "%1d min %2d seg.",
     "txtNumberInputNonnumeric": "Debe ser numérico",
     "txtNumberInputEmpty": "No puede estar vacío",
-    "txtLanguage": "Idioma"
+    "txtLanguage": "Idioma",
+    "txtDragToReorder": "Arrastre este controlador para reordenar los ejercicios.",
+    "btnBackToWorkoutList": "Volver a la lista de ejercicios",
+    "btnDeleteThisWorkout": "Eliminar este entrenamiento",
+    "txtNoExercises": "No hay ejercicios en este entrenamiento. :("
 }
