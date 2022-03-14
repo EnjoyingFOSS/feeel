@@ -80,8 +80,11 @@
     "txtStrength": "Forto",
     "txtCardio": "Cardioo",
     "txtDragToReorder": "Trenu ĉi tiun tenilon por reordigi ekzercojn.",
-    "txtDurationLong": "%1d min %2d s",
+    "txtDurationLong": "%1d min %2d  sek.",
     "txtNumberInputNonnumeric": "Devas esti nombra",
     "txtNumberInputEmpty": "Ne povas esti malplena",
-    "txtLanguage": "Lingvo"
+    "txtLanguage": "Lingvo",
+    "txtNoExercises": "Tie estas neniu ekzercoj en#? i tiu workout. :(",
+    "btnDeleteThisWorkout": "Forigu ĉi tiun trejnadon",
+    "btnBackToWorkoutList": "Reen al workout listo"
 }
