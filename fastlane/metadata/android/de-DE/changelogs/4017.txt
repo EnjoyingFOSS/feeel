@@ -1,0 +1,10 @@
+Viele neue Funktionen, darunter:
+* Farblich gekennzeichnete Trainingskategorien
+* Neue Übungen
+* Spezielle Visualisierung von Übungsbildern mit einer Nahaufnahme eines Kopfes
+* iOS-Unterstützung
+* Neue arabische Übersetzung + RTL-Unterstützung
+* Neue kroatische Übersetzung
+* Themenverbesserungen
+* Norwegisches Bokmal wurde wieder gelöscht
+* Diverse Fehlerkorrekturen und Übersetzungsupdates

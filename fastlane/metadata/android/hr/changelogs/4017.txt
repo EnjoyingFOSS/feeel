@@ -1,0 +1,10 @@
+Puno novih stvari, uključujući:
+* Kategorije vježbanja označene bojama
+* Nove vježbe
+* Posebna vizualizacija slika vježbanja s krupnim planom glave
+* Podrška za iOS
+* Novi arapski prijevod + podrška za tekst s desna na lijevo
+* Novi hrvatski prijevod
+* Podešavanja tema
+* Norveški Bokmal ponovo je izbrisan
+* Razni ispravci grešaka i aktualiziranja prijevoda

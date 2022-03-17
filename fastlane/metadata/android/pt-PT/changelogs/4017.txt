@@ -1,0 +1,10 @@
+Muitas coisas novas, incluindo:
+* Categorias de treino com código de cores
+* Novos exercícios
+* Visualização especial de imagens de exercício com um grande plano da cabeça
+* apoio iOS
+* Nova tradução árabe + suporte RTL
+* Nova tradução croata
+* Ajustes temáticos
+* O Bokmal norueguês foi novamente eliminado
+* Várias correcções de bugs e actualizações de traduções

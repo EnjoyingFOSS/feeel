@@ -1,0 +1,5 @@
+Feeel je aplikácia s otvoreným zdrojovým kódom pre Android na vykonávanie jednoduchých domácich cvičení. Obsahuje uznávaný vedecký 7-minútový tréningový režim pre celé telo a umožňuje aj vytváranie vlastných tréningov. Hoci aplikácia v súčasnosti obsahuje obmedzené množstvo cvičení, plánom je s pomocou komunity radikálne rozšíriť počet cvičení aj tréningov.
+
+Prispievajte na stránke https://gitlab.com/enjoyingfoss/feeel/wikis.
+
+Prispieť na https://liberapay.com/Feeel/ . Príspevky mi umožnia pracovať na aplikácii pravidelne, nielen vo voľnom čase.

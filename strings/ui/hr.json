@@ -2,7 +2,7 @@
     "btnDiscard": "Odbaci",
     "btnOK": "U redu",
     "btnMoreInfo": "Daljnje informacije",
-    "txtDurationLong": "%1d min, %2d s",
+    "txtDurationLong": "%1d minuta., %2d sek.",
     "btnCancel": "Odustani",
     "btnAdjustTiming": "Podesi vrijeme",
     "txtImageMissing": "Nedostaje slika",
@@ -77,5 +77,10 @@
     "btnDone": "Gotovo",
     "btnSubmitViaEmail": "Pošalji putem e-maila",
     "btnAddCustomExerice": "Predloži prilagođenu vježbu",
-    "btnAddPhotoFromGallery": "Dodaj fotografiju iz galerije"
+    "btnAddPhotoFromGallery": "Dodaj fotografiju iz galerije",
+    "txtNoExercises": "U ovom treningu nema vježbi. :(",
+    "btnDeleteThisWorkout": "Izbriši ovaj trening",
+    "btnBackToWorkoutList": "Natrag na popis treninga",
+    "txtSubmitExerciseMessageContents": "Zdravo.,\n\nŠaljem prijedlog vježbe. Ovime izjavljujem da su i priložene slike i opis u potpunosti moje vlastito djelo. Dok objavljujem ovu poruku, bezuvjetno pristajem na objavljivanje navedenog imena i opisa pod licencom za 8.0 i 4.0. Također dajem dopuštenje za obradu priloženih slika u varijantama niskog Poli. Nakon što ih obradim, procijenit ću jesam li ih spreman licencirati prema licenci za 4.0 od 4.godine.\n\nNaziv vježbe: %1s\nKoraci vježbe:\n%2s",
+    "txtContributeExerciseExplainer": "Einini e olanjaju na volontere poput VA za lanje fotografija vježbanja i vježbanja. Fotografije će se prvo obrađivati privatno u trianguliranim verzijama, a zatim će vam biti poslane na odobrenje, a tek nakon toga bit će objavljene u aplikaciji. Sve poslane fotografije i tekst trebali bi biti isključivo vaš posao. Hvala na unosu!"
 }

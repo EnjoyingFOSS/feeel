@@ -26,5 +26,8 @@
     "txtImageMissing": "Bild saknas",
     "txtNotificationTitle": "Dags att ta på sig träningskläderna!",
     "txtThemeDark": "Mörkt",
-    "txtNotificationInfoDesc": "En daglig påminnelse om att träna"
+    "txtNotificationInfoDesc": "En daglig påminnelse om att träna",
+    "btnAddALinkToPhotos": "Lägg till en länk till dina foton",
+    "btnSubmitViaEmail": "Skicka in via e-post",
+    "btnAddExercise": "Lägg till övningar"
 }

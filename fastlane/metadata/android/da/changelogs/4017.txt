@@ -1,0 +1,10 @@
+Masser af nye ting, herunder:
+* Farvekodede træningskategorier
+* Nye øvelser
+* Særlig visualisering af øvelsesbilleder med et nærbillede af et hoved
+* iOS-understøttelse
+* Ny arabisk oversættelse + RTL-understøttelse
+* Ny kroatisk oversættelse
+* Tema tweaks
+* Norsk Bokmal blev slettet igen
+* Diverse fejlrettelser og oversættelsesopdateringer

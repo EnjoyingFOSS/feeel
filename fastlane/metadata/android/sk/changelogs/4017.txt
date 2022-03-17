@@ -1,0 +1,10 @@
+Množstvo nových vecí vrátane:
+* Farebne označené kategórie cvičenia
+* Nové cvičenia
+* Špeciálna vizualizácia obrázkov cvičenia s priblížením hlavy
+* Podpora systému iOS
+* Nový arabský preklad + podpora RTL
+* Nový chorvátsky preklad
+* Vylepšenia témy
+* Nórsky Bokmal bol opäť odstránený
+* Rôzne opravy chýb a aktualizácie prekladov

@@ -80,5 +80,8 @@
     "txtNumberInputNonnumeric": "Harus numerik",
     "txtLanguage": "Bahasa",
     "txtDragToReorder": "Seret ikon handle untuk menyusun ulang latihan.",
-    "txtDurationLong": "%1d mnt., %2d dtk."
+    "txtDurationLong": "%1d mnt., %2d dtk.",
+    "txtNoExercises": "Tidak ada latihan dalam latihan ini. :(",
+    "btnDeleteThisWorkout": "Hapus latihan ini",
+    "btnBackToWorkoutList": "Kembali ke daftar latihan"
 }

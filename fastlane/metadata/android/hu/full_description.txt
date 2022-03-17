@@ -1,0 +1,5 @@
+A Feeel egy nyílt forráskódú Android-alkalmazás egyszerű otthoni gyakorlatok elvégzésére. Tartalmazza az elismert teljes testre vonatkozó tudományos 7 perces edzésrendszert, és lehetővé teszi egyéni edzések létrehozását is. Bár az alkalmazás jelenleg korlátozott számú gyakorlatot tartalmaz, a tervek szerint a közösség segítségével drasztikusan bővíteni fogják mind a gyakorlatok, mind az edzések számát.
+
+Hozzájárulás a https://gitlab.com/enjoyingfoss/feeel/wikis oldalon.
+
+Adományozzon a https://liberapay.com/Feeel/ címen. Az adományok lehetővé teszik, hogy rendszeresen dolgozzak az alkalmazáson, ne csak a szabadidőmben.

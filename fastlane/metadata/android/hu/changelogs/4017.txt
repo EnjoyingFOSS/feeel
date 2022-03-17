@@ -1,0 +1,10 @@
+Rengeteg újdonság, többek között:
+* Színkódolt edzési kategóriák
+* Új gyakorlatok
+* Különleges vizualizáció a gyakorlatok képeihez egy fej közelképével
+* iOS támogatás
+* Új arab fordítás + RTL támogatás
+* Új horvát fordítás
+* Téma finomítások
+* Norvég Bokmal ismét törölték
+* Különböző hibajavítások és fordítási frissítések

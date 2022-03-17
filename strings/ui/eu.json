@@ -119,5 +119,13 @@
     "txtOther": "Beste",
     "txtCardio": "Kardio",
     "txtStretchingAndYoga": "Luzatze & yoga",
-    "txtStrength": "Indarra"
+    "txtStrength": "Indarra",
+    "txtLanguage": "Hizkuntza",
+    "txtNumberInputNonnumeric": "Numerikoa izan behar da",
+    "btnDeleteThisWorkout": "Ezabatu entrenamendu hau",
+    "txtNumberInputEmpty": "Ezin da hutsik egin",
+    "btnBackToWorkoutList": "Lan zerrendara itzuli",
+    "txtDurationLong": "%1d min., %2d seg.",
+    "txtDragToReorder": "Arrastatu helduleku hau ariketak berrantolatzeko.",
+    "txtNoExercises": "Kirol honetan ez dago entrenatzailerik. :("
 }
