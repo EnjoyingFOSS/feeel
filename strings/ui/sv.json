@@ -29,5 +29,17 @@
     "txtNotificationInfoDesc": "En daglig påminnelse om att träna",
     "btnAddALinkToPhotos": "Lägg till en länk till dina foton",
     "btnSubmitViaEmail": "Skicka in via e-post",
-    "btnAddExercise": "Lägg till övningar"
+    "btnAddExercise": "Lägg till övningar",
+    "btnBackToWorkoutList": "Tillbaka till träningslistan",
+    "btnDeleteThisWorkout": "Radera det här träningspasset",
+    "btnDoneEditingTiming": "Redigering av tidsangivelser",
+    "btnAdjustTiming": "Justera tidsmåttet",
+    "btnAddCustomExerice": "Föreslå en anpassad övning",
+    "btnCreateCustomWorkout": "Skapa anpassad träning",
+    "btnDiscard": "Kasta",
+    "btnDuplicate": "Dubbla",
+    "btnNextExercise": "Nästa övning",
+    "btnPreviousExercise": "Föregående motion",
+    "btnResumeWorkout": "Återuppta träning",
+    "btnStartWorkout": "Börja träningen"
 }
