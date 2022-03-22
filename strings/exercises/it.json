@@ -6,7 +6,7 @@
     "exerciseWallSit": "Seduta a muro",
     "stepsWallSit": "1. Appoggiati al muro, rivolto in avanti e con i piedi ben piantati sul terreno, le spalle divaricate e a circa 2 piedi di distanza dal muro\n2. Scivola giù lungo il muro, tenendo la schiena premuta contro di esso, fino a quando le gambe sono ad angolo retto. Le ginocchia dovrebbero essere direttamente sopra le caviglie\nIl dolore al quadricipite è normale, interrompi se avverti dolore al ginocchio o alla rotula",
     "exercisePushups": "Flessioni",
-    "stepsPushups": "1. Sdraiati a pancia in giù\n2. Metti le mani vicino alle orecchie\n3. Usa le braccia per sollevare il torace fino a quando le braccia sono dritte, mantenendo la schiena dritta\n4. Piega le braccia fino a quando il torace tocca quasi il suolo, assicurandoti che la schiena sia dritta\n5. Ripeti dal passaggio 3",
+    "stepsPushups": "Posizione di partenza:\nMettetevi nella posizione di partenza delle flessioni, con le mani e le dita dei piedi che toccano il suolo e la schiena, le braccia e le gambe dritte. Per arrivare a questa posizione, puoi sdraiarti a pancia in giù, mettere le mani rivolte verso il basso accanto alla testa, e sollevare le braccia fino a quando sono dritte.\n\nPassi:\n1. Piegare i gomiti fino a quando il petto tocca quasi il suolo, assicurandosi che la schiena sia sempre dritta.\n2. Usare le braccia per sollevarsi di nuovo fino alla posizione di partenza.\n3. Ripetere.",
     "exerciseAbCrunches": "Addominali",
     "stepsAbCrunches": "1. Sdraiati a pancia in su sul pavimento con le ginocchia piegate.\n2. Solleva il busto verso il bacino, a 30° / 40° dal suolo. Le mani possono essere dietro o accanto al collo o incrociate sul petto.\n3. Ripeti",
     "exerciseStepups": "Step",
@@ -16,7 +16,7 @@
     "exerciseChairDips": "Piegamenti sulla sedia",
     "stepsChairDips": "1. Siediti sul bordo anteriore di una sedia, con la schiena dritta, le mani che tengono il bordo anteriore\n2. Tenendo ancora il bordo della sedia, le braccia tese, solleva il sedere e cammina leggermente in avanti in modo che si trovi a pochi centimetri dalla sedia.\n3. Abbassa lentamente il corpo, mantenendo la schiena dritta, fino a quando le braccia sono ad angolo retto\n4. Solleva nuovamente il corpo nella posizione precedente, le braccia estese\n5. Ripetere i passaggi 3 e 4",
     "exercisePlank": "Tavola",
-    "stepsPlank": "1. Mettiti a quattro zampe, con gli avambracci appoggiati e le ginocchia piegate\n2. Cammina indietro fino a quando le gambe non sono estese\n3. Mantieni questa posizione",
+    "stepsPlank": "Posizione di partenza:\n1. Iniziare a quattro zampe.\nLe braccia devono essere piegate ad angolo retto, con le spalle sopra i gomiti.\nLa schiena deve essere dritta, tutto il corpo in linea retta.\n\nPassi:\n1. Mantenere questa posizione.",
     "exerciseHighKnees": "Corsa sul posto con ginocchia alte",
     "stepsHighKnees": "1. Fai una corsa veloce sul posto, porta in alto le ginocchia ma senza sforzare",
     "exerciseLunges": "Affondi",
@@ -48,5 +48,6 @@
     "stepsJumpRopeBasic": "Questo esercizio richiede una corda per saltare. Assicuratevi che la lunghezza della corda sia adatta alla vostra altezza. Un modo per controllare è quello di afferrare entrambe le maniglie con una mano e stare al centro della corda appesa a terra con un piede. Se la corda (escluse le maniglie) arriva appena sotto il tuo petto, la sua lunghezza è giusta. Una corda più corta sarebbe pericolosa, perché potreste colpirvi, e una corda più lunga sarebbe una cattiva forma.\n1. Metti i piedi vicini, piega un po' le ginocchia, tieni la testa e il corpo dritti, tieni i gomiti in dentro, apri le braccia.\n2. Fai girare solo i polsi con abbastanza forza da far girare la corda.\n3. Salta appena abbastanza in alto da far passare la corda sotto i tuoi piedi.\n4. Ripetere dal punto 2.",
     "exerciseArmCircles": "Cerchi del braccio",
     "stepsMountainClimbers": "Posizione di partenza:\nIniziare in posizione verticale push-up, o la tavola alta.\nLe mani dovrebbero essere direttamente sotto le spalle.\nTieni la testa in linea con la schiena, rivolta verso il pavimento.\nI piedi dovrebbero essere a circa la larghezza dell'anca.\n\nScalinata:\n1. Sposta un ginocchio verso il centro del corpo, verso i gomiti, mantenendo l'altra gamba estesa.\n2. In un rapido movimento di salto, raddrizza la gamba piegata e tira l'altro ginocchio verso il tuo corpo.\n3. Continua a ripetere il passaggio 2, alternando le gambe.\n\nNota:\nDurante l'esercizio la schiena dovrebbe rimanere il più dritta possibile – evitare una gobba o una schiena cascante.",
-    "exerciseMountainClimbers": "Alpinista"
+    "exerciseMountainClimbers": "Alpinista",
+    "exercisePushupBurpees": "Burpees con flessioni"
 }
