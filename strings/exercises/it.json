@@ -49,7 +49,7 @@
     "exerciseArmCircles": "Cerchi del braccio",
     "stepsMountainClimbers": "Posizione di partenza:\nIniziare in posizione verticale push-up, o la tavola alta.\nLe mani dovrebbero essere direttamente sotto le spalle.\nTieni la testa in linea con la schiena, rivolta verso il pavimento.\nI piedi dovrebbero essere a circa la larghezza dell'anca.\n\nScalinata:\n1. Sposta un ginocchio verso il centro del corpo, verso i gomiti, mantenendo l'altra gamba estesa.\n2. In un rapido movimento di salto, raddrizza la gamba piegata e tira l'altro ginocchio verso il tuo corpo.\n3. Continua a ripetere il passaggio 2, alternando le gambe.\n\nNota:\nDurante l'esercizio la schiena dovrebbe rimanere il più dritta possibile – evitare una gobba o una schiena cascante.",
     "exerciseMountainClimbers": "Alpinista",
-    "exercisePushupBurpees": "Burpees a spinta",
+    "exercisePushupBurpees": "Spingere su burpees",
     "workoutNeckShoulderStretch": "Stretching per collo e spalle",
     "exerciseBWArmCircles": "Cerchi di braccia all'indietro",
     "stepsBWArmCircles": "1. Stai in piedi con la schiena dritta.\n2. Mantenendo le braccia dritte, portale davanti a te, alzale sopra la testa, poi continua il movimento dietro la schiena e giù fino alla posizione iniziale.\n3. Continua a far girare le braccia come descritto al punto 2.",
@@ -96,5 +96,7 @@
     "exerciseChinTuckFlexionRotation": "Tuffo del mento con flessione con rotazione",
     "stepsFloorDips": "Posizione di partenza:\nSiediti con le braccia dietro di te, sostenendo la schiena.\nLe tue dita dovrebbero puntare in avanti.\nLe ginocchia devono essere piegate, i piedi uniti.\n\nPassi:\n1. Sollevare i fianchi da terra, raddrizzando le braccia.\n2. Piegare i gomiti, portando i fianchi verso il basso.\n3. Raddrizzare le braccia, tornando alla posizione precedente.\n4. Ripetere i passi 2 e 3.\n\nNote:\nLa difficoltà dell'esercizio dipende da quanto in alto si portano le anche.",
     "exerciseShoulderShrug": "Scrollate di spalle",
-    "exerciseHighPlank": "Asse alto"
+    "exerciseHighPlank": "Asse alto",
+    "exercisePullUp": "Pull ups",
+    "exerciseKettlebellDeadlift": "Kettlebell Deadlifts"
 }
