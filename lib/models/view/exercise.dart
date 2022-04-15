@@ -29,10 +29,11 @@ class Exercise {
   final String name;
   final String description;
   final bool twoSided;
+  final bool animated;
   final ExerciseType type;
   final String? imageSlug;
-  final String? imageAuthor;
-  final int? imageLicense;
+  final String? descriptionLicense;
+  final String? imageLicense;
   final List<ExerciseStep>? steps;
 
   Exercise(
@@ -41,8 +42,9 @@ class Exercise {
       required this.description,
       required this.twoSided,
       required this.type,
+      required this.animated,
       this.imageSlug,
-      this.imageAuthor,
       this.imageLicense,
+      this.descriptionLicense,
       this.steps});
 }

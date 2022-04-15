@@ -144,7 +144,9 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                 triangleSeed: headOnly ? exercise.name.hashCode : 0,
                 imageSlug: imageSlug,
                 flipped: exercise.twoSided,
+                animated: exercise.animated,
               )), // todo show drag handle
+
               if (_infoShown)
                 Container(
                   color: widget.colorSwatch.getColor(FeeelShade.DARKER),

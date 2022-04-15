@@ -36,6 +36,7 @@ class ExerciseLayout extends StatelessWidget {
   final String? imageSlug;
   final String title;
   final bool headOnly;
+  final bool animated;
   final bool expanded;
   final bool paused;
   final bool onBreak;
@@ -50,6 +51,7 @@ class ExerciseLayout extends StatelessWidget {
       required this.imageSlug,
       required this.flipped,
       required this.headOnly,
+      required this.animated,
       required this.title,
       required this.expanded,
       required this.paused,
@@ -62,12 +64,10 @@ class ExerciseLayout extends StatelessWidget {
     String? imageAssetString =
         (imageSlug != null) ? AssetHelper.getImage(imageSlug!) : null;
 
-    if (headOnly) {
-      //todo should ideally only do this with animations, but not just for head illustrations!
-      final AssetImage? assetImage =
-          (imageAssetString != null) ? AssetImage(imageAssetString) : null;
-
-      assetImage?.evict();
+    if (animated) {
+      if (imageAssetString != null) {
+        AssetImage(imageAssetString).evict();
+      }
     }
 
     final bottomViewPadding = MediaQuery.of(context).viewPadding.bottom;
