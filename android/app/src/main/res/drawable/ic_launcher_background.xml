@@ -1,0 +1,120 @@
+<!-- Copyright (C) 2019–2021 Miroslav Mazel
+
+This file is part of Feeel.
+
+Feeel is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version. As an additional permission under
+section 7, you are allowed to distribute the software through an app
+store, even if that store has restrictive terms and conditions that
+are incompatible with the AGPL, provided that the source is also
+available under the AGPL with or without this permission through a
+channel without those restrictive terms and conditions.
+
+Feeel is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with Feeel.  If not, see <http://www.gnu.org/licenses/>. -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="108dp"
+        android:height="108dp"
+        android:viewportWidth="108.0"
+        android:viewportHeight="108.0">
+    <path
+        android:pathData="M39,52.4L39,79L45,65L39,52.4Z"
+        android:fillType="evenOdd"
+        android:fillColor="#0F55CF"/>
+    <path
+        android:pathData="M39,52.4L45,65L52,49L39,52.4Z"
+        android:fillType="evenOdd"
+        android:fillColor="#104FCA"/>
+    <path
+        android:pathData="M39,32L39,52.4L52,49L39,32Z"
+        android:fillType="evenOdd"
+        android:fillColor="#1244C2"/>
+    <path
+        android:pathData="M39,32L52,49L56,32L39,32Z"
+        android:fillType="evenOdd"
+        android:fillColor="#1343C1"/>
+    <path
+        android:pathData="M56,32.02L64,40L75,32L56,32.02Z"
+        android:fillType="evenOdd"
+        android:fillColor="#114AC6"/>
+    <path
+        android:pathData="M56,32L52,49L64,40L56,32Z"
+        android:fillType="evenOdd"
+        android:fillColor="#114AC6"/>
+    <path
+        android:pathData="M75,49L52,49L64,40L75,49Z"
+        android:fillType="evenOdd"
+        android:fillColor="#0F51CC"/>
+    <path
+        android:pathData="M52,49L45,65L75,49L52,49Z"
+        android:fillType="evenOdd"
+        android:fillColor="#0F54CE"/>
+    <path
+        android:pathData="M108,54L75,49L108,108L108,54Z"
+        android:fillType="evenOdd"
+        android:fillColor="#067AEC"/>
+    <path
+        android:pathData="M75,49L54,108L108,108L75,49Z"
+        android:fillType="evenOdd"
+        android:fillColor="#067BEC"/>
+    <path
+        android:pathData="M75,32L75,49L108,54L75,32Z"
+        android:fillType="evenOdd"
+        android:fillColor="#0C5ED6"/>
+    <path
+        android:pathData="M0,54L39,52.5L39,32L0,54Z"
+        android:fillType="evenOdd"
+        android:fillColor="#143DBC"/>
+    <path
+        android:pathData="M0,54L0,108L39,77L0,54Z"
+        android:fillType="evenOdd"
+        android:fillColor="#104FCA"/>
+    <path
+        android:pathData="M0,54L39,77L39,52.5L0,54Z"
+        android:fillType="evenOdd"
+        android:fillColor="#1148C5"/>
+    <path
+        android:pathData="M0,0L0,54L39,32L0,0Z"
+        android:fillType="evenOdd"
+        android:fillColor="#1927AC"/>
+    <path
+        android:pathData="M0,0L39,32L54,0L0,0Z"
+        android:fillType="evenOdd"
+        android:fillColor="#1927AC"/>
+    <path
+        android:pathData="M108,0L75,32L108,54L108,0Z"
+        android:fillType="evenOdd"
+        android:fillColor="#0E58D1"/>
+    <path
+        android:pathData="M45,65L54,108L75,49L45,65Z"
+        android:fillType="evenOdd"
+        android:fillColor="#0B65DB"/>
+    <path
+        android:pathData="M39,77L0,108L54,108L39,77Z"
+        android:fillType="evenOdd"
+        android:fillColor="#0A68DE"/>
+    <path
+        android:pathData="M54,0L75,32L108,0L54,0Z"
+        android:fillType="evenOdd"
+        android:fillColor="#143EBD"/>
+    <path
+        android:pathData="M45,65L39,77L54,108L45,65Z"
+        android:fillType="evenOdd"
+        android:fillColor="#0A68DE"/>
+    <path
+        android:pathData="M75,32L64,40L75,49L75,32Z"
+        android:fillType="evenOdd"
+        android:fillColor="#0F52CC"/>
+    <path
+        android:pathData="M54,0L39,32L75,32L54,0Z"
+        android:fillType="evenOdd"
+        android:fillColor="#1538B9"/>
+</vector>
