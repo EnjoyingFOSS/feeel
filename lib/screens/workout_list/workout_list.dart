@@ -110,8 +110,10 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                       )),
                   SliverPadding(
                       padding: EdgeInsets.only(bottom: 80),
-                      sliver: SliverList(
-                        //todo consider using SliverFixedExtentList in the future, but still allow large text
+                      sliver: SliverGrid(
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 600,
+                            mainAxisExtent: WorkoutListItem.extent),
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
                             WorkoutListed workoutListed = workoutsListed[index];

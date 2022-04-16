@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/view/workout_listed.dart';
@@ -30,6 +31,7 @@ import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class WorkoutListItem extends StatelessWidget {
+  static const extent = 112.0;
   final Widget? trailing;
   final WorkoutListed workoutListed;
 
@@ -53,7 +55,7 @@ class WorkoutListItem extends StatelessWidget {
                   }));
                 },
                 child: Container(
-                    height: 112,
+                    height: WorkoutListItem.extent,
                     width: double.infinity,
                     child: Stack(
                       children: [
@@ -74,11 +76,14 @@ class WorkoutListItem extends StatelessWidget {
                             child: Column(
                               children: [
                                 // Hero(tag: title + "\title/", child:
-                                Text(
-                                    (workoutListed.type == WorkoutType.DEFAULT)
-                                        ? title.i18n
-                                        : title,
-                                    style: theme.textTheme.headline6), //),
+                                AutoSizeText(
+                                  (workoutListed.type == WorkoutType.DEFAULT)
+                                      ? title.i18n
+                                      : title,
+                                  style: theme.textTheme.headline6,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ), //),
                                 Container(
                                   height: 8,
                                 ),
@@ -98,7 +103,8 @@ class WorkoutListItem extends StatelessWidget {
                             )),
                         if (trailing != null)
                           Align(
-                              alignment: AlignmentDirectional.centerEnd, child: trailing)
+                              alignment: AlignmentDirectional.centerEnd,
+                              child: trailing)
                       ],
                       alignment: AlignmentDirectional.centerStart,
                     )))
