@@ -60,6 +60,8 @@
     "txtDurationLong": "%1d min., %2d sec.",
     "txtDragToReorder": "Drag this handle to reorder exercises.",
     "txtNoExercises": "There are no exercises in this workout. :(",
+    "txtEnglishDescriptionLicense": "English description license",
+    "txtImageLicense": "Image license",
     "btnStartWorkout": "Start workout",
     "btnResumeWorkout": "Resume workout",
     "btnPreviousExercise": "Previous exercise",

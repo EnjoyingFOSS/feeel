@@ -101,7 +101,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                         return ExercisePickerRow(
                             checked: _chosenExerciseIndices.contains(i),
                             exercise: _exercises![i],
-                            color: fgColor,
+                            colorSwatch: widget.swatch,
                             onChanged: (chosen) {
                               setState(() {
                                 if (chosen != null && chosen) {

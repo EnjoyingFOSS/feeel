@@ -77,20 +77,21 @@ class ExerciseLayout extends StatelessWidget {
         headOnly ? Colors.transparent : colorSwatch.getColor(FeeelShade.DARK);
 
     return Column(children: [
-      headOnly
-          ? HeadExerciseContent(
-              color: colorSwatch.getColorByBrightness(
-                  FeeelShade.LIGHTEST, Theme.of(context).brightness),
-              onBreak: onBreak,
-              illustration: IllustrationWidget(
-                  imageAssetString: imageAssetString, flipped: flipped),
-              triangleSeed: triangleSeed,
-            )
-          : BodyExerciseContent(
-              color: bgColor,
-              onBreak: onBreak,
-              illustration: IllustrationWidget(
-                  imageAssetString: imageAssetString, flipped: flipped)),
+      Expanded(
+          child: headOnly
+              ? HeadExerciseContent(
+                  color: colorSwatch.getColorByBrightness(
+                      FeeelShade.LIGHTEST, Theme.of(context).brightness),
+                  onBreak: onBreak,
+                  illustration: IllustrationWidget(
+                      imageAssetString: imageAssetString, flipped: flipped),
+                  triangleSeed: triangleSeed,
+                )
+              : BodyExerciseContent(
+                  color: bgColor,
+                  onBreak: onBreak,
+                  illustration: IllustrationWidget(
+                      imageAssetString: imageAssetString, flipped: flipped))),
       Container(
         child: Container(
           height: 144,
