@@ -25,7 +25,6 @@ import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/duration_util.dart';
 import 'package:feeel/components/triangle.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/enums/workout_category.dart';
@@ -97,7 +96,8 @@ class WorkoutCover extends StatelessWidget {
                                           style: theme
                                               .appBarTheme.titleTextStyle
                                               ?.copyWith(color: fgColor)), //),
-                                      alignment: AlignmentDirectional.bottomStart,
+                                      alignment:
+                                          AlignmentDirectional.bottomStart,
                                     )),
                                     Container(
                                       height: 8,
@@ -134,6 +134,7 @@ class WorkoutCover extends StatelessWidget {
                           workoutExercise: workoutExercise,
                           duration: workoutExercise.duration ??
                               workout.exerciseDuration,
+                          colorSwatch: colorSwatch,
                         );
                     }
                   },
