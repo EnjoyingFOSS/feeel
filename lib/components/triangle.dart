@@ -28,7 +28,7 @@ class Triangle extends StatelessWidget {
   final Color color;
   final int seed;
 
-  Triangle({required this.color, this.seed = 0});
+  const Triangle({required this.color, this.seed = 0});
 
   @override
   Widget build(BuildContext context) {
