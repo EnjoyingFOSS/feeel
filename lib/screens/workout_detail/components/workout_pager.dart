@@ -22,6 +22,7 @@
 
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_page_types.dart';
+import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
@@ -57,6 +58,20 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (widget.workout.workoutExercises.length > 0) {
+      final imageSlug = widget.workout.workoutExercises[0].exercise.imageSlug;
+      if (imageSlug != null)
+        precacheImage(
+            Image.asset(AssetHelper.getImage(imageSlug))
+                .image, //todo precache inside workout page instead?
+            context);
+    }
+  }
+ 
+  @override
   Widget build(BuildContext context) {
     _workoutController.setOnFinish(() {
       Wakelock.disable();
@@ -85,7 +100,6 @@ class _WorkoutPagerState extends State<WorkoutPager> {
               FeeelShade.DARK, Theme.of(context).brightness),
         )
       ],
-      // physics: NeverScrollableScrollPhysics(),
     );
   }
 
