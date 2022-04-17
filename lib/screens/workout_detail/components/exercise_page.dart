@@ -142,7 +142,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                     _stage == WorkoutStage.COUNTDOWN,
                 triangleSeed: headOnly ? exercise.name.hashCode : 0,
                 imageSlug: imageSlug,
-                flipped: exercise.twoSided,
+                flipped: exercise.flipped,
                 animated: exercise.animated,
               )), // todo show drag handle
 

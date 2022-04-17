@@ -43,7 +43,7 @@ class ExercisePickerRow extends StatelessWidget {
           ? Container(
               width: 0,
             )
-          : (exercise.twoSided
+          : (exercise.flipped
               ? Flipped(child: Image.asset(AssetHelper.getThumb(imageSlug)))
               : Image.asset(AssetHelper.getThumb(imageSlug))),
       onChanged: onChanged,

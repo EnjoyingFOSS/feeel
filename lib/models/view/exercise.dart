@@ -28,7 +28,7 @@ class Exercise {
   final int dbId;
   final String name;
   final String description;
-  final bool twoSided;
+  final bool flipped;
   final bool animated;
   final ExerciseType type;
   final String? imageSlug;
@@ -40,7 +40,7 @@ class Exercise {
       {required this.dbId,
       required this.name,
       required this.description,
-      required this.twoSided,
+      required this.flipped,
       required this.type,
       required this.animated,
       this.imageSlug,

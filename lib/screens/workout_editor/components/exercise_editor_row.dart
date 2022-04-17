@@ -46,7 +46,7 @@ class ExerciseEditorRow extends StatelessWidget {
       Padding(
         child: imageSlug == null
             ? Container()
-            : workoutExercise.exercise.twoSided
+            : workoutExercise.exercise.flipped
                 ? Flipped(
                     child: Image.asset(AssetHelper.getThumb(imageSlug),
                         width: 72, height: 72))

@@ -127,7 +127,7 @@ class ExerciseSheet extends StatelessWidget {
                                                 imageAssetString:
                                                     AssetHelper.getImage(
                                                         imageSlug),
-                                                flipped: exercise.twoSided),
+                                                flipped: exercise.flipped),
                                             triangleSeed:
                                                 exercise.name.hashCode)),
                                   ])
@@ -139,7 +139,7 @@ class ExerciseSheet extends StatelessWidget {
                                         illustration: IllustrationWidget(
                                             imageAssetString:
                                                 AssetHelper.getImage(imageSlug),
-                                            flipped: exercise.twoSided)))))),
+                                            flipped: exercise.flipped)))))),
               Container(
                 padding: padding,
                 color: bgColor,

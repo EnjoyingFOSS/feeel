@@ -1154,7 +1154,7 @@ class DBHelper {
         dbId: exerciseId,
         name: map[_NAME_COL] as String,
         description: map[_DESCRIPTION_COL] as String,
-        twoSided: map[_FLIPPED_COL] == 1,
+        flipped: map[_FLIPPED_COL] == 1,
         type: ExerciseType.values[map[_TYPE_COL] as int? ?? 0],
         imageSlug: map[_IMAGE_SLUG_COL] as String,
         imageLicense: map[_IMAGE_LICENSE_INFO_COL] as String?,
