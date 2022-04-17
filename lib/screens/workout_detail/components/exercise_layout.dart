@@ -70,18 +70,22 @@ class ExerciseLayout extends StatelessWidget {
       }
     }
 
+    final brightness = Theme.of(context).brightness;
     final bottomViewPadding = MediaQuery.of(context).viewPadding.bottom;
     final fgColor =
         headOnly ? colorSwatch.getColor(FeeelShade.DARK) : Colors.white;
-    final bgColor =
-        headOnly ? Colors.transparent : colorSwatch.getColor(FeeelShade.DARK);
+    final bgColor = headOnly
+        ? Colors.transparent
+        : (brightness == Brightness.dark
+            ? colorSwatch.getColor(FeeelShade.DARKER)
+            : colorSwatch.getColor(FeeelShade.DARK));
 
     return Column(children: [
       Expanded(
           child: headOnly
               ? HeadExerciseContent(
                   color: colorSwatch.getColorByBrightness(
-                      FeeelShade.LIGHTEST, Theme.of(context).brightness),
+                      FeeelShade.LIGHTEST, brightness),
                   onBreak: onBreak,
                   illustration: IllustrationWidget(
                       imageAssetString: imageAssetString, flipped: flipped),

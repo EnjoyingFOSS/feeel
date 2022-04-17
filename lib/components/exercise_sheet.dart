@@ -69,11 +69,12 @@ class ExerciseSheet extends StatelessWidget {
         final imageSlug = exercise.imageSlug;
         final headOnly = exercise.type == ExerciseType.HEAD;
 
-        final headerFgColor =
-            headOnly ? colorSwatch.getColor(FeeelShade.DARK) : Colors.white;
-        final headerBgColor = headOnly
-            ? Theme.of(context).colorScheme.surface
+        final brightness = Theme.of(context).brightness;
+        final fgColor = Colors.white;
+        final bgColor = brightness == Brightness.dark
+            ? colorSwatch.getColor(FeeelShade.DARKER)
             : colorSwatch.getColor(FeeelShade.DARK);
+        final licenseColor = fgColor.withAlpha(192);
 
         final padding = EdgeInsets.fromLTRB(
             MediaQuery.of(context).padding.left + 16,
@@ -83,15 +84,8 @@ class ExerciseSheet extends StatelessWidget {
 
         final markdownLicenseStyle =
             MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-                p: TextStyle(
-                    fontSize: 12,
-                    color:
-                        Theme.of(context).colorScheme.onSurface.withAlpha(160)),
-                a: TextStyle(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .onSurface
-                        .withAlpha(160)));
+                p: TextStyle(fontSize: 12, color: licenseColor),
+                a: TextStyle(color: licenseColor));
 
         final hasDescriptionLicense = exercise.descriptionLicense != null;
         final hasImageLicense = exercise.imageLicense != null;
@@ -119,7 +113,7 @@ class ExerciseSheet extends StatelessWidget {
                                           heightFactor: 0.372,
                                           widthFactor: 1.0,
                                           child: Container(
-                                            color: headerBgColor,
+                                            color: bgColor,
                                           ),
                                         )),
                                     Center(
@@ -127,8 +121,7 @@ class ExerciseSheet extends StatelessWidget {
                                             color: colorSwatch
                                                 .getColorByBrightness(
                                                     FeeelShade.LIGHTEST,
-                                                    Theme.of(context)
-                                                        .brightness),
+                                                    brightness),
                                             onBreak: false,
                                             illustration: IllustrationWidget(
                                                 imageAssetString:
@@ -140,7 +133,7 @@ class ExerciseSheet extends StatelessWidget {
                                   ])
                                 : Center(
                                     child: BodyExerciseContent(
-                                        color: headerBgColor,
+                                        color: bgColor,
                                         onBreak: false,
                                         squareRatio: true,
                                         illustration: IllustrationWidget(
@@ -149,7 +142,7 @@ class ExerciseSheet extends StatelessWidget {
                                             flipped: exercise.twoSided)))))),
               Container(
                 padding: padding,
-                color: headerBgColor,
+                color: bgColor,
                 width: double.infinity,
                 child: Text(
                   exercise.name.i18n,
@@ -157,32 +150,37 @@ class ExerciseSheet extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.w900,
-                      color: headerFgColor),
+                      color: fgColor),
                 ),
               ),
               _RowContainer(
-                  padding: padding, child: Text(exercise.description.i18n)),
+                padding: padding,
+                child: Text(
+                  exercise.description.i18n,
+                  style: TextStyle(color: fgColor),
+                ),
+                bgColor: bgColor,
+              ),
               if (hasDescriptionLicense ||
                   hasImageLicense) //todo hide licenses under an expandable button
                 _RowContainer(
                     padding: padding.copyWith(top: 0),
+                    bgColor: bgColor,
                     child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurface
-                                  .withAlpha(48),
-                              height: 1),
+                          Container(color: fgColor.withAlpha(48), height: 1),
                           Container(
                             height: 16,
                           ),
                           if (hasDescriptionLicense)
                             Text(
                               "English description license".i18n.toUpperCase(),
-                              style: Theme.of(context).textTheme.overline,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .overline
+                                  ?.copyWith(color: licenseColor),
                             ),
                           if (hasDescriptionLicense)
                             MarkdownBody(
@@ -194,7 +192,10 @@ class ExerciseSheet extends StatelessWidget {
                             ),
                           if (hasImageLicense)
                             Text("Image license".i18n.toUpperCase(),
-                                style: Theme.of(context).textTheme.overline),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .overline
+                                    ?.copyWith(color: licenseColor)),
                           if (hasImageLicense)
                             MarkdownBody(
                                 data: exercise.imageLicense ?? "",
@@ -203,7 +204,7 @@ class ExerciseSheet extends StatelessWidget {
             ])),
             SliverFillRemaining(
               hasScrollBody: false,
-              child: Container(color: Theme.of(context).colorScheme.surface),
+              child: Container(color: bgColor),
             )
           ],
         );
@@ -215,15 +216,20 @@ class ExerciseSheet extends StatelessWidget {
 class _RowContainer extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;
+  final Color bgColor;
 
-  const _RowContainer({Key? key, required this.child, required this.padding})
+  const _RowContainer(
+      {Key? key,
+      required this.child,
+      required this.padding,
+      required this.bgColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: padding,
-      color: Theme.of(context).colorScheme.surface,
+      color: bgColor,
       width: double.infinity,
       child: child,
     );
