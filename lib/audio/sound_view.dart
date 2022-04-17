@@ -43,7 +43,7 @@ class SoundView implements WorkoutView {
   }
 
   @override
-  void onCount(int seconds) {
+  void onCount(int seconds, _) {
     if (seconds <= AudioHelper.COUNTDOWN)
       _player.play(SOUND_TICK, mode: PlayerMode.LOW_LATENCY);
   }
@@ -62,8 +62,8 @@ class SoundView implements WorkoutView {
   void onPlay() {}
 
   @override
-  void onStart(
-      int exercisePos, WorkoutExercise nextExercise, int defaultBreakDuration) {}
+  void onStart(int exercisePos, WorkoutExercise nextExercise,
+      int defaultBreakDuration) {}
 
   void onFinish() {
     _player.play(SOUND_FINISH, mode: PlayerMode.LOW_LATENCY);

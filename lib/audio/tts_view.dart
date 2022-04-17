@@ -23,6 +23,7 @@
 import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/controllers/workout_view.dart';
+import 'package:feeel/enums/workout_stage.dart';
 import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -46,11 +47,11 @@ class TTSView implements WorkoutView {
   }
 
   @override
-  void onCount(int seconds) {
+  void onCount(int seconds, WorkoutStage stage) {
     //todo eliminate conflicts with step content
     if (seconds <= AudioHelper.COUNTDOWN)
       TTSHelper.tts.speak(seconds.toString());
-    else if (seconds == _halfTime) {
+    else if (seconds == _halfTime && stage == WorkoutStage.EXERCISE) {
       TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst(
           "%d", "$seconds")); //todo internationalize with declension
     }

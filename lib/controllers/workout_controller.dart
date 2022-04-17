@@ -116,7 +116,7 @@ class WorkoutController {
     _timer = WorkoutTimer(0, breakpoints: _workoutMeta.getCurStepDurations(),
         onSecondDecrease: () {
       //todo initTime seems useless
-      for (var view in _views) view?.onCount(_timer.getTimeRemaining());
+      for (var view in _views) view?.onCount(_timer.getTimeRemaining(), _stage);
     }, onBreakpoint: () {
       _workoutMeta.nextStep();
       _renderLaterStep();
@@ -311,7 +311,7 @@ class WorkoutController {
   }
 
   void _renderSeconds() {
-    for (var view in _views) view?.onCount(_timer.getTimeRemaining());
+    for (var view in _views) view?.onCount(_timer.getTimeRemaining(), _stage);
   }
 
   // setters

@@ -32,7 +32,6 @@ import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_detail/components/exercise_layout.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
@@ -255,7 +254,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onCount(int seconds) {
+  void onCount(int seconds, _) {
     setState(() {
       _seconds = seconds;
     });
