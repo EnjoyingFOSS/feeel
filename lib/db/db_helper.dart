@@ -252,48 +252,27 @@ class DBHelper {
           ")");
 
   Future<void> _addDefaultWorkouts(Database db) async {
-    await _createWorkoutFromList(
+    await _createWorkoutFromTupleList(
       db,
       "Scientific 7 minute workout",
       WorkoutCategory.STRENGTH,
       [
-        _Exercises.JUMPING_JACKS,
-        _Exercises.WALL_SIT,
-        _Exercises.PUSH_UPS,
-        _Exercises.AB_CRUNCHES,
-        _Exercises.STEP_UPS,
-        _Exercises.SQUATS,
-        _Exercises.CHAIR_DIPS,
-        _Exercises.PLANK,
-        _Exercises.HIGH_KNEES,
-        _Exercises.LUNGES,
-        _Exercises.PUSH_UP_ROTATIONS,
-        _Exercises.SIDE_PLANK_L,
-        _Exercises.SIDE_PLANK_R,
+        TimingDefinition(_Exercises.JUMPING_JACKS),
+        TimingDefinition(_Exercises.WALL_SIT),
+        TimingDefinition(_Exercises.PUSH_UPS),
+        TimingDefinition(_Exercises.AB_CRUNCHES),
+        TimingDefinition(_Exercises.STEP_UPS),
+        TimingDefinition(_Exercises.SQUATS),
+        TimingDefinition(_Exercises.CHAIR_DIPS),
+        TimingDefinition(_Exercises.PLANK),
+        TimingDefinition(_Exercises.HIGH_KNEES),
+        TimingDefinition(_Exercises.LUNGES),
+        TimingDefinition(_Exercises.PUSH_UP_ROTATIONS),
+        TimingDefinition(_Exercises.SIDE_PLANK_L, exerciseDuration: 15),
+        TimingDefinition(_Exercises.SIDE_PLANK_R,
+            breakDuration: 5, exerciseDuration: 15)
       ],
     );
-
-    // await _createWorkoutFromTupleList(
-    //   db,
-    //   "Scientific 7 minute workout",
-    //   WorkoutCategory.STRENGTH,
-    //   [
-    //     TimingDefinition(_Exercises.JUMPING_JACKS),
-    //     TimingDefinition(_Exercises.WALL_SIT),
-    //     TimingDefinition(_Exercises.PUSH_UPS),
-    //     TimingDefinition(_Exercises.AB_CRUNCHES),
-    //     TimingDefinition(_Exercises.STEP_UPS),
-    //     TimingDefinition(_Exercises.SQUATS),
-    //     TimingDefinition(_Exercises.CHAIR_DIPS),
-    //     TimingDefinition(_Exercises.PLANK),
-    //     TimingDefinition(_Exercises.HIGH_KNEES),
-    //     TimingDefinition(_Exercises.LUNGES),
-    //     TimingDefinition(_Exercises.PUSH_UP_ROTATIONS),
-    //     TimingDefinition(_Exercises.SIDE_PLANK_L, exerciseDuration: 15),
-    //     TimingDefinition(_Exercises.SIDE_PLANK_R,
-    //         breakDuration: 5, exerciseDuration: 15)
-    //   ],
-    // );
 
     await _createWorkoutFromList(
       db,
