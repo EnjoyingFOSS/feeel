@@ -1,19 +1,19 @@
 Feeel
 =====
 
-Feeel is an open-source workout app for doing simple at-home exercises.
-
-This is a rewrite of the [original app](https://gitlab.com/enjoyingfoss/feeel-legacy) in Flutter, to make development easier and allow for an iOS version. Still free as in freedom.
+Feeel is an open-source workout app for doing simple at-home exercises. It's written in Flutter and released for Android.
 
 Contribute
 ====
 
 ANYONE can contribute:
-- If you have a phone with a camera (or an actual camera), you can **contribute exercise photos**. (These don't need to look particularly good. Even lower resolution living room shots are fine.)
-- If you have a computer, you can **turn exercise photos into low-poly versions** using the FOSStriangulator app.
-- If you know a different language, you can **translate**.
+- If you have a phone with a camera (or an actual camera), you can **[contribute exercise photos](https://gitlab.com/enjoyingfoss/feeel/-/issues/10)**. (These don't need to look particularly good. Even lower resolution living room shots are fine.)
+- If you have a computer, you can **[turn exercise photos into low-poly versions](https://gitlab.com/enjoyingfoss/feeel/-/wikis/Processing-photos)** using the FOSStriangulator app.
+- If you know a different language, you can **[translate](https://hosted.weblate.org/projects/feeel/)**.
+- If you notice a bug or want a new feature, create an **[issue report](https://gitlab.com/enjoyingfoss/feeel/-/issues/new)**.
 - UX designers can help **design UX** for new features.
-- UI designers can help with **visuals and animations**
+- UI designers can help with **visuals and animations**.
+- Developers can take on [an issue](https://gitlab.com/enjoyingfoss/feeel/-/issues) and submit **a merge request** to solve it.
 
 See CONTRIBUTING.md for more details.
 
