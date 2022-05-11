@@ -11,6 +11,7 @@ ANYONE can contribute:
 - If you have a computer, you can **[turn exercise photos into low-poly versions](https://gitlab.com/enjoyingfoss/feeel/-/wikis/Processing-photos)** using the FOSStriangulator app.
 - If you know a different language, you can **[translate](https://hosted.weblate.org/projects/feeel/)**.
 - If you notice a bug or want a new feature, create an **[issue report](https://gitlab.com/enjoyingfoss/feeel/-/issues/new)**.
+- If you have an Apple Developer account, you can **[release the app for iOS](https://gitlab.com/enjoyingfoss/feeel/-/issues/52)**.
 - UX designers can help **design UX** for new features.
 - UI designers can help with **visuals and animations**.
 - Developers can take on [an issue](https://gitlab.com/enjoyingfoss/feeel/-/issues) and submit **a merge request** to solve it.
