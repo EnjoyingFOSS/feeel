@@ -20,7 +20,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/controllers/workout_controller.dart';
+import 'package:feeel/components/exercise_sheet.dart';
+import 'package:flutter/services.dart';
+import '../../../controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/enums/exercise_type.dart';
@@ -55,10 +57,7 @@ class ExercisePage extends StatefulWidget {
 
 class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   bool _paused = false;
-  bool _infoShown = false; //todo redesign with DraggableScrollableSheet
   late int _seconds;
-  String? _descriptionText;
-  double? _dragYStart;
   int _exercisePos = 0;
   int _stepPos = 0;
   WorkoutStage _stage = WorkoutStage.BREAK;
@@ -83,106 +82,97 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
         ? exercise.steps![_stepPos].imageSlug
         : exercise.imageSlug;
     final headOnly = exercise.type == ExerciseType.HEAD;
-    return GestureDetector(
-      child: Material(
-          color: theme.backgroundColor,
-          child: Column(
-            children: <Widget>[
-              ExerciseHeader(
-                  color: themeDarkColor,
-                  paused: _paused,
-                  counterText: _seconds.toString()),
-              _paused
-                  ? Row(children: <Widget>[
-                      Expanded(
-                          child: IconButton(
-                        iconSize: 32,
+    return
+        // CallbackShortcuts(
+        //     //todo doesn't always activate!!!
+        //     bindings: {
+        //       const SingleActivator(LogicalKeyboardKey.space): () => setState(() {
+        //             widget.workoutController.togglePlayPause();
+        //           })
+        //     },
+        //     child:
+        GestureDetector(
+            child: Material(
+                color: theme.backgroundColor,
+                child: Column(
+                  children: <Widget>[
+                    ExerciseHeader(
                         color: themeDarkColor,
-                        tooltip: "Previous exercise".i18n,
-                        icon: Icon(Icons.skip_previous),
-                        onPressed: () {
-                          widget.workoutController.skipToPrevious();
-                        },
-                      )),
-                      Expanded(
-                        child: IconButton(
-                            iconSize: 64,
-                            color: themeDarkColor,
-                            tooltip: "Resume workout".i18n,
-                            icon: Icon(Icons.play_arrow),
-                            onPressed: () {
-                              widget.workoutController.togglePlayPause();
-                            }),
-                      ),
-                      Expanded(
-                        child: IconButton(
-                            iconSize: 32,
-                            color: themeDarkColor,
-                            tooltip: "Next exercise".i18n,
-                            icon: Icon(
-                              Icons.skip_next,
+                        paused: _paused,
+                        counterText: _seconds.toString()),
+                    _paused
+                        ? Row(children: <Widget>[
+                            Expanded(
+                                child: IconButton(
+                              iconSize: 32,
+                              color: themeDarkColor,
+                              tooltip: "Previous exercise".i18n,
+                              icon: Icon(Icons.skip_previous),
+                              onPressed: () {
+                                widget.workoutController.skipToPrevious();
+                              },
+                            )),
+                            Expanded(
+                              child: IconButton(
+                                  iconSize: 64,
+                                  color: themeDarkColor,
+                                  tooltip: "Resume workout".i18n,
+                                  icon: Icon(Icons.play_arrow),
+                                  onPressed: () {
+                                    widget.workoutController.togglePlayPause();
+                                  }),
                             ),
-                            onPressed: () {
-                              widget.workoutController.skipToNext();
-                            }),
-                      )
-                    ])
-                  : Text(
-                      "Tap for controls".i18n,
-                      style: TextStyle(color: themeDarkColor),
-                    ),
-              Expanded(
-                  child: ExerciseLayout(
-                expanded: _infoShown,
-                paused: _paused,
-                colorSwatch: widget.colorSwatch,
-                title: exercise.name.i18n,
-                headOnly: headOnly,
-                onBreak: _stage == WorkoutStage.BREAK ||
-                    _stage == WorkoutStage.COUNTDOWN,
-                triangleSeed: headOnly ? exercise.name.hashCode : 0,
-                imageSlug: imageSlug,
-                flipped: exercise.flipped,
-                animated: exercise.animated,
-              )), // todo show drag handle
+                            Expanded(
+                              child: IconButton(
+                                  iconSize: 32,
+                                  color: themeDarkColor,
+                                  tooltip: "Next exercise".i18n,
+                                  icon: Icon(
+                                    Icons.skip_next,
+                                  ),
+                                  onPressed: () {
+                                    widget.workoutController.skipToNext();
+                                  }),
+                            )
+                          ])
+                        : Text(
+                            "Tap for controls".i18n,
+                            style: TextStyle(color: themeDarkColor),
+                          ),
+                    Expanded(
+                        child: ExerciseLayout(
+                      paused: _paused,
+                      colorSwatch: widget.colorSwatch,
+                      title: exercise.name.i18n,
+                      headOnly: headOnly,
+                      onBreak: _stage == WorkoutStage.BREAK ||
+                          _stage == WorkoutStage.COUNTDOWN,
+                      onLearn: () => onLearn(exercise),
+                      triangleSeed: headOnly ? exercise.name.hashCode : 0,
+                      imageSlug: imageSlug,
+                      flipped: exercise.flipped,
+                      animated: exercise.animated,
+                    )), // todo show drag handle
+                  ],
+                )),
+            onTap: () {
+              //todo setstate
+              setState(() {
+                widget.workoutController.togglePlayPause();
+              });
+            },
+            //todo onHorizontalDrag
+            onVerticalDragStart: (_) => onLearn(exercise)); //);
+  }
 
-              if (_infoShown)
-                Container(
-                  color: widget.colorSwatch.getColor(FeeelShade.DARKER),
-                  width: double.infinity,
-                  height: 200, //todo style, height
-                  child: _descriptionText != null
-                      ? SingleChildScrollView(
-                          child: Padding(
-                              padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
-                              child: Text(_descriptionText!,
-                                  style: TextStyle(
-                                      fontSize: 16, color: Colors.white))))
-                      : Container(),
-                )
-            ],
-          )),
-      onTap: () {
-        //todo setstate
-        setState(() {
-          widget.workoutController.togglePlayPause();
-        });
-      },
-      //todo onHorizontalDrag
-      onVerticalDragStart: (DragStartDetails details) {
-        _dragYStart = details.globalPosition.dy;
-      },
-      onVerticalDragUpdate: (DragUpdateDetails details) {
-        if (_dragYStart != null)
-          _infoShown = _dragYStart! > details.globalPosition.dy;
-      },
-      // todo ? onVerticalDragCancel: ,
-      onVerticalDragEnd: (DragEndDetails details) {
-        _dragYStart = null;
-        setState(() {});
-      },
-      //todo drag animation
-    );
+  void onLearn(Exercise exercise) {
+    if (!_paused &&
+        (_stage == WorkoutStage.BREAK || _stage == WorkoutStage.COUNTDOWN)) {
+      widget.workoutController.togglePlayPause();
+    }
+    if (_paused) {
+      ExerciseSheet.showSheet(context, exercise, widget.colorSwatch);
+    }
   }
 
   @override
@@ -195,7 +185,6 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void onStart(int exercisePos, WorkoutExercise nextExercise, int duration) {
     setState(() {
       _seconds = duration;
-      _descriptionText = nextExercise.exercise.description.i18n;
       _exercisePos = exercisePos;
       _stage = WorkoutStage.BREAK;
     });
@@ -205,7 +194,6 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void onBreak(int exercisePos, WorkoutExercise nextExercise, int duration) {
     setState(() {
       _seconds = duration;
-      _descriptionText = nextExercise.exercise.description.i18n;
       _exercisePos = exercisePos;
       _stage = WorkoutStage.BREAK;
     });
@@ -221,7 +209,6 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
         _preloadUpcomingExercise();
 
       _seconds = duration;
-      _descriptionText = exercise.exercise.description.i18n;
       _exercisePos = exercisePos;
       _stage = WorkoutStage.EXERCISE;
       _stepPos = 0; //todo should I do this for the break too?

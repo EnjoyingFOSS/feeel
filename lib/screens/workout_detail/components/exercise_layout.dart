@@ -22,6 +22,7 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:feeel/db/asset_helper.dart';
+import 'package:feeel/screens/workout_detail/components/learn_info.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/components/illustration_widget.dart';
@@ -37,11 +38,11 @@ class ExerciseLayout extends StatelessWidget {
   final String title;
   final bool headOnly;
   final bool animated;
-  final bool expanded;
   final bool paused;
   final bool onBreak;
   final int triangleSeed;
   final bool flipped;
+  final void Function() onLearn;
 
   final FeeelSwatch colorSwatch;
 
@@ -53,9 +54,9 @@ class ExerciseLayout extends StatelessWidget {
       required this.headOnly,
       required this.animated,
       required this.title,
-      required this.expanded,
       required this.paused,
       required this.onBreak,
+      required this.onLearn,
       this.triangleSeed = 0})
       : super(key: key);
 
@@ -88,7 +89,9 @@ class ExerciseLayout extends StatelessWidget {
                       FeeelShade.LIGHTEST, brightness),
                   onBreak: onBreak,
                   illustration: IllustrationWidget(
-                      imageAssetString: imageAssetString, flipped: flipped),
+                    imageAssetString: imageAssetString,
+                    flipped: flipped,
+                  ),
                   triangleSeed: triangleSeed,
                 )
               : BodyExerciseContent(
@@ -98,13 +101,9 @@ class ExerciseLayout extends StatelessWidget {
                       imageAssetString: imageAssetString, flipped: flipped))),
       Container(
         child: Container(
-          height: 144,
+          height: 152,
           alignment: Alignment.bottomCenter,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Icon(
-              expanded ? Icons.expand_more : Icons.expand_less,
-              color: paused ? fgColor : fgColor.withAlpha(127),
-            ),
             onBreak
                 ? Column(children: [
                     Text("Next up:".i18n,
@@ -132,7 +131,19 @@ class ExerciseLayout extends StatelessWidget {
                     minFontSize: 14,
                     maxLines:
                         2, //todo use a fixed height (wrap with Expanded and Align for centering) instead once I implement the description sheet (and get rid of the up arrow that way)
-                    overflow: TextOverflow.ellipsis)
+                    overflow: TextOverflow.ellipsis),
+            Container(
+              height: 8,
+            ),
+            if (paused || onBreak)
+              LearnInfo(
+                onTap: onLearn,
+                bgColor: headOnly
+                    ? (brightness == Brightness.dark
+                        ? colorSwatch.getColor(FeeelShade.DARKER)
+                        : colorSwatch.getColor(FeeelShade.DARK))
+                    : const Color(0x26000000),
+              ),
           ]), //todo make illustrationTitle responsive
           width: double.infinity,
         ),
