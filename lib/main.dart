@@ -34,7 +34,10 @@ import 'i18n/locale_helper.dart';
 import 'theming/feeel_themes.dart';
 import 'package:window_size/window_size.dart';
 
-void main() => runApp(Feeel());
+void main() {
+  // debugRepaintRainbowEnabled = true; //todo debug
+  runApp(Feeel());
+}
 
 class Feeel extends StatelessWidget {
   const Feeel({Key? key}) : super(key: key);
@@ -50,7 +53,7 @@ class Feeel extends StatelessWidget {
     }
 
     WidgetsBinding.instance
-        ?.addPostFrameCallback((_) => _onWidgetBuilt(context));
+        .addPostFrameCallback((_) => _onWidgetBuilt(context));
 
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));

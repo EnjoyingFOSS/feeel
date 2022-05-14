@@ -139,7 +139,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                     });
               } else {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: const CircularProgressIndicator(),
                 );
               }
             }));

@@ -33,7 +33,7 @@ class DisclaimerSheet extends StatelessWidget {
   const DisclaimerSheet({Key? key}) : super(key: key);
 
   static void showSheet(BuildContext context) {
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       showModalBottomSheet<void>(
           isDismissible: false,
           enableDrag: false,
