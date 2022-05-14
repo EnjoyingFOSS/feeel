@@ -21,13 +21,17 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/db_helper.dart';
-import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_listed.dart';
-import 'package:feeel/screens/workout_detail/components/workout_pager.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
-import 'package:feeel/i18n/translations.dart';
+
+import 'package:feeel/enums/workout_category.dart';
+
+import 'components/empty_workout.dart';
+import 'components/workout_header.dart';
+import 'components/workout_pager.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
   final WorkoutListed workoutListed;
@@ -53,6 +57,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colorSwatch = widget.workoutListed.category.colorSwatch;
     return WillPopScope(
         onWillPop: () async {
           Wakelock.disable();
@@ -64,45 +69,37 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     Workout workout = snapshot.data!;
-
-                    if (workout.workoutExercises.length <= 0) {
-                      return Center(
-                          child: Column(
-                        children: [
-                          Text("There are no exercises in this workout. :(".i18n),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              TextButton(
-                                child: Text("Back to workout list".i18n),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              if (workout.type == WorkoutType.CUSTOM)
-                                ElevatedButton(
-                                  child: Text("Delete this workout".i18n),
-                                  onPressed: () {
-                                    if (workout.dbId != null) {
-                                      DBHelper.db
-                                          .deleteCustomWorkout(workout.dbId!);
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                )
-                            ],
-                          )
-                        ],
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                      ));
+                    if (workout.workoutExercises.length > 0) {
+                      return WorkoutPager(
+                        workout: workout,
+                        workoutListed: widget.workoutListed,
+                      );
                     } else {
-                      return WorkoutPager(workout: workout);
+                      return SafeArea(
+                          child: Column(children: [
+                        //todo make scrollable (for landscape)
+                        WorkoutHeader(
+                            workoutListed: widget.workoutListed,
+                            colorSwatch: colorSwatch),
+                        Flexible(child: EmptyWorkout(workout: workout))
+                      ]));
                     }
                   } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return SafeArea(
+                        child: Column(children: [
+                      //todo make scrollable (for landscape)
+                      WorkoutHeader(
+                        workoutListed: widget.workoutListed,
+                        colorSwatch: colorSwatch,
+                      ),
+                      Flexible(
+                          child: Center(
+                        child: CircularProgressIndicator(
+                          color: colorSwatch.getColorByBrightness(
+                              FeeelShade.DARK, Theme.of(context).brightness),
+                        ),
+                      ))
+                    ]));
                   }
                 })));
   }
