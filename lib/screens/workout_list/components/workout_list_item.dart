@@ -30,6 +30,8 @@ import 'package:feeel/components/triangle.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
+import '../../../utils/hero_util.dart';
+
 class WorkoutListItem extends StatelessWidget {
   static const extent = 112.0;
   final Widget? trailing;
@@ -40,8 +42,7 @@ class WorkoutListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title = workoutListed.title;
-    final subtitle = workoutListed.category.translationKey.i18n;
+    final origTitle = workoutListed.title;
     final theme = Theme.of(context);
 
     return Material(
@@ -64,39 +65,56 @@ class WorkoutListItem extends StatelessWidget {
                             height: 96,
                             margin: EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 0),
-                            // todo child: Hero(tag: title + "\triangle/",
-                            child: Triangle(
-                              color: workoutListed.category.colorSwatch
-                                  .getColorByBrightness(
-                                      FeeelShade.LIGHTEST, theme.brightness),
-                              seed: title.hashCode,
-                            )), //),
+                            child: Hero(
+                                tag: HeroUtil.getWorkoutHero(
+                                    HeroType.Illustration,
+                                    workoutListed.dbId,
+                                    workoutListed.type),
+                                child: Triangle(
+                                  color: workoutListed.category.colorSwatch
+                                      .getColorByBrightness(FeeelShade.LIGHTEST,
+                                          theme.brightness),
+                                  seed: origTitle.hashCode,
+                                ))),
                         Padding(
                             padding: EdgeInsets.fromLTRB(16, 8, 40, 8),
                             child: Column(
                               children: [
-                                // Hero(tag: title + "\title/", child:
-                                AutoSizeText(
-                                  (workoutListed.type == WorkoutType.DEFAULT)
-                                      ? title.i18n
-                                      : title,
-                                  style: theme.textTheme.headline6,
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                ), //),
+                                Hero(
+                                    tag: HeroUtil.getWorkoutHero(HeroType.Title,
+                                        workoutListed.dbId, workoutListed.type),
+                                    child: Material(
+                                      //todo workaround for https://github.com/flutter/flutter/issues/30647
+                                      type: MaterialType.transparency,
+                                      child: AutoSizeText(
+                                        (workoutListed.type ==
+                                                WorkoutType.DEFAULT)
+                                            ? origTitle.i18n
+                                            : origTitle,
+                                        style: theme.textTheme.headline6,
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    )),
                                 Container(
                                   height: 8,
                                 ),
-                                // Hero(tag: subtitle + "\subtitle/", child:
-                                Text(
-                                  subtitle,
-                                  style: theme.textTheme.subtitle2?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: workoutListed.category.colorSwatch
-                                          .getColorByBrightness(
-                                              FeeelShade.DARKER,
-                                              theme.brightness)),
-                                ), //)
+                                Hero(
+                                  tag: HeroUtil.getWorkoutHero(
+                                      HeroType.Subtitle,
+                                      workoutListed.dbId,
+                                      workoutListed.type),
+                                  child: Text(
+                                    workoutListed.category.translationKey.i18n,
+                                    style: theme.textTheme.subtitle2?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: workoutListed
+                                            .category.colorSwatch
+                                            .getColorByBrightness(
+                                                FeeelShade.DARKER,
+                                                theme.brightness)),
+                                  ),
+                                )
                               ],
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
