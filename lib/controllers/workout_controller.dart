@@ -116,7 +116,8 @@ class WorkoutController {
     _timer = WorkoutTimer(0, breakpoints: _workoutMeta.getCurStepDurations(),
         onSecondDecrease: () {
       //todo initTime seems useless
-      for (var view in _views) view?.onCount(_timer.getTimeRemaining(), _stage);
+      for (final view in _views)
+        view?.onCount(_timer.getTimeRemaining(), _stage);
     }, onBreakpoint: () {
       _workoutMeta.nextStep();
       _renderLaterStep();
@@ -139,7 +140,6 @@ class WorkoutController {
           }
           break;
         case WorkoutStage.END:
-          print("Timer active in END stage"); //todo should stop!
           break;
       }
     });
@@ -266,18 +266,18 @@ class WorkoutController {
   void _renderStage() {
     switch (_stage) {
       case WorkoutStage.READY:
-        for (var view in _views)
+        for (final view in _views)
           view?.onStart(
               _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getStartDuration());
         break;
       case WorkoutStage.COUNTDOWN:
-        for (var view in _views)
+        for (final view in _views)
           view?.onCountdown(_workoutMeta.getExercisePos());
         break;
       case WorkoutStage.EXERCISE:
-        for (var view in _views)
+        for (final view in _views)
           view?.onExercise(
               _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
@@ -285,33 +285,33 @@ class WorkoutController {
               _workoutMeta.getCurExerciseDuration());
         break;
       case WorkoutStage.BREAK:
-        for (var view in _views)
+        for (final view in _views)
           view?.onBreak(
               _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getCurBreakDuration());
         break;
       case WorkoutStage.END:
-        for (var onFinish in _onFinishes) if (onFinish != null) onFinish();
+        for (final onFinish in _onFinishes) if (onFinish != null) onFinish();
         break;
     }
   }
 
   void _renderPausePlay() {
     if (_timer.isRunning())
-      for (var view in _views) view?.onPlay();
+      for (final view in _views) view?.onPlay();
     else
-      for (var view in _views) view?.onPause();
+      for (final view in _views) view?.onPause();
   }
 
   void _renderLaterStep() {
     final step = _workoutMeta.getCurStep();
     if (step != null)
-      for (var view in _views) view?.onLaterStep(_workoutMeta._stepPos, step);
+      for (final view in _views) view?.onLaterStep(_workoutMeta._stepPos, step);
   }
 
   void _renderSeconds() {
-    for (var view in _views) view?.onCount(_timer.getTimeRemaining(), _stage);
+    for (final view in _views) view?.onCount(_timer.getTimeRemaining(), _stage);
   }
 
   // setters

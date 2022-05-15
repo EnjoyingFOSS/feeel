@@ -23,9 +23,9 @@
 import 'dart:async';
 
 class WorkoutTimer {
-  Function? onSecondDecrease;
-  Function? onBreakpoint;
-  Function? onDone;
+  final Function onSecondDecrease;
+  final Function onBreakpoint;
+  final Function onDone;
   Timer? _timer;
 
   int _timeRemaining;
@@ -34,7 +34,10 @@ class WorkoutTimer {
   int _breakpointPos = 0;
 
   WorkoutTimer(int totalTime,
-      {this.breakpoints, this.onSecondDecrease, this.onBreakpoint, this.onDone})
+      {this.breakpoints,
+      required this.onSecondDecrease,
+      required this.onBreakpoint,
+      required this.onDone})
       : _timeRemaining = totalTime,
         _nextBreakpoint = totalTime - (breakpoints?.first ?? totalTime);
 
@@ -52,9 +55,9 @@ class WorkoutTimer {
     if (_timeRemaining <= _nextBreakpoint) {
       if (_nextBreakpoint <= 0) {
         // done
-        onDone?.call();
+        onDone.call();
       } else {
-        onSecondDecrease?.call();
+        onSecondDecrease.call();
 
         if (breakpoints != null) {
           _breakpointPos++;
@@ -63,21 +66,22 @@ class WorkoutTimer {
           }
           _nextBreakpoint = _timeRemaining - breakpoints![_breakpointPos];
         }
-        
+
         if (_nextBreakpoint < 0) {
           _nextBreakpoint = 0;
         }
 
-        onBreakpoint?.call();
+        onBreakpoint.call();
       }
     } else {
-      onSecondDecrease?.call();
+      onSecondDecrease.call();
     }
   }
 
   void start() {
-    if (_timer == null)
+    if (_timer == null) {
       _timer = Timer.periodic(Duration(seconds: 1), _countSecond);
+    }
   }
 
   void stop() {
