@@ -28,9 +28,9 @@ You can chat with the community on **[Matrix](https://matrix.to/#/!jFShhgWHRXehK
 
 Install
 ====
-[<img src="https://f-droid.org/badge/get-it-on.png"
-      alt="Get it on F-Droid"
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+      alt="Get Feeel on F-Droid"
       height="80">](https://f-droid.org/packages/com.enjoyingfoss.feeel/)
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
-      alt="Get it on Google Play"
+      alt="Get Feeel on Google Play"
       height="80">](https://play.google.com/store/apps/details?id=com.enjoyingfoss.feeel)
