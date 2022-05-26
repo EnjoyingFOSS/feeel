@@ -94,10 +94,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                       ),
                       Flexible(
                           child: Center(
-                        child: CircularProgressIndicator(
-                          color: colorSwatch.getColorByBrightness(
-                              FeeelShade.DARK, Theme.of(context).brightness),
-                        ),
+                        child: const CircularProgressIndicator(),
                       ))
                     ]));
                   }

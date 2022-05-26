@@ -116,8 +116,8 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                           return ListTile(
                             leading: Icon(Icons.volunteer_activism),
                             title: Text("Participate".i18n),
-                            onTap: () => launch(
-                                "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
+                            onTap: () => launchUrl(Uri.parse(
+                                "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home")),
                           );
                         } else {
                           return ListTile(
