@@ -237,8 +237,8 @@ class ExerciseSheet extends StatelessWidget {
 
   void _onTapLink(
       BuildContext context, String text, String? url, String title) async {
-    if (url != null && await canLaunch(url))
-      launch(url);
+    if (url != null && await canLaunchUrl(Uri.parse(url)))
+      launchUrl(Uri.parse(url));
     else
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Could not open URL.".i18n)));
