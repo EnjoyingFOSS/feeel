@@ -22,42 +22,45 @@
 
 import 'dart:ui';
 
+import 'feeel_shade.dart';
 import 'feeel_swatch.dart';
 
 class FeeelColors {
-  //500 should be dark enough to be usable on light surfaces, 300 light enough for dark surfaces
-  static final blue = FeeelSwatch(
-    lightest: const Color(0xffE0EDFF), // 0xffD9E9FF ?
-    lighter: const Color(0xffB6D1F4),
-    light: const Color(0xff5493E6),
-    dark: const Color(0xff0B65DB),
-    darker: const Color(0xff0050BA), //0853D2?
-    darkest: const Color(0xff072E63), // 002794 112355
-  );
+  //500 should be FeeelShade.DARK enough to be usable on FeeelShade.LIGHT surfaces, 300 FeeelShade.LIGHT enough for FeeelShade.DARK surfaces
+  static const blue = FeeelSwatch(const {
+    FeeelShade.LIGHTEST: const Color(0xffE0EDFF), // 0xffD9E9FF ?
+    FeeelShade.LIGHTER: const Color(0xffB6D1F4),
+    FeeelShade.LIGHT: const Color(0xff5493E6),
+    FeeelShade.DARK: const Color(0xff0B65DB),
+    FeeelShade.DARKER: const Color(0xff0050BA), //0853D2?
+    FeeelShade.DARKEST: const Color(0xff072E63), // 002794 112355
+  });
 
-  static final orange = FeeelSwatch(
-      lightest: const Color(0xffFAEBE0), //FFE9D6
-      lighter: const Color(0xffFFC799), //F3CEB3
-      light: const Color(0xffE96216), //F56E00
-      dark: const Color(0xffC35400), //CC4800 E96216 D65A00 c45300 CC4800
-      darker: const Color(0xffAD2100), // 8F3E00 C03800
-      darkest: const Color(0xff3D1B00)); // 371407 830B00 48140F 2B0400 2A0C09
+  static const orange = FeeelSwatch(const {
+    FeeelShade.LIGHTEST: const Color(0xffFAEBE0), //FFE9D6
+    FeeelShade.LIGHTER: const Color(0xffFFC799), //F3CEB3
+    FeeelShade.LIGHT: const Color(0xffE96216), //F56E00
+    FeeelShade.DARK:
+        const Color(0xffC35400), //CC4800 E96216 D65A00 c45300 CC4800
+    FeeelShade.DARKER: const Color(0xffAD2100), // 8F3E00 C03800
+    FeeelShade.DARKEST: const Color(0xff3D1B00)
+  }); // 371407 830B00 48140F 2B0400 2A0C09
 
-  static final green = FeeelSwatch(
-    lightest: const Color(0xffE2F1EB),
-    lighter: const Color(0xff9BE9C7), //85FFCA
-    light: const Color(0xff00cc74), //07B067
-    dark: const Color(0xff00854B),
-    darker: const Color(0xff00662C), //00663A
-    darkest: const Color(0xff003D23),
-  );
+  static const green = FeeelSwatch(const {
+    FeeelShade.LIGHTEST: const Color(0xffE2F1EB),
+    FeeelShade.LIGHTER: const Color(0xff9BE9C7), //85FFCA
+    FeeelShade.LIGHT: const Color(0xff00cc74), //07B067
+    FeeelShade.DARK: const Color(0xff00854B),
+    FeeelShade.DARKER: const Color(0xff00662C), //00663A
+    FeeelShade.DARKEST: const Color(0xff003D23),
+  });
 
-  static final gray = FeeelSwatch(
-    lightest: const Color(0xffE9EDED),
-    lighter: const Color(0xffC7D1D0),
-    light: const Color(0xff859997),
-    dark: const Color(0xff343E3D),
-    darker: const Color(0xff252c2c),
-    darkest: const Color(0xff131616),
-  );
+  static const gray = FeeelSwatch(const {
+    FeeelShade.LIGHTEST: const Color(0xffE9EDED),
+    FeeelShade.LIGHTER: const Color(0xffC7D1D0),
+    FeeelShade.LIGHT: const Color(0xff859997),
+    FeeelShade.DARK: const Color(0xff343E3D),
+    FeeelShade.DARKER: const Color(0xff252c2c),
+    FeeelShade.DARKEST: const Color(0xff131616),
+  });
 }
