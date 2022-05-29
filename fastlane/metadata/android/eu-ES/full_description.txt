@@ -1,0 +1,5 @@
+Feel kode irekiko Android at-home ariketak simple egiten app bat da. Txalotua gorputz osoa 7 minutuko entrenamendu erregimen zientifikoa dauka, eta entrenamendu pertsonalizatuak sortzea ere ahalbidetzen du. Aplikazioa gaur egun ariketa kopuru mugatu bat dauka bitartean, plana da erabat zabaltzeko, bai ariketak eta entrenamenduetan kopurua komunitatearen laguntzaz.
+
+Egin ekarpena: https://gitlab.com/enjoyingfoss/feeel/wikis
+
+Donatu hemen https://liberapay.com/Feeel/ Dohaintzan lan aplikazioa me aldizka utzi egingo, baizik eta besterik gabe, nire denbora librean baino.

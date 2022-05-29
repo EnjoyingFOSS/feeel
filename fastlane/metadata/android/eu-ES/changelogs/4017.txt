@@ -1,0 +1,10 @@
+Hainbat gai berri, baita:
+* Kolore-kodetuak entrenamendu kategoriak
+* Ariketa berriak
+* Ariketa irudien bisualizazio berezia buru bat itxi-up batekin
+* iOS laguntza
+* Arabiera itzulpen berria + RTL euskarria
+* Kroaziako itzulpen berria
+* Gaiaren doikuntzak
+* Bizkaiko Txakolina berriro ezabatu dute
+* Hainbat akatsen konponketak eta itzulpen eguneraketak
