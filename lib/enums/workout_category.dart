@@ -24,13 +24,13 @@ import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 
 enum WorkoutCategory {
-  STRENGTH("strength", "Strength", FeeelColors.blue),
-  STRETCHING("yoga", "Stretching & yoga", FeeelColors.green),
-  CARDIO("cardio", "Cardio", FeeelColors.orange),
-  OTHER("other", "Other", FeeelColors.gray);
+  STRENGTH(0, "Strength", FeeelColors.blue),
+  STRETCHING(1, "Stretching & yoga", FeeelColors.green),
+  CARDIO(2, "Cardio", FeeelColors.orange),
+  OTHER(3, "Other", FeeelColors.gray);
 
-  final String jsonKey;
   final String translationKey;
   final FeeelSwatch colorSwatch;
-  const WorkoutCategory(this.jsonKey, this.translationKey, this.colorSwatch);
+  final int dbValue;
+  const WorkoutCategory(this.dbValue, this.translationKey, this.colorSwatch);
 }
