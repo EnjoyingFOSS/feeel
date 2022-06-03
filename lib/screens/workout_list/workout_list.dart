@@ -62,6 +62,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //todo implement pull to refresh gesture
     return Scaffold(
         //todo do I need SafeArea here?
         backgroundColor: Theme.of(context).backgroundColor,
@@ -128,7 +129,8 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                               Navigator.push<void>(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SettingsScreen()));
+                                      builder: (context) =>
+                                          SettingsScreen())); //todo will need to refresh on coming back
                             },
                           )
                         ],
@@ -193,7 +195,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                 ]));
               } else {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: const CircularProgressIndicator(),
                 );
               }
             }));
