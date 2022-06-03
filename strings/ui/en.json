@@ -45,6 +45,9 @@
     "txtThemeSystem": "System default",
     "txtThemeLight": "Light",
     "txtThemeDark": "Dark",
+    "txtExportCustomWorkouts": "Export custom workouts",
+    "txtImportWorkouts": "Import workouts",
+    "txtNoCustomWorkouts": "You don't have any custom workouts",
     "txtBatteryOptimization": "On some devices, you may need to disable battery optimization for Feeel for this to work reliably.",
     "txtParticipate": "Participate",
     "txtSourceCode": "Source code",
@@ -62,6 +65,11 @@
     "txtNoExercises": "There are no exercises in this workout. :(",
     "txtEnglishDescriptionLicense": "English description license",
     "txtImageLicense": "Image license",
+    "txtLearnTheExercise": "Learn the exercise",
+    "txtCommunityDrivenHeader": "Feeel is a community project",
+    "txtDisclaimer": "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion.",
+    "txtDuplicateImportTitle": "Duplicates will not be overriden",
+    "txtDuplicateImportInfo": "If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them.",
     "btnStartWorkout": "Start workout",
     "btnResumeWorkout": "Resume workout",
     "btnPreviousExercise": "Previous exercise",
@@ -74,6 +82,7 @@
     "btnCancel": "Cancel",
     "btnDiscard": "Discard",
     "btnOK": "OK",
+    "btnIunderstand": "I understand",
     "btnMoreInfo": "More info",
     "btnCreateCustomWorkout": "Create custom workout",
     "btnAddCustomExerice": "Propose custom exercise",
@@ -85,5 +94,6 @@
     "btnAdjustTiming": "Adjust timing",
     "btnDoneEditingTiming": "Done editing timing",
     "btnDeleteThisWorkout": "Delete this workout",
-    "btnBackToWorkoutList": "Back to workout list"
+    "btnBackToWorkoutList": "Back to workout list",
+    "btnImportAnyway": "Import anyway"
 }
