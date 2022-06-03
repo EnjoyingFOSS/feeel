@@ -101,7 +101,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                         return ExercisePickerRow(
                             checked: _chosenExerciseIndices.contains(i),
                             exercise: _exercises![i],
-                            color: fgColor,
+                            colorSwatch: widget.swatch,
                             onChanged: (chosen) {
                               setState(() {
                                 if (chosen != null && chosen) {
@@ -116,8 +116,8 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                           return ListTile(
                             leading: Icon(Icons.volunteer_activism),
                             title: Text("Participate".i18n),
-                            onTap: () => launch(
-                                "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
+                            onTap: () => launchUrl(Uri.parse(
+                                "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home")),
                           );
                         } else {
                           return ListTile(
@@ -139,7 +139,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                     });
               } else {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: const CircularProgressIndicator(),
                 );
               }
             }));

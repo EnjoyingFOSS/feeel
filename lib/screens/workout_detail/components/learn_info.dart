@@ -21,44 +21,39 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
+import 'package:feeel/i18n/translations.dart';
 
-class BodyExerciseContent extends StatelessWidget {
-  final Color color;
-  final bool onBreak;
-  final Widget illustration;
-  final bool squareRatio;
+class LearnInfo extends StatelessWidget {
+  final Color bgColor;
+  final void Function() onTap;
 
-  const BodyExerciseContent(
-      {Key? key,
-      required this.color,
-      required this.onBreak,
-      required this.illustration,
-      this.squareRatio = false})
+  const LearnInfo(
+      {Key? key, required this.onTap, required this.bgColor})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    return Stack(
-      children: <Widget>[
-        Align(
-            alignment: Alignment.bottomCenter,
-            child: squareRatio || screenSize.width / screenSize.height > 0.8
-                ? FractionallySizedBox(
-                    heightFactor: 0.372,
-                    widthFactor: 1.0,
-                    child: Container(
-                      color: color,
-                    ),
-                  )
-                : Container(color: color, height: screenSize.width * 0.372)),
-        Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child:
-                    Opacity(opacity: onBreak ? 0.5 : 1.0, child: illustration)))
-      ],
+  Widget build(BuildContext context) { //todo make this possible to activate using the keyboard only!
+    return GestureDetector(
+      child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(32),
+            color: bgColor,
+          ),
+          padding: EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.expand_less, color: Colors.white),
+              Text(
+                "Learn the exercise".i18n,
+                style: Theme.of(context)
+                    .textTheme
+                    .caption
+                    ?.copyWith(color: Colors.white),
+              )
+            ], //todo size16 or 18
+          )),
+      onTap: onTap,
     );
   }
 }

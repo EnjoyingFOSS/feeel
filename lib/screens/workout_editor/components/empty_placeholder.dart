@@ -43,36 +43,42 @@ class EmptyPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         header,
         subheader,
-        Spacer(),
-        SizedBox(
-          child: child,
-          width: 320,
-        ),
-        Padding(
-          child: Text(heading, style: Theme.of(context).textTheme.headline5),
-          padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
-        ),
-        Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Text(subheading,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle1?.copyWith(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .onBackground
-                        .withAlpha(162)))),
-        if (errorMessage != null)
-          Padding(
-              child: Text(errorMessage!,
-                  style: Theme.of(context)
-                      .textTheme
-                      .caption
-                      ?.copyWith(color: Theme.of(context).colorScheme.error)),
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8)),
-        Spacer(),
+        Expanded(
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Flexible(
+                child: ConstrainedBox(
+                  child: child,
+                  constraints: BoxConstraints(maxWidth: 320),
+                ),
+              ),
+              Padding(
+                child:
+                    Text(heading, style: Theme.of(context).textTheme.headline5),
+                padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
+              ),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(subheading,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onBackground
+                              .withAlpha(162)))),
+              if (errorMessage != null)
+                Padding(
+                    child: Text(errorMessage!,
+                        style: Theme.of(context).textTheme.caption?.copyWith(
+                            color: Theme.of(context).colorScheme.error)),
+                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8)),
+            ]))
       ],
     );
   }

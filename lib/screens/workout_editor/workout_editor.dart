@@ -34,7 +34,7 @@ import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_editor/components/editor_header.dart';
 import 'package:feeel/screens/workout_editor/components/editor_subheader.dart';
-import 'package:feeel/components/empty_placeholder.dart';
+import 'package:feeel/screens/workout_editor/components/empty_placeholder.dart';
 import 'package:feeel/components/triangle_frame.dart';
 import 'package:feeel/screens/workout_editor/components/workout_content_editor.dart';
 import 'package:feeel/screens/workout_editor/components/workout_timing_editor.dart';
@@ -126,51 +126,43 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                               //todo not sure if using formfield and its state correctly, should probably hold _editableWorkout.workoutExercises in state
                               return (_editableWorkout!
                                       .workoutExercises.isEmpty)
-                                  ? CustomScrollView(slivers: [
-                                      SliverFillRemaining(
-                                          hasScrollBody: false,
-                                          child: EmptyPlaceholder(
-                                            //todo there's too much empty space in landscape view
-                                            //todo EditorHeader and EditorSubheader are used several times here; refactor to deduplicate code
-                                            header: EditorHeader(
-                                                onClose: _onClose,
-                                                onSaved: (String? text) {
-                                                  if (text != null)
-                                                    _editableWorkout!.title =
-                                                        text;
-                                                },
-                                                colorSwatch: _colorSwatch,
-                                                hintText: 'Workout title'.i18n,
-                                                emptyError:
-                                                    "Please specify a workout title"
-                                                        .i18n,
-                                                textEditingController:
-                                                    _titleController),
-                                            subheader: EditorSubheader(
-                                                workoutDuration:
-                                                    _editableWorkout!
-                                                        .getDuration(),
-                                                category:
-                                                    _editableWorkout!.category,
-                                                onCategoryChanged:
-                                                    _onCategoryChanged),
-                                            heading: "Be your own coach!".i18n,
-                                            subheading:
-                                                "Design the workout that makes you feel the best"
-                                                    .i18n,
-                                            errorMessage: state.errorText,
-                                            child: TriangleFrame(
-                                              child: Image.asset(
-                                                  "assets/image_coach.webp"),
-                                              seed: 52,
-                                              color: _colorSwatch
-                                                  .getColorByBrightness(
-                                                      FeeelShade.LIGHTEST,
-                                                      Theme.of(context)
-                                                          .brightness),
-                                            ),
-                                          ))
-                                    ])
+                                  ? EmptyPlaceholder(
+                                      //todo there's too much empty space in landscape view
+                                      //todo EditorHeader and EditorSubheader are used several times here; refactor to deduplicate code
+                                      header: EditorHeader(
+                                          onClose: _onClose,
+                                          onSaved: (String? text) {
+                                            if (text != null)
+                                              _editableWorkout!.title = text;
+                                          },
+                                          colorSwatch: _colorSwatch,
+                                          hintText: 'Workout title'.i18n,
+                                          emptyError:
+                                              "Please specify a workout title"
+                                                  .i18n,
+                                          textEditingController:
+                                              _titleController),
+                                      subheader: EditorSubheader(
+                                          workoutDuration:
+                                              _editableWorkout!.getDuration(),
+                                          category: _editableWorkout!.category,
+                                          onCategoryChanged:
+                                              _onCategoryChanged),
+                                      heading: "Be your own coach!".i18n,
+                                      subheading:
+                                          "Design the workout that makes you feel the best"
+                                              .i18n,
+                                      errorMessage: state.errorText,
+                                      child: TriangleFrame(
+                                        child: Image.asset(
+                                            "assets/image_coach.webp"),
+                                        seed: 52,
+                                        color:
+                                            _colorSwatch.getColorByBrightness(
+                                                FeeelShade.LIGHTEST,
+                                                Theme.of(context).brightness),
+                                      ),
+                                    )
                                   : _editingTimeMode
                                       ? WorkoutTimingEditor(
                                           exerciseDuration: _editableWorkout!
@@ -240,7 +232,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                           ));
                     } else {
                       return Center(
-                        child: CircularProgressIndicator(),
+                        child: const CircularProgressIndicator(),
                       );
                     }
                   })),

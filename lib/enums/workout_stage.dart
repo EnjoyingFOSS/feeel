@@ -20,8 +20,4 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-class PreferenceKeys {
-  static const SHOW_DISCLAIMER_PREF = "showDisclaimer";
-  static const TTS_DISABLED_PREF = "ttsDisabled";
-  static const NOTIFICATION_TIME_PREF = "notificationTime";
-}
+enum WorkoutStage { READY, EXERCISE, COUNTDOWN, BREAK, END } //todo remove READY

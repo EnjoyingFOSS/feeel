@@ -23,7 +23,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class ImageRow extends StatelessWidget {
@@ -56,7 +55,7 @@ class ImageRow extends StatelessWidget {
                       (snapshot.data! / _BYTES_IN_MIB).toStringAsPrecision(3) +
                           " MiB");
                 } else {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 }
               },
             ),

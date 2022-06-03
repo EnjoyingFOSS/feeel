@@ -1,89 +1,149 @@
-Code
-====
+# Code
+
 Code is licensed under the **GNU AGPL v3 or any later version with an app store exception**, unless specified otherwise. See COPYING for its content.
 
 As an additional permission under section 7, you are allowed to distribute the software through an app store, even if that store has restrictive terms and conditions that are incompatible with the AGPL, provided that the source is also available under the AGPL with or without this permission through a channel without those restrictive terms and conditions.
 
-All unofficial builds of the app must be clearly labeled as such in the app's title. (E.g. "Feeel UNOFFICIAL" rather than just "Feeel", or a different name altogether.)
+All unofficial builds and forks of the app must be clearly labeled as unofficial in the app's name (e.g. "Feeel UNOFFICIAL", never just "Feeel") or use a different name altogether. If code changes are made, the fork should use a completely different name and app icon.
 
-Exercise descriptions
-=====================
-Exercise descriptions in "strings/exercises/en.json" are released under the CC BY-SA 4.0 license.
+# Exercise illustrations and descriptions
 
-* Mountain climbers – mondstern
-* Half burpee - mondstern, modifications by Miroslav Mazel
-* Sumo squat - kettenfett, modifications by Miroslav Mazel
+All exercise descriptions and illustrations are released under the CC BY-SA 4.0 license.
 
-All other English exercise descriptions were written by Miroslav Mazel.
+Refer to the lib/db/db_helper.dart file or to the app for individual attributions.
 
-Translations
-============
+# Images
+**Success image**
+
+Derivative work of:
+
+* Source: https://www.pexels.com/de/foto/meer-strand-sand-frau-56615/
+* License: CC0
+
+**Google Play feature graphic**
+
+Derivative work of:
+
+* Source: https://pixabay.com/en/clean-jerk-sport-clean-jerk-gym-2188461/
+* License: CC0
+
+Exercise illustrations are credited in the lib/db/db_helper.dart file and inside the app.
+
+# Sounds
+
+All derivative works are released under the original recording's license, listed below. The **CC BY-SA** license should cover all of them.
+
+**Exercise/break chime**
+
+Derivative work of:
+
+* Source: https://freesound.org/people/jgreer/sounds/333629/
+* License: CC0
+* Author: jgreer
+
+**Workout finish tune**
+
+Derivative work of:
+
+* Source: https://freesound.org/people/actsofpaint/sounds/371086/
+* License: CC BY 3.0
+* Author: actsofpaint
+* Title: EllenGuitarTada3.wav
+
+**Clock tick**
+
+Derivative work of:
+
+* Source: http://soundbible.com/2044-Tick.html
+* License: CC BY 3.0
+* Author: DeepFrozenApps
+* Title: Tick
+
+# Translations
+
 Translations in "strings/ui" are released under the AGPLv3, those in "strings/exercises" under CC BY-SA 4.0.
 
-Arabic - both ui and exercise strings
-------
+## Azerbaijani - both ui and exercise strings
+* Ali Aliyev
+
+## Arabic - both ui and exercise strings
+
 * Rex_sa
 
-Basque - ui strings
-------
+## Basque - ui strings
+
 * mondstern
 * Osoitz
 
-Catalan - ui strings
--------
+## Catalan - ui strings
+
 * Xorxe
 
-Chinese (Simplified) - ui strings
--------
+## Chinese (Simplified) - ui strings
+
 * Liu Tao
 * proItheus
+* poi
+* aerowolf
 
-Croatian - both ui and exercise strings
---------
+## Chinese (Simplified) - exercise strings
+* poi
+* bxezi
+
+## Croatian - both ui and exercise strings
+
 * Milo Ivir
 
-Czech - both ui and exercise strings
------
+## Czech - both ui and exercise strings
+
 * mondstern
 * Miroslav Mazel
 
-Dutch - both ui and exercise strings
------
+## Dutch - both ui and exercise strings
+
 * Heimen Stoffels
 * Daan Vervacke
+* J. Lavoie
 
-Esperanto - ui strings
-------
+## Dutch - exercise strings
+* Heimen Stoffels
+* Daan Vervacke
+* floris van den bosch
+* mondstern
+
+## Esperanto - ui strings
+
 * Jakub Fabijan
 * phlostically
 * mondstern
 
-Esperanto - exercise strings
-------
+## Esperanto - exercise strings
+
 * phlostically
 
-French - exercise strings
-------
+## French - exercise strings
+
 * J. Lavoie
 * Jonathan D.
+* Maxime Leroy
 * mondstern
 * Miroslav Mazel
 
-French - ui strings
-------
+## French - ui strings
+
 * Max Garret
 * Jonathan D.
 * J. Lavoie
 * mondstern
 * T_Zocker
 
-German - exercise strings
------
+## German - exercise strings
+
 * mondstern
 * Miroslav Mazel
 
-German - ui strings
-------
+## German - ui strings
+
 * K. Herbert
 * J. Lavoie
 * mondstern
@@ -93,407 +153,90 @@ German - ui strings
 * Titus Jonas
 * Roland Geider
 
-Hebrew - both ui and exercise strings
-------
+## Hebrew - both ui and exercise strings
+
 * Omer I.S.
 
-Indonesian - exercise strings
-----------
+## Indonesian - exercise strings
+
 * Reza Almanda
 * mondstern
 
-Indonesian - ui strings
-----------
+## Indonesian - ui strings
+
 * Reza Almanda
 * SiegbjornSitumeang
 * mondstern
 * liimee
 
-Italian - exercise strings
------
+## Italian - exercise strings
+
 * Gianluca Vespignani
 * J. Lavoie
 * mondstern
 * Marco Galli
 
-Italian - ui strings
------
+## Italian - ui strings
+
 * Gianluca Vespignani
 * J. Lavoie
 * Marco Galli
 
-Persian - both ui and exercise strings
--------
+## Persian - both ui and exercise strings
+
 * Mohammad Hossein Tajaddini
 * alefvanoon
 
-Portuguese - both ui and exercise strings
-----------
+## Portuguese - ui strings
+
 * Rodolfo Candido
 * Eduardo Celino
+* Vinicius Rodrigues
 * mondstern
 * flexagoon
 
-Russian - ui strings
------
+## Portuguese - exercise strings
+
+* Rodolfo Candido
+* Eduardo Celino
+* Vinicius Rodrigues
+* mondstern
+* flexagoon
+* gbpu
+
+## Portuguese (Brazilian) - both ui and exercise strings
+* Jonathan Soares
+
+## Russian - ui strings
+
 * Artem
 * Invisible Man
 * mondstern
 * flexagoon
 
-Spanish - exercise strings
------
+## Spanish - exercise strings
+
 * Gabriel Tandil
 * Diego Sanguinetti
 * mondstern
 
-Spanish - ui strings
------
+## Spanish - ui strings
+
 * Gabriel Tandil
 * Diego Sanguinetti
 * Sebastián Pujá López
 * martingetzel
 * mondstern
 
-Swedish - ui and exercise strings
--------
+## Swedish - ui and exercise strings
 * Joel A
 
-Turkish - exercise strings
-------
+## Turkish - exercise strings
+
 * Oğuz Ersen
+* ToldYouThat
 * mondstern
 
-Turkish - ui strings
-------
+## Turkish - ui strings
+
 * Oğuz Ersen
-
-Images
-======
-All derivative illustrations are released under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
-
-Animating the individual triangulated images was done by Miroslav Mazel.
-
-**Leg workout**
-* Author: paolo.dev
-* License: CC0
-
-**Push-up**
-
-* Source: https://www.pexels.com/photo/adult-athlete-body-exercise-176782/
-* License: CC0
-
-**Forearm plank**
-
-* Source: https://pxhere.com/en/photo/1165192
-* License: CC0
-
-**Squat**
-Derivative work of:
-
-* Source: https://commons.wikimedia.org/wiki/File:Parallel_Squat_Form.jpeg
-* License: CC BY-SA 3
-* Author: Vinceypo0
-* Title: Parallel Squat Form
-
-**Wall sit**
-Derivative work of:
-
-* Source: http://maxpixel.freegreatpicture.com/Vaughan-Wall-Sit-Workout-Gym-Fitness-2523075
-* License: CC0
-
-**Ab crunch**
-Derivative work of:
-
-* Source: https://www.flickr.com/photos/86598533@N04/8252254965
-* License: CC BY
-* Author: bwanderd
-* Title: 26 Abs 1
-
-**High knees**
-Derivative work of:
-
-* Source: http://www.barksdale.af.mil/News/Photos/igphoto/2000179280/
-* License: CC0
-* Author: US Air Force
-* Title: RIP It! New running program puts Airmen's best foot forward 
-
-**Jumping jacks**
-Derivative work of:
-
-* Source: http://www.af.mil/News/Photos/igphoto/2000617206/
-* License: CC0
-* Author: United States Air Force
-* Title: Top leaders unite for senior enlisted summit
-
-**Sideplank**
-Derivative work of:
-
-* Source: https://commons.wikimedia.org/wiki/File:U.S._Marine_Corps_Sgt._Jonathan_Benezette_demonstrates_the_left_plank_position_during_Marine_Corps_martial_arts_training_aboard_the_dock_landing_ship_USS_Oak_Hill_(LSD_51)_during_Amphibious-Southern_Partnership_111009-A-WF228-011.jpg
-* License: CC0
-* Author: Sgt. Sgt. Thomas Childs
-
-**Push-up rotations**
-Derivative work of:
-
-* Source: https://www.pexels.com/photo/woman-in-purple-tank-top-and-gray-sweat-pants-163437/
-* License: CC0
-
-**Lunge**
-Derivative work of:
-
-* Source: https://commons.wikimedia.org/wiki/File:U.S._Navy_Gas_Turbine_Systems_Technician_(Mechanical)_2nd_Class_Milton_Lovelace,_left,_and_Logistics_Specialist_Seaman_Brittney_Joseph,_both_assigned_to_the_Naval_Air_Station_(NAS)_Key_West_port_operations_130828-N-YB753-041.jpg
-* License: CC0
-* Author: Mass Communication Specialist 2nd Class Brian Morales
-
-**Triceps dip**
-Derivative work of:
-
-* Source: Own photo (available if needed)
-* License: CC0
-* Author: Miroslav Mazel
-
-**Jump rope: Basic jumps**
-* Triangulation author: Mohammad Hossein Tajaddini, adjustments by Miroslav Mazel
-* License: CC BY-SA 4.0
-
-Derivative work of:
-
-* Source: https://www.flickr.com/photos/90177949@N00/1394676434
-* License: CC BY 2.0
-* Author: [Drew and Merissa](https://www.flickr.com/photos/90177949@N00)
-* Title: Jump rope - skipping
-
-**Forward/backward arm circles**
-* Triangulation authors: “kettenfett”, Miroslav Mazel
-* License: CC BY-SA 4.0
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=PD3P7zWzzg8
-* License: CC BY 3.0
-* Author: Heartmybody Fitness
-* Title: Arm Circle to Shoulder Press Down
-
-**Pike push-ups**
-* Triangulation author: “kettenfett”
-* License: CC BY-SA 4.0
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=96X4fYKe3QY
-* License: CC BY 3.0
-* Author: School of Calisthenics
-* Title: FULL BODY Bodyweight Workout [NO EQUIPMENT] // School of Calisthenics
-
-**Mountain climbers**
-* Triangulation author: “kettenfett”
-* License: CC BY-SA 4.0
-
-Derivative work of:
-
-* Source: https://vimeo.com/149362946
-* License: CC BY 3.0
-* Author: Dr. Greg Wells
-* Title: Mountain Climber
-
-**No push-up burpee / 4-count burpee / Squat thrusts**
-* Triangulation author: “kettenfett”
-* License: CC BY-SA 4.0
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=sHLu6-liUL0
-* License: CC BY 3.0
-* Author: ExperienceLifeMag
-* Title: The 6-Minute Sweat Workout: Burpee
-
-**Reverse lunge**
-* Triangulation author: “kettenfett”
-* License: CC BY-SA 4.0
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=WROyapZyYME
-* License: CC BY 3.0
-* Author: EHPlabs
-* Title: Fraser Wilson Lower Body Home Workout - NO EQUIPMENT NEEDED | EHPlabs
-
-**Floor dips**
-* Triangulation author: “kettenfett”
-* License: CC BY-SA 4.0
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=1A7pdAKODEU
-* License: CC BY 3.0
-* Author: EatMoveRest - The Stanczyks
-* Title: 20-Minute At-Home Full-Body Workout | No Equipment
-
-**Leg raises**
-* Triangulation author: “kettenfett”
-* License: CC BY-SA 4.0
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=1A7pdAKODEU
-* License: CC BY 3.0
-* Author: EatMoveRest - The Stanczyks
-* Title: 20-Minute At-Home Full-Body Workout | No Equipment
-
-**Kettlebell deadlift**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-
-* Source: https://www.dreamstime.com/man-blue-shorts-carrying-brown-exercise-equipments-public-domain-image-free-83059944
-* License: CC0
-* Author: creativecommonsstockphotos
-* Title: Man In Blue Shorts Carrying Brown Exercise Equipments
-
-**Pull-ups**
-Triangulation author: Miroslav Mazel
-
-Derivative work of:
-
-* Source: https://commons.wikimedia.org/wiki/File:Marine_Pull-ups.jpg
-* License: Public domain
-* Author: Cpl. C.J. Yard, USMC
-* Title: A US Marine Doing Pull-ups
-
-**Child's pose**
-Triangulation authors: Ali Aliyev, Miroslav Mazel
-
-Derivative work of:
-
-* Source: Ali Aliyev's own photo
-* License: CC BY-SA 4.0
-* Author: Ali Aliyev
-* Title: Child's Pose
-
-**Sumo squats**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-* Source: https://www.youtube.com/watch?v=CbLwLgx6_kw
-* License: CC BY-SA 3.0
-* Author: Action Jacquelyn
-* Title: GET SCULPTED LEGS & THIGHS IN 30 DAYS CHALLENGE! Day 18: 100 Tipsy Butterfly! 🦋 #StretchyFit100
-
-**Chin tuck**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=AiTt-zCdluc
-* License: CC BY 3.0
-* Author: Physio Fitness | Physio REHAB | Tim Keeley
-* Title: Home Exercises for Cerivcal Disc Pain | Tim Keeley | Physio REHAB
-
-**Head turn**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=QtH7lQrPoxU
-* License: CC BY 3.0
-* Author: Kit Laughlin (Stretch Therapy)
-* Title: Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief
-
-**Chin tuck with flexion with rotation**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=1CIil5SIs7U
-* License: CC BY 3.0
-* Author: Connor Naccarato
-* Title: Suboccipital Muscle Stretch
-
-**Lateral neck stretch**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=gT6_7GyUsI4
-* License: CC BY 3.0
-* Author: Heartmybody Fitness
-* Title: How to do a Lateral Neck Stretch Chin to Shoulder
-
-**Shoulder shrug**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=H8tUMz9ydUw
-* License: CC BY 3.0
-* Author: Stewart Hamblin The Feldenkrais Way 
-* Title: Yoga class for shoulder relief
-
-**Front neck stretch**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=QtH7lQrPoxU
-* License: CC BY 3.0
-* Author: Kit Laughlin (Stretch Therapy)
-* Title: Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief
-
-**Back and lateral neck stretch/Back neck stretch**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-
-* Source: https://www.youtube.com/watch?v=bQG13mB23CU
-* License: CC BY 3.0
-* Author: Kit Laughlin (Stretch Therapy)
-* Title: A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy
-
-**Shoulder rotation**
-Triangulation authors: “kettenfett”, Miroslav Mazel
-
-Derivative work of:
-* Source: https://www.youtube.com/watch?v=7kqdQSQxtnY
-* License: CC BY 3.0
-* Author: Traditional Martial Arts by Dmitry Prosvirov 
-* Title: SHOULDERS ROTATION EXERCISE (2020)
-
-**Success image**
-Derivative work of:
-
-* Source: https://www.pexels.com/de/foto/meer-strand-sand-frau-56615/
-* License: CC0
-
-**Google Play feature graphic**
-Derivative work of:
-
-* Source: https://pixabay.com/en/clean-jerk-sport-clean-jerk-gym-2188461/
-* License: CC0
-
-Sound sources
-=============
-All derivative works are released under the original recording's license, listed below. The **CC BY-SA** license should cover all of them.
-
-**Exercise/break chime**
-Derivative work of:
-
-* Source: https://freesound.org/people/jgreer/sounds/333629/
-* License: CC0
-* Author: jgreer
-
-**Workout finish tune**
-Derivative work of:
-
-* Source: https://freesound.org/people/actsofpaint/sounds/371086/
-* License: CC BY 3.0
-* Author: actsofpaint
-* Title: EllenGuitarTada3.wav
-
-**Clock tick**
-Derivative work of:
-
-* Source: http://soundbible.com/2044-Tick.html
-* License: CC BY 3.0
-* Author: DeepFrozenApps
-* Title: Tick

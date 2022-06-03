@@ -27,21 +27,7 @@ import 'package:feeel/theming/feeel_shade.dart';
 class FeeelSwatch {
   final Map<FeeelShade, Color> _swatch;
 
-  FeeelSwatch(
-      {required Color lightest,
-      required Color lighter,
-      required Color light,
-      required Color dark,
-      required Color darker,
-      required Color darkest})
-      : _swatch = {
-          FeeelShade.LIGHTEST: lightest,
-          FeeelShade.LIGHTER: lighter,
-          FeeelShade.LIGHT: light,
-          FeeelShade.DARK: dark,
-          FeeelShade.DARKER: darker,
-          FeeelShade.DARKEST: darkest,
-        };
+  const FeeelSwatch(this._swatch);
 
   Color getColor(FeeelShade shade) => _swatch[shade]!;
 

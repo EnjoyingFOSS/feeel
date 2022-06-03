@@ -39,8 +39,7 @@ class HeadExerciseContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Align(
+    return Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
@@ -49,6 +48,6 @@ class HeadExerciseContent extends StatelessWidget {
                     child: TriangleFrame(
                         color: color,
                         child: illustration,
-                        seed: triangleSeed)))));
+                        seed: triangleSeed))));
   }
 }

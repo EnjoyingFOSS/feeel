@@ -20,8 +20,20 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-class PreferenceKeys {
-  static const SHOW_DISCLAIMER_PREF = "showDisclaimer";
-  static const TTS_DISABLED_PREF = "ttsDisabled";
-  static const NOTIFICATION_TIME_PREF = "notificationTime";
+import '../enums/workout_type.dart';
+
+enum HeroType { Illustration, Title, Subtitle }
+
+class HeroUtil {
+  static String getWorkoutHero(
+      HeroType heroType, int workoutDbId, WorkoutType type) {
+    switch (heroType) {
+      case HeroType.Illustration:
+        return "${workoutDbId}_${type.index}_illustration";
+      case HeroType.Title:
+        return "${workoutDbId}_${type.index}_title";
+      case HeroType.Subtitle:
+        return "${workoutDbId}_${type.index}_subtitle";
+    }
+  }
 }

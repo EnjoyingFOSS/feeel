@@ -22,7 +22,9 @@
 
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_page_types.dart';
+import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/models/view/workout.dart';
+import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
@@ -35,8 +37,11 @@ import 'finish_page.dart';
 
 class WorkoutPager extends StatefulWidget {
   final Workout workout;
+  final WorkoutListed workoutListed;
 
-  const WorkoutPager({Key? key, required this.workout}) : super(key: key);
+  const WorkoutPager(
+      {Key? key, required this.workout, required this.workoutListed})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -57,6 +62,20 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (widget.workout.workoutExercises.length > 0) {
+      final imageSlug = widget.workout.workoutExercises[0].exercise.imageSlug;
+      if (imageSlug != null)
+        precacheImage(
+            Image.asset(AssetHelper.getImage(imageSlug))
+                .image, //todo precache inside workout page instead?
+            context);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     _workoutController.setOnFinish(() {
       Wakelock.disable();
@@ -69,6 +88,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
       children: <Widget>[
         WorkoutCover(
           workout: widget.workout,
+          workoutListed: widget.workoutListed,
           colorSwatch: colorSwatch,
           startWorkout: () {
             _pageController.jumpToPage(WorkoutPageTypes.EXERCISE.index);
@@ -85,7 +105,6 @@ class _WorkoutPagerState extends State<WorkoutPager> {
               FeeelShade.DARK, Theme.of(context).brightness),
         )
       ],
-      // physics: NeverScrollableScrollPhysics(),
     );
   }
 

@@ -22,23 +22,29 @@
 
 import 'package:feeel/enums/exercise_type.dart';
 
+import 'exercise_step.dart';
+
 class Exercise {
   final int dbId;
   final String name;
   final String description;
-  final bool twoSided;
+  final bool flipped;
+  final bool animated;
   final ExerciseType type;
   final String? imageSlug;
-  final String? imageAuthor;
-  final int? imageLicense;
+  final String? descriptionLicense;
+  final String? imageLicense;
+  final List<ExerciseStep>? steps;
 
   Exercise(
       {required this.dbId,
       required this.name,
       required this.description,
-      required this.twoSided,
+      required this.flipped,
       required this.type,
+      required this.animated,
       this.imageSlug,
-      this.imageAuthor,
-      this.imageLicense});
+      this.imageLicense,
+      this.descriptionLicense,
+      this.steps});
 }
