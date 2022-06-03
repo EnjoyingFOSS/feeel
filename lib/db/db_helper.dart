@@ -32,7 +32,7 @@ import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as p;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class _Exercises {
@@ -105,11 +105,13 @@ class DBHelper {
   static final DBHelper db = DBHelper._();
   static Database? _database;
 
+  static const String OUTDATED_DB_EXCEPTION = "Outdated database";
+
   static const String _DB_FILE = "feeel.db";
   static const String _WORKOUT_TABLE = 'workouts';
   static const String _EXERCISE_TABLE = 'exercises';
   static const String _WORKOUT_EXERCISE_TABLE = 'workoutExercises';
-  static const String _EXERCISE_STEP_TABLE = 'exerciseSteps';
+  static const String _EXERCISE_STEP_TABLE = 'exercise_steps';
 
   static const String _ID_COL = 'id';
   static const String _TYPE_COL = 'type';
@@ -136,7 +138,7 @@ class DBHelper {
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
-  static const int _DATABASE_VERSION = 20;
+  static const int DATABASE_VERSION = 20;
 
   Future<Database> _createDB() async {
     String path = await getPath();
@@ -145,14 +147,14 @@ class DBHelper {
       sqfliteFfiInit();
       return await databaseFactoryFfi.openDatabase(path,
           options: OpenDatabaseOptions(
-              version: _DATABASE_VERSION,
+              version: DATABASE_VERSION,
               onOpen: (db) {},
               onCreate: _onCreate,
               onUpgrade: _onUpgrade,
               onDowngrade: _onUpgrade));
     } else {
       return await openDatabase(path,
-          version: _DATABASE_VERSION,
+          version: DATABASE_VERSION,
           onOpen: (db) {},
           onCreate: _onCreate,
           onUpgrade: _onUpgrade,
@@ -577,7 +579,7 @@ class DBHelper {
     await _createExercise(db,
         name: "Jump rope: basic jumps",
         description:
-            "This exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.\n1. Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n2. Spin only your wrists with enough force to make the rope spin.\n3. Jump just high enough to pass the rope below your feet.\n4. Repeat from step 2.",
+            "Steps:\n1. Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n2. Spin only your wrists with enough force to make the rope spin.\n3. Jump just high enough to pass the rope below your feet.\n4. Repeat from step 2.\n\nNotes:\nThis exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.",
         imageSlug: "exercise_jumpropebasic.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
@@ -617,7 +619,7 @@ class DBHelper {
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Repeat.",
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-            descriptionLicenseInfo:
+        descriptionLicenseInfo:
             "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageSlug: "exercise_4countburpee.webp");
 
@@ -798,48 +800,58 @@ class DBHelper {
     // final lateralNeckStretchDesc =
     //     "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.\n2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.\n3. Turn your chin to your shoulder. Hold for 8 seconds.\n4. Release and return to starting position.";
 
+    // final lateralNeckStretchImageLicense = 'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"How to do a Lateral Neck Stretch Chin to Shoulder\"](https://www.youtube.com/watch?v=gT6_7GyUsI4) by "Heartmybody Fitness" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
+
     // await _createExercise(db,
     //     name: "Left neck stretch",
     //     type: ExerciseType.HEAD,
     //     description: lateralNeckStretchDesc,
     //     flipped: true,
-    //     imageSlug: "exercise_neckstretch_lateral.webp");
+    //     imageSlug: "exercise_neckstretch_lateral.webp",
+    //     imageLicense: lateralNeckStretchImageLicense);
 
     // await _createExercise(db,
     //     name: "Right neck stretch",
     //     type: ExerciseType.HEAD,
     //     description: lateralNeckStretchDesc,
-    //     imageSlug: "exercise_neckstretch_lateral.webp");
+    //     imageSlug: "exercise_neckstretch_lateral.webp",
+    //    imageLicense: lateralNeckStretchImageLicense);
 
     // await _createExercise(db,
     //     name: "Front neck stretch",
     //     type: ExerciseType.HEAD,
     //     description:
     //         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Open mouth wide.\n2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.\n3. Very slowly close and open your mouth.\n4. At the end, slowly return to starting position and close mouth.",
-    //     imageSlug: "exercise_neckstretch_front.webp");
+    //     imageSlug: "exercise_neckstretch_front.webp",
+    // imageLicenseInfo: 'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief\"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     // final backAndLateralNeckStretchDesc =
     //     "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt head forward, chin to chest, with hands behind your head.\n2. Keeping head forward, use waist muscles to turn as far as comfortable to the left.\n3. Use hands to pull head down very slightly, controlling the stretch.\n4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.\n5. Turn back into center position.\n6. Bring your hands to your forehead and push head upright again into normal position.";
+
+    // final backAndLateralNeckStretchImageLicense = 'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
 
     // await _createExercise(db,
     //     name: "Back and left neck stretch",
     //     type: ExerciseType.HEAD,
     //     flipped: true,
     //     description: backAndLateralNeckStretchDesc,
-    //     imageSlug: "exercise_neckstretch_back,lateral.webp");
+    //     imageSlug: "exercise_neckstretch_back,lateral.webp",
+    //    imageLicense: backAndLateralNeckStretchImageLicense);
 
     // await _createExercise(db,
     //     name: "Back and right neck stretch",
     //     type: ExerciseType.HEAD,
     //     description: backAndLateralNeckStretchDesc,
-    //     imageSlug: "exercise_neckstretch_back,lateral.webp");
+    //     imageSlug: "exercise_neckstretch_back,lateral.webp",
+    //    imageLicense: backAndLateralNeckStretchImageLicense);
 
     // await _createExercise(db,
     //     name: "Chin tuck with flexion with rotation",
     //     type: ExerciseType.HEAD,
     //     description:
     //         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tuck your chin in, moving your head back.\n2. Tilt your head forward until you feel a stretch in the back of your neck.\n3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.\n4. Hold for 5 seconds.\n5. Rotate back, keeping your head down.\n6. Repeat from step 3, switching sides.",
-    //     imageSlug: "exercise_chintuck+flextion+rotation.webp");
+    //     imageSlug: "exercise_chintuck+flextion+rotation.webp",
+    //    imageLicense: 'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Suboccipital Muscle Stretch\"](https://www.youtube.com/watch?v=1CIil5SIs7U) by "Connor Naccarato" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
   }
 
   Future<void> _createWorkoutFromList(
@@ -897,7 +909,7 @@ class DBHelper {
 
   Future<String> getPath() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    return join(documentsDirectory.path, _DB_FILE);
+    return p.join(documentsDirectory.path, _DB_FILE);
   }
 
   Future<void> exportDB(String exportPath) async {
@@ -922,7 +934,7 @@ class DBHelper {
   }
 
   Future<int> _getNextId(Database db, String tableName, String idColumn) async {
-    var table = await db
+    final table = await db
         .rawQuery("SELECT MAX($idColumn)+1 as $idColumn FROM $tableName");
     return table.first[idColumn] == null ? 1 : table.first[idColumn] as int;
   }
@@ -937,7 +949,7 @@ class DBHelper {
       required String descriptionLicenseInfo,
       required String imageLicenseInfo,
       int? category}) async {
-    var table = _EXERCISE_TABLE;
+    final table = _EXERCISE_TABLE;
     int id = await _getNextId(db, table, _ID_COL);
 
     await db.insert(table, <String, dynamic>{
@@ -968,7 +980,7 @@ class DBHelper {
       required String imageLicenseInfo,
       int? category,
       required List<ExerciseStep> steps}) async {
-    var table = _EXERCISE_TABLE;
+    final table = _EXERCISE_TABLE;
     int id = await _getNextId(db, table, _ID_COL);
 
     await db.insert(table, <String, dynamic>{
@@ -1027,7 +1039,7 @@ class DBHelper {
 
     // create exercises
     for (int i = 0; i < workout.workoutExercises.length; i++) {
-      var we = workout.workoutExercises[i];
+      final we = workout.workoutExercises[i];
       await _createWorkoutExercise(db,
           workoutId: workoutId,
           workoutType: WorkoutType.CUSTOM,
@@ -1100,7 +1112,7 @@ class DBHelper {
       int breakDuration,
       WorkoutType type,
       WorkoutCategory category) async {
-    var table = _WORKOUT_TABLE;
+    final table = _WORKOUT_TABLE;
     int id = await _getNextId(db, table, _ID_COL);
 
     await db.insert(table, <String, dynamic>{
@@ -1166,7 +1178,7 @@ class DBHelper {
   Future<List<Exercise>> queryExercises() async {
     //todo add steps
     final db = await database;
-    var res = await db.query(_EXERCISE_TABLE);
+    final res = await db.query(_EXERCISE_TABLE);
 
     if (res.isEmpty) return [];
 
@@ -1184,7 +1196,7 @@ class DBHelper {
 
   Future<List<WorkoutListed>> queryAllWorkouts() async {
     final db = await database;
-    var res = await db.query(_WORKOUT_TABLE, orderBy: _TYPE_COL);
+    final res = await db.query(_WORKOUT_TABLE, orderBy: _TYPE_COL);
     List<WorkoutListed> list = res.isNotEmpty
         ? res
             .map((map) => WorkoutListed(
@@ -1195,6 +1207,50 @@ class DBHelper {
             .toList()
         : [];
     return list;
+  }
+
+  Future<List<Workout>?> queryFullWorkoutsByType(WorkoutType type) async {
+    final db = await database;
+
+    final workoutRes = await db.query(_WORKOUT_TABLE,
+        where: "$_TYPE_COL = ?", whereArgs: <int>[type.index]);
+
+    if (workoutRes.isEmpty) return null;
+
+    final workouts = List<Workout>.empty(growable: true);
+
+    for (final workoutMap in workoutRes) {
+      final workoutId = workoutMap[_ID_COL] as int;
+
+      final weRes = await db.query(_WORKOUT_EXERCISE_TABLE,
+          where: "$_WORKOUT_ID_COL = ? AND $_WORKOUT_TYPE_COL = ?",
+          whereArgs: <int>[workoutId, type.index],
+          orderBy: _ORDER_COL);
+
+      final List<WorkoutExercise> workoutExercises = List.empty(growable: true);
+      for (Map<String, dynamic> item in weRes) {
+        final exercise = await queryExercise(item[_EXERCISE_COL] as int);
+
+        if (exercise != null) {
+          workoutExercises.add(WorkoutExercise(
+              exercise: exercise,
+              duration: item[_EXERCISE_DURATION_COL] as int?,
+              breakBeforeDuration: item[_BREAK_DURATION_COL] as int?));
+        }
+      }
+
+      final workout = Workout(
+          dbId: workoutId,
+          title: workoutMap[_TITLE_COL] as String,
+          workoutExercises: workoutExercises,
+          countdownDuration: workoutMap[_COUNTDOWN_DURATION_COL] as int,
+          breakDuration: workoutMap[_BREAK_DURATION_COL] as int,
+          exerciseDuration: workoutMap[_EXERCISE_DURATION_COL] as int,
+          type: WorkoutType.values[workoutMap[_TYPE_COL] as int],
+          category: WorkoutCategory.values[workoutMap[_CATEGORY_COL] as int]);
+      workouts.add(workout);
+    }
+    return workouts;
   }
 
   Future<Exercise?> queryExercise(int exerciseId) async {
@@ -1210,9 +1266,16 @@ class DBHelper {
     return _getExerciseFromMap(db, res.first, steps);
   }
 
+  static int getCurExerciseId(int exerciseId, int databaseVersion) {
+    if (databaseVersion > DATABASE_VERSION)
+      throw Exception(OUTDATED_DB_EXCEPTION);
+
+    return exerciseId;
+  }
+
   Future<Workout?> queryWorkout(int workoutId, WorkoutType type) async {
     final db = await database;
-    var weRes = await db.query(_WORKOUT_EXERCISE_TABLE,
+    final weRes = await db.query(_WORKOUT_EXERCISE_TABLE,
         where: "$_WORKOUT_ID_COL = ? AND $_WORKOUT_TYPE_COL = ?",
         whereArgs: <int>[workoutId, type.index],
         orderBy: _ORDER_COL);
@@ -1229,7 +1292,7 @@ class DBHelper {
       }
     }
 
-    var workoutRes = await db.query(_WORKOUT_TABLE,
+    final workoutRes = await db.query(_WORKOUT_TABLE,
         where: "$_ID_COL = ? AND $_TYPE_COL = ?",
         whereArgs: <int>[workoutId, type.index]);
 
@@ -1268,7 +1331,7 @@ class DBHelper {
   }
 
   Future close() async {
-    var db = await database;
+    final db = await database;
     await db.close();
   }
 }
