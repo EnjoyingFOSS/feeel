@@ -1,10 +1,10 @@
-Héél veel nieuws, waaronder:
-* Gekleurde workoutcategorieën;
-* Een nieuwe standaard workout: nek- en schouderrekken;
-* Nieuwe oefeningen;
-* Speciale visualizatie van oefeningsfoto's met een close-up van een hoofd;
-* iOS-ondersteuning;
-* Arabische vertalingen + ondersteuning voor van-rechts-naar-linkstalen;
-* Thema-aanpassingen;
-* Noorse Bokmål-vertaling is wederom verwijderd;
-* Verschillende bugs opgelost en vertalingen bijgewerkt.
+Veel nieuwe dingen, waaronder:
+* Kleur-gecodeerde workout categorieën
+* Nieuwe oefeningen
+* Speciale visualisatie van trainingsbeelden met een close-up van een hoofd
+* iOS ondersteuning
+* Nieuwe Arabische vertaling + RTL ondersteuning
+* Nieuwe Kroatische vertaling
+* Thema tweaks
+* Noorse Bokmal is weer verwijderd
+* Diverse bug fixes en vertaling updates
