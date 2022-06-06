@@ -82,5 +82,18 @@
     "txtNumberInputEmpty": "لا يمكن أن يكون فارغا",
     "txtNoExercises": "لا توجد تدريبات في هذا التمرين. :(",
     "btnDeleteThisWorkout": "حذف هذا التمرين",
-    "btnBackToWorkoutList": "العودة إلى قائمة التمرين"
+    "btnBackToWorkoutList": "العودة إلى قائمة التمرين",
+    "txtGetReady": "استعد!",
+    "txtExportCustomWorkouts": "تصدير التدريبات المخصصة",
+    "txtLearnTheExercise": "تعلم التمرين",
+    "txtCommunityDrivenHeader": "فييل هو مشروع مجتمعي",
+    "txtDuplicateImportTitle": "لن يتم تجاوز التكرارات",
+    "btnIunderstand": "أفهم",
+    "btnImportAnyway": "استيراد على أي حال",
+    "txtImportWorkouts": "استيراد التدريبات",
+    "txtNoCustomWorkouts": "ليس لديك أي تدريبات مخصصة",
+    "txtImageLicense": "ترخيص الصورة",
+    "txtDisclaimer": "تمارين وتدريبات يساهم فيها المتطوعون. لا يتحمل Feeel ولا أي متطوع مسؤولية صحة أي معلومات في هذا التطبيق أو عن صحتك. استخدام في التحفظ الخاصة بك.",
+    "txtDuplicateImportInfo": "إذا قمت باستيراد التدريبات المطابقة للتدريبات التي لديك في Feeel بالفعل ، فستحصل على هذه التدريبات مرتين في التطبيق وسيتعين عليك حذفها يدويا.",
+    "txtEnglishDescriptionLicense": "ترخيص الوصف باللغة الإنجليزية"
 }
