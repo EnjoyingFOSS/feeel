@@ -88,5 +88,12 @@
     "txtDisclaimer": "Vježbe i treninzi doprinose volonteri. Ni Feeel ni bilo koji volonter nisu odgovorni za ispravnost bilo kojih podataka u ovom programu ili za tvoje zdravlje. Koristi po vlastitom nahođenju.",
     "txtExportCustomWorkouts": "Izvezi prilagođene treninge",
     "txtNoCustomWorkouts": "Nemaš prilagođene treninge",
-    "txtDuplicateImportInfo": "Ako uvezeš treninge koji su identični treninzima koje već imaš u Feeelu, te treninge ćeš imati dvaput u programu i morat ćeš ih ručno izbrisati."
+    "txtDuplicateImportInfo": "Ako uvezeš treninge koji su identični treninzima koje već imaš u Feeelu, te treninge ćeš imati dvaput u programu i morat ćeš ih ručno izbrisati.",
+    "txtDuplicateImportTitle": "Duplikati se neće prepisati",
+    "txtEnglishDescriptionLicense": "Licenca za opis na engleskom jeziku",
+    "txtImageLicense": "Licenca za sliku",
+    "txtLearnTheExercise": "Nauči vježbu",
+    "txtCommunityDrivenHeader": "Feeel je projekt zajednice",
+    "btnIunderstand": "Razumijem",
+    "btnImportAnyway": "Svejedno uvezi"
 }
