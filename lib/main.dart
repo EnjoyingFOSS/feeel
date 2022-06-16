@@ -84,7 +84,10 @@ class Feeel extends StatelessWidget {
   }
 
   void _onWidgetBuilt(BuildContext context) {
-    TTSHelper.tts.init(context);
-    NotificationHelper.helper.init(context);
+    if (!Platform.isLinux) {
+      TTSHelper.tts.init(
+          context); //todo should really depend on whether the TTS preference is set
+      NotificationHelper.helper.init(context);
+    }
   }
 }

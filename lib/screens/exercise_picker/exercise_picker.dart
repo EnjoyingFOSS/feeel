@@ -127,11 +127,16 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                                 child: Icon(Icons.add)),
                             title: Text("Propose custom exercise".i18n),
                             onTap: () {
-                              Navigator.push<void>(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => ExerciseCreatorScreen(),
-                                      fullscreenDialog: true));
+                              if (Platform.isLinux) {
+                                launchUrl(Uri.parse(
+                                    "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"));
+                              } else {
+                                Navigator.push<void>(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => ExerciseCreatorScreen(),
+                                        fullscreenDialog: true));
+                              }
                             },
                           );
                         }

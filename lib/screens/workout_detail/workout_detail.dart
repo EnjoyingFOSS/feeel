@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:io';
+
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_listed.dart';
@@ -57,7 +59,8 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
     final colorSwatch = widget.workoutListed.category.colorSwatch;
     return WillPopScope(
         onWillPop: () async {
-          Wakelock.disable();
+          if (!Platform.isLinux)
+            Wakelock.disable(); //todo use provider for wakelock?
           return true;
         },
         child: Scaffold(

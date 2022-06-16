@@ -61,7 +61,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     super.initState();
-    _preferencesFuture = _getSettingsBundle();
+    _preferencesFuture =
+        _getSettingsBundle(); //todo use provider for preferences
   }
 
   @override
@@ -78,38 +79,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 AsyncSnapshot<_SettingsBundle> snapshot) {
               if (snapshot.hasData) {
                 final settingsBundle = snapshot.data!;
-                final notificationTime = NotificationHelper.timeFromInt(
-                    settingsBundle.preferences
+                final notificationTime = Platform.isLinux
+                    ? null
+                    : NotificationHelper.timeFromInt(settingsBundle.preferences
                         .getInt(PreferenceKeys.NOTIFICATION_TIME_PREF));
                 final curTheme = settingsBundle.themeMode;
                 final activeColor = Theme.of(context).colorScheme.primary;
                 return ListView(
                   children: <Widget>[
-                    SwitchListTile.adaptive(
-                        secondary: Icon(Icons.music_note),
-                        value: (settingsBundle.preferences
-                                .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
-                            false),
-                        title: Text("Sounds instead of voice".i18n),
-                        onChanged: (bool newValue) {
-                          setState(() {
-                            settingsBundle.preferences.setBool(
-                                PreferenceKeys.TTS_DISABLED_PREF, newValue);
-                          });
+                    if (!Platform.isLinux)
+                      SwitchListTile.adaptive(
+                          secondary: Icon(Icons.music_note),
+                          value: (settingsBundle.preferences
+                                  .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
+                              false),
+                          title: Text("Sounds instead of voice".i18n),
+                          onChanged: (bool newValue) {
+                            setState(() {
+                              settingsBundle.preferences.setBool(
+                                  PreferenceKeys.TTS_DISABLED_PREF, newValue);
+                            });
+                          },
+                          activeColor: activeColor),
+                    if (!Platform.isLinux)
+                      SwitchListTile.adaptive(
+                        secondary: Icon(Icons.notifications),
+                        value: notificationTime != null,
+                        title: Text("Daily reminder".i18n),
+                        onChanged: (bool setOn) {
+                          _setNotificationTime(
+                              context,
+                              setOn ? _getDefaultNotificationTime() : null,
+                              settingsBundle.preferences);
                         },
-                        activeColor: activeColor),
-                    SwitchListTile.adaptive(
-                      secondary: Icon(Icons.notifications),
-                      value: notificationTime != null,
-                      title: Text("Daily reminder".i18n),
-                      onChanged: (bool setOn) {
-                        _setNotificationTime(
-                            context,
-                            setOn ? _getDefaultNotificationTime() : null,
-                            settingsBundle.preferences);
-                      },
-                      activeColor: activeColor,
-                    ),
+                        activeColor: activeColor,
+                      ),
                     if (notificationTime != null && Platform.isAndroid)
                       Padding(
                           padding: EdgeInsets.only(left: 72, right: 16),

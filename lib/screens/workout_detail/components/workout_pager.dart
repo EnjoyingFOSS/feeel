@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:io';
+
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_page_types.dart';
 import 'package:feeel/db/asset_helper.dart';
@@ -77,7 +79,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   @override
   Widget build(BuildContext context) {
     _workoutController.setOnFinish(() {
-      Wakelock.disable();
+      if (!Platform.isLinux) Wakelock.disable();
       _pageController.jumpToPage(WorkoutPageTypes.FINISH.index);
     });
 
@@ -92,7 +94,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
           startWorkout: () {
             _pageController.jumpToPage(WorkoutPageTypes.EXERCISE.index);
             _workoutController.start();
-            Wakelock.enable();
+            if (!Platform.isLinux) Wakelock.enable(); //
           },
         ),
         ExercisePage(
