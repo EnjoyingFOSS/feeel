@@ -23,11 +23,8 @@
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_listed.dart';
-import 'package:feeel/theming/feeel_shade.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
-
-import 'package:feeel/enums/workout_category.dart';
 
 import 'components/empty_workout.dart';
 import 'components/workout_header.dart';

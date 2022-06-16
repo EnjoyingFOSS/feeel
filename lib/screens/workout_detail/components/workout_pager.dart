@@ -30,7 +30,6 @@ import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
-import 'package:feeel/enums/workout_category.dart';
 
 import 'exercise_page.dart';
 import 'finish_page.dart';

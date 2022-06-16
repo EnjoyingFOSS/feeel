@@ -23,15 +23,23 @@
 import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+// import 'package:archive/archive_io.dart';
+import 'package:date_format/date_format.dart';
 import 'package:feeel/db/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
+import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/settings/components/theme_dialog.dart';
+import 'package:feeel/db/workout_import_export.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:feeel/theming/theme_mode_extensions.dart';
+
+import '../../db/db_helper.dart';
 
 class SettingsScreen extends StatefulWidget {
   SettingsScreen({Key? key}) : super(key: key);
@@ -78,19 +86,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 return ListView(
                   children: <Widget>[
                     SwitchListTile.adaptive(
-                      secondary: Icon(Icons.music_note),
-                      value: (settingsBundle.preferences
-                              .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
-                          false),
-                      title: Text("Sounds instead of voice".i18n),
-                      onChanged: (bool newValue) {
-                        setState(() {
-                          settingsBundle.preferences.setBool(
-                              PreferenceKeys.TTS_DISABLED_PREF, newValue);
-                        });
-                      },
-                      activeColor: activeColor
-                    ),
+                        secondary: Icon(Icons.music_note),
+                        value: (settingsBundle.preferences
+                                .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
+                            false),
+                        title: Text("Sounds instead of voice".i18n),
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            settingsBundle.preferences.setBool(
+                                PreferenceKeys.TTS_DISABLED_PREF, newValue);
+                          });
+                        },
+                        activeColor: activeColor),
                     SwitchListTile.adaptive(
                       secondary: Icon(Icons.notifications),
                       value: notificationTime != null,
@@ -139,6 +146,93 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         });
                       },
                     ),
+                    // todo import export ListTile(
+                    //   leading: Icon(Icons.download),
+                    //   title: Text("Export custom workouts"
+                    //       .i18n), //todo figure out how to focus dialogs right away
+                    //   onTap: () async {
+                    //     //todo add try catch
+                    //     final customWorkouts = await DBHelper.db
+                    //         .queryFullWorkoutsByType(WorkoutType.CUSTOM);
+                    //     if (customWorkouts == null) {
+                    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    //           content: Text(
+                    //               "You don't have any custom workouts".i18n)));
+                    //     } else {
+                    //       final export =
+                    //           await WorkoutImportExport.exportWorkouts(
+                    //               customWorkouts);
+                    //       if (Platform.isMacOS || Platform.isLinux) {
+                    //         final outputFile =
+                    //             await FilePicker.platform.saveFile(
+                    //           dialogTitle: "",
+                    //           fileName: "Feeel workouts " +
+                    //               formatDate(DateTime.now(), [
+                    //                 yyyy,
+                    //                 '-',
+                    //                 mm,
+                    //                 '-',
+                    //                 dd,
+                    //                 " (",
+                    //                 HH,
+                    //                 ';',
+                    //                 nn,
+                    //                 ")"
+                    //               ]) +
+                    //               ".feeel",
+                    //         );
+                    //         if (outputFile != null) {
+                    //           await export.copy(outputFile);
+                    //         }
+                    //       } else {
+                    //         Share.shareFiles([export.path]);
+                    //       }
+                    //     }
+                    //   },
+                    // ),
+                    // ListTile(
+                    //   leading: Icon(Icons.upload),
+                    //   title: Text("Import workouts".i18n),
+                    //   onTap: () async {
+                    //     //todo add try catch
+                    //     final pickedFiles = await FilePicker.platform.pickFiles(
+                    //         type: FileType.any,
+                    //         allowedExtensions: ["feeel"],
+                    //         allowMultiple: false,
+                    //         withReadStream: Platform.isLinux);
+
+                    //     final filePath = pickedFiles?.files.first.path;
+
+                    //     if (filePath == null) {
+                    //       return;
+                    //     } else {
+                    //       showDialog<void>(
+                    //           //todo try catch in case it's a corrupt/invalid file
+                    //           context: context,
+                    //           builder: (context) => AlertDialog(
+                    //                 title: Text(
+                    //                     "Duplicates will not be overriden"
+                    //                         .i18n),
+                    //                 content: Text(
+                    //                     "If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them."
+                    //                         .i18n),
+                    //                 actions: [
+                    //                   TextButton(
+                    //                       onPressed: () =>
+                    //                           Navigator.of(context).pop(),
+                    //                       child: Text("Cancel".i18n)),
+                    //                   TextButton(
+                    //                       onPressed: () {
+                    //                         WorkoutImportExport.importWorkouts(
+                    //                             InputFileStream(filePath));
+                    //                         Navigator.of(context).pop();
+                    //                       },
+                    //                       child: Text("Import anyway".i18n))
+                    //                 ],
+                    //               ));
+                    //     }
+                    //   },
+                    // ),
                     ListTile(
                       leading: Icon(Icons.volunteer_activism),
                       title: Text("Participate".i18n),
@@ -164,7 +258,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 );
               } else {
-                return Center(child: CircularProgressIndicator());
+                return Center(child: const CircularProgressIndicator());
               }
             }));
   }
@@ -175,8 +269,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _launchURL(String url) async {
-    await canLaunch(url)
-        ? await launch(url)
+    await canLaunchUrl(Uri.parse(url))
+        ? await launchUrl(Uri.parse(url))
         : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text("Could not open URL."),
           ));
