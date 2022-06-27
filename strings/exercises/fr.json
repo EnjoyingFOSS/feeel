@@ -17,7 +17,7 @@
     "exerciseStepups": "Marches",
     "stepsAbCrunches": "1. Allongez-vous sur le sol, face contre terre, genoux pliés.\n2. Courbez les épaules vers le bassin. Les mains peuvent être derrière ou à côté du cou ou croisées sur la poitrine.\n3. Répétez",
     "exerciseAbCrunches": "Abdominaux",
-    "stepsPushups": "1. Allongez-vous sur le ventre\n2. Placez vos mains près de vos oreilles\n3. Utilisez vos bras pour soulever votre ventre jusqu'à ce que les bras soient droits, en gardant le dos droit.\n4. Pliez les bras jusqu'à ce que la poitrine touche presque le sol, en vous assurant que le dos est droit.\n5. Répétez à partir de l'étape 3",
+    "stepsPushups": "Position de départ: \nMettez-vous dans la position de départ des pompes, les mains et les orteils touchant le sol, et le dos, les bras et les jambes tendus. Pour arriver à cette position, vous pouvez vous allonger sur le ventre, placer vos mains à côté de votre tête et lever vos bras jusqu'à ce qu'ils soient droits.\n\nÉtapes :\n1. Pliez les bras jusqu'à ce que votre poitrine touche presque le sol, en vous assurant que votre dos reste bien droit.\n2. Utilisez vos bras pour vous soulever pour revenir à la position de départ.\n3. Répétez",
     "exercisePushups": "Pompes",
     "stepsWallSit": "1. Appuyez-vous contre le mur, en regardant vers l'avant, les pieds fermement plantés au sol, écartés de la largeur des épaules et à une distance d'environ 60 cm du mur.\n2. Glissez le long du mur, en gardant le dos appuyé contre lui, jusqu'à ce que les jambes forment un angle droit. Les genoux doivent être directement au-dessus des chevilles.\nLa douleur au quadriceps est normale, arrêtez si vous ressentez une douleur au genou ou à la rotule",
     "exerciseWallSit": "Assis dos au mur",
@@ -45,8 +45,8 @@
     "workoutScientific7Minute": "Entraînement scientifique de 7 min",
     "stepsJumpRopeBasic": "Cet exercice nécessite une corde à sauter. Assurez-vous que la longueur de la corde est adaptée à votre taille. Une mamière de vérifier est de saisir les deux poignées d'une main et de se tenir au milieu de la corde suspendue au sol avec un pied. Si la corde (sans les poignées) arrive juste sous votre poitrine, sa longueur est correcte. Une corde plus courte serait dangereuse, car vous risqueriez de vous cogner, et une corde plus longue serait mauvaise pour la forme.\n1. Rapprochez vos pieds, pliez un peu les genoux, gardez la tête et le corps droits, gardez les coudes rentrés, ouvrez les bras.\n2. Faites tourner uniquement vos poignets avec suffisamment de force pour faire tourner la corde.\n3. Sautez juste assez haut pour faire passer la corde sous vos pieds.\n4. Répétez à partir de l'étape 2.",
     "exerciseJumpRopeBasic": "Corde à sauter : sauts de base",
-    "exerciseArmCircles": "Cercles avec les bras",
-    "stepsArmCircles": "1. Tenez-vous debout, le dos bien droit.\n2. Amenez vos bras vers l'avant, levez-les au-dessus de votre tête, puis continuez le mouvement derrière votre dos et vers le bas jusqu'à la position initiale.\n3. Continuez à faire des cercles avec vos bras comme décrit à l'étape 2.",
+    "exerciseArmCircles": "Cercles avant des bras",
+    "stepsArmCircles": "1. Tenez-vous debout, le dos bien droit.\n2. Gardez vos bras droits, amenez les devant vous, puis vers le bas, puis derrière votre dos, puis au dessus de votre tête, puis ramenez les en position initiale, devant vous.\n3. Continuez à faire des cercles avec vos bras comme décrit à l'étape 2.",
     "stepsMountainClimbers": "Position de départ :\nCommencez par la position debout des pompes ou de la planche haute.\nLes mains doivent se trouver directement sous vos épaules.\nGardez la tête dans le prolongement du dos, face au sol.\nLes pieds doivent être écartés d'environ la largeur des hanches.\n\nÉtapes :\n1. Déplacez un genou vers le centre de votre corps, vers vos coudes, en gardant l'autre jambe tendue.\n2. Dans un mouvement de saut rapide, redressez la jambe pliée et tirez l'autre genou vers votre corps.\n3. Répétez l'étape 2 en alternant les jambes.\n\nRemarques :\nTout au long de l'exercice, votre dos doit rester aussi droit que possible – évitez d'avoir une bosse ou un dos affaissé.",
     "exerciseMountainClimbers": "Escaladeurs de montagne",
     "stepsPushupBurpees": "Position de départ :\nTenez-vous droit, les pieds écartés de la largeur des hanches.\n\nÉtapes :\n1. Accroupissez-vous et prenez appui sur le sol avec les mains entre les genoux et devant les pieds, le dos droit.\n2. En gardant les mains sur le sol, lancez vos jambes vers l'arrière en position de planche haute.\n3. Effectuez une pompe.\n4. Remettez vos pieds vers l'avant pour revenir à la position de squat.\n5. Répétez.",
@@ -72,5 +72,10 @@
     "exerciseKettlebellDeadlift": "Haltères de kettlebell",
     "exerciseSumoSquat": "Squats sumo",
     "exerciseChildsPose": "Position de l'enfant",
-    "exercisePullUp": "Pompes"
+    "exercisePullUp": "Pompes",
+    "exerciseBWArmCircles": "Cercle arrière des bras",
+    "stepsBWArmCircles": "1. Tenez-vous debout, le dos droit.\n2. Gardez vos bras tendus, amenez-les devant vous, levez-les au-dessus de votre tête, puis continuez le mouvement derrière votre dos jusqu'à revenir en position initiale.\n3. Continuez à faire des cercles comme décrit à l'étape 2.",
+    "exercise4countBurpees": "Burpees (4 phases)",
+    "exerciseNoPushupBurpees": "Burpees sans saut",
+    "stepsNoPushupBurpees": "Position de départ :\nSe tenir droit, les pieds écartés de la largeur des hanches.\n\nÉtapes:\n1. Accroupissez-vous et appuyez-vous sur le sol avec vos mains entre les genoux et devant vos pieds, le dos droit.\n2. En gardant les mains au sol, donnez une impulsion pour envoyer vos jambes vers l'arrière en position de planche haute.\n3. Donnez une nouvelle impulsion pour revenir à la position accroupie.\n4. Sautez.\n5. Répétez."
 }
