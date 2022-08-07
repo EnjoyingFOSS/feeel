@@ -92,5 +92,8 @@
     "btnAddALinkToPhotos": "Προσθήκη συνδέσμου προς τις φωτογραφίες σας",
     "btnDisableTTS": "Ήχοι αντί για φωνή",
     "btnImportAnyway": "Εισαγωγή ούτως ή άλλως",
-    "btnBackToWorkoutList": "Επιστροφή στη λίστα προπονήσεων"
+    "btnBackToWorkoutList": "Επιστροφή στη λίστα προπονήσεων",
+    "txtEnglishDescriptionLicense": "Αγγλική περιγραφή άδειας",
+    "txtLearnTheExercise": "Μάθετε την άσκηση",
+    "txtImageLicense": "Άδεια χρήσης εικόνας"
 }
