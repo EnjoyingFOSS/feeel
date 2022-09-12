@@ -101,42 +101,34 @@ class ExerciseSheet extends StatelessWidget {
                         child: Container(
                             color: Colors
                                 .transparent, // used to make even the transparent areas clickable
-                            child: headOnly
-                                ? Stack(children: [
-                                    Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: FractionallySizedBox(
-                                          heightFactor: 0.372,
-                                          widthFactor: 1.0,
-                                          child: Container(
-                                            color: bgColor,
-                                          ),
-                                        )),
-                                    Center(
-                                        child: HeadExerciseContent(
-                                            color: colorSwatch
-                                                .getColorByBrightness(
-                                                    FeeelShade.LIGHTEST,
-                                                    brightness),
-                                            onBreak: false,
-                                            illustration: IllustrationWidget(
-                                                imageAssetString:
-                                                    AssetHelper.getImage(
-                                                        imageSlug),
-                                                flipped: exercise.flipped),
-                                            triangleSeed:
-                                                exercise.name.hashCode)),
-                                  ])
-                                : Center(
-                                    child: BodyExerciseContent(
-                                        color: bgColor,
-                                        onBreak: false,
-                                        squareRatio: true,
-                                        illustration: IllustrationWidget(
+                            child: Stack(children: [
+                              Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: FractionallySizedBox(
+                                    heightFactor: 0.372,
+                                    widthFactor: 1.0,
+                                    child: Container(
+                                      color: bgColor,
+                                    ),
+                                  )),
+                              headOnly
+                                  ? HeadExerciseContent(
+                                      color: colorSwatch.getColorByBrightness(
+                                          FeeelShade.LIGHTEST, brightness),
+                                      onBreak: false,
+                                      illustration: IllustrationWidget(
                                           imageAssetString:
                                               AssetHelper.getImage(imageSlug),
-                                          flipped: exercise.flipped,
-                                        )))))),
+                                          flipped: exercise.flipped),
+                                      triangleSeed: exercise.name.hashCode)
+                                  : BodyExerciseContent(
+                                      onBreak: false,
+                                      illustration: IllustrationWidget(
+                                        imageAssetString:
+                                            AssetHelper.getImage(imageSlug),
+                                        flipped: exercise.flipped,
+                                      )),
+                            ])))),
               Container(
                   padding: EdgeInsets.fromLTRB(
                       MediaQuery.of(context).padding.left + 16,

@@ -23,42 +23,23 @@
 import 'package:flutter/material.dart';
 
 class BodyExerciseContent extends StatelessWidget {
-  final Color color;
   final bool onBreak;
   final Widget illustration;
-  final bool squareRatio;
+  final AlignmentGeometry alignment;
 
   const BodyExerciseContent(
       {Key? key,
-      required this.color,
       required this.onBreak,
       required this.illustration,
-      this.squareRatio = false})
+      this.alignment = Alignment.bottomCenter})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    return Stack(
-      children: <Widget>[
-        Align(
-            alignment: Alignment.bottomCenter,
-            child: squareRatio || screenSize.width / screenSize.height > 0.8
-                ? FractionallySizedBox(
-                    heightFactor: 0.372,
-                    widthFactor: 1.0,
-                    child: Container(
-                      color: color,
-                    ),
-                  )
-                : Container(color: color, height: screenSize.width * 0.372)),
-        Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child:
-                    Opacity(opacity: onBreak ? 0.5 : 1.0, child: illustration)))
-      ],
-    );
+    return Align(
+        alignment: alignment,
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Opacity(opacity: onBreak ? 0.5 : 1.0, child: illustration)));
   }
 }

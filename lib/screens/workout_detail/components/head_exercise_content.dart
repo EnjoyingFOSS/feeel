@@ -28,26 +28,26 @@ class HeadExerciseContent extends StatelessWidget {
   final bool onBreak;
   final Widget illustration;
   final int triangleSeed;
+  final AlignmentGeometry alignment;
 
   const HeadExerciseContent(
       {Key? key,
       required this.color,
       required this.onBreak,
       required this.illustration,
-      required this.triangleSeed})
+      required this.triangleSeed,
+      this.alignment = Alignment.bottomCenter})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Opacity(
-                    opacity: onBreak ? 0.5 : 1.0,
-                    child: TriangleFrame(
-                        color: color,
-                        child: illustration,
-                        seed: triangleSeed))));
+        alignment: alignment,
+        child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Opacity(
+                opacity: onBreak ? 0.5 : 1.0,
+                child: TriangleFrame(
+                    color: color, seed: triangleSeed, child: illustration))));
   }
 }
