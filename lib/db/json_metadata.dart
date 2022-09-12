@@ -20,32 +20,29 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/theming/feeel_colors.dart';
-import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/db/db_helper.dart';
 
-enum WorkoutCategory {
-  STRENGTH(0, "Strength", FeeelColors.blue),
-  STRETCHING(1, "Stretching & yoga", FeeelColors.green),
-  CARDIO(2, "Cardio", FeeelColors.orange),
-  OTHER(3, "Other", FeeelColors.gray);
+class JSONMetadata {
+  static const _CUR_METADATA_VERSION = 1;
 
-  final String translationKey;
-  final FeeelSwatch colorSwatch;
-  final int dbValue;
-  const WorkoutCategory(this.dbValue, this.translationKey, this.colorSwatch);
+  static const _METADATA_VERSION_KEY = 'metadataVersion';
+  static const _DATABASE_VERSION_KEY = 'databaseVersion';
 
-  static WorkoutCategory fromDBValue(int dbValue) {
-    switch (dbValue) {
-      case 0:
-        return WorkoutCategory.STRENGTH;
-      case 1:
-        return WorkoutCategory.STRETCHING;
-      case 2:
-        return WorkoutCategory.CARDIO;
-      case 3:
-        return WorkoutCategory.OTHER;
-      default:
-        throw Exception("No workout category with this dbValue exists.");
-    }
+  final int metadataVersion;
+  final int databaseVersion;
+
+  JSONMetadata(
+      {this.metadataVersion = _CUR_METADATA_VERSION,
+      this.databaseVersion = DBHelper.DATABASE_VERSION});
+
+  static JSONMetadata fromJson(Map<String, dynamic> json) {
+    return JSONMetadata(
+        metadataVersion: json[_METADATA_VERSION_KEY] as int,
+        databaseVersion: json[_DATABASE_VERSION_KEY] as int);
   }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        _METADATA_VERSION_KEY: metadataVersion,
+        _DATABASE_VERSION_KEY: databaseVersion,
+      };
 }

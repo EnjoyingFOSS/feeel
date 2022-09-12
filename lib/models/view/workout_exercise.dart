@@ -20,6 +20,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/json_metadata.dart';
+
+import '../../db/db_helper.dart';
 import 'exercise.dart';
 
 class WorkoutExercise {
@@ -29,4 +32,31 @@ class WorkoutExercise {
 
   WorkoutExercise(
       {required this.exercise, this.duration, this.breakBeforeDuration});
+
+  static Future<WorkoutExercise?> fromJson(
+      Map<String, dynamic> json, JSONMetadata metadata) async {
+    final exercise = await DBHelper.db.queryExercise(DBHelper.getCurExerciseId(
+        json['exercise']['dbId'] as int,
+        metadata.databaseVersion)); //todo what if a value is null?
+
+    if (exercise != null)
+      return WorkoutExercise(
+        exercise: exercise,
+        duration: json['duration'] as int?,
+        breakBeforeDuration: json['breakBeforeDuration'] as int?,
+      );
+    else
+      return null;
+  }
+
+  static Map<String, dynamic> _exerciseToJson(
+          Exercise
+              exercise) => //todo this is silly; DB version should be saved somewhere at top of json file
+      <String, dynamic>{'dbId': exercise.dbId, 'exerciseName': exercise.name};
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'exercise': _exerciseToJson(exercise),
+        'duration': duration,
+        'breakBeforeDuration': breakBeforeDuration,
+      };
 }

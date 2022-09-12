@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/json_metadata.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
@@ -45,10 +46,45 @@ class Workout {
       required this.exerciseDuration,
       required this.category,
       required this.type}) {
-    _duration = (workoutExercises.length > 0) ? workoutExercises[0].duration ?? exerciseDuration : 0;
+    _duration = (workoutExercises.length > 0)
+        ? workoutExercises[0].duration ?? exerciseDuration
+        : 0;
     for (var i = 1; i < workoutExercises.length; i++) {
       _duration += workoutExercises[i].duration ?? exerciseDuration;
       _duration += workoutExercises[i].breakBeforeDuration ?? breakDuration;
     }
   }
+
+  static Future<Workout> fromJson(
+      Map<String, dynamic> json, JSONMetadata metadata) async {
+    final workoutExercises = List<WorkoutExercise>.empty(growable: true);
+
+    print(json);
+
+    for (final weJson in json['workoutExercises'] as List<dynamic>) {
+      final we = await WorkoutExercise.fromJson(
+          weJson as Map<String, dynamic>, metadata);
+      if (we != null) workoutExercises.add(we);
+    }
+    return Workout(
+      dbId: null,
+      title: json['title'] as String,
+      workoutExercises: workoutExercises,
+      countdownDuration: json['countdownDuration'] as int,
+      breakDuration: json['breakDuration'] as int,
+      exerciseDuration: json['exerciseDuration'] as int,
+      category: WorkoutCategory.fromDBValue(json['category'] as int),
+      type: WorkoutType.fromDBValue(json['type'] as int),
+    );
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'title': title,
+        'type': type.dbValue,
+        'category': category.dbValue,
+        'exerciseDuration': exerciseDuration,
+        'breakDuration': breakDuration,
+        'countdownDuration': countdownDuration,
+        'workoutExercises': workoutExercises.map((we) => we.toJson()).toList(),
+      };
 }

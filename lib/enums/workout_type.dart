@@ -26,4 +26,15 @@ enum WorkoutType {
 
   final int dbValue;
   const WorkoutType(this.dbValue);
+
+  static WorkoutType fromDBValue(int dbValue) {
+    switch (dbValue) {
+      case 0:
+        return WorkoutType.DEFAULT;
+      case 1:
+        return WorkoutType.CUSTOM;
+      default:
+        throw Exception("No workout type with this dbValue exists.");
+    }
+  }
 }
