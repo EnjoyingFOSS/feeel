@@ -31,6 +31,7 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationHelper {
+  //todo use provider?
   static final NotificationHelper helper = NotificationHelper._();
   static const _NOTIFICATION_CHANNEL_ID = "exercise_reminder";
   static const _NOTIFICATION_INT_ID = 0;

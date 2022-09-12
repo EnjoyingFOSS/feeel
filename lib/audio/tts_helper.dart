@@ -27,6 +27,7 @@ import 'package:i18n_extension/i18n_widget.dart';
 enum _TtsState { PLAYING, STOPPED }
 
 class TTSHelper {
+  //todo use provider, perhaps one for both available sound views?
   TTSHelper._();
   static final tts = TTSHelper._();
   static final _flutterTts = FlutterTts();
