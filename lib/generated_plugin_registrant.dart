@@ -6,7 +6,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:audioplayers/web/audioplayers_web.dart';
+import 'package:audioplayers_web/audioplayers_web.dart';
 import 'package:file_picker/_internal/file_picker_web.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone_web.dart';
 import 'package:flutter_tts/flutter_tts_web.dart';

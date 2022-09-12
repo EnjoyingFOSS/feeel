@@ -73,7 +73,7 @@ class Feeel extends StatelessWidget {
                 theme: theme,
                 darkTheme: darkTheme,
                 supportedLocales: LocaleHelper.supportedLocales,
-                localizationsDelegates: [
+                localizationsDelegates: const [
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,

@@ -24,15 +24,16 @@ import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class LearnInfo extends StatelessWidget {
+  //todo indicate when an exercise has steps
   final Color bgColor;
   final void Function() onTap;
 
-  const LearnInfo(
-      {Key? key, required this.onTap, required this.bgColor})
+  const LearnInfo({Key? key, required this.onTap, required this.bgColor})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) { //todo make this possible to activate using the keyboard only!
+  Widget build(BuildContext context) {
+    //todo make this possible to activate using the keyboard only!
     return GestureDetector(
       child: Container(
           decoration: BoxDecoration(
