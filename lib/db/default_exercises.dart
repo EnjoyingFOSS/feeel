@@ -131,7 +131,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: WALL_SIT,
         name: "Wall sit",
@@ -144,7 +144,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: PUSH_UPS,
         name: "Push-ups",
@@ -157,7 +157,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: AB_CRUNCHES,
         name: "Crunches",
@@ -170,7 +170,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: STEP_UPS,
         name: "Step-ups",
@@ -183,7 +183,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SQUATS,
         name: "Squats",
@@ -196,7 +196,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: CHAIR_DIPS,
         name: "Chair dips",
@@ -209,7 +209,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: FOREARM_PLANK,
         name: "Forearm plank",
@@ -222,7 +222,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: HIGH_KNEES,
         name: "High knees",
@@ -235,7 +235,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: LUNGES,
         name: "Lunges",
@@ -248,7 +248,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: PUSH_UP_ROTATIONS,
         name: "Push-up rotations",
@@ -261,7 +261,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SIDE_PLANK_L,
         name: "Side plank left",
@@ -272,7 +272,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SIDE_PLANK_R,
         name: "Side plank right",
@@ -283,7 +283,7 @@ class DefaultExercises {
         descLicense: myDescLicense,
         hasSteps: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SIDE_SPLIT_SQUATS_L,
         name: "Side split squats left",
@@ -296,7 +296,7 @@ class DefaultExercises {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         hasSteps: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: BULGARIAN_SPLIT_SQUATS_L,
         name: "Bulgarian split squats left",
@@ -309,7 +309,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: BULGARIAN_SPLIT_SQUATS_R,
         name: "Bulgarian split squats right",
@@ -322,7 +322,7 @@ class DefaultExercises {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         hasSteps: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: PISTOL_SQUATS_L,
         name: "Pistol squats left",
@@ -335,7 +335,7 @@ class DefaultExercises {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         hasSteps: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: PISTOL_SQUATS_R,
         name: "Pistol squats right",
@@ -348,7 +348,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: KNEELING_KICKBACKS,
         name: "Kneeling kickbacks",
@@ -362,7 +362,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: CALF_RAISES_L,
         name: "Left leg calf raises",
@@ -375,7 +375,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: CALF_RAISES_R,
         name: "Right leg calf raises",
@@ -388,7 +388,7 @@ class DefaultExercises {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         hasSteps: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SIDE_SPLIT_SQUATS_R,
         name: "Side split squats right",
@@ -401,7 +401,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SPLIT_SQUATS_L,
         name: "Split squats left",
@@ -414,7 +414,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SPLIT_SQUATS_R,
         name: "Split squats right",
@@ -427,7 +427,7 @@ class DefaultExercises {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         hasSteps: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: JUMP_ROPE_BASIC,
         name: "Jump rope: basic jumps",
@@ -440,7 +440,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: ARM_CIRCLES_FW,
         name: "Forward arm circles",
@@ -453,7 +453,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: PIKE_PUSHUPS,
         name: "Pike push-ups",
@@ -466,7 +466,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: MOUNTAIN_CLIMBERS,
         name: "Mountain climbers",
@@ -480,7 +480,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: FOURCOUNT_BURPEES,
         name: "4-count burpees",
@@ -494,7 +494,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: NO_PUSHUP_BURPEES,
         name: "No push-up burpees",
@@ -508,7 +508,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SQUAT_THRUSTS,
         name: "Squat thrusts",
@@ -522,7 +522,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: REVERSE_LUNGES,
         name: "Reverse lunges",
@@ -535,7 +535,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: LEG_RAISES,
         name: "Leg raises",
@@ -548,7 +548,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: FLOOR_DIPS,
         name: "Floor dips",
@@ -561,7 +561,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: HIGH_PLANK,
         name: "High plank",
@@ -574,7 +574,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: ARM_CIRCLES_BW,
         name: "Backward arm circles",
@@ -587,7 +587,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: CHILDS_POSE,
         name: "Child's pose",
@@ -600,7 +600,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: PULL_UP,
         name: "Pull-ups",
@@ -613,7 +613,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: KETTLEBELL_DEADLIFT,
         name: "Kettlebell deadlifts",
@@ -626,7 +626,7 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SUMO_SQUAT,
         name: "Sumo squats",
@@ -640,11 +640,11 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.FULL_BODY.dbValue),
+        type: ExerciseType.fullBody.dbValue),
     Exercise(
         id: SHOULDER_ROTATION_FW,
         name: "Forward shoulder rotation",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description: shoulderRotationDesc,
         imageSlug: "exercise_shoulderrotation_fw.webp",
         descLicense: myDescLicense,
@@ -656,7 +656,7 @@ class DefaultExercises {
     Exercise(
         id: SHOULDER_ROTATION_BW,
         name: "Backward shoulder rotation",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description: shoulderRotationDesc,
         imageSlug: "exercise_shoulderrotation_bw.webp",
         descLicense: myDescLicense,
@@ -668,7 +668,7 @@ class DefaultExercises {
     Exercise(
         id: CHIN_TUCK,
         name: "Chin tuck",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.\n2. Hold for 5 seconds.\n3. Go back to normal head position and repeat.",
         imageSlug: "exercise_chintuck.webp",
@@ -681,7 +681,7 @@ class DefaultExercises {
     Exercise(
         id: SHOULDER_SHRUG,
         name: "Shoulder shrugs",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Lift shoulders straight up as far as possible and hold for 5 sec.\n2. Release shoulders back down to a relaxed position.\n3. Repeat.",
         imageSlug: "exercise_shouldershrug.webp",
@@ -694,7 +694,7 @@ class DefaultExercises {
     Exercise(
         id: HEAD_TURNS,
         name: "Head turns",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description:
             "Starting position:\nSit or stand with your back straight and shoulders down.\n\nSteps:\n1. Sit or stand up straight, shoulders dropped.\n2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.\n3. Return to center position and repeat, changing sides.",
         imageSlug: "exercise_headturn.webp",
@@ -710,7 +710,7 @@ class DefaultExercises {
     Exercise(
         id: LATERAL_NECK_STRETCH_LEFT,
         name: "Left neck stretch",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description: lateralNeckStretchDesc,
         descLicense: neckStretchDescLicense,
         flipped: true,
@@ -722,7 +722,7 @@ class DefaultExercises {
     Exercise(
         id: LATERAL_NECK_STRETCH_RIGHT,
         name: "Right neck stretch",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description: lateralNeckStretchDesc,
         descLicense: neckStretchDescLicense,
         imageSlug: "exercise_neckstretch_lateral.webp",
@@ -734,7 +734,7 @@ class DefaultExercises {
     Exercise(
         id: FRONT_NECK_STRETCH,
         name: "Front neck stretch",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Open mouth wide.\n2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.\n3. Very slowly close and open your mouth.\n4. At the end, slowly return to starting position and close mouth.",
         descLicense: neckStretchDescLicense,
@@ -748,7 +748,7 @@ class DefaultExercises {
     Exercise(
         id: BACK_AND_LATERAL_NECK_STRETCH_LEFT,
         name: "Back and left neck stretch",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         flipped: true,
         description: backAndLateralNeckStretchDesc,
         descLicense: neckStretchDescLicense,
@@ -760,7 +760,7 @@ class DefaultExercises {
     Exercise(
         id: BACK_AND_LATERAL_NECK_STRETCH_RIGHT,
         name: "Back and right neck stretch",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description: backAndLateralNeckStretchDesc,
         descLicense: neckStretchDescLicense,
         imageSlug: "exercise_neckstretch_back,lateral.webp",
@@ -772,7 +772,7 @@ class DefaultExercises {
     Exercise(
         id: CHIN_TUCK_WITH_FLEXION_WITH_ROTATION,
         name: "Chin tuck with flexion with rotation",
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tuck your chin in, moving your head back.\n2. Tilt your head forward until you feel a stretch in the back of your neck.\n3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.\n4. Hold for 5 seconds.\n5. Rotate back, keeping your head down.\n6. Repeat from step 3, switching sides.",
         descLicense: neckStretchDescLicense,
@@ -786,7 +786,7 @@ class DefaultExercises {
     Exercise(
         id: ALTERNATING_BICEP_CURLS,
         name: "Alternating bicep curls",
-        type: ExerciseType.FULL_BODY.dbValue,
+        type: ExerciseType.fullBody.dbValue,
         description:
             "Starting position:\nStart standing up with dumbbells in each hand, your back straight and feet hip-width apart. Your arms should be relaxed, pointing down. Your knees should be slightly bent, your abs contracted, and your shoulders down.\n\nSteps:\n1. Bend one arm at the elbow, bringing the dumbbell up to your shoulder. Your upper arm should remain motionless during this movement.\n2. Bring the dumbbell back down until your arm is in its original relaxed position.\n3. Repeat, switching arms.",
         descLicense: myDescLicense,
@@ -802,7 +802,7 @@ class DefaultExercises {
     Exercise(
         id: BACK_NECK_STRETCH,
         name: "Back neck stretch", //todo or flexion?
-        type: ExerciseType.HEAD.dbValue,
+        type: ExerciseType.head.dbValue,
         description:
             "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push upward with your head while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
         imageSlug: "exercise_neckstretch_back.webp",

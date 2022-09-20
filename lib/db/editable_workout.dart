@@ -32,7 +32,7 @@ class EditableWorkout {
   int exerciseDuration;
   int breakDuration;
   WorkoutCategory category;
-  WorkoutType type = WorkoutType.CUSTOM;
+  WorkoutType type = WorkoutType.custom;
   late int _duration;
   int get duration => _duration;
 
@@ -40,7 +40,7 @@ class EditableWorkout {
       {this.dbId,
       this.title = "",
       List<EditableWorkoutExercise>? initialWorkoutExercises,
-      this.category = WorkoutCategory.STRENGTH,
+      this.category = WorkoutCategory.strength,
       this.countdownDuration = 5,
       this.breakDuration = 10,
       this.exerciseDuration = 30}) {

@@ -24,10 +24,10 @@ import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 
 enum WorkoutCategory {
-  STRENGTH(0, "Strength", FeeelColors.blue),
-  STRETCHING(1, "Stretching & yoga", FeeelColors.green),
-  CARDIO(2, "Cardio", FeeelColors.orange),
-  OTHER(3, "Other", FeeelColors.gray);
+  strength(0, "Strength", FeeelColors.blue),
+  stretching(1, "Stretching & yoga", FeeelColors.green),
+  cardio(2, "Cardio", FeeelColors.orange),
+  other(3, "Other", FeeelColors.gray);
 
   final String translationKey;
   final FeeelSwatch colorSwatch;
@@ -37,13 +37,13 @@ enum WorkoutCategory {
   static WorkoutCategory fromDBValue(int dbValue) {
     switch (dbValue) {
       case 0:
-        return WorkoutCategory.STRENGTH;
+        return WorkoutCategory.strength;
       case 1:
-        return WorkoutCategory.STRETCHING;
+        return WorkoutCategory.stretching;
       case 2:
-        return WorkoutCategory.CARDIO;
+        return WorkoutCategory.cardio;
       case 3:
-        return WorkoutCategory.OTHER;
+        return WorkoutCategory.other;
       default:
         throw Exception("No workout category with this dbValue exists.");
     }

@@ -46,7 +46,7 @@ class Workout {
       required this.exerciseDuration,
       required this.category,
       required this.type}) {
-    _duration = (workoutExercises.length > 0)
+    _duration = (workoutExercises.isNotEmpty)
         ? workoutExercises[0].duration ?? exerciseDuration
         : 0;
     for (var i = 1; i < workoutExercises.length; i++) {
@@ -58,8 +58,6 @@ class Workout {
   static Future<Workout> fromJson(
       Map<String, dynamic> json, JSONMetadata metadata) async {
     final workoutExercises = List<WorkoutExercise>.empty(growable: true);
-
-    print(json);
 
     for (final weJson in json['workoutExercises'] as List<dynamic>) {
       final we = await WorkoutExercise.fromJson(

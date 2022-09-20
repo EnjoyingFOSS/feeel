@@ -33,15 +33,15 @@ import '../models/view/workout.dart';
 
 class WorkoutImportExport {
   //todo test
-  static const _EXPORT_DIR_PREFIX = "EXPORT_";
-  static const _IMPORT_DIR_PREFIX = "IMPORT_";
+  static const _exportDirPrefix = "EXPORT_";
+  static const _importDirPrefix = "IMPORT_";
 
-  static const _METADATA_FILENAME = "metadata.json";
+  static const _metadataFilename = "metadata.json";
 
   static Future<File> exportWorkouts(List<Workout> workouts) async {
     final appSupportDir = await getApplicationSupportDirectory();
     final tempDir = Directory(p.join(appSupportDir.path,
-        "${_EXPORT_DIR_PREFIX}${DateTime.now().millisecondsSinceEpoch}"));
+        "$_exportDirPrefix${DateTime.now().millisecondsSinceEpoch}"));
     await tempDir.create();
 
     final workoutFiles = <File>[
@@ -49,12 +49,12 @@ class WorkoutImportExport {
         await _generateWorkoutFile(workout, tempDir)
     ];
 
-    final metaFile = File(p.join(tempDir.path, _METADATA_FILENAME));
+    final metaFile = File(p.join(tempDir.path, _metadataFilename));
     final metaContent = jsonEncode(JSONMetadata().toJson());
     await metaFile.writeAsString(metaContent);
 
     final zipFile = p.join(appSupportDir.path,
-        "${_EXPORT_DIR_PREFIX}${DateTime.now().millisecondsSinceEpoch}.feeel");
+        "$_exportDirPrefix${DateTime.now().millisecondsSinceEpoch}.feeel");
 
     final encoder = ZipFileEncoder();
     encoder.create(zipFile);
@@ -81,13 +81,13 @@ class WorkoutImportExport {
   static void importWorkouts(InputFileStream readStream) async {
     final appSupportDir = await getApplicationSupportDirectory();
     final tempDir = Directory(p.join(appSupportDir.path,
-        "${_IMPORT_DIR_PREFIX}${DateTime.now().millisecondsSinceEpoch}"));
+        "$_importDirPrefix${DateTime.now().millisecondsSinceEpoch}"));
     await tempDir.create();
 
     final archive = ZipDecoder().decodeBuffer(readStream);
 
     final metadataFile = archive.files.firstWhere(
-        (file) => file.name == _METADATA_FILENAME,
+        (file) => file.name == _metadataFilename,
         orElse: () => throw Exception(
             "This file does not contain the requisite metadata."));
 
@@ -97,7 +97,7 @@ class WorkoutImportExport {
 
     for (final file in archive.files) {
       if (file.isFile) {
-        if (file.name == _METADATA_FILENAME) continue;
+        if (file.name == _metadataFilename) continue;
 
         final json = jsonDecode(utf8.decode(file.content as List<int>))
             as Map<String, dynamic>;

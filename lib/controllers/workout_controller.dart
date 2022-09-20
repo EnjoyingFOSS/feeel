@@ -103,7 +103,7 @@ class WorkoutController {
   List<Function?> _onFinishes = List.filled(ViewTypes.values.length, null);
   List<WorkoutView?> _views = List.filled(
       ViewTypes.values.length, null); //todo weak references + NOT NULL SAFE!
-  WorkoutStage _stage = WorkoutStage.READY;
+  WorkoutStage _stage = WorkoutStage.ready;
   late WorkoutTimer _timer; //todo init timer
   late WorkoutMeta _workoutMeta;
 
@@ -125,15 +125,15 @@ class WorkoutController {
       _renderLaterStep();
     }, onDone: () {
       switch (_stage) {
-        case WorkoutStage.READY:
+        case WorkoutStage.ready:
           break;
-        case WorkoutStage.BREAK:
+        case WorkoutStage.workoutBreak:
           _coordinateExerciseStage();
           break;
-        case WorkoutStage.COUNTDOWN:
+        case WorkoutStage.countdown:
           _coordinateExerciseStage(restore: true);
           break;
-        case WorkoutStage.EXERCISE:
+        case WorkoutStage.exercise:
           if (_workoutMeta.isLastExercise())
             _coordinateEndStage();
           else {
@@ -141,7 +141,7 @@ class WorkoutController {
             _coordinateBreakStage();
           }
           break;
-        case WorkoutStage.END:
+        case WorkoutStage.end:
           break;
       }
     });
@@ -149,7 +149,7 @@ class WorkoutController {
 
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
-      if (prefs.getBool(PreferenceKeys.TTS_DISABLED_PREF) ?? Platform.isLinux
+      if (prefs.getBool(PreferenceKeys.ttsDisabledPref) ?? Platform.isLinux
           ? true
           : false) {
         final SoundView soundView = SoundView();
@@ -190,14 +190,14 @@ class WorkoutController {
   }
 
   void togglePlayPause() {
-    if (_stage == WorkoutStage.EXERCISE ||
-        _stage == WorkoutStage.BREAK ||
-        _stage == WorkoutStage.COUNTDOWN) {
+    if (_stage == WorkoutStage.exercise ||
+        _stage == WorkoutStage.workoutBreak ||
+        _stage == WorkoutStage.countdown) {
       if (_timer.isRunning()) {
         _timer.stop();
         _renderPausePlay();
       } else {
-        if (_stage == WorkoutStage.EXERCISE) {
+        if (_stage == WorkoutStage.exercise) {
           _workoutMeta.timerRestore = _timer.getTimeRemaining();
           _coordinateCountdownStage();
         } else {
@@ -210,7 +210,7 @@ class WorkoutController {
 
   // Stage creation
   void _coordinateExerciseStage({bool restore = false}) {
-    _stage = WorkoutStage.EXERCISE;
+    _stage = WorkoutStage.exercise;
     _renderStage();
 
     if (restore) {
@@ -228,7 +228,7 @@ class WorkoutController {
   }
 
   void _coordinateCountdownStage() {
-    _stage = WorkoutStage.COUNTDOWN;
+    _stage = WorkoutStage.countdown;
     _renderStage();
 
     _timer.reset(_workoutMeta.getCountdownDuration(), null);
@@ -239,7 +239,7 @@ class WorkoutController {
   }
 
   void _coordinateBreakStage() {
-    _stage = WorkoutStage.BREAK;
+    _stage = WorkoutStage.workoutBreak;
     _renderStage();
 
     _timer.reset(_workoutMeta.getCurBreakDuration(), null);
@@ -250,7 +250,7 @@ class WorkoutController {
 
   void _coordinateStart() {
     _renderStage();
-    _stage = WorkoutStage.BREAK;
+    _stage = WorkoutStage.workoutBreak;
 
     _timer.reset(_workoutMeta.getStartDuration(), null);
     _renderSeconds();
@@ -261,7 +261,7 @@ class WorkoutController {
   void _coordinateEndStage() {
     _timer.stop();
 
-    _stage = WorkoutStage.END;
+    _stage = WorkoutStage.end;
     _renderStage();
   }
 
@@ -269,18 +269,18 @@ class WorkoutController {
 
   void _renderStage() {
     switch (_stage) {
-      case WorkoutStage.READY:
+      case WorkoutStage.ready:
         for (final view in _views)
           view?.onStart(
               _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getStartDuration());
         break;
-      case WorkoutStage.COUNTDOWN:
+      case WorkoutStage.countdown:
         for (final view in _views)
           view?.onCountdown(_workoutMeta.getExercisePos());
         break;
-      case WorkoutStage.EXERCISE:
+      case WorkoutStage.exercise:
         for (final view in _views)
           view?.onExercise(
               _workoutMeta.getExercisePos(),
@@ -288,14 +288,14 @@ class WorkoutController {
               _workoutMeta.getCurStep(),
               _workoutMeta.getCurExerciseDuration());
         break;
-      case WorkoutStage.BREAK:
+      case WorkoutStage.workoutBreak:
         for (final view in _views)
           view?.onBreak(
               _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getCurBreakDuration());
         break;
-      case WorkoutStage.END:
+      case WorkoutStage.end:
         for (final onFinish in _onFinishes) if (onFinish != null) onFinish();
         break;
     }

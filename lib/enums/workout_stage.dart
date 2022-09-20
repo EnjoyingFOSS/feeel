@@ -20,4 +20,10 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-enum WorkoutStage { READY, EXERCISE, COUNTDOWN, BREAK, END } //todo remove READY
+enum WorkoutStage {
+  ready,
+  exercise,
+  countdown,
+  workoutBreak,
+  end
+} //todo remove READY

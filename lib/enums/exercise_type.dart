@@ -21,8 +21,8 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 enum ExerciseType {
-  FULL_BODY(0),
-  HEAD(1);
+  fullBody(0),
+  head(1);
 
   final int dbValue;
   const ExerciseType(this.dbValue);

@@ -21,8 +21,8 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 enum WorkoutType {
-  DEFAULT(0),
-  CUSTOM(1);
+  bundled(0),
+  custom(1);
 
   final int dbValue;
   const WorkoutType(this.dbValue);
@@ -30,9 +30,9 @@ enum WorkoutType {
   static WorkoutType fromDBValue(int dbValue) {
     switch (dbValue) {
       case 0:
-        return WorkoutType.DEFAULT;
+        return WorkoutType.bundled;
       case 1:
-        return WorkoutType.CUSTOM;
+        return WorkoutType.custom;
       default:
         throw Exception("No workout type with this dbValue exists.");
     }

@@ -54,7 +54,7 @@ class DefaultWorkouts {
         countdownDuration: 5,
         breakDuration: 10,
         exerciseDuration: 30,
-        category: WorkoutCategory.STRENGTH),
+        category: WorkoutCategory.strength),
     EditableWorkout(
         dbId: null,
         title: "Leg workout",
@@ -78,7 +78,7 @@ class DefaultWorkouts {
         countdownDuration: 5,
         breakDuration: 10,
         exerciseDuration: 30,
-        category: WorkoutCategory.STRENGTH),
+        category: WorkoutCategory.strength),
     // EditableWorkout(
     //     dbId: null,
     //     title: "Neck and shoulder stretches",

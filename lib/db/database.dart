@@ -162,7 +162,7 @@ class FeeelDB extends _$FeeelDB {
 
         // delete default workouts
         final defaultWorkouts = await (select(workouts)
-              ..where((w) => w.type.equals(WorkoutType.DEFAULT.dbValue)))
+              ..where((w) => w.type.equals(WorkoutType.bundled.dbValue)))
             .get();
 
         final currentWorkoutExerciseTableName = 'workout_exercises';
@@ -178,7 +178,7 @@ class FeeelDB extends _$FeeelDB {
           }
         }
         await delete(workouts)
-          ..where((w) => w.type.equals(WorkoutType.DEFAULT.dbValue));
+          ..where((w) => w.type.equals(WorkoutType.bundled.dbValue));
 
         // add new default workouts
         if (from < 21) {
@@ -190,7 +190,7 @@ class FeeelDB extends _$FeeelDB {
         // move custom workouts from old table to new table for old versions
         if (from < 21) {
           final customWorkouts = await (select(workouts)
-                ..where((w) => w.type.equals(WorkoutType.CUSTOM.dbValue)))
+                ..where((w) => w.type.equals(WorkoutType.custom.dbValue)))
               .get();
           for (final cw in customWorkouts) {
             await customStatement(
@@ -345,7 +345,7 @@ class FeeelDB extends _$FeeelDB {
   }
 
   Future<void> _deteleDefaultWorkouts() async {
-    final workoutTypeValue = WorkoutType.DEFAULT.dbValue;
+    final workoutTypeValue = WorkoutType.bundled.dbValue;
     final defaults = await (select(workouts)
           ..where((w) => w.type.equals(workoutTypeValue)))
         .get();

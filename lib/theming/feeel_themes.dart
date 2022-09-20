@@ -28,9 +28,9 @@ import 'feeel_shade.dart';
 class FeeelThemes {
   static final _lightColors = ColorScheme(
       //todo extract colors to separate file
-      primary: FeeelColors.blue.getColor(FeeelShade.DARK),
+      primary: FeeelColors.blue.getColor(FeeelShade.dark),
       onPrimary: Colors.white,
-      secondary: FeeelColors.orange.getColor(FeeelShade.DARK),
+      secondary: FeeelColors.orange.getColor(FeeelShade.dark),
       onSecondary: Colors.white,
       surface: Colors.white,
       onSurface: Colors.black87,
@@ -41,9 +41,9 @@ class FeeelThemes {
       brightness: Brightness.light);
 
   static final _darkColors = ColorScheme(
-      primary: FeeelColors.blue.getColor(FeeelShade.LIGHT),
+      primary: FeeelColors.blue.getColor(FeeelShade.light),
       onPrimary: Colors.black87,
-      secondary: FeeelColors.orange.getColor(FeeelShade.LIGHT),
+      secondary: FeeelColors.orange.getColor(FeeelShade.light),
       onSecondary: Colors.black87,
       surface: Colors.black,
       onSurface: Colors.white,

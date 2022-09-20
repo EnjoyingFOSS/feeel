@@ -36,7 +36,7 @@ import 'theming/feeel_themes.dart';
 
 void main() {
   // debugRepaintRainbowEnabled = true; //todo debug
-  runApp(Feeel());
+  runApp(const Feeel());
 }
 
 class Feeel extends StatelessWidget {
@@ -78,7 +78,7 @@ class Feeel extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: I18n(child: WorkoutListScreen()))
+                home: I18n(child: const WorkoutListScreen()))
             //)
             );
   }

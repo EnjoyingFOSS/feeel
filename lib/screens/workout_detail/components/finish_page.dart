@@ -39,7 +39,7 @@ class FinishPage extends StatelessWidget {
         ),
         Expanded(child: Center(child: Image.asset("assets/image_success.png"))),
         Padding(
-            padding: EdgeInsets.fromLTRB(16, 24, 16, 32),
+            padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
             child: Center(
                 child: Text(
               "You're glowing!".i18n,

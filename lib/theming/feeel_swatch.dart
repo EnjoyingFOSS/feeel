@@ -34,23 +34,23 @@ class FeeelSwatch {
   Color getColorByBrightness(FeeelShade shade, Brightness brightness) {
     if (brightness == Brightness.dark) {
       switch (shade) {
-        case FeeelShade.LIGHTEST:
-          shade = FeeelShade.DARKEST;
+        case FeeelShade.lightest:
+          shade = FeeelShade.darkest;
           break;
-        case FeeelShade.LIGHTER:
-          shade = FeeelShade.DARKER;
+        case FeeelShade.lighter:
+          shade = FeeelShade.darker;
           break;
-        case FeeelShade.LIGHT:
-          shade = FeeelShade.DARK;
+        case FeeelShade.light:
+          shade = FeeelShade.dark;
           break;
-        case FeeelShade.DARK:
-          shade = FeeelShade.LIGHT;
+        case FeeelShade.dark:
+          shade = FeeelShade.light;
           break;
-        case FeeelShade.DARKER:
-          shade = FeeelShade.LIGHTER;
+        case FeeelShade.darker:
+          shade = FeeelShade.lighter;
           break;
-        case FeeelShade.DARKEST:
-          shade = FeeelShade.LIGHTEST;
+        case FeeelShade.darkest:
+          shade = FeeelShade.lightest;
           break;
       }
     }

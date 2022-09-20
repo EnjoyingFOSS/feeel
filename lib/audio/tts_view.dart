@@ -51,7 +51,7 @@ class TTSView implements WorkoutView {
     //todo eliminate conflicts with step content
     if (seconds <= AudioHelper.COUNTDOWN)
       TTSHelper.tts.speak(seconds.toString());
-    else if (seconds == _halfTime && stage == WorkoutStage.EXERCISE) {
+    else if (seconds == _halfTime && stage == WorkoutStage.exercise) {
       TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst(
           "%d", "$seconds")); //todo internationalize with declension
     }

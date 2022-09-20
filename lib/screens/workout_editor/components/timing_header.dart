@@ -32,7 +32,8 @@ class TimingHeader extends StatelessWidget {
   final Function(int value) onBreakDurationChanged;
 
   const TimingHeader(
-      {required this.exerciseDuration,
+      {super.key,
+      required this.exerciseDuration,
       required this.breakDuration,
       required this.onExerciseDurationChanged,
       required this.onBreakDurationChanged});

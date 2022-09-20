@@ -22,17 +22,17 @@
 
 import '../enums/workout_type.dart';
 
-enum HeroType { Illustration, Title, Subtitle }
+enum HeroType { illustration, title, subtitle }
 
 class HeroUtil {
   static String getWorkoutHero(
       HeroType heroType, int workoutDbId, WorkoutType type) {
     switch (heroType) {
-      case HeroType.Illustration:
+      case HeroType.illustration:
         return "${workoutDbId}_${type.index}_illustration";
-      case HeroType.Title:
+      case HeroType.title:
         return "${workoutDbId}_${type.index}_title";
-      case HeroType.Subtitle:
+      case HeroType.subtitle:
         return "${workoutDbId}_${type.index}_subtitle";
     }
   }

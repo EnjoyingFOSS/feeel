@@ -39,14 +39,15 @@ class WorkoutExercise {
         json['exercise']['dbId'] as int,
         metadata.databaseVersion)); //todo what if a value is null?
 
-    if (exercise != null)
+    if (exercise != null) {
       return WorkoutExercise(
         exercise: exercise,
         duration: json['duration'] as int?,
         breakBeforeDuration: json['breakBeforeDuration'] as int?,
       );
-    else
+    } else {
       return null;
+    }
   }
 
   static Map<String, dynamic> _exerciseToJson(

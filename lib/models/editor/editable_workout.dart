@@ -76,7 +76,7 @@ class EditableWorkout {
       type: type);
 
   int getDuration() {
-    int duration = (workoutExercises.length > 0)
+    int duration = (workoutExercises.isNotEmpty)
         ? workoutExercises[0].exercise.duration ?? exerciseDuration
         : 0;
     for (var i = 1; i < workoutExercises.length; i++) {
