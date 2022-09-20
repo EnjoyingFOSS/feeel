@@ -24,62 +24,62 @@ import 'package:feeel/db/database.dart';
 import 'package:feeel/enums/exercise_type.dart';
 
 class DefaultExercises {
-  static const int JUMPING_JACKS = 1,
-      WALL_SIT = 2,
-      PUSH_UPS = 3,
-      AB_CRUNCHES = 4,
-      STEP_UPS = 5,
-      SQUATS = 6,
-      CHAIR_DIPS = 7,
-      FOREARM_PLANK = 8,
-      HIGH_KNEES = 9,
-      LUNGES = 10,
-      PUSH_UP_ROTATIONS = 11,
-      SIDE_PLANK_L = 12,
-      SIDE_PLANK_R = 13,
-      SIDE_SPLIT_SQUATS_L = 14,
-      BULGARIAN_SPLIT_SQUATS_L = 15,
-      BULGARIAN_SPLIT_SQUATS_R = 16,
-      PISTOL_SQUATS_L = 17,
-      PISTOL_SQUATS_R = 18,
-      KNEELING_KICKBACKS = 19,
-      CALF_RAISES_L = 20,
-      CALF_RAISES_R = 21,
-      SIDE_SPLIT_SQUATS_R = 22,
-      SPLIT_SQUATS_L = 23,
-      SPLIT_SQUATS_R = 24,
-      JUMP_ROPE_BASIC = 25,
-      ARM_CIRCLES_FW = 26,
-      PIKE_PUSHUPS = 27,
-      MOUNTAIN_CLIMBERS = 28,
-      FOURCOUNT_BURPEES = 29,
-      NO_PUSHUP_BURPEES = 30,
-      SQUAT_THRUSTS = 31,
-      REVERSE_LUNGES = 32,
-      LEG_RAISES = 33,
-      FLOOR_DIPS = 34, // v2.2.0
-      HIGH_PLANK = 35,
-      ARM_CIRCLES_BW = 36,
-      CHILDS_POSE = 37,
-      PULL_UP = 38,
-      KETTLEBELL_DEADLIFT = 39,
-      SUMO_SQUAT = 40,
-      SHOULDER_ROTATION_FW = 41,
-      SHOULDER_ROTATION_BW = 42,
-      SHOULDER_SHRUG = 43,
-      CHIN_TUCK = 44,
-      HEAD_TURNS = 45,
-      BACK_NECK_STRETCH = 46, // todo double-check numbers from here onward
-      LATERAL_NECK_STRETCH_LEFT = 47,
-      LATERAL_NECK_STRETCH_RIGHT = 48,
-      FRONT_NECK_STRETCH = 49,
-      BACK_AND_LATERAL_NECK_STRETCH_LEFT = 50,
-      BACK_AND_LATERAL_NECK_STRETCH_RIGHT = 51,
-      CHIN_TUCK_WITH_FLEXION_WITH_ROTATION = 52,
-      ALTERNATING_BICEP_CURLS = 53,
-      LEVATOR_SCAPULAE_STRETCH = 54,
-      NECK_CIRCLES_CW = 55,
-      NECK_CIRCLES_CCW = 56; //todo left and right here?
+  static const int jumpingJacks = 1,
+      wallSit = 2,
+      pushUps = 3,
+      abCrunches = 4,
+      stepUps = 5,
+      squats = 6,
+      chairDips = 7,
+      forearmPlank = 8,
+      highKnees = 9,
+      lunges = 10,
+      pushUpRotations = 11,
+      sidePlankL = 12,
+      sidePlankR = 13,
+      sideSplitSquatsL = 14,
+      bulgarianSplitSquatsL = 15,
+      bulgarianSplitSquatsR = 16,
+      pistolSquatsL = 17,
+      pistolSquatsR = 18,
+      kneelingKickbacks = 19,
+      calfRaisesL = 20,
+      calfRaisesR = 21,
+      sideSplitSquatsR = 22,
+      splitSquatsL = 23,
+      splitSquatsR = 24,
+      jumpRopeBasic = 25,
+      armCirclesFW = 26,
+      pikePushUps = 27,
+      mountainClimbers = 28,
+      fourCountBurpees = 29,
+      noPushUpBurpees = 30,
+      squatThrusts = 31,
+      reverseLunges = 32,
+      legRaises = 33,
+      florrDips = 34, // v2.2.0
+      highPlank = 35,
+      armCirclesBW = 36,
+      childsPose = 37,
+      pullUp = 38,
+      kettlebellDeadlift = 39,
+      sumoSquat = 40,
+      shoulderRotationFW = 41,
+      shoulderRotationBW = 42,
+      shoulderShrug = 43,
+      chinTuck = 44,
+      headTurns = 45,
+      backNeckStretch = 46, // todo double-check numbers from here onward
+      lateralNeckStretchL = 47,
+      lateralNeckStretchR = 48,
+      frontNeckStretch = 49,
+      backAndLateralNeckStretchL = 50,
+      backAndLateralNeckStretchR = 51,
+      chinTuckWithFlexionWithRotation = 52,
+      alternatingBicepCurls = 53,
+      levatorScapulaeStretch = 54,
+      neckCirclesCW = 55,
+      neckCirclesCCW = 56; //todo left and right here?
 
   static const myDescLicense =
       "English description by Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).";
@@ -120,7 +120,7 @@ class DefaultExercises {
 
   static final defaultNoStepExercises = [
     Exercise(
-        id: JUMPING_JACKS,
+        id: jumpingJacks,
         name: "Jumping jacks",
         description:
             "1. Stand with feet together and arms at the sides\n2. Jump to a position with the legs spread wide and the hands touching overhead\n3. Repeat",
@@ -133,7 +133,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: WALL_SIT,
+        id: wallSit,
         name: "Wall sit",
         description:
             "1. Lean against the wall, facing forward and with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n2. Slide down the wall, keeping the back pressed to it, until legs are at a right angle. The knees should be directly above the ankles\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
@@ -146,7 +146,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: PUSH_UPS,
+        id: pushUps,
         name: "Push-ups",
         description:
             "Starting position:\nGet into the starting push-up position, with your hands and toes touching the ground and back, arms and legs straight. To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.\n\nSteps:\n1. Bend at the elbows until your chest almost touches the ground, making sure your back is straight at all times.\n2. Use your arms to lift yourself back up to starting position.\n3. Repeat.",
@@ -159,7 +159,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: AB_CRUNCHES,
+        id: abCrunches,
         name: "Crunches",
         description:
             "1. Lie down face up on the floor with knees bent.\n2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n3. Repeat",
@@ -172,7 +172,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: STEP_UPS,
+        id: stepUps,
         name: "Step-ups",
         description:
             "1. Stand facing a chair\n2. Step up onto the chair\n3. Step off the chair\n4. Repeat",
@@ -185,7 +185,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SQUATS,
+        id: squats,
         name: "Squats",
         description:
             "1. Stand with feet shoulder-width apart\n2. Move the hips back and bend the knees and hips to lower the torso\n3. Repeat",
@@ -198,7 +198,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: CHAIR_DIPS,
+        id: chairDips,
         name: "Chair dips",
         description:
             "1. Sit down on the front edge of a chair, back straight, hands holding the front edge\n2. Still holding the edge of the chair, arms extended, lift your butt and walk forward slightly so that it is a few inches from the chair.\n3. Slowly lower your body, keeping the back straight, until arms are at a right angle\n4. Raise your body again to the previous position, arms extended\n5. Repeat steps 3 and 4",
@@ -211,7 +211,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: FOREARM_PLANK,
+        id: forearmPlank,
         name: "Forearm plank",
         description:
             "Starting position:\n1. Start down on all fours.\nArms should bent at a right angle, with shoulders right over elbows.\nBack should be straight, the whole body in a straight line.\n\nSteps:\n1. Hold this position.",
@@ -224,7 +224,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: HIGH_KNEES,
+        id: highKnees,
         name: "High knees",
         description:
             "1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace",
@@ -237,7 +237,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: LUNGES,
+        id: lunges,
         name: "Lunges",
         description:
             "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Return to standing position by stepping back\n6. Repeat, switching legs each time",
@@ -250,7 +250,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: PUSH_UP_ROTATIONS,
+        id: pushUpRotations,
         name: "Push-up rotations",
         description:
             "1. Do a standard push-up:\n1.a Lie down on your stomach\n1.b Place your hands near your ears\n1.c Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n1.d Bend arms until chest almost touches the ground, making sure the back is straight\n1.e Lift your stomach up again, returning to step 3\n2. Rotate your body to the side so that the back is straight, the bottom hand supporting the body is fully extended, and only the bottom hand and foot touch the floor\n3. Repeat, changing sides at step 2 each time",
@@ -263,7 +263,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SIDE_PLANK_L,
+        id: sidePlankL,
         name: "Side plank left",
         description: sidePlankDesc,
         imageSlug: "exercise_sideplank.webp",
@@ -274,7 +274,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SIDE_PLANK_R,
+        id: sidePlankR,
         name: "Side plank right",
         description: sidePlankDesc,
         flipped: true,
@@ -285,7 +285,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SIDE_SPLIT_SQUATS_L,
+        id: sideSplitSquatsL,
         name: "Side split squats left",
         description: sideLungeDesc,
         flipped: true,
@@ -298,7 +298,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: BULGARIAN_SPLIT_SQUATS_L,
+        id: bulgarianSplitSquatsL,
         name: "Bulgarian split squats left",
         description: bulgarianSquatsDesc,
         imageSlug: "exercise_bulgariansplitsquat.webp",
@@ -311,7 +311,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: BULGARIAN_SPLIT_SQUATS_R,
+        id: bulgarianSplitSquatsR,
         name: "Bulgarian split squats right",
         description: bulgarianSquatsDesc,
         flipped: true,
@@ -324,7 +324,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: PISTOL_SQUATS_L,
+        id: pistolSquatsL,
         name: "Pistol squats left",
         description: pistolSquatDesc,
         flipped: true,
@@ -337,7 +337,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: PISTOL_SQUATS_R,
+        id: pistolSquatsR,
         name: "Pistol squats right",
         description: pistolSquatDesc,
         imageSlug: "exercise_pistolsquat.webp",
@@ -350,7 +350,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: KNEELING_KICKBACKS,
+        id: kneelingKickbacks,
         name: "Kneeling kickbacks",
         description:
             "1. Get down on all fours.\n2. Push one foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.\n4. Repeat, alternating feet",
@@ -364,7 +364,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: CALF_RAISES_L,
+        id: calfRaisesL,
         name: "Left leg calf raises",
         description: singleLegCalfRaiseDesc,
         imageSlug: "exercise_singlelegcalfraise.webp",
@@ -377,7 +377,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: CALF_RAISES_R,
+        id: calfRaisesR,
         name: "Right leg calf raises",
         flipped: true,
         description: singleLegCalfRaiseDesc,
@@ -390,7 +390,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SIDE_SPLIT_SQUATS_R,
+        id: sideSplitSquatsR,
         name: "Side split squats right",
         description: sideLungeDesc,
         imageSlug: "exercise_sidesplitsquat.webp",
@@ -403,7 +403,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SPLIT_SQUATS_L,
+        id: splitSquatsL,
         name: "Split squats left",
         description: splitSquatsDesc,
         imageSlug: "exercise_splitsquat.webp",
@@ -416,7 +416,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SPLIT_SQUATS_R,
+        id: splitSquatsR,
         name: "Split squats right",
         flipped: true,
         description: splitSquatsDesc,
@@ -429,7 +429,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: JUMP_ROPE_BASIC,
+        id: jumpRopeBasic,
         name: "Jump rope: basic jumps",
         description:
             "Starting position:\nPut your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n\nSteps:\n1. Spin only your wrists with enough force to make the rope spin.\n2. Jump just high enough to pass the rope below your feet.\n3. Repeat.\n\nNotes:\nThis exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.",
@@ -442,7 +442,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: ARM_CIRCLES_FW,
+        id: armCirclesFW,
         name: "Forward arm circles",
         description:
             "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.\n3. Keep circling your arms as described in step 2.",
@@ -455,7 +455,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: PIKE_PUSHUPS,
+        id: pikePushUps,
         name: "Pike push-ups",
         description:
             "Staring position:\nDownward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.\nYou can get to this position by walking your hands back from a high plank.\n\nSteps:\n1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.\n2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.\n3. Repeat.",
@@ -468,7 +468,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: MOUNTAIN_CLIMBERS,
+        id: mountainClimbers,
         name: "Mountain climbers",
         description:
             "Starting position:\nStart in the upright push-up position, or the high plank.\nHands should be directly under your shoulders.\nKeep your head in line with your back, facing the floor.\nFeet should be about hip-width apart.\n\nSteps:\n1. Move one knee toward the center of your body, towards your elbows, keeping the other leg extended.\n2. In a quick jumping movement, straighten the bent leg out and pull the other knee toward your body.\n3. Keep repeating step 2, alternating legs.\n\nNotes:\nThroughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.",
@@ -482,7 +482,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: FOURCOUNT_BURPEES,
+        id: fourCountBurpees,
         name: "4-count burpees",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Repeat.",
@@ -496,7 +496,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: NO_PUSHUP_BURPEES,
+        id: noPushUpBurpees,
         name: "No push-up burpees",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Jump up.\n5. Repeat.",
@@ -510,7 +510,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SQUAT_THRUSTS,
+        id: squatThrusts,
         name: "Squat thrusts",
         description:
             "Starting position:\nStart in high plank position: back, arms, and legs straight and hands shoulder-width apart.\n\nSteps:\n1. Jump your feet forward between your arms, keeping your back flat.\n2. Keeping your hands on the floor, jump your legs back into high plank position.\n3. Repeat.",
@@ -524,7 +524,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: REVERSE_LUNGES,
+        id: reverseLunges,
         name: "Reverse lunges",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Step backward with one leg so it can bend comfortably to a 90 degree angle.\n2. Slowly bend both knees to form 90 degree angles.\n3. Return to the starting position.\n4. Repeat, alternating legs.",
@@ -537,7 +537,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: LEG_RAISES,
+        id: legRaises,
         name: "Leg raises",
         description:
             "Starting position:\nLie down on your back, feet together, arms by your sides.\n\nSteps:\n1. Bend your knees, then straighten them to point straight up.\n2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.\n3. Raise both legs together to point straight up again.\n4. Repeat from step 2.",
@@ -550,7 +550,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: FLOOR_DIPS,
+        id: florrDips,
         name: "Floor dips",
         description:
             "Starting position:\nSit with your arms behind you, supporting your back.\nYour fingers should point forward.\nYour knees should be bent, feet together.\n\nSteps:\n1. Raise your hips off the ground, straightening your arms.\n2. Bend your elbows, bringing your hips down.\n3. Straighten your arms, returning to the previous position.\n4. Repeat steps 2 and 3.\n\nNotes:\nThe exercise's difficulty depends on how high you bring your hips.",
@@ -563,7 +563,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: HIGH_PLANK,
+        id: highPlank,
         name: "High plank",
         description:
             "Starting position:\nGet into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.\nTo get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.\n\nSteps:\n1. Maintain the starting position for the entire duration of the exercise.",
@@ -576,7 +576,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: ARM_CIRCLES_BW,
+        id: armCirclesBW,
         name: "Backward arm circles",
         description:
             "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
@@ -589,7 +589,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: CHILDS_POSE,
+        id: childsPose,
         name: "Child's pose",
         description:
             "Starting position:\nStart on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.\n\nSteps:\n1. Move your knees so that they're about hip-width apart.\n2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.\n3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.\n4. Stay in this pose.\n\nTips:\n* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.",
@@ -602,7 +602,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: PULL_UP,
+        id: pullUp,
         name: "Pull-ups",
         description:
             "Starting position:\nStart by hanging from the pull-up bar, palms facing away and feet off the floor.\nYour hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.\nYour body should be straight and pointed slightly forward. Your arms should be extended.\n\nSteps:\n1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.\n2. Carefully lower your body back down to starting position.\n3. Repeat.\n\nTips:\n- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.",
@@ -615,7 +615,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: KETTLEBELL_DEADLIFT,
+        id: kettlebellDeadlift,
         name: "Kettlebell deadlifts",
         description:
             "Starting position:\nStand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.\n\nSteps:\n1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.\n2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.\n3. While contacting your abs and glutes, stand straight up.\n4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.\n5. Repeat from step 3.\n\nTips:\n* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.",
@@ -628,7 +628,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SUMO_SQUAT,
+        id: sumoSquat,
         name: "Sumo squats",
         description:
             "Starting position:\nStand with legs wide and toes turned outwards.\n\nSteps:\n1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.\n2. Push back up into starting position.\n3. Repeat this exercise in a pulsing motion.",
@@ -642,7 +642,7 @@ class DefaultExercises {
         animated: false,
         type: ExerciseType.fullBody.dbValue),
     Exercise(
-        id: SHOULDER_ROTATION_FW,
+        id: shoulderRotationFW,
         name: "Forward shoulder rotation",
         type: ExerciseType.head.dbValue,
         description: shoulderRotationDesc,
@@ -654,7 +654,7 @@ class DefaultExercises {
         flipped: false,
         animated: false),
     Exercise(
-        id: SHOULDER_ROTATION_BW,
+        id: shoulderRotationBW,
         name: "Backward shoulder rotation",
         type: ExerciseType.head.dbValue,
         description: shoulderRotationDesc,
@@ -666,7 +666,7 @@ class DefaultExercises {
         flipped: false,
         animated: false),
     Exercise(
-        id: CHIN_TUCK,
+        id: chinTuck,
         name: "Chin tuck",
         type: ExerciseType.head.dbValue,
         description:
@@ -679,7 +679,7 @@ class DefaultExercises {
         flipped: false,
         animated: false),
     Exercise(
-        id: SHOULDER_SHRUG,
+        id: shoulderShrug,
         name: "Shoulder shrugs",
         type: ExerciseType.head.dbValue,
         description:
@@ -692,7 +692,7 @@ class DefaultExercises {
         flipped: false,
         animated: false),
     Exercise(
-        id: HEAD_TURNS,
+        id: headTurns,
         name: "Head turns",
         type: ExerciseType.head.dbValue,
         description:
@@ -708,7 +708,7 @@ class DefaultExercises {
     ////////
 
     Exercise(
-        id: LATERAL_NECK_STRETCH_LEFT,
+        id: lateralNeckStretchL,
         name: "Left neck stretch",
         type: ExerciseType.head.dbValue,
         description: lateralNeckStretchDesc,
@@ -720,7 +720,7 @@ class DefaultExercises {
         animated: false),
 
     Exercise(
-        id: LATERAL_NECK_STRETCH_RIGHT,
+        id: lateralNeckStretchR,
         name: "Right neck stretch",
         type: ExerciseType.head.dbValue,
         description: lateralNeckStretchDesc,
@@ -732,7 +732,7 @@ class DefaultExercises {
         animated: false),
 
     Exercise(
-        id: FRONT_NECK_STRETCH,
+        id: frontNeckStretch,
         name: "Front neck stretch",
         type: ExerciseType.head.dbValue,
         description:
@@ -746,7 +746,7 @@ class DefaultExercises {
         animated: false),
 
     Exercise(
-        id: BACK_AND_LATERAL_NECK_STRETCH_LEFT,
+        id: backAndLateralNeckStretchL,
         name: "Back and left neck stretch",
         type: ExerciseType.head.dbValue,
         flipped: true,
@@ -758,7 +758,7 @@ class DefaultExercises {
         animated: false),
 
     Exercise(
-        id: BACK_AND_LATERAL_NECK_STRETCH_RIGHT,
+        id: backAndLateralNeckStretchR,
         name: "Back and right neck stretch",
         type: ExerciseType.head.dbValue,
         description: backAndLateralNeckStretchDesc,
@@ -770,7 +770,7 @@ class DefaultExercises {
         animated: false),
 
     Exercise(
-        id: CHIN_TUCK_WITH_FLEXION_WITH_ROTATION,
+        id: chinTuckWithFlexionWithRotation,
         name: "Chin tuck with flexion with rotation",
         type: ExerciseType.head.dbValue,
         description:
@@ -784,7 +784,7 @@ class DefaultExercises {
         animated: false),
 
     Exercise(
-        id: ALTERNATING_BICEP_CURLS,
+        id: alternatingBicepCurls,
         name: "Alternating bicep curls",
         type: ExerciseType.fullBody.dbValue,
         description:
@@ -800,7 +800,7 @@ class DefaultExercises {
 
   static final defaultStepExercises = [
     Exercise(
-        id: BACK_NECK_STRETCH,
+        id: backNeckStretch,
         name: "Back neck stretch", //todo or flexion?
         type: ExerciseType.head.dbValue,
         description:
@@ -816,28 +816,28 @@ class DefaultExercises {
 
   static final defaultSteps = [
     ExerciseStep(
-        exercise: BACK_NECK_STRETCH,
+        exercise: backNeckStretch,
         orderPosition: 0,
         stepDuration: 1,
         imageSlug:
             "exercise_neckstretch_back-1.webp"), //todo does this start at 0?
     ExerciseStep(
-        exercise: BACK_NECK_STRETCH,
+        exercise: backNeckStretch,
         orderPosition: 1,
         stepDuration: 5,
         imageSlug: "exercise_neckstretch_back.webp"),
     ExerciseStep(
-        exercise: BACK_NECK_STRETCH,
+        exercise: backNeckStretch,
         orderPosition: 2,
         stepDuration: 5,
         voiceHint: "Shoulders down"),
     ExerciseStep(
-        exercise: BACK_NECK_STRETCH,
+        exercise: backNeckStretch,
         orderPosition: 3,
         stepDuration: 5,
         voiceHint: "Push against hands"),
     ExerciseStep(
-        exercise: BACK_NECK_STRETCH,
+        exercise: backNeckStretch,
         orderPosition: 4,
         stepDuration: 1,
         imageSlug: "exercise_neckstretch_back-3.webp")

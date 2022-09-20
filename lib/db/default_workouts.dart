@@ -32,22 +32,21 @@ class DefaultWorkouts {
         dbId: null,
         title: "Scientific 7 minute workout",
         initialWorkoutExercises: [
-          EditableWorkoutExercise(exerciseId: DefaultExercises.JUMPING_JACKS),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.WALL_SIT),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.PUSH_UPS),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.AB_CRUNCHES),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.STEP_UPS),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.SQUATS),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.CHAIR_DIPS),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.FOREARM_PLANK),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.HIGH_KNEES),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.LUNGES),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.jumpingJacks),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.wallSit),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.pushUps),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.abCrunches),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.stepUps),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.squats),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.chairDips),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.forearmPlank),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.highKnees),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.lunges),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.pushUpRotations),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.PUSH_UP_ROTATIONS),
+              exerciseId: DefaultExercises.sidePlankL, exerciseDuration: 15),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.SIDE_PLANK_L, exerciseDuration: 15),
-          EditableWorkoutExercise(
-              exerciseId: DefaultExercises.SIDE_PLANK_R,
+              exerciseId: DefaultExercises.sidePlankR,
               breakDuration: 5,
               exerciseDuration: 15)
         ],
@@ -59,21 +58,21 @@ class DefaultWorkouts {
         dbId: null,
         title: "Leg workout",
         initialWorkoutExercises: [
-          EditableWorkoutExercise(exerciseId: DefaultExercises.SPLIT_SQUATS_L),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.SPLIT_SQUATS_R),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.splitSquatsL),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.splitSquatsR),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.SIDE_SPLIT_SQUATS_L),
+              exerciseId: DefaultExercises.sideSplitSquatsL),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.SIDE_SPLIT_SQUATS_R),
+              exerciseId: DefaultExercises.sideSplitSquatsR),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.BULGARIAN_SPLIT_SQUATS_L),
+              exerciseId: DefaultExercises.bulgarianSplitSquatsL),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.BULGARIAN_SPLIT_SQUATS_R),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.SQUATS),
+              exerciseId: DefaultExercises.bulgarianSplitSquatsR),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.squats),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.KNEELING_KICKBACKS),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.CALF_RAISES_L),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.CALF_RAISES_R)
+              exerciseId: DefaultExercises.kneelingKickbacks),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.calfRaisesL),
+          EditableWorkoutExercise(exerciseId: DefaultExercises.calfRaisesR)
         ],
         countdownDuration: 5,
         breakDuration: 10,
