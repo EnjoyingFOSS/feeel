@@ -65,7 +65,7 @@
     "txtThemeDark": "Dunkel",
     "txtThemeLight": "Hell",
     "txtThemeSystem": "Systemstandard",
-    "txtTheme": "Design",
+    "txtTheme": "Farbschema",
     "txtParticipate": "Mitmachen",
     "txtCouldNotOpenURL": "Kann URL nicht öffnen.",
     "txtBatteryOptimization": "Auf einigen Geräten muss möglicherweise die Batterieoptimierung für Feeel deaktiviert werden, damit dies zuverlässig funktioniert.",
@@ -83,5 +83,17 @@
     "txtLanguage": "Sprache",
     "txtNoExercises": "Es gibt keine Übungen in diesem Training :(",
     "btnDeleteThisWorkout": "Dieses Training löschen",
-    "btnBackToWorkoutList": "Zurück zur Training-Liste"
+    "btnBackToWorkoutList": "Zurück zur Training-Liste",
+    "txtImportWorkouts": "Trainings importieren",
+    "txtGetReady": "Mach dich bereit!",
+    "txtImageLicense": "Bildlizenz",
+    "txtLearnTheExercise": "Lerne die Übung",
+    "txtCommunityDrivenHeader": "Feeel ist ein Gemeinschaftsprojekt",
+    "txtDuplicateImportTitle": "Duplikate werden nicht überschrieben",
+    "txtDuplicateImportInfo": "Wenn Sie Trainings importieren, die identisch sind mit Trainings, die Sie bereits in Feeel haben, haben Sie diese Trainings doppelt in der Anwendung und müssen sie manuell löschen.",
+    "txtExportCustomWorkouts": "Benutzerdefinierte Trainings exportieren",
+    "txtNoCustomWorkouts": "Sie haben keine benutzerdefinierten Trainings",
+    "btnIunderstand": "Ich verstehe",
+    "btnImportAnyway": "Trotzdem importieren",
+    "txtDisclaimer": "Die Übungen und Trainings werden von Freiwilligen zur Verfügung gestellt. Weder Feeel noch andere Freiwillige sind für die Richtigkeit der Informationen in dieser Anwendung oder für deine Gesundheit verantwortlich. Die Verwendung erfolgt nach eigenem Ermessen."
 }

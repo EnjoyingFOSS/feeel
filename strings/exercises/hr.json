@@ -1,6 +1,6 @@
 {
-    "workoutLeg": "Vježba za noge",
-    "workoutScientific7Minute": "Znanstveno 7-minutno vježbanje",
+    "workoutLeg": "Trening za noge",
+    "workoutScientific7Minute": "Znanstveni 7-minutni treninzi",
     "exerciseBulgarianSplitSquatRight": "Bugarski podijeljeni čučanj desno",
     "exerciseBulgarianSplitSquatLeft": "Bugarski podijeljeni čučanj lijevo",
     "exerciseSideSplitSquatsRight": "Bočni podijeljeni čučnjevi desno",
@@ -35,5 +35,6 @@
     "exerciseFWShoulderRotation": "Okretanje ramena prema naprijed",
     "exerciseBWShoulderRotation": "Okretanje ramena prema natrag",
     "exercisePistolSquatRight": "Pištoljski čučnjevi desno",
-    "exerciseSingleLegCalfRaiseRight": "Dizanje desne potkoljenice"
+    "exerciseSingleLegCalfRaiseRight": "Dizanje desne potkoljenice",
+    "stepsJumpingJacks": "1. Stani ravno sa skupljenim nogama i rukama uz tijelo\n2. Skoči u položaj s raširenim nogama i dodirni ruke iznad glave\n3. Ponovi"
 }

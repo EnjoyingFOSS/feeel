@@ -83,5 +83,18 @@
     "txtLanguage": "Lingua",
     "txtNoExercises": "Non ci sono esercizi in questo allenamento :(",
     "btnDeleteThisWorkout": "Elimina questo allenamento",
-    "btnBackToWorkoutList": "Torna alla lista degli allenamenti"
+    "btnBackToWorkoutList": "Torna alla lista degli allenamenti",
+    "txtLearnTheExercise": "Impara l'esercizio",
+    "txtDuplicateImportTitle": "I duplicati non verranno sovrascritti",
+    "btnImportAnyway": "Importa comunque",
+    "txtEnglishDescriptionLicense": "Licenza di descrizione in inglese",
+    "txtDuplicateImportInfo": "Se si importano allenamenti identici a quelli già presenti in Feeel, tali allenamenti saranno presenti due volte nell'app e dovranno essere eliminati manualmente.",
+    "txtCommunityDrivenHeader": "Feeel è un progetto comunitario",
+    "txtGetReady": "Preparati!",
+    "txtDisclaimer": "Gli esercizi e gli allenamenti sono forniti da volontari. Né Feeel né i volontari sono responsabili della correttezza delle informazioni contenute in questa applicazione o della vostra salute. Utilizza l'app a propria discrezione.",
+    "btnIunderstand": "Capisco",
+    "txtExportCustomWorkouts": "Esporta allenamenti personalizzati",
+    "txtNoCustomWorkouts": "Non hai allenamenti personalizzati",
+    "txtImageLicense": "Licenza d'immagine",
+    "txtImportWorkouts": "Importa allenamenti"
 }
