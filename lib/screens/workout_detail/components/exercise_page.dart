@@ -58,7 +58,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   bool _paused = false;
   late int _seconds;
   int _exercisePos = 0;
-  int _stepPos = 0;
+  // int _stepPos = 0;
   WorkoutStage _stage = WorkoutStage.workoutBreak;
 
   // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
@@ -89,9 +89,10 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
             child: Material(
                 color: Theme.of(context).backgroundColor,
                 child: ExerciseLayout(
-                  imageSlug: (exercise.steps?[_stepPos].imageSlug != null)
-                      ? exercise.steps![_stepPos].imageSlug
-                      : exercise.imageSlug,
+                  imageSlug:
+                      // (exercise.steps?[_stepPos].imageSlug != null)
+                      //     ? exercise.steps![_stepPos].imageSlug :
+                      exercise.imageSlug,
                   animated: exercise.animated,
                   flipped: exercise.flipped,
                   onLearn: () => onLearn(exercise),
@@ -162,33 +163,33 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void onExercise(int exercisePos, WorkoutExercise exercise, ExerciseStep? step,
       int duration) {
     setState(() {
-      if ((exercise.exercise.steps?.length ?? 0) > 1) {
-        _preloadUpcomingStep();
-      } else {
-        _preloadUpcomingExercise();
-      }
+      // if ((exercise.exercise.steps?.length ?? 0) > 1) {
+      //   _preloadUpcomingStep();
+      // } else {
+      _preloadUpcomingExercise();
+      // }
 
       _seconds = duration;
       _exercisePos = exercisePos;
       _stage = WorkoutStage.exercise;
-      _stepPos = 0; //todo should I do this for the break too?
+      // _stepPos = 0; //todo should I do this for the break too?
     });
   }
 
   Exercise _getExercise(int i) => widget.workout.workoutExercises[i].exercise;
 
-  void _preloadUpcomingStep() {
-    final steps = _getExercise(_exercisePos).steps;
-    if (steps != null) {
-      final nextImageSlug = (_stepPos + 1 < steps.length)
-          ? steps[_stepPos + 1].imageSlug
-          : steps[0].imageSlug;
-      if (nextImageSlug != null) {
-        precacheImage(
-            Image.asset(AssetHelper.getImage(nextImageSlug)).image, context);
-      }
-    }
-  }
+  // void _preloadUpcomingStep() {
+  // final steps = _getExercise(_exercisePos).steps;
+  // if (steps != null) {
+  //   final nextImageSlug = (_stepPos + 1 < steps.length)
+  //       ? steps[_stepPos + 1].imageSlug
+  //       : steps[0].imageSlug;
+  //   if (nextImageSlug != null) {
+  //     precacheImage(
+  //         Image.asset(AssetHelper.getImage(nextImageSlug)).image, context);
+  //   }
+  // }
+  // }
 
   void _preloadUpcomingExercise() {
     if (_exercisePos + 1 < widget.workout.workoutExercises.length) {
@@ -224,7 +225,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   @override
   void onLaterStep(int stepPos, ExerciseStep step) {
     setState(() {
-      _stepPos = stepPos;
+      // _stepPos = stepPos;
     });
   }
 

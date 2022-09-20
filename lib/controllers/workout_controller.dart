@@ -29,7 +29,7 @@ import 'package:feeel/controllers/workout_timer.dart';
 import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/enums/workout_stage.dart';
-import 'package:feeel/models/view/exercise_step.dart';
+// import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -63,11 +63,11 @@ class WorkoutMeta {
   int getCurExerciseDuration() =>
       getCurWorkoutExercise().duration ?? _workout.exerciseDuration;
 
-  List<int>? getCurStepDurations() => getCurWorkoutExercise()
-      .exercise
-      .steps
-      ?.map((step) => step.duration)
-      .toList();
+  // List<int>? getCurStepDurations() => getCurWorkoutExercise()
+  //     .exercise
+  //     .steps
+  //     ?.map((step) => step.duration)
+  //     .toList();
 
   void next() {
     _exercisePos++;
@@ -79,14 +79,14 @@ class WorkoutMeta {
     _stepPos = 0;
   }
 
-  void nextStep() {
-    final stepCount = getCurWorkoutExercise().exercise.steps?.length;
-    if (stepCount != null && _stepPos < stepCount - 1) {
-      _stepPos++;
-    } else {
-      _stepPos = 0;
-    }
-  }
+  // void nextStep() {
+  //   final stepCount = getCurWorkoutExercise().exercise.steps?.length;
+  //   if (stepCount != null && _stepPos < stepCount - 1) {
+  //     _stepPos++;
+  //   } else {
+  //     _stepPos = 0;
+  //   }
+  // }
 
   bool isLastExercise() => _exercisePos == _workout.workoutExercises.length - 1;
 
@@ -95,8 +95,8 @@ class WorkoutMeta {
   WorkoutExercise getCurWorkoutExercise() =>
       _workout.workoutExercises[_exercisePos];
 
-  ExerciseStep? getCurStep() =>
-      getCurWorkoutExercise().exercise.steps?[_stepPos];
+  // ExerciseStep? getCurStep() =>
+  //     getCurWorkoutExercise().exercise.steps?[_stepPos];
 }
 
 class WorkoutController {
@@ -117,14 +117,15 @@ class WorkoutController {
 
     _setUpAudio();
 
-    _timer = WorkoutTimer(0, breakpoints: _workoutMeta.getCurStepDurations(),
+    _timer = WorkoutTimer(0,
+        // _workoutMeta.getCurStepDurations(),
         onSecondDecrease: () {
       //todo initTime seems useless
       for (final view in _views) {
         view?.onCount(_timer.getTimeRemaining(), _stage);
       }
     }, onBreakpoint: () {
-      _workoutMeta.nextStep();
+      // _workoutMeta.nextStep();
       _renderLaterStep();
     }, onDone: () {
       switch (_stage) {
@@ -188,7 +189,8 @@ class WorkoutController {
       _coordinateExerciseStage();
     } else {
       _timer.reset(_workoutMeta.getCurExerciseDuration(),
-          _workoutMeta.getCurStepDurations());
+          null // _workoutMeta.getCurStepDurations()
+          );
     }
   }
 
@@ -219,11 +221,13 @@ class WorkoutController {
     if (restore) {
       _timer.reset(
           _workoutMeta.timerRestore ?? _workoutMeta.getCurExerciseDuration(),
-          _workoutMeta.getCurStepDurations());
+          null // _workoutMeta.getCurStepDurations()
+          );
       _workoutMeta.timerRestore = null;
     } else {
       _timer.reset(_workoutMeta.getCurExerciseDuration(),
-          _workoutMeta.getCurStepDurations());
+          null // _workoutMeta.getCurStepDurations()
+          );
     }
     _renderSeconds();
 
@@ -290,7 +294,7 @@ class WorkoutController {
           view?.onExercise(
               _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
-              _workoutMeta.getCurStep(),
+              null, //_workoutMeta.getCurStep(),
               _workoutMeta.getCurExerciseDuration());
         }
         break;
@@ -323,12 +327,12 @@ class WorkoutController {
   }
 
   void _renderLaterStep() {
-    final step = _workoutMeta.getCurStep();
-    if (step != null) {
-      for (final view in _views) {
-        view?.onLaterStep(_workoutMeta._stepPos, step);
-      }
-    }
+    // final step = _workoutMeta.getCurStep();
+    // if (step != null) {
+    //   for (final view in _views) {
+    //     view?.onLaterStep(_workoutMeta._stepPos, step);
+    //   }
+    // }
   }
 
   void _renderSeconds() {

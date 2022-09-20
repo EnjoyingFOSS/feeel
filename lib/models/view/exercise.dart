@@ -34,17 +34,18 @@ class Exercise {
   final String? imageSlug;
   final String? descriptionLicense;
   final String? imageLicense;
-  final List<ExerciseStep>? steps;
+  // final List<ExerciseStep>? steps;
 
-  Exercise(
-      {required this.dbId,
-      required this.name,
-      required this.description,
-      required this.flipped,
-      required this.type,
-      required this.animated,
-      this.imageSlug,
-      this.imageLicense,
-      this.descriptionLicense,
-      this.steps});
+  Exercise({
+    required this.dbId,
+    required this.name,
+    required this.description,
+    required this.flipped,
+    required this.type,
+    required this.animated,
+    this.imageSlug,
+    this.imageLicense,
+    this.descriptionLicense,
+    // this.steps
+  });
 }
