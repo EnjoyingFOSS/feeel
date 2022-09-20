@@ -20,43 +20,36 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'feeel_colors.dart';
 import 'feeel_shade.dart';
 
 class FeeelThemes {
-  static final DEFAULT_THEME_MODE = AdaptiveThemeMode.dark;
-
   static final _lightColors = ColorScheme(
       //todo extract colors to separate file
       primary: FeeelColors.blue.getColor(FeeelShade.DARK),
-      primaryVariant: FeeelColors.blue.getColor(FeeelShade.DARKER),
-      secondary: FeeelColors.orange.getColor(FeeelShade.DARK),
-      secondaryVariant: FeeelColors.orange.getColor(FeeelShade.DARKER),
-      surface: Colors.white,
-      background: Colors.white,
-      error: Color(0xFFB00020),
       onPrimary: Colors.white,
+      secondary: FeeelColors.orange.getColor(FeeelShade.DARK),
       onSecondary: Colors.white,
+      surface: Colors.white,
       onSurface: Colors.black87,
+      background: Colors.white,
       onBackground: Colors.black87,
-      onError: Colors.black87,
+      error: const Color(0xFFB00020),
+      onError: Colors.white,
       brightness: Brightness.light);
 
   static final _darkColors = ColorScheme(
       primary: FeeelColors.blue.getColor(FeeelShade.LIGHT),
-      primaryVariant: FeeelColors.blue.getColor(FeeelShade.LIGHTER),
-      secondary: FeeelColors.orange.getColor(FeeelShade.LIGHT),
-      secondaryVariant: FeeelColors.orange.getColor(FeeelShade.LIGHTER),
-      surface: Colors.black,
-      background: Colors.black,
-      error: Color(0xFFB00020),
       onPrimary: Colors.black87,
+      secondary: FeeelColors.orange.getColor(FeeelShade.LIGHT),
       onSecondary: Colors.black87,
+      surface: Colors.black,
       onSurface: Colors.white,
+      background: Colors.black,
       onBackground: Colors.white,
+      error: const Color(0xFFB00020),
       onError: Colors.white,
       brightness: Brightness.dark);
 
@@ -70,7 +63,6 @@ class FeeelThemes {
         backgroundColor: colors.background,
         brightness: colors.brightness,
         primaryColor: colors.primary,
-        primaryColorDark: colors.primaryVariant,
         scaffoldBackgroundColor: colors.background,
         cardColor: colors.surface,
         errorColor: colors.error,
