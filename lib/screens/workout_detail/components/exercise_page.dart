@@ -21,7 +21,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/exercise_sheet.dart';
-import 'package:flutter/services.dart';
 import '../../../controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/db/asset_helper.dart';
@@ -31,11 +30,11 @@ import 'package:feeel/models/view/exercise.dart';
 import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
-import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
-import 'package:feeel/screens/workout_detail/components/exercise_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
+
+import 'exercise_layout.dart';
 
 class ExercisePage extends StatefulWidget {
   final Workout workout;
@@ -74,14 +73,9 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final themeDarkColor = widget.colorSwatch
-        .getColorByBrightness(FeeelShade.DARK, theme.brightness);
     final exercise = _getExercise(_exercisePos);
-    final imageSlug = (exercise.steps?[_stepPos].imageSlug != null)
-        ? exercise.steps![_stepPos].imageSlug
-        : exercise.imageSlug;
     final headOnly = exercise.type == ExerciseType.HEAD;
+
     return
         // CallbackShortcuts(
         //     //todo doesn't always activate!!!
@@ -93,67 +87,30 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
         //     child:
         GestureDetector(
             child: Material(
-                color: theme.backgroundColor,
-                child: Column(
-                  children: <Widget>[
-                    ExerciseHeader(
-                        color: themeDarkColor,
-                        paused: _paused,
-                        counterText: _seconds.toString()),
-                    _paused
-                        ? Row(children: <Widget>[
-                            Expanded(
-                                child: IconButton(
-                              iconSize: 32,
-                              color: themeDarkColor,
-                              tooltip: "Previous exercise".i18n,
-                              icon: Icon(Icons.skip_previous),
-                              onPressed: () {
-                                widget.workoutController.skipToPrevious();
-                              },
-                            )),
-                            Expanded(
-                              child: IconButton(
-                                  iconSize: 64,
-                                  color: themeDarkColor,
-                                  tooltip: "Resume workout".i18n,
-                                  icon: Icon(Icons.play_arrow),
-                                  onPressed: () {
-                                    widget.workoutController.togglePlayPause();
-                                  }),
-                            ),
-                            Expanded(
-                              child: IconButton(
-                                  iconSize: 32,
-                                  color: themeDarkColor,
-                                  tooltip: "Next exercise".i18n,
-                                  icon: Icon(
-                                    Icons.skip_next,
-                                  ),
-                                  onPressed: () {
-                                    widget.workoutController.skipToNext();
-                                  }),
-                            )
-                          ])
-                        : Text(
-                            "Tap for controls".i18n,
-                            style: TextStyle(color: themeDarkColor),
-                          ),
-                    Expanded(
-                        child: ExerciseLayout(
-                      paused: _paused,
-                      colorSwatch: widget.colorSwatch,
-                      title: exercise.name.i18n,
-                      headOnly: headOnly,
-                      onBreak: _stage == WorkoutStage.BREAK ||
-                          _stage == WorkoutStage.COUNTDOWN,
-                      onLearn: () => onLearn(exercise),
-                      triangleSeed: headOnly ? exercise.name.hashCode : 0,
-                      imageSlug: imageSlug,
-                      flipped: exercise.flipped,
-                      animated: exercise.animated,
-                    )), // todo show drag handle
-                  ],
+                color: Theme.of(context).backgroundColor,
+                child: ExerciseLayout(
+                  imageSlug: (exercise.steps?[_stepPos].imageSlug != null)
+                      ? exercise.steps![_stepPos].imageSlug
+                      : exercise.imageSlug,
+                  animated: exercise.animated,
+                  flipped: exercise.flipped,
+                  onLearn: () => onLearn(exercise),
+                  colorSwatch: widget.colorSwatch,
+                  triangleSeed: headOnly ? exercise.name.hashCode : 0,
+                  secondsString: _seconds.toString(),
+                  skipToPrevious: () {
+                    widget.workoutController.skipToPrevious();
+                  },
+                  skipToNext: () {
+                    widget.workoutController.skipToNext();
+                  },
+                  togglePlayPause: () {
+                    widget.workoutController.togglePlayPause();
+                  },
+                  headOnly: exercise.type == ExerciseType.HEAD,
+                  title: exercise.name.i18n,
+                  onBreak: _stage == WorkoutStage.BREAK || _stage == WorkoutStage.COUNTDOWN,
+                  paused: _paused,
                 )),
             onTap: () {
               //todo setstate
@@ -274,51 +231,5 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
       _exercisePos = exercisePos;
       _stage = WorkoutStage.COUNTDOWN;
     });
-  }
-}
-
-class ExerciseHeader extends StatelessWidget {
-  final String counterText; //todo is this really the best way to rerender time?
-  final Color color;
-  final bool paused;
-
-  ExerciseHeader(
-      {Key? key,
-      required this.color,
-      required this.counterText,
-      this.paused = false})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        bottom: false,
-        child: Align(
-            alignment: Alignment.topCenter,
-            child: Stack(
-              children: <Widget>[
-                if (paused)
-                  Align(
-                    child: Padding(
-                      child: BackButton(
-                        color: color,
-                      ),
-                      padding: EdgeInsets.all(16),
-                    ),
-                    alignment: AlignmentDirectional.centerStart,
-                  ),
-                Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Text(
-                          counterText,
-                          style: TextStyle(
-                              fontSize: paused ? 24 : 72,
-                              fontWeight: FontWeight.w900,
-                              color: color),
-                        ))),
-              ],
-            )));
   }
 }
