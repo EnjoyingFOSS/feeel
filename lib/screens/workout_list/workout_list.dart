@@ -132,7 +132,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          SettingsScreen())); //todo will need to refresh on coming back
+                                          const SettingsScreen())); //todo will need to refresh on coming back
                             },
                           )
                         ],
@@ -224,14 +224,15 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
   }
 
   void _onDuplicate(WorkoutListed origListed) async {
+    final navigator = Navigator.of(context);
     final newListed =
         await DBHelper.db.duplicateWorkout(origListed.dbId, origListed.type);
-    Navigator.push<void>(
-        context,
-        MaterialPageRoute(
+    navigator
+        .push<void>(MaterialPageRoute(
             builder: (context) => WorkoutEditorScreen(
                   workoutListed: newListed,
-                ))).then((_) {
+                )))
+        .then((_) {
       setState(() {});
     });
   }

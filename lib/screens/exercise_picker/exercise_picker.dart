@@ -134,7 +134,8 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                                 Navigator.push<void>(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) => ExerciseCreatorScreen(),
+                                        builder: (_) =>
+                                            const ExerciseCreatorScreen(),
                                         fullscreenDialog: true));
                               }
                             },

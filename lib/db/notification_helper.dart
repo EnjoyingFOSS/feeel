@@ -66,6 +66,8 @@ class NotificationHelper {
   }
 
   void setNotification(BuildContext context, TimeOfDay? timeOfDay) async {
+    final primaryColor = Theme.of(context).primaryColor;
+
     await flutterLocalNotificationsPlugin.cancel(_notificationIntId);
 
     if (timeOfDay != null) {
@@ -79,7 +81,7 @@ class NotificationHelper {
           android: AndroidNotificationDetails(
               _notificationChannelId, "Daily notification".i18n,
               channelDescription: "A daily reminder to work out".i18n,
-              color: Theme.of(context).primaryColor),
+              color: primaryColor),
           iOS: const IOSNotificationDetails(),
           macOS: const MacOSNotificationDetails());
 
