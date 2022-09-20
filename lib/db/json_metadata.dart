@@ -23,26 +23,26 @@
 import 'package:feeel/db/db_helper.dart';
 
 class JSONMetadata {
-  static const _CUR_METADATA_VERSION = 1;
+  static const _curMetadataVersion = 1;
 
-  static const _METADATA_VERSION_KEY = 'metadataVersion';
-  static const _DATABASE_VERSION_KEY = 'databaseVersion';
+  static const _metadataVersionKey = 'metadataVersion';
+  static const _databaseVersionKey = 'databaseVersion';
 
   final int metadataVersion;
   final int databaseVersion;
 
   JSONMetadata(
-      {this.metadataVersion = _CUR_METADATA_VERSION,
+      {this.metadataVersion = _curMetadataVersion,
       this.databaseVersion = DBHelper.DATABASE_VERSION});
 
   static JSONMetadata fromJson(Map<String, dynamic> json) {
     return JSONMetadata(
-        metadataVersion: json[_METADATA_VERSION_KEY] as int,
-        databaseVersion: json[_DATABASE_VERSION_KEY] as int);
+        metadataVersion: json[_metadataVersionKey] as int,
+        databaseVersion: json[_databaseVersionKey] as int);
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        _METADATA_VERSION_KEY: metadataVersion,
-        _DATABASE_VERSION_KEY: databaseVersion,
+        _metadataVersionKey: metadataVersion,
+        _databaseVersionKey: databaseVersion,
       };
 }

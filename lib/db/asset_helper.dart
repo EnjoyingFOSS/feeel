@@ -21,8 +21,8 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 class AssetHelper {
-  static const _ASSETS_PATH = "assets/";
-  static const _THUMBS_PATH = "assets/thumbs_";
-  static String getImage(String imageSlug) => _ASSETS_PATH + imageSlug;
-  static String getThumb(String imageSlug) => _THUMBS_PATH + imageSlug;
+  static const _assetsPath = "assets/";
+  static const _thumbsPath = "assets/thumbs_";
+  static String getImage(String imageSlug) => _assetsPath + imageSlug;
+  static String getThumb(String imageSlug) => _thumbsPath + imageSlug;
 }

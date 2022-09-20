@@ -39,19 +39,16 @@ class TTSView implements WorkoutView {
 
   @override
   void onBreak(int exercisePos, WorkoutExercise nextExercise, int duration) {
-    TTSHelper.tts.speak("Break!".i18n +
-        " " +
-        "Next up:".i18n +
-        " " +
-        nextExercise.exercise.name.i18n);
+    TTSHelper.tts.speak(
+        "${"Break!".i18n} ${"Next up:".i18n} ${nextExercise.exercise.name.i18n}");
   }
 
   @override
   void onCount(int seconds, WorkoutStage stage) {
     //todo eliminate conflicts with step content
-    if (seconds <= AudioHelper.COUNTDOWN)
+    if (seconds <= AudioHelper.countdown) {
       TTSHelper.tts.speak(seconds.toString());
-    else if (seconds == _halfTime && stage == WorkoutStage.exercise) {
+    } else if (seconds == _halfTime && stage == WorkoutStage.exercise) {
       TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst(
           "%d", "$seconds")); //todo internationalize with declension
     }

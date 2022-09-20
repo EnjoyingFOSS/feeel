@@ -29,5 +29,5 @@ class FullExercise {
   final List<ExerciseMuscles>? muscles;
 
   FullExercise(
-      {required this.exercise, this.steps, this.equipment, this.muscles}) {}
+      {required this.exercise, this.steps, this.equipment, this.muscles});
 }

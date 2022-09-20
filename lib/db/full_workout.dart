@@ -33,7 +33,7 @@ class FullWorkout {
       {required this.workout,
       required this.workoutExercises,
       required this.exercises}) {
-    _duration = (workoutExercises.length > 0)
+    _duration = (workoutExercises.isNotEmpty)
         ? workoutExercises[0].exerciseDuration ?? workout.exerciseDuration
         : 0;
     for (var i = 1; i < workoutExercises.length; i++) {

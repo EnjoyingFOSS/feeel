@@ -33,8 +33,8 @@ import 'package:timezone/timezone.dart' as tz;
 class NotificationHelper {
   //todo use provider?
   static final NotificationHelper helper = NotificationHelper._();
-  static const _NOTIFICATION_CHANNEL_ID = "exercise_reminder";
-  static const _NOTIFICATION_INT_ID = 0;
+  static const _notificationChannelId = "exercise_reminder";
+  static const _notificationIntId = 0;
   late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   NotificationHelper._() {
@@ -46,7 +46,7 @@ class NotificationHelper {
     tz.setLocalLocation(
         tz.getLocation(await FlutterNativeTimezone.getLocalTimezone()));
 
-    var initializationSettings = InitializationSettings(
+    var initializationSettings = const InitializationSettings(
         android: AndroidInitializationSettings('icon_notification'),
         iOS: IOSInitializationSettings(
             requestAlertPermission: false,
@@ -60,13 +60,13 @@ class NotificationHelper {
         onSelectNotification: (String? payload) async {
       return await Navigator.push<void>(
         context,
-        MaterialPageRoute(builder: (context) => WorkoutListScreen()),
+        MaterialPageRoute(builder: (context) => const WorkoutListScreen()),
       );
     });
   }
 
   void setNotification(BuildContext context, TimeOfDay? timeOfDay) async {
-    await flutterLocalNotificationsPlugin.cancel(_NOTIFICATION_INT_ID);
+    await flutterLocalNotificationsPlugin.cancel(_notificationIntId);
 
     if (timeOfDay != null) {
       if (Platform.isIOS) {
@@ -77,14 +77,14 @@ class NotificationHelper {
 
       final platformChannelSpecifics = NotificationDetails(
           android: AndroidNotificationDetails(
-              _NOTIFICATION_CHANNEL_ID, "Daily notification".i18n,
+              _notificationChannelId, "Daily notification".i18n,
               channelDescription: "A daily reminder to work out".i18n,
               color: Theme.of(context).primaryColor),
-          iOS: IOSNotificationDetails(),
-          macOS: MacOSNotificationDetails());
+          iOS: const IOSNotificationDetails(),
+          macOS: const MacOSNotificationDetails());
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
-          _NOTIFICATION_INT_ID,
+          _notificationIntId,
           "Time to put on workout clothes!".i18n,
           "It takes just a few minutes to feel fresh and fit".i18n,
           _nextDailyInstance(Time(timeOfDay.hour, timeOfDay.minute)),

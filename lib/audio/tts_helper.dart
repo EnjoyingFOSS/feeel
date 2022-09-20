@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 
-enum _TtsState { PLAYING, STOPPED }
+enum _TtsState { playing, stopped }
 
 class TTSHelper {
   //todo use provider, perhaps one for both available sound views?
@@ -32,20 +32,20 @@ class TTSHelper {
   static final tts = TTSHelper._();
   static final _flutterTts = FlutterTts();
 
-  _TtsState ttsState = _TtsState.STOPPED; //todo see if I need this
+  _TtsState _ttsState = _TtsState.stopped; //todo see if I need this
 
   void init(BuildContext context) async {
     // todo set to current language ONLY IF translations are available; _flutterTts.setLanguage(Localizations.localeOf(context).languageCode);
     _flutterTts.setStartHandler(() {
-      ttsState = _TtsState.PLAYING;
+      _ttsState = _TtsState.playing;
     });
 
     _flutterTts.setCompletionHandler(() {
-      ttsState = _TtsState.STOPPED;
+      _ttsState = _TtsState.stopped;
     });
 
     _flutterTts.setErrorHandler((dynamic msg) {
-      ttsState = _TtsState.STOPPED;
+      _ttsState = _TtsState.stopped;
     });
 
     _initLanguage(context);
@@ -56,22 +56,23 @@ class TTSHelper {
     final isLanguageAvailable =
         await _flutterTts.isLanguageAvailable(curLanguage) as bool;
 
-    if (isLanguageAvailable)
+    if (isLanguageAvailable) {
       _flutterTts.setLanguage(curLanguage);
-    else
+    } else {
       _flutterTts.setLanguage(I18n.defaultLocale.toLanguageTag());
+    }
   }
 
   Future speak(String message) async {
     if (message.isNotEmpty) {
-      if (ttsState == _TtsState.PLAYING) await _flutterTts.stop();
+      if (_ttsState == _TtsState.playing) await _flutterTts.stop();
       dynamic result = await _flutterTts.speak(message);
-      if (result == 1) ttsState = _TtsState.PLAYING;
+      if (result == 1) _ttsState = _TtsState.playing;
     }
   }
 
   Future stop() async {
     dynamic result = await _flutterTts.stop();
-    if (result == 1) ttsState = _TtsState.STOPPED;
+    if (result == 1) _ttsState = _TtsState.stopped;
   }
 }

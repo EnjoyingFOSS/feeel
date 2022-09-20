@@ -44,10 +44,9 @@ class EditableWorkout {
       this.countdownDuration = 5,
       this.breakDuration = 10,
       this.exerciseDuration = 30}) {
-    workoutExercises = initialWorkoutExercises != null
-        ? initialWorkoutExercises
-        : List<EditableWorkoutExercise>.empty(growable: true);
-    _duration = (workoutExercises.length > 0)
+    workoutExercises = initialWorkoutExercises ??
+        List<EditableWorkoutExercise>.empty(growable: true);
+    _duration = (workoutExercises.isNotEmpty)
         ? workoutExercises[0].exerciseDuration ?? exerciseDuration
         : 0;
     for (var i = 1; i < workoutExercises.length; i++) {

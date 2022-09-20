@@ -81,7 +81,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   Widget build(BuildContext context) {
     _workoutController.setOnFinish(() {
       if (!Platform.isLinux) Wakelock.disable();
-      _pageController.jumpToPage(WorkoutPageTypes.FINISH.index);
+      _pageController.jumpToPage(WorkoutPageTypes.finish.index);
     });
 
     return PageView(
@@ -93,7 +93,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
           workoutListed: widget.workoutListed,
           colorSwatch: colorSwatch,
           startWorkout: () {
-            _pageController.jumpToPage(WorkoutPageTypes.EXERCISE.index);
+            _pageController.jumpToPage(WorkoutPageTypes.exercise.index);
             _workoutController.start();
             if (!Platform.isLinux) Wakelock.enable(); //
           },

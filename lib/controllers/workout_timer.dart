@@ -79,9 +79,7 @@ class WorkoutTimer {
   }
 
   void start() {
-    if (_timer == null) {
-      _timer = Timer.periodic(Duration(seconds: 1), _countSecond);
-    }
+    _timer ??= Timer.periodic(const Duration(seconds: 1), _countSecond);
   }
 
   void stop() {

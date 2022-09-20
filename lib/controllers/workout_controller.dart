@@ -35,16 +35,16 @@ import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum ViewTypes { GUI, AUDIO }
+enum _ViewTypes { gui, audio }
 
 class WorkoutMeta {
-  static int _START_DURATION =
+  static const _startDuration =
       5; //todo get rid of countdown duration in the database
-  static int _COUNTDOWN_DURATION = 3;
+  static const _countdownDuration = 3;
   final Workout _workout;
   int _exercisePos = 0;
   int _stepPos = 0;
-  int? timerRestore = null;
+  int? timerRestore;
 
   WorkoutMeta(this._workout);
 
@@ -53,9 +53,9 @@ class WorkoutMeta {
   int getStepPos() => _stepPos;
 
   int getStartDuration() =>
-      getCurWorkoutExercise().breakBeforeDuration ?? _START_DURATION;
+      getCurWorkoutExercise().breakBeforeDuration ?? _startDuration;
 
-  int getCountdownDuration() => _COUNTDOWN_DURATION;
+  int getCountdownDuration() => _countdownDuration;
 
   int getCurBreakDuration() =>
       getCurWorkoutExercise().breakBeforeDuration ?? _workout.breakDuration;
@@ -100,16 +100,18 @@ class WorkoutMeta {
 }
 
 class WorkoutController {
-  List<Function?> _onFinishes = List.filled(ViewTypes.values.length, null);
-  List<WorkoutView?> _views = List.filled(
-      ViewTypes.values.length, null); //todo weak references + NOT NULL SAFE!
+  final List<Function?> _onFinishes =
+      List.filled(_ViewTypes.values.length, null);
+  final List<WorkoutView?> _views = List.filled(
+      _ViewTypes.values.length, null); //todo weak references + NOT NULL SAFE!
   WorkoutStage _stage = WorkoutStage.ready;
   late WorkoutTimer _timer; //todo init timer
   late WorkoutMeta _workoutMeta;
 
   WorkoutController(Workout workout) {
-    if (workout.workoutExercises.length == 0)
+    if (workout.workoutExercises.isEmpty) {
       throw Exception("Workout must have length > 0");
+    }
 
     _workoutMeta = WorkoutMeta(workout);
 
@@ -118,8 +120,9 @@ class WorkoutController {
     _timer = WorkoutTimer(0, breakpoints: _workoutMeta.getCurStepDurations(),
         onSecondDecrease: () {
       //todo initTime seems useless
-      for (final view in _views)
+      for (final view in _views) {
         view?.onCount(_timer.getTimeRemaining(), _stage);
+      }
     }, onBreakpoint: () {
       _workoutMeta.nextStep();
       _renderLaterStep();
@@ -134,9 +137,9 @@ class WorkoutController {
           _coordinateExerciseStage(restore: true);
           break;
         case WorkoutStage.exercise:
-          if (_workoutMeta.isLastExercise())
+          if (_workoutMeta.isLastExercise()) {
             _coordinateEndStage();
-          else {
+          } else {
             _workoutMeta.next();
             _coordinateBreakStage();
           }
@@ -153,13 +156,13 @@ class WorkoutController {
           ? true
           : false) {
         final SoundView soundView = SoundView();
-        _views[ViewTypes.AUDIO.index] = soundView;
-        _onFinishes[ViewTypes.AUDIO.index] = () {
+        _views[_ViewTypes.audio.index] = soundView;
+        _onFinishes[_ViewTypes.audio.index] = () {
           soundView.onFinish();
         };
       } else {
-        _views[ViewTypes.AUDIO.index] = TTSView(); //todo allow audio setting
-        _onFinishes[ViewTypes.AUDIO.index] = () {
+        _views[_ViewTypes.audio.index] = TTSView(); //todo allow audio setting
+        _onFinishes[_ViewTypes.audio.index] = () {
           TTSHelper.tts.speak("You did it!".i18n);
         };
       }
@@ -270,73 +273,89 @@ class WorkoutController {
   void _renderStage() {
     switch (_stage) {
       case WorkoutStage.ready:
-        for (final view in _views)
+        for (final view in _views) {
           view?.onStart(
               _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getStartDuration());
+        }
         break;
       case WorkoutStage.countdown:
-        for (final view in _views)
+        for (final view in _views) {
           view?.onCountdown(_workoutMeta.getExercisePos());
+        }
         break;
       case WorkoutStage.exercise:
-        for (final view in _views)
+        for (final view in _views) {
           view?.onExercise(
               _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getCurStep(),
               _workoutMeta.getCurExerciseDuration());
+        }
         break;
       case WorkoutStage.workoutBreak:
-        for (final view in _views)
+        for (final view in _views) {
           view?.onBreak(
               _workoutMeta.getExercisePos(),
               _workoutMeta.getCurWorkoutExercise(),
               _workoutMeta.getCurBreakDuration());
+        }
         break;
       case WorkoutStage.end:
-        for (final onFinish in _onFinishes) if (onFinish != null) onFinish();
+        for (final onFinish in _onFinishes) {
+          if (onFinish != null) onFinish();
+        }
         break;
     }
   }
 
   void _renderPausePlay() {
-    if (_timer.isRunning())
-      for (final view in _views) view?.onPlay();
-    else
-      for (final view in _views) view?.onPause();
+    if (_timer.isRunning()) {
+      for (final view in _views) {
+        view?.onPlay();
+      }
+    } else {
+      for (final view in _views) {
+        view?.onPause();
+      }
+    }
   }
 
   void _renderLaterStep() {
     final step = _workoutMeta.getCurStep();
-    if (step != null)
-      for (final view in _views) view?.onLaterStep(_workoutMeta._stepPos, step);
+    if (step != null) {
+      for (final view in _views) {
+        view?.onLaterStep(_workoutMeta._stepPos, step);
+      }
+    }
   }
 
   void _renderSeconds() {
-    for (final view in _views) view?.onCount(_timer.getTimeRemaining(), _stage);
+    for (final view in _views) {
+      view?.onCount(_timer.getTimeRemaining(), _stage);
+    }
   }
 
   // setters
 
   void setOnFinish(Function onFinish) {
-    _onFinishes[ViewTypes.GUI.index] = onFinish;
+    _onFinishes[_ViewTypes.gui.index] = onFinish;
   }
 
   void setView(WorkoutView view) {
-    _views[ViewTypes.GUI.index] = view;
+    _views[_ViewTypes.gui.index] = view;
   }
 
   void clearView() {
-    _views[ViewTypes.GUI.index] = null;
+    _views[_ViewTypes.gui.index] = null;
   }
 
   void close() {
     _timer.stop();
     clearView();
-    _views[ViewTypes.AUDIO.index] = null;
-    _onFinishes[ViewTypes.AUDIO.index] = null;
+    _views[_ViewTypes.audio.index] = null;
+    _onFinishes[_ViewTypes.audio.index] = null;
     TTSHelper.tts.stop(); //todo once stopped, does it restart?
     // todo views.clear() needed?
   }
