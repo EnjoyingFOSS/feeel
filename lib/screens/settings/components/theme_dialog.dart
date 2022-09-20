@@ -28,13 +28,13 @@ import 'package:feeel/theming/theme_mode_extensions.dart';
 class ThemeDialog extends StatelessWidget {
   final AdaptiveThemeMode? curTheme;
 
-  ThemeDialog({required this.curTheme, Key? key}) : super(key: key);
+  const ThemeDialog({required this.curTheme, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text("Theme".i18n),
-      content: Container(
+      content: SizedBox(
         width: double.maxFinite,
         child: ListView.builder(
           itemCount: AdaptiveThemeMode.values.length,

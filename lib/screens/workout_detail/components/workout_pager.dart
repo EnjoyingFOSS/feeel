@@ -51,7 +51,7 @@ class WorkoutPager extends StatefulWidget {
 }
 
 class _WorkoutPagerState extends State<WorkoutPager> {
-  PageController _pageController = PageController();
+  final _pageController = PageController();
   late WorkoutController _workoutController;
   late FeeelSwatch colorSwatch;
 
@@ -66,13 +66,14 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    if (widget.workout.workoutExercises.length > 0) {
+    if (widget.workout.workoutExercises.isNotEmpty) {
       final imageSlug = widget.workout.workoutExercises[0].exercise.imageSlug;
-      if (imageSlug != null)
+      if (imageSlug != null) {
         precacheImage(
             Image.asset(AssetHelper.getImage(imageSlug))
                 .image, //todo precache inside workout page instead?
             context);
+      }
     }
   }
 
@@ -84,7 +85,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
     });
 
     return PageView(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       controller: _pageController,
       children: <Widget>[
         WorkoutCover(
@@ -103,7 +104,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
             colorSwatch: colorSwatch),
         FinishPage(
           color: colorSwatch.getColorByBrightness(
-              FeeelShade.DARK, Theme.of(context).brightness),
+              FeeelShade.dark, Theme.of(context).brightness),
         )
       ],
     );

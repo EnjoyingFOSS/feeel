@@ -48,6 +48,11 @@ class WorkoutExerciseItem extends StatelessWidget {
     return InkWell(
         child: Row(children: [
           Padding(
+            padding: const EdgeInsets.only(
+              left: 8,
+              right: 8,
+              bottom: 8,
+            ),
             child: imageSlug == null
                 ? Container()
                 : workoutExercise.exercise.flipped
@@ -56,11 +61,6 @@ class WorkoutExerciseItem extends StatelessWidget {
                             width: 64, height: 64))
                     : Image.asset(AssetHelper.getThumb(imageSlug),
                         width: 64, height: 64),
-            padding: EdgeInsets.only(
-              left: 8,
-              right: 8,
-              bottom: 8,
-            ),
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
@@ -71,7 +71,6 @@ class WorkoutExerciseItem extends StatelessWidget {
           ])
         ]),
         onTap: () => ExerciseSheet.showSheet(
-            context, workoutExercise.exercise, colorSwatch)
-        );
+            context, workoutExercise.exercise, colorSwatch));
   }
 }

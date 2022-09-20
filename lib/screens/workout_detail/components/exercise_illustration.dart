@@ -77,7 +77,7 @@ class ExerciseIllustration extends StatelessWidget {
         child: headOnly
             ? HeadExerciseContent(
                 color: colorSwatch.getColorByBrightness(
-                    FeeelShade.LIGHTEST, brightness),
+                    FeeelShade.lightest, brightness),
                 onBreak: onBreak,
                 illustration: IllustrationWidget(
                   imageAssetString: imageAssetString,

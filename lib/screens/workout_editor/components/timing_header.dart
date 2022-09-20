@@ -31,7 +31,7 @@ class TimingHeader extends StatelessWidget {
   final Function(int value) onExerciseDurationChanged;
   final Function(int value) onBreakDurationChanged;
 
-  TimingHeader(
+  const TimingHeader(
       {required this.exerciseDuration,
       required this.breakDuration,
       required this.onExerciseDurationChanged,
@@ -40,12 +40,13 @@ class TimingHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           children: <Widget>[
             Expanded(
                 child: DurationDropdown(
               chosenValue: exerciseDuration,
-              predefinedValues: [15, 30, 60],
+              predefinedValues: const [15, 30, 60],
               decoration: InputDecoration(
                   labelText: "Exercise duration".i18n, filled: true),
               onChanged: onExerciseDurationChanged,
@@ -56,7 +57,7 @@ class TimingHeader extends StatelessWidget {
             Expanded(
                 child: DurationDropdown(
               chosenValue: breakDuration,
-              predefinedValues: [5, 10, 15],
+              predefinedValues: const [5, 10, 15],
               decoration: InputDecoration(
                   //todo ellipsize
                   labelText: "Break duration".i18n,
@@ -64,7 +65,6 @@ class TimingHeader extends StatelessWidget {
               onChanged: onBreakDurationChanged,
             ))
           ],
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 16));
+        ));
   }
 }

@@ -32,7 +32,7 @@ class TriangleFrame extends StatelessWidget {
   late final bool rRightLean;
   late final double rYOffset, rPeakX;
 
-  TriangleFrame({required this.color, this.seed = 60, this.child}) {
+  TriangleFrame({super.key, required this.color, this.seed = 60, this.child}) {
     final random = Random(seed);
     rRightLean = random.nextBool(); //todo use this
     rYOffset = random.nextDouble();
@@ -88,7 +88,7 @@ class _TriangleClipper extends CustomClipper<Path> {
 }
 
 class _BackgroundPainter extends CustomPainter {
-  Paint _trianglePaint = Paint();
+  final _trianglePaint = Paint();
 
   final bool rightLean;
   final double offsetYRatio, peakXRatio;

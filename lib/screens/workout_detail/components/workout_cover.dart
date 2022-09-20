@@ -37,7 +37,7 @@ class WorkoutCover extends StatelessWidget {
   final void Function() startWorkout;
   final FeeelSwatch colorSwatch;
 
-  WorkoutCover(
+  const WorkoutCover(
       {Key? key,
       required this.workout,
       required this.workoutListed,
@@ -45,13 +45,15 @@ class WorkoutCover extends StatelessWidget {
       required this.startWorkout})
       : super(key: key);
 
-  Future<void> _precacheFirstImage(BuildContext context) async { //todo test
+  Future<void> _precacheFirstImage(BuildContext context) async {
+    //todo test
     final imageSlug = workout.workoutExercises[0].exercise.imageSlug;
-    if (imageSlug != null)
+    if (imageSlug != null) {
       precacheImage(
           Image.asset(AssetHelper.getImage(imageSlug))
               .image, //todo precache inside workout page instead?
           context);
+    }
   }
 
   @override
@@ -68,7 +70,7 @@ class WorkoutCover extends StatelessWidget {
             workoutDuration: workout.duration,
           )),
           SliverPadding(
-              padding: EdgeInsets.only(bottom: 80, top: 24),
+              padding: const EdgeInsets.only(bottom: 80, top: 24),
               sliver: WorkoutExerciseList(
                   workout: workout, colorSwatch: colorSwatch)),
         ],
@@ -76,13 +78,13 @@ class WorkoutCover extends StatelessWidget {
       Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
               child: FloatingActionButton.extended(
-                icon: Icon(Icons.play_arrow),
+                icon: const Icon(Icons.play_arrow),
                 label: Text("Start workout".i18n),
                 onPressed: startWorkout,
                 backgroundColor: colorSwatch.getColorByBrightness(
-                    FeeelShade.DARK, Theme.of(context).brightness),
+                    FeeelShade.dark, Theme.of(context).brightness),
               )))
     ]));
   }

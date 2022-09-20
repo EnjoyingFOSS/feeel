@@ -36,6 +36,8 @@ class EmptyWorkout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text("There are no exercises in this workout. :(".i18n),
         Container(
@@ -50,7 +52,7 @@ class EmptyWorkout extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            if (workout.type == WorkoutType.CUSTOM)
+            if (workout.type == WorkoutType.custom)
               ElevatedButton(
                 child: Text("Delete this workout".i18n),
                 onPressed: () {
@@ -63,8 +65,6 @@ class EmptyWorkout extends StatelessWidget {
           ],
         )
       ],
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
     ));
   }
 }

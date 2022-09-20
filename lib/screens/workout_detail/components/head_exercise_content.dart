@@ -44,7 +44,7 @@ class HeadExerciseContent extends StatelessWidget {
     return Align(
         alignment: alignment,
         child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Opacity(
                 opacity: onBreak ? 0.5 : 1.0,
                 child: TriangleFrame(

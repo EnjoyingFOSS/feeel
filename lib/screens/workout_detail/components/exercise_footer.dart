@@ -102,8 +102,8 @@ class ExerciseFooter extends StatelessWidget {
               onTap: onLearn,
               bgColor: headOnly
                   ? (brightness == Brightness.dark
-                      ? colorSwatch.getColor(FeeelShade.DARKER)
-                      : colorSwatch.getColor(FeeelShade.DARK))
+                      ? colorSwatch.getColor(FeeelShade.darker)
+                      : colorSwatch.getColor(FeeelShade.dark))
                   : const Color(0x26000000),
             ),
         ]),

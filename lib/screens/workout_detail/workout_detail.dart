@@ -39,7 +39,7 @@ class WorkoutDetailScreen extends StatefulWidget {
       : super(key: key);
 
   @override
-  _WorkoutDetailScreenState createState() {
+  State<WorkoutDetailScreen> createState() {
     return _WorkoutDetailScreenState();
   }
 }
@@ -59,8 +59,9 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
     final colorSwatch = widget.workoutListed.category.colorSwatch;
     return WillPopScope(
         onWillPop: () async {
-          if (!Platform.isLinux)
-            Wakelock.disable(); //todo use provider for wakelock?
+          if (!Platform.isLinux) {
+            Wakelock.disable();
+          } //todo use provider for wakelock?
           return true;
         },
         child: Scaffold(
@@ -69,7 +70,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     Workout workout = snapshot.data!;
-                    if (workout.workoutExercises.length > 0) {
+                    if (workout.workoutExercises.isNotEmpty) {
                       return WorkoutPager(
                         workout: workout,
                         workoutListed: widget.workoutListed,
@@ -92,9 +93,9 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                         workoutListed: widget.workoutListed,
                         colorSwatch: colorSwatch,
                       ),
-                      Flexible(
+                      const Flexible(
                           child: Center(
-                        child: const CircularProgressIndicator(),
+                        child: CircularProgressIndicator(),
                       ))
                     ]));
                   }

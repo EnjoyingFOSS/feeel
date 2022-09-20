@@ -27,13 +27,13 @@ class ExercisePickerRow extends StatelessWidget {
     final imageSlug = exercise.imageSlug;
     return CheckboxListTile(
       activeColor: colorSwatch.getColorByBrightness(
-          FeeelShade.DARK, Theme.of(context).brightness),
+          FeeelShade.dark, Theme.of(context).brightness),
       value: checked,
       title: Row(children: [
         Expanded(child: Text(exercise.name.i18n)),
         IconButton(
           //todo add labels to all icons
-          icon: Icon(Icons.info_outline),
+          icon: const Icon(Icons.info_outline),
           tooltip: "More info".i18n,
           onPressed: () =>
               ExerciseSheet.showSheet(context, exercise, colorSwatch),

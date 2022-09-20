@@ -31,10 +31,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class ExerciseCreatorScreen extends StatefulWidget {
-  ExerciseCreatorScreen({Key? key}) : super(key: key);
+  const ExerciseCreatorScreen({Key? key}) : super(key: key);
 
   @override
-  _ExerciseCreatorScreenState createState() => _ExerciseCreatorScreenState();
+  State<ExerciseCreatorScreen> createState() => _ExerciseCreatorScreenState();
 }
 
 class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
@@ -49,7 +49,7 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
     //todo add some explainer text !!!
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.send),
+        icon: const Icon(Icons.send),
         label: Text("Submit via email".i18n),
         onPressed: _sendMessage,
       ),
@@ -59,20 +59,20 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
       body: Column(children: [
         Material(
           color: FeeelColors.blue
-              .getColorByBrightness(FeeelShade.LIGHTEST, theme.brightness),
+              .getColorByBrightness(FeeelShade.lightest, theme.brightness),
+          elevation: 4,
           child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Text(
               "Feeel relies on volunteers like you to submit exercises and exercise photos. Photos will first be privately processed into triangulated versions, then sent to you for approval, and only then released in the app. All submitted photos and text must be solely your work. Thanks for contributing!"
                   .i18n,
               style: TextStyle(color: theme.colorScheme.onSurface),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           ),
-          elevation: 4,
         ),
         Expanded(
             child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(16, 8, 16, 64),
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 64),
           child: Form(
               child: Column(
             children: <Widget>[
@@ -91,7 +91,7 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
                 height: 16,
               ),
               ..._imageFiles.map((File imageFile) => Padding(
-                  padding: EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.only(bottom: 8),
                   child: ImageRow(
                     imageFile,
                     onDelete: () {
@@ -101,14 +101,14 @@ class _ExerciseCreatorScreenState extends State<ExerciseCreatorScreen> {
                     },
                   ))), //todo allow deletion
               ListTile(
-                leading: Icon(Icons.add_photo_alternate),
+                leading: const Icon(Icons.add_photo_alternate),
                 title: Text(
                   "Add photo from gallery".i18n,
                 ),
                 onTap: _addPhotoFromGallery,
               ),
               ListTile(
-                leading: Icon(Icons.add_a_photo),
+                leading: const Icon(Icons.add_a_photo),
                 title: Text("Take a photo".i18n),
                 onTap: _addPhotoFromCamera,
               ),
@@ -156,8 +156,10 @@ TRANSLATION:
     // todo !!!
   }
 
-  Future _addPhotoFromGallery() async { //todo multiple images, for animations?
-    _imagePicker.pickImage(source: ImageSource.gallery).catchError((dynamic e) { //todo make sure that this still works and attaches the image + move to pickImage
+  Future _addPhotoFromGallery() async {
+    //todo multiple images, for animations?
+    _imagePicker.pickImage(source: ImageSource.gallery).catchError((dynamic e) {
+      //todo make sure that this still works and attaches the image + move to pickImage
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Can't take photos without camera permission".i18n)));
     }

@@ -52,8 +52,9 @@ class WorkoutContentEditor extends StatelessWidget {
       ),
       Expanded(
           child: ReorderableListView.builder(
+              //todo somehow, this seems to no longer work on Android; could it be the onPressed aspect of the drag handle?
               buildDefaultDragHandles: false,
-              padding: EdgeInsets.only(bottom: 32),
+              padding: const EdgeInsets.only(bottom: 32),
               itemBuilder: (context, i) {
                 final editableExercise = workoutExercises[i];
                 return ExerciseEditorRow(
@@ -61,7 +62,7 @@ class WorkoutContentEditor extends StatelessWidget {
                     workoutExercise: editableExercise.exercise,
                     trailing: Row(children: [
                       IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           tooltip: "Delete".i18n,
                           onPressed: () {
                             onRemove(i);
@@ -76,7 +77,7 @@ class WorkoutContentEditor extends StatelessWidget {
                                           .i18n)));
                               //todo test this, shouldn't show up on drag
                             },
-                            icon: Icon(Icons.drag_handle)),
+                            icon: const Icon(Icons.drag_handle)),
                       )
                     ]));
               },

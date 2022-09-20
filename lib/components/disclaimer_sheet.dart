@@ -39,7 +39,7 @@ class DisclaimerSheet extends StatelessWidget {
           enableDrag: false,
           backgroundColor: Colors.transparent,
           isScrollControlled: true,
-          builder: (context) => DisclaimerSheet(),
+          builder: (context) => const DisclaimerSheet(),
           context: context);
     });
   }
@@ -60,7 +60,7 @@ class DisclaimerSheet extends StatelessWidget {
     return CustomScrollView(
       shrinkWrap: true,
       // controller: scrollController,
-      physics: ClampingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       slivers: [
         SliverList(
             delegate: SliverChildListDelegate([
@@ -101,7 +101,7 @@ class DisclaimerSheet extends StatelessWidget {
                       height: 8,
                     ),
                     ConstrainedBox(
-                        constraints: BoxConstraints(maxWidth: 600),
+                        constraints: const BoxConstraints(maxWidth: 600),
                         child: Text(
                           "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion."
                               .i18n,
@@ -114,8 +114,7 @@ class DisclaimerSheet extends StatelessWidget {
                       onPressed: () async {
                         //todo set a setting here
                         final prefs = await SharedPreferences.getInstance();
-                        prefs.setBool(
-                            PreferenceKeys.SHOW_DISCLAIMER_PREF, false);
+                        prefs.setBool(PreferenceKeys.showDisclaimerPref, false);
                         Navigator.of(context).pop();
                       },
                       child: Text("I understand".i18n),

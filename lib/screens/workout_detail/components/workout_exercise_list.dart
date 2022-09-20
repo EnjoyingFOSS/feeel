@@ -30,7 +30,7 @@ class WorkoutExerciseList extends StatelessWidget {
   final Workout workout;
   final FeeelSwatch colorSwatch;
 
-  WorkoutExerciseList(
+  const WorkoutExerciseList(
       {Key? key, required this.workout, required this.colorSwatch})
       : super(key: key);
 

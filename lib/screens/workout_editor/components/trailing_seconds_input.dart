@@ -28,14 +28,15 @@ class TrailingSecondsInput extends StatelessWidget {
   final int defaultDuration;
   final int? initialValue;
 
-  TrailingSecondsInput(
-      {required this.onSaved,
+  const TrailingSecondsInput(
+      {super.key,
+      required this.onSaved,
       required this.defaultDuration,
       this.initialValue});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: 68,
         child: Row(children: [
           Expanded(
@@ -43,7 +44,7 @@ class TrailingSecondsInput extends StatelessWidget {
             textAlign: TextAlign.end,
             initialValue: initialValue?.toString() ?? "",
             decoration: InputDecoration(
-                hintStyle: TextStyle(fontStyle: FontStyle.italic),
+                hintStyle: const TextStyle(fontStyle: FontStyle.italic),
                 hintText:
                     initialValue != null ? "" : defaultDuration.toString(),
                 //todo i18n annotation
@@ -61,9 +62,9 @@ class TrailingSecondsInput extends StatelessWidget {
               }
               return null;
             },
-            onSaved: this.onSaved,
+            onSaved: onSaved,
           )),
-          Text(" s")
+          const Text(" s")
         ]));
   }
 }

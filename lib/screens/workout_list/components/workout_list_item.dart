@@ -54,40 +54,43 @@ class WorkoutListItem extends StatelessWidget {
                     return WorkoutDetailScreen(workoutListed: workoutListed);
                   }));
                 },
-                child: Container(
+                child: SizedBox(
                     height: WorkoutListItem.extent,
                     width: double.infinity,
                     child: Stack(
+                      alignment: AlignmentDirectional.centerStart,
                       children: [
                         Container(
                             width: 96,
                             height: 96,
-                            margin: EdgeInsets.symmetric(
+                            margin: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 0),
                             child: Hero(
                                 tag: HeroUtil.getWorkoutHero(
-                                    HeroType.Illustration,
+                                    HeroType.illustration,
                                     workoutListed.dbId,
                                     workoutListed.type),
                                 child: Triangle(
                                   color: workoutListed.category.colorSwatch
-                                      .getColorByBrightness(FeeelShade.LIGHTEST,
+                                      .getColorByBrightness(FeeelShade.lightest,
                                           theme.brightness),
                                   seed: origTitle.hashCode,
                                 ))),
                         Padding(
-                            padding: EdgeInsets.fromLTRB(16, 8, 40, 8),
+                            padding: const EdgeInsets.fromLTRB(16, 8, 40, 8),
                             child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Hero(
-                                    tag: HeroUtil.getWorkoutHero(HeroType.Title,
+                                    tag: HeroUtil.getWorkoutHero(HeroType.title,
                                         workoutListed.dbId, workoutListed.type),
                                     child: Material(
                                       //todo workaround for https://github.com/flutter/flutter/issues/30647
                                       type: MaterialType.transparency,
                                       child: AutoSizeText(
                                         (workoutListed.type ==
-                                                WorkoutType.DEFAULT)
+                                                WorkoutType.bundled)
                                             ? origTitle.i18n
                                             : origTitle,
                                         style: theme.textTheme.headline6,
@@ -100,7 +103,7 @@ class WorkoutListItem extends StatelessWidget {
                                 ),
                                 Hero(
                                   tag: HeroUtil.getWorkoutHero(
-                                      HeroType.Subtitle,
+                                      HeroType.subtitle,
                                       workoutListed.dbId,
                                       workoutListed.type),
                                   child: Text(
@@ -110,20 +113,17 @@ class WorkoutListItem extends StatelessWidget {
                                         color: workoutListed
                                             .category.colorSwatch
                                             .getColorByBrightness(
-                                                FeeelShade.DARKER,
+                                                FeeelShade.darker,
                                                 theme.brightness)),
                                   ),
                                 )
                               ],
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
                             )),
                         if (trailing != null)
                           Align(
                               alignment: AlignmentDirectional.centerEnd,
                               child: trailing)
                       ],
-                      alignment: AlignmentDirectional.centerStart,
                     )))
         //])
         );

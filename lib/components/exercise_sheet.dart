@@ -68,13 +68,13 @@ class ExerciseSheet extends StatelessWidget {
       snapSizes: const [0.75, 1.0], //todo 0 needed?
       builder: (BuildContext context, ScrollController scrollController) {
         final imageSlug = exercise.imageSlug;
-        final headOnly = exercise.type == ExerciseType.HEAD;
+        final headOnly = exercise.type == ExerciseType.head;
 
         final brightness = Theme.of(context).brightness;
-        final fgColor = Colors.white;
+        const fgColor = Colors.white;
         final bgColor = brightness == Brightness.dark
-            ? colorSwatch.getColor(FeeelShade.DARKER)
-            : colorSwatch.getColor(FeeelShade.DARK);
+            ? colorSwatch.getColor(FeeelShade.darker)
+            : colorSwatch.getColor(FeeelShade.dark);
         final licenseColor = fgColor.withAlpha(192);
 
         final markdownLicenseStyle =
@@ -88,7 +88,7 @@ class ExerciseSheet extends StatelessWidget {
 
         return CustomScrollView(
           controller: scrollController,
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           slivers: [
             SliverList(
                 delegate: SliverChildListDelegate([
@@ -114,7 +114,7 @@ class ExerciseSheet extends StatelessWidget {
                               headOnly
                                   ? HeadExerciseContent(
                                       color: colorSwatch.getColorByBrightness(
-                                          FeeelShade.LIGHTEST, brightness),
+                                          FeeelShade.lightest, brightness),
                                       onBreak: false,
                                       illustration: IllustrationWidget(
                                           imageAssetString:
@@ -145,7 +145,7 @@ class ExerciseSheet extends StatelessWidget {
                             child: Text(
                           exercise.name.i18n,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.w900,
                               color: fgColor),
@@ -155,7 +155,7 @@ class ExerciseSheet extends StatelessWidget {
                         ),
                         Text(
                           exercise.description.i18n,
-                          style: TextStyle(color: fgColor),
+                          style: const TextStyle(color: fgColor),
                         ),
                         Container(
                           height: 16,
@@ -229,10 +229,11 @@ class ExerciseSheet extends StatelessWidget {
 
   void _onTapLink(
       BuildContext context, String text, String? url, String title) async {
-    if (url != null && await canLaunchUrl(Uri.parse(url)))
+    if (url != null && await canLaunchUrl(Uri.parse(url))) {
       launchUrl(Uri.parse(url));
-    else
+    } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Could not open URL.".i18n)));
+    }
   }
 }

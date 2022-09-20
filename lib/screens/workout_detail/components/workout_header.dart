@@ -48,7 +48,7 @@ class WorkoutHeader extends StatelessWidget {
     final theme = Theme.of(context);
     final title = workoutListed.title;
     final fgColor =
-        colorSwatch.getColorByBrightness(FeeelShade.DARK, theme.brightness);
+        colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
     final String translatedCategory =
         workoutListed.category.translationKey.i18n;
     return Stack(children: [
@@ -58,11 +58,11 @@ class WorkoutHeader extends StatelessWidget {
           width: 208,
           height: 208,
           child: Hero(
-              tag: HeroUtil.getWorkoutHero(HeroType.Illustration,
+              tag: HeroUtil.getWorkoutHero(HeroType.illustration,
                   workoutListed.dbId, workoutListed.type),
               child: Triangle(
                   color: colorSwatch.getColorByBrightness(
-                      FeeelShade.LIGHTEST, theme.brightness),
+                      FeeelShade.lightest, theme.brightness),
                   seed: title.hashCode))),
       Positioned.directional(
           textDirection: Directionality.of(context),
@@ -70,21 +70,23 @@ class WorkoutHeader extends StatelessWidget {
           start: 8,
           child: BackButton(color: fgColor)),
       Container(
-          padding: EdgeInsets.only(left: 80, top: 8, bottom: 16, right: 8),
+          padding:
+              const EdgeInsets.only(left: 80, top: 8, bottom: 16, right: 8),
           height: 208,
           child: Align(
               alignment: Alignment.bottomCenter,
               child: Column(children: [
                 Expanded(
                     child: Align(
+                  alignment: AlignmentDirectional.bottomStart,
                   child: Hero(
                     tag: HeroUtil.getWorkoutHero(
-                        HeroType.Title, workoutListed.dbId, workoutListed.type),
+                        HeroType.title, workoutListed.dbId, workoutListed.type),
                     child: Material(
                         //todo workaround for https://github.com/flutter/flutter/issues/30647
                         type: MaterialType.transparency,
                         child: Text(
-                            workoutListed.type == WorkoutType.DEFAULT
+                            workoutListed.type == WorkoutType.bundled
                                 ? workoutListed.title.i18n
                                 : workoutListed.title,
                             maxLines: 3,
@@ -92,7 +94,6 @@ class WorkoutHeader extends StatelessWidget {
                             style: theme.appBarTheme.titleTextStyle
                                 ?.copyWith(color: fgColor))),
                   ),
-                  alignment: AlignmentDirectional.bottomStart,
                 )),
                 Container(
                   height: 8,
@@ -100,13 +101,13 @@ class WorkoutHeader extends StatelessWidget {
                 Row(
                   children: [
                     Hero(
-                      tag: HeroUtil.getWorkoutHero(HeroType.Subtitle,
+                      tag: HeroUtil.getWorkoutHero(HeroType.subtitle,
                           workoutListed.dbId, workoutListed.type),
                       child: Text(translatedCategory,
                           style: theme.textTheme.subtitle2?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: colorSwatch.getColorByBrightness(
-                                  FeeelShade.DARKER, theme.brightness))),
+                                  FeeelShade.darker, theme.brightness))),
                     ),
                     Container(
                       width: 16,

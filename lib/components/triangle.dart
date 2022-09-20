@@ -28,12 +28,11 @@ class Triangle extends StatelessWidget {
   final Color color;
   final int seed;
 
-  const Triangle({required this.color, this.seed = 0});
+  const Triangle({super.key, required this.color, this.seed = 0});
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-        painter: TrianglePainter(color, seed));
+    return CustomPaint(painter: TrianglePainter(color, seed));
   }
 }
 
@@ -54,10 +53,11 @@ class TrianglePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var path = Path();
     path.lineTo(rX * size.width, size.height);
-    if (rX < 0.5)
+    if (rX < 0.5) {
       path.lineTo(size.width, (rY + 1) * size.height / 2);
-    else
+    } else {
       path.lineTo(size.width, rY * size.height / 2);
+    }
     path.close();
 
     int rotation = (rRotation * 4).floor();

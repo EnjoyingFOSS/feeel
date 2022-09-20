@@ -54,17 +54,17 @@ class EmptyPlaceholder extends StatelessWidget {
                 children: [
               Flexible(
                 child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 320),
                   child: child,
-                  constraints: BoxConstraints(maxWidth: 320),
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
                 child:
                     Text(heading, style: Theme.of(context).textTheme.headline5),
-                padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
               ),
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Text(subheading,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.subtitle1?.copyWith(
@@ -74,10 +74,11 @@ class EmptyPlaceholder extends StatelessWidget {
                               .withAlpha(162)))),
               if (errorMessage != null)
                 Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                     child: Text(errorMessage!,
                         style: Theme.of(context).textTheme.caption?.copyWith(
-                            color: Theme.of(context).colorScheme.error)),
-                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8)),
+                            color: Theme.of(context).colorScheme.error))),
             ]))
       ],
     );

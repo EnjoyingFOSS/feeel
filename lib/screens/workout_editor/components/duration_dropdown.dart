@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class DurationDropdown extends StatelessWidget {
-  static const CUSTOM = -1;
+  static const _custom = -1;
   final InputDecoration decoration;
   final Function(int) onChanged;
   final int chosenValue;
@@ -43,19 +43,19 @@ class DurationDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final value = _chosenIsPredefined ? chosenValue : CUSTOM;
+    final value = _chosenIsPredefined ? chosenValue : _custom;
     return DropdownButtonFormField(
       value: value,
       items: [
         ...predefinedValues.map((int secs) => DropdownMenuItem(
-              child: Text(_formatSecs(secs)),
               value: secs,
+              child: Text(_formatSecs(secs)),
             )),
         DropdownMenuItem(
+          value: _custom,
           child: _chosenIsPredefined
               ? Text("Custom".i18n)
-              : Text("Custom".i18n + ": " + _formatSecs(chosenValue)),
-          value: CUSTOM,
+              : Text("${"Custom".i18n}: ${_formatSecs(chosenValue)}"),
         )
       ],
       onChanged: (int? value) {
@@ -66,14 +66,15 @@ class DurationDropdown extends StatelessWidget {
   }
 
   String _formatSecs(int secs) {
-    if (secs % 60 == 0)
+    if (secs % 60 == 0) {
       return "${secs ~/ 60} min";
-    else
+    } else {
       return "$secs s";
+    }
   }
 
   void _onChanged(BuildContext context, int value) {
-    if (value != CUSTOM) {
+    if (value != _custom) {
       onChanged(value);
     } else {
       showDialog<void>(
@@ -81,7 +82,8 @@ class DurationDropdown extends StatelessWidget {
             return AlertDialog(
                 //todo save custom value
                 content: TextField(
-                  decoration: InputDecoration(labelText: "Custom duration (s.)".i18n),
+                  decoration:
+                      InputDecoration(labelText: "Custom duration (s.)".i18n),
                   keyboardType: TextInputType.number,
                   controller: _durationController,
                 ) //todo use validation for text field

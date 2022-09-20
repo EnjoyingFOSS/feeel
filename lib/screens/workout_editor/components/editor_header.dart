@@ -46,7 +46,7 @@ class EditorHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final color =
-        colorSwatch.getColorByBrightness(FeeelShade.DARK, theme.brightness);
+        colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
     return Row(children: <Widget>[
       Container(
         width: 4,
@@ -54,10 +54,11 @@ class EditorHeader extends StatelessWidget {
       CloseButton(
         onPressed: onClose,
         color:
-            colorSwatch.getColorByBrightness(FeeelShade.DARK, theme.brightness),
+            colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness),
       ),
       Expanded(
         child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
             child: TextFormField(
               style: theme.appBarTheme.titleTextStyle?.copyWith(color: color),
               controller: textEditingController,
@@ -65,8 +66,8 @@ class EditorHeader extends StatelessWidget {
                   focusColor: color,
                   hintStyle: theme.appBarTheme.titleTextStyle?.copyWith(
                       color: theme.brightness == Brightness.dark
-                          ? colorSwatch.getColor(FeeelShade.DARKEST)
-                          : colorSwatch.getColor(FeeelShade.LIGHTER)),
+                          ? colorSwatch.getColor(FeeelShade.darkest)
+                          : colorSwatch.getColor(FeeelShade.lighter)),
                   filled: false,
                   hintText: hintText),
               validator: (String? input) {
@@ -76,8 +77,7 @@ class EditorHeader extends StatelessWidget {
                 return null;
               },
               onSaved: onSaved,
-            ),
-            padding: EdgeInsets.only(left: 16, right: 16)),
+            )),
       ),
     ]);
   }

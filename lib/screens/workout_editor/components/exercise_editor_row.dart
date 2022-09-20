@@ -44,6 +44,7 @@ class ExerciseEditorRow extends StatelessWidget {
     var imageSlug = workoutExercise.exercise.imageSlug;
     return Row(children: [
       Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: imageSlug == null
             ? Container()
             : workoutExercise.exercise.flipped
@@ -52,15 +53,14 @@ class ExerciseEditorRow extends StatelessWidget {
                         width: 72, height: 72))
                 : Image.asset(AssetHelper.getThumb(imageSlug),
                     width: 72, height: 72),
-        padding: EdgeInsets.symmetric(horizontal: 16),
       ),
       Expanded(
           child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Text(
           workoutExercise.exercise.name.i18n,
           style: Theme.of(context).textTheme.bodyText1,
         ),
-        padding: EdgeInsets.symmetric(horizontal: 16),
       )),
       trailing,
       handle ??

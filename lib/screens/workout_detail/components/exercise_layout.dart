@@ -11,8 +11,8 @@ import 'exercise_footer.dart';
 import 'exercise_illustration.dart';
 
 class ExerciseLayout extends StatelessWidget {
-  static const _BOTTOM_PADDING = 16.0;
-  static const _MIN_FOOTER_CONTENT_HEIGHT = 152.0;
+  static const _bottomPadding = 16.0;
+  static const _minFooterContentHeight = 152.0;
 
   final String? imageSlug;
   final String title;
@@ -53,25 +53,24 @@ class ExerciseLayout extends StatelessWidget {
     final theme = Theme.of(context);
 
     final themeDarkColor =
-        colorSwatch.getColorByBrightness(FeeelShade.DARK, theme.brightness);
+        colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
 
     final fgColor =
-        headOnly ? colorSwatch.getColor(FeeelShade.DARK) : Colors.white;
+        headOnly ? colorSwatch.getColor(FeeelShade.dark) : Colors.white;
     final bgColor = headOnly
         ? Colors.transparent
         : (theme.brightness == Brightness.dark
-            ? colorSwatch.getColor(FeeelShade.DARKER)
-            : colorSwatch.getColor(FeeelShade.DARK));
+            ? colorSwatch.getColor(FeeelShade.darker)
+            : colorSwatch.getColor(FeeelShade.dark));
 
     final screenSize = MediaQuery.of(context).size;
 
     final bottomViewPadding = MediaQuery.of(context).viewPadding.bottom;
-    final footerBottomPadding = bottomViewPadding > _BOTTOM_PADDING
-        ? bottomViewPadding
-        : _BOTTOM_PADDING;
+    final footerBottomPadding =
+        bottomViewPadding > _bottomPadding ? bottomViewPadding : _bottomPadding;
 
     final footerContentHeight =
-        max(_MIN_FOOTER_CONTENT_HEIGHT, screenSize.height * 0.372);
+        max(_minFooterContentHeight, screenSize.height * 0.372);
 
     return (screenSize.width > screenSize.height &&
             screenSize.width >= 568 &&
@@ -183,7 +182,7 @@ class ExerciseLayout extends StatelessWidget {
                   colorSwatch: colorSwatch,
                   bgColor: bgColor),
               ExerciseFooter(
-                  contentHeight: _MIN_FOOTER_CONTENT_HEIGHT,
+                  contentHeight: _minFooterContentHeight,
                   bottomPadding: footerBottomPadding,
                   onBreak: onBreak,
                   bgColor: bgColor,

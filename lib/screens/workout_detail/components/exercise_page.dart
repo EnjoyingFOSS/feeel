@@ -49,7 +49,7 @@ class ExercisePage extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ExercisePageState createState() {
+  State<ExercisePage> createState() {
     return _ExercisePageState();
   }
 }
@@ -59,7 +59,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   late int _seconds;
   int _exercisePos = 0;
   int _stepPos = 0;
-  WorkoutStage _stage = WorkoutStage.BREAK;
+  WorkoutStage _stage = WorkoutStage.workoutBreak;
 
   // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
 
@@ -74,7 +74,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   @override
   Widget build(BuildContext context) {
     final exercise = _getExercise(_exercisePos);
-    final headOnly = exercise.type == ExerciseType.HEAD;
+    final headOnly = exercise.type == ExerciseType.head;
 
     return
         // CallbackShortcuts(
@@ -107,9 +107,10 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                   togglePlayPause: () {
                     widget.workoutController.togglePlayPause();
                   },
-                  headOnly: exercise.type == ExerciseType.HEAD,
+                  headOnly: exercise.type == ExerciseType.head,
                   title: exercise.name.i18n,
-                  onBreak: _stage == WorkoutStage.BREAK || _stage == WorkoutStage.COUNTDOWN,
+                  onBreak: _stage == WorkoutStage.workoutBreak ||
+                      _stage == WorkoutStage.countdown,
                   paused: _paused,
                 )),
             onTap: () {
@@ -124,7 +125,8 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
 
   void onLearn(Exercise exercise) {
     if (!_paused &&
-        (_stage == WorkoutStage.BREAK || _stage == WorkoutStage.COUNTDOWN)) {
+        (_stage == WorkoutStage.workoutBreak ||
+            _stage == WorkoutStage.countdown)) {
       widget.workoutController.togglePlayPause();
     }
     if (_paused) {
@@ -143,7 +145,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     setState(() {
       _seconds = duration;
       _exercisePos = exercisePos;
-      _stage = WorkoutStage.BREAK;
+      _stage = WorkoutStage.workoutBreak;
     });
   }
 
@@ -152,7 +154,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     setState(() {
       _seconds = duration;
       _exercisePos = exercisePos;
-      _stage = WorkoutStage.BREAK;
+      _stage = WorkoutStage.workoutBreak;
     });
   }
 
@@ -160,14 +162,15 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void onExercise(int exercisePos, WorkoutExercise exercise, ExerciseStep? step,
       int duration) {
     setState(() {
-      if ((exercise.exercise.steps?.length ?? 0) > 1)
+      if ((exercise.exercise.steps?.length ?? 0) > 1) {
         _preloadUpcomingStep();
-      else
+      } else {
         _preloadUpcomingExercise();
+      }
 
       _seconds = duration;
       _exercisePos = exercisePos;
-      _stage = WorkoutStage.EXERCISE;
+      _stage = WorkoutStage.exercise;
       _stepPos = 0; //todo should I do this for the break too?
     });
   }
@@ -229,7 +232,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void onCountdown(int exercisePos) {
     setState(() {
       _exercisePos = exercisePos;
-      _stage = WorkoutStage.COUNTDOWN;
+      _stage = WorkoutStage.countdown;
     });
   }
 }

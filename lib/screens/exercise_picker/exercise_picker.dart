@@ -46,7 +46,7 @@ class ExercisePickerScreen extends StatefulWidget {
 
 class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
   List<Exercise>? _exercises;
-  List<int> _chosenExerciseIndices = List.empty(growable: true);
+  final _chosenExerciseIndices = List<int>.empty(growable: true);
   late Future<List<Exercise>> _future;
 
   @override
@@ -59,9 +59,9 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final bgColor = widget.swatch
-        .getColorByBrightness(FeeelShade.LIGHTEST, theme.brightness);
+        .getColorByBrightness(FeeelShade.lightest, theme.brightness);
     final fgColor =
-        widget.swatch.getColorByBrightness(FeeelShade.DARK, theme.brightness);
+        widget.swatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
     return Scaffold(
         backgroundColor: bgColor,
         appBar: AppBar(
@@ -72,9 +72,8 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
           title: Text("Add exercises".i18n),
         ),
         floatingActionButton: FloatingActionButton(
-          foregroundColor: widget.swatch.getColor(FeeelShade.DARKER),
+          foregroundColor: widget.swatch.getColor(FeeelShade.darker),
           backgroundColor: Colors.white,
-          child: Icon(Icons.done),
           tooltip: "Done".i18n,
           onPressed: () {
             if (_exercises != null) {
@@ -85,6 +84,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
               Navigator.pop(context, chosenExercises);
             }
           },
+          child: const Icon(Icons.done),
         ),
         body: FutureBuilder(
             future: _future,
@@ -94,7 +94,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
 
                 return ListView.builder(
                     //todo add itemExtent here, but test for responsiveness
-                    padding: EdgeInsets.fromLTRB(0, 16, 0, 64),
+                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 64),
                     itemCount: _exercises!.length + 1,
                     itemBuilder: (context, i) {
                       if (i < _exercises!.length) {
@@ -114,7 +114,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                       } else {
                         if (Platform.isMacOS) {
                           return ListTile(
-                            leading: Icon(Icons.volunteer_activism),
+                            leading: const Icon(Icons.volunteer_activism),
                             title: Text("Participate".i18n),
                             onTap: () => launchUrl(Uri.parse(
                                 "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home")),
@@ -124,7 +124,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                             leading: Container(
                                 width: 56,
                                 alignment: Alignment.center,
-                                child: Icon(Icons.add)),
+                                child: const Icon(Icons.add)),
                             title: Text("Propose custom exercise".i18n),
                             onTap: () {
                               if (Platform.isLinux) {
@@ -143,8 +143,8 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                       }
                     });
               } else {
-                return Center(
-                  child: const CircularProgressIndicator(),
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
               }
             }));

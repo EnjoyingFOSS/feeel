@@ -24,28 +24,21 @@ import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 // import 'package:archive/archive_io.dart';
-import 'package:date_format/date_format.dart';
 import 'package:feeel/db/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
-import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/settings/components/theme_dialog.dart';
-import 'package:feeel/db/workout_import_export.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:feeel/theming/theme_mode_extensions.dart';
 
-import '../../db/db_helper.dart';
-
 class SettingsScreen extends StatefulWidget {
-  SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
-  _SettingsScreenState createState() => _SettingsScreenState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsBundle {
@@ -82,28 +75,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 final notificationTime = Platform.isLinux
                     ? null
                     : NotificationHelper.timeFromInt(settingsBundle.preferences
-                        .getInt(PreferenceKeys.NOTIFICATION_TIME_PREF));
+                        .getInt(PreferenceKeys.notificationTimePref));
                 final curTheme = settingsBundle.themeMode;
                 final activeColor = Theme.of(context).colorScheme.primary;
                 return ListView(
                   children: <Widget>[
                     if (!Platform.isLinux)
                       SwitchListTile.adaptive(
-                          secondary: Icon(Icons.music_note),
+                          secondary: const Icon(Icons.music_note),
                           value: (settingsBundle.preferences
-                                  .getBool(PreferenceKeys.TTS_DISABLED_PREF) ??
+                                  .getBool(PreferenceKeys.ttsDisabledPref) ??
                               false),
                           title: Text("Sounds instead of voice".i18n),
                           onChanged: (bool newValue) {
                             setState(() {
                               settingsBundle.preferences.setBool(
-                                  PreferenceKeys.TTS_DISABLED_PREF, newValue);
+                                  PreferenceKeys.ttsDisabledPref, newValue);
                             });
                           },
                           activeColor: activeColor),
                     if (!Platform.isLinux)
                       SwitchListTile.adaptive(
-                        secondary: Icon(Icons.notifications),
+                        secondary: const Icon(Icons.notifications),
                         value: notificationTime != null,
                         title: Text("Daily reminder".i18n),
                         onChanged: (bool setOn) {
@@ -116,7 +109,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     if (notificationTime != null && Platform.isAndroid)
                       Padding(
-                          padding: EdgeInsets.only(left: 72, right: 16),
+                          padding: const EdgeInsets.only(left: 72, right: 16),
                           child: Text(
                             "On some devices, you may need to disable battery optimization for Feeel for this to work reliably."
                                 .i18n,
@@ -124,7 +117,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           )),
                     if (notificationTime != null)
                       ListTile(
-                        contentPadding: EdgeInsets.only(left: 72, right: 24),
+                        contentPadding:
+                            const EdgeInsets.only(left: 72, right: 24),
                         title: Text("Notification time".i18n),
                         trailing: Text(notificationTime.format(context)),
                         onTap: () async {
@@ -137,7 +131,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         },
                       ),
                     ListTile(
-                      leading: Icon(Icons.palette),
+                      leading: const Icon(Icons.palette),
                       title: Text("Theme".i18n),
                       subtitle: Text(curTheme?.uiName().i18n ?? ""),
                       onTap: () async {
@@ -238,31 +232,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     //   },
                     // ),
                     ListTile(
-                      leading: Icon(Icons.volunteer_activism),
+                      leading: const Icon(Icons.volunteer_activism),
                       title: Text("Participate".i18n),
                       onTap: () => _launchURL(
                           "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
                     ),
                     ListTile(
-                      leading: Icon(Icons.attach_money),
+                      leading: const Icon(Icons.attach_money),
                       title: Text("Donate".i18n),
                       onTap: () => _launchURL("https://liberapay.com/Feeel/"),
                     ),
                     ListTile(
-                      leading: Icon(Icons.code),
+                      leading: const Icon(Icons.code),
                       title: Text("Source code".i18n),
                       onTap: () =>
                           _launchURL("https://gitlab.com/enjoyingfoss/feeel/"),
                     ),
                     ListTile(
-                      leading: Icon(Icons.info),
+                      leading: const Icon(Icons.info),
                       title: Text("About Feeel".i18n),
                       onTap: _showAboutDialog,
                     )
                   ],
                 );
               } else {
-                return Center(child: const CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
             }));
   }
@@ -275,7 +269,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _launchURL(String url) async {
     await canLaunchUrl(Uri.parse(url))
         ? await launchUrl(Uri.parse(url))
-        : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Could not open URL."),
           ));
   }
@@ -301,10 +295,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       SharedPreferences preferences) {
     setState(() {
       if (timeOfDay == null) {
-        preferences.remove(PreferenceKeys.NOTIFICATION_TIME_PREF);
+        preferences.remove(PreferenceKeys.notificationTimePref);
         NotificationHelper.helper.setNotification(context, null);
       } else {
-        preferences.setInt(PreferenceKeys.NOTIFICATION_TIME_PREF,
+        preferences.setInt(PreferenceKeys.notificationTimePref,
             NotificationHelper.timeToInt(timeOfDay));
         NotificationHelper.helper.setNotification(context, timeOfDay);
       }

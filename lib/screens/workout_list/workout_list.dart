@@ -35,16 +35,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../db/preference_keys.dart';
 
 class WorkoutListScreen extends StatefulWidget {
+  const WorkoutListScreen({super.key});
+
   @override
-  _WorkoutListScreenState createState() {
+  State<WorkoutListScreen> createState() {
     return _WorkoutListScreenState();
   }
 }
 
 class _WorkoutListScreenState extends State<WorkoutListScreen> {
-  static const String _MENU_DELETE = "delete";
-  static const String _MENU_EDIT = "edit";
-  static const String _MENU_DUPLICATE = "duplicate";
+  static const String _menuDelete = "delete";
+  static const String _menuEdit = "edit";
+  static const String _menuDuplicate = "duplicate";
 
   //todo allow showing disclaimer from Settings too!
 
@@ -53,7 +55,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
     // todo TURN THIS SCREEN INTO A STATELESS WIDGET, USE WidgetsBinding.instance.addPostFrameCallback((_) => yourFunction(context)) INSTEAD;
     SharedPreferences.getInstance().then((prefs) {
       //todo is the initState method the right place for this?
-      if (prefs.getBool(PreferenceKeys.SHOW_DISCLAIMER_PREF) ?? true) {
+      if (prefs.getBool(PreferenceKeys.showDisclaimerPref) ?? true) {
         DisclaimerSheet.showSheet(context);
       }
     });
@@ -68,11 +70,11 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
         backgroundColor: Theme.of(context).backgroundColor,
         floatingActionButton: FloatingActionButton(
           tooltip: "Create custom workout".i18n,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () {
             Navigator.push<void>(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return WorkoutEditorScreen();
+              return const WorkoutEditorScreen();
             })).then((_) {
               setState(() {});
             });
@@ -85,7 +87,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
               if (snapshot.hasData) {
                 final workoutsListed = snapshot.data!;
 
-                final crossAxisSpacing = 16.0;
+                const crossAxisSpacing = 16.0;
                 final gridColumns = (MediaQuery.of(context).size.width /
                         (600 + crossAxisSpacing))
                     .ceil();
@@ -93,7 +95,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                 return AnimationLimiter(
                     child: CustomScrollView(slivers: <Widget>[
                   SliverPadding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       sliver: SliverAppBar(
                         //todo add floating: true, but with dynamic shadow
                         title: Text.rich(
@@ -136,7 +138,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                         ],
                       )),
                   SliverPadding(
-                      padding: EdgeInsets.only(bottom: 80),
+                      padding: const EdgeInsets.only(bottom: 80),
                       sliver: SliverGrid(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: gridColumns,
@@ -155,33 +157,35 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                                   trailing: PopupMenuButton(
                                     itemBuilder: (context) {
                                       return workoutListed.type ==
-                                              WorkoutType.CUSTOM
+                                              WorkoutType.custom
                                           ? [
                                               PopupMenuItem<String>(
-                                                  child: Text("Edit".i18n),
-                                                  value: _MENU_EDIT),
+                                                  value: _menuEdit,
+                                                  child: Text("Edit".i18n)),
                                               PopupMenuItem<String>(
-                                                  child: Text("Delete".i18n),
-                                                  value: _MENU_DELETE),
+                                                  value: _menuDelete,
+                                                  child: Text("Delete".i18n)),
                                               PopupMenuItem<String>(
-                                                  child: Text("Duplicate".i18n),
-                                                  value: _MENU_DUPLICATE),
+                                                  value: _menuDuplicate,
+                                                  child:
+                                                      Text("Duplicate".i18n)),
                                             ]
                                           : [
                                               PopupMenuItem<String>(
-                                                  child: Text("Duplicate".i18n),
-                                                  value: _MENU_DUPLICATE),
+                                                  value: _menuDuplicate,
+                                                  child:
+                                                      Text("Duplicate".i18n)),
                                             ];
                                     },
                                     onSelected: (String value) {
                                       switch (value) {
-                                        case _MENU_DELETE:
+                                        case _menuDelete:
                                           _onDeleteCustom(workoutListed);
                                           break;
-                                        case _MENU_EDIT:
+                                        case _menuEdit:
                                           _onEditCustom(workoutListed);
                                           break;
-                                        case _MENU_DUPLICATE:
+                                        case _menuDuplicate:
                                           _onDuplicate(workoutListed);
                                           break;
                                       }
@@ -194,8 +198,8 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                       ))
                 ]));
               } else {
-                return Center(
-                  child: const CircularProgressIndicator(),
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
               }
             }));

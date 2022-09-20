@@ -26,7 +26,7 @@ import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class ImageRow extends StatelessWidget {
-  static const _BYTES_IN_MIB = 1048576;
+  static const _bytesInMiB = 1048576;
   final File imageFile;
   final double maxHeight;
   final void Function()? onDelete;
@@ -38,7 +38,7 @@ class ImageRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+        padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
         decoration:
             BoxDecoration(color: Theme.of(context).primaryColor.withAlpha(25)),
         child: Column(children: [
@@ -52,16 +52,15 @@ class ImageRow extends StatelessWidget {
               builder: (context, AsyncSnapshot<int> snapshot) {
                 if (snapshot.hasData) {
                   return Text(
-                      (snapshot.data! / _BYTES_IN_MIB).toStringAsPrecision(3) +
-                          " MiB");
+                      "${(snapshot.data! / _bytesInMiB).toStringAsPrecision(3)} MiB");
                 } else {
                   return const CircularProgressIndicator();
                 }
               },
             ),
-            Spacer(),
+            const Spacer(),
             IconButton(
-              icon: Icon(Icons.delete),
+              icon: const Icon(Icons.delete),
               tooltip: "Delete".i18n,
               onPressed: onDelete,
             )

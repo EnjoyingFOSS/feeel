@@ -42,7 +42,7 @@ class EditorSubheader extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-        padding: EdgeInsets.only(left: 67, right: 16),
+        padding: const EdgeInsets.only(left: 67, right: 16),
         child: Row(
           children: [
             DropdownButtonHideUnderline(
@@ -54,16 +54,16 @@ class EditorSubheader extends StatelessWidget {
                     items: List.generate(WorkoutCategory.values.length, (i) {
                       final value = WorkoutCategory.values[i];
                       return DropdownMenuItem(
+                        value: value,
                         child: Text(
                           value.translationKey.i18n,
                           style: TextStyle(
                               color: value.colorSwatch.getColorByBrightness(
-                                  FeeelShade.DARKER, theme.brightness)),
+                                  FeeelShade.darker, theme.brightness)),
                         ),
-                        value: value,
                       );
                     }))),
-            Spacer(),
+            const Spacer(),
             if (workoutDuration != null && workoutDuration! > 0)
               Text(DurationUtil.getDurationLongform(workoutDuration!))
           ],
