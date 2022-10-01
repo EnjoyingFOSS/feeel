@@ -22,7 +22,7 @@
 
 import 'package:feeel/enums/exercise_type.dart';
 
-import 'exercise_step.dart';
+// import 'exercise_step.dart';
 
 class Exercise {
   final int dbId;
