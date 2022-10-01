@@ -143,7 +143,7 @@ TRANSLATION:
                   .replaceFirst("%1s", _nameController.text)
                   .replaceFirst("%2s", _stepsController.text)),
       subject:
-          "Exercise proposal: %s".i18n.replaceFirst("%s", _nameController.text),
+          "[Feeel] ${"Exercise proposal: %s".i18n.replaceFirst("%s", _nameController.text)}",
       recipients: ['contact.mirek@pm.me'],
       attachments: _imageFiles.map((File imageFile) => imageFile.path).toList(),
     );
