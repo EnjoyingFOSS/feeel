@@ -24,11 +24,13 @@ import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/audio/tts_helper.dart';
+import 'package:feeel/db/database.dart';
 import 'package:feeel/screens/workout_list/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
+import 'package:provider/provider.dart';
 import 'db/notification_helper.dart';
 import 'i18n/locale_helper.dart';
 import 'theming/feeel_themes.dart';
@@ -59,13 +61,11 @@ class Feeel extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
 
-    return
-        // Provider<FeeelDB>(
-        //     //todo see https://drift.simonbinder.eu/faq/#using-the-database
-        //     create: (context) => FeeelDB(),
-        //     dispose: (context, db) => db.close(),
-        //     child:
-        AdaptiveTheme(
+    return Provider<FeeelDB>(
+        //todo see https://drift.simonbinder.eu/faq/#using-the-database
+        create: (context) => FeeelDB(),
+        dispose: (context, db) => db.close(),
+        child: AdaptiveTheme(
             light: FeeelThemes.lightTheme,
             dark: FeeelThemes.darkTheme,
             initial: AdaptiveThemeMode.light,
@@ -81,7 +81,7 @@ class Feeel extends StatelessWidget {
                 ],
                 home: I18n(child: const WorkoutListScreen()))
             //)
-            );
+            ));
   }
 
   void _onWidgetBuilt(BuildContext context) {

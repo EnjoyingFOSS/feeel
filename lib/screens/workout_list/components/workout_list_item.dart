@@ -21,39 +21,43 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/screens/workout_detail/workout_detail.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/components/triangle.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
+import '../../../db/database.dart';
 import '../../../utils/hero_util.dart';
 
 class WorkoutListItem extends StatelessWidget {
   static const extent = 112.0;
   final Widget? trailing;
-  final WorkoutListed workoutListed;
+  final Workout workout;
 
-  const WorkoutListItem(this.workoutListed, {Key? key, this.trailing})
+  const WorkoutListItem(this.workout, {Key? key, this.trailing})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final origTitle = workoutListed.title;
+    final origTitle = workout.title;
     final theme = Theme.of(context);
+
+    final workoutCategory = WorkoutCategory.fromDBValue(workout.category);
+    final workoutType = WorkoutType.fromDBValue(workout.type);
 
     return Material(
         color: theme.backgroundColor,
         child: // Row(children: [
             InkWell(
-                onTap: () {
-                  Navigator.push<void>(context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                    return WorkoutDetailScreen(workoutListed: workoutListed);
-                  }));
-                },
+                // TODO onTap: () {
+                //   Navigator.push<void>(context,
+                //       MaterialPageRoute(builder: (BuildContext context) {
+                //     return WorkoutDetailScreen(workoutListed: workout);
+                //   }));
+                // },
                 child: SizedBox(
                     height: WorkoutListItem.extent,
                     width: double.infinity,
@@ -68,10 +72,10 @@ class WorkoutListItem extends StatelessWidget {
                             child: Hero(
                                 tag: HeroUtil.getWorkoutHero(
                                     HeroType.illustration,
-                                    workoutListed.dbId,
-                                    workoutListed.type),
+                                    workout.id,
+                                    workoutType),
                                 child: Triangle(
-                                  color: workoutListed.category.colorSwatch
+                                  color: workoutCategory.colorSwatch
                                       .getColorByBrightness(FeeelShade.lightest,
                                           theme.brightness),
                                   seed: origTitle.hashCode,
@@ -84,13 +88,12 @@ class WorkoutListItem extends StatelessWidget {
                               children: [
                                 Hero(
                                     tag: HeroUtil.getWorkoutHero(HeroType.title,
-                                        workoutListed.dbId, workoutListed.type),
+                                        workout.id, workoutType),
                                     child: Material(
                                       //todo workaround for https://github.com/flutter/flutter/issues/30647
                                       type: MaterialType.transparency,
                                       child: AutoSizeText(
-                                        (workoutListed.type ==
-                                                WorkoutType.bundled)
+                                        (workoutType == WorkoutType.bundled)
                                             ? origTitle.i18n
                                             : origTitle,
                                         style: theme.textTheme.headline6,
@@ -104,14 +107,13 @@ class WorkoutListItem extends StatelessWidget {
                                 Hero(
                                   tag: HeroUtil.getWorkoutHero(
                                       HeroType.subtitle,
-                                      workoutListed.dbId,
-                                      workoutListed.type),
+                                      workout.id,
+                                      workoutType),
                                   child: Text(
-                                    workoutListed.category.translationKey.i18n,
+                                    workoutCategory.translationKey.i18n,
                                     style: theme.textTheme.subtitle2?.copyWith(
                                         fontWeight: FontWeight.bold,
-                                        color: workoutListed
-                                            .category.colorSwatch
+                                        color: workoutCategory.colorSwatch
                                             .getColorByBrightness(
                                                 FeeelShade.darker,
                                                 theme.brightness)),

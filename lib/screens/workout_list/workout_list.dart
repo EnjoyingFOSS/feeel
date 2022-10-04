@@ -21,15 +21,15 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/disclaimer_sheet.dart';
-import 'package:feeel/db/db_helper.dart';
+import 'package:feeel/db/database.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/screens/settings/settings.dart';
 import 'package:feeel/screens/workout_editor/workout_editor.dart';
 import 'package:feeel/screens/workout_list/components/workout_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../db/preference_keys.dart';
@@ -80,12 +80,12 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
             });
           },
         ),
-        body: FutureBuilder<List<WorkoutListed>>(
-            future: DBHelper.db.queryAllWorkouts(),
-            builder: (BuildContext context,
-                AsyncSnapshot<List<WorkoutListed>> snapshot) {
+        body: FutureBuilder<List<Workout>>(
+            future: Provider.of<FeeelDB>(context).queryAllWorkouts,
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Workout>> snapshot) {
               if (snapshot.hasData) {
-                final workoutsListed = snapshot.data!;
+                final workouts = snapshot.data!;
 
                 const crossAxisSpacing = 16.0;
                 final gridColumns = (MediaQuery.of(context).size.width /
@@ -146,29 +146,28 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                             mainAxisExtent: WorkoutListItem.extent),
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
-                            WorkoutListed workoutListed = workoutsListed[index];
+                            final workout = workouts[index];
                             return AnimationConfiguration.staggeredGrid(
                                 position: index,
                                 duration: const Duration(milliseconds: 375),
                                 columnCount: gridColumns,
                                 child: FadeInAnimation(
                                     child: WorkoutListItem(
-                                  workoutListed,
+                                  workout,
                                   trailing: PopupMenuButton(
                                     itemBuilder: (context) {
-                                      return workoutListed.type ==
-                                              WorkoutType.custom
+                                      return workout.type == WorkoutType.custom
                                           ? [
-                                              PopupMenuItem<String>(
-                                                  value: _menuEdit,
-                                                  child: Text("Edit".i18n)),
+                                              // PopupMenuItem<String>(
+                                              //     value: _menuEdit,
+                                              //     child: Text("Edit".i18n)),
                                               PopupMenuItem<String>(
                                                   value: _menuDelete,
                                                   child: Text("Delete".i18n)),
-                                              PopupMenuItem<String>(
-                                                  value: _menuDuplicate,
-                                                  child:
-                                                      Text("Duplicate".i18n)),
+                                              // PopupMenuItem<String>(
+                                              //     value: _menuDuplicate,
+                                              //     child:
+                                              //         Text("Duplicate".i18n)),
                                             ]
                                           : [
                                               PopupMenuItem<String>(
@@ -180,20 +179,20 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                                     onSelected: (String value) {
                                       switch (value) {
                                         case _menuDelete:
-                                          _onDeleteCustom(workoutListed);
+                                          _onDeleteCustom(workout);
                                           break;
-                                        case _menuEdit:
-                                          _onEditCustom(workoutListed);
-                                          break;
-                                        case _menuDuplicate:
-                                          _onDuplicate(workoutListed);
-                                          break;
+                                        // todo case _menuEdit:
+                                        //   _onEditCustom(workout);
+                                        //   break;
+                                        // todo case _menuDuplicate:
+                                        //   _onDuplicate(workout);
+                                        //   break;
                                       }
                                     },
                                   ),
                                 )));
                           },
-                          childCount: workoutsListed.length,
+                          childCount: workouts.length,
                         ),
                       ))
                 ]));
@@ -205,35 +204,35 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
             }));
   }
 
-  void _onDeleteCustom(WorkoutListed workoutListed) {
+  void _onDeleteCustom(Workout workoutListed) {
     // todo allow an undo !!!
-    DBHelper.db.deleteCustomWorkout(workoutListed.dbId).then((_) {
-      setState(() {});
+    Provider.of<FeeelDB>(context).deleteWorkout(workoutListed.id).then((_) {
+      setState(() {}); //todo is this needed?
     });
   }
 
-  void _onEditCustom(WorkoutListed workoutListed) {
-    Navigator.push<void>(
-        context,
-        MaterialPageRoute(
-            builder: (context) => WorkoutEditorScreen(
-                  workoutListed: workoutListed,
-                ))).then((_) {
-      setState(() {});
-    });
-  }
+  // TODO void _onEditCustom(Workout workoutListed) {
+  //   Navigator.push<void>(
+  //       context,
+  //       MaterialPageRoute(
+  //           builder: (context) => WorkoutEditorScreen(
+  //                 workoutListed: workoutListed,
+  //               ))).then((_) {
+  //     setState(() {}); //todo is this needed?
+  //   });
+  // }
 
-  void _onDuplicate(WorkoutListed origListed) async {
-    final navigator = Navigator.of(context);
-    final newListed =
-        await DBHelper.db.duplicateWorkout(origListed.dbId, origListed.type);
-    navigator
-        .push<void>(MaterialPageRoute(
-            builder: (context) => WorkoutEditorScreen(
-                  workoutListed: newListed,
-                )))
-        .then((_) {
-      setState(() {});
-    });
-  }
+  // TODO void _onDuplicate(Workout origListed) async {
+  //   final navigator = Navigator.of(context);
+  //   final newListed = await Provider.of<FeeelDB>(context)
+  //       .duplicateWorkout(origListed.id, origListed.type);
+  //   navigator
+  //       .push<void>(MaterialPageRoute(
+  //           builder: (context) => WorkoutEditorScreen(
+  //                 workoutListed: newListed,
+  //               )))
+  //       .then((_) {
+  //     setState(() {}); //todo is this needed?
+  //   });
+  // }
 }
