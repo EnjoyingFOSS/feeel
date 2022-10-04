@@ -63,11 +63,11 @@ class ExerciseSheet extends StatelessWidget {
     //todo make this themable
     return DraggableScrollableSheet(
       expand: false,
-      initialChildSize: (Platform.isAndroid || Platform.isIOS) ? 0.75 : 1.0,
+      initialChildSize: 0.75,
       snap: true,
-      snapSizes: const [0.75, 1.0], //todo 0 needed?
+      snapSizes: const [0.75, 1.0],
       builder: (BuildContext context, ScrollController scrollController) {
-        final imageSlug = exercise.imageSlug;
+        final imageSlug = exercise.imageSlug; //todo reset image slug on display
         final headOnly = exercise.type == ExerciseType.head;
 
         final brightness = Theme.of(context).brightness;
