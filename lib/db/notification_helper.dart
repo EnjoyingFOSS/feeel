@@ -46,18 +46,17 @@ class NotificationHelper {
     tz.setLocalLocation(
         tz.getLocation(await FlutterNativeTimezone.getLocalTimezone()));
 
-    var initializationSettings = const InitializationSettings(
+    const darwinInitialization = DarwinInitializationSettings(
+        requestAlertPermission: false,
+        requestBadgePermission: false,
+        requestSoundPermission: false);
+
+    const initializationSettings = InitializationSettings(
         android: AndroidInitializationSettings('icon_notification'),
-        iOS: IOSInitializationSettings(
-            requestAlertPermission: false,
-            requestBadgePermission: false,
-            requestSoundPermission: false),
-        macOS: MacOSInitializationSettings(
-            requestAlertPermission: false,
-            requestBadgePermission: false,
-            requestSoundPermission: false));
+        iOS: darwinInitialization,
+        macOS: darwinInitialization);
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: (String? payload) async {
+        onDidReceiveNotificationResponse: (_) async {
       return await Navigator.push<void>(
         context,
         MaterialPageRoute(builder: (context) => const WorkoutListScreen()),
@@ -82,8 +81,8 @@ class NotificationHelper {
               _notificationChannelId, "Daily notification".i18n,
               channelDescription: "A daily reminder to work out".i18n,
               color: primaryColor),
-          iOS: const IOSNotificationDetails(),
-          macOS: const MacOSNotificationDetails());
+          iOS: const DarwinNotificationDetails(),
+          macOS: const DarwinNotificationDetails());
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
           _notificationIntId,
