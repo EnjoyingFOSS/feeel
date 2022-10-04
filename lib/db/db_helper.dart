@@ -20,12 +20,14 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+// ignore_for_file: constant_identifier_names
+
 import 'dart:async';
 import 'dart:io';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/models/view/exercise.dart';
-import 'package:feeel/models/view/exercise_step.dart';
+// import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/models/view/workout_listed.dart';
@@ -35,69 +37,14 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as p;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-class _Exercises {
-  static const int JUMPING_JACKS = 1,
-      WALL_SIT = 2,
-      PUSH_UPS = 3,
-      AB_CRUNCHES = 4,
-      STEP_UPS = 5,
-      SQUATS = 6,
-      CHAIR_DIPS = 7,
-      PLANK = 8,
-      HIGH_KNEES = 9,
-      LUNGES = 10,
-      PUSH_UP_ROTATIONS = 11,
-      SIDE_PLANK_L = 12,
-      SIDE_PLANK_R = 13,
-      SIDE_SPLIT_SQUATS_L = 14,
-      BULGARIAN_SPLIT_SQUATS_L = 15,
-      BULGARIAN_SPLIT_SQUATS_R = 16,
-      // PISTOL_SQUATS_L = 17,
-      // PISTOL_SQUATS_R = 18,
-      KNEELING_KICKBACKS = 19,
-      CALF_RAISES_L = 20,
-      CALF_RAISES_R = 21,
-      SIDE_SPLIT_SQUATS_R = 22,
-      SPLIT_SQUATS_L = 23,
-      SPLIT_SQUATS_R = 24;
-  // JUMP_ROPE_BASIC = 25,
-  // ARM_CIRCLES_FW = 26,
-  // PIKE_PUSHUPS = 27,
-  // MOUNTAIN_CLIMBERS = 28,
-  // FOURCOUNT_BURPEES = 29,
-  // NO_PUSHUP_BURPEES = 30,
-  // SQUAT_THRUSTS = 31,
-  // REVERSE_LUNGES = 32,
-  // LEG_RAISES = 33,
-  // FLOOR_DIPS = 34, // v2.2.0
-  // HIGH_PLANK = 35,
-  // ARM_CIRCLES_BW = 36,
-  // CHILDS_POSE = 37,
-  // PULL_UP = 38,
-  // KETTLEBELL_DEADLIFT=39,
-  // SUMO_SQUAT=40,
-  // SHOULDER_ROTATION_FW = 41,
-  // SHOULDER_ROTATION_BW = 42,
-  // SHOULDER_SHRUG = 43,
-  // CHIN_TUCK = 44,
-  // HEAD_TURNS = 45;
-
-  // BACK_NECK_STRETCH = 4?,
-  // LATERAL_NECK_STRETCH_LEFT = 4?,
-  // LATERAL_NECK_STRETCH_RIGHT = 4?,
-  // FRONT_NECK_STRETCH = 4?,
-  // BACK_AND_LATERAL_NECK_STRETCH_LEFT = 4?,
-  // BACK_AND_LATERAL_NECK_STRETCH_RIGHT = 4?,
-  // CHIN_TUCK_WITH_FLEXION_WITH_ROTATION = 4?,
-}
+import 'default_exercises.dart';
 
 class TimingDefinition {
   final int id;
   final int? breakDuration;
   final int? exerciseDuration;
 
-  TimingDefinition(this.id,
-      {this.exerciseDuration = null, this.breakDuration = null});
+  TimingDefinition(this.id, {this.exerciseDuration, this.breakDuration});
 }
 
 class DBHelper {
@@ -111,7 +58,7 @@ class DBHelper {
   static const String _WORKOUT_TABLE = 'workouts';
   static const String _EXERCISE_TABLE = 'exercises';
   static const String _WORKOUT_EXERCISE_TABLE = 'workoutExercises';
-  static const String _EXERCISE_STEP_TABLE = 'exercise_steps';
+  // static const String _EXERCISE_STEP_TABLE = 'exercise_steps';
 
   static const String _ID_COL = 'id';
   static const String _TYPE_COL = 'type';
@@ -131,14 +78,14 @@ class DBHelper {
   static const String _EXERCISE_DURATION_COL = 'exerciseDuration';
   static const String _FLIPPED_COL = 'flipped';
   static const String _ANIMATED_COL = 'animated';
-  static const String _HAS_STEPS_COL = 'hasSteps';
-  static const String _STEP_DURATION_COL = 'stepDuration';
-  static const String _VOICE_HINT_COL = 'voiceHint';
+  // static const String _HAS_STEPS_COL = 'hasSteps';
+  // static const String _STEP_DURATION_COL = 'stepDuration';
+  // static const String _VOICE_HINT_COL = 'voiceHint';
 
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
-  static const int DATABASE_VERSION = 20;
+  static const int DATABASE_VERSION = 22;
 
   Future<Database> _createDB() async {
     String path = await getPath();
@@ -164,20 +111,19 @@ class DBHelper {
 
   Future<void> _onCreate(Database db, int version) async {
     await _createExerciseTable(db);
-    await _createExerciseStepsTable(db);
+    // await _createExerciseStepsTable(db);
     await _createWorkoutTable(db);
     await _createWorkoutExerciseTable(db);
-    // todo history table with a history of workouts
 
     await _addExercises(db);
     await _addDefaultWorkouts(db);
   }
 
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    await db.execute("DROP TABLE IF EXISTS " + _EXERCISE_TABLE);
-    await db.execute("DROP TABLE IF EXISTS " + _EXERCISE_STEP_TABLE);
+    await db.execute("DROP TABLE IF EXISTS $_EXERCISE_TABLE");
+    // await db.execute("DROP TABLE IF EXISTS " + _EXERCISE_STEP_TABLE);
     await _createExerciseTable(db);
-    await _createExerciseStepsTable(db);
+    // await _createExerciseStepsTable(db);
     await _addExercises(db);
 
     await _deleteDefaultWorkouts(db);
@@ -194,7 +140,7 @@ class DBHelper {
   }
 
   Future<void> _migrateWorkoutExercises(Database db) async {
-    final oldTable = "tempWorkoutExercises";
+    const oldTable = "tempWorkoutExercises";
     await db
         .execute("ALTER TABLE $_WORKOUT_EXERCISE_TABLE RENAME TO $oldTable");
     await _createWorkoutExerciseTable(db);
@@ -202,7 +148,7 @@ class DBHelper {
     for (final entry in entries) {
       await db.insert(_WORKOUT_EXERCISE_TABLE, entry);
     }
-    await db.execute("DROP TABLE IF EXISTS " + oldTable);
+    await db.execute("DROP TABLE IF EXISTS $oldTable");
   }
 
   Future<void> _createExerciseTable(Database db) async => await db.execute(
@@ -212,7 +158,7 @@ class DBHelper {
       "$_DESCRIPTION_COL TEXT, "
       "$_TYPE_COL INTEGER NOT NULL, "
       "$_FLIPPED_COL INTEGER NOT NULL, "
-      "$_HAS_STEPS_COL INTEGER NOT NULL, "
+      // "$_HAS_STEPS_COL INTEGER NOT NULL, "
       "$_IMAGE_SLUG_COL TEXT, " // todo what do I get from the server, really? actually, should split this up!
       "$_DESC_LICENSE_INFO_COL TEXT,"
       "$_IMAGE_LICENSE_INFO_COL TEXT, "
@@ -220,15 +166,15 @@ class DBHelper {
       "$_CATEGORY_COL INTEGER" //todo REMOVE THIS COLUMN?
       ")");
 
-  Future<void> _createExerciseStepsTable(Database db) async =>
-      await db.execute("CREATE TABLE $_EXERCISE_STEP_TABLE ("
-          "$_EXERCISE_COL INTEGER NOT NULL, "
-          "$_ORDER_COL INTEGER NOT NULL, "
-          "$_IMAGE_SLUG_COL TEXT, "
-          "$_VOICE_HINT_COL TEXT, "
-          "$_STEP_DURATION_COL INTEGER NOT NULL, "
-          "PRIMARY KEY($_EXERCISE_COL, $_ORDER_COL)"
-          ")");
+  // Future<void> _createExerciseStepsTable(Database db) async =>
+  //     await db.execute("CREATE TABLE $_EXERCISE_STEP_TABLE ("
+  //         "$_EXERCISE_COL INTEGER NOT NULL, "
+  //         "$_ORDER_COL INTEGER NOT NULL, "
+  //         "$_IMAGE_SLUG_COL TEXT, "
+  //         "$_VOICE_HINT_COL TEXT, "
+  //         "$_STEP_DURATION_COL INTEGER NOT NULL, "
+  //         "PRIMARY KEY($_EXERCISE_COL, $_ORDER_COL)"
+  //         ")");
 
   Future<void> _createWorkoutTable(Database db) async =>
       await db.execute("CREATE TABLE $_WORKOUT_TABLE ( "
@@ -257,21 +203,21 @@ class DBHelper {
     await _createWorkoutFromTupleList(
       db,
       "Scientific 7 minute workout",
-      WorkoutCategory.STRENGTH,
+      WorkoutCategory.strength,
       [
-        TimingDefinition(_Exercises.JUMPING_JACKS),
-        TimingDefinition(_Exercises.WALL_SIT),
-        TimingDefinition(_Exercises.PUSH_UPS),
-        TimingDefinition(_Exercises.AB_CRUNCHES),
-        TimingDefinition(_Exercises.STEP_UPS),
-        TimingDefinition(_Exercises.SQUATS),
-        TimingDefinition(_Exercises.CHAIR_DIPS),
-        TimingDefinition(_Exercises.PLANK),
-        TimingDefinition(_Exercises.HIGH_KNEES),
-        TimingDefinition(_Exercises.LUNGES),
-        TimingDefinition(_Exercises.PUSH_UP_ROTATIONS),
-        TimingDefinition(_Exercises.SIDE_PLANK_L, exerciseDuration: 15),
-        TimingDefinition(_Exercises.SIDE_PLANK_R,
+        TimingDefinition(DefaultExercises.jumpingJacks),
+        TimingDefinition(DefaultExercises.wallSit),
+        TimingDefinition(DefaultExercises.pushUps),
+        TimingDefinition(DefaultExercises.abCrunches),
+        TimingDefinition(DefaultExercises.stepUps),
+        TimingDefinition(DefaultExercises.squats),
+        TimingDefinition(DefaultExercises.chairDips),
+        TimingDefinition(DefaultExercises.forearmPlank),
+        TimingDefinition(DefaultExercises.highKnees),
+        TimingDefinition(DefaultExercises.lunges),
+        TimingDefinition(DefaultExercises.pushUpRotations),
+        TimingDefinition(DefaultExercises.sidePlankL, exerciseDuration: 15),
+        TimingDefinition(DefaultExercises.sidePlankR,
             breakDuration: 5, exerciseDuration: 15)
       ],
     );
@@ -279,20 +225,34 @@ class DBHelper {
     await _createWorkoutFromList(
       db,
       "Leg workout",
-      WorkoutCategory.STRENGTH,
+      WorkoutCategory.strength,
       [
-        _Exercises.SPLIT_SQUATS_L,
-        _Exercises.SPLIT_SQUATS_R,
-        _Exercises.SIDE_SPLIT_SQUATS_L,
-        _Exercises.SIDE_SPLIT_SQUATS_R,
-        _Exercises.BULGARIAN_SPLIT_SQUATS_L,
-        _Exercises.BULGARIAN_SPLIT_SQUATS_R,
-        _Exercises.SQUATS,
-        _Exercises.KNEELING_KICKBACKS,
-        _Exercises.CALF_RAISES_L,
-        _Exercises.CALF_RAISES_R
+        DefaultExercises.splitSquatsL,
+        DefaultExercises.splitSquatsR,
+        DefaultExercises.sideSplitSquatsL,
+        DefaultExercises.sideSplitSquatsR,
+        DefaultExercises.bulgarianSplitSquatsL,
+        DefaultExercises.bulgarianSplitSquatsR,
+        DefaultExercises.squats,
+        DefaultExercises.kneelingKickbacks,
+        DefaultExercises.calfRaisesL,
+        DefaultExercises.calfRaisesR
       ],
     );
+
+    // TODO await _createWorkoutFromList(
+    //     db, "Neck and shoulder stretches", WorkoutCategory.STRETCHING, [
+    //   DefaultExercises.CHIN_TUCK,
+    //   DefaultExercises.HEAD_TURNS,
+    //   DefaultExercises.HEAD_SIDE,
+    //   DefaultExercises.NECK_HALFCIRCLES_CW,
+    //   DefaultExercises.NECK_HALFCIRCLES_CCW,
+    //   DefaultExercises.HEAD_PUSH,
+    //   DefaultExercises.HEAD_PUSH_LEFT,
+    //   DefaultExercises.HEAD_PUSH_RIGHT,
+    //   DefaultExercises.SHOULDER_ROTATION_BW,
+    //   DefaultExercises.SHOULDER_ROTATION_FW
+    // ]);
 
     // await _createWorkoutFromTupleList(
     //   //todo iron out timing
@@ -301,27 +261,39 @@ class DBHelper {
     //   WorkoutCategory.STRETCHING,
     //   [
     //     //todo 15 as the default here?
-    //     TimingDefinition(_Exercises.CHIN_TUCK),
-    //     TimingDefinition(_Exercises.ARM_CIRCLES_FW,
-    //         exerciseDuration: 15), //should be to from end, actually
-    //     TimingDefinition(_Exercises.ARM_CIRCLES_BW,
+    //     TimingDefinition(DefaultExercises.CHIN_TUCK),
+    //     TimingDefinition(DefaultExercises.HEAD_TURNS),
+    //     TimingDefinition(
+    //         DefaultExercises
+    //             .BACK_NECK_STRETCH, // todo make into steps IN BOTH THIS PLACE AND NEW PLACE
+    //         exerciseDuration: 20),
+    //     TimingDefinition(
+    //         DefaultExercises.LATERAL_NECK_STRETCH_LEFT, // todo make into steps
+    //         exerciseDuration: 35),
+    //     TimingDefinition(
+    //         DefaultExercises.LATERAL_NECK_STRETCH_RIGHT, // todo make into steps
+    //         exerciseDuration: 35),
+    //     TimingDefinition(DefaultExercises.SHOULDER_SHRUG),
+    //     TimingDefinition(
+    //         DefaultExercises.FRONT_NECK_STRETCH), // todo make into steps?
+    //     TimingDefinition(
+    //         DefaultExercises
+    //             .BACK_AND_LATERAL_NECK_STRETCH_LEFT, // todo make into steps
+    //         exerciseDuration: 8),
+    //     TimingDefinition(
+    //         DefaultExercises
+    //             .BACK_AND_LATERAL_NECK_STRETCH_RIGHT, // todo make into steps
+    //         exerciseDuration: 8),
+    //     TimingDefinition(DefaultExercises.ARM_CIRCLES_FW, exerciseDuration: 15),
+    //     TimingDefinition(DefaultExercises.ARM_CIRCLES_BW,
     //         breakDuration: 5, exerciseDuration: 15),
-    //     TimingDefinition(_Exercises.HEAD_TURNS),
-    //     TimingDefinition(_Exercises.BACK_NECK_STRETCH, exerciseDuration: 20),
-    //     TimingDefinition(_Exercises.LATERAL_NECK_STRETCH_LEFT,
-    //         exerciseDuration: 35),
-    //     TimingDefinition(_Exercises.LATERAL_NECK_STRETCH_RIGHT,
-    //         exerciseDuration: 35),
-    //     TimingDefinition(_Exercises.SHOULDER_SHRUG),
-    //     TimingDefinition(_Exercises.FRONT_NECK_STRETCH),
-    //     TimingDefinition(_Exercises.BACK_AND_LATERAL_NECK_STRETCH_LEFT,
-    //         exerciseDuration: 8),
-    //     TimingDefinition(_Exercises.BACK_AND_LATERAL_NECK_STRETCH_RIGHT,
-    //         exerciseDuration: 8),
-    //     TimingDefinition(_Exercises.CHIN_TUCK_WITH_FLEXION_WITH_ROTATION,
+    //     TimingDefinition(
+    //         DefaultExercises
+    //             .CHIN_TUCK_WITH_FLEXION_WITH_ROTATION, // todo make into steps
     //         exerciseDuration: 18),
-    //     TimingDefinition(_Exercises.SHOULDER_ROTATION_FW, exerciseDuration: 15),
-    //     TimingDefinition(_Exercises.SHOULDER_ROTATION_BW,
+    //     TimingDefinition(DefaultExercises.SHOULDER_ROTATION_FW,
+    //         exerciseDuration: 15),
+    //     TimingDefinition(DefaultExercises.SHOULDER_ROTATION_BW,
     //         breakDuration: 5, exerciseDuration: 15),
     //   ],
     // );
@@ -329,11 +301,12 @@ class DBHelper {
 
   Future<void> _addExercises(Database db) async {
     // order CANNOT BE CHANGED, as that would effect custom workouts //todo use consts above when inserting too!
-    final myDescriptionLicense =
+    const myDescriptionLicense =
         "English description by Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).";
 
     await _createExercise(
       db,
+      id: DefaultExercises.jumpingJacks,
       name: "Jumping jacks",
       description:
           "1. Stand with feet together and arms at the sides\n2. Jump to a position with the legs spread wide and the hands touching overhead\n3. Repeat",
@@ -345,6 +318,7 @@ class DBHelper {
 
     await _createExercise(
       db,
+      id: DefaultExercises.wallSit,
       name: "Wall sit",
       description:
           "1. Lean against the wall, facing forward and with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n2. Slide down the wall, keeping the back pressed to it, until legs are at a right angle. The knees should be directly above the ankles\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
@@ -356,6 +330,7 @@ class DBHelper {
 
     await _createExercise(
       db,
+      id: DefaultExercises.pushUps,
       name: "Push-ups",
       description:
           "Starting position:\nGet into the starting push-up position, with your hands and toes touching the ground and back, arms and legs straight. To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.\n\nSteps:\n1. Bend at the elbows until your chest almost touches the ground, making sure your back is straight at all times.\n2. Use your arms to lift yourself back up to starting position.\n3. Repeat.",
@@ -366,6 +341,7 @@ class DBHelper {
     );
 
     await _createExercise(db,
+        id: DefaultExercises.abCrunches,
         name: "Crunches",
         description:
             "1. Lie down face up on the floor with knees bent.\n2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n3. Repeat",
@@ -375,15 +351,17 @@ class DBHelper {
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.stepUps,
         name: "Step-ups",
         description:
             "1. Stand facing a chair\n2. Step up onto the chair\n3. Step off the chair\n4. Repeat",
         imageSlug: "exercise_stepup.webp",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Bodyweight Step Up\"](https://www.youtube.com/watch?v=6tuRv_B-tj4) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["Bodyweight Step Up"](https://www.youtube.com/watch?v=6tuRv_B-tj4) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.squats,
         name: "Squats",
         description:
             "1. Stand with feet shoulder-width apart\n2. Move the hips back and bend the knees and hips to lower the torso\n3. Repeat",
@@ -393,6 +371,7 @@ class DBHelper {
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.chairDips,
         name: "Chair dips",
         description:
             "1. Sit down on the front edge of a chair, back straight, hands holding the front edge\n2. Still holding the edge of the chair, arms extended, lift your butt and walk forward slightly so that it is a few inches from the chair.\n3. Slowly lower your body, keeping the back straight, until arms are at a right angle\n4. Raise your body again to the previous position, arms extended\n5. Repeat steps 3 and 4",
@@ -402,6 +381,7 @@ class DBHelper {
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.forearmPlank,
         name: "Forearm plank",
         description:
             "Starting position:\n1. Start down on all fours.\nArms should bent at a right angle, with shoulders right over elbows.\nBack should be straight, the whole body in a straight line.\n\nSteps:\n1. Hold this position.",
@@ -411,6 +391,7 @@ class DBHelper {
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.highKnees,
         name: "High knees",
         description:
             "1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace",
@@ -420,6 +401,7 @@ class DBHelper {
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.lunges,
         name: "Lunges",
         description:
             "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Return to standing position by stepping back\n6. Repeat, switching legs each time",
@@ -429,6 +411,7 @@ class DBHelper {
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.pushUpRotations,
         name: "Push-up rotations",
         description:
             "1. Do a standard push-up:\n1.a Lie down on your stomach\n1.b Place your hands near your ears\n1.c Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n1.d Bend arms until chest almost touches the ground, making sure the back is straight\n1.e Lift your stomach up again, returning to step 3\n2. Rotate your body to the side so that the back is straight, the bottom hand supporting the body is fully extended, and only the bottom hand and foot touch the floor\n3. Repeat, changing sides at step 2 each time",
@@ -437,12 +420,13 @@ class DBHelper {
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Woman in Purple Tank Top and Gray Sweat Pants\"](https://www.pexels.com/photo/woman-in-purple-tank-top-and-gray-sweat-pants-163437/) on Pexels, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
         descriptionLicenseInfo: myDescriptionLicense);
 
-    final sidePlankDesc =
+    const sidePlankDesc =
         "1. Lie down on your side, with your bottom elbow at a right angle, arm sticking out\n2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line\n3. Hold this position";
-    final sidePlankImageLicense =
+    const sidePlankImageLicense =
         "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Sgt. Thomas Childs's [\"U.S. Marine Corps Sgt. Jonathan Benezette demonstrates the left plank position during Marine Corps martial arts training aboard the dock landing ship USS Oak Hill (LSD 51) during Amphibious-Southern Partnership Station (A-SPS) 2012 in the Caribbean Sea Oct. 9, 2011. SPS is an annual deployment of U.S. ships to the U.S. Southern Command's area of responsibility in the Caribbean and Latin America. The exercise involves information sharing with navies, coast guards and civilian services throughout the region.\"](https://commons.wikimedia.org/wiki/File:U.S._Marine_Corps_Sgt._Jonathan_Benezette_demonstrates_the_left_plank_position_during_Marine_Corps_martial_arts_training_aboard_the_dock_landing_ship_USS_Oak_Hill_(LSD_51)_during_Amphibious-Southern_Partnership_111009-A-WF228-011.jpg), which is in the public domain.";
 
     await _createExercise(db,
+        id: DefaultExercises.sidePlankL,
         name: "Side plank left",
         description: sidePlankDesc,
         imageSlug: "exercise_sideplank.webp",
@@ -450,6 +434,7 @@ class DBHelper {
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.sidePlankR,
         name: "Side plank right",
         description: sidePlankDesc,
         flipped: true,
@@ -457,10 +442,11 @@ class DBHelper {
         imageLicenseInfo: sidePlankImageLicense,
         descriptionLicenseInfo: myDescriptionLicense);
 
-    final sideLungeDesc =
+    const sideLungeDesc =
         "1. Stand tall and take a wide lateral stride, just greater than shoulder width.\n2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n3. Push back to the starting position and repeat.";
 
     await _createExercise(db,
+        id: DefaultExercises.sideSplitSquatsL,
         name: "Side split squats left",
         description: sideLungeDesc,
         flipped: true,
@@ -470,10 +456,11 @@ class DBHelper {
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
-    final bulgarianSquatsDesc =
+    const bulgarianSquatsDesc =
         "1. Stand tall in front of a chair and take a large step. Put the upper part of one of your feet on the chair.\n2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n3. Push back to the starting position and repeat.";
 
     await _createExercise(db,
+        id: DefaultExercises.bulgarianSplitSquatsL,
         name: "Bulgarian split squats left",
         description: bulgarianSquatsDesc,
         imageSlug: "exercise_bulgariansplitsquat.webp",
@@ -483,6 +470,7 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
     await _createExercise(db,
+        id: DefaultExercises.bulgarianSplitSquatsR,
         name: "Bulgarian split squats right",
         description: bulgarianSquatsDesc,
         flipped: true,
@@ -491,10 +479,11 @@ class DBHelper {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
-    final pistolSquatDesc =
+    const pistolSquatDesc =
         "1. Stand on one leg, with your other leg straight and slightly forward.\n2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.\n3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.\n4. Repeat";
 
     await _createExercise(db,
+        id: DefaultExercises.pistolSquatsL,
         name: "Pistol squats left",
         description: pistolSquatDesc,
         flipped: true,
@@ -505,6 +494,7 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
     await _createExercise(db,
+        id: DefaultExercises.pistolSquatsR,
         name: "Pistol squats right",
         description: pistolSquatDesc,
         imageSlug: "exercise_pistolsquat.webp",
@@ -514,6 +504,7 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
     await _createExercise(db,
+        id: DefaultExercises.kneelingKickbacks,
         name: "Kneeling kickbacks",
         description:
             "1. Get down on all fours.\n2. Push one foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.\n4. Repeat, alternating feet",
@@ -523,10 +514,11 @@ class DBHelper {
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
-    final singleLegCalfRaiseDesc =
+    const singleLegCalfRaiseDesc =
         "1. Stand on the floor or on the edge of a step to increase the range of movement. Raise one foot, placing the upper part on your calf.\n2. Lift your heels until you're standing on toes.\n3. Stay in this position for three seconds, then lower your foot without touching the ground with your heel.";
 
     await _createExercise(db,
+        id: DefaultExercises.calfRaisesL,
         name: "Left leg calf raises",
         description: singleLegCalfRaiseDesc,
         imageSlug: "exercise_singlelegcalfraise.webp",
@@ -536,6 +528,7 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
     await _createExercise(db,
+        id: DefaultExercises.calfRaisesR,
         name: "Right leg calf raises",
         flipped: true,
         description: singleLegCalfRaiseDesc,
@@ -546,6 +539,7 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
     await _createExercise(db,
+        id: DefaultExercises.sideSplitSquatsR,
         name: "Side split squats right",
         description: sideLungeDesc,
         imageSlug: "exercise_sidesplitsquat.webp",
@@ -554,10 +548,11 @@ class DBHelper {
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
-    final splitSquatsDesc =
+    const splitSquatsDesc =
         "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Repeat from step 3.";
 
     await _createExercise(db,
+        id: DefaultExercises.splitSquatsL,
         name: "Split squats left",
         description: splitSquatsDesc,
         imageSlug: "exercise_splitsquat.webp",
@@ -567,6 +562,7 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
     await _createExercise(db,
+        id: DefaultExercises.splitSquatsR,
         name: "Split squats right",
         flipped: true,
         description: splitSquatsDesc,
@@ -577,118 +573,131 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
     await _createExercise(db,
+        id: DefaultExercises.jumpRopeBasic,
         name: "Jump rope: basic jumps",
         description:
-            "Steps:\n1. Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n2. Spin only your wrists with enough force to make the rope spin.\n3. Jump just high enough to pass the rope below your feet.\n4. Repeat from step 2.\n\nNotes:\nThis exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.",
+            "Starting position:\nPut your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n\nSteps:\n1. Spin only your wrists with enough force to make the rope spin.\n2. Jump just high enough to pass the rope below your feet.\n3. Repeat.\n\nNotes:\nThis exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.",
         imageSlug: "exercise_jumpropebasic.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by Mohammad H. Tajaddini, which was derived from [\"Jump rope - skipping\"](https://www.flickr.com/photos/90177949@N00/1394676434) by [Drew and Merissa](https://www.flickr.com/photos/90177949@N00), published under the [CC BY 2.0 license](https://creativecommons.org/licenses/by/2.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by Mohammad H. Tajaddini, which was derived from ["Jump rope - skipping"](https://www.flickr.com/photos/90177949@N00/1394676434) by [Drew and Merissa](https://www.flickr.com/photos/90177949@N00), published under the [CC BY 2.0 license](https://creativecommons.org/licenses/by/2.0/legalcode).');
 
     await _createExercise(db,
+        id: DefaultExercises.armCirclesFW,
         name: "Forward arm circles",
         description:
             "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.\n3. Keep circling your arms as described in step 2.",
         imageSlug: "exercise_armcircles_fw.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Arm Circle to Shoulder Press Down\"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Arm Circle to Shoulder Press Down"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     await _createExercise(db,
+        id: DefaultExercises.pikePushUps,
         name: "Pike push-ups",
         description:
             "Staring position:\nDownward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.\nYou can get to this position by walking your hands back from a high plank.\n\nSteps:\n1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.\n2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.\n3. Repeat.",
         imageSlug: "exercise_pikepushup.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"FULL BODY Bodyweight Workout [NO EQUIPMENT] // School of Calisthenics\"](https://www.youtube.com/watch?v=96X4fYKe3QY) by School of Calisthenics on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["FULL BODY Bodyweight Workout [NO EQUIPMENT] // School of Calisthenics"](https://www.youtube.com/watch?v=96X4fYKe3QY) by School of Calisthenics on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     await _createExercise(db,
+        id: DefaultExercises.mountainClimbers,
         name: "Mountain climbers",
         description:
             "Starting position:\nStart in the upright push-up position, or the high plank.\nHands should be directly under your shoulders.\nKeep your head in line with your back, facing the floor.\nFeet should be about hip-width apart.\n\nSteps:\n1. Move one knee toward the center of your body, towards your elbows, keeping the other leg extended.\n2. In a quick jumping movement, straighten the bent leg out and pull the other knee toward your body.\n3. Keep repeating step 2, alternating legs.\n\nNotes:\nThroughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.",
         imageSlug: "exercise_mountainclimber.webp",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Mountain Climber\"](https://vimeo.com/149362946) by Dr. Greg Wells on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Mountain Climber"](https://vimeo.com/149362946) by Dr. Greg Wells on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descriptionLicenseInfo:
             "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).");
 
     await _createExercise(db,
+        id: DefaultExercises.fourCountBurpees,
         name: "4-count burpees",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Repeat.",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["The 6-Minute Sweat Workout: Burpee"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descriptionLicenseInfo:
             "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageSlug: "exercise_4countburpee.webp");
 
     await _createExercise(db,
+        id: DefaultExercises.noPushUpBurpees,
         name: "No push-up burpees",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Jump up.\n5. Repeat.",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["The 6-Minute Sweat Workout: Burpee"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descriptionLicenseInfo:
             "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageSlug: "exercise_nopushupburpee.webp");
 
     await _createExercise(db,
+        id: DefaultExercises.squatThrusts,
         name: "Squat thrusts",
         description:
             "Starting position:\nStart in high plank position: back, arms, and legs straight and hands shoulder-width apart.\n\nSteps:\n1. Jump your feet forward between your arms, keeping your back flat.\n2. Keeping your hands on the floor, jump your legs back into high plank position.\n3. Repeat.",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["The 6-Minute Sweat Workout: Burpee"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descriptionLicenseInfo:
             "English description by Miroslav Mazel, derived from a description by mondstern, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageSlug: "exercise_squatthrust.webp");
 
     await _createExercise(db,
+        id: DefaultExercises.reverseLunges,
         name: "Reverse lunges",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Step backward with one leg so it can bend comfortably to a 90 degree angle.\n2. Slowly bend both knees to form 90 degree angles.\n3. Return to the starting position.\n4. Repeat, alternating legs.",
         imageSlug: "exercise_reverselunge.webp",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Fraser Wilson Lower Body Home Workout - NO EQUIPMENT NEEDED | EHPlabs\"](https://www.youtube.com/watch?v=WROyapZyYME) by EHPlabs on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Fraser Wilson Lower Body Home Workout - NO EQUIPMENT NEEDED | EHPlabs"](https://www.youtube.com/watch?v=WROyapZyYME) by EHPlabs on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.legRaises,
         name: "Leg raises",
         description:
             "Starting position:\nLie down on your back, feet together, arms by your sides.\n\nSteps:\n1. Bend your knees, then straighten them to point straight up.\n2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.\n3. Raise both legs together to point straight up again.\n4. Repeat from step 2.",
         imageSlug: "exercise_legraise.webp",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"20-Minute At-Home Full-Body Workout | No Equipment\"](https://www.youtube.com/watch?v=1A7pdAKODEU) by "EatMoveRest - The Stanczyks" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["20-Minute At-Home Full-Body Workout | No Equipment"](https://www.youtube.com/watch?v=1A7pdAKODEU) by "EatMoveRest - The Stanczyks" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.florrDips,
         name: "Floor dips",
         description:
             "Starting position:\nSit with your arms behind you, supporting your back.\nYour fingers should point forward.\nYour knees should be bent, feet together.\n\nSteps:\n1. Raise your hips off the ground, straightening your arms.\n2. Bend your elbows, bringing your hips down.\n3. Straighten your arms, returning to the previous position.\n4. Repeat steps 2 and 3.\n\nNotes:\nThe exercise's difficulty depends on how high you bring your hips.",
         imageSlug: "exercise_floordip.webp",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"20-Minute At-Home Full-Body Workout | No Equipment\"](https://www.youtube.com/watch?v=1A7pdAKODEU) by "EatMoveRest - The Stanczyks" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["20-Minute At-Home Full-Body Workout | No Equipment"](https://www.youtube.com/watch?v=1A7pdAKODEU) by "EatMoveRest - The Stanczyks" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.highPlank,
         name: "High plank",
         description:
             "Starting position:\nGet into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.\nTo get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.\n\nSteps:\n1. Maintain the starting position for the entire duration of the exercise.",
         imageSlug: "exercise_highplank.webp",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["The 6-Minute Sweat Workout: Burpee"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descriptionLicenseInfo: myDescriptionLicense);
 
     await _createExercise(db,
+        id: DefaultExercises.armCirclesBW,
         name: "Backward arm circles",
         description:
             "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
         imageSlug: "exercise_armcircles_bw.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Arm Circle to Shoulder Press Down\"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Arm Circle to Shoulder Press Down"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     await _createExercise(db,
+        id: DefaultExercises.childsPose,
         name: "Child's pose",
         description:
             "Starting position:\nStart on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.\n\nSteps:\n1. Move your knees so that they're about hip-width apart.\n2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.\n3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.\n4. Stay in this pose.\n\nTips:\n* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.",
@@ -698,24 +707,27 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by Ali Aliyev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
     await _createExercise(db,
+        id: DefaultExercises.pullUp,
         name: "Pull-ups",
         description:
             "Starting position:\nStart by hanging from the pull-up bar, palms facing away and feet off the floor.\nYour hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.\nYour body should be straight and pointed slightly forward. Your arms should be extended.\n\nSteps:\n1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.\n2. Carefully lower your body back down to starting position.\n3. Repeat.\n\nTips:\n- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.",
         imageSlug: "exercise_pullup.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"A US Marine Doing Pull-ups\"](https://commons.wikimedia.org/wiki/File:Marine_Pull-ups.jpg) by "Cpl. C. J. Yard, USMC", published under a public domain license.');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["A US Marine Doing Pull-ups"](https://commons.wikimedia.org/wiki/File:Marine_Pull-ups.jpg) by "Cpl. C. J. Yard, USMC", published under a public domain license.');
 
     await _createExercise(db,
+        id: DefaultExercises.kettlebellDeadlift,
         name: "Kettlebell deadlifts",
         description:
             "Starting position:\nStand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.\n\nSteps:\n1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.\n2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.\n3. While contacting your abs and glutes, stand straight up.\n4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.\n5. Repeat from step 3.\n\nTips:\n* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.",
         imageSlug: "exercise_kettlebelldeadlift.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Man In Blue Shorts Carrying Brown Exercise Equipments\"](https://www.dreamstime.com/man-blue-shorts-carrying-brown-exercise-equipments-public-domain-image-free-83059944) by creativecommonsstockphotos, published under the [CC0 1.0 license](https://creativecommons.org/publicdomain/zero/1.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Man In Blue Shorts Carrying Brown Exercise Equipments"](https://www.dreamstime.com/man-blue-shorts-carrying-brown-exercise-equipments-public-domain-image-free-83059944) by creativecommonsstockphotos, published under the [CC0 1.0 license](https://creativecommons.org/publicdomain/zero/1.0/legalcode).');
 
     await _createExercise(db,
+        id: DefaultExercises.sumoSquat,
         name: "Sumo squats",
         description:
             "Starting position:\nStand with legs wide and toes turned outwards.\n\nSteps:\n1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.\n2. Push back up into starting position.\n3. Repeat this exercise in a pulsing motion.",
@@ -723,142 +735,253 @@ class DBHelper {
         descriptionLicenseInfo:
             "English description by kettenfett, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"GET SCULPTED LEGS & THIGHS IN 30 DAYS CHALLENGE! Day 18: 100 Tipsy Butterfly! 🦋 #StretchyFit100\"](https://www.youtube.com/watch?v=CbLwLgx6_kw) by Action Jacquelyn on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["GET SCULPTED LEGS & THIGHS IN 30 DAYS CHALLENGE! Day 18: 100 Tipsy Butterfly! 🦋 #StretchyFit100"](https://www.youtube.com/watch?v=CbLwLgx6_kw) by Action Jacquelyn on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
-    final shoulderRotationDesc =
+    const shoulderRotationDesc =
         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Place your hands on your shoulders.\n2. Repeatedly rotate both shoulder joints in a circular motion at a moderate pace.";
 
     await _createExercise(db,
+        id: DefaultExercises.shoulderRotationFW,
         name: "Forward shoulder rotation",
-        type: ExerciseType.HEAD,
+        type: ExerciseType.head,
         description: shoulderRotationDesc,
         imageSlug: "exercise_shoulderrotation_fw.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"SHOULDERS ROTATION EXERCISE (2020)\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Traditional Martial Arts by Dmitry Prosvirov" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["SHOULDERS ROTATION EXERCISE (2020)"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Traditional Martial Arts by Dmitry Prosvirov" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     await _createExercise(db,
+        id: DefaultExercises.shoulderRotationBW,
         name: "Backward shoulder rotation",
-        type: ExerciseType.HEAD,
+        type: ExerciseType.head,
         description: shoulderRotationDesc,
         imageSlug: "exercise_shoulderrotation_bw.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"SHOULDERS ROTATION EXERCISE (2020)\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Traditional Martial Arts by Dmitry Prosvirov" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["SHOULDERS ROTATION EXERCISE (2020)"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Traditional Martial Arts by Dmitry Prosvirov" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     await _createExercise(db,
+        id: DefaultExercises.chinTuck,
         name: "Chin tuck",
-        type: ExerciseType.HEAD,
+        type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.\n2. Hold for 5 seconds.\n3. Go back to normal head position and repeat.",
         imageSlug: "exercise_chintuck.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Home Exercises for Cerivcal Disc Pain | Tim Keeley | Physio REHAB\"](https://www.youtube.com/watch?v=AiTt-zCdluc) by "Physio Fitness | Physio REHAB | Tim Keeley" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Home Exercises for Cerivcal Disc Pain | Tim Keeley | Physio REHAB"](https://www.youtube.com/watch?v=AiTt-zCdluc) by "Physio Fitness | Physio REHAB | Tim Keeley" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     await _createExercise(db,
+        id: DefaultExercises.shoulderShrug,
         name: "Shoulder shrugs",
-        type: ExerciseType.HEAD,
+        type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Lift shoulders straight up as far as possible and hold for 5 sec.\n2. Release shoulders back down to a relaxed position.\n3. Repeat.",
         imageSlug: "exercise_shouldershrug.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Yoga class for shoulder relief\"](https://www.youtube.com/watch?v=H8tUMz9ydUw) by "Stewart Hamblin The Feldenkrais Way" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Yoga class for shoulder relief"](https://www.youtube.com/watch?v=H8tUMz9ydUw) by "Stewart Hamblin The Feldenkrais Way" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     await _createExercise(db,
+        id: DefaultExercises.headTurns,
         name: "Head turns",
-        type: ExerciseType.HEAD,
+        type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight and shoulders down.\n\nSteps:\n1. Sit or stand up straight, shoulders dropped.\n2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.\n3. Return to center position and repeat, changing sides.",
         imageSlug: "exercise_headturn.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief\"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
-    await _createExerciseWithSteps(db,
-        name: "Back neck stretch", //todo or flexion?
-        type: ExerciseType.HEAD,
-        steps: [
-          ExerciseStep(
-              imageSlug: "exercise_neckstretch_back-1.webp",
-              duration: 1), //todo add images
-          ExerciseStep(
-              imageSlug: "exercise_neckstretch_back.webp", duration: 5),
-          ExerciseStep(duration: 5, voiceHint: "Shoulders down"),
-          ExerciseStep(duration: 5, voiceHint: "Push against hands"),
-          ExerciseStep(
-              imageSlug: "exercise_neckstretch_back-3.webp", duration: 1)
-        ],
-        description:
-            "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push your head back up, while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
-        imageSlug: "exercise_neckstretch_back.webp",
-        descriptionLicenseInfo: myDescriptionLicense,
-        imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+    // await _createExerciseWithSteps(db,
+    //     id: DefaultExercises.BACK_NECK_STRETCH,
+    //     name: "Back neck stretch", //todo or flexion?
+    //     type: ExerciseType.HEAD,
+    //     steps: [
+    //       ExerciseStep(
+    //           imageSlug: "exercise_neckstretch_back-1.webp",
+    //           duration: 1), //todo add images
+    //       ExerciseStep(
+    //           imageSlug: "exercise_neckstretch_back.webp", duration: 5),
+    //       ExerciseStep(duration: 5, voiceHint: "Shoulders down"),
+    //       ExerciseStep(duration: 5, voiceHint: "Push against hands"),
+    //       ExerciseStep(
+    //           imageSlug: "exercise_neckstretch_back-3.webp", duration: 1)
+    //     ],
+    //     description:
+    //         "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push upward with your head while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
+    //     imageSlug: "exercise_neckstretch_back.webp",
+    //     descriptionLicenseInfo: myDescriptionLicense,
+    //     imageLicenseInfo:
+    //         'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     // final lateralNeckStretchDesc =
     //     "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.\n2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.\n3. Turn your chin to your shoulder. Hold for 8 seconds.\n4. Release and return to starting position.";
 
-    // final lateralNeckStretchImageLicense = 'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"How to do a Lateral Neck Stretch Chin to Shoulder\"](https://www.youtube.com/watch?v=gT6_7GyUsI4) by "Heartmybody Fitness" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
+    // final lateralNeckStretchImageLicense =
+    //     'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["How to do a Lateral Neck Stretch Chin to Shoulder"](https://www.youtube.com/watch?v=gT6_7GyUsI4) by "Heartmybody Fitness" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
 
-    // await _createExercise(db,
+    // final lateralNeckStretchSteps = [
+    //   ExerciseStep(
+    //       imageSlug: "exercise_neckstretch_lateral-1.webp", //todo add images
+    //       duration: 8), //todo add images
+    //   ExerciseStep(
+    //       voiceHint: "Gently pull",
+    //       imageSlug: "exercise_neckstretch_lateral.webp",
+    //       duration: 8),
+    //   ExerciseStep(
+    //       imageSlug: "exercise_neckstretch_lateral-3.webp",
+    //       voiceHint: "Turn",
+    //       duration: 8),
+    //   ExerciseStep(
+    //       imageSlug: "exercise_neckstretch_lateral-1.webp",
+    //       voiceHint: "Return",
+    //       duration: 1)
+    // ];
+
+    // await _createExerciseWithSteps(db,
+    //     id: DefaultExercises.LATERAL_NECK_STRETCH_LEFT,
     //     name: "Left neck stretch",
     //     type: ExerciseType.HEAD,
     //     description: lateralNeckStretchDesc,
     //     flipped: true,
     //     imageSlug: "exercise_neckstretch_lateral.webp",
-    //     imageLicense: lateralNeckStretchImageLicense);
+    //     descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
+    //     imageLicenseInfo: lateralNeckStretchImageLicense,
+    //     steps: lateralNeckStretchSteps);
 
-    // await _createExercise(db,
+    // await _createExerciseWithSteps(db,
+    //     id: DefaultExercises.LATERAL_NECK_STRETCH_RIGHT,
     //     name: "Right neck stretch",
     //     type: ExerciseType.HEAD,
     //     description: lateralNeckStretchDesc,
     //     imageSlug: "exercise_neckstretch_lateral.webp",
-    //    imageLicense: lateralNeckStretchImageLicense);
+    //     descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
+    //     imageLicenseInfo: lateralNeckStretchImageLicense,
+    //     steps: lateralNeckStretchSteps);
 
-    // await _createExercise(db,
-    //     name: "Front neck stretch",
-    //     type: ExerciseType.HEAD,
-    //     description:
-    //         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Open mouth wide.\n2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.\n3. Very slowly close and open your mouth.\n4. At the end, slowly return to starting position and close mouth.",
-    //     imageSlug: "exercise_neckstretch_front.webp",
-    // imageLicenseInfo: 'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief\"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+    await _createExercise(db,
+        id: DefaultExercises.frontNeckStretch,
+        name: "Front neck stretch", //TODO STEPS?
+        type: ExerciseType.head,
+        description:
+            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Open mouth wide.\n2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.\n3. Very slowly close and open your mouth.\n4. At the end, slowly return to starting position and close mouth.",
+        imageSlug: "exercise_neckstretch_front.webp",
+        descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
+        imageLicenseInfo:
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
-    // final backAndLateralNeckStretchDesc =
-    //     "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt head forward, chin to chest, with hands behind your head.\n2. Keeping head forward, use waist muscles to turn as far as comfortable to the left.\n3. Use hands to pull head down very slightly, controlling the stretch.\n4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.\n5. Turn back into center position.\n6. Bring your hands to your forehead and push head upright again into normal position.";
+    const backAndLateralNeckStretchDesc =
+        "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt head forward, chin to chest, with hands behind your head.\n2. Keeping head forward, use waist muscles to turn as far as comfortable to the left.\n3. Use hands to pull head down very slightly, controlling the stretch.\n4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.\n5. Turn back into center position.\n6. Bring your hands to your forehead and push head upright again into normal position.";
 
-    // final backAndLateralNeckStretchImageLicense = 'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
+    const backAndLateralNeckStretchImageLicense =
+        'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
 
-    // await _createExercise(db,
-    //     name: "Back and left neck stretch",
-    //     type: ExerciseType.HEAD,
-    //     flipped: true,
-    //     description: backAndLateralNeckStretchDesc,
-    //     imageSlug: "exercise_neckstretch_back,lateral.webp",
-    //    imageLicense: backAndLateralNeckStretchImageLicense);
+    await _createExercise(db,
+        id: DefaultExercises.backAndLateralNeckStretchL,
+        name: "Back and left neck stretch",
+        type: ExerciseType.head,
+        flipped: true,
+        description: backAndLateralNeckStretchDesc,
+        imageSlug: "exercise_neckstretch_back,lateral.webp",
+        descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
+        imageLicenseInfo: backAndLateralNeckStretchImageLicense);
 
-    // await _createExercise(db,
-    //     name: "Back and right neck stretch",
-    //     type: ExerciseType.HEAD,
-    //     description: backAndLateralNeckStretchDesc,
-    //     imageSlug: "exercise_neckstretch_back,lateral.webp",
-    //    imageLicense: backAndLateralNeckStretchImageLicense);
+    await _createExercise(db,
+        id: DefaultExercises.backAndLateralNeckStretchR,
+        name: "Back and right neck stretch",
+        type: ExerciseType.head,
+        description: backAndLateralNeckStretchDesc,
+        imageSlug: "exercise_neckstretch_back,lateral.webp",
+        descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
+        imageLicenseInfo: backAndLateralNeckStretchImageLicense);
 
-    // await _createExercise(db,
-    //     name: "Chin tuck with flexion with rotation",
-    //     type: ExerciseType.HEAD,
-    //     description:
-    //         "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tuck your chin in, moving your head back.\n2. Tilt your head forward until you feel a stretch in the back of your neck.\n3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.\n4. Hold for 5 seconds.\n5. Rotate back, keeping your head down.\n6. Repeat from step 3, switching sides.",
-    //     imageSlug: "exercise_chintuck+flextion+rotation.webp",
-    //    imageLicense: 'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Suboccipital Muscle Stretch\"](https://www.youtube.com/watch?v=1CIil5SIs7U) by "Connor Naccarato" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+    await _createExercise(db,
+        id: DefaultExercises.chinTuckWithFlexionWithRotation,
+        name: "Chin tuck with flexion with rotation",
+        type: ExerciseType.head,
+        description:
+            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tuck your chin in, moving your head back.\n2. Tilt your head forward until you feel a stretch in the back of your neck.\n3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.\n4. Hold for 5 seconds.\n5. Rotate back, keeping your head down.\n6. Repeat from step 3, switching sides.",
+        imageSlug: "exercise_chintuck+flextion+rotation.webp",
+        descriptionLicenseInfo: DefaultExercises
+            .neckStretchDescLicense, //todo allow looping just a step range
+        imageLicenseInfo:
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Suboccipital Muscle Stretch"](https://www.youtube.com/watch?v=1CIil5SIs7U) by "Connor Naccarato" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+
+    await _createExercise(
+      db,
+      id: DefaultExercises.alternatingBicepCurls,
+      name: "Alternating bicep curls",
+      type: ExerciseType.fullBody,
+      description:
+          "Starting position:\nStart standing up with dumbbells in each hand, your back straight and feet hip-width apart. Your arms should be relaxed, pointing down. Your knees should be slightly bent, your abs contracted, and your shoulders down.\n\nSteps:\n1. Bend one arm at the elbow, bringing the dumbbell up to your shoulder. Your upper arm should remain motionless during this movement.\n2. Bring the dumbbell back down until your arm is in its original relaxed position.\n3. Repeat, switching arms.",
+      descriptionLicenseInfo: myDescriptionLicense,
+      imageSlug: "exercise_bicepcurl.webp",
+      imageLicenseInfo:
+          'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["P3 W1 ex6 Bicep Curls"](https://www.youtube.com/watch?v=N-nJ3ZMzTzg) by ["Nick Korderas"](https://www.youtube.com/channel/UCcf215MCeKPhNEzVlIjjp-w) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+    );
+
+    const levatorDescription =
+        "Starting position:\nStart standing up or sitting down. Turn your head in one direction, around 45 degrees or just above your nipple. Place your futher hand behind your back or sit on it. Take your closer hand and use it to hold the back of your head. Lead your head down slightly.\n\nSteps:\n1. After assuming the starting position, press your head against your hand with slight force. Your hand should press back with equal force, so that your head doesn't move. Hold this position.";
+    const levatorImageLicense =
+        'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["How to stretch your Levator Scapulae"](https://www.youtube.com/watch?v=Yu4DiooIutk) by ["Spire Injury Clinic"](https://www.youtube.com/c/SpireInjuryClinic) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
+
+    await _createExercise(
+      db,
+      id: DefaultExercises.levatorScapulaeStretchL,
+      name: "Left levator scapulae stretch", //TODO TRANSLATIONS
+      type: ExerciseType.head,
+      description: levatorDescription,
+      descriptionLicenseInfo: myDescriptionLicense,
+      imageSlug: "exercise_levatorscapulaestretch.webp",
+      imageLicenseInfo: levatorImageLicense,
+    );
+
+    await _createExercise(
+      db,
+      id: DefaultExercises.levatorScapulaeStretchR,
+      flipped: true,
+      name: "Right levator scapulae stretch", //TODO TRANSLATIONS
+      type: ExerciseType.head,
+      description: levatorDescription,
+      descriptionLicenseInfo: myDescriptionLicense,
+      imageSlug: "exercise_levatorscapulaestretch.webp",
+      imageLicenseInfo: levatorImageLicense,
+    );
+
+    const neckCircleLicense =
+        'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["Neck Circles"](https://www.youtube.com/watch?v=CQlqdL8rok8) by ["Paleo University"](https://www.youtube.com/channel/UCQwF6JMwi_iZKX1DbYrYDWg/featured) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
+
+    await _createExercise(
+      db,
+      id: DefaultExercises.neckCirclesCW,
+      name: "Clockwise neck circles",
+      type: ExerciseType.head,
+      description:
+          "Starting position:\nStart sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.\n\nSteps:\nIn a slower fluid motion and with your head relaxed and not pushing in any direction:\n1. lean toward your right shoulder\n2. then bring your head back, facing up\n3. then lean toward your left shoulder\n4.and back toward the starting position.\n\nKeep repeating this as part of one slower fluid motion.",
+      descriptionLicenseInfo: myDescriptionLicense,
+      imageSlug: "exercise_neckcircles_cw.webp",
+      imageLicenseInfo: neckCircleLicense,
+    );
+
+    await _createExercise(
+      db,
+      id: DefaultExercises.neckCirclesCCW,
+      name: "Counterclockwise neck circles",
+      type: ExerciseType.head,
+      description:
+          "Starting position:\nStart sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.\n\nSteps:\nIn a slower fluid motion and with your head relaxed and not pushing in any direction:\n1. lean toward your left shoulder\n2. then bring your head back, facing up\n3. then lean toward your right shoulder\n4.and back toward the starting position.\n\nKeep repeating this as part of one slower fluid motion.",
+      descriptionLicenseInfo: myDescriptionLicense,
+      imageSlug: "exercise_neckcircles_ccw.webp",
+      imageLicenseInfo: neckCircleLicense,
+    );
   }
 
   Future<void> _createWorkoutFromList(
     Database db,
     String workoutName,
     WorkoutCategory category,
-    List<int> _exercises,
+    List<int> exercises,
   ) async {
     int workoutId = await _createWorkout(
         db,
@@ -866,16 +989,16 @@ class DBHelper {
         _DEFAULT_COUNTDOWN_DURATION,
         _DEFAULT_EXERCISE_DURATION,
         _DEFAULT_BREAK_DURATION,
-        WorkoutType.DEFAULT,
+        WorkoutType.bundled,
         category);
 
-    for (int i = 0; i < _exercises.length; i++) {
+    for (int i = 0; i < exercises.length; i++) {
       int workoutOrder = i + 1;
       await _createWorkoutExercise(db,
           workoutId: workoutId,
-          workoutType: WorkoutType.DEFAULT,
+          workoutType: WorkoutType.bundled,
           order: workoutOrder,
-          exerciseId: _exercises[i]);
+          exerciseId: exercises[i]);
     }
   }
 
@@ -883,7 +1006,7 @@ class DBHelper {
     Database db,
     String workoutName,
     WorkoutCategory category,
-    List<TimingDefinition> _exerciseIDsAndDurations,
+    List<TimingDefinition> exerciseIDsAndDurations,
   ) async {
     int workoutId = await _createWorkout(
         db,
@@ -891,15 +1014,15 @@ class DBHelper {
         _DEFAULT_COUNTDOWN_DURATION,
         _DEFAULT_EXERCISE_DURATION,
         _DEFAULT_BREAK_DURATION,
-        WorkoutType.DEFAULT,
+        WorkoutType.bundled,
         category);
 
-    for (int i = 0; i < _exerciseIDsAndDurations.length; i++) {
+    for (int i = 0; i < exerciseIDsAndDurations.length; i++) {
       int workoutOrder = i + 1;
-      final durDefinition = _exerciseIDsAndDurations[i];
+      final durDefinition = exerciseIDsAndDurations[i];
       await _createWorkoutExercise(db,
           workoutId: workoutId,
-          workoutType: WorkoutType.DEFAULT,
+          workoutType: WorkoutType.bundled,
           order: workoutOrder,
           duration: durDefinition.exerciseDuration,
           breakBeforeDuration: durDefinition.breakDuration,
@@ -926,9 +1049,7 @@ class DBHelper {
   }
 
   Future<Database> get database async {
-    if (_database == null) {
-      _database = await _createDB();
-    }
+    _database ??= await _createDB();
 
     return _database!;
   }
@@ -942,15 +1063,15 @@ class DBHelper {
   Future<int> _createExercise(Database db,
       {required String name,
       required String description,
+      required int id,
       bool flipped = false,
       bool animated = false,
       required String imageSlug,
-      ExerciseType type = ExerciseType.FULL_BODY,
+      ExerciseType type = ExerciseType.fullBody,
       required String descriptionLicenseInfo,
       required String imageLicenseInfo,
       int? category}) async {
-    final table = _EXERCISE_TABLE;
-    int id = await _getNextId(db, table, _ID_COL);
+    const table = _EXERCISE_TABLE;
 
     await db.insert(table, <String, dynamic>{
       _ID_COL: id,
@@ -958,7 +1079,7 @@ class DBHelper {
       _DESCRIPTION_COL: description,
       _TYPE_COL: type.index,
       _FLIPPED_COL: flipped ? 1 : 0,
-      _HAS_STEPS_COL: 0,
+      // _HAS_STEPS_COL: 0,
       _IMAGE_SLUG_COL: imageSlug,
       _IMAGE_LICENSE_INFO_COL: imageLicenseInfo,
       _DESC_LICENSE_INFO_COL: descriptionLicenseInfo,
@@ -969,47 +1090,47 @@ class DBHelper {
     return id;
   }
 
-  Future<int> _createExerciseWithSteps(Database db,
-      {required String name,
-      required String description,
-      bool flipped = false,
-      bool animated = false,
-      required String descriptionLicenseInfo,
-      required String imageSlug,
-      ExerciseType type = ExerciseType.FULL_BODY,
-      required String imageLicenseInfo,
-      int? category,
-      required List<ExerciseStep> steps}) async {
-    final table = _EXERCISE_TABLE;
-    int id = await _getNextId(db, table, _ID_COL);
+  // Future<int> _createExerciseWithSteps(Database db,
+  //     {required int id,
+  //     required String name,
+  //     required String description,
+  //     bool flipped = false,
+  //     bool animated = false,
+  //     required String descriptionLicenseInfo,
+  //     required String imageSlug,
+  //     ExerciseType type = ExerciseType.FULL_BODY,
+  //     required String imageLicenseInfo,
+  //     int? category,
+  //     required List<ExerciseStep> steps}) async {
+  //   final table = _EXERCISE_TABLE;
 
-    await db.insert(table, <String, dynamic>{
-      _ID_COL: id,
-      _NAME_COL: name,
-      _DESCRIPTION_COL: description,
-      _TYPE_COL: type.index,
-      _FLIPPED_COL: flipped ? 1 : 0,
-      _HAS_STEPS_COL: 1,
-      _IMAGE_SLUG_COL: imageSlug,
-      _IMAGE_LICENSE_INFO_COL: imageLicenseInfo,
-      _DESC_LICENSE_INFO_COL: descriptionLicenseInfo,
-      _ANIMATED_COL: animated ? 1 : 0,
-      _CATEGORY_COL: category
-    });
+  //   await db.insert(table, <String, dynamic>{
+  //     _ID_COL: id,
+  //     _NAME_COL: name,
+  //     _DESCRIPTION_COL: description,
+  //     _TYPE_COL: type.index,
+  //     _FLIPPED_COL: flipped ? 1 : 0,
+  //     _HAS_STEPS_COL: 1,
+  //     _IMAGE_SLUG_COL: imageSlug,
+  //     _IMAGE_LICENSE_INFO_COL: imageLicenseInfo,
+  //     _DESC_LICENSE_INFO_COL: descriptionLicenseInfo,
+  //     _ANIMATED_COL: animated ? 1 : 0,
+  //     _CATEGORY_COL: category
+  //   });
 
-    for (int i = 0; i < steps.length; i++) {
-      final step = steps[i];
-      await db.insert(_EXERCISE_STEP_TABLE, <String, dynamic>{
-        _EXERCISE_COL: id,
-        _ORDER_COL: i,
-        _IMAGE_SLUG_COL: step.imageSlug,
-        _VOICE_HINT_COL: step.voiceHint,
-        _STEP_DURATION_COL: step.duration
-      });
-    }
+  //   for (int i = 0; i < steps.length; i++) {
+  //     final step = steps[i];
+  //     await db.insert(_EXERCISE_STEP_TABLE, <String, dynamic>{
+  //       _EXERCISE_COL: id,
+  //       _ORDER_COL: i,
+  //       _IMAGE_SLUG_COL: step.imageSlug,
+  //       _VOICE_HINT_COL: step.voiceHint,
+  //       _STEP_DURATION_COL: step.duration
+  //     });
+  //   }
 
-    return id;
-  }
+  //   return id;
+  // }
 
   Future<int> createOrUpdateCustomWorkout(final Workout workout) async {
     final db = await database;
@@ -1020,16 +1141,16 @@ class DBHelper {
             workout.countdownDuration,
             workout.exerciseDuration,
             workout.breakDuration,
-            WorkoutType.CUSTOM,
+            WorkoutType.custom,
             workout.category)
         : workout.dbId!;
 
     // modify workout meta and delete original exercises if it exists
     if (workout.dbId != null) {
-      await _deleteWorkoutExercises(workoutId, WorkoutType.CUSTOM);
+      await _deleteWorkoutExercises(workoutId, WorkoutType.custom);
       await _modifyWorkout(
           workoutId,
-          WorkoutType.CUSTOM,
+          WorkoutType.custom,
           workout.title,
           workout.exerciseDuration,
           workout.breakDuration,
@@ -1042,7 +1163,7 @@ class DBHelper {
       final we = workout.workoutExercises[i];
       await _createWorkoutExercise(db,
           workoutId: workoutId,
-          workoutType: WorkoutType.CUSTOM,
+          workoutType: WorkoutType.custom,
           order: i + 1,
           exerciseId: we.exercise.dbId,
           duration: we.duration,
@@ -1053,12 +1174,12 @@ class DBHelper {
   }
 
   Future<void> deleteCustomWorkout(int workoutId) async {
-    await _deleteWorkoutExercises(workoutId, WorkoutType.CUSTOM);
+    await _deleteWorkoutExercises(workoutId, WorkoutType.custom);
 
     final db = await database;
     await db.delete(_WORKOUT_TABLE,
         where: "$_ID_COL = ? AND $_TYPE_COL = ?",
-        whereArgs: <int>[workoutId, WorkoutType.CUSTOM.index]);
+        whereArgs: <int>[workoutId, WorkoutType.custom.index]);
   }
 
   Future<void> _modifyWorkout(
@@ -1085,7 +1206,7 @@ class DBHelper {
 
   Future<void> _removeLegWorkoutCategory(Database db) async {
     await db.update(_WORKOUT_TABLE,
-        <String, int>{_CATEGORY_COL: WorkoutCategory.STRENGTH.index},
+        <String, int>{_CATEGORY_COL: WorkoutCategory.strength.index},
         where: "$_CATEGORY_COL = 1");
   }
 
@@ -1099,9 +1220,9 @@ class DBHelper {
 
   Future<void> _deleteDefaultWorkouts(Database db) async {
     await db.delete(_WORKOUT_EXERCISE_TABLE,
-        where: "$_WORKOUT_TYPE_COL = ${WorkoutType.DEFAULT.index}");
+        where: "$_WORKOUT_TYPE_COL = ${WorkoutType.bundled.index}");
     await db.delete(_WORKOUT_TABLE,
-        where: "$_TYPE_COL = ${WorkoutType.DEFAULT.index}");
+        where: "$_TYPE_COL = ${WorkoutType.bundled.index}");
   }
 
   Future<int> _createWorkout(
@@ -1112,7 +1233,7 @@ class DBHelper {
       int breakDuration,
       WorkoutType type,
       WorkoutCategory category) async {
-    final table = _WORKOUT_TABLE;
+    const table = _WORKOUT_TABLE;
     int id = await _getNextId(db, table, _ID_COL);
 
     await db.insert(table, <String, dynamic>{
@@ -1130,7 +1251,7 @@ class DBHelper {
 
   Future<void> _createWorkoutExercise(Database db,
       {required int workoutId,
-      WorkoutType workoutType = WorkoutType.DEFAULT,
+      WorkoutType workoutType = WorkoutType.bundled,
       required int order,
       required int exerciseId,
       int? duration,
@@ -1145,34 +1266,38 @@ class DBHelper {
     });
   }
 
-  Future<List<ExerciseStep>?> _getExerciseSteps(
-      Database db, int exerciseId) async {
-    final res = await db.query(_EXERCISE_STEP_TABLE,
-        where: "$_EXERCISE_COL = ?",
-        whereArgs: <int>[exerciseId],
-        orderBy: _ORDER_COL);
-    return res
-        .map((e) => ExerciseStep(
-            imageSlug: e[_IMAGE_SLUG_COL] as String?,
-            duration: e[_STEP_DURATION_COL] as int,
-            voiceHint: e[_VOICE_HINT_COL] as String?))
-        .toList();
-  }
+  // Future<List<ExerciseStep>?> _getExerciseSteps(
+  //     Database db, int exerciseId) async {
+  //   final res = await db.query(_EXERCISE_STEP_TABLE,
+  //       where: "$_EXERCISE_COL = ?",
+  //       whereArgs: <int>[exerciseId],
+  //       orderBy: _ORDER_COL);
+  //   return res
+  //       .map((e) => ExerciseStep(
+  //           imageSlug: e[_IMAGE_SLUG_COL] as String?,
+  //           duration: e[_STEP_DURATION_COL] as int,
+  //           voiceHint: e[_VOICE_HINT_COL] as String?))
+  //       .toList();
+  // }
 
   Exercise _getExerciseFromMap(
-      Database db, Map map, List<ExerciseStep>? steps) {
+    Database db,
+    Map map,
+    // List<ExerciseStep>? steps
+  ) {
     final exerciseId = map[_ID_COL] as int;
     return Exercise(
-        dbId: exerciseId,
-        name: map[_NAME_COL] as String,
-        description: map[_DESCRIPTION_COL] as String,
-        flipped: map[_FLIPPED_COL] == 1,
-        type: ExerciseType.values[map[_TYPE_COL] as int? ?? 0],
-        imageSlug: map[_IMAGE_SLUG_COL] as String,
-        imageLicense: map[_IMAGE_LICENSE_INFO_COL] as String?,
-        descriptionLicense: map[_DESC_LICENSE_INFO_COL] as String?,
-        animated: map[_ANIMATED_COL] == 1,
-        steps: steps);
+      dbId: exerciseId,
+      name: map[_NAME_COL] as String,
+      description: map[_DESCRIPTION_COL] as String,
+      flipped: map[_FLIPPED_COL] == 1,
+      type: ExerciseType.values[map[_TYPE_COL] as int? ?? 0],
+      imageSlug: map[_IMAGE_SLUG_COL] as String,
+      imageLicense: map[_IMAGE_LICENSE_INFO_COL] as String?,
+      descriptionLicense: map[_DESC_LICENSE_INFO_COL] as String?,
+      animated: map[_ANIMATED_COL] == 1,
+      // steps: steps
+    );
   }
 
   Future<List<Exercise>> queryExercises() async {
@@ -1184,11 +1309,13 @@ class DBHelper {
 
     final list = List<Exercise>.empty(growable: true);
     for (final map in res) {
-      final exerciseId = map[_ID_COL] as int;
-      final steps = map[_HAS_STEPS_COL] as int == 1
-          ? await _getExerciseSteps(db, exerciseId)
-          : null;
-      list.add(_getExerciseFromMap(db, map, steps));
+      // final exerciseId = map[_ID_COL] as int;
+      // final steps = map[_HAS_STEPS_COL] as int == 1
+      //     ? await _getExerciseSteps(db, exerciseId)
+      //     : null;
+      list.add(_getExerciseFromMap(
+        db, map, //null /* steps*/
+      ));
     }
 
     return list;
@@ -1260,15 +1387,19 @@ class DBHelper {
 
     if (res.isEmpty) return null;
 
-    final steps = res.first[_HAS_STEPS_COL] as int == 1
-        ? await _getExerciseSteps(db, exerciseId)
-        : null;
-    return _getExerciseFromMap(db, res.first, steps);
+    // final steps = res.first[_HAS_STEPS_COL] as int == 1
+    //     ? await _getExerciseSteps(db, exerciseId)
+    //     : null;
+    return _getExerciseFromMap(
+      db, res.first,
+      //null /*steps*/
+    );
   }
 
   static int getCurExerciseId(int exerciseId, int databaseVersion) {
-    if (databaseVersion > DATABASE_VERSION)
+    if (databaseVersion > DATABASE_VERSION) {
       throw Exception(OUTDATED_DB_EXCEPTION);
+    }
 
     return exerciseId;
   }
@@ -1318,7 +1449,7 @@ class DBHelper {
 
     final duplicate = Workout(
         dbId: null,
-        type: WorkoutType.CUSTOM,
+        type: WorkoutType.custom,
         title: orig.title,
         workoutExercises: orig.workoutExercises,
         breakDuration: orig.breakDuration,
