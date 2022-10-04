@@ -29,29 +29,35 @@ import 'audio_helper.dart';
 
 class SoundView implements WorkoutView {
   //todo should this whole thing be static? TTS as well?
-  static const SOUND_EXERCISE = "sound_exercise.mp3";
-  static const SOUND_BREAK = "sound_break.mp3";
-  static const SOUND_FINISH = "sound_finish.mp3";
-  static const SOUND_TICK =
-      "sound_tick.mp3"; // todo use ogg, or debug how tinny it sounds
-  static final AudioCache _player = AudioCache();
+  static final _soundExercise = AssetSource("sound_exercise.mp3");
+  static final _soundBreak = AssetSource("sound_break.mp3");
+  static final _soundFinish = AssetSource("sound_finish.mp3");
+  static final _soundTick = AssetSource(
+      "sound_tick.mp3"); // todo use ogg, or debug how tinny it sounds
+  static final AudioPlayer _player = AudioPlayer();
+
+  SoundView() {
+    // if (Platform.isAndroid) _player.setPlayerMode(PlayerMode.lowLatency); //todo don't set until this bug is fixed: https://github.com/bluefireteam/audioplayers/issues/1193
+  }
 
   @override
   void onBreak(
       int exercisePos, WorkoutExercise nextExercise, int defaultBreakDuration) {
-    _player.play(SOUND_BREAK, mode: PlayerMode.LOW_LATENCY);
+    _player.play(_soundBreak);
   }
 
   @override
   void onCount(int seconds, _) {
-    if (seconds <= AudioHelper.COUNTDOWN)
-      _player.play(SOUND_TICK, mode: PlayerMode.LOW_LATENCY);
+    if (seconds <= AudioHelper.countdown) {
+      _player.play(_soundTick);
+      _player.stop(); //todo this is temporary, due to bug
+    }
   }
 
   @override
   void onExercise(int exercisePos, WorkoutExercise exercise,
       ExerciseStep? firstStep, int defaultExerciseDuration) {
-    _player.play(SOUND_EXERCISE, mode: PlayerMode.LOW_LATENCY);
+    _player.play(_soundExercise);
     //todo handle step
   }
 
@@ -66,13 +72,12 @@ class SoundView implements WorkoutView {
       int defaultBreakDuration) {}
 
   void onFinish() {
-    _player.play(SOUND_FINISH, mode: PlayerMode.LOW_LATENCY);
+    _player.play(_soundFinish);
   }
 
   @override
   void onLaterStep(int stepPos, ExerciseStep step) {
-    if (step.voiceHint != null)
-      _player.play(SOUND_TICK, mode: PlayerMode.LOW_LATENCY);
+    if (step.voiceHint != null) _player.play(_soundTick);
   }
 
   @override

@@ -23,16 +23,16 @@ dependencies:
   flutter_mailer: ^2.0.1
   image_picker: ^0.8.5
   shared_preferences: ^2.0.13
-  audioplayers: ^0.20.1
-  flutter_local_notifications: ^9.4.0
+  audioplayers: ^1.0.1
+  flutter_local_notifications: ^9.4.0 # ^11.0.0
   flutter_native_timezone: ^2.0.0
   url_launcher: ^6.0.20
   adaptive_theme: ^3.0.0
-  package_info_plus: ^1.4.2
+  package_info_plus: ^1.4.3
   auto_size_text: ^3.0.0
   flutter_markdown: ^0.6.10
   flutter_staggered_animations: ^1.0.0
-  file_picker: ^4.6.0
+  file_picker: ^5.2.0
   share_plus: ^4.0.4
   date_format: ^2.0.6
   # provider: ^6.0.3
@@ -61,6 +61,7 @@ dev_dependencies:
 
   drift_dev: ^1.6.0
   build_runner: ^2.1.10
+  flutter_lints: ^2.0.1
 
 # flutter_icons: //todo add ic_launcher_background and ic_launcher_foreground on Android
 #   # image_path: "assets/icon_generic.png"
