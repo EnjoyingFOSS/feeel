@@ -20,8 +20,6 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'dart:io';
-
 import 'package:feeel/components/illustration_widget.dart';
 import 'package:feeel/screens/workout_detail/components/body_exercise_content.dart';
 import 'package:feeel/screens/workout_detail/components/head_exercise_content.dart';

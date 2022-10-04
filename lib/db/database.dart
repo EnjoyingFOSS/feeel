@@ -33,7 +33,6 @@ import 'package:path/path.dart' as p;
 import '../enums/workout_type.dart';
 import 'default_exercises.dart';
 import 'editable_workout.dart';
-import 'full_exercise.dart';
 import 'full_workout.dart';
 
 part 'database.g.dart';
@@ -134,13 +133,13 @@ class WorkoutExerciseRecords extends Table {
   WorkoutExerciseRecords
 ])
 class FeeelDB extends _$FeeelDB {
-  static const int DATABASE_VERSION = 21;
-  static const String DB_FILENAME = "feeel2.db"; //todo this is temporary
+  static const int _databaseVersion = 21;
+  static const String _dbFilename = "feeel2.db"; //todo this is temporary
 
   FeeelDB() : super(_openConnection());
 
   @override
-  int get schemaVersion => DATABASE_VERSION;
+  int get schemaVersion => _databaseVersion;
 
   @override
   MigrationStrategy get migration {
@@ -165,8 +164,8 @@ class FeeelDB extends _$FeeelDB {
               ..where((w) => w.type.equals(WorkoutType.bundled.dbValue)))
             .get();
 
-        final currentWorkoutExerciseTableName = 'workout_exercises';
-        final pre21WorkoutExerciseTableName = 'workoutExercises';
+        const currentWorkoutExerciseTableName = 'workout_exercises';
+        const pre21WorkoutExerciseTableName = 'workoutExercises';
 
         if (from < 21) {
           await customStatement(
@@ -363,7 +362,7 @@ class FeeelDB extends _$FeeelDB {
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final documentsDirectory = await getApplicationDocumentsDirectory();
-    final sqlFile = File(p.join(documentsDirectory.path, FeeelDB.DB_FILENAME));
+    final sqlFile = File(p.join(documentsDirectory.path, FeeelDB._dbFilename));
     return NativeDatabase(sqlFile);
   });
 }

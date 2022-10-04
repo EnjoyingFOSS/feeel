@@ -35,6 +35,7 @@ import 'theming/feeel_themes.dart';
 // import 'package:window_size/window_size.dart';
 
 void main() {
+  // todo think about implementing auto-update: https://pub.dev/packages/auto_update, https://github.com/GrapheneOS/Camera/issues/227#issuecomment-1132208894
   // debugRepaintRainbowEnabled = true; //todo debug
   runApp(const Feeel());
 }
