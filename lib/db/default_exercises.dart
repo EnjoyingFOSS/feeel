@@ -69,7 +69,8 @@ class DefaultExercises {
       shoulderShrug = 43,
       chinTuck = 44,
       headTurns = 45,
-      backNeckStretch = 46, // todo double-check numbers from here onward
+      backNeckStretch =
+          46, // todo double-check numbers from here onward + check which exercises are used
       lateralNeckStretchL = 47,
       lateralNeckStretchR = 48,
       frontNeckStretch = 49,
@@ -77,9 +78,11 @@ class DefaultExercises {
       backAndLateralNeckStretchR = 51,
       chinTuckWithFlexionWithRotation = 52,
       alternatingBicepCurls = 53,
-      levatorScapulaeStretch = 54,
-      neckCirclesCW = 55,
-      neckCirclesCCW = 56; //todo left and right here?
+      levatorScapulaeStretchL = 54,
+      levatorScapulaeStretchR = 55,
+      neckCirclesCW = 56,
+      neckCirclesCCW = 57,
+      neckHalfCircles = 58;
 
   static const myDescLicense =
       "English description by Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).";

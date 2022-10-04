@@ -975,6 +975,18 @@ class DBHelper {
       imageSlug: "exercise_neckcircles_ccw.webp",
       imageLicenseInfo: neckCircleLicense,
     );
+
+    await _createExercise(
+      db,
+      id: DefaultExercises.neckHalfCircles,
+      name: "Neck half circles",
+      type: ExerciseType.head,
+      description:
+          "Starting position:\nStart sitting or standing. Lean your head against one of your shoulders, but don't push.\n\nSteps:\nIn one slower fluid motion and with your head relaxed and not pushing in any direction:\n1. bring your head down toward your chest\n2. then lean back aganst your other shoulder\n3. then back toward the chest again\n4.and finally toward the starting position.\n\nKeep repeating this.",
+      descriptionLicenseInfo: myDescriptionLicense,
+      imageSlug: "exercise_neckhalfcircles.webp",
+      imageLicenseInfo: neckCircleLicense,
+    );
   }
 
   Future<void> _createWorkoutFromList(
