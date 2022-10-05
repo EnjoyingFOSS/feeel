@@ -22,14 +22,15 @@
 
 import 'dart:io';
 
+import 'package:feeel/db/database.dart';
 import 'package:feeel/db/db_helper.dart';
-import 'package:feeel/models/view/exercise.dart';
 import 'package:feeel/screens/exercise_creator/exercise_creator.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ExercisePickerScreen extends StatefulWidget {
@@ -51,7 +52,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
 
   @override
   void initState() {
-    _future = DBHelper.db.queryExercises();
+    _future = Provider.of<FeeelDB>(context, listen: false).queryAllExercises;
     super.initState();
   }
 

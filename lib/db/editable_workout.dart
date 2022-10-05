@@ -20,9 +20,11 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/editable_workout_exercise.dart';
+import 'package:feeel/db/full_workout.dart';
+
 import '../enums/workout_category.dart';
 import '../enums/workout_type.dart';
-import 'editable_workout_exercise.dart';
 
 class EditableWorkout {
   late final List<EditableWorkoutExercise> workoutExercises;
@@ -32,9 +34,7 @@ class EditableWorkout {
   int exerciseDuration;
   int breakDuration;
   WorkoutCategory category;
-  WorkoutType type = WorkoutType.custom;
-  late int _duration;
-  int get duration => _duration;
+  WorkoutType type;
 
   EditableWorkout(
       {this.dbId,
@@ -43,15 +43,34 @@ class EditableWorkout {
       this.category = WorkoutCategory.strength,
       this.countdownDuration = 5,
       this.breakDuration = 10,
-      this.exerciseDuration = 30}) {
+      this.exerciseDuration = 30,
+      this.type = WorkoutType.custom}) {
     workoutExercises = initialWorkoutExercises ??
         List<EditableWorkoutExercise>.empty(growable: true);
-    _duration = (workoutExercises.isNotEmpty)
+  }
+
+  int getDuration() {
+    int duration = (workoutExercises.isNotEmpty)
         ? workoutExercises[0].exerciseDuration ?? exerciseDuration
         : 0;
     for (var i = 1; i < workoutExercises.length; i++) {
-      _duration += workoutExercises[i].exerciseDuration ?? exerciseDuration;
-      _duration += workoutExercises[i].breakDuration ?? breakDuration;
+      duration += workoutExercises[i].exerciseDuration ?? exerciseDuration;
+      duration += workoutExercises[i].breakDuration ?? breakDuration;
     }
+    return duration;
+  }
+
+  static EditableWorkout fromWorkout(FullWorkout fullWorkout) {
+    return EditableWorkout(
+        dbId: fullWorkout.workout.id,
+        title: fullWorkout.workout.title,
+        initialWorkoutExercises: fullWorkout.workoutExercises.map((we) {
+          return EditableWorkoutExercise.fromWorkoutExercise(we);
+        }).toList(),
+        countdownDuration: fullWorkout.workout.countdownDuration,
+        breakDuration: fullWorkout.workout.breakDuration,
+        exerciseDuration: fullWorkout.workout.exerciseDuration,
+        category: WorkoutCategory.fromDBValue(fullWorkout.workout.category),
+        type: WorkoutType.fromDBValue(fullWorkout.workout.type));
   }
 }

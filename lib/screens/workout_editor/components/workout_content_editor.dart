@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/editable_workout_exercise.dart';
 import 'package:feeel/models/editor/editor_workout_exercise.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -29,7 +30,7 @@ import 'exercise_editor_row.dart';
 class WorkoutContentEditor extends StatelessWidget {
   final Widget header;
   final Widget subheader;
-  final List<EditorWorkoutExercise> workoutExercises;
+  final List<EditableWorkoutExercise> workoutExercises;
   final Function(int) onRemove;
   final Function(int, int) onReorder;
 
@@ -56,10 +57,10 @@ class WorkoutContentEditor extends StatelessWidget {
               buildDefaultDragHandles: false,
               padding: const EdgeInsets.only(bottom: 32),
               itemBuilder: (context, i) {
-                final editableExercise = workoutExercises[i];
+                final editableWorkoutExercise = workoutExercises[i];
                 return ExerciseEditorRow(
-                    key: editableExercise.key,
-                    workoutExercise: editableExercise.exercise,
+                    key: editableWorkoutExercise.key,
+                    editableWorkoutExercise: editableWorkoutExercise,
                     trailing: Row(children: [
                       IconButton(
                           icon: const Icon(Icons.delete),

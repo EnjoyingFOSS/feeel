@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/models/view/workout_exercise.dart';
+import 'package:feeel/db/database.dart';
 import 'package:flutter/foundation.dart';
 
 class EditorWorkoutExercise {

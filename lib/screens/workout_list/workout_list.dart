@@ -156,18 +156,20 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                                   workout,
                                   trailing: PopupMenuButton(
                                     itemBuilder: (context) {
-                                      return workout.type == WorkoutType.custom
+                                      return WorkoutType.fromDBValue(
+                                                  workout.type) ==
+                                              WorkoutType.custom
                                           ? [
-                                              // PopupMenuItem<String>(
-                                              //     value: _menuEdit,
-                                              //     child: Text("Edit".i18n)),
+                                              PopupMenuItem<String>(
+                                                  value: _menuEdit,
+                                                  child: Text("Edit".i18n)),
                                               PopupMenuItem<String>(
                                                   value: _menuDelete,
                                                   child: Text("Delete".i18n)),
-                                              // PopupMenuItem<String>(
-                                              //     value: _menuDuplicate,
-                                              //     child:
-                                              //         Text("Duplicate".i18n)),
+                                              PopupMenuItem<String>(
+                                                  value: _menuDuplicate,
+                                                  child:
+                                                      Text("Duplicate".i18n)),
                                             ]
                                           : [
                                               PopupMenuItem<String>(
@@ -181,12 +183,12 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                                         case _menuDelete:
                                           _onDeleteCustom(workout);
                                           break;
-                                        // todo case _menuEdit:
-                                        //   _onEditCustom(workout);
-                                        //   break;
-                                        // todo case _menuDuplicate:
-                                        //   _onDuplicate(workout);
-                                        //   break;
+                                        case _menuEdit:
+                                          _onEditCustom(workout);
+                                          break;
+                                        case _menuDuplicate:
+                                          _onDuplicate(workout);
+                                          break;
                                       }
                                     },
                                   ),
@@ -206,33 +208,35 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
 
   void _onDeleteCustom(Workout workoutListed) {
     // todo allow an undo !!!
-    Provider.of<FeeelDB>(context).deleteWorkout(workoutListed.id).then((_) {
+    Provider.of<FeeelDB>(context, listen: false)
+        .deleteWorkout(workoutListed.id)
+        .then((_) {
       setState(() {}); //todo is this needed?
     });
   }
 
-  // TODO void _onEditCustom(Workout workoutListed) {
-  //   Navigator.push<void>(
-  //       context,
-  //       MaterialPageRoute(
-  //           builder: (context) => WorkoutEditorScreen(
-  //                 workoutListed: workoutListed,
-  //               ))).then((_) {
-  //     setState(() {}); //todo is this needed?
-  //   });
-  // }
+  void _onEditCustom(Workout workoutListed) {
+    Navigator.push<void>(
+        context,
+        MaterialPageRoute(
+            builder: (context) => WorkoutEditorScreen(
+                  workout: workoutListed,
+                ))).then((_) {
+      setState(() {}); //todo is this needed?
+    });
+  }
 
-  // TODO void _onDuplicate(Workout origListed) async {
-  //   final navigator = Navigator.of(context);
-  //   final newListed = await Provider.of<FeeelDB>(context)
-  //       .duplicateWorkout(origListed.id, origListed.type);
-  //   navigator
-  //       .push<void>(MaterialPageRoute(
-  //           builder: (context) => WorkoutEditorScreen(
-  //                 workoutListed: newListed,
-  //               )))
-  //       .then((_) {
-  //     setState(() {}); //todo is this needed?
-  //   });
-  // }
+  void _onDuplicate(Workout origListed) async {
+    // TODO final navigator = Navigator.of(context);
+    // final newListed = await Provider.of<FeeelDB>(context, listen: false)
+    //     .duplicateWorkout(origListed.id, origListed.type);
+    // navigator
+    //     .push<void>(MaterialPageRoute(
+    //         builder: (context) => WorkoutEditorScreen(
+    //               workout: newListed,
+    //             )))
+    //     .then((_) {
+    //   setState(() {}); //todo is this needed?
+    // });
+  }
 }

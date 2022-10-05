@@ -21,52 +21,64 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
+import 'package:feeel/db/editable_workout_exercise.dart';
+import 'package:feeel/utils/local_exercise_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
 import '../../../components/flipped.dart';
+import '../../../db/database.dart';
 
 class ExerciseEditorRow extends StatelessWidget {
-  final WorkoutExercise workoutExercise;
+  final EditableWorkoutExercise editableWorkoutExercise;
   final Widget trailing;
   final Widget? handle;
 
   const ExerciseEditorRow(
       {Key? key,
-      required this.workoutExercise,
+      required this.editableWorkoutExercise,
       required this.trailing,
       this.handle})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var imageSlug = workoutExercise.exercise.imageSlug;
-    return Row(children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: imageSlug == null
-            ? Container()
-            : workoutExercise.exercise.flipped
-                ? Flipped(
-                    child: Image.asset(AssetHelper.getThumb(imageSlug),
-                        width: 72, height: 72))
-                : Image.asset(AssetHelper.getThumb(imageSlug),
-                    width: 72, height: 72),
-      ),
-      Expanded(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Text(
-          workoutExercise.exercise.name.i18n,
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-      )),
-      trailing,
-      handle ??
-          Container(
-            width: 16,
-          )
-    ]);
+    return FutureBuilder(
+        future: LocalExerciseCache.getExercise(
+            context, editableWorkoutExercise.exerciseId),
+        builder: (_, snapshot) {
+          if (snapshot.hasData) {
+            Exercise exercise = snapshot.data as Exercise;
+            final imageSlug = exercise.imageSlug;
+            return Row(children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: imageSlug == null
+                    ? Container()
+                    : exercise.flipped
+                        ? Flipped(
+                            child: Image.asset(AssetHelper.getThumb(imageSlug),
+                                width: 72, height: 72))
+                        : Image.asset(AssetHelper.getThumb(imageSlug),
+                            width: 72, height: 72),
+              ),
+              Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  exercise.name.i18n,
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              )),
+              trailing,
+              handle ??
+                  Container(
+                    width: 16,
+                  )
+            ]);
+          } else {
+            return const CircularProgressIndicator();
+          }
+        });
   }
 }

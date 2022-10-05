@@ -24,12 +24,14 @@ import 'package:feeel/db/default_exercises.dart';
 import 'package:feeel/db/editable_workout.dart';
 import 'package:feeel/db/editable_workout_exercise.dart';
 import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/enums/workout_type.dart';
 
 class DefaultWorkouts {
   //todo test if everything is the same as before
   static final defaultEditableWorkouts = [
     EditableWorkout(
         dbId: null,
+        type: WorkoutType.bundled,
         title: "Scientific 7 minute workout",
         initialWorkoutExercises: [
           EditableWorkoutExercise(exerciseId: DefaultExercises.jumpingJacks),
@@ -56,6 +58,7 @@ class DefaultWorkouts {
         category: WorkoutCategory.strength),
     EditableWorkout(
         dbId: null,
+        type: WorkoutType.bundled,
         title: "Leg workout",
         initialWorkoutExercises: [
           EditableWorkoutExercise(exerciseId: DefaultExercises.splitSquatsL),

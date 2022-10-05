@@ -20,27 +20,24 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/database.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
-class EditableWorkoutExercise {
-  bool exerciseInitialized = false;
+import '../db/database.dart';
 
-  final Key? key;
-  final int exerciseId;
-  int? exerciseDuration;
-  int? breakDuration;
+class LocalExerciseCache {
+  static Map<int, Exercise>? _exerciseCache;
 
-  EditableWorkoutExercise(
-      {required this.exerciseId,
-      this.exerciseDuration,
-      this.breakDuration,
-      this.key});
+  static Future<void> initExercises(BuildContext context) async {
+    final allExercises =
+        await Provider.of<FeeelDB>(context, listen: false).queryAllExercises;
+    _exerciseCache = <int, Exercise>{for (final e in allExercises) e.id: e};
+  }
 
-  static EditableWorkoutExercise fromWorkoutExercise(WorkoutExercise we) =>
-      EditableWorkoutExercise(
-          exerciseId: we.exercise,
-          exerciseDuration: we.exerciseDuration,
-          breakDuration: we.breakDuration,
-          key: UniqueKey());
+  static Future<Exercise> getExercise(BuildContext context, int id) async {
+    if (_exerciseCache == null) {
+      await initExercises(context);
+    }
+    return _exerciseCache![id]!;
+  }
 }

@@ -20,10 +20,10 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/database.dart';
+import 'package:feeel/db/full_workout.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:flutter/widgets.dart';
 import 'editor_workout_exercise.dart';
 
@@ -48,41 +48,32 @@ class EditableWorkout {
       required this.category,
       required this.type});
 
-  static List<EditorWorkoutExercise> getEditableWorkoutExercises(
+  static List<EditorWorkoutExercise> _getEditableWorkoutExercises(
           List<WorkoutExercise> exercises) =>
       List.generate(exercises.length,
           (index) => EditorWorkoutExercise(exercises[index], UniqueKey()),
           growable: true);
 
-  static EditableWorkout fromWorkout(Workout workout) => EditableWorkout(
-      dbId: workout.dbId,
-      title: workout.title,
-      workoutExercises: getEditableWorkoutExercises(workout.workoutExercises),
-      countdownDuration: workout.countdownDuration,
-      breakDuration: workout.breakDuration,
-      exerciseDuration: workout.exerciseDuration,
-      category: workout.category,
-      type: workout.type);
-
-  Workout toWorkout() => Workout(
-      dbId: dbId,
-      title: title,
-      workoutExercises: List.generate(
-          workoutExercises.length, (i) => workoutExercises[i].exercise),
-      countdownDuration: countdownDuration,
-      breakDuration: breakDuration,
-      exerciseDuration: exerciseDuration,
-      category: category,
-      type: type);
+  static EditableWorkout fromWorkout(FullWorkout fullWorkout) =>
+      EditableWorkout(
+          dbId: fullWorkout.workout.id,
+          title: fullWorkout.workout.title,
+          workoutExercises:
+              _getEditableWorkoutExercises(fullWorkout.workoutExercises),
+          countdownDuration: fullWorkout.workout.countdownDuration,
+          breakDuration: fullWorkout.workout.breakDuration,
+          exerciseDuration: fullWorkout.workout.exerciseDuration,
+          category: WorkoutCategory.fromDBValue(fullWorkout.workout.category),
+          type: WorkoutType.fromDBValue(fullWorkout.workout.type));
 
   int getDuration() {
     int duration = (workoutExercises.isNotEmpty)
-        ? workoutExercises[0].exercise.duration ?? exerciseDuration
+        ? workoutExercises[0].exercise.exerciseDuration ?? exerciseDuration
         : 0;
-    for (var i = 1; i < workoutExercises.length; i++) {
-      duration += workoutExercises[i].exercise.duration ?? exerciseDuration;
+    for (int i = 1; i < workoutExercises.length; i++) {
       duration +=
-          workoutExercises[i].exercise.breakBeforeDuration ?? breakDuration;
+          workoutExercises[i].exercise.exerciseDuration ?? exerciseDuration;
+      duration += workoutExercises[i].exercise.breakDuration ?? breakDuration;
     }
     return duration;
   }

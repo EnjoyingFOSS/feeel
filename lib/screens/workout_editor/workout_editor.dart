@@ -20,14 +20,11 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/db_helper.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/db/editable_workout.dart';
+import 'package:feeel/db/editable_workout_exercise.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/editor/editable_workout.dart';
-import 'package:feeel/models/editor/editor_workout_exercise.dart';
-import 'package:feeel/models/view/exercise.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
-import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/screens/exercise_picker/exercise_picker.dart';
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_shade.dart';
@@ -41,11 +38,12 @@ import 'package:feeel/screens/workout_editor/components/workout_timing_editor.da
 
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:provider/provider.dart';
 
 class WorkoutEditorScreen extends StatefulWidget {
-  final WorkoutListed? workoutListed;
+  final Workout? workout;
 
-  const WorkoutEditorScreen({Key? key, this.workoutListed}) : super(key: key);
+  const WorkoutEditorScreen({Key? key, this.workout}) : super(key: key);
 
   @override
   State<WorkoutEditorScreen> createState() {
@@ -67,11 +65,12 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
 
   @override
   void initState() {
-    _colorSwatch =
-        widget.workoutListed?.category.colorSwatch ?? FeeelColors.blue;
-    if (widget.workoutListed == null) {
+    if (widget.workout == null) {
+      _colorSwatch = FeeelColors.blue;
       _future = Future.value(_getDefaultEditableWorkout());
     } else {
+      _colorSwatch =
+          WorkoutCategory.fromDBValue(widget.workout!.category).colorSwatch;
       _future = _queryEditableWorkout();
     }
     super.initState();
@@ -80,7 +79,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   EditableWorkout _getDefaultEditableWorkout() {
     return EditableWorkout(
         type: WorkoutType.custom,
-        workoutExercises: List<EditorWorkoutExercise>.empty(growable: true),
+        initialWorkoutExercises:
+            List<EditableWorkoutExercise>.empty(growable: true),
         countdownDuration: _defaultCountodwnDuration,
         breakDuration: _defaultBreakDuration,
         exerciseDuration: _defaultExerciseDuration,
@@ -88,10 +88,10 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   }
 
   Future<EditableWorkout> _queryEditableWorkout() async {
-    final workout = await DBHelper.db
-        .queryWorkout(widget.workoutListed!.dbId, widget.workoutListed!.type);
-    if (workout != null) {
-      return EditableWorkout.fromWorkout(workout);
+    if (widget.workout != null) {
+      final fullWorkout = await Provider.of<FeeelDB>(context, listen: false)
+          .queryFullWorkout(widget.workout!);
+      return EditableWorkout.fromWorkout(fullWorkout);
     } else {
       return _getDefaultEditableWorkout();
     }
@@ -300,9 +300,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                         form.validate() &&
                         _editableWorkout != null) {
                       form.save();
-                      DBHelper.db
-                          .createOrUpdateCustomWorkout(
-                              _editableWorkout!.toWorkout())
+                      Provider.of<FeeelDB>(context, listen: false)
+                          .createOrUpdateWorkout(_editableWorkout!)
                           .then((_) {
                         Navigator.pop(context);
                       });
@@ -322,9 +321,10 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
     setState(() {
       if (exercises != null) {
         _editableWorkout?.workoutExercises.addAll(
-            exercises.map((Exercise e) => EditorWorkoutExercise(
-                WorkoutExercise(exercise: e),
-                UniqueKey())) // todo make sure list works with zero exercise
+            exercises.map((Exercise e) => EditableWorkoutExercise(
+                exerciseId: e.id,
+                key:
+                    UniqueKey())) // todo make sure list works with zero exercise
             );
       }
     });

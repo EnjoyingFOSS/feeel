@@ -131,7 +131,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
       widget.workoutController.togglePlayPause();
     }
     if (_paused) {
-      ExerciseSheet.showSheet(context, exercise, widget.colorSwatch);
+      // TODO !!! !!! !!! ExerciseSheet.showSheet(context, exercise, widget.colorSwatch);
     }
   }
 

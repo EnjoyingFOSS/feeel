@@ -46,31 +46,32 @@ class WorkoutExerciseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var imageSlug = workoutExercise.exercise.imageSlug;
     return InkWell(
-        child: Row(children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 8,
-              right: 8,
-              bottom: 8,
-            ),
-            child: imageSlug == null
-                ? Container()
-                : workoutExercise.exercise.flipped
-                    ? Flipped(
-                        child: Image.asset(AssetHelper.getThumb(imageSlug),
-                            width: 64, height: 64))
-                    : Image.asset(AssetHelper.getThumb(imageSlug),
-                        width: 64, height: 64),
+      child: Row(children: [
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 8,
+            right: 8,
+            bottom: 8,
           ),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              workoutExercise.exercise.name.i18n,
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            Text(DurationUtil.getDurationShortform(duration))
-          ])
-        ]),
-        onTap: () => ExerciseSheet.showSheet(
-            context, workoutExercise.exercise, colorSwatch));
+          child: imageSlug == null
+              ? Container()
+              : workoutExercise.exercise.flipped
+                  ? Flipped(
+                      child: Image.asset(AssetHelper.getThumb(imageSlug),
+                          width: 64, height: 64))
+                  : Image.asset(AssetHelper.getThumb(imageSlug),
+                      width: 64, height: 64),
+        ),
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            workoutExercise.exercise.name.i18n,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+          Text(DurationUtil.getDurationShortform(duration))
+        ])
+      ]),
+      // TODO !!! !!! !!! onTap: () => ExerciseSheet.showSheet(
+      //     context, workoutExercise.exercise, colorSwatch)
+    );
   }
 }

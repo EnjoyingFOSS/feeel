@@ -21,6 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/illustration_widget.dart';
+import 'package:feeel/db/database.dart';
 import 'package:feeel/screens/workout_detail/components/body_exercise_content.dart';
 import 'package:feeel/screens/workout_detail/components/head_exercise_content.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../db/asset_helper.dart';
 import '../enums/exercise_type.dart';
-import '../models/view/exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 
 import '../theming/feeel_shade.dart';
@@ -81,7 +81,7 @@ class ExerciseSheet extends StatelessWidget {
                 a: TextStyle(
                     color: licenseColor, decoration: TextDecoration.underline));
 
-        final hasDescriptionLicense = exercise.descriptionLicense != null;
+        final hasDescriptionLicense = exercise.descLicense != null;
         final hasImageLicense = exercise.imageLicense != null;
 
         return CustomScrollView(
@@ -152,7 +152,7 @@ class ExerciseSheet extends StatelessWidget {
                           height: 8,
                         ),
                         Text(
-                          exercise.description.i18n,
+                          exercise.description?.i18n ?? "",
                           style: const TextStyle(color: fgColor),
                         ),
                         Container(
@@ -193,7 +193,7 @@ class ExerciseSheet extends StatelessWidget {
                           ),
                         if (hasDescriptionLicense)
                           MarkdownBody(
-                              data: exercise.descriptionLicense ?? "",
+                              data: exercise.descLicense ?? "",
                               styleSheet: markdownLicenseStyle,
                               onTapLink: (text, url, title) =>
                                   _onTapLink(context, text, url, title)),

@@ -133,7 +133,7 @@ class WorkoutExerciseRecords extends Table {
   WorkoutExerciseRecords
 ])
 class FeeelDB extends _$FeeelDB {
-  static const int _databaseVersion = 21;
+  static const int _databaseVersion = 23;
   static const String _dbFilename = "feeel2.db"; //todo this is temporary
 
   FeeelDB() : super(_openConnection());
@@ -172,12 +172,14 @@ class FeeelDB extends _$FeeelDB {
               "DELETE FROM $pre21WorkoutExerciseTableName WHERE 'workoutType' = 0");
         } else {
           for (final dw in defaultWorkouts) {
-            await delete(workoutExercises)
-              ..where((we) => we.workoutId.equals(dw.id));
+            await (delete(workoutExercises)
+                  ..where((we) => we.workoutId.equals(dw.id)))
+                .go();
           }
         }
-        await delete(workouts)
-          ..where((w) => w.type.equals(WorkoutType.bundled.dbValue));
+        await (delete(workouts)
+              ..where((w) => w.type.equals(WorkoutType.bundled.dbValue)))
+            .go();
 
         // add new default workouts
         if (from < 21) {
@@ -302,45 +304,49 @@ class FeeelDB extends _$FeeelDB {
   Future<void> createOrUpdateWorkout(final EditableWorkout ew) async {
     //todo double-check everything; ideally go by categories - R, C, U, D
     if (ew.dbId != null) {
-      await delete(workoutExercises)
-        ..where((we) => we.workoutId.equals(ew.dbId));
+      await (delete(workoutExercises)
+            ..where((we) => we.workoutId.equals(ew.dbId)))
+          .go();
     }
 
-    final rowid = await into(workouts).insertOnConflictUpdate(WorkoutsCompanion(
-        id: ew.dbId != null ? Value(ew.dbId!) : const Value<int>.absent(),
-        type: Value(ew.type.dbValue),
-        title: Value(ew.title),
-        category: Value(ew.category.dbValue),
-        countdownDuration: Value(ew.countdownDuration),
-        exerciseDuration: Value(ew.exerciseDuration),
-        breakDuration: Value(ew.breakDuration)));
+    final createdRowId = await into(workouts).insertOnConflictUpdate(
+        WorkoutsCompanion(
+            id: ew.dbId != null ? Value(ew.dbId!) : const Value<int>.absent(),
+            type: Value(ew.type.dbValue),
+            title: Value(ew.title),
+            category: Value(ew.category.dbValue),
+            countdownDuration: Value(ew.countdownDuration),
+            exerciseDuration: Value(ew.exerciseDuration),
+            breakDuration: Value(ew.breakDuration)));
 
     final insertedItem = await (select(workouts)
-          ..where((w) => w.rowId.equals(rowid)))
-        .getSingle(); //todo is there a better way to get the inserted id?
+          ..where((w) => (ew.dbId != null)
+              ? w.id.equals(ew.dbId)
+              : w.rowId.equals(createdRowId)))
+        .getSingle();
 
-    final wes = ew.workoutExercises;
+    final ewes = ew.workoutExercises;
     await batch((batch) {
       batch.insertAll(
           workoutExercises,
-          List.generate(wes.length, (i) {
-            final we = wes[i];
+          List.generate(ewes.length, (i) {
+            final ewe = ewes[i];
             return WorkoutExercisesCompanion(
                 workoutId: Value(insertedItem.id),
                 orderPosition: Value(i),
-                exercise: Value(we.exerciseId),
-                exerciseDuration: Value(we.exerciseDuration),
-                breakDuration: Value(we.breakDuration));
+                exercise: Value(ewe.exerciseId),
+                exerciseDuration: Value(ewe.exerciseDuration),
+                breakDuration: Value(ewe.breakDuration));
           }, growable: false));
     });
   }
 
   Future<void> deleteWorkout(int workoutId) async {
-    await delete(workoutExercises)
-      ..where((we) => we.workoutId.equals(workoutId));
-    await delete(workouts)
-      ..where((w) => w.id.equals(
-          workoutId)); //todo what if I passed in workout and just ran delete on that workout?
+    await (delete(workoutExercises)
+          ..where((we) => we.workoutId.equals(workoutId)))
+        .go();
+    await (delete(workouts)..where((w) => w.id.equals(workoutId)))
+        .go(); //todo what if I passed in workout and just ran delete on that workout?
   }
 
   Future<void> _deteleDefaultWorkouts() async {
@@ -350,12 +356,13 @@ class FeeelDB extends _$FeeelDB {
         .get();
 
     for (final workout in defaults) {
-      await delete(workoutExercises)
-        ..where((we) => we.workoutId.equals(workout.id));
+      await (delete(workoutExercises)
+            ..where((we) => we.workoutId.equals(workout.id)))
+          .go();
     }
 
-    await delete(workouts)
-      ..where((w) => w.type.equals(workoutTypeValue));
+    await (delete(workouts)..where((w) => w.type.equals(workoutTypeValue)))
+        .go();
   }
 }
 
