@@ -29,7 +29,7 @@ import '../enums/workout_type.dart';
 class EditableWorkout {
   late final List<EditableWorkoutExercise> workoutExercises;
   String title;
-  final int? dbId;
+  int? dbId;
   int countdownDuration;
   int exerciseDuration;
   int breakDuration;

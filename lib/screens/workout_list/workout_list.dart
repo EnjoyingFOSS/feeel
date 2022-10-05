@@ -22,6 +22,7 @@
 
 import 'package:feeel/components/disclaimer_sheet.dart';
 import 'package:feeel/db/database.dart';
+import 'package:feeel/db/editable_workout.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/settings/settings.dart';
 import 'package:feeel/screens/workout_editor/workout_editor.dart';
@@ -74,7 +75,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
           onPressed: () {
             Navigator.push<void>(context,
                 MaterialPageRoute(builder: (BuildContext context) {
-              return const WorkoutEditorScreen();
+              return WorkoutEditorScreen();
             })).then((_) {
               setState(() {});
             });
@@ -215,28 +216,35 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
     });
   }
 
-  void _onEditCustom(Workout workoutListed) {
-    Navigator.push<void>(
-        context,
-        MaterialPageRoute(
+  void _onEditCustom(Workout workout) async {
+    final navigator = Navigator.of(context);
+    final fullWorkout = await Provider.of<FeeelDB>(context, listen: false)
+        .queryFullWorkout(workout);
+    navigator
+        .push<void>(MaterialPageRoute(
             builder: (context) => WorkoutEditorScreen(
-                  workout: workoutListed,
-                ))).then((_) {
+                  editableWorkout: EditableWorkout.fromWorkout(fullWorkout),
+                )))
+        .then((_) {
       setState(() {}); //todo is this needed?
     });
   }
 
-  void _onDuplicate(Workout origListed) async {
-    // TODO final navigator = Navigator.of(context);
-    // final newListed = await Provider.of<FeeelDB>(context, listen: false)
-    //     .duplicateWorkout(origListed.id, origListed.type);
-    // navigator
-    //     .push<void>(MaterialPageRoute(
-    //         builder: (context) => WorkoutEditorScreen(
-    //               workout: newListed,
-    //             )))
-    //     .then((_) {
-    //   setState(() {}); //todo is this needed?
-    // });
+  void _onDuplicate(Workout origWorkout) async {
+    final navigator = Navigator.of(context);
+    final origFullWorkout = await Provider.of<FeeelDB>(context, listen: false)
+        .queryFullWorkout(origWorkout);
+    final editableCopy = EditableWorkout.fromWorkout(origFullWorkout);
+    editableCopy.dbId = null;
+    editableCopy.type = WorkoutType.custom;
+
+    navigator
+        .push<void>(MaterialPageRoute(
+            builder: (context) => WorkoutEditorScreen(
+                  editableWorkout: editableCopy,
+                )))
+        .then((_) {
+      setState(() {}); //todo is this needed?
+    });
   }
 }
