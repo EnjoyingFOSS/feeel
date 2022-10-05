@@ -22,7 +22,7 @@
 
 import 'package:feeel/components/exercise_sheet.dart';
 import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
+import 'package:feeel/db/database.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/duration_util.dart';
 import 'package:flutter/material.dart';
@@ -31,47 +31,45 @@ import 'package:feeel/i18n/translations.dart';
 import '../../../components/flipped.dart';
 
 class WorkoutExerciseItem extends StatelessWidget {
-  final WorkoutExercise workoutExercise;
+  final Exercise exercise;
   final FeeelSwatch colorSwatch;
   final int duration;
 
   const WorkoutExerciseItem(
       {Key? key,
-      required this.workoutExercise,
+      required this.exercise,
       required this.duration,
       required this.colorSwatch})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var imageSlug = workoutExercise.exercise.imageSlug;
+    var imageSlug = exercise.imageSlug;
     return InkWell(
-      child: Row(children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 8,
-            right: 8,
-            bottom: 8,
+        child: Row(children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 8,
+              right: 8,
+              bottom: 8,
+            ),
+            child: imageSlug == null
+                ? Container()
+                : exercise.flipped
+                    ? Flipped(
+                        child: Image.asset(AssetHelper.getThumb(imageSlug),
+                            width: 64, height: 64))
+                    : Image.asset(AssetHelper.getThumb(imageSlug),
+                        width: 64, height: 64),
           ),
-          child: imageSlug == null
-              ? Container()
-              : workoutExercise.exercise.flipped
-                  ? Flipped(
-                      child: Image.asset(AssetHelper.getThumb(imageSlug),
-                          width: 64, height: 64))
-                  : Image.asset(AssetHelper.getThumb(imageSlug),
-                      width: 64, height: 64),
-        ),
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            workoutExercise.exercise.name.i18n,
-            style: Theme.of(context).textTheme.bodyText1,
-          ),
-          Text(DurationUtil.getDurationShortform(duration))
-        ])
-      ]),
-      // TODO !!! !!! !!! onTap: () => ExerciseSheet.showSheet(
-      //     context, workoutExercise.exercise, colorSwatch)
-    );
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              exercise.name.i18n,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+            Text(DurationUtil.getDurationShortform(duration))
+          ])
+        ]),
+        onTap: () => ExerciseSheet.showSheet(context, exercise, colorSwatch));
   }
 }

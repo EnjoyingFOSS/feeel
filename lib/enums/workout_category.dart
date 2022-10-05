@@ -35,6 +35,7 @@ enum WorkoutCategory {
   const WorkoutCategory(this.dbValue, this.translationKey, this.colorSwatch);
 
   static WorkoutCategory fromDBValue(int dbValue) {
+    //todo use map
     switch (dbValue) {
       case 0:
         return WorkoutCategory.strength;

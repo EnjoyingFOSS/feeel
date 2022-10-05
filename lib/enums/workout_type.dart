@@ -28,6 +28,7 @@ enum WorkoutType {
   const WorkoutType(this.dbValue);
 
   static WorkoutType fromDBValue(int dbValue) {
+    //todo use map
     switch (dbValue) {
       case 0:
         return WorkoutType.bundled;

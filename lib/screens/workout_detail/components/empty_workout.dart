@@ -20,17 +20,17 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/full_workout.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
 import '../../../db/db_helper.dart';
 import '../../../enums/workout_type.dart';
-import '../../../models/view/workout.dart';
 
 class EmptyWorkout extends StatelessWidget {
-  final Workout workout;
+  final FullWorkout fullWorkout;
 
-  const EmptyWorkout({Key? key, required this.workout}) : super(key: key);
+  const EmptyWorkout({Key? key, required this.fullWorkout}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +52,12 @@ class EmptyWorkout extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            if (workout.type == WorkoutType.custom)
+            if (fullWorkout.type == WorkoutType.custom)
               ElevatedButton(
                 child: Text("Delete this workout".i18n),
                 onPressed: () {
-                  if (workout.dbId != null) {
-                    DBHelper.db.deleteCustomWorkout(workout.dbId!);
-                    Navigator.pop(context);
-                  }
+                  DBHelper.db.deleteCustomWorkout(fullWorkout.workout.id);
+                  Navigator.pop(context);
                 },
               )
           ],

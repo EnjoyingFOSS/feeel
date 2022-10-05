@@ -195,9 +195,9 @@ class FeeelDB extends _$FeeelDB {
               .get();
           for (final cw in customWorkouts) {
             await customStatement(
-                "INSERT INTO $currentWorkoutExerciseTableName(workout_id, order_position, exercise, exercise_duration, break_duration) " +
-                    "SELECT workoutId, orderCol, exercise, exerciseDuration, breakDuration " +
-                    "FROM $pre21WorkoutExerciseTableName WHERE 'workoutId' = ${cw.id}");
+                "INSERT INTO $currentWorkoutExerciseTableName(workout_id, order_position, exercise, exercise_duration, break_duration) "
+                "SELECT workoutId, orderCol, exercise, exerciseDuration, breakDuration "
+                "FROM $pre21WorkoutExerciseTableName WHERE 'workoutId' = ${cw.id}");
           }
 
           await customStatement(

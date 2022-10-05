@@ -23,7 +23,6 @@
 import 'dart:io';
 
 import 'package:feeel/db/database.dart';
-import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/screens/exercise_creator/exercise_creator.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';

@@ -20,25 +20,26 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/database.dart';
+import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/triangle.dart';
 import '../../../enums/workout_type.dart';
-import '../../../models/view/workout_listed.dart';
 import '../../../theming/feeel_shade.dart';
 import '../../../utils/duration_util.dart';
 import '../../../utils/hero_util.dart';
 
 class WorkoutHeader extends StatelessWidget {
-  final WorkoutListed workoutListed;
+  final Workout workout;
   final FeeelSwatch colorSwatch;
   final int? workoutDuration;
 
   const WorkoutHeader(
       {Key? key,
-      required this.workoutListed,
+      required this.workout,
       required this.colorSwatch,
       this.workoutDuration})
       : super(key: key);
@@ -46,11 +47,13 @@ class WorkoutHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final title = workoutListed.title;
+    final title = workout.title;
     final fgColor =
         colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
-    final String translatedCategory =
-        workoutListed.category.translationKey.i18n;
+    final workoutCategory = WorkoutCategory.fromDBValue(workout.category);
+    final workoutType = WorkoutType.fromDBValue(workout.category);
+
+    final String translatedCategory = workoutCategory.translationKey.i18n;
     return Stack(children: [
       Positioned.directional(
           textDirection: Directionality.of(context),
@@ -58,8 +61,8 @@ class WorkoutHeader extends StatelessWidget {
           width: 208,
           height: 208,
           child: Hero(
-              tag: HeroUtil.getWorkoutHero(HeroType.illustration,
-                  workoutListed.dbId, workoutListed.type),
+              tag: HeroUtil.getWorkoutHero(
+                  HeroType.illustration, workout.id, workoutType),
               child: Triangle(
                   color: colorSwatch.getColorByBrightness(
                       FeeelShade.lightest, theme.brightness),
@@ -81,14 +84,14 @@ class WorkoutHeader extends StatelessWidget {
                   alignment: AlignmentDirectional.bottomStart,
                   child: Hero(
                     tag: HeroUtil.getWorkoutHero(
-                        HeroType.title, workoutListed.dbId, workoutListed.type),
+                        HeroType.title, workout.id, workoutType),
                     child: Material(
                         //todo workaround for https://github.com/flutter/flutter/issues/30647
                         type: MaterialType.transparency,
                         child: Text(
-                            workoutListed.type == WorkoutType.bundled
-                                ? workoutListed.title.i18n
-                                : workoutListed.title,
+                            workout.type == WorkoutType.bundled.dbValue
+                                ? workout.title.i18n
+                                : workout.title,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             style: theme.appBarTheme.titleTextStyle
@@ -101,8 +104,8 @@ class WorkoutHeader extends StatelessWidget {
                 Row(
                   children: [
                     Hero(
-                      tag: HeroUtil.getWorkoutHero(HeroType.subtitle,
-                          workoutListed.dbId, workoutListed.type),
+                      tag: HeroUtil.getWorkoutHero(
+                          HeroType.subtitle, workout.id, workoutType),
                       child: Text(translatedCategory,
                           style: theme.textTheme.subtitle2?.copyWith(
                               fontWeight: FontWeight.bold,

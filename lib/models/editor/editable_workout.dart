@@ -63,8 +63,8 @@ class EditableWorkout {
           countdownDuration: fullWorkout.workout.countdownDuration,
           breakDuration: fullWorkout.workout.breakDuration,
           exerciseDuration: fullWorkout.workout.exerciseDuration,
-          category: WorkoutCategory.fromDBValue(fullWorkout.workout.category),
-          type: WorkoutType.fromDBValue(fullWorkout.workout.type));
+          category: fullWorkout.category,
+          type: fullWorkout.type);
 
   int getDuration() {
     int duration = (workoutExercises.isNotEmpty)

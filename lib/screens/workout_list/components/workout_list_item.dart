@@ -52,12 +52,12 @@ class WorkoutListItem extends StatelessWidget {
         color: theme.backgroundColor,
         child: // Row(children: [
             InkWell(
-                // TODO onTap: () {
-                //   Navigator.push<void>(context,
-                //       MaterialPageRoute(builder: (BuildContext context) {
-                //     return WorkoutDetailScreen(workoutListed: workout);
-                //   }));
-                // },
+                onTap: () {
+                  Navigator.push<void>(context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                    return WorkoutDetailScreen(workout: workout);
+                  }));
+                },
                 child: SizedBox(
                     height: WorkoutListItem.extent,
                     width: double.infinity,

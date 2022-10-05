@@ -157,9 +157,8 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                                   workout,
                                   trailing: PopupMenuButton(
                                     itemBuilder: (context) {
-                                      return WorkoutType.fromDBValue(
-                                                  workout.type) ==
-                                              WorkoutType.custom
+                                      return workout.type ==
+                                              WorkoutType.custom.dbValue
                                           ? [
                                               PopupMenuItem<String>(
                                                   value: _menuEdit,

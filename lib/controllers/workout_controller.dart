@@ -27,11 +27,11 @@ import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
 import 'package:feeel/controllers/workout_view.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/db/full_workout.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/enums/workout_stage.dart';
 // import 'package:feeel/models/view/exercise_step.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,27 +41,29 @@ class WorkoutMeta {
   static const _startDuration =
       5; //todo get rid of countdown duration in the database
   static const _countdownDuration = 3;
-  final Workout _workout;
+  final FullWorkout _fullWorkout;
   int _exercisePos = 0;
   int _stepPos = 0;
   int? timerRestore;
 
-  WorkoutMeta(this._workout);
+  WorkoutMeta(this._fullWorkout);
 
   int getExercisePos() => _exercisePos;
 
   int getStepPos() => _stepPos;
 
   int getStartDuration() =>
-      getCurWorkoutExercise().breakBeforeDuration ?? _startDuration;
+      _getCurWorkoutExercise().breakDuration ?? _startDuration;
 
   int getCountdownDuration() => _countdownDuration;
 
   int getCurBreakDuration() =>
-      getCurWorkoutExercise().breakBeforeDuration ?? _workout.breakDuration;
+      _getCurWorkoutExercise().breakDuration ??
+      _fullWorkout.workout.breakDuration;
 
   int getCurExerciseDuration() =>
-      getCurWorkoutExercise().duration ?? _workout.exerciseDuration;
+      _getCurWorkoutExercise().exerciseDuration ??
+      _fullWorkout.workout.exerciseDuration;
 
   // List<int>? getCurStepDurations() => getCurWorkoutExercise()
   //     .exercise
@@ -88,12 +90,15 @@ class WorkoutMeta {
   //   }
   // }
 
-  bool isLastExercise() => _exercisePos == _workout.workoutExercises.length - 1;
+  bool isLastExercise() =>
+      _exercisePos == _fullWorkout.workoutExercises.length - 1;
 
   bool isFirstExercise() => _exercisePos == 0;
 
-  WorkoutExercise getCurWorkoutExercise() =>
-      _workout.workoutExercises[_exercisePos];
+  Exercise getCurExercise() => _fullWorkout.exercises[_exercisePos];
+
+  WorkoutExercise _getCurWorkoutExercise() =>
+      _fullWorkout.workoutExercises[_exercisePos];
 
   // ExerciseStep? getCurStep() =>
   //     getCurWorkoutExercise().exercise.steps?[_stepPos];
@@ -108,7 +113,7 @@ class WorkoutController {
   late WorkoutTimer _timer; //todo init timer
   late WorkoutMeta _workoutMeta;
 
-  WorkoutController(Workout workout) {
+  WorkoutController(FullWorkout workout) {
     if (workout.workoutExercises.isEmpty) {
       throw Exception("Workout must have length > 0");
     }
@@ -278,10 +283,8 @@ class WorkoutController {
     switch (_stage) {
       case WorkoutStage.ready:
         for (final view in _views) {
-          view?.onStart(
-              _workoutMeta.getExercisePos(),
-              _workoutMeta.getCurWorkoutExercise(),
-              _workoutMeta.getStartDuration());
+          view?.onStart(_workoutMeta.getExercisePos(),
+              _workoutMeta.getCurExercise(), _workoutMeta.getStartDuration());
         }
         break;
       case WorkoutStage.countdown:
@@ -293,7 +296,7 @@ class WorkoutController {
         for (final view in _views) {
           view?.onExercise(
               _workoutMeta.getExercisePos(),
-              _workoutMeta.getCurWorkoutExercise(),
+              _workoutMeta.getCurExercise(),
               null, //_workoutMeta.getCurStep(),
               _workoutMeta.getCurExerciseDuration());
         }
@@ -302,7 +305,7 @@ class WorkoutController {
         for (final view in _views) {
           view?.onBreak(
               _workoutMeta.getExercisePos(),
-              _workoutMeta.getCurWorkoutExercise(),
+              _workoutMeta.getCurExercise(),
               _workoutMeta.getCurBreakDuration());
         }
         break;

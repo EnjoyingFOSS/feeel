@@ -66,7 +66,7 @@ class ExerciseSheet extends StatelessWidget {
       snapSizes: const [0.75, 1.0],
       builder: (BuildContext context, ScrollController scrollController) {
         final imageSlug = exercise.imageSlug; //todo reset image slug on display
-        final headOnly = exercise.type == ExerciseType.head;
+        final headOnly = exercise.type == ExerciseType.head.dbValue;
 
         final brightness = Theme.of(context).brightness;
         const fgColor = Colors.white;

@@ -22,10 +22,11 @@
 
 import 'dart:io';
 
-import 'package:feeel/db/db_helper.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/models/view/workout_listed.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/db/full_workout.dart';
+import 'package:feeel/enums/workout_category.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'components/empty_workout.dart';
@@ -33,9 +34,9 @@ import 'components/workout_header.dart';
 import 'components/workout_pager.dart';
 
 class WorkoutDetailScreen extends StatefulWidget {
-  final WorkoutListed workoutListed;
+  final Workout workout;
 
-  const WorkoutDetailScreen({Key? key, required this.workoutListed})
+  const WorkoutDetailScreen({Key? key, required this.workout})
       : super(key: key);
 
   @override
@@ -45,18 +46,19 @@ class WorkoutDetailScreen extends StatefulWidget {
 }
 
 class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
-  late Future<Workout?> _future;
+  late Future<FullWorkout> _future;
 
   @override
   void initState() {
     super.initState();
-    _future = DBHelper.db
-        .queryWorkout(widget.workoutListed.dbId, widget.workoutListed.type);
+    _future = Provider.of<FeeelDB>(context, listen: false)
+        .queryFullWorkout(widget.workout);
   }
 
   @override
   Widget build(BuildContext context) {
-    final colorSwatch = widget.workoutListed.category.colorSwatch;
+    final colorSwatch =
+        WorkoutCategory.fromDBValue(widget.workout.category).colorSwatch;
     return WillPopScope(
         onWillPop: () async {
           if (!Platform.isLinux) {
@@ -65,24 +67,22 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
           return true;
         },
         child: Scaffold(
-            body: FutureBuilder<Workout?>(
+            body: FutureBuilder<FullWorkout>(
                 future: _future,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    Workout workout = snapshot.data!;
-                    if (workout.workoutExercises.isNotEmpty) {
+                    final fullWorkout = snapshot.data!;
+                    if (fullWorkout.workoutExercises.isNotEmpty) {
                       return WorkoutPager(
-                        workout: workout,
-                        workoutListed: widget.workoutListed,
+                        fullWorkout: fullWorkout,
                       );
                     } else {
                       return SafeArea(
                           child: Column(children: [
                         //todo make scrollable (for landscape)
                         WorkoutHeader(
-                            workoutListed: widget.workoutListed,
-                            colorSwatch: colorSwatch),
-                        Flexible(child: EmptyWorkout(workout: workout))
+                            workout: widget.workout, colorSwatch: colorSwatch),
+                        Flexible(child: EmptyWorkout(fullWorkout: fullWorkout))
                       ]));
                     }
                   } else {
@@ -90,7 +90,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                         child: Column(children: [
                       //todo make scrollable (for landscape)
                       WorkoutHeader(
-                        workoutListed: widget.workoutListed,
+                        workout: widget.workout,
                         colorSwatch: colorSwatch,
                       ),
                       const Flexible(

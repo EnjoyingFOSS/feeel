@@ -22,8 +22,7 @@
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:feeel/controllers/workout_view.dart';
-import 'package:feeel/models/view/exercise_step.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
+import 'package:feeel/db/database.dart';
 
 import 'audio_helper.dart';
 
@@ -42,7 +41,7 @@ class SoundView implements WorkoutView {
 
   @override
   void onBreak(
-      int exercisePos, WorkoutExercise nextExercise, int defaultBreakDuration) {
+      int exercisePos, Exercise nextExercise, int defaultBreakDuration) {
     _player.play(_soundBreak);
   }
 
@@ -55,8 +54,8 @@ class SoundView implements WorkoutView {
   }
 
   @override
-  void onExercise(int exercisePos, WorkoutExercise exercise,
-      ExerciseStep? firstStep, int defaultExerciseDuration) {
+  void onExercise(int exercisePos, Exercise exercise, ExerciseStep? firstStep,
+      int defaultExerciseDuration) {
     _player.play(_soundExercise);
     //todo handle step
   }
@@ -68,17 +67,17 @@ class SoundView implements WorkoutView {
   void onPlay() {}
 
   @override
-  void onStart(int exercisePos, WorkoutExercise nextExercise,
-      int defaultBreakDuration) {}
+  void onStart(
+      int exercisePos, Exercise nextExercise, int defaultBreakDuration) {}
 
   void onFinish() {
     _player.play(_soundFinish);
   }
 
-  @override
-  void onLaterStep(int stepPos, ExerciseStep step) {
-    if (step.voiceHint != null) _player.play(_soundTick);
-  }
+  // @override
+  // void onLaterStep(int stepPos, ExerciseStep step) {
+  //   if (step.voiceHint != null) _player.play(_soundTick);
+  // }
 
   @override
   void onCountdown(int exercisePos) {}

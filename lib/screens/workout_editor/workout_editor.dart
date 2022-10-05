@@ -232,10 +232,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   onPressed: () {
                     setState(() {
                       final timingForm = _timingFormKey.currentState;
-                      if ((widget.editableWorkout != null
-                              ? widget
-                                  .editableWorkout.workoutExercises.isNotEmpty
-                              : false) &&
+                      if (widget.editableWorkout.workoutExercises.isNotEmpty &&
                           timingForm != null &&
                           timingForm.validate()) {
                         timingForm.save();
@@ -252,9 +249,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   child: const Icon(Icons.done),
                   onPressed: () {
                     final form = _formKey.currentState;
-                    if (form != null &&
-                        form.validate() &&
-                        widget.editableWorkout != null) {
+                    if (form != null && form.validate()) {
                       form.save();
                       Provider.of<FeeelDB>(context, listen: false)
                           .createOrUpdateWorkout(widget.editableWorkout)
@@ -276,7 +271,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
         ));
     setState(() {
       if (exercises != null) {
-        widget.editableWorkout?.workoutExercises.addAll(
+        widget.editableWorkout.workoutExercises.addAll(
             exercises.map((Exercise e) => EditableWorkoutExercise(
                 exerciseId: e.id,
                 key:
@@ -287,8 +282,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
   }
 
   void _adjustTimingOnPressed(BuildContext context) {
-    if (widget.editableWorkout != null &&
-        widget.editableWorkout.workoutExercises.isNotEmpty) {
+    if (widget.editableWorkout.workoutExercises.isNotEmpty) {
       setState(() {
         _editingTimeMode = true;
       });

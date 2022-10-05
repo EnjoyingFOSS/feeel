@@ -25,8 +25,8 @@ import 'dart:io';
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_page_types.dart';
 import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/models/view/workout_listed.dart';
+import 'package:feeel/db/full_workout.dart';
+import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
@@ -37,12 +37,9 @@ import 'exercise_page.dart';
 import 'finish_page.dart';
 
 class WorkoutPager extends StatefulWidget {
-  final Workout workout;
-  final WorkoutListed workoutListed;
+  final FullWorkout fullWorkout;
 
-  const WorkoutPager(
-      {Key? key, required this.workout, required this.workoutListed})
-      : super(key: key);
+  const WorkoutPager({Key? key, required this.fullWorkout}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -58,16 +55,18 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   @override
   void initState() {
     super.initState();
-    colorSwatch = widget.workout.category.colorSwatch;
-    _workoutController = WorkoutController(widget.workout);
+    colorSwatch =
+        WorkoutCategory.fromDBValue(widget.fullWorkout.workout.category)
+            .colorSwatch;
+    _workoutController = WorkoutController(widget.fullWorkout);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    if (widget.workout.workoutExercises.isNotEmpty) {
-      final imageSlug = widget.workout.workoutExercises[0].exercise.imageSlug;
+    if (widget.fullWorkout.workoutExercises.isNotEmpty) {
+      final imageSlug = widget.fullWorkout.exercises[0].imageSlug;
       if (imageSlug != null) {
         precacheImage(
             Image.asset(AssetHelper.getImage(imageSlug))
@@ -89,8 +88,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
       controller: _pageController,
       children: <Widget>[
         WorkoutCover(
-          workout: widget.workout,
-          workoutListed: widget.workoutListed,
+          fullWorkout: widget.fullWorkout,
           colorSwatch: colorSwatch,
           startWorkout: () {
             _pageController.jumpToPage(WorkoutPageTypes.exercise.index);
@@ -100,7 +98,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
         ),
         ExercisePage(
             workoutController: _workoutController,
-            workout: widget.workout,
+            fullWorkout: widget.fullWorkout,
             colorSwatch: colorSwatch),
         FinishPage(
           color: colorSwatch.getColorByBrightness(

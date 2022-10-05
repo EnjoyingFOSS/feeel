@@ -20,34 +20,31 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/models/view/workout_listed.dart';
+import 'package:feeel/db/asset_helper.dart';
+import 'package:feeel/db/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/i18n/translations.dart';
 
-import '../../../db/asset_helper.dart';
 import 'workout_exercise_list.dart';
 import 'workout_header.dart';
 
 class WorkoutCover extends StatelessWidget {
-  final Workout workout;
-  final WorkoutListed workoutListed;
+  final FullWorkout fullWorkout;
   final void Function() startWorkout;
   final FeeelSwatch colorSwatch;
 
   const WorkoutCover(
       {Key? key,
-      required this.workout,
-      required this.workoutListed,
+      required this.fullWorkout,
       required this.colorSwatch,
       required this.startWorkout})
       : super(key: key);
 
   Future<void> _precacheFirstImage(BuildContext context) async {
     //todo test
-    final imageSlug = workout.workoutExercises[0].exercise.imageSlug;
+    final imageSlug = fullWorkout.exercises[0].imageSlug;
     if (imageSlug != null) {
       precacheImage(
           Image.asset(AssetHelper.getImage(imageSlug))
@@ -65,14 +62,14 @@ class WorkoutCover extends StatelessWidget {
         slivers: <Widget>[
           SliverToBoxAdapter(
               child: WorkoutHeader(
-            workoutListed: workoutListed,
+            workout: fullWorkout.workout,
             colorSwatch: colorSwatch,
-            workoutDuration: workout.duration,
+            workoutDuration: fullWorkout.duration,
           )),
           SliverPadding(
               padding: const EdgeInsets.only(bottom: 80, top: 24),
               sliver: WorkoutExerciseList(
-                  workout: workout, colorSwatch: colorSwatch)),
+                  fullWorkout: fullWorkout, colorSwatch: colorSwatch)),
         ],
       ),
       Align(

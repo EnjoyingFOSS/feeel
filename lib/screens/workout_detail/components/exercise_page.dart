@@ -21,15 +21,13 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/exercise_sheet.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/db/full_workout.dart';
 import '../../../controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/workout_stage.dart';
-import 'package:feeel/models/view/exercise.dart';
-import 'package:feeel/models/view/exercise_step.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -37,13 +35,13 @@ import 'package:feeel/i18n/translations.dart';
 import 'exercise_layout.dart';
 
 class ExercisePage extends StatefulWidget {
-  final Workout workout;
+  final FullWorkout fullWorkout;
   final FeeelSwatch colorSwatch;
   final WorkoutController workoutController;
 
   const ExercisePage(
       {Key? key,
-      required this.workout,
+      required this.fullWorkout,
       required this.colorSwatch,
       required this.workoutController})
       : super(key: key);
@@ -66,7 +64,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   @override
   void initState() {
     widget.workoutController.setView(this);
-    _seconds = widget.workout.countdownDuration;
+    _seconds = widget.fullWorkout.workout.countdownDuration;
 
     super.initState();
   }
@@ -74,7 +72,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   @override
   Widget build(BuildContext context) {
     final exercise = _getExercise(_exercisePos);
-    final headOnly = exercise.type == ExerciseType.head;
+    final headOnly = exercise.type == ExerciseType.head.dbValue;
 
     return
         // CallbackShortcuts(
@@ -108,7 +106,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
                   togglePlayPause: () {
                     widget.workoutController.togglePlayPause();
                   },
-                  headOnly: exercise.type == ExerciseType.head,
+                  headOnly: exercise.type == ExerciseType.head.dbValue,
                   title: exercise.name.i18n,
                   onBreak: _stage == WorkoutStage.workoutBreak ||
                       _stage == WorkoutStage.countdown,
@@ -131,7 +129,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
       widget.workoutController.togglePlayPause();
     }
     if (_paused) {
-      // TODO !!! !!! !!! ExerciseSheet.showSheet(context, exercise, widget.colorSwatch);
+      ExerciseSheet.showSheet(context, exercise, widget.colorSwatch);
     }
   }
 
@@ -142,7 +140,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onStart(int exercisePos, WorkoutExercise nextExercise, int duration) {
+  void onStart(int exercisePos, _, int duration) {
     setState(() {
       _seconds = duration;
       _exercisePos = exercisePos;
@@ -151,7 +149,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onBreak(int exercisePos, WorkoutExercise nextExercise, int duration) {
+  void onBreak(int exercisePos, _, int duration) {
     setState(() {
       _seconds = duration;
       _exercisePos = exercisePos;
@@ -160,8 +158,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onExercise(int exercisePos, WorkoutExercise exercise, ExerciseStep? step,
-      int duration) {
+  void onExercise(int exercisePos, _, ExerciseStep? step, int duration) {
     setState(() {
       // if ((exercise.exercise.steps?.length ?? 0) > 1) {
       //   _preloadUpcomingStep();
@@ -176,7 +173,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     });
   }
 
-  Exercise _getExercise(int i) => widget.workout.workoutExercises[i].exercise;
+  Exercise _getExercise(int i) => widget.fullWorkout.exercises[i];
 
   // void _preloadUpcomingStep() {
   // final steps = _getExercise(_exercisePos).steps;
@@ -192,7 +189,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   // }
 
   void _preloadUpcomingExercise() {
-    if (_exercisePos + 1 < widget.workout.workoutExercises.length) {
+    if (_exercisePos + 1 < widget.fullWorkout.workoutExercises.length) {
       final nextImageSlug = _getExercise(_exercisePos + 1).imageSlug;
       if (nextImageSlug != null) {
         precacheImage(
@@ -222,12 +219,12 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     });
   }
 
-  @override
-  void onLaterStep(int stepPos, ExerciseStep step) {
-    setState(() {
-      // _stepPos = stepPos;
-    });
-  }
+  // @override
+  // void onLaterStep(int stepPos, ExerciseStep step) {
+  //   setState(() {
+  //     // _stepPos = stepPos;
+  //   });
+  // }
 
   @override
   void onCountdown(int exercisePos) {
