@@ -133,13 +133,13 @@ class WorkoutExerciseRecords extends Table {
   WorkoutExerciseRecords
 ])
 class FeeelDB extends _$FeeelDB {
-  static const int _databaseVersion = 23;
+  static const int databaseVersion = 23;
   static const String _dbFilename = "feeel2.db"; //todo this is temporary
 
   FeeelDB() : super(_openConnection());
 
   @override
-  int get schemaVersion => _databaseVersion;
+  int get schemaVersion => databaseVersion;
 
   @override
   MigrationStrategy get migration {

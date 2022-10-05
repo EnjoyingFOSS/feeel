@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/db_helper.dart';
+import 'package:feeel/db/database.dart';
 
 class JSONMetadata {
   static const _curMetadataVersion = 1;
@@ -33,7 +33,7 @@ class JSONMetadata {
 
   JSONMetadata(
       {this.metadataVersion = _curMetadataVersion,
-      this.databaseVersion = DBHelper.DATABASE_VERSION});
+      this.databaseVersion = FeeelDB.databaseVersion});
 
   static JSONMetadata fromJson(Map<String, dynamic> json) {
     return JSONMetadata(
