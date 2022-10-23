@@ -95,5 +95,7 @@
     "txtNoCustomWorkouts": "Sie haben keine benutzerdefinierten Trainings",
     "btnIunderstand": "Ich verstehe",
     "btnImportAnyway": "Trotzdem importieren",
-    "txtDisclaimer": "Die Übungen und Trainings werden von Freiwilligen zur Verfügung gestellt. Weder Feeel noch andere Freiwillige sind für die Richtigkeit der Informationen in dieser Anwendung oder für deine Gesundheit verantwortlich. Die Verwendung erfolgt nach eigenem Ermessen."
+    "txtDisclaimer": "Die Übungen und Trainings werden von Freiwilligen zur Verfügung gestellt. Weder Feeel noch andere Freiwillige sind für die Richtigkeit der Informationen in dieser Anwendung oder für deine Gesundheit verantwortlich. Die Verwendung erfolgt nach eigenem Ermessen.",
+    "txtDisclaimerHeading": "Haftungsausschluss",
+    "txtDisclaimerContent": "Die Übungen und Workouts werden von Freiwilligen zur Verfügung gestellt. Weder Feeel noch andere Freiwillige sind für die Richtigkeit der Informationen in dieser App oder für deine Gesundheit verantwortlich. Die Verwendung erfolgt nach eigenem Ermessen."
 }
