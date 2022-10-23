@@ -58,7 +58,6 @@ class DBHelper {
   static const String _WORKOUT_TABLE = 'workouts';
   static const String _EXERCISE_TABLE = 'exercises';
   static const String _WORKOUT_EXERCISE_TABLE = 'workoutExercises';
-  // static const String _EXERCISE_STEP_TABLE = 'exercise_steps';
 
   static const String _ID_COL = 'id';
   static const String _TYPE_COL = 'type';
@@ -78,9 +77,6 @@ class DBHelper {
   static const String _EXERCISE_DURATION_COL = 'exerciseDuration';
   static const String _FLIPPED_COL = 'flipped';
   static const String _ANIMATED_COL = 'animated';
-  // static const String _HAS_STEPS_COL = 'hasSteps';
-  // static const String _STEP_DURATION_COL = 'stepDuration';
-  // static const String _VOICE_HINT_COL = 'voiceHint';
 
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
@@ -166,16 +162,6 @@ class DBHelper {
       "$_CATEGORY_COL INTEGER" //todo REMOVE THIS COLUMN?
       ")");
 
-  // Future<void> _createExerciseStepsTable(Database db) async =>
-  //     await db.execute("CREATE TABLE $_EXERCISE_STEP_TABLE ("
-  //         "$_EXERCISE_COL INTEGER NOT NULL, "
-  //         "$_ORDER_COL INTEGER NOT NULL, "
-  //         "$_IMAGE_SLUG_COL TEXT, "
-  //         "$_VOICE_HINT_COL TEXT, "
-  //         "$_STEP_DURATION_COL INTEGER NOT NULL, "
-  //         "PRIMARY KEY($_EXERCISE_COL, $_ORDER_COL)"
-  //         ")");
-
   Future<void> _createWorkoutTable(Database db) async =>
       await db.execute("CREATE TABLE $_WORKOUT_TABLE ( "
           "$_ID_COL INTEGER NOT NULL, "
@@ -240,63 +226,23 @@ class DBHelper {
       ],
     );
 
-    // TODO await _createWorkoutFromList(
-    //     db, "Neck and shoulder stretches", WorkoutCategory.STRETCHING, [
-    //   DefaultExercises.CHIN_TUCK,
-    //   DefaultExercises.HEAD_TURNS,
-    //   DefaultExercises.HEAD_SIDE,
-    //   DefaultExercises.NECK_HALFCIRCLES_CW,
-    //   DefaultExercises.NECK_HALFCIRCLES_CCW,
-    //   DefaultExercises.HEAD_PUSH,
-    //   DefaultExercises.HEAD_PUSH_LEFT,
-    //   DefaultExercises.HEAD_PUSH_RIGHT,
-    //   DefaultExercises.SHOULDER_ROTATION_BW,
-    //   DefaultExercises.SHOULDER_ROTATION_FW
-    // ]);
-
-    // await _createWorkoutFromTupleList(
-    //   //todo iron out timing
-    //   db,
-    //   "Neck and shoulder stretches",
-    //   WorkoutCategory.STRETCHING,
-    //   [
-    //     //todo 15 as the default here?
-    //     TimingDefinition(DefaultExercises.CHIN_TUCK),
-    //     TimingDefinition(DefaultExercises.HEAD_TURNS),
-    //     TimingDefinition(
-    //         DefaultExercises
-    //             .BACK_NECK_STRETCH, // todo make into steps IN BOTH THIS PLACE AND NEW PLACE
-    //         exerciseDuration: 20),
-    //     TimingDefinition(
-    //         DefaultExercises.LATERAL_NECK_STRETCH_LEFT, // todo make into steps
-    //         exerciseDuration: 35),
-    //     TimingDefinition(
-    //         DefaultExercises.LATERAL_NECK_STRETCH_RIGHT, // todo make into steps
-    //         exerciseDuration: 35),
-    //     TimingDefinition(DefaultExercises.SHOULDER_SHRUG),
-    //     TimingDefinition(
-    //         DefaultExercises.FRONT_NECK_STRETCH), // todo make into steps?
-    //     TimingDefinition(
-    //         DefaultExercises
-    //             .BACK_AND_LATERAL_NECK_STRETCH_LEFT, // todo make into steps
-    //         exerciseDuration: 8),
-    //     TimingDefinition(
-    //         DefaultExercises
-    //             .BACK_AND_LATERAL_NECK_STRETCH_RIGHT, // todo make into steps
-    //         exerciseDuration: 8),
-    //     TimingDefinition(DefaultExercises.ARM_CIRCLES_FW, exerciseDuration: 15),
-    //     TimingDefinition(DefaultExercises.ARM_CIRCLES_BW,
-    //         breakDuration: 5, exerciseDuration: 15),
-    //     TimingDefinition(
-    //         DefaultExercises
-    //             .CHIN_TUCK_WITH_FLEXION_WITH_ROTATION, // todo make into steps
-    //         exerciseDuration: 18),
-    //     TimingDefinition(DefaultExercises.SHOULDER_ROTATION_FW,
-    //         exerciseDuration: 15),
-    //     TimingDefinition(DefaultExercises.SHOULDER_ROTATION_BW,
-    //         breakDuration: 5, exerciseDuration: 15),
-    //   ],
-    // );
+    await _createWorkoutFromList(
+        db,
+        "Neck and shoulder stretches",
+        WorkoutCategory.stretching,
+        [
+          DefaultExercises.chinTuck,
+          DefaultExercises.headTurns,
+          DefaultExercises.levatorScapulaeStretchL,
+          DefaultExercises.levatorScapulaeStretchR,
+          DefaultExercises.neckHalfCircles,
+          DefaultExercises.backNeckStretch,
+          DefaultExercises.lateralNeckStretchL,
+          DefaultExercises.lateralNeckStretchR,
+          DefaultExercises.shoulderRotationBW,
+          DefaultExercises.shoulderRotationFW,
+        ],
+        defaultDuration: 20);
   }
 
   Future<void> _addExercises(Database db) async {
@@ -793,76 +739,47 @@ class DBHelper {
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
-    // await _createExerciseWithSteps(db,
-    //     id: DefaultExercises.BACK_NECK_STRETCH,
-    //     name: "Back neck stretch", //todo or flexion?
-    //     type: ExerciseType.HEAD,
-    //     steps: [
-    //       ExerciseStep(
-    //           imageSlug: "exercise_neckstretch_back-1.webp",
-    //           duration: 1), //todo add images
-    //       ExerciseStep(
-    //           imageSlug: "exercise_neckstretch_back.webp", duration: 5),
-    //       ExerciseStep(duration: 5, voiceHint: "Shoulders down"),
-    //       ExerciseStep(duration: 5, voiceHint: "Push against hands"),
-    //       ExerciseStep(
-    //           imageSlug: "exercise_neckstretch_back-3.webp", duration: 1)
-    //     ],
-    //     description:
-    //         "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push upward with your head while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
-    //     imageSlug: "exercise_neckstretch_back.webp",
-    //     descriptionLicenseInfo: myDescriptionLicense,
-    //     imageLicenseInfo:
-    //         'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
+    const lateralNeckStretchDesc =
+        "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.\n2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.\n3. Turn your chin to your shoulder. Hold for 8 seconds.\n4. Release and return to starting position."; //TODO EDIT!!!
 
-    // final lateralNeckStretchDesc =
-    //     "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.\n2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.\n3. Turn your chin to your shoulder. Hold for 8 seconds.\n4. Release and return to starting position.";
+    const lateralNeckStretchImageLicense =
+        'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["How to do a Lateral Neck Stretch Chin to Shoulder"](https://www.youtube.com/watch?v=gT6_7GyUsI4) by "Heartmybody Fitness" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
 
-    // final lateralNeckStretchImageLicense =
-    //     'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["How to do a Lateral Neck Stretch Chin to Shoulder"](https://www.youtube.com/watch?v=gT6_7GyUsI4) by "Heartmybody Fitness" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
+    await _createExercise(db,
+        id: DefaultExercises.backNeckStretch, //TODO EDIT!!!
+        name: "Back neck stretch",
+        type: ExerciseType.head,
+        description:
+            "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push upward with your head while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
+        imageSlug: "exercise_neckstretch_back.webp",
+        descriptionLicenseInfo: DefaultExercises.myDescLicense,
+        imageLicenseInfo:
+            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
-    // final lateralNeckStretchSteps = [
-    //   ExerciseStep(
-    //       imageSlug: "exercise_neckstretch_lateral-1.webp", //todo add images
-    //       duration: 8), //todo add images
-    //   ExerciseStep(
-    //       voiceHint: "Gently pull",
-    //       imageSlug: "exercise_neckstretch_lateral.webp",
-    //       duration: 8),
-    //   ExerciseStep(
-    //       imageSlug: "exercise_neckstretch_lateral-3.webp",
-    //       voiceHint: "Turn",
-    //       duration: 8),
-    //   ExerciseStep(
-    //       imageSlug: "exercise_neckstretch_lateral-1.webp",
-    //       voiceHint: "Return",
-    //       duration: 1)
-    // ];
+    await _createExercise(db,
+        id: DefaultExercises.lateralNeckStretchL,
+        name: "Left neck stretch",
+        type: ExerciseType.head,
+        description: lateralNeckStretchDesc, //todo change this description!!!
+        flipped: true,
+        imageSlug:
+            "exercise_neckstretch_lateral.webp", //todo use a single image here!
+        descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
+        imageLicenseInfo: lateralNeckStretchImageLicense);
 
-    // await _createExerciseWithSteps(db,
-    //     id: DefaultExercises.LATERAL_NECK_STRETCH_LEFT,
-    //     name: "Left neck stretch",
-    //     type: ExerciseType.HEAD,
-    //     description: lateralNeckStretchDesc,
-    //     flipped: true,
-    //     imageSlug: "exercise_neckstretch_lateral.webp",
-    //     descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
-    //     imageLicenseInfo: lateralNeckStretchImageLicense,
-    //     steps: lateralNeckStretchSteps);
-
-    // await _createExerciseWithSteps(db,
-    //     id: DefaultExercises.LATERAL_NECK_STRETCH_RIGHT,
-    //     name: "Right neck stretch",
-    //     type: ExerciseType.HEAD,
-    //     description: lateralNeckStretchDesc,
-    //     imageSlug: "exercise_neckstretch_lateral.webp",
-    //     descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
-    //     imageLicenseInfo: lateralNeckStretchImageLicense,
-    //     steps: lateralNeckStretchSteps);
+    await _createExercise(db,
+        id: DefaultExercises.lateralNeckStretchR,
+        name: "Right neck stretch",
+        type: ExerciseType.head,
+        description: lateralNeckStretchDesc,
+        imageSlug:
+            "exercise_neckstretch_lateral.webp", //todo use a single image here!
+        descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
+        imageLicenseInfo: lateralNeckStretchImageLicense);
 
     await _createExercise(db,
         id: DefaultExercises.frontNeckStretch,
-        name: "Front neck stretch", //TODO STEPS?
+        name: "Front neck stretch",
         type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Open mouth wide.\n2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.\n3. Very slowly close and open your mouth.\n4. At the end, slowly return to starting position and close mouth.",
@@ -870,43 +787,6 @@ class DBHelper {
         descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
-
-    const backAndLateralNeckStretchDesc =
-        "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt head forward, chin to chest, with hands behind your head.\n2. Keeping head forward, use waist muscles to turn as far as comfortable to the left.\n3. Use hands to pull head down very slightly, controlling the stretch.\n4. Draw shoulders back and down using the muscles in your back. Hold for 5 seconds.\n5. Turn back into center position.\n6. Bring your hands to your forehead and push head upright again into normal position.";
-
-    const backAndLateralNeckStretchImageLicense =
-        'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
-
-    await _createExercise(db,
-        id: DefaultExercises.backAndLateralNeckStretchL,
-        name: "Back and left neck stretch",
-        type: ExerciseType.head,
-        flipped: true,
-        description: backAndLateralNeckStretchDesc,
-        imageSlug: "exercise_neckstretch_back,lateral.webp",
-        descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
-        imageLicenseInfo: backAndLateralNeckStretchImageLicense);
-
-    await _createExercise(db,
-        id: DefaultExercises.backAndLateralNeckStretchR,
-        name: "Back and right neck stretch",
-        type: ExerciseType.head,
-        description: backAndLateralNeckStretchDesc,
-        imageSlug: "exercise_neckstretch_back,lateral.webp",
-        descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
-        imageLicenseInfo: backAndLateralNeckStretchImageLicense);
-
-    await _createExercise(db,
-        id: DefaultExercises.chinTuckWithFlexionWithRotation,
-        name: "Chin tuck with flexion with rotation",
-        type: ExerciseType.head,
-        description:
-            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tuck your chin in, moving your head back.\n2. Tilt your head forward until you feel a stretch in the back of your neck.\n3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.\n4. Hold for 5 seconds.\n5. Rotate back, keeping your head down.\n6. Repeat from step 3, switching sides.",
-        imageSlug: "exercise_chintuck+flextion+rotation.webp",
-        descriptionLicenseInfo: DefaultExercises
-            .neckStretchDescLicense, //todo allow looping just a step range
-        imageLicenseInfo:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Suboccipital Muscle Stretch"](https://www.youtube.com/watch?v=1CIil5SIs7U) by "Connor Naccarato" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     await _createExercise(
       db,
@@ -989,17 +869,14 @@ class DBHelper {
     );
   }
 
-  Future<void> _createWorkoutFromList(
-    Database db,
-    String workoutName,
-    WorkoutCategory category,
-    List<int> exercises,
-  ) async {
+  Future<void> _createWorkoutFromList(Database db, String workoutName,
+      WorkoutCategory category, List<int> exercises,
+      {int? defaultDuration}) async {
     int workoutId = await _createWorkout(
         db,
         workoutName,
         _DEFAULT_COUNTDOWN_DURATION,
-        _DEFAULT_EXERCISE_DURATION,
+        defaultDuration ?? _DEFAULT_EXERCISE_DURATION,
         _DEFAULT_BREAK_DURATION,
         WorkoutType.bundled,
         category);
@@ -1101,48 +978,6 @@ class DBHelper {
 
     return id;
   }
-
-  // Future<int> _createExerciseWithSteps(Database db,
-  //     {required int id,
-  //     required String name,
-  //     required String description,
-  //     bool flipped = false,
-  //     bool animated = false,
-  //     required String descriptionLicenseInfo,
-  //     required String imageSlug,
-  //     ExerciseType type = ExerciseType.FULL_BODY,
-  //     required String imageLicenseInfo,
-  //     int? category,
-  //     required List<ExerciseStep> steps}) async {
-  //   final table = _EXERCISE_TABLE;
-
-  //   await db.insert(table, <String, dynamic>{
-  //     _ID_COL: id,
-  //     _NAME_COL: name,
-  //     _DESCRIPTION_COL: description,
-  //     _TYPE_COL: type.index,
-  //     _FLIPPED_COL: flipped ? 1 : 0,
-  //     _HAS_STEPS_COL: 1,
-  //     _IMAGE_SLUG_COL: imageSlug,
-  //     _IMAGE_LICENSE_INFO_COL: imageLicenseInfo,
-  //     _DESC_LICENSE_INFO_COL: descriptionLicenseInfo,
-  //     _ANIMATED_COL: animated ? 1 : 0,
-  //     _CATEGORY_COL: category
-  //   });
-
-  //   for (int i = 0; i < steps.length; i++) {
-  //     final step = steps[i];
-  //     await db.insert(_EXERCISE_STEP_TABLE, <String, dynamic>{
-  //       _EXERCISE_COL: id,
-  //       _ORDER_COL: i,
-  //       _IMAGE_SLUG_COL: step.imageSlug,
-  //       _VOICE_HINT_COL: step.voiceHint,
-  //       _STEP_DURATION_COL: step.duration
-  //     });
-  //   }
-
-  //   return id;
-  // }
 
   Future<int> createOrUpdateCustomWorkout(final Workout workout) async {
     final db = await database;
@@ -1277,20 +1112,6 @@ class DBHelper {
       _BREAK_DURATION_COL: breakBeforeDuration
     });
   }
-
-  // Future<List<ExerciseStep>?> _getExerciseSteps(
-  //     Database db, int exerciseId) async {
-  //   final res = await db.query(_EXERCISE_STEP_TABLE,
-  //       where: "$_EXERCISE_COL = ?",
-  //       whereArgs: <int>[exerciseId],
-  //       orderBy: _ORDER_COL);
-  //   return res
-  //       .map((e) => ExerciseStep(
-  //           imageSlug: e[_IMAGE_SLUG_COL] as String?,
-  //           duration: e[_STEP_DURATION_COL] as int,
-  //           voiceHint: e[_VOICE_HINT_COL] as String?))
-  //       .toList();
-  // }
 
   Exercise _getExerciseFromMap(
     Database db,
