@@ -147,20 +147,20 @@ class DBHelper {
     await db.execute("DROP TABLE IF EXISTS $oldTable");
   }
 
-  Future<void> _createExerciseTable(Database db) async => await db.execute(
-      "CREATE TABLE $_EXERCISE_TABLE ("
-      "$_ID_COL INTEGER PRIMARY KEY, "
-      "$_NAME_COL TEXT, "
-      "$_DESCRIPTION_COL TEXT, "
-      "$_TYPE_COL INTEGER NOT NULL, "
-      "$_FLIPPED_COL INTEGER NOT NULL, "
-      // "$_HAS_STEPS_COL INTEGER NOT NULL, "
-      "$_IMAGE_SLUG_COL TEXT, " // todo what do I get from the server, really? actually, should split this up!
-      "$_DESC_LICENSE_INFO_COL TEXT,"
-      "$_IMAGE_LICENSE_INFO_COL TEXT, "
-      "$_ANIMATED_COL INTEGER NOT NULL, "
-      "$_CATEGORY_COL INTEGER" //todo REMOVE THIS COLUMN?
-      ")");
+  Future<void> _createExerciseTable(Database db) async =>
+      await db.execute("CREATE TABLE $_EXERCISE_TABLE ("
+          "$_ID_COL INTEGER PRIMARY KEY, "
+          "$_NAME_COL TEXT, "
+          "$_DESCRIPTION_COL TEXT, "
+          "$_TYPE_COL INTEGER NOT NULL, "
+          "$_FLIPPED_COL INTEGER NOT NULL, "
+          // "$_HAS_STEPS_COL INTEGER NOT NULL, "
+          "$_IMAGE_SLUG_COL TEXT, "
+          "$_DESC_LICENSE_INFO_COL TEXT,"
+          "$_IMAGE_LICENSE_INFO_COL TEXT, "
+          "$_ANIMATED_COL INTEGER NOT NULL, "
+          "$_CATEGORY_COL INTEGER"
+          ")");
 
   Future<void> _createWorkoutTable(Database db) async =>
       await db.execute("CREATE TABLE $_WORKOUT_TABLE ( "
@@ -170,7 +170,7 @@ class DBHelper {
           "$_CATEGORY_COL INTEGER NOT NULL, "
           "$_COUNTDOWN_DURATION_COL INTEGER NOT NULL, "
           "$_EXERCISE_DURATION_COL INTEGER NOT NULL, "
-          "$_BREAK_DURATION_COL INTEGER NOT NULL, " // todo lastUsed as date
+          "$_BREAK_DURATION_COL INTEGER NOT NULL, "
           "PRIMARY KEY($_ID_COL,$_TYPE_COL)"
           ")");
 
@@ -233,12 +233,13 @@ class DBHelper {
         [
           DefaultExercises.chinTuck,
           DefaultExercises.headTurns,
-          DefaultExercises.levatorScapulaeStretchL,
-          DefaultExercises.levatorScapulaeStretchR,
+          DefaultExercises.headTilts,
           DefaultExercises.neckHalfCircles,
-          DefaultExercises.backNeckStretch,
           DefaultExercises.lateralNeckStretchL,
           DefaultExercises.lateralNeckStretchR,
+          DefaultExercises.levatorScapulaeStretchL,
+          DefaultExercises.levatorScapulaeStretchR,
+          DefaultExercises.backNeckStretch,
           DefaultExercises.shoulderRotationBW,
           DefaultExercises.shoulderRotationFW,
         ],
@@ -246,7 +247,7 @@ class DBHelper {
   }
 
   Future<void> _addExercises(Database db) async {
-    // order CANNOT BE CHANGED, as that would effect custom workouts //todo use consts above when inserting too!
+    // order CANNOT BE CHANGED, as that would effect custom workouts
     const myDescriptionLicense =
         "English description by Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).";
 
@@ -740,17 +741,17 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).');
 
     const lateralNeckStretchDesc =
-        "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to the side and hold for 8 seconds to stretch the side of your neck.\n2. With the closer hand on top of your head, gently pull to stretch further. Hold for 8 seconds.\n3. Turn your chin to your shoulder. Hold for 8 seconds.\n4. Release and return to starting position."; //TODO EDIT!!!
+        "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to the side.\n2. Take the hand closer to your head and use it to grab your head from the other side.\n3. Push with your hand against your head and with your head against your hand so that the forces balance out and your head stays still.\n4. Maintain this tension until the end of the exercise.";
 
     const lateralNeckStretchImageLicense =
         'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["How to do a Lateral Neck Stretch Chin to Shoulder"](https://www.youtube.com/watch?v=gT6_7GyUsI4) by "Heartmybody Fitness" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
 
     await _createExercise(db,
-        id: DefaultExercises.backNeckStretch, //TODO EDIT!!!
+        id: DefaultExercises.backNeckStretch,
         name: "Back neck stretch",
         type: ExerciseType.head,
         description:
-            "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push upward with your head while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
+            "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down lightly and press against your hands with your head to balance out the force.\n3. Hold for a bit.\n4. Relax your arms and head, opening up a bit with your shoulders.\n5. Keep repeating this from step 2 onward.",
         imageSlug: "exercise_neckstretch_back.webp",
         descriptionLicenseInfo: DefaultExercises.myDescLicense,
         imageLicenseInfo:
@@ -760,10 +761,9 @@ class DBHelper {
         id: DefaultExercises.lateralNeckStretchL,
         name: "Left neck stretch",
         type: ExerciseType.head,
-        description: lateralNeckStretchDesc, //todo change this description!!!
+        description: lateralNeckStretchDesc,
         flipped: true,
-        imageSlug:
-            "exercise_neckstretch_lateral.webp", //todo use a single image here!
+        imageSlug: "exercise_neckstretch_lateral.webp",
         descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
         imageLicenseInfo: lateralNeckStretchImageLicense);
 
@@ -772,8 +772,7 @@ class DBHelper {
         name: "Right neck stretch",
         type: ExerciseType.head,
         description: lateralNeckStretchDesc,
-        imageSlug:
-            "exercise_neckstretch_lateral.webp", //todo use a single image here!
+        imageSlug: "exercise_neckstretch_lateral.webp",
         descriptionLicenseInfo: DefaultExercises.neckStretchDescLicense,
         imageLicenseInfo: lateralNeckStretchImageLicense);
 
@@ -809,7 +808,7 @@ class DBHelper {
     await _createExercise(
       db,
       id: DefaultExercises.levatorScapulaeStretchL,
-      name: "Left levator scapulae stretch", //TODO TRANSLATIONS
+      name: "Left levator scapulae stretch",
       type: ExerciseType.head,
       description: levatorDescription,
       descriptionLicenseInfo: myDescriptionLicense,
@@ -821,7 +820,7 @@ class DBHelper {
       db,
       id: DefaultExercises.levatorScapulaeStretchR,
       flipped: true,
-      name: "Right levator scapulae stretch", //TODO TRANSLATIONS
+      name: "Right levator scapulae stretch",
       type: ExerciseType.head,
       description: levatorDescription,
       descriptionLicenseInfo: myDescriptionLicense,
@@ -867,6 +866,16 @@ class DBHelper {
       imageSlug: "exercise_neckhalfcircles.webp",
       imageLicenseInfo: neckCircleLicense,
     );
+
+    await _createExercise(db,
+        id: DefaultExercises.headTilts,
+        name: "Head tilts",
+        type: ExerciseType.head,
+        description:
+            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tilt your head to one side and hold for a bit.\n2.Return your head to neutral position and hold for a bit.\n3. Tilt your head to the other side and hold for a bit.\n4. Return your head to neutral position yet again and hold for a bit.\n5. Repeat.",
+        imageSlug: "exercise_headtilts.webp",
+        descriptionLicenseInfo: DefaultExercises.myDescLicense,
+        imageLicenseInfo: lateralNeckStretchImageLicense);
   }
 
   Future<void> _createWorkoutFromList(Database db, String workoutName,
@@ -1058,7 +1067,6 @@ class DBHelper {
   }
 
   Future<void> _deleteWorkoutExercises(int workoutId, WorkoutType type) async {
-    //todo would it be more efficient if I passed in the workout, which already has the IDs?
     final db = await database;
     await db.delete(_WORKOUT_EXERCISE_TABLE,
         where: "$_WORKOUT_ID_COL = ? AND $_WORKOUT_TYPE_COL = ?",
@@ -1134,7 +1142,6 @@ class DBHelper {
   }
 
   Future<List<Exercise>> queryExercises() async {
-    //todo add steps
     final db = await database;
     final res = await db.query(_EXERCISE_TABLE);
 
