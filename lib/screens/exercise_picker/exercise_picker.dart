@@ -24,13 +24,12 @@ import 'dart:io';
 
 import 'package:feeel/db/db_helper.dart';
 import 'package:feeel/models/view/exercise.dart';
-import 'package:feeel/screens/exercise_creator/exercise_creator.dart';
+import 'package:feeel/screens/exercise_picker/components/contribute_sheet.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ExercisePickerScreen extends StatefulWidget {
   final FeeelSwatch swatch;
@@ -112,35 +111,16 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                               });
                             });
                       } else {
-                        if (Platform.isMacOS) {
-                          return ListTile(
-                            leading: const Icon(Icons.volunteer_activism),
-                            title: Text("Participate".i18n),
-                            onTap: () => launchUrl(Uri.parse(
-                                "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home")),
-                          );
-                        } else {
-                          return ListTile(
-                            leading: Container(
-                                width: 56,
-                                alignment: Alignment.center,
-                                child: const Icon(Icons.add)),
-                            title: Text("Propose custom exercise".i18n),
-                            onTap: () {
-                              if (Platform.isLinux) {
-                                launchUrl(Uri.parse(
-                                    "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"));
-                              } else {
-                                Navigator.push<void>(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) =>
-                                            const ExerciseCreatorScreen(),
-                                        fullscreenDialog: true));
-                              }
-                            },
-                          );
-                        }
+                        return ListTile(
+                          leading: Container(
+                              width: 56,
+                              alignment: Alignment.center,
+                              child: const Icon(Icons.add)),
+                          title: Text("Propose custom exercise".i18n),
+                          onTap: () async {
+                            ContributeSheet.showSheet(context);
+                          },
+                        );
                       }
                     });
               } else {
