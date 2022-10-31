@@ -98,5 +98,9 @@
     "txtImportWorkouts": "Antrenmanları içe aktar",
     "txtDuplicateImportInfo": "Feeel'de zaten sahip olduğunuz antrenmanlarla aynı olan antrenmanları içe aktarırsanız, bu antrenmanları uygulamada iki kez görürsünüz ve bunları elle silmeniz gerekecektir.",
     "txtDisclaimerHeading": "Sorumluluk reddi",
-    "txtDisclaimerContent": "Egzersizler ve antrenmanlara gönüllüler tarafından katkıda bulunulmaktadır. Ne Feeel ne de herhangi bir gönüllü bu uygulamadaki herhangi bir bilginin doğruluğundan veya sağlığınızdan sorumlu değildir. Kendi takdirinize bağlı olarak kullanın."
+    "txtDisclaimerContent": "Egzersizler ve antrenmanlara gönüllüler tarafından katkıda bulunulmaktadır. Ne Feeel ne de herhangi bir gönüllü bu uygulamadaki herhangi bir bilginin doğruluğundan veya sağlığınızdan sorumlu değildir. Kendi takdirinize bağlı olarak kullanın.",
+    "txtWger21Days": "Wger aracılığıyla katkıda bulunmak için 21 günden daha eski bir hesap gerekir.",
+    "btnWgerSignUp": "wger için kaydol",
+    "btnWgerLogIn": "wger ile oturum aç",
+    "txtContributeViaWger": "Egzersizlere, başka bir açık kaynaklı topluluk projesi olan **the wger web sitesi** aracılığıyla katkıda bulunulmaktadır. Gelecekteki bir sürümde, Feeel bu web sitesindeki tüm egzersizleri dahil edecektir."
 }
