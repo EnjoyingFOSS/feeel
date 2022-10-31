@@ -98,5 +98,9 @@
     "txtDisclaimer": "Die Übungen und Trainings werden von Freiwilligen zur Verfügung gestellt. Weder Feeel noch andere Freiwillige sind für die Richtigkeit der Informationen in dieser Anwendung oder für deine Gesundheit verantwortlich. Die Verwendung erfolgt nach eigenem Ermessen.",
     "txtDisclaimerHeading": "Haftungsausschluss",
     "txtDisclaimerContent": "Die Übungen und Workouts werden von Freiwilligen zur Verfügung gestellt. Weder Feeel noch andere Freiwillige sind für die Richtigkeit der Informationen in dieser App oder für deine Gesundheit verantwortlich. Die Verwendung erfolgt nach eigenem Ermessen.",
-    "txtEnglishDescriptionLicense": "Englische Lizenzbeschreibung"
+    "txtEnglishDescriptionLicense": "Englische Lizenzbeschreibung",
+    "btnWgerLogIn": "Mit wger anmelden",
+    "btnWgerSignUp": "Registrieren für wger",
+    "txtWger21Days": "Für einen Beitrag über wger ist ein Konto erforderlich, das älter als 21 Tage ist.",
+    "txtContributeViaWger": "Die Übungen werden von **der wger-Website** beigesteuert, einem weiteren Open-Source-Community-Projekt. In einer zukünftigen Version wird Feeel alle Übungen von dieser Website einbeziehen."
 }
