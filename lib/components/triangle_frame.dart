@@ -82,8 +82,9 @@ class _TriangleClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return false;
+  bool shouldReclip(_TriangleClipper oldClipper) {
+    return oldClipper.offsetYRatio != offsetYRatio ||
+        oldClipper.rightLean != rightLean;
   }
 }
 
@@ -119,7 +120,9 @@ class _BackgroundPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  bool shouldRepaint(_BackgroundPainter oldDelegate) {
+    return oldDelegate.offsetYRatio != offsetYRatio ||
+        oldDelegate.peakXRatio != peakXRatio ||
+        oldDelegate.rightLean != rightLean;
   }
 }
