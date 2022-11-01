@@ -86,42 +86,43 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
         //     },
         //     child:
         GestureDetector(
-            child: Material(
-                color: Theme.of(context).backgroundColor,
-                child: ExerciseLayout(
-                  imageSlug:
-                      // (exercise.steps?[_stepPos].imageSlug != null)
-                      //     ? exercise.steps![_stepPos].imageSlug :
-                      exercise.imageSlug,
-                  animated: exercise.animated,
-                  flipped: exercise.flipped,
-                  onLearn: () => onLearn(exercise),
-                  colorSwatch: widget.colorSwatch,
-                  triangleSeed: headOnly ? exercise.name.hashCode : 0,
-                  secondsString: _seconds.toString(),
-                  skipToPrevious: () {
-                    widget.workoutController.skipToPrevious();
-                  },
-                  skipToNext: () {
-                    widget.workoutController.skipToNext();
-                  },
-                  togglePlayPause: () {
-                    widget.workoutController.togglePlayPause();
-                  },
-                  headOnly: exercise.type == ExerciseType.head,
-                  title: exercise.name.i18n,
-                  onBreak: _stage == WorkoutStage.workoutBreak ||
-                      _stage == WorkoutStage.countdown,
-                  paused: _paused,
-                )),
-            onTap: () {
-              //todo setstate
-              setState(() {
-                widget.workoutController.togglePlayPause();
-              });
+      onTap: () {
+        //todo setstate
+        setState(() {
+          widget.workoutController.togglePlayPause();
+        });
+      },
+      onVerticalDragStart: (_) => onLearn(exercise),
+      //todo onHorizontalDrag
+      child: Material(
+          color: Theme.of(context).backgroundColor,
+          child: ExerciseLayout(
+            imageSlug:
+                // (exercise.steps?[_stepPos].imageSlug != null)
+                //     ? exercise.steps![_stepPos].imageSlug :
+                exercise.imageSlug,
+            animated: exercise.animated,
+            flipped: exercise.flipped,
+            onLearn: () => onLearn(exercise),
+            colorSwatch: widget.colorSwatch,
+            triangleSeed: headOnly ? exercise.name.hashCode : 0,
+            secondsString: _seconds.toString(),
+            skipToPrevious: () {
+              widget.workoutController.skipToPrevious();
             },
-            //todo onHorizontalDrag
-            onVerticalDragStart: (_) => onLearn(exercise)); //);
+            skipToNext: () {
+              widget.workoutController.skipToNext();
+            },
+            togglePlayPause: () {
+              widget.workoutController.togglePlayPause();
+            },
+            headOnly: exercise.type == ExerciseType.head,
+            title: exercise.name.i18n,
+            onBreak: _stage == WorkoutStage.workoutBreak ||
+                _stage == WorkoutStage.countdown,
+            paused: _paused,
+          )),
+    ); //);
   }
 
   void onLearn(Exercise exercise) {
