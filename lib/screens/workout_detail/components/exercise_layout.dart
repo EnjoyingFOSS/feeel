@@ -108,8 +108,8 @@ class ExerciseLayout extends StatelessWidget {
                                     "Tap for controls".i18n,
                                     style: TextStyle(color: themeDarkColor),
                                   ),
-                            Expanded(
-                              child: Container(),
+                            const Expanded(
+                              child: SizedBox(),
                             ),
                             ExerciseFooter(
                               onBreak: onBreak,

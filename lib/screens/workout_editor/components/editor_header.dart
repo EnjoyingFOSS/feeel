@@ -48,7 +48,7 @@ class EditorHeader extends StatelessWidget {
     final color =
         colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
     return Row(children: <Widget>[
-      Container(
+      const SizedBox(
         width: 4,
       ),
       CloseButton(

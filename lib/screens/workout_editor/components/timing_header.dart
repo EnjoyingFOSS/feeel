@@ -52,7 +52,7 @@ class TimingHeader extends StatelessWidget {
                   labelText: "Exercise duration".i18n, filled: true),
               onChanged: onExerciseDurationChanged,
             )),
-            Container(
+            const SizedBox(
               width: 16,
             ),
             Expanded(

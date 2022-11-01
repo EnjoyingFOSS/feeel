@@ -40,7 +40,7 @@ class ExercisePickerRow extends StatelessWidget {
         ),
       ]),
       secondary: imageSlug == null
-          ? Container(
+          ? const SizedBox(
               width: 0,
             )
           : (exercise.flipped

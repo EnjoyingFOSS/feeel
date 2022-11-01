@@ -94,7 +94,7 @@ class ExerciseFooter extends StatelessWidget {
                   maxLines:
                       2, //todo use a fixed height (wrap with Expanded and Align for centering) instead once I implement the description sheet (and get rid of the up arrow that way)
                   overflow: TextOverflow.ellipsis),
-          Container(
+          const SizedBox(
             height: 8,
           ),
           if (paused || onBreak)

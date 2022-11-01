@@ -46,7 +46,7 @@ class ExerciseEditorRow extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: imageSlug == null
-            ? Container()
+            ? const SizedBox()
             : workoutExercise.exercise.flipped
                 ? Flipped(
                     child: Image.asset(AssetHelper.getThumb(imageSlug),
@@ -64,7 +64,7 @@ class ExerciseEditorRow extends StatelessWidget {
       )),
       trailing,
       handle ??
-          Container(
+          const SizedBox(
             width: 16,
           )
     ]);

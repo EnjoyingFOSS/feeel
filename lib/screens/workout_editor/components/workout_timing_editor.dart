@@ -56,7 +56,7 @@ class WorkoutTimingEditor extends StatelessWidget {
             breakDuration: breakDuration,
             onBreakDurationChanged: onBreakDurationChanged,
           ),
-          Container(
+          const SizedBox(
             height: 16,
           ),
           Expanded(

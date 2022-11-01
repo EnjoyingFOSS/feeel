@@ -95,7 +95,7 @@ class WorkoutHeader extends StatelessWidget {
                                 ?.copyWith(color: fgColor))),
                   ),
                 )),
-                Container(
+                const SizedBox(
                   height: 8,
                 ),
                 Row(
@@ -109,7 +109,7 @@ class WorkoutHeader extends StatelessWidget {
                               color: colorSwatch.getColorByBrightness(
                                   FeeelShade.darker, theme.brightness))),
                     ),
-                    Container(
+                    const SizedBox(
                       width: 16,
                     ),
                     if (workoutDuration != null)
