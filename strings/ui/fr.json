@@ -98,5 +98,9 @@
     "txtDisclaimer": "Les exercices et les entraînements sont fournis par des bénévoles. Ni Feeel ni aucun volontaire ne sont responsables de l'exactitude des informations contenues dans cette application ou de votre santé. Utilisez cette application à votre propre discrétion.",
     "btnIunderstand": "Je comprends",
     "txtDisclaimerHeading": "Avis de non-responsabilité",
-    "txtDisclaimerContent": "Les exercices et les entraînements sont fournis par des bénévoles. Ni Feeel ni aucun volontaire ne sont responsables de l'exactitude des informations contenues dans cette application ou de votre santé. Utilisez cette application à votre propre discrétion."
+    "txtDisclaimerContent": "Les exercices et les entraînements sont fournis par des bénévoles. Ni Feeel ni aucun volontaire ne sont responsables de l'exactitude des informations contenues dans cette application ou de votre santé. Utilisez cette application à votre propre discrétion.",
+    "txtContributeViaWger": "Les exercices sont fournis par **le site web wger**, un autre projet communautaire à code source ouvert. Dans une prochaine version, Feeel intégrera tous les exercices de ce site web.",
+    "btnWgerSignUp": "S'inscrire sur wger",
+    "txtWger21Days": "La contribution via wger nécessite un compte de plus de 21 jours.",
+    "btnWgerLogIn": "Se connecter via wger"
 }
