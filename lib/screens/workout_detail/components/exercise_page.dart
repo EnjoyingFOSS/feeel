@@ -27,7 +27,6 @@ import 'package:feeel/db/asset_helper.dart';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/workout_stage.dart';
 import 'package:feeel/models/view/exercise.dart';
-import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
@@ -161,8 +160,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onExercise(int exercisePos, WorkoutExercise exercise, ExerciseStep? step,
-      int duration) {
+  void onExercise(int exercisePos, WorkoutExercise exercise, int duration) {
     setState(() {
       // if ((exercise.exercise.steps?.length ?? 0) > 1) {
       //   _preloadUpcomingStep();
@@ -223,12 +221,12 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     });
   }
 
-  @override
-  void onLaterStep(int stepPos, ExerciseStep step) {
-    setState(() {
-      // _stepPos = stepPos;
-    });
-  }
+  // @override
+  // void onLaterStep(int stepPos) {
+  //   setState(() {
+  //     _stepPos = stepPos;
+  //   });
+  // }
 
   @override
   void onCountdown(int exercisePos) {

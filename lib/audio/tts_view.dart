@@ -24,7 +24,6 @@ import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/enums/workout_stage.dart';
-import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 
@@ -55,13 +54,8 @@ class TTSView implements WorkoutView {
   }
 
   @override
-  void onExercise(int exercisePos, WorkoutExercise exercise,
-      ExerciseStep? firstStep, int duration) {
-    if (firstStep?.voiceHint != null) {
-      TTSHelper.tts.speak(firstStep!.voiceHint!.i18n);
-    } else {
-      TTSHelper.tts.speak(exercise.exercise.name.i18n);
-    }
+  void onExercise(int exercisePos, WorkoutExercise exercise, int duration) {
+    TTSHelper.tts.speak(exercise.exercise.name.i18n);
     _halfTime = (duration / 2).ceil();
     // todo handle first step
   }
@@ -72,11 +66,11 @@ class TTSView implements WorkoutView {
   @override
   void onPlay() {}
 
-  @override
-  void onLaterStep(int stepPos, ExerciseStep step) {
-    final hint = step.voiceHint?.i18n;
-    if (hint != null) TTSHelper.tts.speak(hint);
-  }
+  // @override
+  // void onLaterStep(int stepPos, ExerciseStep step) {
+  //   final hint = step.voiceHint?.i18n;
+  //   if (hint != null) TTSHelper.tts.speak(hint);
+  // }
 
   @override
   void onCountdown(int exercisePos) {
