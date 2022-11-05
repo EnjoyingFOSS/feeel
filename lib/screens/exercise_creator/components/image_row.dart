@@ -54,7 +54,7 @@ class ImageRow extends StatelessWidget {
                   return Text(
                       "${(snapshot.data! / _bytesInMiB).toStringAsPrecision(3)} MiB");
                 } else {
-                  return const CircularProgressIndicator();
+                  return const CircularProgressIndicator.adaptive();
                 }
               },
             ),

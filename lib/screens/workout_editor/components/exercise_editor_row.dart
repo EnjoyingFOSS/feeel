@@ -77,7 +77,7 @@ class ExerciseEditorRow extends StatelessWidget {
                   )
             ]);
           } else {
-            return const CircularProgressIndicator();
+            return const CircularProgressIndicator.adaptive();
           }
         });
   }

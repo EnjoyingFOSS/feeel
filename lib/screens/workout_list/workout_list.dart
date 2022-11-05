@@ -200,7 +200,7 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                 ]));
               } else {
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator.adaptive(),
                 );
               }
             }));

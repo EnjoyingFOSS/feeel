@@ -256,7 +256,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 );
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                    child: CircularProgressIndicator.adaptive());
               }
             }));
   }
