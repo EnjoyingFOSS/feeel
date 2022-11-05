@@ -296,8 +296,8 @@ class WorkoutController {
         for (final view in _views) {
           view?.onExercise(
               _workoutMeta.getExercisePos(),
-              _workoutMeta.getCurExercise(),
-              null, //_workoutMeta.getCurStep(),
+              _workoutMeta.getCurWorkoutExercise(),
+              //_workoutMeta.getCurStep(),
               _workoutMeta.getCurExerciseDuration());
         }
         break;

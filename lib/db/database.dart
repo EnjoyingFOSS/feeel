@@ -233,12 +233,12 @@ class FeeelDB extends _$FeeelDB {
     for (final nse in DefaultExercises.defaultNoStepExercises) {
       await into(exercises).insert(nse);
     }
-    for (final s in DefaultExercises.defaultSteps) {
-      await into(exerciseSteps).insert(s);
-    }
-    for (final se in DefaultExercises.defaultStepExercises) {
-      await into(exercises).insert(se);
-    }
+    // for (final s in DefaultExercises.defaultSteps) {
+    //   await into(exerciseSteps).insert(s);
+    // }
+    // for (final se in DefaultExercises.defaultStepExercises) {
+    //   await into(exercises).insert(se);
+    // }
   }
 
   // Future<FullExercise> queryFullExercise(Exercise e) async {

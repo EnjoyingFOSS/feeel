@@ -159,7 +159,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onExercise(int exercisePos, _, ExerciseStep? step, int duration) {
+  void onExercise(int exercisePos, WorkoutExercise exercise, int duration) {
     setState(() {
       // if ((exercise.exercise.steps?.length ?? 0) > 1) {
       //   _preloadUpcomingStep();
@@ -221,9 +221,9 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   // @override
-  // void onLaterStep(int stepPos, ExerciseStep step) {
+  // void onLaterStep(int stepPos) {
   //   setState(() {
-  //     // _stepPos = stepPos;
+  //     _stepPos = stepPos;
   //   });
   // }
 
