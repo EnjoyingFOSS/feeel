@@ -55,7 +55,7 @@ class SoundView implements WorkoutView {
 
   @override
   void onExercise(
-      int exercisePos, WorkoutExercise exercise, int defaultExerciseDuration) {
+      int exercisePos, Exercise exercise, int defaultExerciseDuration) {
     _player.play(_soundExercise);
     //todo handle step
   }

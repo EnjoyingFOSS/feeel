@@ -54,8 +54,8 @@ class TTSView implements WorkoutView {
   }
 
   @override
-  void onExercise(int exercisePos, WorkoutExercise exercise, int duration) {
-    TTSHelper.tts.speak(exercise.exercise.name.i18n);
+  void onExercise(int exercisePos, Exercise exercise, int duration) {
+    TTSHelper.tts.speak(exercise.name.i18n);
     _halfTime = (duration / 2).ceil();
     // todo handle first step
   }

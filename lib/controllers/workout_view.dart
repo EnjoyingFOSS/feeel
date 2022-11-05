@@ -5,10 +5,10 @@ abstract class WorkoutView {
   void onStart(
       int exercisePos, Exercise nextExercise, int defaultBreakDuration);
   void onBreak(
-      int exercisePos, WorkoutExercise nextExercise, int defaultBreakDuration);
+      int exercisePos, Exercise nextExercise, int defaultBreakDuration);
   void onExercise(
       int exercisePos,
-      WorkoutExercise exercise,
+      Exercise exercise,
       // ExerciseStep? firstStep,
       int defaultExerciseDuration);
   void onCountdown(
