@@ -33,7 +33,7 @@ class JSONMetadata {
 
   JSONMetadata(
       {this.metadataVersion = _curMetadataVersion,
-      this.databaseVersion = FeeelDB.databaseVersion});
+      required this.databaseVersion});
 
   static JSONMetadata fromJson(Map<String, dynamic> json) {
     return JSONMetadata(
