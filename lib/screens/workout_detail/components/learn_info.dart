@@ -34,27 +34,29 @@ class LearnInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //todo make this possible to activate using the keyboard only!
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(32),
-            color: bgColor,
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.expand_less, color: Colors.white),
-              Text(
-                "Learn the exercise".i18n,
-                style: Theme.of(context)
-                    .textTheme
-                    .caption
-                    ?.copyWith(color: Colors.white),
-              )
-            ], //todo size16 or 18
-          )),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(32),
+                color: bgColor,
+              ),
+              padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.expand_less, color: Colors.white),
+                  Text(
+                    "Learn the exercise".i18n,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.copyWith(color: Colors.white),
+                  )
+                ], //todo size16 or 18
+              ))),
     );
   }
 }

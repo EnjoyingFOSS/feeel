@@ -41,7 +41,7 @@ class EmptyWorkout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text("There are no exercises in this workout. :(".i18n),
-        Container(
+        const SizedBox(
           height: 8,
         ),
         Row(

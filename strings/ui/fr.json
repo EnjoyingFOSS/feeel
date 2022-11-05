@@ -96,5 +96,7 @@
     "txtGetReady": "Préparez-vous !",
     "txtImportWorkouts": "Importer des entraînements",
     "txtDisclaimer": "Les exercices et les entraînements sont fournis par des bénévoles. Ni Feeel ni aucun volontaire ne sont responsables de l'exactitude des informations contenues dans cette application ou de votre santé. Utilisez cette application à votre propre discrétion.",
-    "btnIunderstand": "Je comprends"
+    "btnIunderstand": "Je comprends",
+    "txtDisclaimerHeading": "Avis de non-responsabilité",
+    "txtDisclaimerContent": "Les exercices et les entraînements sont fournis par des bénévoles. Ni Feeel ni aucun volontaire ne sont responsables de l'exactitude des informations contenues dans cette application ou de votre santé. Utilisez cette application à votre propre discrétion."
 }

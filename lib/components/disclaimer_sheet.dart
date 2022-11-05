@@ -97,7 +97,7 @@ class DisclaimerSheet extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline6,
                     ),
-                    Container(
+                    const SizedBox(
                       height: 8,
                     ),
                     ConstrainedBox(
@@ -107,7 +107,7 @@ class DisclaimerSheet extends StatelessWidget {
                               .i18n,
                           style: TextStyle(color: fgColor),
                         )),
-                    Container(
+                    const SizedBox(
                       height: 16,
                     ),
                     TextButton(

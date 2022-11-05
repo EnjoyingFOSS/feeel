@@ -24,9 +24,9 @@ import 'package:feeel/components/illustration_widget.dart';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/screens/workout_detail/components/body_exercise_content.dart';
 import 'package:feeel/screens/workout_detail/components/head_exercise_content.dart';
+import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../db/asset_helper.dart';
 import '../enums/exercise_type.dart';
@@ -148,14 +148,14 @@ class ExerciseSheet extends StatelessWidget {
                               fontWeight: FontWeight.w900,
                               color: fgColor),
                         )),
-                        Container(
+                        const SizedBox(
                           height: 8,
                         ),
                         Text(
                           exercise.description?.i18n ?? "",
                           style: const TextStyle(color: fgColor),
                         ),
-                        Container(
+                        const SizedBox(
                           height: 16,
                         ),
                         if (hasDescriptionLicense || hasImageLicense)
@@ -163,7 +163,7 @@ class ExerciseSheet extends StatelessWidget {
                               color: fgColor.withAlpha(48),
                               height:
                                   1), //todo hide licenses under an expandable button
-                        Container(
+                        const SizedBox(
                           height: 16,
                         ),
                         Text(
@@ -179,8 +179,8 @@ class ExerciseSheet extends StatelessWidget {
                                     .i18n,
                             styleSheet: markdownLicenseStyle,
                             onTapLink: (text, url, title) =>
-                                _onTapLink(context, text, url, title)),
-                        Container(
+                                URLUtil.launchURL(context, url ?? "")),
+                        const SizedBox(
                           height: 16,
                         ),
                         if (hasDescriptionLicense)
@@ -196,9 +196,9 @@ class ExerciseSheet extends StatelessWidget {
                               data: exercise.descLicense ?? "",
                               styleSheet: markdownLicenseStyle,
                               onTapLink: (text, url, title) =>
-                                  _onTapLink(context, text, url, title)),
+                                  URLUtil.launchURL(context, url ?? "")),
                         if (hasDescriptionLicense)
-                          Container(
+                          const SizedBox(
                             height: 16,
                           ),
                         if (hasImageLicense)
@@ -212,7 +212,7 @@ class ExerciseSheet extends StatelessWidget {
                               data: exercise.imageLicense ?? "",
                               styleSheet: markdownLicenseStyle,
                               onTapLink: (text, url, title) =>
-                                  _onTapLink(context, text, url, title))
+                                  URLUtil.launchURL(context, url ?? ""))
                       ]))
             ])),
             SliverFillRemaining(
@@ -223,15 +223,5 @@ class ExerciseSheet extends StatelessWidget {
         );
       },
     );
-  }
-
-  void _onTapLink(
-      BuildContext context, String text, String? url, String title) async {
-    if (url != null && await canLaunchUrl(Uri.parse(url))) {
-      launchUrl(Uri.parse(url));
-    } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Could not open URL.".i18n)));
-    }
   }
 }

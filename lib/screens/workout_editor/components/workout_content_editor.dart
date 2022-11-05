@@ -47,7 +47,7 @@ class WorkoutContentEditor extends StatelessWidget {
     return Column(children: [
       header,
       subheader,
-      Container(
+      const SizedBox(
         height: 16,
       ),
       Expanded(

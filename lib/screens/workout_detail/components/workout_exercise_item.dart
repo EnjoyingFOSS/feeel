@@ -54,8 +54,8 @@ class WorkoutExerciseItem extends StatelessWidget {
               bottom: 8,
             ),
             child: imageSlug == null
-                ? Container()
-                : exercise.flipped
+                ? const SizedBox()
+                : workoutExercise.exercise.flipped
                     ? Flipped(
                         child: Image.asset(AssetHelper.getThumb(imageSlug),
                             width: 64, height: 64))

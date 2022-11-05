@@ -90,10 +90,13 @@
     "txtLearnTheExercise": "Lerne die Übung",
     "txtCommunityDrivenHeader": "Feeel ist ein Gemeinschaftsprojekt",
     "txtDuplicateImportTitle": "Duplikate werden nicht überschrieben",
-    "txtDuplicateImportInfo": "Wenn Sie Trainings importieren, die identisch sind mit Trainings, die Sie bereits in Feeel haben, haben Sie diese Trainings doppelt in der Anwendung und müssen sie manuell löschen.",
+    "txtDuplicateImportInfo": "Wenn du Workouts importierst, die mit Workouts identisch sind, die du bereits in Feeel hast, hast du diese Workouts doppelt in der App und musst diese manuell löschen.",
     "txtExportCustomWorkouts": "Benutzerdefinierte Trainings exportieren",
     "txtNoCustomWorkouts": "Sie haben keine benutzerdefinierten Trainings",
     "btnIunderstand": "Ich verstehe",
     "btnImportAnyway": "Trotzdem importieren",
-    "txtDisclaimer": "Die Übungen und Trainings werden von Freiwilligen zur Verfügung gestellt. Weder Feeel noch andere Freiwillige sind für die Richtigkeit der Informationen in dieser Anwendung oder für deine Gesundheit verantwortlich. Die Verwendung erfolgt nach eigenem Ermessen."
+    "txtDisclaimer": "Die Übungen und Trainings werden von Freiwilligen zur Verfügung gestellt. Weder Feeel noch andere Freiwillige sind für die Richtigkeit der Informationen in dieser Anwendung oder für deine Gesundheit verantwortlich. Die Verwendung erfolgt nach eigenem Ermessen.",
+    "txtDisclaimerHeading": "Haftungsausschluss",
+    "txtDisclaimerContent": "Die Übungen und Workouts werden von Freiwilligen zur Verfügung gestellt. Weder Feeel noch andere Freiwillige sind für die Richtigkeit der Informationen in dieser App oder für deine Gesundheit verantwortlich. Die Verwendung erfolgt nach eigenem Ermessen.",
+    "txtEnglishDescriptionLicense": "Englische Lizenzbeschreibung"
 }

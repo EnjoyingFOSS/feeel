@@ -14,12 +14,6 @@
     "txtCategoryLegs": "Legs",
     "txtYoureGlowing": "You're glowing!",
     "txtSubmitNewExercise": "Contribute",
-    "txtContributeExerciseExplainer": "Feeel relies on volunteers like you to submit exercises and exercise photos. Photos will first be privately processed into triangulated versions, then sent to you for approval, and only then released in the app. All submitted photos and text must be solely your work. Thanks for contributing!",
-    "txtExerciseName": "Exercise name",
-    "txtHowToPerformExercise": "How to perform exercise (optional)",
-    "txtEmailCouldNotBeSent": "Email could not be sent",
-    "txtSubmitExerciseMessageTitle": "Exercise proposal: %s",
-    "txtSubmitExerciseMessageContents": "Hello,\n\nI'm sending a proposal of an exercise. I hereby declare that both the attached images and the description are completely my own work. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA 4.0 license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA 4.0 license.\n\nExercise name: %1s\nExercise steps:\n%2s",
     "txtSettings": "Settings",
     "txtWorkoutTitleEmpty": "Please specify a workout title",
     "txtWorkoutExercisesEmpty": "Please add at least 1 exercise",
@@ -71,6 +65,8 @@
     "txtDisclaimerContent": "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion.",
     "txtDuplicateImportTitle": "Duplicates will not be overriden",
     "txtDuplicateImportInfo": "If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them.",
+    "txtContributeViaWger": "Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.",
+    "txtWger21Days": "Contributing via wger requires an account older than 21 days.",
     "btnStartWorkout": "Start workout",
     "btnResumeWorkout": "Resume workout",
     "btnPreviousExercise": "Previous exercise",
@@ -96,5 +92,7 @@
     "btnDoneEditingTiming": "Done editing timing",
     "btnDeleteThisWorkout": "Delete this workout",
     "btnBackToWorkoutList": "Back to workout list",
-    "btnImportAnyway": "Import anyway"
+    "btnImportAnyway": "Import anyway",
+    "btnWgerSignUp": "Sign up for wger",
+    "btnWgerLogIn": "Log in with wger"
 }

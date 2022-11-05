@@ -101,7 +101,7 @@ class WorkoutListItem extends StatelessWidget {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     )),
-                                Container(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Hero(

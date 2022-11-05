@@ -74,15 +74,13 @@ class DefaultExercises {
       lateralNeckStretchL = 47,
       lateralNeckStretchR = 48,
       frontNeckStretch = 49,
-      backAndLateralNeckStretchL = 50,
-      backAndLateralNeckStretchR = 51,
-      chinTuckWithFlexionWithRotation = 52,
-      alternatingBicepCurls = 53,
-      levatorScapulaeStretchL = 54,
-      levatorScapulaeStretchR = 55,
-      neckCirclesCW = 56,
-      neckCirclesCCW = 57,
-      neckHalfCircles = 58;
+      alternatingBicepCurls = 50,
+      levatorScapulaeStretchL = 51,
+      levatorScapulaeStretchR = 52,
+      neckCirclesCW = 53,
+      neckCirclesCCW = 54,
+      neckHalfCircles = 55,
+      headTilts = 56;
 
   static const myDescLicense =
       "English description by Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).";
@@ -707,142 +705,5 @@ class DefaultExercises {
         hasSteps: false,
         flipped: false,
         animated: false),
-
-    ////////
-
-    Exercise(
-        id: lateralNeckStretchL,
-        name: "Left neck stretch",
-        type: ExerciseType.head.dbValue,
-        description: lateralNeckStretchDesc,
-        descLicense: neckStretchDescLicense,
-        flipped: true,
-        imageSlug: "exercise_neckstretch_lateral.webp",
-        imageLicense: lateralNeckStretchImageLicense,
-        hasSteps: false,
-        animated: false),
-
-    Exercise(
-        id: lateralNeckStretchR,
-        name: "Right neck stretch",
-        type: ExerciseType.head.dbValue,
-        description: lateralNeckStretchDesc,
-        descLicense: neckStretchDescLicense,
-        imageSlug: "exercise_neckstretch_lateral.webp",
-        imageLicense: lateralNeckStretchImageLicense,
-        hasSteps: false,
-        flipped: false,
-        animated: false),
-
-    Exercise(
-        id: frontNeckStretch,
-        name: "Front neck stretch",
-        type: ExerciseType.head.dbValue,
-        description:
-            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Open mouth wide.\n2. Slowly tilt head back with mouth opened. If you feel the need for support, clasp your hands behind your head.\n3. Very slowly close and open your mouth.\n4. At the end, slowly return to starting position and close mouth.",
-        descLicense: neckStretchDescLicense,
-        imageSlug: "exercise_neckstretch_front.webp",
-        imageLicense:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief\"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
-        flipped: false,
-        animated: false),
-
-    Exercise(
-        id: backAndLateralNeckStretchL,
-        name: "Back and left neck stretch",
-        type: ExerciseType.head.dbValue,
-        flipped: true,
-        description: backAndLateralNeckStretchDesc,
-        descLicense: neckStretchDescLicense,
-        imageSlug: "exercise_neckstretch_back,lateral.webp",
-        imageLicense: backAndLateralNeckStretchImageLicense,
-        hasSteps: false,
-        animated: false),
-
-    Exercise(
-        id: backAndLateralNeckStretchR,
-        name: "Back and right neck stretch",
-        type: ExerciseType.head.dbValue,
-        description: backAndLateralNeckStretchDesc,
-        descLicense: neckStretchDescLicense,
-        imageSlug: "exercise_neckstretch_back,lateral.webp",
-        imageLicense: backAndLateralNeckStretchImageLicense,
-        hasSteps: false,
-        flipped: false,
-        animated: false),
-
-    Exercise(
-        id: chinTuckWithFlexionWithRotation,
-        name: "Chin tuck with flexion with rotation",
-        type: ExerciseType.head.dbValue,
-        description:
-            "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Tuck your chin in, moving your head back.\n2. Tilt your head forward until you feel a stretch in the back of your neck.\n3. Rotate your head to the side on exhale. Use fingers on your temples to guide your head and apply a little bit of overpressure.\n4. Hold for 5 seconds.\n5. Rotate back, keeping your head down.\n6. Repeat from step 3, switching sides.",
-        descLicense: neckStretchDescLicense,
-        imageSlug: "exercise_chintuck+flextion+rotation.webp",
-        imageLicense:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Suboccipital Muscle Stretch\"](https://www.youtube.com/watch?v=1CIil5SIs7U) by "Connor Naccarato" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
-        flipped: false,
-        animated: false),
-
-    Exercise(
-        id: alternatingBicepCurls,
-        name: "Alternating bicep curls",
-        type: ExerciseType.fullBody.dbValue,
-        description:
-            "Starting position:\nStart standing up with dumbbells in each hand, your back straight and feet hip-width apart. Your arms should be relaxed, pointing down. Your knees should be slightly bent, your abs contracted, and your shoulders down.\n\nSteps:\n1. Bend one arm at the elbow, bringing the dumbbell up to your shoulder. Your upper arm should remain motionless during this movement.\n2. Bring the dumbbell back down until your arm is in its original relaxed position.\n3. Repeat, switching arms.",
-        descLicense: myDescLicense,
-        imageSlug: "exercise_bicepcurl.webp",
-        imageLicense:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"P3 W1 ex6 Bicep Curls\"](https://www.youtube.com/watch?v=N-nJ3ZMzTzg) by [\"Nick Korderas\"](https://www.youtube.com/channel/UCcf215MCeKPhNEzVlIjjp-w) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).', //todo replace TBDs
-        hasSteps: false,
-        flipped: false,
-        animated: false),
-  ];
-
-  static final defaultStepExercises = [
-    Exercise(
-        id: backNeckStretch,
-        name: "Back neck stretch", //todo or flexion?
-        type: ExerciseType.head.dbValue,
-        description:
-            "Starting position:\nSit upright on a chair or a firm pillow.\n\nSteps:\n1. Breathe out and tilt your head forward, chin to chest, putting hands behind your head.\n2. Use your hands to pull your head down very lightly. Hold for 5 seconds.\n3. Draw shoulders back and down using the muscles in your back. This should increase the neck stretch. Hold for 5 seconds.\n4. Now gently push upward with your head while also pulling it down with your hands. Balance both forces so that your head doesn't move. Hold for at least 5 seconds.\n5. Bring your fingers to your forehead and use them to gently move your head back into original position.",
-        imageSlug: "exercise_neckstretch_back.webp",
-        descLicense: myDescLicense,
-        imageLicense:
-            'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        flipped: false,
-        hasSteps: true,
-        animated: false)
-  ];
-
-  static final defaultSteps = [
-    ExerciseStep(
-        exercise: backNeckStretch,
-        orderPosition: 0,
-        stepDuration: 1,
-        imageSlug:
-            "exercise_neckstretch_back-1.webp"), //todo does this start at 0?
-    ExerciseStep(
-        exercise: backNeckStretch,
-        orderPosition: 1,
-        stepDuration: 5,
-        imageSlug: "exercise_neckstretch_back.webp"),
-    ExerciseStep(
-        exercise: backNeckStretch,
-        orderPosition: 2,
-        stepDuration: 5,
-        voiceHint: "Shoulders down"),
-    ExerciseStep(
-        exercise: backNeckStretch,
-        orderPosition: 3,
-        stepDuration: 5,
-        voiceHint: "Push against hands"),
-    ExerciseStep(
-        exercise: backNeckStretch,
-        orderPosition: 4,
-        stepDuration: 1,
-        imageSlug: "exercise_neckstretch_back-3.webp")
   ];
 }
