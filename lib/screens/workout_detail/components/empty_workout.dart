@@ -53,7 +53,7 @@ class EmptyWorkout extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            if (fullWorkout.type == WorkoutType.custom)
+            if (fullWorkout.workout.type == WorkoutType.custom)
               ElevatedButton(
                 child: Text("Delete this workout".i18n),
                 onPressed: () {

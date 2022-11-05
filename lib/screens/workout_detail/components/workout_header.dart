@@ -50,10 +50,8 @@ class WorkoutHeader extends StatelessWidget {
     final title = workout.title;
     final fgColor =
         colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
-    final workoutCategory = WorkoutCategory.fromDBValue(workout.category);
-    final workoutType = WorkoutType.fromDBValue(workout.category);
 
-    final String translatedCategory = workoutCategory.translationKey.i18n;
+    final String translatedCategory = workout.category.translationKey.i18n;
     return Stack(children: [
       Positioned.directional(
           textDirection: Directionality.of(context),
@@ -62,7 +60,7 @@ class WorkoutHeader extends StatelessWidget {
           height: 208,
           child: Hero(
               tag: HeroUtil.getWorkoutHero(
-                  HeroType.illustration, workout.id, workoutType),
+                  HeroType.illustration, workout.id, workout.type),
               child: Triangle(
                   color: colorSwatch.getColorByBrightness(
                       FeeelShade.lightest, theme.brightness),
@@ -84,7 +82,7 @@ class WorkoutHeader extends StatelessWidget {
                   alignment: AlignmentDirectional.bottomStart,
                   child: Hero(
                     tag: HeroUtil.getWorkoutHero(
-                        HeroType.title, workout.id, workoutType),
+                        HeroType.title, workout.id, workout.type),
                     child: Material(
                         //todo workaround for https://github.com/flutter/flutter/issues/30647
                         type: MaterialType.transparency,
@@ -105,7 +103,7 @@ class WorkoutHeader extends StatelessWidget {
                   children: [
                     Hero(
                       tag: HeroUtil.getWorkoutHero(
-                          HeroType.subtitle, workout.id, workoutType),
+                          HeroType.subtitle, workout.id, workout.type),
                       child: Text(translatedCategory,
                           style: theme.textTheme.subtitle2?.copyWith(
                               fontWeight: FontWeight.bold,

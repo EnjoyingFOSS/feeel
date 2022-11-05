@@ -57,8 +57,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colorSwatch =
-        WorkoutCategory.fromDBValue(widget.workout.category).colorSwatch;
+    final colorSwatch = widget.workout.category.colorSwatch;
     return WillPopScope(
         onWillPop: () async {
           if (!Platform.isLinux) {

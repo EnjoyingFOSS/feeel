@@ -70,7 +70,7 @@ class EditableWorkout {
         countdownDuration: fullWorkout.workout.countdownDuration,
         breakDuration: fullWorkout.workout.breakDuration,
         exerciseDuration: fullWorkout.workout.exerciseDuration,
-        category: fullWorkout.category,
-        type: fullWorkout.type);
+        category: fullWorkout.workout.category,
+        type: fullWorkout.workout.type);
   }
 }

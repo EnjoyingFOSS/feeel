@@ -28,8 +28,6 @@ class FullWorkout {
   final Workout workout;
   final List<WorkoutExercise> workoutExercises;
   final List<Exercise> exercises;
-  late final WorkoutType type;
-  late final WorkoutCategory category;
   late int _duration;
   int get duration => _duration;
 
@@ -38,8 +36,6 @@ class FullWorkout {
     required this.workoutExercises,
     required this.exercises,
   }) {
-    type = WorkoutType.fromDBValue(workout.type);
-    category = WorkoutCategory.fromDBValue(workout.category);
     _duration = (workoutExercises.isNotEmpty)
         ? workoutExercises[0].exerciseDuration ?? workout.exerciseDuration
         : 0;

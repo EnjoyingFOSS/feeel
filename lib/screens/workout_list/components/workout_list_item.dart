@@ -45,9 +45,6 @@ class WorkoutListItem extends StatelessWidget {
     final origTitle = workout.title;
     final theme = Theme.of(context);
 
-    final workoutCategory = WorkoutCategory.fromDBValue(workout.category);
-    final workoutType = WorkoutType.fromDBValue(workout.type);
-
     return Material(
         color: theme.backgroundColor,
         child: // Row(children: [
@@ -73,9 +70,9 @@ class WorkoutListItem extends StatelessWidget {
                                 tag: HeroUtil.getWorkoutHero(
                                     HeroType.illustration,
                                     workout.id,
-                                    workoutType),
+                                    workout.type),
                                 child: Triangle(
-                                  color: workoutCategory.colorSwatch
+                                  color: workout.category.colorSwatch
                                       .getColorByBrightness(FeeelShade.lightest,
                                           theme.brightness),
                                   seed: origTitle.hashCode,
@@ -88,12 +85,12 @@ class WorkoutListItem extends StatelessWidget {
                               children: [
                                 Hero(
                                     tag: HeroUtil.getWorkoutHero(HeroType.title,
-                                        workout.id, workoutType),
+                                        workout.id, workout.type),
                                     child: Material(
                                       //todo workaround for https://github.com/flutter/flutter/issues/30647
                                       type: MaterialType.transparency,
                                       child: AutoSizeText(
-                                        (workoutType == WorkoutType.bundled)
+                                        (workout.type == WorkoutType.bundled)
                                             ? origTitle.i18n
                                             : origTitle,
                                         style: theme.textTheme.headline6,
@@ -108,12 +105,12 @@ class WorkoutListItem extends StatelessWidget {
                                   tag: HeroUtil.getWorkoutHero(
                                       HeroType.subtitle,
                                       workout.id,
-                                      workoutType),
+                                      workout.type),
                                   child: Text(
-                                    workoutCategory.translationKey.i18n,
+                                    workout.category.translationKey.i18n,
                                     style: theme.textTheme.subtitle2?.copyWith(
                                         fontWeight: FontWeight.bold,
-                                        color: workoutCategory.colorSwatch
+                                        color: workout.category.colorSwatch
                                             .getColorByBrightness(
                                                 FeeelShade.darker,
                                                 theme.brightness)),

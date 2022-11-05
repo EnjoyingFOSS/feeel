@@ -55,9 +55,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   @override
   void initState() {
     super.initState();
-    colorSwatch =
-        WorkoutCategory.fromDBValue(widget.fullWorkout.workout.category)
-            .colorSwatch;
+    colorSwatch = widget.fullWorkout.workout.category.colorSwatch;
     _workoutController = WorkoutController(widget.fullWorkout);
   }
 

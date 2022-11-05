@@ -34,19 +34,19 @@ enum WorkoutCategory {
   final int dbValue;
   const WorkoutCategory(this.dbValue, this.translationKey, this.colorSwatch);
 
-  static WorkoutCategory fromDBValue(int dbValue) {
-    //todo use map
-    switch (dbValue) {
-      case 0:
-        return WorkoutCategory.strength;
-      case 1:
-        return WorkoutCategory.stretching;
-      case 2:
-        return WorkoutCategory.cardio;
-      case 3:
-        return WorkoutCategory.other;
-      default:
-        throw Exception("No workout category with this dbValue exists.");
-    }
-  }
+  // static WorkoutCategory fromDBValue(int dbValue) {
+  //   //todo use map
+  //   switch (dbValue) {
+  //     case 0:
+  //       return WorkoutCategory.strength;
+  //     case 1:
+  //       return WorkoutCategory.stretching;
+  //     case 2:
+  //       return WorkoutCategory.cardio;
+  //     case 3:
+  //       return WorkoutCategory.other;
+  //     default:
+  //       throw Exception("No workout category with this dbValue exists.");
+  //   }
+  // }
 }
