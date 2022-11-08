@@ -153,9 +153,7 @@ class WorkoutController {
 
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
-      if (prefs.getBool(PreferenceKeys.ttsDisabledPref) ?? Platform.isLinux
-          ? true
-          : false) {
+      if (prefs.getBool(PreferenceKeys.ttsDisabledPref) ?? Platform.isLinux) {
         final SoundView soundView = SoundView();
         _views[_ViewTypes.audio.index] = soundView;
         _onFinishes[_ViewTypes.audio.index] = () {
@@ -358,9 +356,12 @@ class WorkoutController {
   void close() {
     _timer.stop();
     clearView();
+    final audioView = _views[_ViewTypes.audio.index];
+    if (audioView is TTSView) {
+      audioView.stop();
+    }
     _views[_ViewTypes.audio.index] = null;
     _onFinishes[_ViewTypes.audio.index] = null;
-    TTSHelper.tts.stop(); //todo once stopped, does it restart?
     // todo views.clear() needed?
   }
 }
