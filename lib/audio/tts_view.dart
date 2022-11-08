@@ -76,4 +76,8 @@ class TTSView implements WorkoutView {
   void onCountdown(int exercisePos) {
     TTSHelper.tts.speak("Get ready!".i18n);
   }
+
+  void stop() {
+    TTSHelper.tts.stop(); //todo once stopped, does it restart?
+  }
 }

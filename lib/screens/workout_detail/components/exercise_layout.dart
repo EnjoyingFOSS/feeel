@@ -168,6 +168,9 @@ class ExerciseLayout extends StatelessWidget {
                       "Tap for controls".i18n,
                       style: TextStyle(color: themeDarkColor),
                     ),
+              const SizedBox(
+                height: 16,
+              ),
               ExerciseIllustration(
                   floating: false,
                   imageSlug: imageSlug,
