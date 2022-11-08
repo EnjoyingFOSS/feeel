@@ -81,7 +81,7 @@ class DBHelper {
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
-  static const int DATABASE_VERSION = 22;
+  static const int DATABASE_VERSION = 23;
 
   Future<Database> _createDB() async {
     String path = await getPath();
@@ -256,7 +256,7 @@ class DBHelper {
       id: DefaultExercises.jumpingJacks,
       name: "Jumping jacks",
       description:
-          "1. Stand with feet together and arms at the sides\n2. Jump to a position with the legs spread wide and the hands touching overhead\n3. Repeat",
+          "Starting position:\nStand with feet together, back straight, and arms at the sides.\n\nSteps:\n1. Jump to a position with the legs spread wide and the hands touching overhead.\n2. Jump back to the starting position.\n3. Repeat.",
       imageSlug: "exercise_jumpingjacks.webp",
       imageLicenseInfo:
           "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from United States Air Force's [\"Top leaders unite for senior enlisted summit\"](http://www.af.mil/News/Photos/igphoto/2000617206/), which is in the public domain.",
@@ -268,7 +268,7 @@ class DBHelper {
       id: DefaultExercises.wallSit,
       name: "Wall sit",
       description:
-          "1. Lean against the wall, facing forward and with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n2. Slide down the wall, keeping the back pressed to it, until legs are at a right angle. The knees should be directly above the ankles\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
+          "Starting position:\nYour back should be touching the wall, your knees at a right angle and positioned right above the angles. You should be facing forward, with feet shoulder-width apart and planted firmly on the ground.\nTo get to this position, you can lean against the wall, feet about 2 feet away from the wall. Slide down the wall, keeping the back pressed to it, until your knees are at a right angle.\n\nSteps:\n1. Maintain this position.\n\nNotes:\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap.",
       imageSlug: "exercise_wallsit.webp",
       imageLicenseInfo:
           "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Fitness Gym Wall Sit Workout Vaughan Gray Fitness\"](http://maxpixel.freegreatpicture.com/Vaughan-Wall-Sit-Workout-Gym-Fitness-2523075) from Max Pixel, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
@@ -291,7 +291,7 @@ class DBHelper {
         id: DefaultExercises.abCrunches,
         name: "Crunches",
         description:
-            "1. Lie down face up on the floor with knees bent.\n2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n3. Repeat",
+            "Starting position:\nLie down face up on the floor with knees bent.\n\nSteps:\n1. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n2. Return to the initial position.\n3. Repeat.",
         imageSlug: "exercise_abcrunch.webp",
         imageLicenseInfo:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from bwanderd's [\"26 Abs 1\"](https://www.flickr.com/photos/86598533@N04/8252254965), published under the [CC BY 2.0 license](https://creativecommons.org/licenses/by/2.0/).",
@@ -301,7 +301,7 @@ class DBHelper {
         id: DefaultExercises.stepUps,
         name: "Step-ups",
         description:
-            "1. Stand facing a chair\n2. Step up onto the chair\n3. Step off the chair\n4. Repeat",
+            "Starting position:\nStand facing a chair.\n\nSteps:\n1. Step up onto the chair.\n2. Step off the chair.\n3. Repeat.",
         imageSlug: "exercise_stepup.webp",
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["Bodyweight Step Up"](https://www.youtube.com/watch?v=6tuRv_B-tj4) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
@@ -311,7 +311,7 @@ class DBHelper {
         id: DefaultExercises.squats,
         name: "Squats",
         description:
-            "1. Stand with feet shoulder-width apart\n2. Move the hips back and bend the knees and hips to lower the torso\n3. Repeat",
+            "Starting position:\nStand with feet shoulder-width apart.\n\nSteps:\n1. Move the hips back and bend the knees and hips to lower the torso until your hips are lower than your knees.\n2. Return back to the initial position.\n3. Repeat.",
         imageSlug: "exercise_squat.webp",
         imageLicenseInfo:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Vinceypo0's [\"Parallel Squat Form\"](https://commons.wikimedia.org/wiki/File:Parallel_Squat_Form.jpeg), published under the [CC BY-SA 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/deed.en).",
@@ -321,7 +321,7 @@ class DBHelper {
         id: DefaultExercises.chairDips,
         name: "Chair dips",
         description:
-            "1. Sit down on the front edge of a chair, back straight, hands holding the front edge\n2. Still holding the edge of the chair, arms extended, lift your butt and walk forward slightly so that it is a few inches from the chair.\n3. Slowly lower your body, keeping the back straight, until arms are at a right angle\n4. Raise your body again to the previous position, arms extended\n5. Repeat steps 3 and 4",
+            "Starting position:\nSit down on the front edge of a chair, back straight, hands holding the front edge. Still holding the edge of the chair, arms extended, lift your butt and walk forward slightly so that it is a few inches from the chair.\n\nSteps:\n1. Slowly lower your body, keeping the back straight, until your arms are at a right angle.\n2. Raise your body again to the initial position, arms extended.\n3. Repeat.",
         imageSlug: "exercise_tricepsdip.webp",
         imageLicenseInfo:
             "Miroslav Mazel's \"Chair Dips\" is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
@@ -341,7 +341,7 @@ class DBHelper {
         id: DefaultExercises.highKnees,
         name: "High knees",
         description:
-            "1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace",
+            "Starting position\nStand straight.\n\nSteps:\n1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace.",
         imageSlug: "exercise_highknees.webp",
         imageLicenseInfo:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from US Air Force's [\"RIP It! New running program puts Airmen's best foot forward\"](http://www.barksdale.af.mil/News/Photos/igphoto/2000179280/), which is in the public domain.",
@@ -351,7 +351,7 @@ class DBHelper {
         id: DefaultExercises.lunges,
         name: "Lunges",
         description:
-            "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Return to standing position by stepping back\n6. Repeat, switching legs each time",
+            "Starting position:\nStand with back straight.\n\nSteps:\n1. Take a large step forward with your left leg.\n2. Bring your pelvis down until you almost touch the floor with your right knee.\n3. Bring your pelvis back up.\n4. Return to the starting position by stepping back.\n6. Repeat, switching legs each time.",
         imageSlug: "exercise_lunge.webp",
         imageLicenseInfo:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Mass Communication Specialist 2nd Class Brian Morales's [\"U.S. Navy Gas Turbine Systems Technician (Mechanical) 2nd Class Milton Lovelace, left, and Logistics Specialist Seaman Brittney Joseph, both assigned to the Naval Air Station (NAS) Key West port operations department, perform lunges during a physical training session at NAS Key West, Fla., Aug. 28, 2013. The Sailors were preparing for a Navy-wide physical fitness assessment.\"](https://commons.wikimedia.org/wiki/File:U.S._Navy_Gas_Turbine_Systems_Technician_(Mechanical)_2nd_Class_Milton_Lovelace,_left,_and_Logistics_Specialist_Seaman_Brittney_Joseph,_both_assigned_to_the_Naval_Air_Station_(NAS)_Key_West_port_operations_130828-N-YB753-041.jpg), which is in the public domain.",
@@ -361,14 +361,14 @@ class DBHelper {
         id: DefaultExercises.pushUpRotations,
         name: "Push-up rotations",
         description:
-            "1. Do a standard push-up:\n1.a Lie down on your stomach\n1.b Place your hands near your ears\n1.c Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n1.d Bend arms until chest almost touches the ground, making sure the back is straight\n1.e Lift your stomach up again, returning to step 3\n2. Rotate your body to the side so that the back is straight, the bottom hand supporting the body is fully extended, and only the bottom hand and foot touch the floor\n3. Repeat, changing sides at step 2 each time",
+            "Starting position:\nGet into the starting push-up position, with your hands and toes touching the ground and back, arms and legs straight. To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.\n\nSteps:\n1. Perform a standard push-up:\n1.a Bend arms until chest almost touches the ground, making sure the back is straight.\n1.b Use your arms to lift yourself back up to starting position.\n2. Rotate your body to the side so that the back is straight, the bottom hand supporting the body is fully extended, and only the bottom hand and foot touch the floor.\n3. Repeat, changing sides at step 2 each time.",
         imageSlug: "exercise_pushuprotation.webp",
         imageLicenseInfo:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Woman in Purple Tank Top and Gray Sweat Pants\"](https://www.pexels.com/photo/woman-in-purple-tank-top-and-gray-sweat-pants-163437/) on Pexels, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
         descriptionLicenseInfo: myDescriptionLicense);
 
     const sidePlankDesc =
-        "1. Lie down on your side, with your bottom elbow at a right angle, arm sticking out\n2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line\n3. Hold this position";
+        "Starting position:\nLie down on your side, with your bottom elbow at a right angle, arm sticking out. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line.\n\nSteps:\n1. Hold this position.";
     const sidePlankImageLicense =
         "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Sgt. Thomas Childs's [\"U.S. Marine Corps Sgt. Jonathan Benezette demonstrates the left plank position during Marine Corps martial arts training aboard the dock landing ship USS Oak Hill (LSD 51) during Amphibious-Southern Partnership Station (A-SPS) 2012 in the Caribbean Sea Oct. 9, 2011. SPS is an annual deployment of U.S. ships to the U.S. Southern Command's area of responsibility in the Caribbean and Latin America. The exercise involves information sharing with navies, coast guards and civilian services throughout the region.\"](https://commons.wikimedia.org/wiki/File:U.S._Marine_Corps_Sgt._Jonathan_Benezette_demonstrates_the_left_plank_position_during_Marine_Corps_martial_arts_training_aboard_the_dock_landing_ship_USS_Oak_Hill_(LSD_51)_during_Amphibious-Southern_Partnership_111009-A-WF228-011.jpg), which is in the public domain.";
 
@@ -389,13 +389,13 @@ class DBHelper {
         imageLicenseInfo: sidePlankImageLicense,
         descriptionLicenseInfo: myDescriptionLicense);
 
-    const sideLungeDesc =
-        "1. Stand tall and take a wide lateral stride, just greater than shoulder width.\n2. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n3. Push back to the starting position and repeat.";
+    const sideSplitSquatsDesc =
+        "Starting position:\n1. Stand tall and take a wide lateral stride, just greater than shoulder width.\n\nSteps:\n1. Bend one knee until your thigh is parallel to the floor. The bent knee must be in line with the foot.\n2. Push back to the starting position.\n3. Repeat.";
 
     await _createExercise(db,
         id: DefaultExercises.sideSplitSquatsL,
         name: "Side split squats left",
-        description: sideLungeDesc,
+        description: sideSplitSquatsDesc,
         flipped: true,
         imageSlug: "exercise_sidesplitsquat.webp",
         descriptionLicenseInfo:
@@ -403,13 +403,13 @@ class DBHelper {
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
-    const bulgarianSquatsDesc =
-        "1. Stand tall in front of a chair and take a large step. Put the upper part of one of your feet on the chair.\n2. Bend the front knee, balancing with arms until the back knee almost touches the ground\n3. Push back to the starting position and repeat.";
+    const bulgarianSplitSquatsDesc =
+        "1. Stand tall in front of a chair and take a large step. Put the upper part of one of your feet on the chair.\n2. Bend the front knee, balancing with arms until the back knee almost touches the ground.\n3. Push back to the starting position and repeat.";
 
     await _createExercise(db,
         id: DefaultExercises.bulgarianSplitSquatsL,
         name: "Bulgarian split squats left",
-        description: bulgarianSquatsDesc,
+        description: bulgarianSplitSquatsDesc,
         imageSlug: "exercise_bulgariansplitsquat.webp",
         descriptionLicenseInfo:
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
@@ -419,7 +419,7 @@ class DBHelper {
     await _createExercise(db,
         id: DefaultExercises.bulgarianSplitSquatsR,
         name: "Bulgarian split squats right",
-        description: bulgarianSquatsDesc,
+        description: bulgarianSplitSquatsDesc,
         flipped: true,
         imageSlug: "exercise_bulgariansplitsquat.webp",
         descriptionLicenseInfo:
@@ -427,7 +427,7 @@ class DBHelper {
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
     const pistolSquatDesc =
-        "1. Stand on one leg, with your other leg straight and slightly forward.\n2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.\n3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.\n4. Repeat";
+        "1. Stand on one leg, with your other leg straight and slightly forward.\n2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.\n3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.\n4. Repeat.";
 
     await _createExercise(db,
         id: DefaultExercises.pistolSquatsL,
@@ -454,7 +454,7 @@ class DBHelper {
         id: DefaultExercises.kneelingKickbacks,
         name: "Kneeling kickbacks",
         description:
-            "1. Get down on all fours.\n2. Push one foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.\n4. Repeat, alternating feet",
+            "Starting position:\nGet down on all fours.\n\nSteps:\n1. Push one foot back until fully extended, concentrating on the gluteus muscles.\n2. Stay for one second, then return to the initial position.\n3. Repeat, alternating feet.",
         imageSlug: "exercise_kneelingkickback.webp",
         descriptionLicenseInfo:
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
@@ -488,7 +488,7 @@ class DBHelper {
     await _createExercise(db,
         id: DefaultExercises.sideSplitSquatsR,
         name: "Side split squats right",
-        description: sideLungeDesc,
+        description: sideSplitSquatsDesc,
         imageSlug: "exercise_sidesplitsquat.webp",
         descriptionLicenseInfo:
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
@@ -496,7 +496,7 @@ class DBHelper {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).');
 
     const splitSquatsDesc =
-        "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Repeat from step 3.";
+        "Starting position:\nStand with your back straight. Take a large step forward with your left leg.\n\nSteps:\n1. Bring your pelvis down until you almost touch the floor with your right knee.\n2. Bring your pelvis back up.\n3. Repeat.";
 
     await _createExercise(db,
         id: DefaultExercises.splitSquatsL,
@@ -533,7 +533,7 @@ class DBHelper {
         id: DefaultExercises.armCirclesFW,
         name: "Forward arm circles",
         description:
-            "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.\n3. Keep circling your arms as described in step 2.",
+            "Starting position:\nStand tall with your back straight.\n\nSteps:\n1. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.\n2. Keep circling your arms as described in step 1.",
         imageSlug: "exercise_armcircles_fw.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
@@ -543,7 +543,7 @@ class DBHelper {
         id: DefaultExercises.pikePushUps,
         name: "Pike push-ups",
         description:
-            "Staring position:\nDownward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.\nYou can get to this position by walking your hands back from a high plank.\n\nSteps:\n1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.\n2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.\n3. Repeat.",
+            "Staring position:\nDownward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.\nYou can get to this position by walking your hands back from a high plank.\n\nSteps:\n1. Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.\n2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.\n3. Repeat.",
         imageSlug: "exercise_pikepushup.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
@@ -553,7 +553,7 @@ class DBHelper {
         id: DefaultExercises.mountainClimbers,
         name: "Mountain climbers",
         description:
-            "Starting position:\nStart in the upright push-up position, or the high plank.\nHands should be directly under your shoulders.\nKeep your head in line with your back, facing the floor.\nFeet should be about hip-width apart.\n\nSteps:\n1. Move one knee toward the center of your body, towards your elbows, keeping the other leg extended.\n2. In a quick jumping movement, straighten the bent leg out and pull the other knee toward your body.\n3. Keep repeating step 2, alternating legs.\n\nNotes:\nThroughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.",
+            "Starting position:\nStart in the upright push-up position, aka. the high plank position.\nHands should be directly under your shoulders.\nKeep your head in line with your back, facing the floor.\nFeet should be about hip-width apart.\n\nSteps:\n1. Move one knee toward the center of your body, towards your elbows, keeping the other leg extended.\n2. In a quick jumping movement, straighten the bent leg out and pull the other knee toward your body.\n3. Keep repeating step 2, alternating legs.\n\nNotes:\nThroughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.",
         imageSlug: "exercise_mountainclimber.webp",
         imageLicenseInfo:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["Mountain Climber"](https://vimeo.com/149362946) by Dr. Greg Wells on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
@@ -637,7 +637,7 @@ class DBHelper {
         id: DefaultExercises.armCirclesBW,
         name: "Backward arm circles",
         description:
-            "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
+            "Starting position:\nStand tall with your back straight.\n\nSteps:\n1. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.\n2. Keep circling your arms as described in step 1.",
         imageSlug: "exercise_armcircles_bw.webp",
         descriptionLicenseInfo: myDescriptionLicense,
         imageLicenseInfo:
@@ -837,7 +837,7 @@ class DBHelper {
       name: "Clockwise neck circles",
       type: ExerciseType.head,
       description:
-          "Starting position:\nStart sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.\n\nSteps:\nIn a slower fluid motion and with your head relaxed and not pushing in any direction:\n1. lean toward your right shoulder\n2. then bring your head back, facing up\n3. then lean toward your left shoulder\n4.and back toward the starting position.\n\nKeep repeating this as part of one slower fluid motion.",
+          "Starting position:\nStart sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.\n\nSteps:\nIn a slower fluid motion and with your head relaxed and not pushing in any direction:\n1. lean toward your right shoulder.\n2. then bring your head back, facing up.\n3. then lean toward your left shoulder.\n4.and back toward the starting position.\n\nKeep repeating this as part of one slower fluid motion.",
       descriptionLicenseInfo: myDescriptionLicense,
       imageSlug: "exercise_neckcircles_cw.webp",
       imageLicenseInfo: neckCircleLicense,
@@ -849,7 +849,7 @@ class DBHelper {
       name: "Counterclockwise neck circles",
       type: ExerciseType.head,
       description:
-          "Starting position:\nStart sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.\n\nSteps:\nIn a slower fluid motion and with your head relaxed and not pushing in any direction:\n1. lean toward your left shoulder\n2. then bring your head back, facing up\n3. then lean toward your right shoulder\n4.and back toward the starting position.\n\nKeep repeating this as part of one slower fluid motion.",
+          "Starting position:\nStart sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.\n\nSteps:\nIn a slower fluid motion and with your head relaxed and not pushing in any direction:\n1. lean toward your left shoulder.\n2. then bring your head back, facing up.\n3. then lean toward your right shoulder.\n4.and back toward the starting position.\n\nKeep repeating this as part of one slower fluid motion.",
       descriptionLicenseInfo: myDescriptionLicense,
       imageSlug: "exercise_neckcircles_ccw.webp",
       imageLicenseInfo: neckCircleLicense,
@@ -861,7 +861,7 @@ class DBHelper {
       name: "Neck half circles",
       type: ExerciseType.head,
       description:
-          "Starting position:\nStart sitting or standing. Lean your head against one of your shoulders, but don't push.\n\nSteps:\nIn one slower fluid motion and with your head relaxed and not pushing in any direction:\n1. bring your head down toward your chest\n2. then lean back aganst your other shoulder\n3. then back toward the chest again\n4.and finally toward the starting position.\n\nKeep repeating this.",
+          "Starting position:\nStart sitting or standing. Lean your head against one of your shoulders, but don't push.\n\nSteps:\nIn one slower fluid motion and with your head relaxed and not pushing in any direction:\n1. bring your head down toward your chest.\n2. then lean back aganst your other shoulder.\n3. then back toward the chest again.\n4.and finally toward the starting position.\n\nKeep repeating this.",
       descriptionLicenseInfo: myDescriptionLicense,
       imageSlug: "exercise_neckhalfcircles.webp",
       imageLicenseInfo: neckCircleLicense,
