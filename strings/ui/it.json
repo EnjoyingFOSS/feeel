@@ -97,5 +97,10 @@
     "txtNoCustomWorkouts": "Non hai allenamenti personalizzati",
     "txtImageLicense": "Licenza d'immagine",
     "txtImportWorkouts": "Importa allenamenti",
-    "txtDisclaimerHeading": "Dichiarazione di non responsabilità"
+    "txtDisclaimerHeading": "Dichiarazione di non responsabilità",
+    "btnWgerSignUp": "Iscriviti a wger",
+    "txtWger21Days": "La contribuzione tramite wger richiede un account più vecchio di 21 giorni.",
+    "txtDisclaimerContent": "Gli esercizi e gli allenamenti sono forniti da volontari. Né Feeel né i volontari sono responsabili della correttezza delle informazioni contenute in questa applicazione o della vostra salute. Utilizzare a propria discrezione.",
+    "txtContributeViaWger": "Gli esercizi sono forniti dal sito web di wger**, un altro progetto comunitario con codice aperto. In una versione futura, Feeel incorporerà tutti gli esercizi di questo sito web.",
+    "btnWgerLogIn": "Accedi tramite wger"
 }

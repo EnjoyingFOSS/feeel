@@ -1,4 +1,4 @@
-Feeel ist eine quelloffene Android-Anwendung für die Durchführung einfacher Übungen zu Hause. Sie enthält das hochgelobte wissenschaftliche 7-Minuten-Workout-Regime für den ganzen Körper und ermöglicht auch das Erstellen eigener Workouts. Während die Anwendung derzeit eine begrenzte Anzahl von Übungen enthält, ist geplant, die Anzahl der Übungen und Workouts mit Hilfe der Gemeinschaft drastisch zu erweitern.
+Feeel ist eine quelloffene Android-Anwendung für die Durchführung einfacher Übungen zu Hause. Sie enthält das hochgelobte wissenschaftliche 7-Minuten-Trainingsprogramm und ermöglicht auch die Erstellung benutzerdefinierter Workouts. Während die Anwendung derzeit eine begrenzte Anzahl von Übungen enthält, ist geplant, die Anzahl der Übungen und Workouts mit Hilfe der Gemeinschaft drastisch zu erweitern.
 
 Hilf mit unter https://gitlab.com/enjoyingfoss/feeel/wikis
 
