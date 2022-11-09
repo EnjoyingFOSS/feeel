@@ -81,7 +81,7 @@ class DBHelper {
   static const int _DEFAULT_COUNTDOWN_DURATION = 5;
   static const int _DEFAULT_EXERCISE_DURATION = 30;
   static const int _DEFAULT_BREAK_DURATION = 10;
-  static const int DATABASE_VERSION = 23;
+  static const int DATABASE_VERSION = 24;
 
   Future<Database> _createDB() async {
     String path = await getPath();
