@@ -1,0 +1,11 @@
+Lots of changes:
+- First release for Linux!
+- A brand new "Neck and shoulder stretches" workout
+- Chinese and Greek support, thanks to volunteer contributors
+- New exercises
+- New screen transitions
+- A new bottom sheet with exercise descriptions
+- A new, much more usable exercise layout for horizontal mode
+- Android 13 support, including a themed app icon and language selection
+- New translations
+- And more!
