@@ -93,7 +93,7 @@ class DisclaimerSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Feeel is a volunteer-driven project".i18n,
+                      "Feeel is a community project".i18n,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline6,
                     ),
