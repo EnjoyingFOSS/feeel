@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+	<id>com.enjoyingfoss.Feeel</id>
+	<name>Feeel</name>
+	<summary>A simple home workout/exercise app that respects your privacy</summary>
+
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>AGPL-3.0-or-later</project_license>
+	<recommends>
+		<control>touch</control>
+		<control>pointing</control>
+		<control>keyboard</control>
+	</recommends>
+	<developer_name>Enjoying FOSS</developer_name>
+	<url type="homepage">https://gitlab.com/enjoyingfoss/feeel</url>
+	<url type="bugtracker">https://gitlab.com/enjoyingfoss/feeel/-/issues</url>
+	<url type="donation">https://liberapay.com/Feeel/donate</url>
+
+	<description>
+		<p>Feeel is an open-source app for doing simple at-home exercises. It holds the acclaimed full body scientific 7-minute workout regime and allows creating custom workouts as well. While the app currently contains a limited amount of exercises, the plan is to drastically expand the number of both exercises and workouts with the help of the community.</p>
+
+		<p>Features:</p>
+		<ul>
+			<li>Mobile first, runs on Linux and Android</li>
+			<li>Private (fully offline, no tracking, no ads)</li>
+			<li>Translated into several languages</li>
+			<li>Free and open-source. Contribute at https://gitlab.com/enjoyingfoss/feeel/wikis.</li>
+		</ul>
+	</description>
+
+	<!-- todo screenshots>
+	</screenshots-->
+
+	<releases>
+		<release version="2.4.0" date="2022-11-11" />
+	</releases>
+
+	<content_rating type="oars-1.1" />
+
+	<launchable type="desktop-id">com.enjoyingfoss.Feeel</launchable>
+</component>
