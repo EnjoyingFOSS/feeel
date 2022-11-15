@@ -267,11 +267,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _launchURL(String url) async {
-    await canLaunchUrl(Uri.parse(url))
-        ? await launchUrl(Uri.parse(url))
-        : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Could not open URL.".i18n),
-          ));
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final launched = await launchUrl(Uri.parse(url));
+    if (!launched) {
+      scaffoldMessenger.showSnackBar(SnackBar(
+        content: Text("Could not open URL.".i18n),
+      ));
+    }
   }
 
   void _showAboutDialog() async {

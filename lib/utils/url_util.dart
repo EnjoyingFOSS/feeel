@@ -26,10 +26,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class URLUtil {
   static void launchURL(BuildContext context, String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final launched = await launchUrl(Uri.parse(url));
+    if (!launched) {
+      scaffoldMessenger.showSnackBar(SnackBar(
         content: Text("Could not open URL.".i18n),
       ));
     }
