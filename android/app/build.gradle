@@ -47,6 +47,9 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true // required by flutter_local_notifications
+        ndk { // Flutter does not support 32-bit x86 yet (see https://docs.flutter.dev/deployment/android#what-are-the-supported-target-architectures)
+          abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
+        }
     }
 
     signingConfigs {
@@ -69,6 +72,8 @@ android {
 
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5' // required by flutter_local_notifications
+    implementation 'androidx.window:window:1.0.0' // needed with desugaring, in turn required by flutter_local_notifications
+    implementation 'androidx.window:window-java:1.0.0' // needed with desugaring, in turn required by flutter_local_notifications
 }
 
 flutter {
