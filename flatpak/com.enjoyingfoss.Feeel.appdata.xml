@@ -37,5 +37,5 @@
 
 	<content_rating type="oars-1.1" />
 
-	<launchable type="desktop-id">com.enjoyingfoss.Feeel</launchable>
+	<launchable type="desktop-id">com.enjoyingfoss.Feeel.desktop</launchable>
 </component>
