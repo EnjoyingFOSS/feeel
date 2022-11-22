@@ -27,6 +27,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/db/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/screens/settings/components/theme_dialog.dart';
+import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -234,19 +235,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ListTile(
                       leading: const Icon(Icons.volunteer_activism),
                       title: Text("Participate".i18n),
-                      onTap: () => _launchURL(
+                      onTap: () => URLUtil.launchURL(context,
                           "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
                     ),
                     ListTile(
                       leading: const Icon(Icons.attach_money),
                       title: Text("Donate".i18n),
-                      onTap: () => _launchURL("https://liberapay.com/Feeel/"),
+                      onTap: () => URLUtil.launchURL(
+                          context, "https://liberapay.com/Feeel/"),
                     ),
                     ListTile(
                       leading: const Icon(Icons.code),
                       title: Text("Source code".i18n),
-                      onTap: () =>
-                          _launchURL("https://gitlab.com/enjoyingfoss/feeel/"),
+                      onTap: () => URLUtil.launchURL(
+                          context, "https://gitlab.com/enjoyingfoss/feeel/"),
                     ),
                     ListTile(
                       leading: const Icon(Icons.info),
@@ -264,16 +266,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   TimeOfDay _getDefaultNotificationTime() {
     final now = TimeOfDay.now();
     return TimeOfDay(hour: now.hour, minute: (now.minute ~/ 30) * 30);
-  }
-
-  void _launchURL(String url) async {
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final launched = await launchUrl(Uri.parse(url));
-    if (!launched) {
-      scaffoldMessenger.showSnackBar(SnackBar(
-        content: Text("Could not open URL.".i18n),
-      ));
-    }
   }
 
   void _showAboutDialog() async {
