@@ -1,7 +1,7 @@
 name: feeel
 description: A simple home workout/exercise app that respects your privacy
 
-version: 2.4.0+4240
+version: 2.4.1+4241
 
 publish_to: none
 
@@ -14,7 +14,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   http: ^0.13.5
-  flutter_tts: ^3.6.0
+  flutter_tts: 3.5.3
   wakelock: ^0.6.2
   sqflite: ^2.2.0
   sqflite_common_ffi: ^2.2.0
@@ -31,7 +31,6 @@ dependencies:
   auto_size_text: ^3.0.0
   flutter_markdown: ^0.6.13
   flutter_staggered_animations: ^1.1.1
-  share_plus: ^6.2.0
   date_format: ^2.0.6
   # provider: ^6.0.3
   # archive: ^3.3.0
