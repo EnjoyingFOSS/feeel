@@ -28,11 +28,35 @@
 		</ul>
 	</description>
 
-	<!-- todo screenshots>
-	</screenshots-->
+	<screenshots>
+		<screenshot type="default">
+			<caption>Overview screen in Feeel, listing all workouts</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/feeel/-/raw/master/flatpak/screenshots/1-intro.png</image>
+		</screenshot>
+		<screenshot type="default">
+			<caption>Feeel's exercise screen, showing a workout in progress</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/feeel/-/raw/master/flatpak/screenshots/2-exercise.png</image>
+		</screenshot>
+		<screenshot type="default">
+			<caption>A bottom sheet describing an exercise</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/feeel/-/raw/master/flatpak/screenshots/3-exercise-info.png</image>
+		</screenshot>
+		<screenshot type="default">
+			<caption>The workout editor, allowing people to create their own workouts</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/feeel/-/raw/master/flatpak/screenshots/4-editor-empty.png</image>
+		</screenshot>
+		<screenshot type="default">
+			<caption>The screen for adding exercises to a workout</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/feeel/-/raw/master/flatpak/screenshots/5-add-exercises.png</image>
+		</screenshot>
+		<screenshot type="default">
+			<caption>A workout being edited in the workout editor</caption>
+			<image type="source">https://gitlab.com/enjoyingfoss/feeel/-/raw/master/flatpak/screenshots/6-editor.png</image>
+		</screenshot>
+	</screenshots>
 
 	<releases>
-		<release version="2.4.0" date="2022-11-11" />
+		<release version="2.4.1" date="2022-11-22" />
 	</releases>
 
 	<content_rating type="oars-1.1" />
