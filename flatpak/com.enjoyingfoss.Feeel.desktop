@@ -8,3 +8,4 @@ Icon=com.enjoyingfoss.Feeel
 Exec=feeel
 StartupWMClass=feeel
 X-Purism-FormFactor=Workstation;Mobile;
+X-KDE-FormFactors=desktop;tablet;handset;mediacenter;
