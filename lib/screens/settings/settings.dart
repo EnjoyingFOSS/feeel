@@ -250,6 +250,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onTap: () => URLUtil.launchURL(
                           context, "https://gitlab.com/enjoyingfoss/feeel/"),
                     ),
+                    if (Platform.isLinux)
+                      ListTile(
+                        leading: const Icon(Icons.record_voice_over),
+                        title: Text("Help bring text-to-speech to Linux".i18n),
+                        onTap: () => URLUtil.launchURL(context,
+                            "https://github.com/dlutton/flutter_tts/issues/175"),
+                      ),
                     ListTile(
                       leading: const Icon(Icons.info),
                       title: Text("About Feeel".i18n),
