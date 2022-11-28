@@ -34,3 +34,6 @@ Install
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
       alt="Get Feeel on Google Play"
       height="80">](https://play.google.com/store/apps/details?id=com.enjoyingfoss.feeel)
+[<img src="https://www.flathub.org/assets/badges/flathub-badge-en.png"
+      alt="Get the Feeel Flatpak on Flathub"
+      height="80">](https://flathub.org/apps/details/com.enjoyingfoss.feeel)
