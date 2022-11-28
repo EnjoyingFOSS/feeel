@@ -31,10 +31,11 @@
     "exerciseSingleLegCalfRaiseLeft": "Dizanje lijeve potkoljenice",
     "exerciseJumpRopeBasic": "Preskakanje užeta: osnovni skokovi",
     "stepsStepups": "1. Stani ispred stolca\n2. Zakorači na stolac\n3. Siđi sa stolca\n4. Ponovi",
-    "exerciseArmCircles": "Kruženje rukama",
+    "exerciseArmCircles": "Kruženje rukama prema naprijed",
     "exerciseFWShoulderRotation": "Okretanje ramena prema naprijed",
     "exerciseBWShoulderRotation": "Okretanje ramena prema natrag",
     "exercisePistolSquatRight": "Pištoljski čučnjevi desno",
     "exerciseSingleLegCalfRaiseRight": "Dizanje desne potkoljenice",
-    "stepsJumpingJacks": "1. Stani ravno sa skupljenim nogama i rukama uz tijelo\n2. Skoči u položaj s raširenim nogama i dodirni ruke iznad glave\n3. Ponovi"
+    "stepsJumpingJacks": "1. Stani ravno sa skupljenim nogama i rukama uz tijelo\n2. Skoči u položaj s raširenim nogama i dodirni ruke iznad glave\n3. Ponovi",
+    "exerciseBWArmCircles": "Kruženje rukama prema natrag"
 }

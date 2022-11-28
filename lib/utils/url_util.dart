@@ -25,11 +25,13 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class URLUtil {
+  //todo launch in a new window
   static void launchURL(BuildContext context, String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final launched =
+        await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    if (!launched) {
+      scaffoldMessenger.showSnackBar(SnackBar(
         content: Text("Could not open URL.".i18n),
       ));
     }

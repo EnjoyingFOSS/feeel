@@ -28,9 +28,10 @@ import 'package:i18n_extension/i18n_extension.dart';
 extension Localization on String {
   static var t = Translations("en") +
       {
+        "zh": """完成了！""",
         "tr": """Başardınız!""",
         "nl": """Goed gedaan!""",
-        "de": """Geschafft!""",
+        "de": """Du hast es geschafft!""",
         "ru": """Молодец!""",
         "pt": """Você conseguiu!""",
         "en": """You did it!""",
@@ -44,6 +45,7 @@ extension Localization on String {
         "ar": """أنت فعلت ذلك!""",
       } +
       {
+        "zh": """下 一个：""",
         "tr": """Sonraki:""",
         "nl": """Hierna:""",
         "de": """Als nächstes:""",
@@ -60,6 +62,7 @@ extension Localization on String {
         "ar": """التالي:""",
       } +
       {
+        "zh": """准备！""",
         "tr": """Hazır olun!""",
         "nl": """Get ready!""",
         "de": """Mach dich bereit!""",
@@ -70,12 +73,13 @@ extension Localization on String {
         "hr": """Pripremi se!""",
         "fr": """Préparez-vous !""",
         "el": """Ετοιμαστείτε!""",
-        "cs": """Get ready!""",
+        "cs": """Připravte se!""",
         "id": """Get ready!""",
         "es": """Get ready!""",
         "ar": """استعد!""",
       } +
       {
+        "zh": """开始吧！第一个：%s""",
         "tr": """Haydi başlayalım. Birinci: %s""",
         "nl": """Tijd om aan de slag te gaan! Allereerst: %s""",
         "de": """Auf gehts zur ersten Übung: %s""",
@@ -92,6 +96,7 @@ extension Localization on String {
         "ar": """لنذهب! أولا: %s""",
       } +
       {
+        "zh": """剩余 %d 秒""",
         "tr": """%d saniye kaldı""",
         "nl": """Nog %d seconden te gaan""",
         "de": """%d Sekunden übrig""",
@@ -108,6 +113,7 @@ extension Localization on String {
         "ar": """%d ثانية متبقية""",
       } +
       {
+        "zh": """休息！""",
         "tr": """Mola zamanı!""",
         "nl": """Tijd voor een pauze!""",
         "de": """Pause!""",
@@ -124,6 +130,7 @@ extension Localization on String {
         "ar": """استراحة!""",
       } +
       {
+        "zh": """点击屏幕，操控软件""",
         "tr": """Denetimler için dokunun""",
         "nl": """Druk om bediening te tonen""",
         "de": """Berühren für die Steuerung""",
@@ -140,6 +147,7 @@ extension Localization on String {
         "ar": """اضغط على عناصر التحكم""",
       } +
       {
+        "zh": """图片缺失""",
         "tr": """Resim eksik""",
         "nl": """Afbeelding ontbreekt""",
         "de": """Bild fehlt""",
@@ -156,6 +164,7 @@ extension Localization on String {
         "ar": """الصورة مفقودة""",
       } +
       {
+        "zh": """锻炼组合标题""",
         "tr": """Antrenman başlığı""",
         "nl": """Naam van workout""",
         "de": """Name des Trainings""",
@@ -172,6 +181,7 @@ extension Localization on String {
         "ar": """عنوان التمرين""",
       } +
       {
+        "zh": """做你自己的教练!""",
         "tr": """Kendi koçunuz olun!""",
         "nl": """Coach jezelf!""",
         "de": """Sei dein eigener Coach!""",
@@ -188,6 +198,7 @@ extension Localization on String {
         "ar": """كن مدربك الخاص!""",
       } +
       {
+        "zh": """设计让你自己感觉最好的锻炼组合""",
         "tr": """Kendinizi en iyi hissettiren egzersizi tasarlayın""",
         "nl": """Ontwerp dé workout die voor jou prettig voelt""",
         "de": """Erstelle das Training, mit dem du dich am besten fühlst""",
@@ -204,6 +215,7 @@ extension Localization on String {
         "ar": """قم بتصميم التمرين الذي يجعلك تشعر بشكل أفضل""",
       } +
       {
+        "zh": """全身""",
         "tr": """Tüm vücut""",
         "nl": """Hele lichaam""",
         "de": """Ganzkörper""",
@@ -220,6 +232,7 @@ extension Localization on String {
         "ar": """كامل الجسم""",
       } +
       {
+        "zh": """腿部""",
         "tr": """Bacaklar""",
         "nl": """Benen""",
         "de": """Beine""",
@@ -236,6 +249,7 @@ extension Localization on String {
         "ar": """السيقان""",
       } +
       {
+        "zh": """你在发光！""",
         "tr": """Parlıyorsunuz!""",
         "nl": """Je straalt!""",
         "de": """Du strahlst!""",
@@ -252,9 +266,10 @@ extension Localization on String {
         "ar": """أنت متوهج!""",
       } +
       {
+        "zh": """贡献""",
         "tr": """Katkıda bulunun""",
         "nl": """Deel je oefeningen met ons""",
-        "de": """Eine Übung beitragen""",
+        "de": """Beitragen""",
         "ru": """Поделиться упражнением""",
         "pt": """Contribua""",
         "en": """Contribute""",
@@ -268,200 +283,7 @@ extension Localization on String {
         "ar": """مساهمة""",
       } +
       {
-        "tr":
-            """Feeel, sizin gibi gönüllülerin egzersizler ve egzersiz fotoğrafları göndermesine güvenir. Fotoğraflar önce özel olarak üçlü sürümler halinde işlenecek, ardından onay için size gönderilecek ve ancak daha sonra uygulamada yayınlanacaktır. Gönderilen tüm fotoğraflar ve metinler yalnızca sizin çalışmanız olmalıdır. Katkıda bulunduğunuz için teşekkürler!""",
-        "nl":
-            """Feeel is afhankelijk van vrijwilligers zoals jij voor het verkrijgen van oefeningen met bijbehorende foto's. Je foto's worden anoniem aangepast voor gebruik in de app, dan aan je opgestuurd voor goedkeuring en pas dáárna toegevoegd aan de app. Alle foto's en tekst dienen door jou te zijn gemaakt. Alvast bedankt!""",
-        "de":
-            """Feeel ist auf die Mitarbeit von Freiwilligen wie dich angewiesen, die Übungen und Fotos von Übungen beisteuern. Alle Fotos die du hochlädst werden zunächst privat zu triangulierten Versionen verarbeitet und dir dann zur Freigabe zurückgesandt. Erst danach werden sie in der App hinterlegt. Alle eingereichten Fotos und Texte müssen ausschließlich deineArbeit sein. Danke für deine Unterstützung!""",
-        "ru":
-            """Feeel полагается на таких волонтеров, как вы, для предоставления упражнений и фотографий упражнений. Фотографии сначала будут покрыты треугольниками, затем отправлены вам на утверждение, и только после этого выпущены в приложении. Все представленные фотографии и текст должны быть исключительно вашей работой. Спасибо за вклад!""",
-        "pt":
-            """Feeel depende de voluntários como você para submeter exercícios e fotos de exercícios. As fotografias serão primeiro tratadas em privado em versões trianguladas, depois enviadas para aprovação, e só depois libertadas na aplicação. Todas as fotografias e textos submetidos devem ser exclusivamente o seu trabalho. Obrigado pela sua contribuição!""",
-        "en":
-            """Feeel relies on volunteers like you to submit exercises and exercise photos. Photos will first be privately processed into triangulated versions, then sent to you for approval, and only then released in the app. All submitted photos and text must be solely your work. Thanks for contributing!""",
-        "it":
-            """Feeel si affida a volontari come te per inviare esercizi e foto di esercizi. Le foto saranno prima elaborate privatamente in versioni triangolate, poi inviate a te per l'approvazione, e solo allora rilasciate nell'applicazione. Tutte le foto e i testi inviati devono essere esclusivamente opera tua. Grazie per aver contribuito!""",
-        "hr":
-            """Einini e olanjaju na volontere poput VA za lanje fotografija vježbanja i vježbanja. Fotografije će se prvo obrađivati privatno u trianguliranim verzijama, a zatim će vam biti poslane na odobrenje, a tek nakon toga bit će objavljene u aplikaciji. Sve poslane fotografije i tekst trebali bi biti isključivo vaš posao. Hvala na unosu!""",
-        "fr":
-            """Feeel compte sur des volontaires comme vous pour soumettre des exercices et des photos d’exercices. Les photos seront d’abord traitées de manière privée pour obtenir des versions triangulées, puis elles vous seront envoyées pour approbation, et seulement ensuite elles seront publiées dans l’application. Toutes les photos et le texte soumis doivent être de vous. Merci de votre contribution !""",
-        "el":
-            """Το Feeel βασίζεται σε εθελοντές όπως εσύ, για υποβολή ασκήσεων και των φωτογραφιών τους. Οι φωτογραφίες θα επεξεργαστούν πρώτα ιδιωτικά ώστε να δημιουργηθούν οι τριγωνοποιημένες εκδόσεις, μετέπειτα θα σας αποσταλούν για έγκριση, και μόνο τότε θα εκδοθούν στην εφαρμογή. Όλες οι υποβαλλόμενες φωτογραφίες και κείμενα πρέπει να είναι αποκλειστικά δική σας δουλειά. Ευχαριστώ για την συνεισφορά!""",
-        "cs":
-            """Feeel spoléhá na dobrovolnické přispívání cviků a příslušných fotografií. Jakékoli fotografie, které přispějete, budou nejprve soukromě zpracovány, poté Vám zaslány ke schválení a teprve s Vaším svolením vydány v aplikaci. Předem díky za přispívání!""",
-        "id":
-            """Feeel mengandalkan para sukarelawan sepertimu untuk mengirimkan latihan-latihan dan foto-foto latihan. Setiap foto yang kamu kirimkan akan diproses secara pribadi, lalu dikirimkan kepadamu untuk disetujui, lalu kemudian diluncurkan di aplikasi. Semua foto dan teks yang diserahkan harus menjadi hasil pekerjaan kamu sendiri. Terima kasih telah berkontribusi!""",
-        "es":
-            """Feeel depende de voluntarios como usted para enviar ejercicios y fotografías de ellos. Las fotos que envíe primero se procesarán de forma privada, luego se le solicitará su aprobación y solo se publicarán en la aplicación. ¡Gracias por contribuir!""",
-        "ar":
-            """Feeel يعتمد على المتطوعين مثلك لتقديم التدريبات وصور التدريبات. ستتم معالجة الصور أولا بشكل خاص في إصدارات مثلثة ، ثم يتم إرسالها إليك للموافقة عليها ، ثم يتم إصدارها فقط في التطبيق. يجب أن تكون جميع الصور والنصوص المقدمة من عملك فقط. شكرا للمساهمة!""",
-      } +
-      {
-        "tr": """Egzersiz adı""",
-        "nl": """Naam van oefening""",
-        "de": """Name der Übung""",
-        "ru": """Упражнение""",
-        "pt": """Nome do exercício""",
-        "en": """Exercise name""",
-        "it": """Nome dell'esercizio""",
-        "hr": """Naziv vježbe""",
-        "fr": """Nom de l’exercice""",
-        "el": """Όνομα άσκησης""",
-        "cs": """Název cviku""",
-        "id": """Nama latihan""",
-        "es": """Nombre del ejercicio""",
-        "ar": """اسم التمرين""",
-      } +
-      {
-        "tr": """Egzersiz nasıl yapılır (isteğe bağlı)""",
-        "nl": """Hoe voer je de oefening te worden uit? (optioneel)""",
-        "de": """Beschreibung der Übung (optional)""",
-        "ru": """Как выполнять упражнение (необязательно)""",
-        "pt": """Como realizar o exercício (opcional)""",
-        "en": """How to perform exercise (optional)""",
-        "it": """Come svolgere l'esercizio (opzionale)""",
-        "hr": """Kako izvesti vježbu (opcionalno)""",
-        "fr": """Comment faire l’exercice (facultatif)""",
-        "el": """Πως να εκτελέσετε την άσκηση (προαιρετικά)""",
-        "cs": """Jak provést cvik (nepovinné)""",
-        "id": """Cara melakukan olahraga (opsional)""",
-        "es": """Cómo se realiza el ejercicio (opcional)""",
-        "ar": """كيفية أداء التمرين (اختياري)""",
-      } +
-      {
-        "tr": """E-posta gönderilemedi""",
-        "nl": """De e-mail kan niet worden verstuurd""",
-        "de": """E-Mail konnte nicht versendet werden""",
-        "ru": """Письмо не отправлено""",
-        "pt": """O e-mail não pôde ser enviado""",
-        "en": """Email could not be sent""",
-        "it": """Non è stato possibile inviare l'e-mail""",
-        "hr": """Nije bilo moguće poslati e-mal""",
-        "fr": """Le courriel n’a pas pu être envoyé""",
-        "el": """Δεν μπόρεσε να σταλθεί email""",
-        "cs": """E-mail se nepovedlo odeslat""",
-        "id": """Email tidak dapat dikirim""",
-        "es": """No se ha podido enviar el correo electrónico""",
-        "ar": """تعذر إرسال البريد الإلكتروني""",
-      } +
-      {
-        "tr": """Egzersiz önerisi: %s""",
-        "nl": """Oefeningbijdrage:%s""",
-        "de": """Übungsvorschlag %s""",
-        "ru": """Предложить упражнение: %s""",
-        "pt": """Proposta de exercício: %s""",
-        "en": """Exercise proposal: %s""",
-        "it": """Proposta di esercizio: %s""",
-        "hr": """Predlaganje vježbe: %s""",
-        "fr": """Proposition d’exercice : %s""",
-        "el": """Πρόταση άσκησης: %s""",
-        "cs": """Návrh cviku: %s""",
-        "id": """Usulan latihan:% s""",
-        "es": """Ejercicio propuesto: %s""",
-        "ar": """اقتراح التمرين: %s""",
-      } +
-      {
-        "tr": """Merhaba,
-
-Bir egzersiz önerisi gönderiyorum. Hem ekli resimlerin hem de açıklamanın tamamen kendi çalışmam olduğunu beyan ederim. Bu mesajı göndererek, gönderilen adın ve açıklamanın CC BY-SA 4.0 lisansı ve uygulama mağazası istisnası ile AGPLv3 altında yayınlanmasını geri alınamaz şekilde kabul ediyorum. Ekteki resimlerin düşük çözünürlüklü çeşitlere dönüştürülmesine de izin veriyorum. İşlendikten sonra, onları CC BY-SA 4.0 lisansı altında lisanslamaya istekli olup olmadığımı değerlendireceğim.
-
-Egzersiz adı: %1s
-Egzersiz adımları:
-%2s""",
-        "nl": """Hallo,
-
-Hierbij dien ik een voorstel in voor een oefening. Ik begrijp dat ik alleen mijn *eigen* werk mag indienen. Als ik dit bericht verstuur, ga ik onherroepelijk akkoord met het feit dat de naam en omschrijving van de oefening worden vrijgegeven onder de CC BY-SA 4.0- en GPLv3-licentie, met uitzondering van de appwinkel. Ik geef tevens toestemming om de bijgevoegde afbeelding(en) anoniem te verwerken. Daarna worden ze door mij geëvalueerd om ze al dan niet vrij te geven onder de CC BY-SA 4.0-licentie.
-
-Naam van de oefening: %1s
-Uitleg:
-%2s""",
-        "de": """Hallo,
-
-ich sende einen Übungsvorschlag. Hiermit erkläre ich, dass ich die vorliegende Arbeit ausschließlich eigenständig angefertigt habe. Mit dem Absenden dieser Nachricht erkläre ich mich unwiderruflich damit einverstanden, dass der eingereichte Name und die Beschreibung unter einer CC BY-SA-4.0-Lizenz und einer AGPLv3-Lizenz mit Ausnahmegenehmigung für den App-Store veröffentlicht werden. Ich gebe außerdem die Erlaubnis, sämtliche angehängte Bilder in Low-Poly-Grafiken zu konvertieren. Nachdem sie verarbeitet wurden, werde ich prüfen, ob ich bereit bin, sie unter der CC BY-SA-4.0-Lizenz zu lizenzieren.
-
-Name der Übung: %1s
-Übungsschritte:
-%2s""",
-        "ru": """Здравствуйте,
-
-Я посылаю предложение о добавлении упражнения. Настоящим я заявляю, что прилагаемые изображения и описание являются моей собственной работой. Отправляя это сообщение, я безоговорочно соглашаюсь с тем, чтобы предоставленные имя и описание были выпущены на условиях лицензии CC BY-SA 4.0 и AGPLv3 с исключением для лицензий магазинов приложений. Также я даю разрешение на преобразование прикрепленных изображений в низкополигональные версии. После того, как они будут обработаны, я оценю, готов ли я лицензировать их на условиях CC BY-SA 4.0.
-
-Имя упражнения: %1s
-Шаги упражнения:
-%2s""",
-        "pt": """Olá,
-
-Estou a enviar uma proposta de um exercício. Declaro por este meio que tanto as imagens anexas como a descrição são completamente minhas próprias obras. Ao enviar esta mensagem, concordo irrevogavelmente que o nome e a descrição submetidos sejam divulgados sob uma licença CC BY-SA 4.0 e uma licença AGPLv3 com uma licença de excepção da app store. Também dou permissão para processar a(s) imagem(s) anexada(s) em variantes de baixo teor de poliuretano. Depois de serem processadas, avaliarei se estou disposto a licenciá-las sob a licença CC BY-SA 4.0.
-
-Nome do exercício: %1s
-Passos para o exercício:
-%2s""",
-        "en": """Hello,
-
-I'm sending a proposal of an exercise. I hereby declare that both the attached images and the description are completely my own work. By sending this message, I irrevocably agree to have the submitted name and description released under a CC BY-SA 4.0 license and an AGPLv3 with an app store exception license. I also give permission to process the attached image(s) into low-poly variants. After they are processed, I will evaluate whether I am willing to license them under the CC BY-SA 4.0 license.
-
-Exercise name: %1s
-Exercise steps:
-%2s""",
-        "it": """Buongiorno,
-
-Sto inviando una proposta di un esercizio. Dichiaro che sia le immagini allegate che la descrizione sono completamente opera mia. Inviando questo messaggio, accetto irrevocabilmente che il nome e la descrizione inviati siano rilasciati sotto una licenza CC BY-SA 4.0 e una AGPLv3 con una licenza di eccezione per l'app store. Do anche il permesso di elaborare l'immagine o le immagini allegate in varianti low-poly. Dopo che saranno elaborate, valuterò se sono disposto a rilasciarle sotto la licenza CC BY-SA 4.0.
-
-Nome dell'esercizio: %1s
-Passi dell'esercizio:
-%2s""",
-        "hr": """Zdravo.,
-
-Šaljem prijedlog vježbe. Ovime izjavljujem da su i priložene slike i opis u potpunosti moje vlastito djelo. Dok objavljujem ovu poruku, bezuvjetno pristajem na objavljivanje navedenog imena i opisa pod licencom za 8.0 i 4.0. Također dajem dopuštenje za obradu priloženih slika u varijantama niskog Poli. Nakon što ih obradim, procijenit ću jesam li ih spreman licencirati prema licenci za 4.0 od 4.godine.
-
-Naziv vježbe: %1s
-Koraci vježbe:
-%2s""",
-        "fr": """Bonjour,
-
-Je vous envoie une proposition d’exercice. Je déclare par la présente que les images jointes et la description sont entièrement de mon travail personnel. En envoyant ce message, j’accepte irrévocablement que le nom et la description soumis soient publiés sous une licence CC BY-SA 4.0 et une licence AGPLv3 avec exception magasin d’applications. Je donne également l’autorisation de traiter la ou les images ci-jointes pour en faire des variantes à faible polysémie. Après leur traitement, j’évaluerai si je suis prêt·e à les diffuser sous la licence CC BY-SA 4.0.
-
-Nom de l’exercice : %1s
-Étapes de l’exercice :
-%2s""",
-        "el": """Γεια σας,
-
-Στέλνω πρόταση άσκησης. Δηλώνω ότι τόσο οι συνημμένες εικόνες όσο και η περιγραφή είναι αποκλειστικά δική μου δουλειά. Με την αποστολή αυτού του μηνύματος, συμφωνώ αμετάκλητα να κυκλοφορήσει το όνομα και η περιγραφή που υποβλήθηκε με άδεια CC BY-SA 4.0 και AGPLv3 με άδεια εξαίρεσης καταστήματος εφαρμογών. Δίνω επίσης άδεια επεξεργασίας των συνημμένων εικόνων σε παραλλαγές low-poly. Αφού υποβληθούν σε επεξεργασία, θα αξιολογήσω εάν είμαι διατεθειμένος να τους χορηγήσω άδεια σύμφωνα με την άδεια CC BY-SA 4.0.
-
-Όνομα άσκησης: %1s
-Βήματα άσκησης:
-%2s""",
-        "cs": """Zdravím,
-
-Posílám návrh na cvičení. Tímto prohlašuji, že veškerý obsah, který odesílám, je čistě moje vlastní práce. Odesláním této zprávy neodvolatelně souhlasím s tím, aby podaný název a popis byly vydány pod licencí CC BY-SA 4.0 a AGPLv3 s vyjímkou pro obchody s aplikacemi (tzv. "app store exception"). Také dávám svolení zpracovat připojený obrázek/obrázky do polygonové verze (tzv. "low-poly" styl). Po jejich zpracování vyhodnotím, zda jsem ochoten je vydat pod licencí CC BY-SA 4.0.
-
-Název cvičení: %1s
-Kroky cvičení:
-%2s""",
-        "id": """Halo,
-
-Aku mengirim proposal latihan. Saya dengan ini menyatakan bahwa kedua gambar terpasang dan Deskripsi Benar-benar pekerjaan saya sendiri. Dengan mengirim pesan ini, Aku Tak dapat ditarik kembali setuju untuk memiliki nama yang dikirimkan dan deskripsi dirilis di bawah lisensi CC BY-SA 4.0 dan AGPLv3 dengan lisensi app store. Saya juga memberikan izin untuk memproses image yang terpasang ke varian sederhana. Setelah diproses, saya akan mengevaluasi apakah saya bersedia untuk lisensi mereka di bawah izin CC BY-SA 4.0.
-
-Nama latihan: %1s
-Langkah latihan:
-%2s""",
-        "es": """Hola,
-
-Estoy enviando una propuesta de un ejercicio. Por lo presente declaro que tanto las imágenes adjuntas como la descripcióm fueron realizadas por cuenta propia. Al enviar este mensaje, de forma irreversible acepto que el nombre y la descripción presentados se publiquen bajo una licencia CC BY-SA y la licencia AGPLv3 con excepción de la tienda de aplicaciones. También doy consentimiento para procesar la(s) imágen(es) adjunta(s) en variante(s) low-poly. Después de que se procesen, evaluaré si estoy dispuesto a licenciarlos bajo la licencia CC BY-SA.
-
-Nombre del ejercicio: %1s
-Pasos del ejercicio:
-%2s""",
-        "ar": """مرحبًا
-
-سأرسل اقتراحا بممارسة التمارين أعلن بموجب هذا أن كلا من الصور المرفقة والوصف هي تماما عملي الخاص. من خلال إرسال هذه الرسالة ، أوافق بشكل لا رجعة فيه على إصدار الاسم والوصف المقدم بموجب ترخيص CC BY-SA 4.0 و AGPLv3 مع ترخيص استثناء متجر التطبيقات. أعطي أيضا الإذن لمعالجة الصورة المرفقة بدقة غير واضحة. بعد معالجتها ، سأقيم ما إذا كنت على استعداد لترخيصها بموجب ترخيص CC BY-SA 4.0.
-
-اسم التمرين: %1s
-خطوات التمرين:
-%2s""",
-      } +
-      {
+        "zh": """设置""",
         "tr": """Ayarlar""",
         "nl": """Instellingen""",
         "de": """Einstellungen""",
@@ -478,6 +300,7 @@ Pasos del ejercicio:
         "ar": """الإعدادات""",
       } +
       {
+        "zh": """请指定锻炼标题""",
         "tr": """Lütfen bir antrenman başlığı belirtin""",
         "nl": """Geef de workout een naam""",
         "de": """Bitte einen Namen für das Training eingeben""",
@@ -494,6 +317,7 @@ Pasos del ejercicio:
         "ar": """الرجاء تحديد عنوان التمرين""",
       } +
       {
+        "zh": """请至少添加 1 个练习""",
         "tr": """Lütfen en az 1 egzersiz ekleyin""",
         "nl": """Voeg minimaal 1 oefening toe""",
         "de": """Bitte mindestens 1 Übung hinzufügen""",
@@ -510,6 +334,7 @@ Pasos del ejercicio:
         "ar": """يرجى إضافة تمرين واحد على الأقل""",
       } +
       {
+        "zh": """时长""",
         "tr": """Süre""",
         "nl": """Duur""",
         "de": """Dauer""",
@@ -526,6 +351,7 @@ Pasos del ejercicio:
         "ar": """المدة""",
       } +
       {
+        "zh": """运动时长""",
         "tr": """Egzersiz süresi""",
         "nl": """Duur van oefening""",
         "de": """Übungsdauer""",
@@ -542,6 +368,7 @@ Pasos del ejercicio:
         "ar": """مدة التمرين""",
       } +
       {
+        "zh": """休息时长""",
         "tr": """Mola süresi""",
         "nl": """Duur van pauze""",
         "de": """Länge der Pause""",
@@ -558,6 +385,7 @@ Pasos del ejercicio:
         "ar": """مدة الاستراحة""",
       } +
       {
+        "zh": """定制""",
         "tr": """Özel""",
         "nl": """Aangepast""",
         "de": """Benutzerdefiniert""",
@@ -574,6 +402,7 @@ Pasos del ejercicio:
         "ar": """مخصص""",
       } +
       {
+        "zh": """非数字""",
         "tr": """Sayısal olmayan""",
         "nl": """Niet-numeriek""",
         "de": """Nicht-numerisch""",
@@ -590,6 +419,7 @@ Pasos del ejercicio:
         "ar": """غير رقمي""",
       } +
       {
+        "zh": """不是正数""",
         "tr": """Pozitif olmayan""",
         "nl": """Niet-positief""",
         "de": """Nicht-positive""",
@@ -606,6 +436,7 @@ Pasos del ejercicio:
         "ar": """غير إيجابي""",
       } +
       {
+        "zh": """每日通知""",
         "tr": """Günlük bildirim""",
         "nl": """Dagelijkse herinnering""",
         "de": """Tägliche Benachrichtigung""",
@@ -622,6 +453,7 @@ Pasos del ejercicio:
         "ar": """التنبيه اليومي""",
       } +
       {
+        "zh": """每日提醒您锻炼身体""",
         "tr": """Antrenman yapmak için günlük bir hatırlatma""",
         "nl": """Wordt dagelijks herinnerd om een workout te doen""",
         "de": """Tägliche Trainingserinnerung""",
@@ -638,9 +470,10 @@ Pasos del ejercicio:
         "ar": """تذكير يومي بالتمرين""",
       } +
       {
+        "zh": """是时候穿上运动服了！""",
         "tr": """Antrenman kıyafetlerini giyme zamanı!""",
         "nl": """Tijd om je sportkleding aan te trekken!""",
-        "de": """Es ist Zeit die Trainingsklamottten anzuziehen!""",
+        "de": """Zeit, sich Trainingskleidung anzuziehen!""",
         "ru": """Пора надеть спортивную одежду!""",
         "pt": """Hora de colocar roupas de treino!""",
         "en": """Time to put on workout clothes!""",
@@ -654,6 +487,7 @@ Pasos del ejercicio:
         "ar": """حان الوقت لارتداء ملابس التمرين!""",
       } +
       {
+        "zh": """只需几分钟即可感觉神清气爽""",
         "tr": """Taze ve zinde hissetmek sadece birkaç dakikanızı alır""",
         "nl":
             """Het kost slechts een paar minuten van je tijd om je weer fris en fruitig te voelen""",
@@ -676,6 +510,7 @@ Pasos del ejercicio:
         "ar": """يستغرق الأمر بضع دقائق فقط لتشعر بالانتعاش واللياقة""",
       } +
       {
+        "zh": """每日提醒""",
         "tr": """Günlük hatırlatma""",
         "nl": """Dagelijkse herinnering""",
         "de": """Tägliche Erinnerung""",
@@ -692,6 +527,7 @@ Pasos del ejercicio:
         "ar": """التذكير اليومي""",
       } +
       {
+        "zh": """没有拍照权限，不能拍照""",
         "tr": """Kamera izni olmadan fotoğraf çekilemez""",
         "nl": """Zonder camerarechten kunnen er geen foto's worden gemaakt""",
         "de":
@@ -711,6 +547,7 @@ Pasos del ejercicio:
         "ar": """لا يمكن التقاط الصور بدون إذن الكاميرا""",
       } +
       {
+        "zh": """通知时间""",
         "tr": """Bildirim zamanı""",
         "nl": """Tijdstip""",
         "de": """Benachrichtigungszeitpunkt""",
@@ -727,6 +564,7 @@ Pasos del ejercicio:
         "ar": """وقت التنبيه""",
       } +
       {
+        "zh": """先加个练习""",
         "tr": """Önce bir egzersiz ekleyin""",
         "nl": """Voeg eerst een oefening toe""",
         "de": """Zuerst eine Übung hinzufügen""",
@@ -743,6 +581,7 @@ Pasos del ejercicio:
         "ar": """إضافة تمرين أولا""",
       } +
       {
+        "zh": """关于Feeel""",
         "tr": """Feeel hakkında""",
         "nl": """Over Feeel""",
         "de": """Über Feeel""",
@@ -759,6 +598,7 @@ Pasos del ejercicio:
         "ar": """حول تطبيق Feeel""",
       } +
       {
+        "zh": """一款尊重您的隐私的居家锻炼开源应用""",
         "tr":
             """Gizliliğinize saygı duyan açık kaynaklı bir evde antrenman uygulaması""",
         "nl": """Een open source workout-app die je privacy respecteert""",
@@ -786,6 +626,7 @@ Pasos del ejercicio:
         "ar": """تطبيق تمرين منزلي مفتوح المصدر يحترم خصوصيتك""",
       } +
       {
+        "zh": """自定义时长（秒）""",
         "tr": """Özel süre (sn.)""",
         "nl": """Aangepaste duur (in sec.)""",
         "de": """Benutzerdefinierte Dauer (Sek.)""",
@@ -802,6 +643,7 @@ Pasos del ejercicio:
         "ar": """مدة مخصصة (s.)""",
       } +
       {
+        "zh": """放弃修改吗？""",
         "tr": """Değişikliklerden vazgeçilsin mi?""",
         "nl": """Wijzigingen verwerpen?""",
         "de": """Änderungen verwerfen?""",
@@ -818,6 +660,7 @@ Pasos del ejercicio:
         "ar": """تجاهل التغييرات؟""",
       } +
       {
+        "zh": """主题""",
         "tr": """Tema""",
         "nl": """Thema""",
         "de": """Farbschema""",
@@ -834,6 +677,7 @@ Pasos del ejercicio:
         "ar": """السمة""",
       } +
       {
+        "zh": """系统默认""",
         "tr": """Sistem öntanımlı değeri""",
         "nl": """Systeemthema""",
         "de": """Systemstandard""",
@@ -850,6 +694,7 @@ Pasos del ejercicio:
         "ar": """افتراضيات النظام""",
       } +
       {
+        "zh": """亮色""",
         "tr": """Açık""",
         "nl": """Licht""",
         "de": """Hell""",
@@ -866,6 +711,7 @@ Pasos del ejercicio:
         "ar": """مضيء""",
       } +
       {
+        "zh": """暗色""",
         "tr": """Koyu""",
         "nl": """Donker""",
         "de": """Dunkel""",
@@ -882,6 +728,7 @@ Pasos del ejercicio:
         "ar": """داكن""",
       } +
       {
+        "zh": """导出锻炼的自选组合""",
         "tr": """Özel antrenmanları dışa aktar""",
         "nl": """Export custom workouts""",
         "de": """Benutzerdefinierte Trainings exportieren""",
@@ -892,12 +739,13 @@ Pasos del ejercicio:
         "hr": """Izvezi prilagođene treninge""",
         "fr": """Exporter les entraînements personnalisés""",
         "el": """Εξαγωγή προσαρμοσμένων προπονήσεων""",
-        "cs": """Export custom workouts""",
+        "cs": """Exportovat vlastní tréninky""",
         "id": """Export custom workouts""",
         "es": """Export custom workouts""",
         "ar": """تصدير التدريبات المخصصة""",
       } +
       {
+        "zh": """导入锻炼组合""",
         "tr": """Antrenmanları içe aktar""",
         "nl": """Import workouts""",
         "de": """Trainings importieren""",
@@ -908,12 +756,13 @@ Pasos del ejercicio:
         "hr": """Uvezi treninge""",
         "fr": """Importer des entraînements""",
         "el": """Εισαγωγή προπονήσεων""",
-        "cs": """Import workouts""",
+        "cs": """Importovat tréninky""",
         "id": """Import workouts""",
         "es": """Import workouts""",
         "ar": """استيراد التدريبات""",
       } +
       {
+        "zh": """尚未有锻炼组合""",
         "tr": """Herhangi bir özel antrenmanınız yok""",
         "nl": """You don't have any custom workouts""",
         "de": """Sie haben keine benutzerdefinierten Trainings""",
@@ -924,12 +773,13 @@ Pasos del ejercicio:
         "hr": """Nemaš prilagođene treninge""",
         "fr": """Vous n'avez pas d'entraînement personnalisé""",
         "el": """Δεν έχετε προσαρμοσμένες προπονήσεις""",
-        "cs": """You don't have any custom workouts""",
+        "cs": """Nemáte žádné vlastní tréninky""",
         "id": """You don't have any custom workouts""",
         "es": """You don't have any custom workouts""",
         "ar": """ليس لديك أي تدريبات مخصصة""",
       } +
       {
+        "zh": """在某些设备上，您可能需要禁用电池优化，Feeel才能可靠地工作。""",
         "tr":
             """Bazı aygıtlarda, bunun güvenilir bir şekilde çalışması için pil iyileştirmesini Feeel için devre dışı bırakmanız gerekebilir.""",
         "nl":
@@ -960,9 +810,10 @@ Pasos del ejercicio:
             """على بعض الأجهزة، قد تحتاج إلى تعطيل تحسين البطارية لتطبيق Feeel لكي يعمل هذا بشكل موثوق.""",
       } +
       {
+        "zh": """参与""",
         "tr": """Katılın""",
         "nl": """Bijdragen""",
-        "de": """Mitmachen""",
+        "de": """Teilnehmen""",
         "ru": """Участвуйте""",
         "pt": """Participe""",
         "en": """Participate""",
@@ -976,6 +827,7 @@ Pasos del ejercicio:
         "ar": """مشاركة""",
       } +
       {
+        "zh": """源代码""",
         "tr": """Kaynak kodları""",
         "nl": """Broncode""",
         "de": """Quellcode""",
@@ -992,6 +844,7 @@ Pasos del ejercicio:
         "ar": """الشفرة المصدرية""",
       } +
       {
+        "zh": """捐赠""",
         "tr": """Bağış yapın""",
         "nl": """Doneren""",
         "de": """Spenden""",
@@ -1008,6 +861,7 @@ Pasos del ejercicio:
         "ar": """تبرّع""",
       } +
       {
+        "zh": """无法打开网址。""",
         "tr": """URL açılamadı.""",
         "nl": """De url kan niet worden geopend.""",
         "de": """Kann URL nicht öffnen.""",
@@ -1024,6 +878,7 @@ Pasos del ejercicio:
         "ar": """تعذر فتح عنوان URL.""",
       } +
       {
+        "zh": """强度""",
         "tr": """Güç""",
         "nl": """Kracht""",
         "de": """Stärke""",
@@ -1040,9 +895,10 @@ Pasos del ejercicio:
         "ar": """القوة""",
       } +
       {
+        "zh": """伸展运动和瑜珈""",
         "tr": """Esneme ve yoga""",
         "nl": """Rekken en yoga""",
-        "de": """Dehngymnastik und Yoga""",
+        "de": """Dehnung & Yoga""",
         "ru": """Растяжка и йога""",
         "pt": """Alongamento e ioga""",
         "en": """Stretching & yoga""",
@@ -1056,6 +912,7 @@ Pasos del ejercicio:
         "ar": """تمارين الإطالة واليوغا""",
       } +
       {
+        "zh": """有氧运动""",
         "tr": """Kardiyo""",
         "nl": """Cardio""",
         "de": """Kardio""",
@@ -1072,6 +929,7 @@ Pasos del ejercicio:
         "ar": """القلب""",
       } +
       {
+        "zh": """其他""",
         "tr": """Diğer""",
         "nl": """Andere""",
         "de": """Anderes""",
@@ -1088,6 +946,7 @@ Pasos del ejercicio:
         "ar": """آخر""",
       } +
       {
+        "zh": """语言""",
         "tr": """Dil""",
         "nl": """Taal""",
         "de": """Sprache""",
@@ -1104,6 +963,7 @@ Pasos del ejercicio:
         "ar": """اللغة""",
       } +
       {
+        "zh": """不能留空""",
         "tr": """Boş olamaz""",
         "nl": """Kan niet leeg zijn""",
         "de": """Darf nicht leer sein""",
@@ -1120,6 +980,7 @@ Pasos del ejercicio:
         "ar": """لا يمكن أن يكون فارغا""",
       } +
       {
+        "zh": """必须是数字""",
         "tr": """Sayısal olmalı""",
         "nl": """Moet numeriek zijn""",
         "de": """Muss numerisch sein""",
@@ -1136,9 +997,10 @@ Pasos del ejercicio:
         "ar": """يجب أن يكون رقميا""",
       } +
       {
+        "zh": """%1d 分钟，%2d 秒。""",
         "tr": """%1d dak., %2d sn.""",
         "nl": """%1d min %2d s""",
-        "de": """%1d min %2d s""",
+        "de": """%1d min %2d sek.""",
         "ru": """%1d мин., %2d сек.""",
         "pt": """%1d min, %2d s""",
         "en": """%1d min., %2d sec.""",
@@ -1152,6 +1014,7 @@ Pasos del ejercicio:
         "ar": """%1d دقيقة، %2d ثانية.""",
       } +
       {
+        "zh": """拖动此手柄可对练习重新排序。""",
         "tr": """Egzersizleri yeniden sıralamak için bu tutamacı sürükleyin.""",
         "nl": """Versleep dit handvat om oefeningen anders in te delen.""",
         "de": """Ziehen Sie diesen Griff, um die Übungen neu anzuordnen.""",
@@ -1169,6 +1032,7 @@ Pasos del ejercicio:
         "ar": """اسحب هذا المقبض لإعادة ترتيب التمارين.""",
       } +
       {
+        "zh": """这组锻炼中没有锻炼内容。:(""",
         "tr": """Bu antrenmanda egzersiz yok. :(""",
         "nl": """Deze work-out bevat geen oefeningen. :(""",
         "de": """Es gibt keine Übungen in diesem Training :(""",
@@ -1186,9 +1050,10 @@ Pasos del ejercicio:
         "ar": """لا توجد تدريبات في هذا التمرين. :(""",
       } +
       {
+        "zh": """English description license""",
         "tr": """İngilizce açıklama lisansı""",
         "nl": """English description license""",
-        "de": """English description license""",
+        "de": """Englische Lizenzbeschreibung""",
         "ru": """English description license""",
         "pt": """English description license""",
         "en": """English description license""",
@@ -1196,12 +1061,13 @@ Pasos del ejercicio:
         "hr": """Licenca za opis na engleskom jeziku""",
         "fr": """Licence de description en anglais""",
         "el": """Αγγλική περιγραφή άδειας""",
-        "cs": """English description license""",
+        "cs": """Licence anglického popisu""",
         "id": """English description license""",
         "es": """English description license""",
         "ar": """ترخيص الوصف باللغة الإنجليزية""",
       } +
       {
+        "zh": """Image license""",
         "tr": """Resim lisansı""",
         "nl": """Image license""",
         "de": """Bildlizenz""",
@@ -1212,12 +1078,13 @@ Pasos del ejercicio:
         "hr": """Licenca za sliku""",
         "fr": """Licence d'image""",
         "el": """Άδεια χρήσης εικόνας""",
-        "cs": """Image license""",
+        "cs": """Licence obrázku""",
         "id": """Image license""",
         "es": """Image license""",
         "ar": """ترخيص الصورة""",
       } +
       {
+        "zh": """学习锻炼方法""",
         "tr": """Egzersizi öğren""",
         "nl": """Learn the exercise""",
         "de": """Lerne die Übung""",
@@ -1228,12 +1095,13 @@ Pasos del ejercicio:
         "hr": """Nauči vježbu""",
         "fr": """Apprenez l'exercice""",
         "el": """Μάθετε την άσκηση""",
-        "cs": """Learn the exercise""",
+        "cs": """Naučte se cvik""",
         "id": """Learn the exercise""",
         "es": """Learn the exercise""",
         "ar": """تعلم التمرين""",
       } +
       {
+        "zh": """Feeel 这个平台提供的内容都源于用户""",
         "tr": """Feeel bir topluluk projesidir""",
         "nl": """Feeel is a community project""",
         "de": """Feeel ist ein Gemeinschaftsprojekt""",
@@ -1244,12 +1112,13 @@ Pasos del ejercicio:
         "hr": """Feeel je projekt zajednice""",
         "fr": """Feeel est un projet communautaire""",
         "el": """Το Feeel είναι ένα έργο της κοινότητας""",
-        "cs": """Feeel is a community project""",
+        "cs": """Feeel je komunitní projekt""",
         "id": """Feeel is a community project""",
         "es": """Feeel is a community project""",
         "ar": """فييل هو مشروع مجتمعي""",
       } +
       {
+        "zh": """Disclaimer""",
         "tr": """Sorumluluk reddi""",
         "nl": """Disclaimer""",
         "de": """Haftungsausschluss""",
@@ -1260,12 +1129,14 @@ Pasos del ejercicio:
         "hr": """Disclaimer""",
         "fr": """Avis de non-responsabilité""",
         "el": """Disclaimer""",
-        "cs": """Disclaimer""",
+        "cs": """Upozornění""",
         "id": """Disclaimer""",
         "es": """Disclaimer""",
         "ar": """اخلاء المسؤوليه""",
       } +
       {
+        "zh":
+            """Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion.""",
         "tr":
             """Egzersizler ve antrenmanlara gönüllüler tarafından katkıda bulunulmaktadır. Ne Feeel ne de herhangi bir gönüllü bu uygulamadaki herhangi bir bilginin doğruluğundan veya sağlığınızdan sorumlu değildir. Kendi takdirinize bağlı olarak kullanın.""",
         "nl":
@@ -1279,7 +1150,7 @@ Pasos del ejercicio:
         "en":
             """Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion.""",
         "it":
-            """Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion.""",
+            """Gli esercizi e gli allenamenti sono forniti da volontari. Né Feeel né i volontari sono responsabili della correttezza delle informazioni contenute in questa applicazione o della vostra salute. Utilizzare a propria discrezione.""",
         "hr":
             """Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion.""",
         "fr":
@@ -1287,7 +1158,7 @@ Pasos del ejercicio:
         "el":
             """Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion.""",
         "cs":
-            """Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion.""",
+            """Cviky i tréninky jsou autorovány dobrovolníky. Ani Feeel ani jakýkoliv dobrovolník nejsou zodpovědni za správnost jakýchkoliv informací v této aplikaci či za vaše zdraví. Používejte dle vlastního uvážení.""",
         "id":
             """Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion.""",
         "es":
@@ -1296,6 +1167,7 @@ Pasos del ejercicio:
             """تمارين وتدريبات يساهم فيها المتطوعون. لا يتحمل Feeel ولا أي متطوع مسؤولية صحة أي معلومات في هذا التطبيق أو عن صحتك. استخدام في التحفظ الخاصة بك.""",
       } +
       {
+        "zh": """重复的锻炼组合不会简并成一个""",
         "tr": """Yinelenenlerin üzerine yazılmayacak""",
         "nl": """Duplicates will not be overriden""",
         "de": """Duplikate werden nicht überschrieben""",
@@ -1306,18 +1178,19 @@ Pasos del ejercicio:
         "hr": """Duplikati se neće prepisati""",
         "fr": """Les doublons ne seront pas remplacés""",
         "el": """Τα διπλότυπα δεν θα επικαλυφθούν""",
-        "cs": """Duplicates will not be overriden""",
+        "cs": """Kopie nebudou přepsány""",
         "id": """Duplicates will not be overriden""",
         "es": """Duplicates will not be overriden""",
         "ar": """لن يتم تجاوز التكرارات""",
       } +
       {
+        "zh": """如果导入的锻炼组合与 Feeel 内您已有的锻炼组合相同，就会有两组一样的锻炼组合，重复的需要手动删除。""",
         "tr":
             """Feeel'de zaten sahip olduğunuz antrenmanlarla aynı olan antrenmanları içe aktarırsanız, bu antrenmanları uygulamada iki kez görürsünüz ve bunları elle silmeniz gerekecektir.""",
         "nl":
             """If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them.""",
         "de":
-            """Wenn Sie Trainings importieren, die identisch sind mit Trainings, die Sie bereits in Feeel haben, haben Sie diese Trainings doppelt in der Anwendung und müssen sie manuell löschen.""",
+            """Wenn Sie Trainings importieren, die identisch sind mit Trainings, die Sie bereits in Feeel haben, müssen Sie diese doppelten Trainings in der App manuell löschen.""",
         "ru":
             """If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them.""",
         "pt":
@@ -1333,7 +1206,7 @@ Pasos del ejercicio:
         "el":
             """Εάν εισάγετε προπονήσεις που είναι ίδιες με προπονήσεις που έχετε ήδη στο Feeel, θα έχετε αυτές τις προπονήσεις δύο φορές στην εφαρμογή και θα πρέπει να τις διαγράψετε χειροκίνητα.""",
         "cs":
-            """If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them.""",
+            """Pokud importujete tréninky shodné s těmi, které již ve Feeel jsou, budete mít v aplikaci tyto tréninky dvakrát a budete je muset odstranit ručně.""",
         "id":
             """If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them.""",
         "es":
@@ -1342,6 +1215,70 @@ Pasos del ejercicio:
             """إذا قمت باستيراد التدريبات المطابقة للتدريبات التي لديك في Feeel بالفعل ، فستحصل على هذه التدريبات مرتين في التطبيق وسيتعين عليك حذفها يدويا.""",
       } +
       {
+        "zh":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+        "tr":
+            """Egzersizlere, başka bir açık kaynaklı topluluk projesi olan **the wger web sitesi** aracılığıyla katkıda bulunulmaktadır. Gelecekteki bir sürümde, Feeel bu web sitesindeki tüm egzersizleri dahil edecektir.""",
+        "nl":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+        "de":
+            """Die Übungen werden von **der wger-Website** beigesteuert, einem weiteren Open-Source-Community-Projekt. In einer zukünftigen Version wird Feeel alle Übungen von dieser Website einbeziehen.""",
+        "ru":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+        "pt":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+        "en":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+        "it":
+            """Gli esercizi sono forniti dal sito web di wger**, un altro progetto comunitario con codice aperto. In una versione futura, Feeel incorporerà tutti gli esercizi di questo sito web.""",
+        "hr":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+        "fr":
+            """Les exercices sont fournis par **le site web wger**, un autre projet communautaire à code source ouvert. Dans une prochaine version, Feeel intégrera tous les exercices de ce site web.""",
+        "el":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+        "cs":
+            """Cviky se přispívají přes **webové stránky wger**, další komunitní open-source projekt. V budoucí verzi zakomponuje Feeel veškeré cviky z těchto stránek.""",
+        "id":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+        "es":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+        "ar":
+            """Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website.""",
+      } +
+      {
+        "zh":
+            """Contributing via wger requires an account older than 21 days.""",
+        "tr":
+            """Wger aracılığıyla katkıda bulunmak için 21 günden daha eski bir hesap gerekir.""",
+        "nl":
+            """Contributing via wger requires an account older than 21 days.""",
+        "de":
+            """Für einen Beitrag über wger ist ein Konto erforderlich, das älter als 21 Tage ist.""",
+        "ru":
+            """Contributing via wger requires an account older than 21 days.""",
+        "pt":
+            """Contributing via wger requires an account older than 21 days.""",
+        "en":
+            """Contributing via wger requires an account older than 21 days.""",
+        "it":
+            """La contribuzione tramite wger richiede un account più vecchio di 21 giorni.""",
+        "hr":
+            """Contributing via wger requires an account older than 21 days.""",
+        "fr":
+            """La contribution via wger nécessite un compte de plus de 21 jours.""",
+        "el":
+            """Contributing via wger requires an account older than 21 days.""",
+        "cs": """Přispívání přes wger vyžaduje účet starší než 21 dní.""",
+        "id":
+            """Contributing via wger requires an account older than 21 days.""",
+        "es":
+            """Contributing via wger requires an account older than 21 days.""",
+        "ar":
+            """Contributing via wger requires an account older than 21 days.""",
+      } +
+      {
+        "zh": """开始锻炼""",
         "tr": """Antrenmanı başlat""",
         "nl": """Workout starten""",
         "de": """Training starten""",
@@ -1358,6 +1295,7 @@ Pasos del ejercicio:
         "ar": """ابدأ التمرين""",
       } +
       {
+        "zh": """接着锻炼""",
         "tr": """Antrenmanı devam ettir""",
         "nl": """Workout hervatten""",
         "de": """Training fortsetzen""",
@@ -1374,6 +1312,7 @@ Pasos del ejercicio:
         "ar": """استئناف التمرين""",
       } +
       {
+        "zh": """上一个练习""",
         "tr": """Önceki egzersiz""",
         "nl": """Vorige oefening""",
         "de": """Vorherige Übung""",
@@ -1390,6 +1329,7 @@ Pasos del ejercicio:
         "ar": """التمرين السابق""",
       } +
       {
+        "zh": """下一个练习""",
         "tr": """Sonraki egzersiz""",
         "nl": """Volgende oefening""",
         "de": """Nächste Übung""",
@@ -1406,6 +1346,7 @@ Pasos del ejercicio:
         "ar": """التمرين التالي""",
       } +
       {
+        "zh": """添加练习""",
         "tr": """Egzersiz ekle""",
         "nl": """Oefeningen toevoegen""",
         "de": """Übung hinzufügen""",
@@ -1422,6 +1363,7 @@ Pasos del ejercicio:
         "ar": """أضف تمارين""",
       } +
       {
+        "zh": """编辑""",
         "tr": """Düzenle""",
         "nl": """Aanpassen""",
         "de": """Bearbeiten""",
@@ -1438,6 +1380,7 @@ Pasos del ejercicio:
         "ar": """تعديل""",
       } +
       {
+        "zh": """删除""",
         "tr": """Sil""",
         "nl": """Verwijderen""",
         "de": """Löschen""",
@@ -1454,6 +1397,7 @@ Pasos del ejercicio:
         "ar": """حذف""",
       } +
       {
+        "zh": """复制""",
         "tr": """Çoğalt""",
         "nl": """Een afschrift maken""",
         "de": """Verdoppeln""",
@@ -1470,6 +1414,7 @@ Pasos del ejercicio:
         "ar": """مكرره""",
       } +
       {
+        "zh": """已完成""",
         "tr": """Bitti""",
         "nl": """Klaar""",
         "de": """Fertig""",
@@ -1486,6 +1431,7 @@ Pasos del ejercicio:
         "ar": """إنتهى""",
       } +
       {
+        "zh": """取消""",
         "tr": """İptal""",
         "nl": """Annuleren""",
         "de": """Abbrechen""",
@@ -1502,6 +1448,7 @@ Pasos del ejercicio:
         "ar": """إلغاء""",
       } +
       {
+        "zh": """放弃""",
         "tr": """Vazgeç""",
         "nl": """Verwerpen""",
         "de": """Verwerfen""",
@@ -1518,6 +1465,7 @@ Pasos del ejercicio:
         "ar": """تجاهل""",
       } +
       {
+        "zh": """确定""",
         "tr": """Tamam""",
         "nl": """Oké""",
         "de": """OK""",
@@ -1534,6 +1482,7 @@ Pasos del ejercicio:
         "ar": """حسنا""",
       } +
       {
+        "zh": """我理解""",
         "tr": """Anlıyorum""",
         "nl": """I understand""",
         "de": """Ich verstehe""",
@@ -1544,12 +1493,13 @@ Pasos del ejercicio:
         "hr": """Razumijem""",
         "fr": """Je comprends""",
         "el": """Καταλαβαίνω""",
-        "cs": """I understand""",
+        "cs": """Rozumím""",
         "id": """I understand""",
         "es": """I understand""",
         "ar": """أفهم""",
       } +
       {
+        "zh": """更多信息""",
         "tr": """Daha fazla bilgi""",
         "nl": """Meer informatie""",
         "de": """Mehr Infos""",
@@ -1566,6 +1516,7 @@ Pasos del ejercicio:
         "ar": """المزيد من المعلومات""",
       } +
       {
+        "zh": """创建自定义锻炼""",
         "tr": """Özel antrenman oluştur""",
         "nl": """Eigen workout samenstellen""",
         "de": """Eigenes Training erstellen""",
@@ -1582,6 +1533,7 @@ Pasos del ejercicio:
         "ar": """إنشاء تمرين مخصص""",
       } +
       {
+        "zh": """提交自定义锻炼""",
         "tr": """Özel egzersiz öner""",
         "nl": """Deel je eigen workout met ons""",
         "de": """Eigene Übung vorschlagen""",
@@ -1598,6 +1550,7 @@ Pasos del ejercicio:
         "ar": """اقتراح تمرين مخصص""",
       } +
       {
+        "zh": """通过电子邮件提交""",
         "tr": """E-posta ile gönder""",
         "nl": """Versturen via e-mail""",
         "de": """Per E-Mail einreichen""",
@@ -1614,6 +1567,7 @@ Pasos del ejercicio:
         "ar": """إرسال عبر البريد الإلكتروني""",
       } +
       {
+        "zh": """从图库添加照片""",
         "tr": """Galeriden fotoğraf ekle""",
         "nl": """Foto toevoegen uit galerij""",
         "de": """Foto aus der Gallerie hinzufügen""",
@@ -1630,6 +1584,7 @@ Pasos del ejercicio:
         "ar": """إضافة صورة من المعرض""",
       } +
       {
+        "zh": """拍照""",
         "tr": """Fotoğraf çek""",
         "nl": """Foto maken""",
         "de": """Foto aufnehmen""",
@@ -1646,6 +1601,7 @@ Pasos del ejercicio:
         "ar": """التقاط صورة""",
       } +
       {
+        "zh": """为照片添加链接""",
         "tr": """Fotoğraf(lar)ınıza bir bağlantı ekleyin""",
         "nl": """Voeg een link toe naar je foto('s)""",
         "de": """Link zu deinem/n Foto(s) hinzufügen""",
@@ -1662,6 +1618,7 @@ Pasos del ejercicio:
         "ar": """أضف ارتباطًا إلى صورتك (صورك)""",
       } +
       {
+        "zh": """用声音代替语音""",
         "tr": """Konuşma yerine sesleri kullan""",
         "nl": """Geluiden afspelen in plaats van oefening voor te lezen""",
         "de": """Sounds anstelle von Sprache ausgeben""",
@@ -1678,6 +1635,7 @@ Pasos del ejercicio:
         "ar": """موسيقى بدلا من الصوت""",
       } +
       {
+        "zh": """调整时间""",
         "tr": """Zamanlamayı ayarla""",
         "nl": """Timing aanpassen""",
         "de": """Zeiten anpassen""",
@@ -1694,6 +1652,7 @@ Pasos del ejercicio:
         "ar": """ضبط التوقيت""",
       } +
       {
+        "zh": """时间已经调整""",
         "tr": """Zamanlamayı düzenleme tamamlandı""",
         "nl": """Aanpassen afronden""",
         "de": """Fertig mit der Bearbeitung""",
@@ -1710,6 +1669,7 @@ Pasos del ejercicio:
         "ar": """انتهى تعديل التوقيت""",
       } +
       {
+        "zh": """删除此锻炼""",
         "tr": """Bu antrenmanı sil""",
         "nl": """Work-out verwijderen""",
         "de": """Dieses Training löschen""",
@@ -1726,6 +1686,7 @@ Pasos del ejercicio:
         "ar": """حذف هذا التمرين""",
       } +
       {
+        "zh": """返回锻炼列表""",
         "tr": """Antrenman listesine geri dön""",
         "nl": """Terug naar overzicht""",
         "de": """Zurück zur Training-Liste""",
@@ -1742,6 +1703,7 @@ Pasos del ejercicio:
         "ar": """العودة إلى قائمة التمرين""",
       } +
       {
+        "zh": """确定要导入""",
         "tr": """Yine de içe aktar""",
         "nl": """Import anyway""",
         "de": """Trotzdem importieren""",
@@ -1752,15 +1714,50 @@ Pasos del ejercicio:
         "hr": """Svejedno uvezi""",
         "fr": """Importer quand même""",
         "el": """Εισαγωγή ούτως ή άλλως""",
-        "cs": """Import anyway""",
+        "cs": """Importovat i přesto""",
         "id": """Import anyway""",
         "es": """Import anyway""",
         "ar": """استيراد على أي حال""",
       } +
       {
+        "zh": """Sign up for wger""",
+        "tr": """wger için kaydol""",
+        "nl": """Sign up for wger""",
+        "de": """Registrieren für wger""",
+        "ru": """Sign up for wger""",
+        "pt": """Sign up for wger""",
+        "en": """Sign up for wger""",
+        "it": """Iscriviti a wger""",
+        "hr": """Sign up for wger""",
+        "fr": """S'inscrire sur wger""",
+        "el": """Sign up for wger""",
+        "cs": """Registrovat se u wger""",
+        "id": """Sign up for wger""",
+        "es": """Sign up for wger""",
+        "ar": """Sign up for wger""",
+      } +
+      {
+        "zh": """Log in with wger""",
+        "tr": """wger ile oturum aç""",
+        "nl": """Log in with wger""",
+        "de": """Mit wger anmelden""",
+        "ru": """Log in with wger""",
+        "pt": """Log in with wger""",
+        "en": """Log in with wger""",
+        "it": """Accedi tramite wger""",
+        "hr": """Log in with wger""",
+        "fr": """Se connecter via wger""",
+        "el": """Log in with wger""",
+        "cs": """Přihlásit se na wger""",
+        "id": """Log in with wger""",
+        "es": """Log in with wger""",
+        "ar": """Log in with wger""",
+      } +
+      {
+        "zh": """7 分钟科学锻炼""",
         "tr": """Bilimsel 7 dakikalık antrenman""",
         "nl": """Wetenschappelijk bewezen 7-minutenworkout""",
-        "de": """Klassisches 7-Minuten-Training""",
+        "de": """Wissenschaftliches 7-Minuten-Training""",
         "ru": """Научно-доказанная 7-минутная тренировка""",
         "pt": """Treino científico de 7 minutos""",
         "en": """Scientific 7 minute workout""",
@@ -1774,6 +1771,7 @@ Pasos del ejercicio:
         "ar": """تمرين علمي لمدة 7 دقائق""",
       } +
       {
+        "zh": """腿部锻炼""",
         "tr": """Bacak antrenmanı""",
         "nl": """Beenworkout""",
         "de": """Bein-Training""",
@@ -1790,6 +1788,7 @@ Pasos del ejercicio:
         "ar": """تمرين الساق""",
       } +
       {
+        "zh": """颈肩拉伸""",
         "tr": """Boyun ve omuz esnemeleri""",
         "nl": """Nek en schouder rekken""",
         "de": """Nacken- und Schulterdehnungen""",
@@ -1806,6 +1805,7 @@ Pasos del ejercicio:
         "ar": """تمتد الرقبة والكتف""",
       } +
       {
+        "zh": """跳爆竹""",
         "tr": """Jack zıplama""",
         "nl": """Klapsprongen""",
         "de": """Hampelmänner""",
@@ -1822,6 +1822,13 @@ Pasos del ejercicio:
         "ar": """قفز الرافعات""",
       } +
       {
+        "zh": """起始姿势：
+ 双脚并拢站立，背部挺直，手臂放在两侧。
+
+ 步骤：
+ 1. 双腿张开，双手过顶跳到某个位置。
+ 2. 跳回起始位置。
+ 3. 重复。""",
         "tr":
             """1. Ayaklar bir arada ve kollar yanlarda olacak şekilde ayakta durun
 2. Bacaklar geniş açılacak ve eller baş üzerinde birbirine değecek şekilde zıplayın
@@ -1829,9 +1836,13 @@ Pasos del ejercicio:
         "nl": """1. Staan met voeten samen en armen aan de zijkanten
 2. Spring naar een positie met de benen wijd uitgespreid en de handen raken overhead
 3. Herhalen""",
-        "de": """1. Stehe mit den Füßen zusammen und den Armen an den Seiten.
-2. Springe in eine Position, in der die Beine weit gespreizt sind und die Hände sich über Kopf berühren.
-3. Wiederhole""",
+        "de": """Ausgangsposition:
+Stehen Sie mit den Füßen zusammen, mit geradem Rücken und den Armen an den Seiten.
+
+Schritte:
+1. Springen Sie in eine Position, in der die Beine weit gespreizt sind und die Hände sich über dem Kopf berühren.
+2. Springen Sie zurück in die Ausgangsposition.
+3. Wiederholen Sie.""",
         "ru": """1. Встаньте так, чтобы ноги были вместе, а руки по бокам
 2. Прыгните в положение, когда ноги широко расставлены, а руки касаются над головой
 3. Повторите""",
@@ -1877,6 +1888,7 @@ Steps:
 3. كرر.""",
       } +
       {
+        "zh": """直角坐墙""",
         "tr": """Duvara yaslanarak oturma""",
         "nl": """Muurzitten""",
         "de": """Wand sitzen""",
@@ -1893,6 +1905,15 @@ Steps:
         "ar": """الجلوس على الحائط""",
       } +
       {
+        "zh": """起始姿势：
+背部应该接触墙壁，膝盖成直角并位于角度的正上方。 面朝前，双脚分开与肩同宽，并牢牢踩在地上。
+ 要达到这个姿势，你可以靠在墙上，脚离墙约 2 英尺。 滑下墙壁，保持背部紧贴墙壁，直到膝盖成直角。
+
+ 步骤：
+ 1. 保持这个姿势。
+
+ 注：
+ 股四头肌疼痛是正常的，如果感觉膝盖或膝盖骨疼痛，请停止。""",
         "tr":
             """1. Öne bakacak şekilde duvara yaslanın, ayaklar yere sıkıca oturtulmuş, omuz genişliğinde açılmış ve duvardan yaklaşık 60 cm uzakta olsun
 2. Bacaklar dik açı yapana kadar sırtınızı bastırarak duvardan aşağı kaydırın. Dizler doğrudan ayak bileklerinin üzerinde olmalıdır
@@ -1901,10 +1922,15 @@ Kuadriseps ağrısı normaldir, dizde veya diz kapağında ağrı hissederseniz 
             """1. Leun tegen de muur en zet je voeten stevig op de grond; houd je schouders los en 60 cm van de muur verwijderd.
 2. Zak naar beneden en zorg dat je rug tegen de muur blijft totdat je knieën zich direct boven de enkels bevinden.
 Pijn in je dijbeenspieren is normaal. Stop als je pijn in je knie of knieholte voelt""",
-        "de":
-            """1. Lehne Dich an die Wand, mit Blick nach vorne und mit den Füßen fest auf dem Boden, schulterbreit auseinander und etwa einen Meter von der Wand entfernt
-2. Rutsche mit dem Rücken an der Wand entlang, bis die Beine einen rechten Winkel bilden. Die Knie sollten direkt über den Knöcheln sein
-Schmerzen im Quadrizeps sind normal, höre auf, wenn Du Schmerzen im Knie oder in der Kniescheibe spürst""",
+        "de": """Ausgangsposition:
+Der Rücken berührt die Wand, die Knie stehen im rechten Winkel und befinden sich direkt über den Winkeln. Der Blick sollte nach vorne gerichtet sein, die Füße stehen schulterbreit auseinander und sind fest auf dem Boden aufgesetzt.
+Um in diese Position zu gelangen, können Sie sich an die Wand lehnen, die Füße etwa 2 Fuß von der Wand entfernt. Rutschen Sie mit dem Rücken an der Wand herunter, bis Ihre Knie einen rechten Winkel bilden.
+
+Schritte:
+1. Behalten Sie diese Position bei.
+
+Anmerkungen:
+Schmerzen im Quadrizeps sind normal, hören Sie auf, wenn Sie Schmerzen im Knie oder in der Kniescheibe verspüren.""",
         "ru":
             """1. Станьте спиной к стене, прислонитесь. Ноги подайте чуть вперед, расставив их на ширине плеч. Носки разверните в разные стороны.
 2. Плавно скользите вниз по стене, держа спину прижатой к ней, пока ноги не окажутся под прямым углом.
@@ -1966,6 +1992,7 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
 ألم العضلة الرباعية طبيعي ، توقف إذا شعرت بألم في الركبة أو الرضفة.""",
       } +
       {
+        "zh": """俯卧撑""",
         "tr": """Şınav""",
         "nl": """Opdrukken""",
         "de": """Liegestütze""",
@@ -1982,6 +2009,13 @@ El dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o
         "ar": """تمرين الضغط""",
       } +
       {
+        "zh": """起始姿势：
+先做俯卧撑的起始姿势，双手和脚趾接触地面，背部、手臂和腿伸直。要做这个姿势，你可以趴在地上，将双手朝下放在头的旁边，然后将手臂抬起，直到手臂伸直。
+
+步骤：
+1. 弯下肘部，直到你的胸部几乎接触到地面。确保你的背部始终是直的。
+2. 用你的双臂将自己撑起来，回到起始位置。
+3. 重复上述动作。""",
         "tr": """1. Karnınız üzerine uzanın
 2. Ellerinizi kulaklarınızın yakınına yerleştirin
 3. Sırtı düz tutarak kollar düz olana kadar karnınızı yukarı kaldırmak için kollarınızı kullanın
@@ -2076,6 +2110,7 @@ Langkah:
 3. كرر.""",
       } +
       {
+        "zh": """仰卧起坐""",
         "tr": """Yarım mekik""",
         "nl": """Crunch""",
         "de": """Bauchpressen""",
@@ -2092,16 +2127,26 @@ Langkah:
         "ar": """الطحن""",
       } +
       {
+        "zh": """起始姿势：
+ 膝盖弯曲，脸朝上躺在地板上。
+
+ 步骤：
+ 1. 朝骨盆方向弯曲肩膀。 双手可以放在脖子后面或脖子旁边，也可以交叉在胸前。
+ 2.回到初始姿势。
+ 3. 重复。""",
         "tr": """1. Dizlerinizi bükerek yere sırtüstü yatın.
 2. Omuzları leğen kemiğine doğru bükün. Eller boynun arkasında veya yanında olabilir ya da göğsün üzerinden geçebilir.
 3. Tekrarlayın""",
         "nl": """1. Ga op je rug liggen en buig je knieën.
 2. Draai je schouders richting je bekken. Houd je handen achter of naast je nek of kruislings over je borstkas.
 3. Herhaal""",
-        "de":
-            """1. Lege Dich mit dem Gesicht nach oben mit gebeugten Knien auf den Boden.
-2. Beuge die Schultern zum Becken. Die Hände können hinter oder neben dem Nacken oder gekreuzt über der Brust liegen.
-3. Wiederhole""",
+        "de": """Ausgangsposition:
+Legen Sie sich mit dem Gesicht nach oben auf den Boden und beugen Sie die Knie.
+
+Schritte:
+1. Beugen Sie die Schultern zum Becken. Die Hände können hinter oder neben dem Nacken oder über der Brust gekreuzt sein.
+2. Kehren Sie in die Ausgangsposition zurück.
+3. Wiederholen Sie.""",
         "ru": """1. Лягте лицом вверх на пол, согнув колени.
 2. Поднимите корпус в направлении согнутых колен. Уберите руки под затылок или скрестите на груди;
 3. Повторить""",
@@ -2147,6 +2192,7 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 3. كرر التمرين""",
       } +
       {
+        "zh": """仰卧起坐""",
         "tr": """Adım atma""",
         "nl": """Opstappen""",
         "de": """Steigungen""",
@@ -2163,6 +2209,13 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
         "ar": """صعود-الكرسي""",
       } +
       {
+        "zh": """起始姿势：
+ 面对椅子站立。
+
+ 步骤：
+1. 走到椅子上。
+2. 从椅子上走下来。
+3. 重复。""",
         "tr": """1. Sandalyeye dönük şekilde durun
 2. Sandalyeye çıkın
 3. Sandalyeden inin
@@ -2171,10 +2224,12 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
 2. Ga op de stoel staan.
 3. Ga van de stoel af.
 4. Herhaal""",
-        "de": """1. Stelle dich vor einen Stuhl
-2. Steige auf den Stuhl.
-3. Steige vom Stuhl ab.
-4. Wiederhole""",
+        "de": """Ausgangsposition:
+Stellen Sie sich vor einen Stuhl.
+
+Schritte:1. Steigen Sie auf den Stuhl.
+2. Steigen Sie vom Stuhl ab.
+3. Wiederholen Sie""",
         "ru": """1. Встаньте перед стулом
 2. Встаньте на стул
 3. Слезьте со стула
@@ -2186,9 +2241,10 @@ Zvedni záda tak, aby se tvá ramena co nejblíže přiblížily ke kolenům. Pl
         "en": """Starting position:
 Stand facing a chair.
 
-Steps:1. Step up onto the chair.
+Steps:
+1. Step up onto the chair.
 2. Step off the chair.
-3. Repeat""",
+3. Repeat.""",
         "it": """1. Stare in piedi di fronte a una sedia
 2. Salire sulla sedia
 3. Scendere dalla sedia
@@ -2223,6 +2279,7 @@ Steps:1. Step up onto the chair.
 4. كرر التمرين""",
       } +
       {
+        "zh": """深蹲""",
         "tr": """Çömelme""",
         "nl": """Hurkzitten""",
         "de": """Kniebeugen""",
@@ -2239,6 +2296,13 @@ Steps:1. Step up onto the chair.
         "ar": """القرفصاء""",
       } +
       {
+        "zh": """起始姿势：
+ 站立，双脚分开与肩同宽。
+
+ 步骤：
+ 1. 将臀部向后移动并弯曲膝盖和臀部降低躯干，直到臀部低于膝盖。
+ 2. 回到初始姿势。
+ 3. 重复。""",
         "tr": """1. Ayaklar omuz genişliğinde açık durun
 2. Kalçayı geriye doğru itin ve gövdeyi aşağı indirmek için dizleri ve kalçayı bükün
 3. Tekrarlayın""",
@@ -2246,10 +2310,13 @@ Steps:1. Step up onto the chair.
             """1. Ga staan en zet je voeten zó dat ze in verhouding staan met je schouders.
 2. Draai je heupen naar achteren en buig je knieën en heupen om je bovenlichaam naar beneden te duwen.
 3. Herhaal""",
-        "de":
-            """1. Stelle Dich mit schulterbreit auseinander stehenden Füßen auf
-2. Bewege die Hüften nach hinten und beuge die Knie und Hüften, um den Oberkörper zu senken
-3. Wiederhole""",
+        "de": """Ausgangsposition:
+Stehen Sie mit schulterbreit auseinander stehenden Füßen.
+
+Schritte:
+1. Bewegen Sie die Hüfte nach hinten und beugen Sie Knie und Hüfte, um den Oberkörper zu senken, bis die Hüfte tiefer als die Knie ist.
+2. Kehren Sie in die Ausgangsposition zurück.
+3. Wiederholen Sie.""",
         "ru": """1. Встаньте так, чтобы ноги были на ширине плеч
 2. Отведите бедра назад и согните колени, чтобы опустить туловище
 3. Повторить""",
@@ -2293,6 +2360,7 @@ Steps:
 3. كرر التمرين""",
       } +
       {
+        "zh": """撑椅肱三头肌撑体""",
         "tr": """Sandalye ile dalma""",
         "nl": """Stoelzakken""",
         "de": """Stuhl Stütze""",
@@ -2309,6 +2377,13 @@ Steps:
         "ar": """تراجع كرسي""",
       } +
       {
+        "zh": """起始姿势：
+ 坐在椅子的前缘上，背部挺直，双手握住前缘。 仍然握住椅子的边缘，双臂伸展，抬起你的臀部并稍微向前走，使其距离椅子几英寸。
+
+ 步骤：
+ 1. 慢慢降低身体，保持背部挺直，直到双臂成直角。
+ 2. 再次将身体抬起至初始姿势，双臂伸展。
+ 3. 重复。""",
         "tr":
             """1. Sırt düz, eller ön kısmını tutacak şekilde bir sandalyenin ön tarafına oturun
 2. Sandalyenin kenarını tutmaya devam ederek kollarınızı uzatın, kalçanızı kaldırın ve sandalyeden birkaç cm uzakta olacak şekilde hafifçe öne doğru yürüyün.
@@ -2321,12 +2396,13 @@ Steps:
 3. Laat uw lichaam langzaam zakken, houd de rug recht, totdat de armen in een rechte hoek staan
 4. Til je lichaam weer op naar de vorige positie, armen uitgestrekt
 5. Herhaal stap 3 en 4""",
-        "de":
-            """1.Setze Dich auf die Vorderkante eines Stuhls, Rücken gerade, Hände halten die Vorderkante
-2. Halten Dich mit ausgestreckten Armen an der Stuhlkante fest, hebe Dein Gesäß an und gehe leicht nach vorne, so dass es einige Zentimeter vom Stuhl entfernt ist.
-3. Senke Deinen Körper langsam ab, halte dabei den Rücken gerade, bis die Arme einen rechten Winkel bilden
-4. Hebe Deinen Körper wieder in die vorherige Position, Strecke die Arme
-5. Wiederhole die Schritte 3 und 4""",
+        "de": """Ausgangsposition:
+Setzen Sie sich mit geradem Rücken auf die Vorderkante eines Stuhls, die Hände halten die Vorderkante. Halten Sie sich mit ausgestreckten Armen an der Stuhlkante fest, heben Sie den Po an und gehen Sie leicht nach vorne, so dass er sich einige Zentimeter vom Stuhl entfernt befindet.
+
+Schritte:
+1. Senken Sie Ihren Körper langsam ab, halten Sie dabei den Rücken gerade, bis Ihre Arme einen rechten Winkel bilden.
+2. Heben Sie Ihren Körper mit gestreckten Armen wieder in die Ausgangsposition.
+3. Wiederholen Sie die Übung.""",
         "ru":
             """1. Сядьте на передний край стула, спина прямая, руки держатся за передний край
 2. Все еще держась за край стула, вытянув руки, поднимите ягодицы и слегка подвиньтесь вперед, чтобы они оказались в нескольких сантиметрах от стула.
@@ -2397,6 +2473,7 @@ Steps:
 5. كرر الخطوتين 3 و 4""",
       } +
       {
+        "zh": """平板支撑""",
         "tr": """Ön kol plank hareketi""",
         "nl": """Onderarmplanken""",
         "de": """Unterarmstütz""",
@@ -2413,6 +2490,13 @@ Steps:
         "ar": """لوح الساعد""",
       } +
       {
+        "zh": """起始姿势：
+1. 四肢着地。
+手臂弯曲成直角，肩部应该正好在肘部上方。
+背部挺直，整个身体在一条直线上。
+
+步骤：
+1. 保持该姿势。""",
         "tr": """Başlangıç durumu:
 1. Dört ayak üzerinde başlayın.
 Kollar, omuzlar dirseklerin tam üzerinde olacak şekilde dik açıyla bükülmelidir.
@@ -2509,6 +2593,7 @@ Pasos:
 1. الثبوت على هذا الوضع.""",
       } +
       {
+        "zh": """高抬腿""",
         "tr": """Yüksek dizler""",
         "nl": """Stilstaand joggen""",
         "de": """Knie hoch""",
@@ -2525,22 +2610,33 @@ Pasos:
         "ar": """الركبتين العالية""",
       } +
       {
+        "zh": """起始姿势：
+站直。
+
+步骤：
+1. 原地跑步，尽可能将膝盖抬高到舒适高度，并快速换腿。""",
         "tr":
             """1. Dizleri kaldırabildiğiniz kadar yukarı kaldırarak ve bacakları hızlı bir şekilde değiştirerek olduğunuz yerde koşun""",
         "nl":
             """1. Sta stil, maar maak een rennende beweging - duw je knieën zover mogelijk omhoog en wissel je benen af""",
         "de":
-            """1. Laufen Sie auf der Stelle, halte die Knie so hoch wie möglich und wechseln Sie die Beine in einem schnellen Tempo""",
+            """1. Auf der Stelle laufen, dabei die Knie so hoch wie möglich ansetzen und die Beine in schnellem Tempo wechseln.""",
         "ru":
             """1. Бегать на месте, поднимая колени настолько высоко, насколько это удобно, и быстро переключая ноги""",
         "pt":
             """1. Corra no lugar, colocando os joelhos o mais alto o confortável e trocando de pernas a um ritmo rápido""",
-        "en":
-            """1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace.""",
+        "en": """Starting position
+Stand straight.
+
+Steps:
+1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace.""",
         "it":
             """1. Fai una corsa veloce sul posto, porta in alto le ginocchia ma senza sforzare""",
-        "hr":
-            """1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace.""",
+        "hr": """Starting position
+Stand straight.
+
+Steps:
+1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace.""",
         "fr":
             """1. Courez sur place, en plaçant les genoux aussi haut que possible et en changeant de jambe à un rythme rapide""",
         "el":
@@ -2555,6 +2651,7 @@ Pasos:
             """1. الجري في المكان، وضع الركبتين عاليا كما هو مريح وتبديل بين الساقين بوتيرة سريعة""",
       } +
       {
+        "zh": """弓步""",
         "tr": """Lunge hareketi""",
         "nl": """Uitvalspassen""",
         "de": """Ausfallschritte""",
@@ -2571,6 +2668,15 @@ Pasos:
         "ar": """الطعنات""",
       } +
       {
+        "zh": """起始姿势：
+ 背部挺直站立。
+
+ 步骤：
+ 1. 左腿向前迈出一大步。
+ 2. 让骨盆向下，直到你的右膝几乎触地。
+ 3. 将骨盆抬高。
+ 4. 后退回到起始姿势。
+ 6. 重复，每次换腿。""",
         "tr": """1. Sırtınız düz bir şekilde durun
 2. Sol bacağınızla ileriye doğru büyük bir adım atın
 3. Sağ dizinizle neredeyse yere değene kadar leğen kemiğinizi aşağı indirin
@@ -2583,12 +2689,15 @@ Pasos:
 4. Duw je bekken omhoog.
 5. Ga weer recht staan.
 6. Herhaal, en wissel beide benen af""",
-        "de": """1.Stehe mit geradem Rücken
-2. Mache mit dem linken Bein einen großen Schritt nach vorne
-3. Bringe Dein Becken nach unten, bis Du mit dem rechten Knie fast den Boden berührst
-4. Bringen Dein Becken wieder nach oben
-5. Kehre in den Stand zurück, indem Du einen Schritt zurücktrittst 
-6. Wiederhole die Übung und wechsel dabei jedes Mal die Beine""",
+        "de": """Ausgangsposition:
+Mit geradem Rücken stehen.
+
+Schritte:
+1. Machen Sie mit dem linken Bein einen großen Schritt nach vorn.
+2. Senken Sie Ihr Becken, bis Sie mit dem rechten Knie fast den Boden berühren.
+3. Bringen Sie Ihr Becken wieder nach oben.
+4. Kehren Sie in die Ausgangsposition zurück, indem Sie einen Schritt zurücktreten.
+6. Wiederholen Sie den Vorgang und wechseln Sie dabei jedes Mal die Beine.""",
         "ru": """1. Встаньте с прямой спиной
 2. Сделайте большой шаг вперед левой ногой.
 3. Опустите таз так, чтобы правое колено почти касалось пола.
@@ -2663,6 +2772,7 @@ Steps:
 6. كرر، مع التبديل الساقين في كل مرة""",
       } +
       {
+        "zh": """左腿箭步蹲""",
         "tr": """Tek bacaklı çömelme (sol)""",
         "nl": """Gespleten hurkzit (links)""",
         "de": """Geteilte Kniebeugen links""",
@@ -2679,6 +2789,7 @@ Steps:
         "ar": """انقسام القرفصاء اليسار""",
       } +
       {
+        "zh": """右腿箭步蹲""",
         "tr": """Tek bacaklı çömelme (sağ)""",
         "nl": """Gespleten hurkzit (rechts)""",
         "de": """Geteilte Kniebeugen rechts""",
@@ -2695,6 +2806,13 @@ Steps:
         "ar": """تقسيم القرفصاء اليمين""",
       } +
       {
+        "zh": """起始姿势：
+ 背部挺直站立。 左腿向前迈出一大步。
+
+ 脚步：
+ 1. 让骨盆向下，直到右膝几乎触地。
+ 2. 将骨盆抬高。
+ 3. 重复。""",
         "tr": """1. Sırtınız düz bir şekilde durun
 2. Sol bacağınızla ileriye doğru büyük bir adım atın
 3. Sağ dizinizle neredeyse yere değene kadar leğen kemiğinizi aşağı indirin
@@ -2705,11 +2823,13 @@ Steps:
 3. Duw je bekken omlaag, zo ver tot je bijna de grond raakt met je rechterknie.
 4. Duw je bekken omhoog.
 5. Herhaal vanaf stap 3.""",
-        "de": """1. Stehe mit aufrechtem Rücken
-2. Machen mit dem linken Bein einen großen Schritt nach vorne
-3. Senken Dein Becken ab, bis Du mit dem rechten Knie fast den Boden berühren
-4. Bringe Dein Becken wieder nach oben
-5. Wiederhole ab Schritt 3.""",
+        "de": """Ausgangsposition:
+Stellen Sie sich mit geradem Rücken hin. Machen Sie mit dem linken Bein einen großen Schritt nach vorn.
+
+Schritte:
+1. Bringen Sie Ihr Becken nach unten, bis Sie mit dem rechten Knie fast den Boden berühren.
+2. Bringen Sie Ihr Becken wieder nach oben.
+3. Wiederholen Sie die Übung.""",
         "ru": """1. Встаньте с прямой спиной
 2. Сделайте большой шаг вперед левой ногой
 3. Опустите таз так, чтобы правое колено почти касалось пола
@@ -2771,6 +2891,7 @@ Steps:
 5. كرر الخطوة 3.""",
       } +
       {
+        "zh": """交替抬肘俯卧撑""",
         "tr": """Dönerek şınav""",
         "nl": """Draaiend opdrukken""",
         "de": """Liegestütz-Drehungen""",
@@ -2787,6 +2908,15 @@ Steps:
         "ar": """تمرين الضغط المتناوب""",
       } +
       {
+        "zh": """起始姿势：
+ 进入起始俯卧撑位置，双手和脚趾接触地面和背部，手臂和腿伸直。 要达到这个姿势，你可以俯卧，双手朝下放在头部旁边，然后抬起双臂直到它们伸直。
+
+ 步骤：
+ 1. 进行标准俯卧撑：
+ 1.a 弯曲手臂直到胸部几乎接触地面，确保背部挺直。
+ 1.b 用你的手臂将自己抬升到起始姿势。
+ 2.将身体向一侧转动，使背部挺直，支撑身体的底部手完全伸展，且仅底部手和脚接触地面。
+ 3. 重复，每次在第 2 步换方向。""",
         "tr": """1. Normal bir şınav yapın:
 1.a Karnınız üzerine uzanın
 1.b Ellerinizi kulaklarınızın yakınına yerleştirin
@@ -2803,14 +2933,15 @@ Steps:
 1.e Kom weer omhoog en ga naar stap 3.
 2. Draai op je zij, houd je rug recht en raak alleen met je hand en voet de grond aan.
 3. Herhaal, en wissel bij stap 2 telkens van zij""",
-        "de": """1. Mache einen Standard-Liegestütz:
-1.a Lege Dich auf den Bauch
-1.b Lege Deine Hände in die Nähe Ihrer Ohren
-1.c Hebe Deinen Bauch mit den Armen an, bis die Arme gerade sind und halte den Rücken gerade
-1.d Biege die Arme, bis die Brust fast den Boden berührt, und achte darauf, dass der Rücken gerade ist
-1.e Hebe den Bauch wieder an und kehre zu Schritt 3 zurück
-2. Drehe Deinen Körper zur Seite, so dass der Rücken gerade ist, die untere Hand, die den Körper stützt, vollständig gestreckt ist und nur die untere Hand und der untere Fuß den Boden berühren
-3. Wiederhole und wechsel jedes Mal die Seiten in Schritt 2""",
+        "de": """Ausgangsposition:
+Begeben Sie sich in die Ausgangsposition für Liegestütze, wobei Hände und Zehen den Boden berühren und Arme und Beine gerade sind. Um diese Position zu erreichen, können Sie sich auf den Bauch legen, die Hände nach unten neben den Kopf legen und die Arme nach oben heben, bis sie gerade sind.
+
+Die Schritte:
+1. Führen Sie einen normalen Liegestütz durch:
+1.a Beugen Sie die Arme, bis die Brust fast den Boden berührt, und achten Sie darauf, dass der Rücken gerade ist.
+1.b Heben Sie sich mit den Armen wieder in die Ausgangsposition.
+2. Drehen Sie Ihren Körper zur Seite, so dass der Rücken gerade ist, die untere Hand, die den Körper stützt, vollständig gestreckt ist und nur die untere Hand und der Fuß den Boden berühren.
+3. Wiederholen Sie den Vorgang, wobei Sie bei Schritt 2 jedes Mal die Seite wechseln.""",
         "ru": """1. Сделайте стандартное отжимание:
 1.лягте на живот.
 1.б Приложите руки к ушам.
@@ -2903,6 +3034,7 @@ Steps:
 3. كرر مع تغيير الجوانب في الخطوة 2 في كل مرة""",
       } +
       {
+        "zh": """左前臂平板支撑""",
         "tr": """Yan plank hareketi (sol)""",
         "nl": """Links planken""",
         "de": """Seitenplanke links""",
@@ -2919,6 +3051,7 @@ Steps:
         "ar": """اللوح الجانبي الأيسر""",
       } +
       {
+        "zh": """右前臂平板支撑""",
         "tr": """Yan plank hareketi (sağ)""",
         "nl": """Rechts planken""",
         "de": """Seitenplanke rechts""",
@@ -2935,6 +3068,11 @@ Steps:
         "ar": """اللوح الجانبي الأيمن""",
       } +
       {
+        "zh": """起始姿势：
+ 侧躺，下肘成直角，手臂伸出。 抬起下肩，将骨盆抬离地面，前臂停留在地面； 你的头、骨盆和脚应该在一条直线上。
+
+ 步骤：
+ 1. 保持这个姿势。""",
         "tr":
             """1. Alt dirseğiniz dik açıyla, kolunuz dışarı çıkacak şekilde yan tarafınıza uzanın
 2. Ön kolunuzu yerde tutup alt omzunuzu yukarı kaldırarak leğen kemiğinizi yerden kaldırın; başınız, leğen kemiğiniz ve ayaklarınız düz bir çizgide olmalıdır
@@ -2943,10 +3081,11 @@ Steps:
             """1. Ga op je linkerzij liggen, houd je rechterelleboog recht en steek je arm uit.
 2. Duw je bekken omhoog door je rechterschouder op te tillen, maar houd je bovenarm op de grond - je hoofd, bekken en voeten moeten in een rechte lijn liggen.
 3. Houd deze positie vas""",
-        "de":
-            """1. Lege Dich auf die Seite, der untere Ellbogen ist rechtwinklig, der Arm ragt heraus.
-2. Hebe das Becken vom Boden ab, indem Du die untere Schulter anhebst und den Unterarm auf dem Boden lässt; Dein Kopf, Dein Becken und Deine Füße sollten sich in einer geraden Linie befinden.
-3. Halte diese Position""",
+        "de": """Ausgangsposition:
+Legen Sie sich auf die Seite, wobei der untere Ellbogen einen rechten Winkel bildet und der Arm ausgestreckt ist. Heben Sie Ihr Becken vom Boden ab, indem Sie die untere Schulter anheben und den Unterarm auf dem Boden lassen; Ihr Kopf, Ihr Becken und Ihre Füße sollten eine gerade Linie bilden.
+
+Die Schritte:
+1. Halten Sie diese Position.""",
         "ru":
             """1. Лягте на бок, поставив нижний локоть под прямым углом, вытянув вперед руку
 2. Поднимите таз от пола, подняв нижнюю часть плеча вверх, удерживая предплечье на полу; ваша голова, таз и ноги должны быть на одной прямой линии
@@ -2995,6 +3134,7 @@ Steps:
 3. الثبات على هذه الوضعية""",
       } +
       {
+        "zh": """左腿侧箭步蹲""",
         "tr": """Yana tek bacaklı çömelme (sol)""",
         "nl": """Gespleten zijhurkzit (links)""",
         "de": """Seitliche Kniebeugen links""",
@@ -3011,6 +3151,7 @@ Steps:
         "ar": """انقسام القرفصاء اليسار""",
       } +
       {
+        "zh": """右腿侧箭步蹲""",
         "tr": """Yana tek bacaklı çömelme (sağ)""",
         "nl": """Gespleten zijhurkzit (rechts)""",
         "de": """Seitliche Kniebeugen rechts""",
@@ -3027,6 +3168,13 @@ Steps:
         "ar": """انقسام القرفصاء اليمين""",
       } +
       {
+        "zh": """起始姿势：
+ 1. 站直，一只脚横向跨出，使得双脚距离略大于肩宽。
+
+ 步骤：
+ 1. 弯曲一只膝盖，直到你的大腿与地面平行。 弯曲的膝盖必须与脚成一条直线。
+ 2. 推回起始姿势。
+ 3. 重复。""",
         "tr":
             """1. Dik durun ve omuz genişliğinden biraz daha geniş bir yan adım atın.
 2. Uyluğunuz yere paralel olana kadar bir dizinizi bükün. Bükülmüş diz ayakla aynı hizada olmalıdır.
@@ -3035,10 +3183,13 @@ Steps:
             """1. Ga recht staan en doe een brede, zijwaartse pas, net iets voorbij schouderbreedte.
 2. Buig één knie totdat je heup gelijkstaat aan de grond. De gebogen knie moet gelijkstaan aan de voet.
 3. Duw jezelf omhoog en herhaal.""",
-        "de":
-            """1. Stellen Dich aufrecht hin und mache einen weiten Seitenschritt, etwas größer als schulterbreit.
-2. Beuge ein Knie, bis Dein Oberschenkel parallel zum Boden ist. Das gebeugte Knie muss in einer Linie mit dem Fuß stehen.
-3. Gehe in die Ausgangsposition zurück und wiederhole.""",
+        "de": """Ausgangsposition:
+1. Stehen Sie aufrecht und machen Sie einen weiten seitlichen Schritt, etwas mehr als schulterbreit.
+
+Schritte:
+1. Beugen Sie ein Knie, bis Ihr Oberschenkel parallel zum Boden ist. Das gebeugte Knie muss sich in einer Linie mit dem Fuß befinden.
+2. Drücken Sie sich zurück in die Ausgangsposition.
+3. Wiederholen Sie die Übung.""",
         "ru":
             """1. Встаньте прямо и сделайте широкий боковой шаг, чуть больше ширины плеч.
 2. Согните одно колено, пока бедро не будет параллельно полу. Согнутое колено должно находиться на одной линии с стопой.
@@ -3091,6 +3242,7 @@ Steps:
 3. ادفع للخلف إلى وضع البداية وكرر العملية.""",
       } +
       {
+        "zh": """左保加利亚分腿蹲""",
         "tr": """Bulgar tek bacaklı çömelmesi (sol)""",
         "nl": """Bulgaarse gespleten hurkzit (links)""",
         "de": """Bulgarische geteilte Kniebeugen links""",
@@ -3107,6 +3259,7 @@ Steps:
         "ar": """الرفع القرفصاء البلغارية""",
       } +
       {
+        "zh": """右保加利亚分腿蹲""",
         "tr": """Bulgar tek bacaklı çömelmesi (sağ)""",
         "nl": """Bulgaarse gespleten hurkzit (rechts)""",
         "de": """Bulgarische geteilte Kniebeugen rechts""",
@@ -3123,6 +3276,9 @@ Steps:
         "ar": """الرفع القرفصاء البلغارية اليمين""",
       } +
       {
+        "zh": """1. 在椅子前站直，迈出一大步。将另一只脚的脚背放在椅子上。
+2. 弯曲前膝，用手臂保持平衡，直到后膝几乎接触地面。
+3. 撑回起始位置并重复。""",
         "tr":
             """1. Bir sandalyenin önünde dik durun ve büyük bir adım atın. Ayaklarınızdan birinin üst kısmını sandalyenin üzerine koyun.
 2. Arka diz neredeyse yere değene kadar kollarla dengeleyerek ön dizinizi bükün
@@ -3145,7 +3301,7 @@ Steps:
 3. Empurre de volta para a posição inicial e repita.""",
         "en":
             """1. Stand tall in front of a chair and take a large step. Put the upper part of one of your feet on the chair.
-2. Bend the front knee, balancing with arms until the back knee almost touches the ground
+2. Bend the front knee, balancing with arms until the back knee almost touches the ground.
 3. Push back to the starting position and repeat.""",
         "it":
             """1. Mettiti di fronte a una sedia e fai un grande passo. Metti la parte superiore di uno dei tuoi piedi sulla sedia.
@@ -3153,7 +3309,7 @@ Steps:
 3. Spingi indietro fino alla posizione di partenza e ripeti.""",
         "hr":
             """1. Stand tall in front of a chair and take a large step. Put the upper part of one of your feet on the chair.
-2. Bend the front knee, balancing with arms until the back knee almost touches the ground
+2. Bend the front knee, balancing with arms until the back knee almost touches the ground.
 3. Push back to the starting position and repeat.""",
         "fr":
             """1. Tenez-vous droit devant une chaise et faites un grand pas. Placez la partie supérieure de l'un de vos pieds sur la chaise
@@ -3181,6 +3337,7 @@ Steps:
 3. ادفع للخلف إلى وضع البداية وكرر العملية.""",
       } +
       {
+        "zh": """左腿手枪式深蹲""",
         "tr": """Tabanca durumunda çömelme (sol)""",
         "nl": """Pistoolzit (links)""",
         "de": """Einbeinige Kniebeugen links""",
@@ -3197,6 +3354,7 @@ Steps:
         "ar": """Pistol squats اليسار""",
       } +
       {
+        "zh": """右腿手枪式深蹲""",
         "tr": """Tabanca durumunda çömelme (sağ)""",
         "nl": """Pistoolzit (rechts)""",
         "de": """Einbeinige Kniebeugen rechts""",
@@ -3213,6 +3371,10 @@ Steps:
         "ar": """Pistol squats اليمين""",
       } +
       {
+        "zh": """1. 单腿站立，另一条腿伸直，略微向前。
+2. 慢慢弯曲一条腿的膝盖，下蹲，保持背部和另一条腿伸直。
+3. 从下蹲状态慢慢起身，伸直弯曲的膝盖，保持另一条腿伸直。
+4. 重复。""",
         "tr":
             """1. Diğer bacağınız düz ve hafifçe öne gelecek şekilde tek ayak üzerinde durun.
 2. Bir dizinizi yavaşça bükün, sırtınızı ve diğer bacağınızı düz tutarak çömelme durumuna inin.
@@ -3241,7 +3403,7 @@ Steps:
             """1. Stand on one leg, with your other leg straight and slightly forward.
 2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.
 3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.
-4. Repeat""",
+4. Repeat.""",
         "it":
             """1. Stai in piedi su una gamba, con l'altra gamba dritta e leggermente in avanti.
 2. Piegare un ginocchio lentamente, scendendo in uno squat e mantenendo la schiena e l'altra gamba dritta.
@@ -3251,7 +3413,7 @@ Steps:
             """1. Stand on one leg, with your other leg straight and slightly forward.
 2. Bend one knee slowly, descending into a squat and keeping your back and your other leg straight.
 3. Slowly raise yourself from the squat, straightening the bent knee and keeping the other leg straight.
-4. Repeat""",
+4. Repeat.""",
         "fr":
             """1. Tenez-vous debout sur une jambe, l'autre jambe droite et légèrement en avant
 2. Pliez lentement un genou, descendez en position accroupie et gardez votre dos et votre autre jambe droits
@@ -3283,6 +3445,7 @@ Steps:
 4. كرر""",
       } +
       {
+        "zh": """跪姿屈膝抬腿""",
         "tr": """Diz çöküp geri tepme""",
         "nl": """Geknielde terugtrap""",
         "de": """Kniende Rückschläge""",
@@ -3299,6 +3462,13 @@ Steps:
         "ar": """الركل الى الخلف من الركوع""",
       } +
       {
+        "zh": """起始姿势：
+ 四肢着地。
+
+ 步骤：
+ 1. 将一只脚向后推，直到完全伸展，专注于臀肌。
+ 2.停留一秒钟，然后回到初始姿势。
+ 3. 重复，交替双脚。""",
         "tr": """1. Dört ayak üzerine eğilin.
 2. Kalça kaslarına odaklanarak bir ayağınızı tamamen uzayıncaya kadar geriye doğru itin.
 3. Bir saniye kalın, ardından başlangıç durumuna geri dönün.
@@ -3308,10 +3478,13 @@ Steps:
 2. Duw je voet naar achteren, zo ver totdat je been volledig gestrekt is.
 3. Houd één seconde vol en keer terug naar de startpositie.
 4. Herhaal, en wissel steeds van voet""",
-        "de": """1.Lege Dich auf alle Viere.
-2. Drücke einen Fuß nach hinten, bis er vollständig gestreckt ist und konzentriere Dich dabei auf die Gesäßmuskeln.
-3. Bleibe eine Sekunde so und kehre dann in die Ausgangsposition zurück.
-4. Wiederhole indem Du die Füße abwechselst""",
+        "de": """Ausgangsposition:
+Gehen Sie auf alle Viere.
+
+Schritte:
+1. Drücken Sie einen Fuß nach hinten, bis er ganz gestreckt ist, und konzentrieren Sie sich dabei auf die Gesäßmuskeln.
+2. Verweilen Sie eine Sekunde lang und kehren Sie dann in die Ausgangsposition zurück.
+3. Wiederholen Sie den Vorgang, indem Sie die Füße abwechseln.""",
         "ru": """1. Встань на четвереньки.
 2. Отталкивайтесь одной ногой назад до полного вытягивания, концентрируясь на ягодичных мышцах.
 3. Задержитесь на одну секунду, затем вернитесь в исходное положение..
@@ -3364,6 +3537,7 @@ Steps:
 4. كرر ، بالتناوب القدمين""",
       } +
       {
+        "zh": """左腿提踵""",
         "tr": """Sol bacak baldır kaldırma""",
         "nl": """Kuitoptrekken (links)""",
         "de": """Wadenheben linkes Bein""",
@@ -3380,6 +3554,7 @@ Steps:
         "ar": """رفع ربلة الساق اليسرى""",
       } +
       {
+        "zh": """右腿提踵""",
         "tr": """Sağ bacak baldır kaldırma""",
         "nl": """Kuitoptrekken (rechts)""",
         "de": """Wadenheben rechtes Bein""",
@@ -3396,6 +3571,9 @@ Steps:
         "ar": """رفع ربلة الساق اليمنى""",
       } +
       {
+        "zh": """1. 站在地板上或者台阶的边缘上，保证运动范围足够。抬起一条腿，脚背靠在小腿上。
+2. 抬起支撑脚的脚跟，用脚尖站立。
+3. 保持三秒钟，然后落下脚跟，但保持脚跟不接触地面。""",
         "tr":
             """1. Hareket aralığını artırmak için yerde veya bir basamağın kenarında durun. Üst kısmı baldırınızın üzerine koyarak bir ayağınızı kaldırın.
 2. Ayak parmaklarınız üzerinde durana kadar topuklarınızı kaldırın.
@@ -3454,6 +3632,7 @@ Steps:
 3. ابق في هذا الوضع لمدة ثلاث ثوان ، ثم أنزل قدمك دون لمس الأرض بكعبك.""",
       } +
       {
+        "zh": """基本跳绳""",
         "tr": """İp atlama: temel atlamalar""",
         "nl": """Touwtjespringen: basissprongen""",
         "de": """Seilspringen: Grundsprünge""",
@@ -3470,6 +3649,16 @@ Steps:
         "ar": """القفز على الحبل: القفزات الأساسية""",
       } +
       {
+        "zh": """起始姿势：
+ 双脚并拢，稍微弯曲膝盖，保持头部和身体伸直，保持肘部向内，张开双臂。
+
+ 步骤：
+ 1. 用足够的力道仅转动手腕使绳子转动。
+ 2. 跳起刚好能让脚下的绳索通过的高度。
+ 3. 重复。
+
+ 注：
+ 这个练习需要一根跳绳。 确保绳子长度调整到适合你的身高。 一种检查方法是用一只手抓住两个把手，用一只脚站在挂在地上的绳索中间。 如果绳子（不包括手柄）刚好到达胸部下方，则它的长度合适。 较短的绳索会很危险，因为您可能会伤到自己，而较长的绳索会造成不良的形式。""",
         "tr":
             """Bu egzersiz bir atlama ipi gerektirir. İp uzunluğunun boyunuza göre ayarlandığından emin olun. Bunu denetlemenin bir yolu, ipin her iki kulpunu tek elle tutup tek ayakla yerde serili halatın ortasında durmaktır. İp (kulplar hariç) göğsünüzün hemen altına ulaşırsa, uzunluğu doğrudur. Daha kısa bir ip, kendinize çarpabileceğiniz için tehlikeli olacaktır ve daha uzun bir ip kötü bir biçim oluşturacaktır.
 1. Ayaklarınızı birbirine yaklaştırın, dizlerinizi biraz bükün, başınızı ve vücudunuzu düz tutun, dirseklerinizi içeride tutun, kollarınızı açın.
@@ -3482,12 +3671,16 @@ Steps:
 2. Draai je polsen met genoeg kracht om het touw te laten draaien.
 3. Spring net boven het touw uit.
 4. Herhaal vanaf stap 2.""",
-        "de":
-            """Für diese Übung benötigst Du ein Springseil. Stelle sicher, dass die Seillänge auf Deine Körpergröße abgestimmt ist. Eine Möglichkeit, dies zu überprüfen, ist, beide Griffe mit einer Hand zu greifen und sich mit einem Fuß auf die Mitte des am Boden hängenden Seils zu stellen. Wenn das Seil (ohne die Griffe) bis knapp unter Deine Brust reicht, ist die Länge richtig. Ein kürzeres Seil wäre gefährlich, da Du Dich stoßen könntest und ein längeres Seil würde eine schlechte Form ergeben.
-1. Stelle Deine Füße eng zusammen, beuge Deine Knie ein wenig, halte Deinen Kopf und Körper gerade, lege deine Ellnogen an und öffne Deine Arme.
-2. Drehe nur die Handgelenke mit so viel Kraft, dass sich das Seil dreht.
-3. Springe nur so hoch, dass das Seil unter Deinen Füßen vorbeigeht.
-4. Wiederhole ab Schritt 2.""",
+        "de": """Ausgangsposition:
+Füße dicht beieinander stellen, Knie leicht beugen, Kopf und Körper gerade halten, Ellenbogen angewinkelt halten, Arme öffnen.
+
+Schritte:
+1. Drehen Sie nur Ihre Handgelenke mit so viel Kraft, dass sich das Seil dreht.
+2. Springe gerade so hoch, dass das Seil unter deinen Füßen durchläuft.
+3. Wiederhole die Übung.
+
+Anmerkungen:
+Für diese Übung benötigen Sie ein Springseil. Achten Sie darauf, dass die Seillänge auf Ihre Körpergröße abgestimmt ist. Eine Möglichkeit, dies zu überprüfen, ist, beide Griffe mit einer Hand zu ergreifen und sich mit einem Fuß auf die Mitte des Seils zu stellen, das am Boden hängt. Wenn das Seil (ohne die Griffe) bis knapp unter Ihre Brust reicht, ist es richtig lang. Ein kürzeres Seil wäre gefährlich, da Sie sich daran stoßen könnten, und ein längeres Seil wäre schlecht für die Form.""",
         "ru": """Starting position:
 Put your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.
 
@@ -3568,6 +3761,7 @@ This exercise requires a jump rope. Make sure the rope length is adjusted to you
 4. كرر من الخطوة 2.""",
       } +
       {
+        "zh": """前臂绕环""",
         "tr": """Kolları çevirme""",
         "nl": """Voorwaartse arm cirkels""",
         "de": """Armkreisen vorwärts""",
@@ -3575,7 +3769,7 @@ This exercise requires a jump rope. Make sure the rope length is adjusted to you
         "pt": """Círculos com o braço pra frente""",
         "en": """Forward arm circles""",
         "it": """Cerchi del braccio""",
-        "hr": """Kruženje rukama""",
+        "hr": """Kruženje rukama prema naprijed""",
         "fr": """Cercles avant des bras""",
         "el": """Κύκλοι χεριών προς τα εμπρός""",
         "cs": """Kroužení pažemi dopředu""",
@@ -3584,6 +3778,7 @@ This exercise requires a jump rope. Make sure the rope length is adjusted to you
         "ar": """تدوير الذراع إلى الأمام""",
       } +
       {
+        "zh": """大臂绕环""",
         "tr": """Geriye doğru kol çemberleri""",
         "nl": """Achterwaartse arm cirkels""",
         "de": """Armkreisen rückwärts""",
@@ -3591,7 +3786,7 @@ This exercise requires a jump rope. Make sure the rope length is adjusted to you
         "pt": """Círculos com o braço pra trás""",
         "en": """Backward arm circles""",
         "it": """Cerchi di braccia all'indietro""",
-        "hr": """Backward arm circles""",
+        "hr": """Kruženje rukama prema natrag""",
         "fr": """Cercle arrière des bras""",
         "el": """Κύκλοι χεριών πίσω""",
         "cs": """Kroužení pažemi dozadu""",
@@ -3600,15 +3795,24 @@ This exercise requires a jump rope. Make sure the rope length is adjusted to you
         "ar": """تدوير الذراع إلى الخلف""",
       } +
       {
+        "zh": """起始姿势：
+ 站直
+
+ 步骤：
+ 1. 双臂伸直，放在面前，下移，放到背后，过头，最后回到初始姿势。
+ 2. 如第 1 步所述，重复这套动作。""",
         "tr": """1. Sırtınız düz olacak şekilde dik durun.
 2. Kollarınızı öne doğru getirin, başınızın üzerine kaldırın, ardından hareketi arkanıza doğru ve başlangıç durumuna kadar devam ettirin.
 3. 2. adımda anlatıldığı gibi kollarınızı çevirmeye devam edin.""",
         "nl": """1. Ga rechtop staan met een rechte rug.
 2. Houd je armen recht, breng ze voor je, beweeg ze naar beneden, achter je rug, dan over je hoofd en terug naar de beginpositie.
 3. Blijf je armen cirkelen zoals beschreven in stap 2.""",
-        "de": """1. Stelle dich mit geradem Rücken aufrecht hin.
-2. Halte die Arme gerade und führen sie vor sich nach unten, hinter den Rücken, dann über den Kopf und zurück in die Ausgangsposition.
-3. Lasse die Arme wie in Schritt 2 beschrieben kreisen.""",
+        "de": """Ausgangsposition:
+Stehen Sie aufrecht mit geradem Rücken.
+
+Schritte:
+1. Führen Sie die Arme bei gestrecktem Körper vor sich her, führen Sie sie nach unten, hinter den Rücken, dann über den Kopf und zurück in die Ausgangsposition.
+2. Lassen Sie die Arme wie in Schritt 1 beschrieben kreisen.""",
         "ru": """Starting position:
 Stand tall with your back straight.
 
@@ -3653,15 +3857,24 @@ Steps:
 3. استمر في تحريك ذراعيك كما هو موضح في الخطوة 2.""",
       } +
       {
+        "zh": """起始姿势：
+ 站直。
+
+ 步骤：
+ 1. 双臂伸直，转到身前，举过头顶，放到背后，最后回到初始姿势。
+ 2. 如第 1 步所述，重复这套动作。""",
         "tr": """1. Sırtınız düz olacak şekilde dik durun.
 2. Kollarınızı düz tutarak önünüze getirin, başınızın üzerine kaldırın, ardından harekete arkanızdan devam edin ve başlangıç pozisyonuna inin.
 3. Adım 2'de anlatıldığı gibi kollarınızı döndürmeye devam edin.""",
         "nl": """1. Ga rechtop staan met een rechte rug.
 2. Houd je armen recht, houd ze voor je, hef ze boven je hoofd, zet de beweging voort tot achter je rug en naar beneden naar de beginpositie
 3. Blijf je armen cirkelen zoals beschreven in stap 2.""",
-        "de": """1. Stelle Dich aufrecht und mit geradem Rücken hin.
-2. Halte die Arme gerade und führe sie vor dich her, hebe sie über deinen Kopf und führe die Bewegung hinter deinem Rücken bis zur Ausgangsposition fort.
-3. Lasse die Arme wie in Schritt 2 beschrieben kreisen.""",
+        "de": """Ausgangsposition:
+Stehen Sie aufrecht mit geradem Rücken.
+
+Schritte:
+1. Halten Sie die Arme gestreckt und führen Sie sie vor sich her, heben Sie sie über den Kopf und setzen Sie die Bewegung hinter dem Rücken fort, bis Sie wieder in die Ausgangsposition gelangen.
+2. Kreisen Sie die Arme weiter wie in Schritt 1 beschrieben.""",
         "ru": """Starting position:
 Stand tall with your back straight.
 
@@ -3709,6 +3922,7 @@ Steps:
 3. استمر في تحريك ذراعيك كما هو موضح في الخطوة 2.""",
       } +
       {
+        "zh": """登山者式""",
         "tr": """Dağ tırmanışı""",
         "nl": """Bergbeklimmer""",
         "de": """Bergsteiger""",
@@ -3725,6 +3939,19 @@ Steps:
         "ar": """متسلقو الجبال""",
       } +
       {
+        "zh": """起始姿势：
+以直立俯卧撑姿势，也就是“高木板”姿势开始。
+双手应该在肩膀正下方。
+保持头部与背部在一个平面上；面向地板。
+双脚分开大约与臀部同宽。
+
+步骤：
+1. 将一侧膝盖向身体中心移动，再向肘部移动，另一条腿保持伸展。
+2. 快速跳起，将弯曲的腿伸直，将另一只膝盖拉向身体。
+3. 重复第2步，双腿交替。
+
+注：
+在锻炼全过程中，背部要尽可能地保持挺直，避免驼背和背部下垂的情况。""",
         "tr": """Başlangıç durumu:
 Dik şınav durumunda veya yüksek plankta başlayın.
 Eller doğrudan omuzlarınızın altında olmalıdır.
@@ -3752,18 +3979,18 @@ Stappen:
 Let op:
 blijf je rug recht houden tijdens de gehele duur van de oefening.""",
         "de": """Ausgangsposition:
-Beginne mit der aufrechten Liegestützposition oder mit der hohen Planke.
-Die Hände sollten sich direkt unter Deinen Schultern befinden.
-Halte den Kopf in einer Linie mit dem Rücken und schaue zum Boden.
+Beginnen Sie in der aufrechten Liegestützposition, auch bekannt als die hohe Plank-Position.
+Die Hände sollten sich direkt unter den Schultern befinden.
+Halten Sie Ihren Kopf in einer Linie mit dem Rücken und schauen Sie zum Boden.
 Die Füße sollten etwa hüftbreit auseinander stehen.
 
-Schritte:
-1. Bewege ein Knie zur Körpermitte hin zu den Ellenbogen, das andere Bein bleibt gestreckt.
-2. Strecke in einer schnellen Sprungbewegung das gebeugte Bein aus und ziehe das andere Knie zum Körper.
-3. Wiederhole Schritt 2 im Wechsel mit dem anderen Bein.
+Die Schritte:
+1. Bewegen Sie ein Knie in Richtung Körpermitte zu den Ellbogen und lassen Sie das andere Bein gestreckt.
+2. In einer schnellen, hüpfenden Bewegung strecken Sie das gebeugte Bein aus und ziehen das andere Knie zum Körper.
+3. Wiederholen Sie Schritt 2 im Wechsel mit dem anderen Bein.
 
-Hinweise:
-Während der gesamten Übung sollte Dein Rücken möglichst gerade bleiben - vermeide einen Buckel oder einen durchhängenden Rücken.""",
+Anmerkungen:
+Während der gesamten Übung sollte Ihr Rücken so gerade wie möglich bleiben - vermeiden Sie einen Buckel oder einen durchhängenden Rücken.""",
         "ru": """Starting position:
 Start in the upright push-up position, aka. the high plank position.
 Hands should be directly under your shoulders.
@@ -3909,6 +4136,7 @@ Durante todo el ejercicio, la espalda debe permanecer lo más recta posible, evi
 خلال التمرين ، يجب أن يظل ظهرك مستقيمًا قدر الإمكان - تجنب حدوث حدبة أو تراجع في الظهر.""",
       } +
       {
+        "zh": """波比跳""",
         "tr": """Şınav ile burpee""",
         "nl": """Opdruk burpees""",
         "de": """Liegestütz-Burpees""",
@@ -3925,6 +4153,15 @@ Durante todo el ejercicio, la espalda debe permanecer lo más recta posible, evi
         "ar": """الدفع burpees""",
       } +
       {
+        "zh": """起始姿势：
+站直，双脚分开与臀部同宽。
+
+步骤：
+1. 深蹲蹲下，双手放在膝盖之间脚前，支撑在地板上；背部挺直。
+2. 双手放在地板上，双腿向后跳到高平板支撑的位置。
+3. 做一个俯卧撑。
+4. 双脚向前跳，回到下蹲位置。
+5. 重复。""",
         "tr": """Starting position:
 Stand straight, feet hip-width apart.
 
@@ -4053,6 +4290,7 @@ Steps:
 5. كرر.""",
       } +
       {
+        "zh": """四联波比跳""",
         "tr": """4-count burpees""",
         "nl": """4-tel burpees""",
         "de": """Burpees mit 4 Zählzeiten""",
@@ -4069,6 +4307,14 @@ Steps:
         "ar": """4-العد burpees""",
       } +
       {
+        "zh": """起始姿势：
+站直，双脚分开与臀部同宽。
+
+步骤：
+1. 深蹲蹲下，双手放在膝盖之间脚前，支撑在地板上；背部挺直。
+2. 双手放在地板上，双腿向后跳到高平板支撑的位置。
+3. 双脚向前跳，回到下蹲位置。
+4. 重复。""",
         "tr": """Starting position:
 Stand straight, feet hip-width apart.
 
@@ -4183,6 +4429,7 @@ Steps:
 4. كرر.""",
       } +
       {
+        "zh": """半程波比跳""",
         "tr": """No push-up burpees""",
         "nl": """Geen push-up burpees""",
         "de": """Keine Liegestütz-Burpees""",
@@ -4199,6 +4446,15 @@ Steps:
         "ar": """لا push-up burpees""",
       } +
       {
+        "zh": """起始姿势：
+站直，双脚分开与臀部同宽。
+
+步骤：
+1. 深蹲蹲下，双手放在膝盖之间脚前，支撑在地板上；背部挺直。
+2. 双手放在地板上，双腿向后跳到高平板支撑的位置。
+3. 双脚向前跳，回到下蹲位置。
+4. 跳起。
+5. 重复。""",
         "tr": """Starting position:
 Stand straight, feet hip-width apart.
 
@@ -4327,6 +4583,7 @@ Steps:
 5. كرر.""",
       } +
       {
+        "zh": """俯卧撑腿屈伸""",
         "tr": """Squat thrusts""",
         "nl": """Hurkstoten""",
         "de": """Kniebeugen""",
@@ -4343,6 +4600,13 @@ Steps:
         "ar": """دفعات القرفصاء""",
       } +
       {
+        "zh": """起始姿势：
+以高位平板支撑姿势开始：背部、手臂和腿均伸直，双手分开与肩同宽。
+
+步骤：
+1. 双脚向双臂的方向向前跳，保持背部平直。
+2. 双手撑地，双腿跳回高位平板支撑位置。
+3. 重复。""",
         "tr": """Starting position:
 Start in high plank position: back, arms, and legs straight and hands shoulder-width apart.
 
@@ -4443,6 +4707,7 @@ Steps:
 3. كرر.""",
       } +
       {
+        "zh": """反向弓步""",
         "tr": """Ters lunge hareketi""",
         "nl": """Omgekeerde lunges""",
         "de": """Umgekehrte Ausfallschritte""",
@@ -4459,6 +4724,14 @@ Steps:
         "ar": """الطعنات العكسية""",
       } +
       {
+        "zh": """起始姿势：
+站直，双脚分开与臀部同宽。
+
+步骤：
+1. 一条腿向后迈步，使膝盖能舒适地弯曲成90度角。
+2. 慢慢弯曲双膝，双膝均成 90 度角。
+3. 回到起始位置。
+4. 换腿，重复。""",
         "tr": """Başlangıç durumu:
 Ayaklar kalça genişliğinde açık olacak şekilde düz durun.
 
@@ -4573,6 +4846,7 @@ Pasos:
 4. كرر ، بالتناوب على الساقين.""",
       } +
       {
+        "zh": """抬腿""",
         "tr": """Bacak kaldırmaları""",
         "nl": """Been strekken""",
         "de": """Beine heben""",
@@ -4589,6 +4863,14 @@ Pasos:
         "ar": """رفع الساق""",
       } +
       {
+        "zh": """起始姿势：
+仰卧，双脚并拢，双臂放在身体两侧。
+
+步骤：
+1. 弯曲膝盖，再向上伸直，使双腿直立。
+2. 保持双腿伸直，一起放下，不接触地面。双腿越低，运动的强度就越大。
+3. 两条腿一并抬起，再次竖直立起双腿。
+4. 从第2步重复。""",
         "tr": """Başlangıç durumu:
 Ayaklar bitişik, kollarınız yan tarafınızda olacak şekilde sırt üstü uzanın.
 
@@ -4703,6 +4985,7 @@ Pasos:
 4. كرر من الخطوة 2.""",
       } +
       {
+        "zh": """伏地挺身""",
         "tr": """Yere dalma""",
         "nl": """Vloer dips""",
         "de": """Bodensenken""",
@@ -4719,6 +5002,19 @@ Pasos:
         "ar": """انخفاضات أرضية""",
       } +
       {
+        "zh": """起始姿势：
+坐在地上，双臂后放撑地，支撑上半身。
+手指要指向前方。
+膝盖弯曲，双脚并拢。
+
+步骤：
+1. 抬起臀部，离开地面，伸直手臂。
+2. 弯曲肘部，臀部向下。
+3. 伸直手臂，回到之前的位置。
+4. 重复步骤2和步骤3。
+
+注：
+练习难度取决于臀部撑起得有多高。""",
         "tr": """Başlangıç durumu:
 Sırtınızı destekleyerek kollarınız arkanızda oturun.
 Parmaklarınız öne doğru bakmalıdır.
@@ -4903,6 +5199,7 @@ La dificultad del ejercicio depende de la altura de las caderas.""",
 تعتمد صعوبة التمرين على مدى ارتفاع الوركين.""",
       } +
       {
+        "zh": """折刀俯卧撑""",
         "tr": """Pike şınav""",
         "nl": """Snoekpush-ups""",
         "de": """Hecht-Liegestütze""",
@@ -4919,6 +5216,14 @@ La dificultad del ejercicio depende de la altura de las caderas.""",
         "ar": """الدراجة الضغط""",
       } +
       {
+        "zh": """起始姿势：
+下犬式：身体成V字形，背部、手臂和腿部挺直，臀部翘在空中。
+您可以先做高位平板支撑的姿势，然后将双手向后移来形成这个姿势。
+
+步骤：
+1. 将两个肘部向一侧弯曲，保持背部和腿部挺直，将头靠近地面。
+2. 伸直双臂，将臀部向后推，保持背部和腿部挺直。
+3. 重复。""",
         "tr": """Başlangıç durumu:
 Aşağı bakan köpek: Vücudunuz sırt, kollar ve bacaklarla düz olacak şekilde bir V şekli oluşturmalıdır. Kalçaların havada olmalıdır.
 Yüksek plank durumunda ellerinizi geriye doğru yürüterek bu duruma gelebilirsiniz.
@@ -4939,10 +5244,10 @@ Steps:
 Der nach unten gerichtete Hund: Ihr Körper sollte eine V-Form bilden, mit geradem Rücken, Armen und Beinen. Ihre Hüften sollten in der Luft sein.
 Sie können diese Position erreichen, indem Sie die Hände aus einem hohen Plankenstand nach hinten führen.
 
-Schritte:
+Die Schritte:
 1. Beugen Sie die Ellbogen zur Seite, halten Sie Rücken und Beine gerade und bringen Sie den Kopf näher zum Boden.
 2. Strecken Sie die Arme aus, drücken Sie die Hüfte wieder nach oben und halten Sie Rücken und Beine gerade.
-3. Wiederholen Sie die Übung.""",
+3. Wiederholen Sie den Vorgang.""",
         "ru": """Staring position:
 Downward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.
 You can get to this position by walking your hands back from a high plank.
@@ -5033,6 +5338,7 @@ Pasos:
 3. كرر.""",
       } +
       {
+        "zh": """收下巴运动""",
         "tr": """Chin tuck""",
         "nl": """Kin instoppen""",
         "de": """Schluckübungen""",
@@ -5049,6 +5355,13 @@ Pasos:
         "ar": """تشين تاك""",
       } +
       {
+        "zh": """起始姿势：
+坐位或站位，背部挺直。
+
+步骤：
+1. 将手指放在下巴上，慢慢将下巴收起；头部向后移，与脊柱对齐。
+2. 保持5秒钟。
+3. 头部回到正常位置，重复。""",
         "tr": """Starting position:
 Sit or stand with your back straight.
 
@@ -5149,6 +5462,7 @@ Steps:
 3. العودة إلى وضع الرأس الطبيعي وكرر.""",
       } +
       {
+        "zh": """转头""",
         "tr": """Head turns""",
         "nl": """Hoofd draaiingen""",
         "de": """Kopf drehen""",
@@ -5165,6 +5479,13 @@ Steps:
         "ar": """تدوير الرأس""",
       } +
       {
+        "zh": """起始姿势：
+坐位或站位，背部挺直，肩部向下。
+
+步骤：
+1. 坐直（站直），放松肩部。
+2. 尽可能地把头转向一侧，在您感到阻碍时停下来，保持5秒钟。
+3. 回到中间位置，换边，重复。""",
         "tr": """Starting position:
 Sit or stand with your back straight and shoulders down.
 
@@ -5266,6 +5587,7 @@ Steps:
 3. عد إلى المركز وكرر الأمر مع تغيير الجوانب.""",
       } +
       {
+        "zh": """后颈部拉伸""",
         "tr": """Back neck stretch""",
         "nl": """Achternek rekken""",
         "de": """Nackendehnung""",
@@ -5282,6 +5604,15 @@ Steps:
         "ar": """تمتد الرقبة الخلفية""",
       } +
       {
+        "zh": """起始姿势：
+ 坐在椅子或坚固的枕头上。
+
+ 步骤：
+ 1. 呼气，头向前倾斜，下巴靠胸，双手放在脑后。
+ 2. 用手将头轻轻拉下，用头顶住双手以平衡用力。
+ 3. 坚持一会儿。
+ 4. 放松手臂和头部，肩膀稍微张开。
+ 5. 从第 2 步开始重复此操作。""",
         "tr": """Starting position:
 Sit upright on a chair or a firm pillow.
 
@@ -5305,10 +5636,10 @@ Setzen Sie sich aufrecht auf einen Stuhl oder ein festes Kissen.
 
 Schritte:
 1. Atmen Sie aus und neigen Sie den Kopf nach vorne, das Kinn zur Brust, und legen Sie die Hände hinter den Kopf.
-2. Ziehen Sie den Kopf mit den Händen ganz leicht nach unten. Halten Sie die Position für 5 Sekunden.
-3. Ziehen Sie die Schultern mit Hilfe der Rückenmuskulatur nach hinten und unten. Dies sollte die Dehnung des Nackens verstärken. Halten Sie die Position 5 Sekunden lang.
-4. Schieben Sie nun den Kopf sanft wieder nach oben und ziehen Sie ihn gleichzeitig mit den Händen nach unten. Halten Sie beide Kräfte im Gleichgewicht, damit sich Ihr Kopf nicht bewegt. Halten Sie die Position mindestens 5 Sekunden lang.
-5. Führen Sie Ihre Finger zur Stirn und bewegen Sie damit Ihren Kopf sanft in die Ausgangsposition zurück.""",
+2. Ziehen Sie den Kopf mit den Händen leicht nach unten und drücken Sie mit dem Kopf gegen die Hände, um die Kraft auszugleichen.
+3. Halten Sie die Position eine Weile.
+4. Entspanne deine Arme und deinen Kopf und öffne deine Schultern ein wenig.
+5. Wiederhole dies von Schritt 2 an.""",
         "ru": """Starting position:
 Sit upright on a chair or a firm pillow.
 
@@ -5410,6 +5741,7 @@ Steps:
 5. اجلب أصابعك إلى جبهتك واستخدمها لتحريك رأسك برفق إلى الموضع الأصلي.""",
       } +
       {
+        "zh": """左颈部拉伸""",
         "tr": """Left neck stretch""",
         "nl": """Linker nekrekking""",
         "de": """Linke Nackendehnung""",
@@ -5426,6 +5758,7 @@ Steps:
         "ar": """تمتد الرقبة لليسار""",
       } +
       {
+        "zh": """右颈部拉伸""",
         "tr": """Right neck stretch""",
         "nl": """Rechter nekrekking""",
         "de": """Rechte Nackendehnung""",
@@ -5442,6 +5775,14 @@ Steps:
         "ar": """تمدد الرقبة لليمين""",
       } +
       {
+        "zh": """起始姿势：
+坐位或站位，背部挺直。
+
+步骤：
+ 1. 头向一侧倾斜。
+ 2. 用离头较近的那只手从另一侧抓住头部。
+ 3. 手顶着头，头顶着手推动，使力量平衡，头部保持静止。
+ 4. 保持这种张力直到练习结束。""",
         "tr": """Starting position:
 Sit or stand with your back straight.
 
@@ -5462,10 +5803,10 @@ Stappen:
 Sitzen oder stehen Sie mit geradem Rücken.
 
 Schritte:
-1. Neigen Sie den Kopf zur Seite und halten Sie ihn 8 Sekunden lang, um die Seite des Nackens zu dehnen.
-2. Ziehen Sie mit der näheren Hand am Kopf, um ihn weiter zu dehnen. Halten Sie 8 Sekunden lang.
-3. Drehen Sie Ihr Kinn zu Ihrer Schulter. Halten Sie 8 Sekunden lang.
-4. Lassen Sie los und kehren Sie in die Ausgangsposition zurück.""",
+1. Neigen Sie den Kopf zur Seite.
+2. Nehmen Sie die Hand, die näher am Kopf ist, und fassen Sie damit Ihren Kopf von der anderen Seite.
+3. Drücken Sie mit der Hand gegen den Kopf und mit dem Kopf gegen die Hand, damit sich die Kräfte ausgleichen und der Kopf ruhig bleibt.
+4. Halten Sie diese Spannung bis zum Ende der Übung aufrecht.""",
         "ru": """Starting position:
 Sit or stand with your back straight.
 
@@ -5556,6 +5897,7 @@ Steps:
 4. حرر والعودة إلى وضع البداية.""",
       } +
       {
+        "zh": """耸肩运动""",
         "tr": """Shoulder shrugs""",
         "nl": """Schouders ophalen""",
         "de": """Schulterzucken""",
@@ -5572,6 +5914,13 @@ Steps:
         "ar": """هز الكتفين""",
       } +
       {
+        "zh": """起始位置：
+坐位或站位，背部挺直。
+
+步骤：
+1. 将肩膀尽可能地向上抬起，保持 5 秒。
+2. 肩膀回到放松的位置。
+3. 重复。""",
         "tr": """Starting position:
 Sit or stand with your back straight.
 
@@ -5672,6 +6021,7 @@ Steps:
 3. كرر.""",
       } +
       {
+        "zh": """前颈部拉伸""",
         "tr": """Front neck stretch""",
         "nl": """Voor nekrekking""",
         "de": """Nackenstütze vorne""",
@@ -5688,6 +6038,14 @@ Steps:
         "ar": """تمتد الرقبة الأمامية""",
       } +
       {
+        "zh": """起始位置：
+坐位或站位，背部挺直。
+
+步骤：
+1. 张大嘴巴。
+2. 保持嘴张开，慢慢仰头。可以将双手放在脑后支撑头部。
+3. 慢慢地合上嘴再张开。
+4. 最后，慢慢回到起始位置，合上嘴部。""",
         "tr": """Starting position:
 Sit or stand with your back straight.
 
@@ -5802,6 +6160,7 @@ Steps:
 4. في النهاية، والعودة ببطء إلى موقف البداية وإغلاق الفم.""",
       } +
       {
+        "zh": """肩部向前绕环""",
         "tr": """Forward shoulder rotation""",
         "nl": """Voortwaartse schouder draaiing""",
         "de": """Vorwärtsdrehung der Schulter""",
@@ -5818,6 +6177,7 @@ Steps:
         "ar": """دوران الكتف إلى الأمام""",
       } +
       {
+        "zh": """肩部向后绕环""",
         "tr": """Backward shoulder rotation""",
         "nl": """Achterwaartse schouder draaiing""",
         "de": """Rückwärtsdrehung der Schulter""",
@@ -5834,6 +6194,12 @@ Steps:
         "ar": """دوران الكتف للخلف""",
       } +
       {
+        "zh": """起始姿势：
+坐位或站位，背部挺直。
+
+步骤：
+1. 将双手放在肩膀上。
+2. 以适中的速度不断绕转两侧肩关节。""",
         "tr": """Starting position:
 Sit or stand with your back straight.
 
@@ -5920,6 +6286,7 @@ Steps:
 2. قم بتدوير مفصلي الكتف بشكل متكرر في حركة دائرية بوتيرة معتدلة.""",
       } +
       {
+        "zh": """高位平板支撑""",
         "tr": """High plank""",
         "nl": """Hoge plank""",
         "de": """Hohe Planke""",
@@ -5936,6 +6303,12 @@ Steps:
         "ar": """لوح مرتفع""",
       } +
       {
+        "zh": """起始姿势：
+开始高位平板支撑：手和脚趾接触地面，背部平直，手臂和腿伸直。
+做这个姿势，您可以趴在地上，手掌朝下放在您头部两边，然后抬起并且伸直手臂。
+
+步骤：
+1. 在整个练习过程中保持一开始的姿势。""",
         "tr": """Starting position:
 Get into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.
 To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.
@@ -6022,6 +6395,7 @@ Steps:
 1. حافظ على وضع البداية طوال مدة التمرين.""",
       } +
       {
+        "zh": """婴儿式""",
         "tr": """Child's pose""",
         "nl": """Kindhouding""",
         "de": """Kinderpose""",
@@ -6038,6 +6412,17 @@ Steps:
         "ar": """وضعية الطفل""",
       } +
       {
+        "zh": """起始姿势：
+开始时四肢着地，膝盖、脚趾、手接触地面，两个大脚趾相碰。
+
+步骤：
+1. 移动你的膝盖，使之与臀部同宽。
+2. 呼气，同时将骨盆向后移动。保持手接触地面，坐在您的脚后跟上。
+3. 放松上半身，将额头贴向地面，手自然向前移动。
+4. 保持这个姿势。
+
+提示：
+* 结束这个姿势，您可以把手臂收回到肩膀下，移动上半身，坐起。""",
         "tr": """Starting position:
 Start on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.
 
@@ -6194,6 +6579,7 @@ Tips:
 * لترك الوضع ، حرك ذراعيك للخلف تحت كتفيك وحرك الجزء العلوي من جسمك إلى وضع الجلوس.""",
       } +
       {
+        "zh": """引体向上""",
         "tr": """Pull-ups""",
         "nl": """Optrekken""",
         "de": """Klimmzüge""",
@@ -6210,6 +6596,18 @@ Tips:
         "ar": """اسحب""",
       } +
       {
+        "zh": """起始姿势：
+先悬挂在单杠上，手掌朝前，双脚离地。
+双手比肩稍宽。不要太宽，肘部不要在身体两边，要在身体前面。
+身体应为伸直，略微向前的状态。手臂应处于伸展状态。
+
+步骤：
+1. 用力均匀地拉起你的身体，使胸部靠近单杠，下巴刚好超过横杆。不要跃起或晃起身体，比如踢腿。
+2. 小心地把身体放下来，回到起始位置。
+3. 重复进行。
+
+提示：
+——引体向上要想做得正确，您必须先增强几个关键部位的力量，包括肩膀、手臂和腹肌。您应该通过其他练习积累了足够的力量后，再开始做引体向上。""",
         "tr": """Starting position:
 Start by hanging from the pull-up bar, palms facing away and feet off the floor.
 Your hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.
@@ -6380,6 +6778,7 @@ Tips:
 - للقيام بتمارين السحب بشكل صحيح ، يجب عليك أولاً بناء القوة في العديد من المجالات الرئيسية ، بما في ذلك الكتفين والذراعين والبطن. ابدأ بتمارين السحب فقط بعد أن تكون قد اكتسبت قوة كافية مع تمارين أخرى.""",
       } +
       {
+        "zh": """提壶铃""",
         "tr": """Kettlebell deadlifts""",
         "nl": """Kettlebell Deadliften""",
         "de": """Kettlebell Kreuzheben""",
@@ -6396,6 +6795,18 @@ Tips:
         "ar": """كيتلبيل رفع الأثقال""",
       } +
       {
+        "zh": """起始位置：
+站位，双脚与臀部同宽，壶铃位于脚踝之间。背部挺直，头朝前。
+
+步骤：
+1. 背部保持平直，以臀部为轴，微微弯曲膝盖，手放在壶铃把手上。
+2. 抓住壶铃把手，双手向相反方向推动，好像在拉弹簧一样。
+3. 接触到腹肌和臀大肌时，站直。
+4. 再次以臀部为轴，将壶铃放回原位，类似于步骤1。
+5. 从第 3 步重复。
+
+提示：
+* 一定要按正确的方式做这些动作，否则可能会导致受伤。例如，不要蹲下而不以臀部为轴、在伸手去拿壶铃时不要弯腰、站立时不要向后倾斜。""",
         "tr": """Starting position:
 Stand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.
 
@@ -6566,6 +6977,7 @@ Tips:
 * تأكد من أداء الحركات بشكل صحيح ، لأن القيام بخلاف ذلك قد يؤدي إلى الإصابة. على سبيل المثال ، لا تقم بالقرفصاء بدلًا من التوقف عند الوركين ، ولا تلف ظهرك أثناء الوصول إلى الثقل ، ولا تميل للخلف أثناء الوقوف.""",
       } +
       {
+        "zh": """相扑深蹲""",
         "tr": """Sumo squats""",
         "nl": """Sumo hurken""",
         "de": """Sumo Kniebeugen""",
@@ -6582,6 +6994,13 @@ Tips:
         "ar": """قرفصاء السومو""",
       } +
       {
+        "zh": """起始姿势：
+站起，双腿张开，脚趾向外。
+
+步骤：
+1. 膝盖向外弯曲，慢慢往下沉。将手臂向前伸。头部、胸部和臀部保持在一条直线上。挤压臀部。
+2. 向上撑回到起始位置。
+3. 脉冲式地重复上述动作。""",
         "tr": """Starting position:
 Stand with legs wide and toes turned outwards.
 
@@ -6682,9 +7101,10 @@ Steps:
 3. كرر هذا التمرين بحركة نابضة.""",
       } +
       {
+        "zh": """Alternating bicep curls""",
         "tr": """Alternating bicep curls""",
         "nl": """Alternating bicep curls""",
-        "de": """Alternating bicep curls""",
+        "de": """Abwechselnde Bizepscurls""",
         "ru": """Alternating bicep curls""",
         "pt": """Alternating bicep curls""",
         "en": """Alternating bicep curls""",
@@ -6698,6 +7118,13 @@ Steps:
         "ar": """Alternating bicep curls""",
       } +
       {
+        "zh": """Starting position:
+Start standing up with dumbbells in each hand, your back straight and feet hip-width apart. Your arms should be relaxed, pointing down. Your knees should be slightly bent, your abs contracted, and your shoulders down.
+
+Steps:
+1. Bend one arm at the elbow, bringing the dumbbell up to your shoulder. Your upper arm should remain motionless during this movement.
+2. Bring the dumbbell back down until your arm is in its original relaxed position.
+3. Repeat, switching arms.""",
         "tr": """Starting position:
 Start standing up with dumbbells in each hand, your back straight and feet hip-width apart. Your arms should be relaxed, pointing down. Your knees should be slightly bent, your abs contracted, and your shoulders down.
 
@@ -6712,13 +7139,13 @@ Steps:
 1. Bend one arm at the elbow, bringing the dumbbell up to your shoulder. Your upper arm should remain motionless during this movement.
 2. Bring the dumbbell back down until your arm is in its original relaxed position.
 3. Repeat, switching arms.""",
-        "de": """Starting position:
-Start standing up with dumbbells in each hand, your back straight and feet hip-width apart. Your arms should be relaxed, pointing down. Your knees should be slightly bent, your abs contracted, and your shoulders down.
+        "de": """Ausgangsposition:
+Beginnen Sie im Stehen mit Kurzhanteln in jeder Hand, mit geradem Rücken und hüftbreit auseinander stehenden Füßen. Die Arme sind entspannt und zeigen nach unten. Die Knie sollten leicht gebeugt, die Bauchmuskeln angespannt und die Schultern nach unten gerichtet sein.
 
-Steps:
-1. Bend one arm at the elbow, bringing the dumbbell up to your shoulder. Your upper arm should remain motionless during this movement.
-2. Bring the dumbbell back down until your arm is in its original relaxed position.
-3. Repeat, switching arms.""",
+Die Schritte:
+1. Beugen Sie einen Arm am Ellenbogen und führen Sie die Hantel bis zur Schulter. Ihr Oberarm sollte während dieser Bewegung unbeweglich bleiben.
+2. Bringen Sie die Hantel wieder nach unten, bis sich Ihr Arm in seiner ursprünglichen, entspannten Position befindet.
+3. Wiederholen Sie die Übung mit dem anderen Arm.""",
         "ru": """Starting position:
 Start standing up with dumbbells in each hand, your back straight and feet hip-width apart. Your arms should be relaxed, pointing down. Your knees should be slightly bent, your abs contracted, and your shoulders down.
 
@@ -6798,9 +7225,10 @@ Steps:
 3. Repeat, switching arms.""",
       } +
       {
+        "zh": """Shoulders down""",
         "tr": """Shoulders down""",
         "nl": """Shoulders down""",
-        "de": """Shoulders down""",
+        "de": """Schultern nach unten""",
         "ru": """Shoulders down""",
         "pt": """Shoulders down""",
         "en": """Shoulders down""",
@@ -6814,9 +7242,10 @@ Steps:
         "ar": """Shoulders down""",
       } +
       {
+        "zh": """Push against hands""",
         "tr": """Push against hands""",
         "nl": """Push against hands""",
-        "de": """Push against hands""",
+        "de": """Gegen Hände drücken""",
         "ru": """Push against hands""",
         "pt": """Push against hands""",
         "en": """Push against hands""",
@@ -6830,9 +7259,10 @@ Steps:
         "ar": """Push against hands""",
       } +
       {
+        "zh": """Left levator scapulae stretch""",
         "tr": """Left levator scapulae stretch""",
         "nl": """Left levator scapulae stretch""",
-        "de": """Left levator scapulae stretch""",
+        "de": """Dehnung des linken Schulterblattes""",
         "ru": """Left levator scapulae stretch""",
         "pt": """Left levator scapulae stretch""",
         "en": """Left levator scapulae stretch""",
@@ -6846,9 +7276,10 @@ Steps:
         "ar": """Left levator scapulae stretch""",
       } +
       {
+        "zh": """Right levator scapulae stretch""",
         "tr": """Right levator scapulae stretch""",
         "nl": """Right levator scapulae stretch""",
-        "de": """Right levator scapulae stretch""",
+        "de": """Dehnung des rechten Schulterblattes""",
         "ru": """Right levator scapulae stretch""",
         "pt": """Right levator scapulae stretch""",
         "en": """Right levator scapulae stretch""",
@@ -6862,6 +7293,11 @@ Steps:
         "ar": """Right levator scapulae stretch""",
       } +
       {
+        "zh": """Starting position:
+Start standing up or sitting down. Turn your head in one direction, around 45 degrees or just above your nipple. Place your futher hand behind your back or sit on it. Take your closer hand and use it to hold the back of your head. Lead your head down slightly.
+
+Steps:
+1. After assuming the starting position, press your head against your hand with slight force. Your hand should press back with equal force, so that your head doesn't move. Hold this position.""",
         "tr": """Starting position:
 Start standing up or sitting down. Turn your head in one direction, around 45 degrees or just above your nipple. Place your futher hand behind your back or sit on it. Take your closer hand and use it to hold the back of your head. Lead your head down slightly.
 
@@ -6872,11 +7308,11 @@ Start standing up or sitting down. Turn your head in one direction, around 45 de
 
 Steps:
 1. After assuming the starting position, press your head against your hand with slight force. Your hand should press back with equal force, so that your head doesn't move. Hold this position.""",
-        "de": """Starting position:
-Start standing up or sitting down. Turn your head in one direction, around 45 degrees or just above your nipple. Place your futher hand behind your back or sit on it. Take your closer hand and use it to hold the back of your head. Lead your head down slightly.
+        "de": """Ausgangsposition:
+Beginnen Sie im Stehen oder Sitzen. Drehen Sie Ihren Kopf in eine Richtung, etwa um 45 Grad oder direkt über Ihre Brustwarze. Legen Sie die andere Hand hinter den Rücken oder setzen Sie sich auf sie. Nehmen Sie Ihre nähere Hand und halten Sie damit Ihren Hinterkopf. Führen Sie Ihren Kopf leicht nach unten.
 
-Steps:
-1. After assuming the starting position, press your head against your hand with slight force. Your hand should press back with equal force, so that your head doesn't move. Hold this position.""",
+Die Schritte:
+1. Nachdem Sie die Ausgangsposition eingenommen haben, drücken Sie Ihren Kopf mit leichter Kraft gegen Ihre Hand. Ihre Hand sollte mit gleicher Kraft zurückdrücken, so dass sich Ihr Kopf nicht bewegt. Halten Sie diese Position.""",
         "ru": """Starting position:
 Start standing up or sitting down. Turn your head in one direction, around 45 degrees or just above your nipple. Place your futher hand behind your back or sit on it. Take your closer hand and use it to hold the back of your head. Lead your head down slightly.
 
@@ -6934,9 +7370,10 @@ Steps:
 1. After assuming the starting position, press your head against your hand with slight force. Your hand should press back with equal force, so that your head doesn't move. Hold this position.""",
       } +
       {
+        "zh": """Clockwise neck circles""",
         "tr": """Clockwise neck circles""",
         "nl": """Clockwise neck circles""",
-        "de": """Clockwise neck circles""",
+        "de": """Halskreise im Uhrzeigersinn""",
         "ru": """Clockwise neck circles""",
         "pt": """Clockwise neck circles""",
         "en": """Clockwise neck circles""",
@@ -6950,14 +7387,25 @@ Steps:
         "ar": """Clockwise neck circles""",
       } +
       {
+        "zh": """Starting position:
+Start sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.
+
+Steps:
+In a slower fluid motion and with your head relaxed and not pushing in any direction:
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
+4.and back toward the starting position.
+
+Keep repeating this as part of one slower fluid motion.""",
         "tr": """Starting position:
 Start sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -6966,31 +7414,31 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
-        "de": """Starting position:
-Start sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.
+        "de": """Ausgangsposition:
+Beginnen Sie im Sitzen oder Stehen. Senken Sie den Kopf nach unten und bringen Sie das Kinn zur Brust, aber drücken Sie nicht.
 
-Steps:
-In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
-4.and back toward the starting position.
+Schritte:
+Führen Sie die Übung in einer langsamen, fließenden Bewegung aus, wobei Ihr Kopf entspannt ist und in keine Richtung drückt:
+1. Lehnen Sie sich zu Ihrer rechten Schulter.
+2. Legen Sie dann den Kopf zurück und schauen Sie nach oben.
+3. dann lehnen Sie sich zur linken Schulter
+4. und zurück in die Ausgangsposition.
 
-Keep repeating this as part of one slower fluid motion.""",
+Wiederholen Sie dies als Teil einer langsamen, fließenden Bewegung.""",
         "ru": """Starting position:
 Start sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -6999,9 +7447,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7010,9 +7458,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7021,9 +7469,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7032,9 +7480,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7043,9 +7491,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7054,9 +7502,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7065,9 +7513,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7076,9 +7524,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7087,9 +7535,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7098,17 +7546,18 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your right shoulder
-2. then bring your head back, facing up
-3. then lean toward your left shoulder
+1. lean toward your right shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your left shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
       } +
       {
+        "zh": """Counterclockwise neck circles""",
         "tr": """Counterclockwise neck circles""",
         "nl": """Counterclockwise neck circles""",
-        "de": """Counterclockwise neck circles""",
+        "de": """Nackenkreise gegen den Uhrzeigersinn""",
         "ru": """Counterclockwise neck circles""",
         "pt": """Counterclockwise neck circles""",
         "en": """Counterclockwise neck circles""",
@@ -7122,14 +7571,25 @@ Keep repeating this as part of one slower fluid motion.""",
         "ar": """Counterclockwise neck circles""",
       } +
       {
+        "zh": """Starting position:
+Start sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.
+
+Steps:
+In a slower fluid motion and with your head relaxed and not pushing in any direction:
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
+4.and back toward the starting position.
+
+Keep repeating this as part of one slower fluid motion.""",
         "tr": """Starting position:
 Start sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7138,31 +7598,31 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
-        "de": """Starting position:
-Start sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.
+        "de": """Ausgangsposition:
+Beginnen Sie im Sitzen oder Stehen. Senken Sie den Kopf nach unten und bringen Sie das Kinn zur Brust, aber drücken Sie nicht.
 
-Steps:
-In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
-4.and back toward the starting position.
+Schritte:
+Führen Sie die Übung in einer langsamen, fließenden Bewegung aus, wobei Ihr Kopf entspannt ist und in keine Richtung drückt:
+1. Lehnen Sie sich zu Ihrer linken Schulter.
+2. Legen Sie dann den Kopf zurück und schauen Sie nach oben.
+3. dann lehnen Sie sich zur rechten Schulter
+4. und zurück in die Ausgangsposition.
 
-Keep repeating this as part of one slower fluid motion.""",
+Wiederholen Sie dies als Teil einer langsamen, fließenden Bewegung.""",
         "ru": """Starting position:
 Start sitting or standing. Drop your head down, bringing your chin toward your chest, but not pushing.
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7171,9 +7631,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7182,9 +7642,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7193,9 +7653,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7204,9 +7664,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7215,9 +7675,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7226,9 +7686,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7237,9 +7697,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7248,9 +7708,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7259,9 +7719,9 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
@@ -7270,17 +7730,18 @@ Start sitting or standing. Drop your head down, bringing your chin toward your c
 
 Steps:
 In a slower fluid motion and with your head relaxed and not pushing in any direction:
-1. lean toward your left shoulder
-2. then bring your head back, facing up
-3. then lean toward your right shoulder
+1. lean toward your left shoulder.
+2. then bring your head back, facing up.
+3. then lean toward your right shoulder.
 4.and back toward the starting position.
 
 Keep repeating this as part of one slower fluid motion.""",
       } +
       {
+        "zh": """Neck half circles""",
         "tr": """Neck half circles""",
         "nl": """Neck half circles""",
-        "de": """Neck half circles""",
+        "de": """Nacken-Halbkreise""",
         "ru": """Neck half circles""",
         "pt": """Neck half circles""",
         "en": """Neck half circles""",
@@ -7294,14 +7755,25 @@ Keep repeating this as part of one slower fluid motion.""",
         "ar": """Neck half circles""",
       } +
       {
+        "zh": """Starting position:
+Start sitting or standing. Lean your head against one of your shoulders, but don't push.
+
+Steps:
+In one slower fluid motion and with your head relaxed and not pushing in any direction:
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
+4.and finally toward the starting position.
+
+Keep repeating this.""",
         "tr": """Starting position:
 Start sitting or standing. Lean your head against one of your shoulders, but don't push.
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7310,31 +7782,31 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
-        "de": """Starting position:
-Start sitting or standing. Lean your head against one of your shoulders, but don't push.
+        "de": """Ausgangsposition:
+Beginnen Sie im Sitzen oder Stehen. Lehnen Sie Ihren Kopf gegen eine Ihrer Schultern, aber drücken Sie nicht.
 
-Steps:
-In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
-4.and finally toward the starting position.
+Schritte:
+Führen Sie eine langsame, fließende Bewegung aus, wobei Ihr Kopf entspannt ist und in keine Richtung drückt:
+1. Bringen Sie den Kopf nach unten zur Brust.
+2. lehnen Sie sich dann gegen die andere Schulter zurück
+3. dann wieder zurück zur Brust
+4. und schließlich zurück in die Ausgangsposition.
 
-Keep repeating this.""",
+Wiederholen Sie dies immer wieder.""",
         "ru": """Starting position:
 Start sitting or standing. Lean your head against one of your shoulders, but don't push.
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7343,9 +7815,9 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7354,9 +7826,9 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7365,9 +7837,9 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7376,9 +7848,9 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7387,9 +7859,9 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7398,9 +7870,9 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7409,9 +7881,9 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7420,9 +7892,9 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7431,9 +7903,9 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
@@ -7442,17 +7914,18 @@ Start sitting or standing. Lean your head against one of your shoulders, but don
 
 Steps:
 In one slower fluid motion and with your head relaxed and not pushing in any direction:
-1. bring your head down toward your chest
-2. then lean back aganst your other shoulder
-3. then back toward the chest again
+1. bring your head down toward your chest.
+2. then lean back aganst your other shoulder.
+3. then back toward the chest again.
 4.and finally toward the starting position.
 
 Keep repeating this.""",
       } +
       {
+        "zh": """Head tilts""",
         "tr": """Head tilts""",
         "nl": """Head tilts""",
-        "de": """Head tilts""",
+        "de": """Kopf neigen""",
         "ru": """Head tilts""",
         "pt": """Head tilts""",
         "en": """Head tilts""",
@@ -7466,6 +7939,15 @@ Keep repeating this.""",
         "ar": """Head tilts""",
       } +
       {
+        "zh": """Starting position:
+Sit or stand with your back straight.
+
+Steps:
+1. Tilt your head to one side and hold for a bit.
+2.Return your head to neutral position and hold for a bit.
+3. Tilt your head to the other side and hold for a bit.
+4. Return your head to neutral position yet again and hold for a bit.
+5. Repeat.""",
         "tr": """Starting position:
 Sit or stand with your back straight.
 
@@ -7484,15 +7966,15 @@ Steps:
 3. Tilt your head to the other side and hold for a bit.
 4. Return your head to neutral position yet again and hold for a bit.
 5. Repeat.""",
-        "de": """Starting position:
-Sit or stand with your back straight.
+        "de": """Ausgangsposition:
+Sitzen oder stehen Sie mit geradem Rücken.
 
-Steps:
-1. Tilt your head to one side and hold for a bit.
-2.Return your head to neutral position and hold for a bit.
-3. Tilt your head to the other side and hold for a bit.
-4. Return your head to neutral position yet again and hold for a bit.
-5. Repeat.""",
+Schritte:
+1. Neigen Sie den Kopf zu einer Seite und halten Sie ihn ein wenig.
+2. Bringen Sie den Kopf in die neutrale Position zurück und halten Sie ihn kurz.
+3. Neigen Sie den Kopf auf die andere Seite und halten Sie ihn kurz.
+4. Bringen Sie den Kopf wieder in die neutrale Position und halten Sie ihn ein wenig.
+5. Wiederholen Sie die Übung.""",
         "ru": """Starting position:
 Sit or stand with your back straight.
 

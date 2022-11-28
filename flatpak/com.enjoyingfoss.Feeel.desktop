@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Feeel
+Comment=A simple home workout/exercise app that respects your privacy
+Categories=Education;Utility;Sports;
+Icon=com.enjoyingfoss.Feeel
+Exec=feeel
+StartupWMClass=feeel
+X-Purism-FormFactor=Workstation;Mobile;
+X-KDE-FormFactors=desktop;tablet;handset;mediacenter;

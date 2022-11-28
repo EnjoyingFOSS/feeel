@@ -20,11 +20,18 @@ platform :android do
     )
   end
 
+  lane :internal_no_build do
+    upload_to_play_store(
+      track: "internal",
+      aab: "build/app/outputs/bundle/release/app-release.aab"
+    )
+  end
+
   lane :tobeta do
     upload_to_play_store(
       track: "internal",
       track_promote_to: "beta",
-      version_code: 4017
+      version_code: 4241
     )
   end
 
@@ -32,7 +39,7 @@ platform :android do
     upload_to_play_store(
       track: "beta",
       track_promote_to: "production",
-      version_code: 4017
+      version_code: 4241
     )
   end
 

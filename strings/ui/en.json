@@ -88,6 +88,7 @@
     "btnTakeAPhoto": "Take a photo",
     "btnAddALinkToPhotos": "Add a link to your photo(s)",
     "btnDisableTTS": "Sounds instead of voice",
+    "btnContributeTTS": "Help bring text-to-speech to Linux",
     "btnAdjustTiming": "Adjust timing",
     "btnDoneEditingTiming": "Done editing timing",
     "btnDeleteThisWorkout": "Delete this workout",

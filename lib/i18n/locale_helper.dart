@@ -16,5 +16,6 @@ class LocaleHelper {
     const Locale('pt'),
     const Locale('ru'),
     const Locale('tr'),
+    const Locale('zh'),
   ];
 }

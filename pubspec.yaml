@@ -1,7 +1,7 @@
 name: feeel
 description: A simple home workout/exercise app that respects your privacy
 
-version: 2.3.0+4016
+version: 2.4.1+4241
 
 publish_to: none
 
@@ -13,27 +13,26 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  http: ^0.13.4
-  flutter_tts: ^3.3.3
-  wakelock: ^0.6.1
-  sqflite: ^2.0.2
-  sqflite_common_ffi: ^2.1.0
-  path_provider: ^2.0.9
-  i18n_extension: ^5.0.0
-  shared_preferences: ^2.0.13
-  audioplayers: ^1.1.0
-  flutter_local_notifications: ^12.0.2
+  http: ^0.13.5
+  flutter_tts: 3.5.3
+  wakelock: ^0.6.2
+  sqflite: ^2.2.0
+  sqflite_common_ffi: ^2.2.0
+  path_provider: ^2.0.11
+  i18n_extension: ^5.0.1
+  shared_preferences: ^2.0.15
+  audioplayers: ^1.1.1
+  flutter_local_notifications: ^12.0.3
   flutter_native_timezone: ^2.0.0
   timezone: ^0.9.0
-  url_launcher: ^6.0.20
-  adaptive_theme: ^3.0.0
+  url_launcher: ^6.1.6
+  adaptive_theme: ^3.1.1
   package_info_plus: ^3.0.1
   auto_size_text: ^3.0.0
-  flutter_markdown: ^0.6.10
-  flutter_staggered_animations: ^1.0.0
-  file_picker: ^5.2.0
-  share_plus: ^6.0.1
+  flutter_markdown: ^0.6.13
+  flutter_staggered_animations: ^1.1.1
   date_format: ^2.0.6
+  xdg_directories: ^0.2.0+2
   provider: ^6.0.3
   # archive: ^3.3.0
 
@@ -47,8 +46,8 @@ dependencies:
   #     path: plugins/window_size
 
   drift: ^1.6.0
-  sqlite3_flutter_libs: ^0.5.0
-  path: ^1.8.1
+  sqlite3_flutter_libs: ^0.5.11
+  path: ^1.8.2
 
 dev_dependencies:
   # flutter_test:
