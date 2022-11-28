@@ -36,4 +36,4 @@ Install
       height="80">](https://play.google.com/store/apps/details?id=com.enjoyingfoss.feeel)
 [<img src="https://www.flathub.org/assets/badges/flathub-badge-en.png"
       alt="Get the Feeel Flatpak on Flathub"
-      height="80">](https://flathub.org/apps/details/com.enjoyingfoss.feeel)
+      height="54">](https://flathub.org/apps/details/com.enjoyingfoss.feeel)
