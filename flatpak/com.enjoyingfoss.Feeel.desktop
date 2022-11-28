@@ -7,3 +7,4 @@ Categories=Education;Utility;Sports;
 Icon=com.enjoyingfoss.Feeel
 Exec=feeel
 StartupWMClass=feeel
+X-Purism-FormFactor=Workstation;Mobile;
