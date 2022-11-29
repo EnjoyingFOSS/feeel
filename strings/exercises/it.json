@@ -2,7 +2,7 @@
     "workoutScientific7Minute": "Allenamento scientifico di 7 minuti",
     "workoutLeg": "Allenamento delle gambe",
     "exerciseJumpingJacks": "Jumping jack",
-    "stepsJumpingJacks": "1. Stai in piedi, a piedi uniti e con le braccia lunghi i fianchi, ginocchia e gomiti leggermente piegati\n2. Fai un piccolo salto, nel mentre divarica le gambe alla larghezza delle spalle e porta le braccia sopra la testa fino a toccarsi\n3. Ripeti",
+    "stepsJumpingJacks": "Posizione di partenza:\nStare in piedi con i piedi uniti, la schiena dritta e le braccia lungo i fianchi.\n\nPassi:\n1. Salta in una posizione con le gambe divaricate e le mani che si toccano sopra la testa.\n2. Torna alla posizione di partenza.\n3. Ripeti.",
     "exerciseWallSit": "Seduta a muro",
     "stepsWallSit": "1. Appoggiati al muro, rivolto in avanti e con i piedi ben piantati sul terreno, le spalle divaricate e a circa 2 piedi di distanza dal muro\n2. Scivola giù lungo il muro, tenendo la schiena premuta contro di esso, fino a quando le gambe sono ad angolo retto. Le ginocchia dovrebbero essere direttamente sopra le caviglie\nIl dolore al quadricipite è normale, interrompi se avverti dolore al ginocchio o alla rotula",
     "exercisePushups": "Flessioni",
@@ -49,7 +49,7 @@
     "exerciseArmCircles": "Cerchi del braccio",
     "stepsMountainClimbers": "Posizione di partenza:\nIniziare in posizione verticale push-up, o la tavola alta.\nLe mani dovrebbero essere direttamente sotto le spalle.\nTieni la testa in linea con la schiena, rivolta verso il pavimento.\nI piedi dovrebbero essere a circa la larghezza dell'anca.\n\nScalinata:\n1. Sposta un ginocchio verso il centro del corpo, verso i gomiti, mantenendo l'altra gamba estesa.\n2. In un rapido movimento di salto, raddrizza la gamba piegata e tira l'altro ginocchio verso il tuo corpo.\n3. Continua a ripetere il passaggio 2, alternando le gambe.\n\nNota:\nDurante l'esercizio la schiena dovrebbe rimanere il più dritta possibile – evitare una gobba o una schiena cascante.",
     "exerciseMountainClimbers": "Alpinista",
-    "exercisePushupBurpees": "Spingere su burpees",
+    "exercisePushupBurpees": "Burpee push-up",
     "workoutNeckShoulderStretch": "Stretching per collo e spalle",
     "exerciseBWArmCircles": "Cerchi di braccia all'indietro",
     "stepsBWArmCircles": "1. Stai in piedi con la schiena dritta.\n2. Mantenendo le braccia dritte, portale davanti a te, alzale sopra la testa, poi continua il movimento dietro la schiena e giù fino alla posizione iniziale.\n3. Continua a far girare le braccia come descritto al punto 2.",
@@ -98,5 +98,10 @@
     "exerciseShoulderShrug": "Scrollate di spalle",
     "exerciseHighPlank": "Asse alto",
     "exercisePullUp": "Pull ups",
-    "exerciseKettlebellDeadlift": "Kettlebell Deadlifts"
+    "exerciseKettlebellDeadlift": "Kettlebell Deadlifts",
+    "stepsAlternatingBicepCurls": "Posizione di partenza:\nInizia in piedi con i manubri in ogni mano, la schiena dritta e i piedi divaricati alla larghezza dei fianchi. Le tue braccia dovrebbero essere rilassate, rivolte verso il basso. Le ginocchia dovrebbero essere leggermente piegate, gli addominali contratti e le spalle abbassate.\n\nPassi:\n1. Piegare un braccio all'altezza del gomito, portando il manubrio all'altezza della spalla. La parte superiore del braccio dovrebbe rimanere immobile durante questo movimento.\n2. Riportare il manubrio verso il basso fino a quando il braccio non si trova nella posizione originale rilassata.\n3. Ripeti, cambiando braccio.",
+    "stepsLevatorScapulaeStretch": "Posizione di partenza:\nInizia in piedi o seduto. Gira la testa in una direzione, di circa 45 gradi o appena sopra il capezzolo. Metti l'altra mano dietro la schiena o siediti sopra. Prendi la tua mano più vicina e usala per tenere la parte posteriore della testa. Abbassa leggermente la testa.\n\nPassi:\n1. Dopo aver assunto la posizione di partenza, premere la testa contro la mano con una leggera forza. La tua mano dovrebbe premere indietro con la stessa forza, in modo che la tua testa non si muova. Rimani in questa posizione.",
+    "stepsNeckCirclesCW": "Posizione di partenza:\nInizia seduto o in piedi. Abbassa la testa, portando il mento verso il petto, ma senza spingere.\n\nPassi:\nCon un movimento fluido più lento e con la testa rilassata e senza spingere in nessuna direzione:\n1. inclinati verso la tua spalla destra.\n2. quindi riporta la testa all'indietro, rivolta verso l'alto.\n3. quindi inclinati verso la spalla sinistra.\n4.e ritorno verso la posizione di partenza.\n\nContinua a ripetere questo come parte di un movimento fluido più lento.",
+    "exerciseNeckCirclesCW": "Cerchi del collo in senso orario",
+    "exerciseNeckCirclesCCW": "Cerchi del collo in senso antiorario"
 }
