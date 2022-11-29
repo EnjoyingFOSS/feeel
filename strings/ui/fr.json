@@ -102,5 +102,6 @@
     "txtContributeViaWger": "Les exercices sont fournis par **le site web wger**, un autre projet communautaire à code source ouvert. Dans une prochaine version, Feeel intégrera tous les exercices de ce site web.",
     "btnWgerSignUp": "S'inscrire sur wger",
     "txtWger21Days": "La contribution via wger nécessite un compte de plus de 21 jours.",
-    "btnWgerLogIn": "Se connecter via wger"
+    "btnWgerLogIn": "Se connecter via wger",
+    "btnContributeTTS": "Aidez à ajouter la synthèse vocale sur Linux"
 }
