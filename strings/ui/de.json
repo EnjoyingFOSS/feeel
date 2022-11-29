@@ -102,5 +102,6 @@
     "btnWgerLogIn": "Mit wger anmelden",
     "btnWgerSignUp": "Registrieren für wger",
     "txtWger21Days": "Für einen Beitrag über wger ist ein Konto erforderlich, das älter als 21 Tage ist.",
-    "txtContributeViaWger": "Die Übungen werden von **der wger-Website** beigesteuert, einem weiteren Open-Source-Community-Projekt. In einer zukünftigen Version wird Feeel alle Übungen von dieser Website einbeziehen."
+    "txtContributeViaWger": "Die Übungen werden von **der wger-Website** beigesteuert, einem weiteren Open-Source-Community-Projekt. In einer zukünftigen Version wird Feeel alle Übungen von dieser Website einbeziehen.",
+    "btnContributeTTS": "Helfen Sie mit, Text-to-Speech auf Linux zu bringen"
 }
