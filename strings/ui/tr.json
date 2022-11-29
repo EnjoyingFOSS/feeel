@@ -102,5 +102,6 @@
     "txtWger21Days": "Wger aracılığıyla katkıda bulunmak için 21 günden daha eski bir hesap gerekir.",
     "btnWgerSignUp": "wger için kaydol",
     "btnWgerLogIn": "wger ile oturum aç",
-    "txtContributeViaWger": "Egzersizlere, başka bir açık kaynaklı topluluk projesi olan **the wger web sitesi** aracılığıyla katkıda bulunulmaktadır. Gelecekteki bir sürümde, Feeel bu web sitesindeki tüm egzersizleri dahil edecektir."
+    "txtContributeViaWger": "Egzersizlere, başka bir açık kaynaklı topluluk projesi olan **the wger web sitesi** aracılığıyla katkıda bulunulmaktadır. Gelecekteki bir sürümde, Feeel bu web sitesindeki tüm egzersizleri dahil edecektir.",
+    "btnContributeTTS": "Metin okumanın Linux'a getirilmesine yardımcı olun"
 }
