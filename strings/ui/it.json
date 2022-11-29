@@ -87,7 +87,7 @@
     "txtLearnTheExercise": "Impara l'esercizio",
     "txtDuplicateImportTitle": "I duplicati non verranno sovrascritti",
     "btnImportAnyway": "Importa comunque",
-    "txtEnglishDescriptionLicense": "Licenza di descrizione in inglese",
+    "txtEnglishDescriptionLicense": "Descrizione della licenza in inglese",
     "txtDuplicateImportInfo": "Se si importano allenamenti identici a quelli già presenti in Feeel, tali allenamenti saranno presenti due volte nell'app e dovranno essere eliminati manualmente.",
     "txtCommunityDrivenHeader": "Feeel è un progetto comunitario",
     "txtGetReady": "Preparati!",
@@ -102,5 +102,6 @@
     "txtWger21Days": "La contribuzione tramite wger richiede un account più vecchio di 21 giorni.",
     "txtDisclaimerContent": "Gli esercizi e gli allenamenti sono forniti da volontari. Né Feeel né i volontari sono responsabili della correttezza delle informazioni contenute in questa applicazione o della vostra salute. Utilizzare a propria discrezione.",
     "txtContributeViaWger": "Gli esercizi sono forniti dal sito web di wger**, un altro progetto comunitario con codice aperto. In una versione futura, Feeel incorporerà tutti gli esercizi di questo sito web.",
-    "btnWgerLogIn": "Accedi tramite wger"
+    "btnWgerLogIn": "Accedi tramite wger",
+    "btnContributeTTS": "Aiutaci a portare la sintesi vocale su Linux"
 }
