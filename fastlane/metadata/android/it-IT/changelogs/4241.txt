@@ -1,0 +1,1 @@
+Rilascio di correzione di bug per Android 12L+
