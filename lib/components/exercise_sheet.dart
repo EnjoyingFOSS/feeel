@@ -81,7 +81,6 @@ class ExerciseSheet extends StatelessWidget {
                 a: TextStyle(
                     color: licenseColor, decoration: TextDecoration.underline));
 
-        final hasDescriptionLicense = exercise.descLicense != null;
         final hasImageLicense = exercise.imageLicense != null;
 
         return CustomScrollView(
@@ -158,11 +157,10 @@ class ExerciseSheet extends StatelessWidget {
                         const SizedBox(
                           height: 16,
                         ),
-                        if (hasDescriptionLicense || hasImageLicense)
-                          Container(
-                              color: fgColor.withAlpha(48),
-                              height:
-                                  1), //todo hide licenses under an expandable button
+                        Container(
+                            color: fgColor.withAlpha(48),
+                            height:
+                                1), //todo hide licenses under an expandable button
                         const SizedBox(
                           height: 16,
                         ),
@@ -183,24 +181,21 @@ class ExerciseSheet extends StatelessWidget {
                         const SizedBox(
                           height: 16,
                         ),
-                        if (hasDescriptionLicense)
-                          Text(
-                            "English description license".i18n.toUpperCase(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .overline
-                                ?.copyWith(color: licenseColor),
-                          ),
-                        if (hasDescriptionLicense)
-                          MarkdownBody(
-                              data: exercise.descLicense ?? "",
-                              styleSheet: markdownLicenseStyle,
-                              onTapLink: (text, url, title) =>
-                                  URLUtil.launchURL(context, url ?? "")),
-                        if (hasDescriptionLicense)
-                          const SizedBox(
-                            height: 16,
-                          ),
+                        Text(
+                          "English description license".i18n.toUpperCase(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .overline
+                              ?.copyWith(color: licenseColor),
+                        ),
+                        MarkdownBody(
+                            data: exercise.descLicense,
+                            styleSheet: markdownLicenseStyle,
+                            onTapLink: (text, url, title) =>
+                                URLUtil.launchURL(context, url ?? "")),
+                        const SizedBox(
+                          height: 16,
+                        ),
                         if (hasImageLicense)
                           Text("Image license".i18n.toUpperCase(),
                               style: Theme.of(context)
