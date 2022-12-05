@@ -32,7 +32,6 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:feeel/theming/theme_mode_extensions.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -61,214 +60,215 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Settings".i18n,
-          ),
-        ),
-        body: FutureBuilder(
-            future: _preferencesFuture,
-            builder: (BuildContext context,
-                AsyncSnapshot<_SettingsBundle> snapshot) {
-              if (snapshot.hasData) {
-                final settingsBundle = snapshot.data!;
-                final notificationTime = Platform.isLinux
-                    ? null
-                    : NotificationHelper.timeFromInt(settingsBundle.preferences
-                        .getInt(PreferenceKeys.notificationTimePref));
-                final curTheme = settingsBundle.themeMode;
-                final activeColor = Theme.of(context).colorScheme.primary;
-                return ListView(
-                  children: <Widget>[
-                    if (!Platform.isLinux)
-                      SwitchListTile.adaptive(
-                          secondary: const Icon(Icons.music_note),
-                          value: (settingsBundle.preferences
-                                  .getBool(PreferenceKeys.ttsDisabledPref) ??
-                              false),
-                          title: Text("Sounds instead of voice".i18n),
-                          onChanged: (bool newValue) {
-                            setState(() {
-                              settingsBundle.preferences.setBool(
-                                  PreferenceKeys.ttsDisabledPref, newValue);
-                            });
-                          },
-                          activeColor: activeColor),
-                    if (!Platform.isLinux)
-                      SwitchListTile.adaptive(
-                        secondary: const Icon(Icons.notifications),
-                        value: notificationTime != null,
-                        title: Text("Daily reminder".i18n),
-                        onChanged: (bool setOn) {
-                          _setNotificationTime(
-                              context,
-                              setOn ? _getDefaultNotificationTime() : null,
-                              settingsBundle.preferences);
+    return FutureBuilder(
+        future: _preferencesFuture,
+        builder:
+            (BuildContext context, AsyncSnapshot<_SettingsBundle> snapshot) {
+          if (snapshot.hasData) {
+            final settingsBundle = snapshot.data!;
+            final notificationTime = Platform.isLinux
+                ? null
+                : NotificationHelper.timeFromInt(settingsBundle.preferences
+                    .getInt(PreferenceKeys.notificationTimePref));
+            final curTheme = settingsBundle.themeMode;
+            final activeColor = Theme.of(context).colorScheme.primary;
+            return CustomScrollView(slivers: [
+              SliverAppBar(
+                title: Text(
+                  "Settings".i18n,
+                ),
+              ),
+              SliverList(
+                  delegate: SliverChildListDelegate.fixed(
+                <Widget>[
+                  if (!Platform.isLinux)
+                    SwitchListTile.adaptive(
+                        secondary: const Icon(Icons.music_note),
+                        value: (settingsBundle.preferences
+                                .getBool(PreferenceKeys.ttsDisabledPref) ??
+                            false),
+                        title: Text("Sounds instead of voice".i18n),
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            settingsBundle.preferences.setBool(
+                                PreferenceKeys.ttsDisabledPref, newValue);
+                          });
                         },
-                        activeColor: activeColor,
-                      ),
-                    if (notificationTime != null && Platform.isAndroid)
-                      Padding(
-                          padding: const EdgeInsets.only(left: 72, right: 16),
-                          child: Text(
-                            "On some devices, you may need to disable battery optimization for Feeel for this to work reliably."
-                                .i18n,
-                            style: Theme.of(context).textTheme.caption,
-                          )),
-                    if (notificationTime != null)
-                      ListTile(
-                        contentPadding:
-                            const EdgeInsets.only(left: 72, right: 24),
-                        title: Text("Notification time".i18n),
-                        trailing: Text(notificationTime.format(context)),
-                        onTap: () async {
-                          var selectedTime = await showTimePicker(
-                              context: context, initialTime: notificationTime);
-                          if (selectedTime != null) {
-                            _setNotificationTime(context, selectedTime,
-                                settingsBundle.preferences);
-                          }
-                        },
-                      ),
+                        activeColor: activeColor),
+                  if (!Platform.isLinux)
+                    SwitchListTile.adaptive(
+                      secondary: const Icon(Icons.notifications),
+                      value: notificationTime != null,
+                      title: Text("Daily reminder".i18n),
+                      onChanged: (bool setOn) {
+                        _setNotificationTime(
+                            context,
+                            setOn ? _getDefaultNotificationTime() : null,
+                            settingsBundle.preferences);
+                      },
+                      activeColor: activeColor,
+                    ),
+                  if (notificationTime != null && Platform.isAndroid)
+                    Padding(
+                        padding: const EdgeInsets.only(left: 72, right: 16),
+                        child: Text(
+                          "On some devices, you may need to disable battery optimization for Feeel for this to work reliably."
+                              .i18n,
+                          style: Theme.of(context).textTheme.caption,
+                        )),
+                  if (notificationTime != null)
                     ListTile(
-                      leading: const Icon(Icons.palette),
-                      title: Text("Theme".i18n),
-                      subtitle: Text(curTheme?.uiName().i18n ?? ""),
+                      contentPadding:
+                          const EdgeInsets.only(left: 72, right: 24),
+                      title: Text("Notification time".i18n),
+                      trailing: Text(notificationTime.format(context)),
                       onTap: () async {
-                        await showDialog<void>(
-                            context: context,
-                            builder: (context) =>
-                                ThemeDialog(curTheme: curTheme));
-                        setState(() {
-                          _preferencesFuture = _getSettingsBundle();
-                        });
+                        var selectedTime = await showTimePicker(
+                            context: context, initialTime: notificationTime);
+                        if (selectedTime != null) {
+                          _setNotificationTime(context, selectedTime,
+                              settingsBundle.preferences);
+                        }
                       },
                     ),
-                    // todo import export ListTile(
-                    //   leading: Icon(Icons.download),
-                    //   title: Text("Export custom workouts"
-                    //       .i18n), //todo figure out how to focus dialogs right away
-                    //   onTap: () async {
-                    //     //todo add try catch
-                    //     final customWorkouts = await DBHelper.db
-                    //         .queryFullWorkoutsByType(WorkoutType.CUSTOM);
-                    //     if (customWorkouts == null) {
-                    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    //           content: Text(
-                    //               "You don't have any custom workouts".i18n)));
-                    //     } else {
-                    //       final export =
-                    //           await WorkoutImportExport.exportWorkouts(
-                    //               customWorkouts);
-                    //       if (Platform.isMacOS || Platform.isLinux) {
-                    //         final outputFile =
-                    //             await FilePicker.platform.saveFile(
-                    //           dialogTitle: "",
-                    //           fileName: "Feeel workouts " +
-                    //               formatDate(DateTime.now(), [
-                    //                 yyyy,
-                    //                 '-',
-                    //                 mm,
-                    //                 '-',
-                    //                 dd,
-                    //                 " (",
-                    //                 HH,
-                    //                 ';',
-                    //                 nn,
-                    //                 ")"
-                    //               ]) +
-                    //               ".feeel",
-                    //         );
-                    //         if (outputFile != null) {
-                    //           await export.copy(outputFile);
-                    //         }
-                    //       } else {
-                    //         Share.shareFiles([export.path]);
-                    //       }
-                    //     }
-                    //   },
-                    // ),
-                    // ListTile(
-                    //   leading: Icon(Icons.upload),
-                    //   title: Text("Import workouts".i18n),
-                    //   onTap: () async {
-                    //     //todo add try catch
-                    //     final pickedFiles = await FilePicker.platform.pickFiles(
-                    //         type: FileType.any,
-                    //         allowedExtensions: ["feeel"],
-                    //         allowMultiple: false,
-                    //         withReadStream: Platform.isLinux);
+                  ListTile(
+                    leading: const Icon(Icons.palette),
+                    title: Text("Theme".i18n),
+                    subtitle: Text(curTheme?.uiName().i18n ?? ""),
+                    onTap: () async {
+                      await showDialog<void>(
+                          context: context,
+                          builder: (context) =>
+                              ThemeDialog(curTheme: curTheme));
+                      setState(() {
+                        _preferencesFuture = _getSettingsBundle();
+                      });
+                    },
+                  ),
+                  // todo import export ListTile(
+                  //   leading: Icon(Icons.download),
+                  //   title: Text("Export custom workouts"
+                  //       .i18n), //todo figure out how to focus dialogs right away
+                  //   onTap: () async {
+                  //     //todo add try catch
+                  //     final customWorkouts = await DBHelper.db
+                  //         .queryFullWorkoutsByType(WorkoutType.CUSTOM);
+                  //     if (customWorkouts == null) {
+                  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  //           content: Text(
+                  //               "You don't have any custom workouts".i18n)));
+                  //     } else {
+                  //       final export =
+                  //           await WorkoutImportExport.exportWorkouts(
+                  //               customWorkouts);
+                  //       if (Platform.isMacOS || Platform.isLinux) {
+                  //         final outputFile =
+                  //             await FilePicker.platform.saveFile(
+                  //           dialogTitle: "",
+                  //           fileName: "Feeel workouts " +
+                  //               formatDate(DateTime.now(), [
+                  //                 yyyy,
+                  //                 '-',
+                  //                 mm,
+                  //                 '-',
+                  //                 dd,
+                  //                 " (",
+                  //                 HH,
+                  //                 ';',
+                  //                 nn,
+                  //                 ")"
+                  //               ]) +
+                  //               ".feeel",
+                  //         );
+                  //         if (outputFile != null) {
+                  //           await export.copy(outputFile);
+                  //         }
+                  //       } else {
+                  //         Share.shareFiles([export.path]);
+                  //       }
+                  //     }
+                  //   },
+                  // ),
+                  // ListTile(
+                  //   leading: Icon(Icons.upload),
+                  //   title: Text("Import workouts".i18n),
+                  //   onTap: () async {
+                  //     //todo add try catch
+                  //     final pickedFiles = await FilePicker.platform.pickFiles(
+                  //         type: FileType.any,
+                  //         allowedExtensions: ["feeel"],
+                  //         allowMultiple: false,
+                  //         withReadStream: Platform.isLinux);
 
-                    //     final filePath = pickedFiles?.files.first.path;
+                  //     final filePath = pickedFiles?.files.first.path;
 
-                    //     if (filePath == null) {
-                    //       return;
-                    //     } else {
-                    //       showDialog<void>(
-                    //           //todo try catch in case it's a corrupt/invalid file
-                    //           context: context,
-                    //           builder: (context) => AlertDialog(
-                    //                 title: Text(
-                    //                     "Duplicates will not be overriden"
-                    //                         .i18n),
-                    //                 content: Text(
-                    //                     "If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them."
-                    //                         .i18n),
-                    //                 actions: [
-                    //                   TextButton(
-                    //                       onPressed: () =>
-                    //                           Navigator.of(context).pop(),
-                    //                       child: Text("Cancel".i18n)),
-                    //                   TextButton(
-                    //                       onPressed: () {
-                    //                         WorkoutImportExport.importWorkouts(
-                    //                             InputFileStream(filePath));
-                    //                         Navigator.of(context).pop();
-                    //                       },
-                    //                       child: Text("Import anyway".i18n))
-                    //                 ],
-                    //               ));
-                    //     }
-                    //   },
-                    // ),
+                  //     if (filePath == null) {
+                  //       return;
+                  //     } else {
+                  //       showDialog<void>(
+                  //           //todo try catch in case it's a corrupt/invalid file
+                  //           context: context,
+                  //           builder: (context) => AlertDialog(
+                  //                 title: Text(
+                  //                     "Duplicates will not be overriden"
+                  //                         .i18n),
+                  //                 content: Text(
+                  //                     "If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them."
+                  //                         .i18n),
+                  //                 actions: [
+                  //                   TextButton(
+                  //                       onPressed: () =>
+                  //                           Navigator.of(context).pop(),
+                  //                       child: Text("Cancel".i18n)),
+                  //                   TextButton(
+                  //                       onPressed: () {
+                  //                         WorkoutImportExport.importWorkouts(
+                  //                             InputFileStream(filePath));
+                  //                         Navigator.of(context).pop();
+                  //                       },
+                  //                       child: Text("Import anyway".i18n))
+                  //                 ],
+                  //               ));
+                  //     }
+                  //   },
+                  // ),
+                  ListTile(
+                    leading: const Icon(Icons.volunteer_activism),
+                    title: Text("Participate".i18n),
+                    onTap: () => URLUtil.launchURL(context,
+                        "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.attach_money),
+                    title: Text("Donate".i18n),
+                    onTap: () => URLUtil.launchURL(
+                        context, "https://liberapay.com/Feeel/"),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.code),
+                    title: Text("Source code".i18n),
+                    onTap: () => URLUtil.launchURL(
+                        context, "https://gitlab.com/enjoyingfoss/feeel/"),
+                  ),
+                  if (Platform.isLinux)
                     ListTile(
-                      leading: const Icon(Icons.volunteer_activism),
-                      title: Text("Participate".i18n),
+                      leading: const Icon(Icons.record_voice_over),
+                      title: Text("Help bring text-to-speech to Linux".i18n),
                       onTap: () => URLUtil.launchURL(context,
-                          "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
+                          "https://github.com/dlutton/flutter_tts/issues/175"),
                     ),
-                    ListTile(
-                      leading: const Icon(Icons.attach_money),
-                      title: Text("Donate".i18n),
-                      onTap: () => URLUtil.launchURL(
-                          context, "https://liberapay.com/Feeel/"),
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.code),
-                      title: Text("Source code".i18n),
-                      onTap: () => URLUtil.launchURL(
-                          context, "https://gitlab.com/enjoyingfoss/feeel/"),
-                    ),
-                    if (Platform.isLinux)
-                      ListTile(
-                        leading: const Icon(Icons.record_voice_over),
-                        title: Text("Help bring text-to-speech to Linux".i18n),
-                        onTap: () => URLUtil.launchURL(context,
-                            "https://github.com/dlutton/flutter_tts/issues/175"),
-                      ),
-                    ListTile(
-                      leading: const Icon(Icons.info),
-                      title: Text("About Feeel".i18n),
-                      onTap: _showAboutDialog,
-                    )
-                  ],
-                );
-              } else {
-                return const Center(
-                    child: CircularProgressIndicator.adaptive());
-              }
-            }));
+                  ListTile(
+                    leading: const Icon(Icons.info),
+                    title: Text("About Feeel".i18n),
+                    onTap: _showAboutDialog,
+                  )
+                ],
+              ))
+            ]);
+          } else {
+            return const Center(child: CircularProgressIndicator.adaptive());
+          }
+        });
   }
 
   TimeOfDay _getDefaultNotificationTime() {

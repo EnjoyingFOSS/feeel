@@ -52,6 +52,8 @@
     "txtCardio": "Cardio",
     "txtOther": "Other",
     "txtLanguage": "Language",
+    "txtHistory": "History",
+    "txtHome": "Home",
     "txtNumberInputEmpty": "Can't be empty",
     "txtNumberInputNonnumeric": "Must be numeric",
     "txtDurationLong": "%1d min., %2d sec.",

@@ -30,6 +30,8 @@ class FeeelThemes {
       //todo extract colors to separate file
       primary: FeeelColors.blue.getColor(FeeelShade.dark),
       onPrimary: Colors.white,
+      primaryContainer: FeeelColors.blue.getColor(FeeelShade.lightest),
+      onPrimaryContainer: FeeelColors.blue.getColor(FeeelShade.dark),
       secondary: FeeelColors.orange.getColor(FeeelShade.dark),
       onSecondary: Colors.white,
       surface: Colors.white,
@@ -43,6 +45,8 @@ class FeeelThemes {
   static final _darkColors = ColorScheme(
       primary: FeeelColors.blue.getColor(FeeelShade.light),
       onPrimary: Colors.black87,
+      primaryContainer: FeeelColors.blue.getColor(FeeelShade.darkest),
+      onPrimaryContainer: FeeelColors.blue.getColor(FeeelShade.light),
       secondary: FeeelColors.orange.getColor(FeeelShade.light),
       onSecondary: Colors.black87,
       surface: Colors.black,

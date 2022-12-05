@@ -25,6 +25,7 @@ import 'dart:io';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/db/database.dart';
+import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:feeel/screens/workout_list/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -79,7 +80,7 @@ class Feeel extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: I18n(child: const WorkoutListScreen()))
+                home: I18n(child: const HomePagerScreen()))
             //)
             ));
   }

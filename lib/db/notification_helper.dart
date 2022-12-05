@@ -22,6 +22,7 @@
 
 import 'dart:io';
 
+import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:feeel/screens/workout_list/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -59,7 +60,7 @@ class NotificationHelper {
         onDidReceiveNotificationResponse: (_) async {
       return await Navigator.push<void>(
         context,
-        MaterialPageRoute(builder: (context) => const WorkoutListScreen()),
+        MaterialPageRoute(builder: (context) => const HomePagerScreen()),
       );
     });
   }
