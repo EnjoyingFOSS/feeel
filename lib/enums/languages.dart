@@ -20,27 +20,25 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/database.dart';
-import 'package:flutter/foundation.dart';
+enum ExerciseLanguage {
+  en('en', wgerDbId: 2),
+  ar('ar'), // TODO NEEDS WGER ID!!!
+  cs('cs', wgerDbId: 9),
+  de('de', wgerDbId: 1),
+  es('es', wgerDbId: 4),
+  eu('eu'), // TODO NEEDS WGER ID!!!
+  fr('fr', wgerDbId: 12),
+  hr('hr'), // TODO NEEDS WGER ID!!!
+  id('id'), // TODO NEEDS WGER ID!!!
+  it('it', wgerDbId: 13),
+  nl('nl', wgerDbId: 6),
+  pt('pt', wgerDbId: 7),
+  ru('ru', wgerDbId: 5),
+  tr('tr', wgerDbId: 16);
 
-class EditableWorkoutExercise {
-  bool exerciseInitialized = false;
+  static const defaultLang = en;
+  final String langCode;
+  final int? wgerDbId;
 
-  final Key? key;
-  final int exercise;
-  int? exerciseDuration;
-  int? breakDuration;
-
-  EditableWorkoutExercise(
-      {required this.exercise,
-      this.exerciseDuration,
-      this.breakDuration,
-      this.key});
-
-  static EditableWorkoutExercise fromWorkoutExercise(WorkoutExercise we) =>
-      EditableWorkoutExercise(
-          exercise: we.exercise,
-          exerciseDuration: we.exerciseDuration,
-          breakDuration: we.breakDuration,
-          key: UniqueKey());
+  const ExerciseLanguage(this.langCode, {this.wgerDbId});
 }

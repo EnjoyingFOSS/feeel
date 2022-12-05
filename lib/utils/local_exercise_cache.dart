@@ -31,7 +31,7 @@ class LocalExerciseCache {
   static Future<void> initExercises(BuildContext context) async {
     final allExercises =
         await Provider.of<FeeelDB>(context, listen: false).queryAllExercises;
-    _exerciseCache = <int, Exercise>{for (final e in allExercises) e.id: e};
+    _exerciseCache = <int, Exercise>{for (final e in allExercises) e.wgerId: e};
   }
 
   static Future<Exercise> getExercise(BuildContext context, int id) async {

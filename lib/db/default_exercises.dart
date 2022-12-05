@@ -23,6 +23,7 @@
 import 'package:feeel/db/database.dart';
 import 'package:feeel/enums/exercise_type.dart';
 
+// todo update based on latest shipped version
 class DefaultExercises {
   static const int jumpingJacks = 1,
       wallSit = 2,
@@ -121,7 +122,7 @@ class DefaultExercises {
 
   static final defaultNoStepExercises = [
     Exercise(
-        id: jumpingJacks,
+        wgerId: jumpingJacks,
         name: "Jumping jacks",
         description:
             "1. Stand with feet together and arms at the sides\n2. Jump to a position with the legs spread wide and the hands touching overhead\n3. Repeat",
@@ -129,12 +130,12 @@ class DefaultExercises {
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from United States Air Force's [\"Top leaders unite for senior enlisted summit\"](http://www.af.mil/News/Photos/igphoto/2000617206/), which is in the public domain.",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: wallSit,
+        wgerId: wallSit,
         name: "Wall sit",
         description:
             "1. Lean against the wall, facing forward and with feet planted firmly on the ground, shoulders width apart and about 2 feet away from the wall\n2. Slide down the wall, keeping the back pressed to it, until legs are at a right angle. The knees should be directly above the ankles\nQuadricep pain is normal, stop if feeling pain in the knee or kneecap",
@@ -142,12 +143,12 @@ class DefaultExercises {
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Fitness Gym Wall Sit Workout Vaughan Gray Fitness\"](http://maxpixel.freegreatpicture.com/Vaughan-Wall-Sit-Workout-Gym-Fitness-2523075) from Max Pixel, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: pushUps,
+        wgerId: pushUps,
         name: "Push-ups",
         description:
             "Starting position:\nGet into the starting push-up position, with your hands and toes touching the ground and back, arms and legs straight. To get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.\n\nSteps:\n1. Bend at the elbows until your chest almost touches the ground, making sure your back is straight at all times.\n2. Use your arms to lift yourself back up to starting position.\n3. Repeat.",
@@ -155,12 +156,12 @@ class DefaultExercises {
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Keiji Yoshiki's [push-up photo](https://www.pexels.com/photo/adult-athlete-body-exercise-176782/), published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: abCrunches,
+        wgerId: abCrunches,
         name: "Crunches",
         description:
             "1. Lie down face up on the floor with knees bent.\n2. Curl the shoulders towards the pelvis. The hands can be behind or beside the neck or crossed over the chest.\n3. Repeat",
@@ -168,12 +169,12 @@ class DefaultExercises {
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from bwanderd's [\"26 Abs 1\"](https://www.flickr.com/photos/86598533@N04/8252254965), published under the [CC BY 2.0 license](https://creativecommons.org/licenses/by/2.0/).",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: stepUps,
+        wgerId: stepUps,
         name: "Step-ups",
         description:
             "1. Stand facing a chair\n2. Step up onto the chair\n3. Step off the chair\n4. Repeat",
@@ -181,12 +182,12 @@ class DefaultExercises {
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Bodyweight Step Up\"](https://www.youtube.com/watch?v=6tuRv_B-tj4) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: squats,
+        wgerId: squats,
         name: "Squats",
         description:
             "1. Stand with feet shoulder-width apart\n2. Move the hips back and bend the knees and hips to lower the torso\n3. Repeat",
@@ -194,12 +195,12 @@ class DefaultExercises {
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Vinceypo0's [\"Parallel Squat Form\"](https://commons.wikimedia.org/wiki/File:Parallel_Squat_Form.jpeg), published under the [CC BY-SA 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/deed.en).",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: chairDips,
+        wgerId: chairDips,
         name: "Chair dips",
         description:
             "1. Sit down on the front edge of a chair, back straight, hands holding the front edge\n2. Still holding the edge of the chair, arms extended, lift your butt and walk forward slightly so that it is a few inches from the chair.\n3. Slowly lower your body, keeping the back straight, until arms are at a right angle\n4. Raise your body again to the previous position, arms extended\n5. Repeat steps 3 and 4",
@@ -207,12 +208,12 @@ class DefaultExercises {
         imageLicense:
             "Miroslav Mazel's \"Chair Dips\" is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: forearmPlank,
+        wgerId: forearmPlank,
         name: "Forearm plank",
         description:
             "Starting position:\n1. Start down on all fours.\nArms should bent at a right angle, with shoulders right over elbows.\nBack should be straight, the whole body in a straight line.\n\nSteps:\n1. Hold this position.",
@@ -220,12 +221,12 @@ class DefaultExercises {
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a [plank photo](https://pxhere.com/en/photo/1165192) from PxHere, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: highKnees,
+        wgerId: highKnees,
         name: "High knees",
         description:
             "1. Run in place, putting knees as high up as is comfortable and switching legs at a quick pace",
@@ -233,12 +234,12 @@ class DefaultExercises {
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from US Air Force's [\"RIP It! New running program puts Airmen's best foot forward\"](http://www.barksdale.af.mil/News/Photos/igphoto/2000179280/), which is in the public domain.",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: lunges,
+        wgerId: lunges,
         name: "Lunges",
         description:
             "1. Stand with back straight\n2. Take a large step forward with your left leg\n3. Bring your pelvis down until you almost touch the floor with your right knee\n4. Bring your pelvis back up\n5. Return to standing position by stepping back\n6. Repeat, switching legs each time",
@@ -246,12 +247,12 @@ class DefaultExercises {
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Mass Communication Specialist 2nd Class Brian Morales's [\"U.S. Navy Gas Turbine Systems Technician (Mechanical) 2nd Class Milton Lovelace, left, and Logistics Specialist Seaman Brittney Joseph, both assigned to the Naval Air Station (NAS) Key West port operations department, perform lunges during a physical training session at NAS Key West, Fla., Aug. 28, 2013. The Sailors were preparing for a Navy-wide physical fitness assessment.\"](https://commons.wikimedia.org/wiki/File:U.S._Navy_Gas_Turbine_Systems_Technician_(Mechanical)_2nd_Class_Milton_Lovelace,_left,_and_Logistics_Specialist_Seaman_Brittney_Joseph,_both_assigned_to_the_Naval_Air_Station_(NAS)_Key_West_port_operations_130828-N-YB753-041.jpg), which is in the public domain.",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: pushUpRotations,
+        wgerId: pushUpRotations,
         name: "Push-up rotations",
         description:
             "1. Do a standard push-up:\n1.a Lie down on your stomach\n1.b Place your hands near your ears\n1.c Use your arms to lift your stomach up until the arms are straight, keeping the back straight\n1.d Bend arms until chest almost touches the ground, making sure the back is straight\n1.e Lift your stomach up again, returning to step 3\n2. Rotate your body to the side so that the back is straight, the bottom hand supporting the body is fully extended, and only the bottom hand and foot touch the floor\n3. Repeat, changing sides at step 2 each time",
@@ -259,34 +260,34 @@ class DefaultExercises {
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Woman in Purple Tank Top and Gray Sweat Pants\"](https://www.pexels.com/photo/woman-in-purple-tank-top-and-gray-sweat-pants-163437/) on Pexels, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: sidePlankL,
+        wgerId: sidePlankL,
         name: "Side plank left",
         description: sidePlankDesc,
         imageSlug: "exercise_sideplank.webp",
         imageLicense: sidePlankImageLicense,
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: sidePlankR,
+        wgerId: sidePlankR,
         name: "Side plank right",
         description: sidePlankDesc,
         flipped: true,
         imageSlug: "exercise_sideplank.webp",
         imageLicense: sidePlankImageLicense,
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: sideSplitSquatsL,
+        wgerId: sideSplitSquatsL,
         name: "Side split squats left",
         description: sideLungeDesc,
         flipped: true,
@@ -295,11 +296,11 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: bulgarianSplitSquatsL,
+        wgerId: bulgarianSplitSquatsL,
         name: "Bulgarian split squats left",
         description: bulgarianSquatsDesc,
         imageSlug: "exercise_bulgariansplitsquat.webp",
@@ -307,12 +308,12 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: bulgarianSplitSquatsR,
+        wgerId: bulgarianSplitSquatsR,
         name: "Bulgarian split squats right",
         description: bulgarianSquatsDesc,
         flipped: true,
@@ -321,11 +322,11 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: pistolSquatsL,
+        wgerId: pistolSquatsL,
         name: "Pistol squats left",
         description: pistolSquatDesc,
         flipped: true,
@@ -334,11 +335,11 @@ class DefaultExercises {
         imageSlug: "exercise_pistolsquat.webp",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: pistolSquatsR,
+        wgerId: pistolSquatsR,
         name: "Pistol squats right",
         description: pistolSquatDesc,
         imageSlug: "exercise_pistolsquat.webp",
@@ -346,12 +347,12 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: kneelingKickbacks,
+        wgerId: kneelingKickbacks,
         name: "Kneeling kickbacks",
         description:
             "1. Get down on all fours.\n2. Push one foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.\n4. Repeat, alternating feet",
@@ -360,12 +361,12 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: calfRaisesL,
+        wgerId: calfRaisesL,
         name: "Left leg calf raises",
         description: singleLegCalfRaiseDesc,
         imageSlug: "exercise_singlelegcalfraise.webp",
@@ -373,12 +374,12 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: calfRaisesR,
+        wgerId: calfRaisesR,
         name: "Right leg calf raises",
         flipped: true,
         description: singleLegCalfRaiseDesc,
@@ -387,11 +388,11 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: sideSplitSquatsR,
+        wgerId: sideSplitSquatsR,
         name: "Side split squats right",
         description: sideLungeDesc,
         imageSlug: "exercise_sidesplitsquat.webp",
@@ -399,12 +400,12 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: splitSquatsL,
+        wgerId: splitSquatsL,
         name: "Split squats left",
         description: splitSquatsDesc,
         imageSlug: "exercise_splitsquat.webp",
@@ -412,12 +413,12 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: splitSquatsR,
+        wgerId: splitSquatsR,
         name: "Split squats right",
         flipped: true,
         description: splitSquatsDesc,
@@ -426,11 +427,11 @@ class DefaultExercises {
             "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: jumpRopeBasic,
+        wgerId: jumpRopeBasic,
         name: "Jump rope: basic jumps",
         description:
             "Starting position:\nPut your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n\nSteps:\n1. Spin only your wrists with enough force to make the rope spin.\n2. Jump just high enough to pass the rope below your feet.\n3. Repeat.\n\nNotes:\nThis exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.",
@@ -438,12 +439,12 @@ class DefaultExercises {
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by Mohammad H. Tajaddini, which was derived from [\"Jump rope - skipping\"](https://www.flickr.com/photos/90177949@N00/1394676434) by [Drew and Merissa](https://www.flickr.com/photos/90177949@N00), published under the [CC BY 2.0 license](https://creativecommons.org/licenses/by/2.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: armCirclesFW,
+        wgerId: armCirclesFW,
         name: "Forward arm circles",
         description:
             "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.\n3. Keep circling your arms as described in step 2.",
@@ -451,12 +452,12 @@ class DefaultExercises {
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Arm Circle to Shoulder Press Down\"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: pikePushUps,
+        wgerId: pikePushUps,
         name: "Pike push-ups",
         description:
             "Staring position:\nDownward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.\nYou can get to this position by walking your hands back from a high plank.\n\nSteps:\n1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.\n2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.\n3. Repeat.",
@@ -464,12 +465,12 @@ class DefaultExercises {
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"FULL BODY Bodyweight Workout [NO EQUIPMENT] // School of Calisthenics\"](https://www.youtube.com/watch?v=96X4fYKe3QY) by School of Calisthenics on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: mountainClimbers,
+        wgerId: mountainClimbers,
         name: "Mountain climbers",
         description:
             "Starting position:\nStart in the upright push-up position, or the high plank.\nHands should be directly under your shoulders.\nKeep your head in line with your back, facing the floor.\nFeet should be about hip-width apart.\n\nSteps:\n1. Move one knee toward the center of your body, towards your elbows, keeping the other leg extended.\n2. In a quick jumping movement, straighten the bent leg out and pull the other knee toward your body.\n3. Keep repeating step 2, alternating legs.\n\nNotes:\nThroughout the exercise, your back should remain as straight as possible – avoid a hump or a sagging back.",
@@ -478,12 +479,12 @@ class DefaultExercises {
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Mountain Climber\"](https://vimeo.com/149362946) by Dr. Greg Wells on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descLicense:
             "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: fourCountBurpees,
+        wgerId: fourCountBurpees,
         name: "4-count burpees",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Repeat.",
@@ -492,12 +493,12 @@ class DefaultExercises {
         descLicense:
             "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageSlug: "exercise_4countburpee.webp",
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: noPushUpBurpees,
+        wgerId: noPushUpBurpees,
         name: "No push-up burpees",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Jump up.\n5. Repeat.",
@@ -506,12 +507,12 @@ class DefaultExercises {
         descLicense:
             "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageSlug: "exercise_nopushupburpee.webp",
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: squatThrusts,
+        wgerId: squatThrusts,
         name: "Squat thrusts",
         description:
             "Starting position:\nStart in high plank position: back, arms, and legs straight and hands shoulder-width apart.\n\nSteps:\n1. Jump your feet forward between your arms, keeping your back flat.\n2. Keeping your hands on the floor, jump your legs back into high plank position.\n3. Repeat.",
@@ -520,12 +521,12 @@ class DefaultExercises {
         descLicense:
             "English description by Miroslav Mazel, derived from a description by mondstern, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageSlug: "exercise_squatthrust.webp",
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: reverseLunges,
+        wgerId: reverseLunges,
         name: "Reverse lunges",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Step backward with one leg so it can bend comfortably to a 90 degree angle.\n2. Slowly bend both knees to form 90 degree angles.\n3. Return to the starting position.\n4. Repeat, alternating legs.",
@@ -533,12 +534,12 @@ class DefaultExercises {
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Fraser Wilson Lower Body Home Workout - NO EQUIPMENT NEEDED | EHPlabs\"](https://www.youtube.com/watch?v=WROyapZyYME) by EHPlabs on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: legRaises,
+        wgerId: legRaises,
         name: "Leg raises",
         description:
             "Starting position:\nLie down on your back, feet together, arms by your sides.\n\nSteps:\n1. Bend your knees, then straighten them to point straight up.\n2. Keeping your legs straight, lower them down together without touching the floor. The lower you go, the more intense the exercise.\n3. Raise both legs together to point straight up again.\n4. Repeat from step 2.",
@@ -546,12 +547,12 @@ class DefaultExercises {
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"20-Minute At-Home Full-Body Workout | No Equipment\"](https://www.youtube.com/watch?v=1A7pdAKODEU) by "EatMoveRest - The Stanczyks" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: florrDips,
+        wgerId: florrDips,
         name: "Floor dips",
         description:
             "Starting position:\nSit with your arms behind you, supporting your back.\nYour fingers should point forward.\nYour knees should be bent, feet together.\n\nSteps:\n1. Raise your hips off the ground, straightening your arms.\n2. Bend your elbows, bringing your hips down.\n3. Straighten your arms, returning to the previous position.\n4. Repeat steps 2 and 3.\n\nNotes:\nThe exercise's difficulty depends on how high you bring your hips.",
@@ -559,12 +560,12 @@ class DefaultExercises {
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"20-Minute At-Home Full-Body Workout | No Equipment\"](https://www.youtube.com/watch?v=1A7pdAKODEU) by "EatMoveRest - The Stanczyks" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: highPlank,
+        wgerId: highPlank,
         name: "High plank",
         description:
             "Starting position:\nGet into the high plank position: your hands and toes should be touching the ground, your back, arms and legs should be straight.\nTo get to this position, you can lie down on your stomach, place your hands facing down next to your head, and lifting your arms up until they are straight.\n\nSteps:\n1. Maintain the starting position for the entire duration of the exercise.",
@@ -572,12 +573,12 @@ class DefaultExercises {
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         descLicense: myDescLicense,
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: armCirclesBW,
+        wgerId: armCirclesBW,
         name: "Backward arm circles",
         description:
             "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
@@ -585,12 +586,12 @@ class DefaultExercises {
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Arm Circle to Shoulder Press Down\"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: childsPose,
+        wgerId: childsPose,
         name: "Child's pose",
         description:
             "Starting position:\nStart on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.\n\nSteps:\n1. Move your knees so that they're about hip-width apart.\n2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.\n3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.\n4. Stay in this pose.\n\nTips:\n* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.",
@@ -598,12 +599,12 @@ class DefaultExercises {
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by Ali Aliyev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: pullUp,
+        wgerId: pullUp,
         name: "Pull-ups",
         description:
             "Starting position:\nStart by hanging from the pull-up bar, palms facing away and feet off the floor.\nYour hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.\nYour body should be straight and pointed slightly forward. Your arms should be extended.\n\nSteps:\n1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.\n2. Carefully lower your body back down to starting position.\n3. Repeat.\n\nTips:\n- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.",
@@ -611,12 +612,12 @@ class DefaultExercises {
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"A US Marine Doing Pull-ups\"](https://commons.wikimedia.org/wiki/File:Marine_Pull-ups.jpg) by "Cpl. C. J. Yard, USMC", published under a public domain license.',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: kettlebellDeadlift,
+        wgerId: kettlebellDeadlift,
         name: "Kettlebell deadlifts",
         description:
             "Starting position:\nStand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.\n\nSteps:\n1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.\n2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.\n3. While contacting your abs and glutes, stand straight up.\n4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.\n5. Repeat from step 3.\n\nTips:\n* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.",
@@ -624,12 +625,12 @@ class DefaultExercises {
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Man In Blue Shorts Carrying Brown Exercise Equipments\"](https://www.dreamstime.com/man-blue-shorts-carrying-brown-exercise-equipments-public-domain-image-free-83059944) by creativecommonsstockphotos, published under the [CC0 1.0 license](https://creativecommons.org/publicdomain/zero/1.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: sumoSquat,
+        wgerId: sumoSquat,
         name: "Sumo squats",
         description:
             "Starting position:\nStand with legs wide and toes turned outwards.\n\nSteps:\n1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.\n2. Push back up into starting position.\n3. Repeat this exercise in a pulsing motion.",
@@ -638,71 +639,71 @@ class DefaultExercises {
             "English description by kettenfett, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"GET SCULPTED LEGS & THIGHS IN 30 DAYS CHALLENGE! Day 18: 100 Tipsy Butterfly! 🦋 #StretchyFit100\"](https://www.youtube.com/watch?v=CbLwLgx6_kw) by Action Jacquelyn on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false,
-        type: ExerciseType.fullBody.dbValue),
+        type: ExerciseType.fullBody),
     Exercise(
-        id: shoulderRotationFW,
+        wgerId: shoulderRotationFW,
         name: "Forward shoulder rotation",
-        type: ExerciseType.head.dbValue,
+        type: ExerciseType.head,
         description: shoulderRotationDesc,
         imageSlug: "exercise_shoulderrotation_fw.webp",
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"SHOULDERS ROTATION EXERCISE (2020)\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Traditional Martial Arts by Dmitry Prosvirov" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false),
     Exercise(
-        id: shoulderRotationBW,
+        wgerId: shoulderRotationBW,
         name: "Backward shoulder rotation",
-        type: ExerciseType.head.dbValue,
+        type: ExerciseType.head,
         description: shoulderRotationDesc,
         imageSlug: "exercise_shoulderrotation_bw.webp",
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"SHOULDERS ROTATION EXERCISE (2020)\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Traditional Martial Arts by Dmitry Prosvirov" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false),
     Exercise(
-        id: chinTuck,
+        wgerId: chinTuck,
         name: "Chin tuck",
-        type: ExerciseType.head.dbValue,
+        type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.\n2. Hold for 5 seconds.\n3. Go back to normal head position and repeat.",
         imageSlug: "exercise_chintuck.webp",
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Home Exercises for Cerivcal Disc Pain | Tim Keeley | Physio REHAB\"](https://www.youtube.com/watch?v=AiTt-zCdluc) by "Physio Fitness | Physio REHAB | Tim Keeley" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false),
     Exercise(
-        id: shoulderShrug,
+        wgerId: shoulderShrug,
         name: "Shoulder shrugs",
-        type: ExerciseType.head.dbValue,
+        type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Lift shoulders straight up as far as possible and hold for 5 sec.\n2. Release shoulders back down to a relaxed position.\n3. Repeat.",
         imageSlug: "exercise_shouldershrug.webp",
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Yoga class for shoulder relief\"](https://www.youtube.com/watch?v=H8tUMz9ydUw) by "Stewart Hamblin The Feldenkrais Way" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false),
     Exercise(
-        id: headTurns,
+        wgerId: headTurns,
         name: "Head turns",
-        type: ExerciseType.head.dbValue,
+        type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight and shoulders down.\n\nSteps:\n1. Sit or stand up straight, shoulders dropped.\n2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.\n3. Return to center position and repeat, changing sides.",
         imageSlug: "exercise_headturn.webp",
         descLicense: myDescLicense,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief\"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        hasSteps: false,
+        // hasSteps: false,
         flipped: false,
         animated: false),
   ];

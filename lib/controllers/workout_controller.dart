@@ -21,18 +21,22 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'dart:io';
+import 'dart:math';
 
 import 'package:feeel/audio/sound_view.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
 import 'package:feeel/controllers/workout_view.dart';
+import 'package:feeel/db/editable_workout_record.dart';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/db/full_workout.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/enums/workout_stage.dart';
 // import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum _ViewTypes { gui, audio }
@@ -43,14 +47,14 @@ class WorkoutMeta {
   static const _countdownDuration = 3;
   final FullWorkout _fullWorkout;
   int _exercisePos = 0;
-  int _stepPos = 0;
+  // int _stepPos = 0;
   int? timerRestore;
 
   WorkoutMeta(this._fullWorkout);
 
   int getExercisePos() => _exercisePos;
 
-  int getStepPos() => _stepPos;
+  // int getStepPos() => _stepPos;
 
   int getStartDuration() =>
       _getCurWorkoutExercise().breakDuration ?? _startDuration;
@@ -73,12 +77,12 @@ class WorkoutMeta {
 
   void next() {
     _exercisePos++;
-    _stepPos = 0;
+    // _stepPos = 0;
   }
 
   void previous() {
     _exercisePos--;
-    _stepPos = 0;
+    // _stepPos = 0;
   }
 
   // void nextStep() {
@@ -110,8 +114,9 @@ class WorkoutController {
   final List<WorkoutView?> _views = List.filled(
       _ViewTypes.values.length, null); //todo weak references + NOT NULL SAFE!
   WorkoutStage _stage = WorkoutStage.ready;
-  late WorkoutTimer _timer; //todo init timer
-  late WorkoutMeta _workoutMeta;
+  late final WorkoutTimer _timer; //todo init timer
+  late final WorkoutMeta _workoutMeta;
+  late final EditableWorkoutRecord _editableWorkoutRecord; //TODO INTEGRATE
 
   WorkoutController(FullWorkout workout) {
     if (workout.workoutExercises.isEmpty) {
@@ -119,6 +124,11 @@ class WorkoutController {
     }
 
     _workoutMeta = WorkoutMeta(workout);
+
+    _editableWorkoutRecord = EditableWorkoutRecord(
+        workoutStart: DateTime.now(),
+        workout: workout.workout,
+        workoutExercises: workout.workoutExercises);
 
     _setUpAudio();
 
@@ -294,7 +304,7 @@ class WorkoutController {
         for (final view in _views) {
           view?.onExercise(
               _workoutMeta.getExercisePos(),
-              _workoutMeta.getCurWorkoutExercise(),
+              _workoutMeta.getCurExercise(),
               //_workoutMeta.getCurStep(),
               _workoutMeta.getCurExerciseDuration());
         }
@@ -354,6 +364,22 @@ class WorkoutController {
 
   void clearView() {
     _views[_ViewTypes.gui.index] = null;
+  }
+
+  void logWorkout(BuildContext context) {
+    if (_stage == WorkoutStage.exercise) _recordCurrentExercise();
+    Provider.of<FeeelDB>(context, listen: false)
+        .createWorkoutRecord(_editableWorkoutRecord);
+  }
+
+  void _recordCurrentExercise() {
+    //todo on timer finish, on skip, on close, on pause (because of countdown)
+    final remainingDuration = _timer.getTimeRemaining();
+    final exercisePos = _workoutMeta.getExercisePos();
+    final newDuration =
+        _workoutMeta.getCurExerciseDuration() - remainingDuration;
+    _editableWorkoutRecord.completedDurations[exercisePos] = max(
+        _editableWorkoutRecord.completedDurations[exercisePos], newDuration);
   }
 
   void close() {

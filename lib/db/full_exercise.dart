@@ -24,10 +24,8 @@ import 'package:feeel/db/database.dart';
 
 class FullExercise {
   final Exercise exercise;
-  final List<ExerciseStep>? steps;
   final List<ExerciseEquipment>? equipment;
   final List<ExerciseMuscles>? muscles;
 
-  FullExercise(
-      {required this.exercise, this.steps, this.equipment, this.muscles});
+  FullExercise({required this.exercise, this.equipment, this.muscles});
 }

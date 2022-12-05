@@ -25,7 +25,10 @@ import 'package:drift/drift.dart';
 import 'dart:io';
 import 'package:drift/native.dart';
 import 'package:feeel/db/default_workouts.dart';
+import 'package:feeel/db/editable_workout_record.dart';
 import 'package:feeel/enums/exercise_type.dart';
+import 'package:feeel/enums/languages.dart';
+import 'package:feeel/enums/muscle_type.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
@@ -37,50 +40,63 @@ import 'full_workout.dart';
 
 part 'database.g.dart';
 
+//todo differentiate between bundled and non-bundled exercises
+//todo add cache
 class Exercises extends Table {
-  IntColumn get id => integer()();
+  IntColumn get wgerId => integer()();
   TextColumn get name => text()();
   TextColumn get description => text().nullable()();
   IntColumn get type => intEnum<ExerciseType>()(); //todo how to convert this?
   BoolColumn get flipped => boolean().withDefault(const Constant(
       false))(); //todo what's the use of withDefault if constructor requires it anyway?
-  BoolColumn get hasSteps =>
-      boolean()(); //todo rather than this, point directly to the rowid
+  // BoolColumn get hasSteps =>
+  //     boolean()(); //todo rather than this, point directly to the rowid
   TextColumn get imageSlug => text().nullable()();
-  TextColumn get descLicense => text().nullable()();
+  TextColumn get descLicense => text()();
   TextColumn get imageLicense => text().nullable()();
   BoolColumn get animated => boolean().withDefault(const Constant(false))();
 
   @override
-  Set<Column>? get primaryKey => {id};
+  Set<Column>? get primaryKey => {wgerId};
 }
 
-class ExerciseSteps extends Table {
-  IntColumn get exerciseId => integer()();
-  IntColumn get orderPosition => integer()();
-  TextColumn get imageSlug => text().nullable()();
-  TextColumn get voiceHint => text().nullable()();
-  IntColumn get stepDuration => integer()();
+class ExerciseTranslations extends Table {
+  IntColumn get exercise => integer()();
+  IntColumn get language => intEnum<ExerciseLanguage>()();
+  TextColumn get name => text()();
+  TextColumn get description => text().nullable()();
+  TextColumn get translationLicense => text()();
 
   @override
-  Set<Column>? get primaryKey => {exerciseId, orderPosition};
+  Set<Column>? get primaryKey => {exercise, language};
 }
+
+// class ExerciseSteps extends Table {
+//   IntColumn get exerciseId => integer()();
+//   IntColumn get orderPosition => integer()();
+//   TextColumn get imageSlug => text().nullable()();
+//   TextColumn get voiceHint => text().nullable()();
+//   IntColumn get stepDuration => integer()();
+
+//   @override
+//   Set<Column>? get primaryKey => {exerciseId, orderPosition};
+// }
 
 class ExerciseMuscles extends Table {
-  IntColumn get exerciseId => integer()();
+  IntColumn get exercise => integer()();
   IntColumn get muscle => integer()();
-  IntColumn get type => integer()();
+  IntColumn get type => intEnum<MuscleType>()();
 
   @override
-  Set<Column>? get primaryKey => {exerciseId, muscle, type};
+  Set<Column>? get primaryKey => {exercise, muscle, type};
 }
 
 class ExerciseEquipment extends Table {
-  IntColumn get exerciseId => integer()();
+  IntColumn get exercise => integer()();
   IntColumn get equipment => integer()();
 
   @override
-  Set<Column>? get primaryKey => {exerciseId, equipment};
+  Set<Column>? get primaryKey => {exercise, equipment};
 }
 
 class Workouts extends Table {
@@ -109,7 +125,7 @@ class WorkoutExercises extends Table {
 class WorkoutRecords extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text()();
-  IntColumn get category => integer()();
+  IntColumn get category => intEnum<WorkoutCategory>()();
   DateTimeColumn get workoutStart => dateTime()();
 }
 
@@ -125,24 +141,29 @@ class WorkoutExerciseRecords extends Table {
 }
 
 @DriftDatabase(tables: [
+  //todo add new tables
   Exercises,
-  ExerciseSteps,
   Workouts,
   WorkoutExercises,
   WorkoutRecords,
   WorkoutExerciseRecords
 ])
 class FeeelDB extends _$FeeelDB {
-  static const int databaseVersion = 23;
-  static const String _dbFilename = "feeel2.db"; //todo this is temporary
+  //todo write DB migration tests with test .db files
+  static const int _databaseVersion = 300;
+  static const String _dbFilename =
+      "feeel2.db"; //todo this is temporary, before migration is ironed out
+
+  static const int _v3_0_0 = 300;
 
   FeeelDB() : super(_openConnection());
 
   @override
-  int get schemaVersion => databaseVersion;
+  int get schemaVersion => _databaseVersion;
 
   @override
   MigrationStrategy get migration {
+    //TODO BATCH RENAME EXERCISE IDS!!!
     return MigrationStrategy(
       onCreate: (Migrator m) async {
         await m.createAll();
@@ -152,9 +173,9 @@ class FeeelDB extends _$FeeelDB {
       onUpgrade: (Migrator m, int from, int to) async {
         // EXERCISES
         await m.drop(exercises);
-        await m.drop(exerciseSteps);
+        // await m.drop(exerciseSteps);
         await m.create(exercises);
-        await m.create(exerciseSteps);
+        // await m.create(exerciseSteps);
         await _addDefaultExercises();
 
         // WORKOUTS
@@ -165,11 +186,11 @@ class FeeelDB extends _$FeeelDB {
             .get();
 
         const currentWorkoutExerciseTableName = 'workout_exercises';
-        const pre21WorkoutExerciseTableName = 'workoutExercises';
+        const pre3_0_0WorkoutExerciseTableName = 'workoutExercises';
 
-        if (from < 21) {
+        if (from < _v3_0_0) {
           await customStatement(
-              "DELETE FROM $pre21WorkoutExerciseTableName WHERE 'workoutType' = 0");
+              "DELETE FROM $pre3_0_0WorkoutExerciseTableName WHERE 'workoutType' = 0");
         } else {
           for (final dw in defaultWorkouts) {
             await (delete(workoutExercises)
@@ -182,30 +203,30 @@ class FeeelDB extends _$FeeelDB {
             .go();
 
         // add new default workouts
-        if (from < 21) {
+        if (from < _v3_0_0) {
           m.createTable(workoutExercises);
         }
 
         await _addDefaultWorkouts();
 
         // move custom workouts from old table to new table for old versions
-        if (from < 21) {
+        if (from < _v3_0_0) {
           final customWorkouts = await (select(workouts)
                 ..where((w) => w.type.equals(WorkoutType.custom.dbValue)))
               .get();
           for (final cw in customWorkouts) {
             await customStatement(
-                "INSERT INTO $currentWorkoutExerciseTableName(workout_id, order_position, exercise, exercise_duration, break_duration) "
-                "SELECT workoutId, orderCol, exercise, exerciseDuration, breakDuration "
-                "FROM $pre21WorkoutExerciseTableName WHERE 'workoutId' = ${cw.id}");
+                "INSERT INTO $currentWorkoutExerciseTableName(workout_id, order_position, exercise_id, exercise_duration, break_duration) " +
+                    "SELECT workoutId, orderCol, exercise, exerciseDuration, breakDuration " +
+                    "FROM $pre3_0_0WorkoutExerciseTableName WHERE 'workoutId' = ${cw.id}");
           }
 
           await customStatement(
-              "DROP TABLE IF EXISTS $pre21WorkoutExerciseTableName");
+              "DROP TABLE IF EXISTS $pre3_0_0WorkoutExerciseTableName");
         }
 
         //rename columns for the workout table if on older table version; other tables have been newly created
-        if (from < 21) {
+        if (from < _v3_0_0) {
           await m.alterTable(TableMigration(
             workouts,
             columnTransformer: {
@@ -285,7 +306,7 @@ class FeeelDB extends _$FeeelDB {
           ..where((we) => we.workoutId.equals(w.id)))
         .get();
     final es = await Future.wait(wes.map((we) async => await (select(exercises)
-          ..where((e) => e.id.equals(we.exercise)))
+          ..where((e) => e.wgerId.equals(we.exercise)))
         .getSingle()));
     return FullWorkout(workout: w, workoutExercises: wes, exercises: es);
   }
@@ -309,12 +330,14 @@ class FeeelDB extends _$FeeelDB {
           .go();
     }
 
+    //todo onConflictUpdate might not return the right rowID
+
     final createdRowId = await into(workouts).insertOnConflictUpdate(
         WorkoutsCompanion(
             id: ew.dbId != null ? Value(ew.dbId!) : const Value<int>.absent(),
-            type: Value(ew.type.dbValue),
+            type: Value(ew.type),
             title: Value(ew.title),
-            category: Value(ew.category.dbValue),
+            category: Value(ew.category),
             countdownDuration: Value(ew.countdownDuration),
             exerciseDuration: Value(ew.exerciseDuration),
             breakDuration: Value(ew.breakDuration)));
@@ -334,7 +357,7 @@ class FeeelDB extends _$FeeelDB {
             return WorkoutExercisesCompanion(
                 workoutId: Value(insertedItem.id),
                 orderPosition: Value(i),
-                exercise: Value(ewe.exerciseId),
+                exercise: Value(ewe.exercise),
                 exerciseDuration: Value(ewe.exerciseDuration),
                 breakDuration: Value(ewe.breakDuration));
           }, growable: false));
@@ -363,6 +386,39 @@ class FeeelDB extends _$FeeelDB {
 
     await (delete(workouts)..where((w) => w.type.equals(workoutTypeValue)))
         .go();
+  }
+
+  Future<List<WorkoutRecord>> get queryAllWorkoutRecords =>
+      select(workoutRecords).get();
+
+  Future<void> createWorkoutRecord(final EditableWorkoutRecord ewr) async {
+    final rowid = await into(workoutRecords).insertOnConflictUpdate(
+        WorkoutRecordsCompanion(
+            id: const Value<int>.absent(),
+            title: Value(ewr.workout.title),
+            category: Value(ewr.workout.category),
+            workoutStart: Value(ewr.workoutStart)));
+
+    final insertedId = (await (select(workouts)
+              ..where((w) => w.rowId.equals(rowid)))
+            .getSingle())
+        .id; //todo is there a better way to get the inserted id?
+
+    final ewers = ewr.workoutExercises;
+    await batch((batch) {
+      batch.insertAll(
+          workoutExerciseRecords,
+          List.generate(ewers.length, (i) {
+            final ewer = ewers[i];
+            return WorkoutExercisesCompanion(
+              workoutId: Value(insertedId),
+              orderPosition: Value(i),
+              exercise: Value(ewer.exercise),
+              exerciseDuration: Value(ewer.exerciseDuration),
+              breakDuration: Value(ewer.breakDuration),
+            );
+          }, growable: false));
+    });
   }
 }
 

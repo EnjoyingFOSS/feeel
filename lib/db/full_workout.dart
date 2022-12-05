@@ -21,8 +21,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
-import 'package:feeel/enums/workout_category.dart';
-import 'package:feeel/enums/workout_type.dart';
 
 class FullWorkout {
   final Workout workout;

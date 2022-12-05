@@ -20,27 +20,4 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/database.dart';
-import 'package:flutter/foundation.dart';
-
-class EditableWorkoutExercise {
-  bool exerciseInitialized = false;
-
-  final Key? key;
-  final int exercise;
-  int? exerciseDuration;
-  int? breakDuration;
-
-  EditableWorkoutExercise(
-      {required this.exercise,
-      this.exerciseDuration,
-      this.breakDuration,
-      this.key});
-
-  static EditableWorkoutExercise fromWorkoutExercise(WorkoutExercise we) =>
-      EditableWorkoutExercise(
-          exercise: we.exercise,
-          exerciseDuration: we.exerciseDuration,
-          breakDuration: we.breakDuration,
-          key: UniqueKey());
-}
+enum MuscleType { primary, secondary }

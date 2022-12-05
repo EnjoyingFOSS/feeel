@@ -45,7 +45,7 @@ class ExerciseEditorRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: LocalExerciseCache.getExercise(
-            context, editableWorkoutExercise.exerciseId),
+            context, editableWorkoutExercise.exercise),
         builder: (_, snapshot) {
           if (snapshot.hasData) {
             Exercise exercise = snapshot.data as Exercise;

@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+// todo update based on latest shipped version
 import 'package:feeel/db/default_exercises.dart';
 import 'package:feeel/db/editable_workout.dart';
 import 'package:feeel/db/editable_workout_exercise.dart';
@@ -34,21 +35,21 @@ class DefaultWorkouts {
         type: WorkoutType.bundled,
         title: "Scientific 7 minute workout",
         initialWorkoutExercises: [
-          EditableWorkoutExercise(exerciseId: DefaultExercises.jumpingJacks),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.wallSit),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.pushUps),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.abCrunches),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.stepUps),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.squats),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.chairDips),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.forearmPlank),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.highKnees),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.lunges),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.pushUpRotations),
+          EditableWorkoutExercise(exercise: DefaultExercises.jumpingJacks),
+          EditableWorkoutExercise(exercise: DefaultExercises.wallSit),
+          EditableWorkoutExercise(exercise: DefaultExercises.pushUps),
+          EditableWorkoutExercise(exercise: DefaultExercises.abCrunches),
+          EditableWorkoutExercise(exercise: DefaultExercises.stepUps),
+          EditableWorkoutExercise(exercise: DefaultExercises.squats),
+          EditableWorkoutExercise(exercise: DefaultExercises.chairDips),
+          EditableWorkoutExercise(exercise: DefaultExercises.forearmPlank),
+          EditableWorkoutExercise(exercise: DefaultExercises.highKnees),
+          EditableWorkoutExercise(exercise: DefaultExercises.lunges),
+          EditableWorkoutExercise(exercise: DefaultExercises.pushUpRotations),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.sidePlankL, exerciseDuration: 15),
+              exercise: DefaultExercises.sidePlankL, exerciseDuration: 15),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.sidePlankR,
+              exercise: DefaultExercises.sidePlankR,
               breakDuration: 5,
               exerciseDuration: 15)
         ],
@@ -61,21 +62,18 @@ class DefaultWorkouts {
         type: WorkoutType.bundled,
         title: "Leg workout",
         initialWorkoutExercises: [
-          EditableWorkoutExercise(exerciseId: DefaultExercises.splitSquatsL),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.splitSquatsR),
+          EditableWorkoutExercise(exercise: DefaultExercises.splitSquatsL),
+          EditableWorkoutExercise(exercise: DefaultExercises.splitSquatsR),
+          EditableWorkoutExercise(exercise: DefaultExercises.sideSplitSquatsL),
+          EditableWorkoutExercise(exercise: DefaultExercises.sideSplitSquatsR),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.sideSplitSquatsL),
+              exercise: DefaultExercises.bulgarianSplitSquatsL),
           EditableWorkoutExercise(
-              exerciseId: DefaultExercises.sideSplitSquatsR),
-          EditableWorkoutExercise(
-              exerciseId: DefaultExercises.bulgarianSplitSquatsL),
-          EditableWorkoutExercise(
-              exerciseId: DefaultExercises.bulgarianSplitSquatsR),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.squats),
-          EditableWorkoutExercise(
-              exerciseId: DefaultExercises.kneelingKickbacks),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.calfRaisesL),
-          EditableWorkoutExercise(exerciseId: DefaultExercises.calfRaisesR)
+              exercise: DefaultExercises.bulgarianSplitSquatsR),
+          EditableWorkoutExercise(exercise: DefaultExercises.squats),
+          EditableWorkoutExercise(exercise: DefaultExercises.kneelingKickbacks),
+          EditableWorkoutExercise(exercise: DefaultExercises.calfRaisesL),
+          EditableWorkoutExercise(exercise: DefaultExercises.calfRaisesR)
         ],
         countdownDuration: 5,
         breakDuration: 10,

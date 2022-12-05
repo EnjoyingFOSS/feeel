@@ -8,106 +8,89 @@ part of 'database.dart';
 
 // ignore_for_file: type=lint
 class Exercise extends DataClass implements Insertable<Exercise> {
-  final int id;
+  final int wgerId;
   final String name;
   final String? description;
-  final int type;
+  final ExerciseType type;
   final bool flipped;
-  final bool hasSteps;
   final String? imageSlug;
-  final String? descLicense;
+  final String descLicense;
   final String? imageLicense;
   final bool animated;
-  final int? category;
   Exercise(
-      {required this.id,
+      {required this.wgerId,
       required this.name,
       this.description,
       required this.type,
       required this.flipped,
-      required this.hasSteps,
       this.imageSlug,
-      this.descLicense,
+      required this.descLicense,
       this.imageLicense,
-      required this.animated,
-      this.category});
+      required this.animated});
   factory Exercise.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return Exercise(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
+      wgerId: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}wger_id'])!,
       name: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}name'])!,
       description: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}description']),
-      type: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}type'])!,
+      type: $ExercisesTable.$converter0.mapToDart(const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}type']))!,
       flipped: const BoolType()
           .mapFromDatabaseResponse(data['${effectivePrefix}flipped'])!,
-      hasSteps: const BoolType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}has_steps'])!,
       imageSlug: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}image_slug']),
       descLicense: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}desc_license']),
+          .mapFromDatabaseResponse(data['${effectivePrefix}desc_license'])!,
       imageLicense: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}image_license']),
       animated: const BoolType()
           .mapFromDatabaseResponse(data['${effectivePrefix}animated'])!,
-      category: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}category']),
     );
   }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['id'] = Variable<int>(id);
+    map['wger_id'] = Variable<int>(wgerId);
     map['name'] = Variable<String>(name);
     if (!nullToAbsent || description != null) {
       map['description'] = Variable<String?>(description);
     }
-    map['type'] = Variable<int>(type);
+    {
+      final converter = $ExercisesTable.$converter0;
+      map['type'] = Variable<int>(converter.mapToSql(type)!);
+    }
     map['flipped'] = Variable<bool>(flipped);
-    map['has_steps'] = Variable<bool>(hasSteps);
     if (!nullToAbsent || imageSlug != null) {
       map['image_slug'] = Variable<String?>(imageSlug);
     }
-    if (!nullToAbsent || descLicense != null) {
-      map['desc_license'] = Variable<String?>(descLicense);
-    }
+    map['desc_license'] = Variable<String>(descLicense);
     if (!nullToAbsent || imageLicense != null) {
       map['image_license'] = Variable<String?>(imageLicense);
     }
     map['animated'] = Variable<bool>(animated);
-    if (!nullToAbsent || category != null) {
-      map['category'] = Variable<int?>(category);
-    }
     return map;
   }
 
   ExercisesCompanion toCompanion(bool nullToAbsent) {
     return ExercisesCompanion(
-      id: Value(id),
+      wgerId: Value(wgerId),
       name: Value(name),
       description: description == null && nullToAbsent
           ? const Value.absent()
           : Value(description),
       type: Value(type),
       flipped: Value(flipped),
-      hasSteps: Value(hasSteps),
       imageSlug: imageSlug == null && nullToAbsent
           ? const Value.absent()
           : Value(imageSlug),
-      descLicense: descLicense == null && nullToAbsent
-          ? const Value.absent()
-          : Value(descLicense),
+      descLicense: Value(descLicense),
       imageLicense: imageLicense == null && nullToAbsent
           ? const Value.absent()
           : Value(imageLicense),
       animated: Value(animated),
-      category: category == null && nullToAbsent
-          ? const Value.absent()
-          : Value(category),
     );
   }
 
@@ -115,200 +98,174 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Exercise(
-      id: serializer.fromJson<int>(json['id']),
+      wgerId: serializer.fromJson<int>(json['wgerId']),
       name: serializer.fromJson<String>(json['name']),
       description: serializer.fromJson<String?>(json['description']),
-      type: serializer.fromJson<int>(json['type']),
+      type: serializer.fromJson<ExerciseType>(json['type']),
       flipped: serializer.fromJson<bool>(json['flipped']),
-      hasSteps: serializer.fromJson<bool>(json['hasSteps']),
       imageSlug: serializer.fromJson<String?>(json['imageSlug']),
-      descLicense: serializer.fromJson<String?>(json['descLicense']),
+      descLicense: serializer.fromJson<String>(json['descLicense']),
       imageLicense: serializer.fromJson<String?>(json['imageLicense']),
       animated: serializer.fromJson<bool>(json['animated']),
-      category: serializer.fromJson<int?>(json['category']),
     );
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
+      'wgerId': serializer.toJson<int>(wgerId),
       'name': serializer.toJson<String>(name),
       'description': serializer.toJson<String?>(description),
-      'type': serializer.toJson<int>(type),
+      'type': serializer.toJson<ExerciseType>(type),
       'flipped': serializer.toJson<bool>(flipped),
-      'hasSteps': serializer.toJson<bool>(hasSteps),
       'imageSlug': serializer.toJson<String?>(imageSlug),
-      'descLicense': serializer.toJson<String?>(descLicense),
+      'descLicense': serializer.toJson<String>(descLicense),
       'imageLicense': serializer.toJson<String?>(imageLicense),
       'animated': serializer.toJson<bool>(animated),
-      'category': serializer.toJson<int?>(category),
     };
   }
 
   Exercise copyWith(
-          {int? id,
+          {int? wgerId,
           String? name,
           String? description,
-          int? type,
+          ExerciseType? type,
           bool? flipped,
-          bool? hasSteps,
           String? imageSlug,
           String? descLicense,
           String? imageLicense,
-          bool? animated,
-          int? category}) =>
+          bool? animated}) =>
       Exercise(
-        id: id ?? this.id,
+        wgerId: wgerId ?? this.wgerId,
         name: name ?? this.name,
         description: description ?? this.description,
         type: type ?? this.type,
         flipped: flipped ?? this.flipped,
-        hasSteps: hasSteps ?? this.hasSteps,
         imageSlug: imageSlug ?? this.imageSlug,
         descLicense: descLicense ?? this.descLicense,
         imageLicense: imageLicense ?? this.imageLicense,
         animated: animated ?? this.animated,
-        category: category ?? this.category,
       );
   @override
   String toString() {
     return (StringBuffer('Exercise(')
-          ..write('id: $id, ')
+          ..write('wgerId: $wgerId, ')
           ..write('name: $name, ')
           ..write('description: $description, ')
           ..write('type: $type, ')
           ..write('flipped: $flipped, ')
-          ..write('hasSteps: $hasSteps, ')
           ..write('imageSlug: $imageSlug, ')
           ..write('descLicense: $descLicense, ')
           ..write('imageLicense: $imageLicense, ')
-          ..write('animated: $animated, ')
-          ..write('category: $category')
+          ..write('animated: $animated')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, name, description, type, flipped,
-      hasSteps, imageSlug, descLicense, imageLicense, animated, category);
+  int get hashCode => Object.hash(wgerId, name, description, type, flipped,
+      imageSlug, descLicense, imageLicense, animated);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is Exercise &&
-          other.id == this.id &&
+          other.wgerId == this.wgerId &&
           other.name == this.name &&
           other.description == this.description &&
           other.type == this.type &&
           other.flipped == this.flipped &&
-          other.hasSteps == this.hasSteps &&
           other.imageSlug == this.imageSlug &&
           other.descLicense == this.descLicense &&
           other.imageLicense == this.imageLicense &&
-          other.animated == this.animated &&
-          other.category == this.category);
+          other.animated == this.animated);
 }
 
 class ExercisesCompanion extends UpdateCompanion<Exercise> {
-  final Value<int> id;
+  final Value<int> wgerId;
   final Value<String> name;
   final Value<String?> description;
-  final Value<int> type;
+  final Value<ExerciseType> type;
   final Value<bool> flipped;
-  final Value<bool> hasSteps;
   final Value<String?> imageSlug;
-  final Value<String?> descLicense;
+  final Value<String> descLicense;
   final Value<String?> imageLicense;
   final Value<bool> animated;
-  final Value<int?> category;
   const ExercisesCompanion({
-    this.id = const Value.absent(),
+    this.wgerId = const Value.absent(),
     this.name = const Value.absent(),
     this.description = const Value.absent(),
     this.type = const Value.absent(),
     this.flipped = const Value.absent(),
-    this.hasSteps = const Value.absent(),
     this.imageSlug = const Value.absent(),
     this.descLicense = const Value.absent(),
     this.imageLicense = const Value.absent(),
     this.animated = const Value.absent(),
-    this.category = const Value.absent(),
   });
   ExercisesCompanion.insert({
-    this.id = const Value.absent(),
+    this.wgerId = const Value.absent(),
     required String name,
     this.description = const Value.absent(),
-    required int type,
+    required ExerciseType type,
     this.flipped = const Value.absent(),
-    required bool hasSteps,
     this.imageSlug = const Value.absent(),
-    this.descLicense = const Value.absent(),
+    required String descLicense,
     this.imageLicense = const Value.absent(),
     this.animated = const Value.absent(),
-    this.category = const Value.absent(),
   })  : name = Value(name),
         type = Value(type),
-        hasSteps = Value(hasSteps);
+        descLicense = Value(descLicense);
   static Insertable<Exercise> custom({
-    Expression<int>? id,
+    Expression<int>? wgerId,
     Expression<String>? name,
     Expression<String?>? description,
-    Expression<int>? type,
+    Expression<ExerciseType>? type,
     Expression<bool>? flipped,
-    Expression<bool>? hasSteps,
     Expression<String?>? imageSlug,
-    Expression<String?>? descLicense,
+    Expression<String>? descLicense,
     Expression<String?>? imageLicense,
     Expression<bool>? animated,
-    Expression<int?>? category,
   }) {
     return RawValuesInsertable({
-      if (id != null) 'id': id,
+      if (wgerId != null) 'wger_id': wgerId,
       if (name != null) 'name': name,
       if (description != null) 'description': description,
       if (type != null) 'type': type,
       if (flipped != null) 'flipped': flipped,
-      if (hasSteps != null) 'has_steps': hasSteps,
       if (imageSlug != null) 'image_slug': imageSlug,
       if (descLicense != null) 'desc_license': descLicense,
       if (imageLicense != null) 'image_license': imageLicense,
       if (animated != null) 'animated': animated,
-      if (category != null) 'category': category,
     });
   }
 
   ExercisesCompanion copyWith(
-      {Value<int>? id,
+      {Value<int>? wgerId,
       Value<String>? name,
       Value<String?>? description,
-      Value<int>? type,
+      Value<ExerciseType>? type,
       Value<bool>? flipped,
-      Value<bool>? hasSteps,
       Value<String?>? imageSlug,
-      Value<String?>? descLicense,
+      Value<String>? descLicense,
       Value<String?>? imageLicense,
-      Value<bool>? animated,
-      Value<int?>? category}) {
+      Value<bool>? animated}) {
     return ExercisesCompanion(
-      id: id ?? this.id,
+      wgerId: wgerId ?? this.wgerId,
       name: name ?? this.name,
       description: description ?? this.description,
       type: type ?? this.type,
       flipped: flipped ?? this.flipped,
-      hasSteps: hasSteps ?? this.hasSteps,
       imageSlug: imageSlug ?? this.imageSlug,
       descLicense: descLicense ?? this.descLicense,
       imageLicense: imageLicense ?? this.imageLicense,
       animated: animated ?? this.animated,
-      category: category ?? this.category,
     );
   }
 
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<int>(id.value);
+    if (wgerId.present) {
+      map['wger_id'] = Variable<int>(wgerId.value);
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
@@ -317,19 +274,17 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       map['description'] = Variable<String?>(description.value);
     }
     if (type.present) {
-      map['type'] = Variable<int>(type.value);
+      final converter = $ExercisesTable.$converter0;
+      map['type'] = Variable<int>(converter.mapToSql(type.value)!);
     }
     if (flipped.present) {
       map['flipped'] = Variable<bool>(flipped.value);
-    }
-    if (hasSteps.present) {
-      map['has_steps'] = Variable<bool>(hasSteps.value);
     }
     if (imageSlug.present) {
       map['image_slug'] = Variable<String?>(imageSlug.value);
     }
     if (descLicense.present) {
-      map['desc_license'] = Variable<String?>(descLicense.value);
+      map['desc_license'] = Variable<String>(descLicense.value);
     }
     if (imageLicense.present) {
       map['image_license'] = Variable<String?>(imageLicense.value);
@@ -337,26 +292,21 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     if (animated.present) {
       map['animated'] = Variable<bool>(animated.value);
     }
-    if (category.present) {
-      map['category'] = Variable<int?>(category.value);
-    }
     return map;
   }
 
   @override
   String toString() {
     return (StringBuffer('ExercisesCompanion(')
-          ..write('id: $id, ')
+          ..write('wgerId: $wgerId, ')
           ..write('name: $name, ')
           ..write('description: $description, ')
           ..write('type: $type, ')
           ..write('flipped: $flipped, ')
-          ..write('hasSteps: $hasSteps, ')
           ..write('imageSlug: $imageSlug, ')
           ..write('descLicense: $descLicense, ')
           ..write('imageLicense: $imageLicense, ')
-          ..write('animated: $animated, ')
-          ..write('category: $category')
+          ..write('animated: $animated')
           ..write(')'))
         .toString();
   }
@@ -368,10 +318,10 @@ class $ExercisesTable extends Exercises
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $ExercisesTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
+  final VerificationMeta _wgerIdMeta = const VerificationMeta('wgerId');
   @override
-  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
-      'id', aliasedName, false,
+  late final GeneratedColumn<int?> wgerId = GeneratedColumn<int?>(
+      'wger_id', aliasedName, false,
       type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
@@ -386,9 +336,10 @@ class $ExercisesTable extends Exercises
       type: const StringType(), requiredDuringInsert: false);
   final VerificationMeta _typeMeta = const VerificationMeta('type');
   @override
-  late final GeneratedColumn<int?> type = GeneratedColumn<int?>(
-      'type', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
+  late final GeneratedColumnWithTypeConverter<ExerciseType, int?> type =
+      GeneratedColumn<int?>('type', aliasedName, false,
+              type: const IntType(), requiredDuringInsert: true)
+          .withConverter<ExerciseType>($ExercisesTable.$converter0);
   final VerificationMeta _flippedMeta = const VerificationMeta('flipped');
   @override
   late final GeneratedColumn<bool?> flipped = GeneratedColumn<bool?>(
@@ -397,13 +348,6 @@ class $ExercisesTable extends Exercises
       requiredDuringInsert: false,
       defaultConstraints: 'CHECK (flipped IN (0, 1))',
       defaultValue: const Constant(false));
-  final VerificationMeta _hasStepsMeta = const VerificationMeta('hasSteps');
-  @override
-  late final GeneratedColumn<bool?> hasSteps = GeneratedColumn<bool?>(
-      'has_steps', aliasedName, false,
-      type: const BoolType(),
-      requiredDuringInsert: true,
-      defaultConstraints: 'CHECK (has_steps IN (0, 1))');
   final VerificationMeta _imageSlugMeta = const VerificationMeta('imageSlug');
   @override
   late final GeneratedColumn<String?> imageSlug = GeneratedColumn<String?>(
@@ -413,8 +357,8 @@ class $ExercisesTable extends Exercises
       const VerificationMeta('descLicense');
   @override
   late final GeneratedColumn<String?> descLicense = GeneratedColumn<String?>(
-      'desc_license', aliasedName, true,
-      type: const StringType(), requiredDuringInsert: false);
+      'desc_license', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _imageLicenseMeta =
       const VerificationMeta('imageLicense');
   @override
@@ -429,24 +373,17 @@ class $ExercisesTable extends Exercises
       requiredDuringInsert: false,
       defaultConstraints: 'CHECK (animated IN (0, 1))',
       defaultValue: const Constant(false));
-  final VerificationMeta _categoryMeta = const VerificationMeta('category');
-  @override
-  late final GeneratedColumn<int?> category = GeneratedColumn<int?>(
-      'category', aliasedName, true,
-      type: const IntType(), requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
-        id,
+        wgerId,
         name,
         description,
         type,
         flipped,
-        hasSteps,
         imageSlug,
         descLicense,
         imageLicense,
-        animated,
-        category
+        animated
       ];
   @override
   String get aliasedName => _alias ?? 'exercises';
@@ -457,8 +394,9 @@ class $ExercisesTable extends Exercises
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    if (data.containsKey('wger_id')) {
+      context.handle(_wgerIdMeta,
+          wgerId.isAcceptableOrUnknown(data['wger_id']!, _wgerIdMeta));
     }
     if (data.containsKey('name')) {
       context.handle(
@@ -472,21 +410,10 @@ class $ExercisesTable extends Exercises
           description.isAcceptableOrUnknown(
               data['description']!, _descriptionMeta));
     }
-    if (data.containsKey('type')) {
-      context.handle(
-          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
-    } else if (isInserting) {
-      context.missing(_typeMeta);
-    }
+    context.handle(_typeMeta, const VerificationResult.success());
     if (data.containsKey('flipped')) {
       context.handle(_flippedMeta,
           flipped.isAcceptableOrUnknown(data['flipped']!, _flippedMeta));
-    }
-    if (data.containsKey('has_steps')) {
-      context.handle(_hasStepsMeta,
-          hasSteps.isAcceptableOrUnknown(data['has_steps']!, _hasStepsMeta));
-    } else if (isInserting) {
-      context.missing(_hasStepsMeta);
     }
     if (data.containsKey('image_slug')) {
       context.handle(_imageSlugMeta,
@@ -497,6 +424,8 @@ class $ExercisesTable extends Exercises
           _descLicenseMeta,
           descLicense.isAcceptableOrUnknown(
               data['desc_license']!, _descLicenseMeta));
+    } else if (isInserting) {
+      context.missing(_descLicenseMeta);
     }
     if (data.containsKey('image_license')) {
       context.handle(
@@ -508,15 +437,11 @@ class $ExercisesTable extends Exercises
       context.handle(_animatedMeta,
           animated.isAcceptableOrUnknown(data['animated']!, _animatedMeta));
     }
-    if (data.containsKey('category')) {
-      context.handle(_categoryMeta,
-          category.isAcceptableOrUnknown(data['category']!, _categoryMeta));
-    }
     return context;
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => {wgerId};
   @override
   Exercise map(Map<String, dynamic> data, {String? tablePrefix}) {
     return Exercise.fromData(data,
@@ -527,310 +452,16 @@ class $ExercisesTable extends Exercises
   $ExercisesTable createAlias(String alias) {
     return $ExercisesTable(attachedDatabase, alias);
   }
-}
 
-class ExerciseStep extends DataClass implements Insertable<ExerciseStep> {
-  final int exercise;
-  final int orderPosition;
-  final String? imageSlug;
-  final String? voiceHint;
-  final int stepDuration;
-  ExerciseStep(
-      {required this.exercise,
-      required this.orderPosition,
-      this.imageSlug,
-      this.voiceHint,
-      required this.stepDuration});
-  factory ExerciseStep.fromData(Map<String, dynamic> data, {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return ExerciseStep(
-      exercise: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}exercise'])!,
-      orderPosition: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}order_position'])!,
-      imageSlug: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}image_slug']),
-      voiceHint: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}voice_hint']),
-      stepDuration: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}step_duration'])!,
-    );
-  }
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['exercise'] = Variable<int>(exercise);
-    map['order_position'] = Variable<int>(orderPosition);
-    if (!nullToAbsent || imageSlug != null) {
-      map['image_slug'] = Variable<String?>(imageSlug);
-    }
-    if (!nullToAbsent || voiceHint != null) {
-      map['voice_hint'] = Variable<String?>(voiceHint);
-    }
-    map['step_duration'] = Variable<int>(stepDuration);
-    return map;
-  }
-
-  ExerciseStepsCompanion toCompanion(bool nullToAbsent) {
-    return ExerciseStepsCompanion(
-      exercise: Value(exercise),
-      orderPosition: Value(orderPosition),
-      imageSlug: imageSlug == null && nullToAbsent
-          ? const Value.absent()
-          : Value(imageSlug),
-      voiceHint: voiceHint == null && nullToAbsent
-          ? const Value.absent()
-          : Value(voiceHint),
-      stepDuration: Value(stepDuration),
-    );
-  }
-
-  factory ExerciseStep.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return ExerciseStep(
-      exercise: serializer.fromJson<int>(json['exercise']),
-      orderPosition: serializer.fromJson<int>(json['orderPosition']),
-      imageSlug: serializer.fromJson<String?>(json['imageSlug']),
-      voiceHint: serializer.fromJson<String?>(json['voiceHint']),
-      stepDuration: serializer.fromJson<int>(json['stepDuration']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'exercise': serializer.toJson<int>(exercise),
-      'orderPosition': serializer.toJson<int>(orderPosition),
-      'imageSlug': serializer.toJson<String?>(imageSlug),
-      'voiceHint': serializer.toJson<String?>(voiceHint),
-      'stepDuration': serializer.toJson<int>(stepDuration),
-    };
-  }
-
-  ExerciseStep copyWith(
-          {int? exercise,
-          int? orderPosition,
-          String? imageSlug,
-          String? voiceHint,
-          int? stepDuration}) =>
-      ExerciseStep(
-        exercise: exercise ?? this.exercise,
-        orderPosition: orderPosition ?? this.orderPosition,
-        imageSlug: imageSlug ?? this.imageSlug,
-        voiceHint: voiceHint ?? this.voiceHint,
-        stepDuration: stepDuration ?? this.stepDuration,
-      );
-  @override
-  String toString() {
-    return (StringBuffer('ExerciseStep(')
-          ..write('exercise: $exercise, ')
-          ..write('orderPosition: $orderPosition, ')
-          ..write('imageSlug: $imageSlug, ')
-          ..write('voiceHint: $voiceHint, ')
-          ..write('stepDuration: $stepDuration')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(exercise, orderPosition, imageSlug, voiceHint, stepDuration);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is ExerciseStep &&
-          other.exercise == this.exercise &&
-          other.orderPosition == this.orderPosition &&
-          other.imageSlug == this.imageSlug &&
-          other.voiceHint == this.voiceHint &&
-          other.stepDuration == this.stepDuration);
-}
-
-class ExerciseStepsCompanion extends UpdateCompanion<ExerciseStep> {
-  final Value<int> exercise;
-  final Value<int> orderPosition;
-  final Value<String?> imageSlug;
-  final Value<String?> voiceHint;
-  final Value<int> stepDuration;
-  const ExerciseStepsCompanion({
-    this.exercise = const Value.absent(),
-    this.orderPosition = const Value.absent(),
-    this.imageSlug = const Value.absent(),
-    this.voiceHint = const Value.absent(),
-    this.stepDuration = const Value.absent(),
-  });
-  ExerciseStepsCompanion.insert({
-    required int exercise,
-    required int orderPosition,
-    this.imageSlug = const Value.absent(),
-    this.voiceHint = const Value.absent(),
-    required int stepDuration,
-  })  : exercise = Value(exercise),
-        orderPosition = Value(orderPosition),
-        stepDuration = Value(stepDuration);
-  static Insertable<ExerciseStep> custom({
-    Expression<int>? exercise,
-    Expression<int>? orderPosition,
-    Expression<String?>? imageSlug,
-    Expression<String?>? voiceHint,
-    Expression<int>? stepDuration,
-  }) {
-    return RawValuesInsertable({
-      if (exercise != null) 'exercise': exercise,
-      if (orderPosition != null) 'order_position': orderPosition,
-      if (imageSlug != null) 'image_slug': imageSlug,
-      if (voiceHint != null) 'voice_hint': voiceHint,
-      if (stepDuration != null) 'step_duration': stepDuration,
-    });
-  }
-
-  ExerciseStepsCompanion copyWith(
-      {Value<int>? exercise,
-      Value<int>? orderPosition,
-      Value<String?>? imageSlug,
-      Value<String?>? voiceHint,
-      Value<int>? stepDuration}) {
-    return ExerciseStepsCompanion(
-      exercise: exercise ?? this.exercise,
-      orderPosition: orderPosition ?? this.orderPosition,
-      imageSlug: imageSlug ?? this.imageSlug,
-      voiceHint: voiceHint ?? this.voiceHint,
-      stepDuration: stepDuration ?? this.stepDuration,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (exercise.present) {
-      map['exercise'] = Variable<int>(exercise.value);
-    }
-    if (orderPosition.present) {
-      map['order_position'] = Variable<int>(orderPosition.value);
-    }
-    if (imageSlug.present) {
-      map['image_slug'] = Variable<String?>(imageSlug.value);
-    }
-    if (voiceHint.present) {
-      map['voice_hint'] = Variable<String?>(voiceHint.value);
-    }
-    if (stepDuration.present) {
-      map['step_duration'] = Variable<int>(stepDuration.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('ExerciseStepsCompanion(')
-          ..write('exercise: $exercise, ')
-          ..write('orderPosition: $orderPosition, ')
-          ..write('imageSlug: $imageSlug, ')
-          ..write('voiceHint: $voiceHint, ')
-          ..write('stepDuration: $stepDuration')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class $ExerciseStepsTable extends ExerciseSteps
-    with TableInfo<$ExerciseStepsTable, ExerciseStep> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $ExerciseStepsTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _exerciseMeta = const VerificationMeta('exercise');
-  @override
-  late final GeneratedColumn<int?> exerciseId = GeneratedColumn<int?>(
-      'exercise', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
-  final VerificationMeta _orderPositionMeta =
-      const VerificationMeta('orderPosition');
-  @override
-  late final GeneratedColumn<int?> orderPosition = GeneratedColumn<int?>(
-      'order_position', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
-  final VerificationMeta _imageSlugMeta = const VerificationMeta('imageSlug');
-  @override
-  late final GeneratedColumn<String?> imageSlug = GeneratedColumn<String?>(
-      'image_slug', aliasedName, true,
-      type: const StringType(), requiredDuringInsert: false);
-  final VerificationMeta _voiceHintMeta = const VerificationMeta('voiceHint');
-  @override
-  late final GeneratedColumn<String?> voiceHint = GeneratedColumn<String?>(
-      'voice_hint', aliasedName, true,
-      type: const StringType(), requiredDuringInsert: false);
-  final VerificationMeta _stepDurationMeta =
-      const VerificationMeta('stepDuration');
-  @override
-  late final GeneratedColumn<int?> stepDuration = GeneratedColumn<int?>(
-      'step_duration', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
-  @override
-  List<GeneratedColumn> get $columns =>
-      [exerciseId, orderPosition, imageSlug, voiceHint, stepDuration];
-  @override
-  String get aliasedName => _alias ?? 'exercise_steps';
-  @override
-  String get actualTableName => 'exercise_steps';
-  @override
-  VerificationContext validateIntegrity(Insertable<ExerciseStep> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('exercise')) {
-      context.handle(_exerciseMeta,
-          exerciseId.isAcceptableOrUnknown(data['exercise']!, _exerciseMeta));
-    } else if (isInserting) {
-      context.missing(_exerciseMeta);
-    }
-    if (data.containsKey('order_position')) {
-      context.handle(
-          _orderPositionMeta,
-          orderPosition.isAcceptableOrUnknown(
-              data['order_position']!, _orderPositionMeta));
-    } else if (isInserting) {
-      context.missing(_orderPositionMeta);
-    }
-    if (data.containsKey('image_slug')) {
-      context.handle(_imageSlugMeta,
-          imageSlug.isAcceptableOrUnknown(data['image_slug']!, _imageSlugMeta));
-    }
-    if (data.containsKey('voice_hint')) {
-      context.handle(_voiceHintMeta,
-          voiceHint.isAcceptableOrUnknown(data['voice_hint']!, _voiceHintMeta));
-    }
-    if (data.containsKey('step_duration')) {
-      context.handle(
-          _stepDurationMeta,
-          stepDuration.isAcceptableOrUnknown(
-              data['step_duration']!, _stepDurationMeta));
-    } else if (isInserting) {
-      context.missing(_stepDurationMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {exerciseId, orderPosition};
-  @override
-  ExerciseStep map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return ExerciseStep.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
-  }
-
-  @override
-  $ExerciseStepsTable createAlias(String alias) {
-    return $ExerciseStepsTable(attachedDatabase, alias);
-  }
+  static TypeConverter<ExerciseType, int> $converter0 =
+      const EnumIndexConverter<ExerciseType>(ExerciseType.values);
 }
 
 class Workout extends DataClass implements Insertable<Workout> {
   final int id;
-  final int type;
+  final WorkoutType type;
   final String title;
-  final int category;
+  final WorkoutCategory category;
   final int countdownDuration;
   final int exerciseDuration;
   final int breakDuration;
@@ -847,12 +478,12 @@ class Workout extends DataClass implements Insertable<Workout> {
     return Workout(
       id: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      type: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}type'])!,
+      type: $WorkoutsTable.$converter0.mapToDart(const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}type']))!,
       title: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}title'])!,
-      category: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}category'])!,
+      category: $WorkoutsTable.$converter1.mapToDart(const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}category']))!,
       countdownDuration: const IntType().mapFromDatabaseResponse(
           data['${effectivePrefix}countdown_duration'])!,
       exerciseDuration: const IntType().mapFromDatabaseResponse(
@@ -865,9 +496,15 @@ class Workout extends DataClass implements Insertable<Workout> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
-    map['type'] = Variable<int>(type);
+    {
+      final converter = $WorkoutsTable.$converter0;
+      map['type'] = Variable<int>(converter.mapToSql(type)!);
+    }
     map['title'] = Variable<String>(title);
-    map['category'] = Variable<int>(category);
+    {
+      final converter = $WorkoutsTable.$converter1;
+      map['category'] = Variable<int>(converter.mapToSql(category)!);
+    }
     map['countdown_duration'] = Variable<int>(countdownDuration);
     map['exercise_duration'] = Variable<int>(exerciseDuration);
     map['break_duration'] = Variable<int>(breakDuration);
@@ -891,9 +528,9 @@ class Workout extends DataClass implements Insertable<Workout> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Workout(
       id: serializer.fromJson<int>(json['id']),
-      type: serializer.fromJson<int>(json['type']),
+      type: serializer.fromJson<WorkoutType>(json['type']),
       title: serializer.fromJson<String>(json['title']),
-      category: serializer.fromJson<int>(json['category']),
+      category: serializer.fromJson<WorkoutCategory>(json['category']),
       countdownDuration: serializer.fromJson<int>(json['countdownDuration']),
       exerciseDuration: serializer.fromJson<int>(json['exerciseDuration']),
       breakDuration: serializer.fromJson<int>(json['breakDuration']),
@@ -904,9 +541,9 @@ class Workout extends DataClass implements Insertable<Workout> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
-      'type': serializer.toJson<int>(type),
+      'type': serializer.toJson<WorkoutType>(type),
       'title': serializer.toJson<String>(title),
-      'category': serializer.toJson<int>(category),
+      'category': serializer.toJson<WorkoutCategory>(category),
       'countdownDuration': serializer.toJson<int>(countdownDuration),
       'exerciseDuration': serializer.toJson<int>(exerciseDuration),
       'breakDuration': serializer.toJson<int>(breakDuration),
@@ -915,9 +552,9 @@ class Workout extends DataClass implements Insertable<Workout> {
 
   Workout copyWith(
           {int? id,
-          int? type,
+          WorkoutType? type,
           String? title,
-          int? category,
+          WorkoutCategory? category,
           int? countdownDuration,
           int? exerciseDuration,
           int? breakDuration}) =>
@@ -962,9 +599,9 @@ class Workout extends DataClass implements Insertable<Workout> {
 
 class WorkoutsCompanion extends UpdateCompanion<Workout> {
   final Value<int> id;
-  final Value<int> type;
+  final Value<WorkoutType> type;
   final Value<String> title;
-  final Value<int> category;
+  final Value<WorkoutCategory> category;
   final Value<int> countdownDuration;
   final Value<int> exerciseDuration;
   final Value<int> breakDuration;
@@ -979,9 +616,9 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
   });
   WorkoutsCompanion.insert({
     this.id = const Value.absent(),
-    required int type,
+    required WorkoutType type,
     required String title,
-    required int category,
+    required WorkoutCategory category,
     required int countdownDuration,
     required int exerciseDuration,
     required int breakDuration,
@@ -993,9 +630,9 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
         breakDuration = Value(breakDuration);
   static Insertable<Workout> custom({
     Expression<int>? id,
-    Expression<int>? type,
+    Expression<WorkoutType>? type,
     Expression<String>? title,
-    Expression<int>? category,
+    Expression<WorkoutCategory>? category,
     Expression<int>? countdownDuration,
     Expression<int>? exerciseDuration,
     Expression<int>? breakDuration,
@@ -1013,9 +650,9 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
 
   WorkoutsCompanion copyWith(
       {Value<int>? id,
-      Value<int>? type,
+      Value<WorkoutType>? type,
       Value<String>? title,
-      Value<int>? category,
+      Value<WorkoutCategory>? category,
       Value<int>? countdownDuration,
       Value<int>? exerciseDuration,
       Value<int>? breakDuration}) {
@@ -1037,13 +674,15 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
       map['id'] = Variable<int>(id.value);
     }
     if (type.present) {
-      map['type'] = Variable<int>(type.value);
+      final converter = $WorkoutsTable.$converter0;
+      map['type'] = Variable<int>(converter.mapToSql(type.value)!);
     }
     if (title.present) {
       map['title'] = Variable<String>(title.value);
     }
     if (category.present) {
-      map['category'] = Variable<int>(category.value);
+      final converter = $WorkoutsTable.$converter1;
+      map['category'] = Variable<int>(converter.mapToSql(category.value)!);
     }
     if (countdownDuration.present) {
       map['countdown_duration'] = Variable<int>(countdownDuration.value);
@@ -1086,9 +725,10 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
       defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
   final VerificationMeta _typeMeta = const VerificationMeta('type');
   @override
-  late final GeneratedColumn<int?> type = GeneratedColumn<int?>(
-      'type', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
+  late final GeneratedColumnWithTypeConverter<WorkoutType, int?> type =
+      GeneratedColumn<int?>('type', aliasedName, false,
+              type: const IntType(), requiredDuringInsert: true)
+          .withConverter<WorkoutType>($WorkoutsTable.$converter0);
   final VerificationMeta _titleMeta = const VerificationMeta('title');
   @override
   late final GeneratedColumn<String?> title = GeneratedColumn<String?>(
@@ -1096,9 +736,10 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
       type: const StringType(), requiredDuringInsert: true);
   final VerificationMeta _categoryMeta = const VerificationMeta('category');
   @override
-  late final GeneratedColumn<int?> category = GeneratedColumn<int?>(
-      'category', aliasedName, false,
-      type: const IntType(), requiredDuringInsert: true);
+  late final GeneratedColumnWithTypeConverter<WorkoutCategory, int?> category =
+      GeneratedColumn<int?>('category', aliasedName, false,
+              type: const IntType(), requiredDuringInsert: true)
+          .withConverter<WorkoutCategory>($WorkoutsTable.$converter1);
   final VerificationMeta _countdownDurationMeta =
       const VerificationMeta('countdownDuration');
   @override
@@ -1139,24 +780,14 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
-    if (data.containsKey('type')) {
-      context.handle(
-          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
-    } else if (isInserting) {
-      context.missing(_typeMeta);
-    }
+    context.handle(_typeMeta, const VerificationResult.success());
     if (data.containsKey('title')) {
       context.handle(
           _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
     } else if (isInserting) {
       context.missing(_titleMeta);
     }
-    if (data.containsKey('category')) {
-      context.handle(_categoryMeta,
-          category.isAcceptableOrUnknown(data['category']!, _categoryMeta));
-    } else if (isInserting) {
-      context.missing(_categoryMeta);
-    }
+    context.handle(_categoryMeta, const VerificationResult.success());
     if (data.containsKey('countdown_duration')) {
       context.handle(
           _countdownDurationMeta,
@@ -1196,6 +827,11 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
   $WorkoutsTable createAlias(String alias) {
     return $WorkoutsTable(attachedDatabase, alias);
   }
+
+  static TypeConverter<WorkoutType, int> $converter0 =
+      const EnumIndexConverter<WorkoutType>(WorkoutType.values);
+  static TypeConverter<WorkoutCategory, int> $converter1 =
+      const EnumIndexConverter<WorkoutCategory>(WorkoutCategory.values);
 }
 
 class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
@@ -1499,16 +1135,589 @@ class $WorkoutExercisesTable extends WorkoutExercises
   }
 }
 
+class WorkoutRecord extends DataClass implements Insertable<WorkoutRecord> {
+  final int id;
+  final String title;
+  final WorkoutCategory category;
+  final DateTime workoutStart;
+  WorkoutRecord(
+      {required this.id,
+      required this.title,
+      required this.category,
+      required this.workoutStart});
+  factory WorkoutRecord.fromData(Map<String, dynamic> data, {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return WorkoutRecord(
+      id: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
+      title: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}title'])!,
+      category: $WorkoutRecordsTable.$converter0.mapToDart(const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}category']))!,
+      workoutStart: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}workout_start'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['title'] = Variable<String>(title);
+    {
+      final converter = $WorkoutRecordsTable.$converter0;
+      map['category'] = Variable<int>(converter.mapToSql(category)!);
+    }
+    map['workout_start'] = Variable<DateTime>(workoutStart);
+    return map;
+  }
+
+  WorkoutRecordsCompanion toCompanion(bool nullToAbsent) {
+    return WorkoutRecordsCompanion(
+      id: Value(id),
+      title: Value(title),
+      category: Value(category),
+      workoutStart: Value(workoutStart),
+    );
+  }
+
+  factory WorkoutRecord.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return WorkoutRecord(
+      id: serializer.fromJson<int>(json['id']),
+      title: serializer.fromJson<String>(json['title']),
+      category: serializer.fromJson<WorkoutCategory>(json['category']),
+      workoutStart: serializer.fromJson<DateTime>(json['workoutStart']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'title': serializer.toJson<String>(title),
+      'category': serializer.toJson<WorkoutCategory>(category),
+      'workoutStart': serializer.toJson<DateTime>(workoutStart),
+    };
+  }
+
+  WorkoutRecord copyWith(
+          {int? id,
+          String? title,
+          WorkoutCategory? category,
+          DateTime? workoutStart}) =>
+      WorkoutRecord(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        category: category ?? this.category,
+        workoutStart: workoutStart ?? this.workoutStart,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('WorkoutRecord(')
+          ..write('id: $id, ')
+          ..write('title: $title, ')
+          ..write('category: $category, ')
+          ..write('workoutStart: $workoutStart')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, title, category, workoutStart);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is WorkoutRecord &&
+          other.id == this.id &&
+          other.title == this.title &&
+          other.category == this.category &&
+          other.workoutStart == this.workoutStart);
+}
+
+class WorkoutRecordsCompanion extends UpdateCompanion<WorkoutRecord> {
+  final Value<int> id;
+  final Value<String> title;
+  final Value<WorkoutCategory> category;
+  final Value<DateTime> workoutStart;
+  const WorkoutRecordsCompanion({
+    this.id = const Value.absent(),
+    this.title = const Value.absent(),
+    this.category = const Value.absent(),
+    this.workoutStart = const Value.absent(),
+  });
+  WorkoutRecordsCompanion.insert({
+    this.id = const Value.absent(),
+    required String title,
+    required WorkoutCategory category,
+    required DateTime workoutStart,
+  })  : title = Value(title),
+        category = Value(category),
+        workoutStart = Value(workoutStart);
+  static Insertable<WorkoutRecord> custom({
+    Expression<int>? id,
+    Expression<String>? title,
+    Expression<WorkoutCategory>? category,
+    Expression<DateTime>? workoutStart,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (title != null) 'title': title,
+      if (category != null) 'category': category,
+      if (workoutStart != null) 'workout_start': workoutStart,
+    });
+  }
+
+  WorkoutRecordsCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? title,
+      Value<WorkoutCategory>? category,
+      Value<DateTime>? workoutStart}) {
+    return WorkoutRecordsCompanion(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      category: category ?? this.category,
+      workoutStart: workoutStart ?? this.workoutStart,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (category.present) {
+      final converter = $WorkoutRecordsTable.$converter0;
+      map['category'] = Variable<int>(converter.mapToSql(category.value)!);
+    }
+    if (workoutStart.present) {
+      map['workout_start'] = Variable<DateTime>(workoutStart.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('WorkoutRecordsCompanion(')
+          ..write('id: $id, ')
+          ..write('title: $title, ')
+          ..write('category: $category, ')
+          ..write('workoutStart: $workoutStart')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $WorkoutRecordsTable extends WorkoutRecords
+    with TableInfo<$WorkoutRecordsTable, WorkoutRecord> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $WorkoutRecordsTable(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
+      'id', aliasedName, false,
+      type: const IntType(),
+      requiredDuringInsert: false,
+      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
+  final VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String?> title = GeneratedColumn<String?>(
+      'title', aliasedName, false,
+      type: const StringType(), requiredDuringInsert: true);
+  final VerificationMeta _categoryMeta = const VerificationMeta('category');
+  @override
+  late final GeneratedColumnWithTypeConverter<WorkoutCategory, int?> category =
+      GeneratedColumn<int?>('category', aliasedName, false,
+              type: const IntType(), requiredDuringInsert: true)
+          .withConverter<WorkoutCategory>($WorkoutRecordsTable.$converter0);
+  final VerificationMeta _workoutStartMeta =
+      const VerificationMeta('workoutStart');
+  @override
+  late final GeneratedColumn<DateTime?> workoutStart =
+      GeneratedColumn<DateTime?>('workout_start', aliasedName, false,
+          type: const IntType(), requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [id, title, category, workoutStart];
+  @override
+  String get aliasedName => _alias ?? 'workout_records';
+  @override
+  String get actualTableName => 'workout_records';
+  @override
+  VerificationContext validateIntegrity(Insertable<WorkoutRecord> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+          _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    context.handle(_categoryMeta, const VerificationResult.success());
+    if (data.containsKey('workout_start')) {
+      context.handle(
+          _workoutStartMeta,
+          workoutStart.isAcceptableOrUnknown(
+              data['workout_start']!, _workoutStartMeta));
+    } else if (isInserting) {
+      context.missing(_workoutStartMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  WorkoutRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return WorkoutRecord.fromData(data,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $WorkoutRecordsTable createAlias(String alias) {
+    return $WorkoutRecordsTable(attachedDatabase, alias);
+  }
+
+  static TypeConverter<WorkoutCategory, int> $converter0 =
+      const EnumIndexConverter<WorkoutCategory>(WorkoutCategory.values);
+}
+
+class WorkoutExerciseRecord extends DataClass
+    implements Insertable<WorkoutExerciseRecord> {
+  final int workoutRecordId;
+  final int orderPosition;
+  final int exercise;
+  final int exerciseDuration;
+  final int completedDuration;
+  WorkoutExerciseRecord(
+      {required this.workoutRecordId,
+      required this.orderPosition,
+      required this.exercise,
+      required this.exerciseDuration,
+      required this.completedDuration});
+  factory WorkoutExerciseRecord.fromData(Map<String, dynamic> data,
+      {String? prefix}) {
+    final effectivePrefix = prefix ?? '';
+    return WorkoutExerciseRecord(
+      workoutRecordId: const IntType().mapFromDatabaseResponse(
+          data['${effectivePrefix}workout_record_id'])!,
+      orderPosition: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}order_position'])!,
+      exercise: const IntType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}exercise'])!,
+      exerciseDuration: const IntType().mapFromDatabaseResponse(
+          data['${effectivePrefix}exercise_duration'])!,
+      completedDuration: const IntType().mapFromDatabaseResponse(
+          data['${effectivePrefix}completed_duration'])!,
+    );
+  }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['workout_record_id'] = Variable<int>(workoutRecordId);
+    map['order_position'] = Variable<int>(orderPosition);
+    map['exercise'] = Variable<int>(exercise);
+    map['exercise_duration'] = Variable<int>(exerciseDuration);
+    map['completed_duration'] = Variable<int>(completedDuration);
+    return map;
+  }
+
+  WorkoutExerciseRecordsCompanion toCompanion(bool nullToAbsent) {
+    return WorkoutExerciseRecordsCompanion(
+      workoutRecordId: Value(workoutRecordId),
+      orderPosition: Value(orderPosition),
+      exercise: Value(exercise),
+      exerciseDuration: Value(exerciseDuration),
+      completedDuration: Value(completedDuration),
+    );
+  }
+
+  factory WorkoutExerciseRecord.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return WorkoutExerciseRecord(
+      workoutRecordId: serializer.fromJson<int>(json['workoutRecordId']),
+      orderPosition: serializer.fromJson<int>(json['orderPosition']),
+      exercise: serializer.fromJson<int>(json['exercise']),
+      exerciseDuration: serializer.fromJson<int>(json['exerciseDuration']),
+      completedDuration: serializer.fromJson<int>(json['completedDuration']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'workoutRecordId': serializer.toJson<int>(workoutRecordId),
+      'orderPosition': serializer.toJson<int>(orderPosition),
+      'exercise': serializer.toJson<int>(exercise),
+      'exerciseDuration': serializer.toJson<int>(exerciseDuration),
+      'completedDuration': serializer.toJson<int>(completedDuration),
+    };
+  }
+
+  WorkoutExerciseRecord copyWith(
+          {int? workoutRecordId,
+          int? orderPosition,
+          int? exercise,
+          int? exerciseDuration,
+          int? completedDuration}) =>
+      WorkoutExerciseRecord(
+        workoutRecordId: workoutRecordId ?? this.workoutRecordId,
+        orderPosition: orderPosition ?? this.orderPosition,
+        exercise: exercise ?? this.exercise,
+        exerciseDuration: exerciseDuration ?? this.exerciseDuration,
+        completedDuration: completedDuration ?? this.completedDuration,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('WorkoutExerciseRecord(')
+          ..write('workoutRecordId: $workoutRecordId, ')
+          ..write('orderPosition: $orderPosition, ')
+          ..write('exercise: $exercise, ')
+          ..write('exerciseDuration: $exerciseDuration, ')
+          ..write('completedDuration: $completedDuration')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(workoutRecordId, orderPosition, exercise,
+      exerciseDuration, completedDuration);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is WorkoutExerciseRecord &&
+          other.workoutRecordId == this.workoutRecordId &&
+          other.orderPosition == this.orderPosition &&
+          other.exercise == this.exercise &&
+          other.exerciseDuration == this.exerciseDuration &&
+          other.completedDuration == this.completedDuration);
+}
+
+class WorkoutExerciseRecordsCompanion
+    extends UpdateCompanion<WorkoutExerciseRecord> {
+  final Value<int> workoutRecordId;
+  final Value<int> orderPosition;
+  final Value<int> exercise;
+  final Value<int> exerciseDuration;
+  final Value<int> completedDuration;
+  const WorkoutExerciseRecordsCompanion({
+    this.workoutRecordId = const Value.absent(),
+    this.orderPosition = const Value.absent(),
+    this.exercise = const Value.absent(),
+    this.exerciseDuration = const Value.absent(),
+    this.completedDuration = const Value.absent(),
+  });
+  WorkoutExerciseRecordsCompanion.insert({
+    required int workoutRecordId,
+    required int orderPosition,
+    required int exercise,
+    required int exerciseDuration,
+    required int completedDuration,
+  })  : workoutRecordId = Value(workoutRecordId),
+        orderPosition = Value(orderPosition),
+        exercise = Value(exercise),
+        exerciseDuration = Value(exerciseDuration),
+        completedDuration = Value(completedDuration);
+  static Insertable<WorkoutExerciseRecord> custom({
+    Expression<int>? workoutRecordId,
+    Expression<int>? orderPosition,
+    Expression<int>? exercise,
+    Expression<int>? exerciseDuration,
+    Expression<int>? completedDuration,
+  }) {
+    return RawValuesInsertable({
+      if (workoutRecordId != null) 'workout_record_id': workoutRecordId,
+      if (orderPosition != null) 'order_position': orderPosition,
+      if (exercise != null) 'exercise': exercise,
+      if (exerciseDuration != null) 'exercise_duration': exerciseDuration,
+      if (completedDuration != null) 'completed_duration': completedDuration,
+    });
+  }
+
+  WorkoutExerciseRecordsCompanion copyWith(
+      {Value<int>? workoutRecordId,
+      Value<int>? orderPosition,
+      Value<int>? exercise,
+      Value<int>? exerciseDuration,
+      Value<int>? completedDuration}) {
+    return WorkoutExerciseRecordsCompanion(
+      workoutRecordId: workoutRecordId ?? this.workoutRecordId,
+      orderPosition: orderPosition ?? this.orderPosition,
+      exercise: exercise ?? this.exercise,
+      exerciseDuration: exerciseDuration ?? this.exerciseDuration,
+      completedDuration: completedDuration ?? this.completedDuration,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (workoutRecordId.present) {
+      map['workout_record_id'] = Variable<int>(workoutRecordId.value);
+    }
+    if (orderPosition.present) {
+      map['order_position'] = Variable<int>(orderPosition.value);
+    }
+    if (exercise.present) {
+      map['exercise'] = Variable<int>(exercise.value);
+    }
+    if (exerciseDuration.present) {
+      map['exercise_duration'] = Variable<int>(exerciseDuration.value);
+    }
+    if (completedDuration.present) {
+      map['completed_duration'] = Variable<int>(completedDuration.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('WorkoutExerciseRecordsCompanion(')
+          ..write('workoutRecordId: $workoutRecordId, ')
+          ..write('orderPosition: $orderPosition, ')
+          ..write('exercise: $exercise, ')
+          ..write('exerciseDuration: $exerciseDuration, ')
+          ..write('completedDuration: $completedDuration')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $WorkoutExerciseRecordsTable extends WorkoutExerciseRecords
+    with TableInfo<$WorkoutExerciseRecordsTable, WorkoutExerciseRecord> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $WorkoutExerciseRecordsTable(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _workoutRecordIdMeta =
+      const VerificationMeta('workoutRecordId');
+  @override
+  late final GeneratedColumn<int?> workoutRecordId = GeneratedColumn<int?>(
+      'workout_record_id', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _orderPositionMeta =
+      const VerificationMeta('orderPosition');
+  @override
+  late final GeneratedColumn<int?> orderPosition = GeneratedColumn<int?>(
+      'order_position', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _exerciseMeta = const VerificationMeta('exercise');
+  @override
+  late final GeneratedColumn<int?> exercise = GeneratedColumn<int?>(
+      'exercise', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _exerciseDurationMeta =
+      const VerificationMeta('exerciseDuration');
+  @override
+  late final GeneratedColumn<int?> exerciseDuration = GeneratedColumn<int?>(
+      'exercise_duration', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _completedDurationMeta =
+      const VerificationMeta('completedDuration');
+  @override
+  late final GeneratedColumn<int?> completedDuration = GeneratedColumn<int?>(
+      'completed_duration', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [
+        workoutRecordId,
+        orderPosition,
+        exercise,
+        exerciseDuration,
+        completedDuration
+      ];
+  @override
+  String get aliasedName => _alias ?? 'workout_exercise_records';
+  @override
+  String get actualTableName => 'workout_exercise_records';
+  @override
+  VerificationContext validateIntegrity(
+      Insertable<WorkoutExerciseRecord> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('workout_record_id')) {
+      context.handle(
+          _workoutRecordIdMeta,
+          workoutRecordId.isAcceptableOrUnknown(
+              data['workout_record_id']!, _workoutRecordIdMeta));
+    } else if (isInserting) {
+      context.missing(_workoutRecordIdMeta);
+    }
+    if (data.containsKey('order_position')) {
+      context.handle(
+          _orderPositionMeta,
+          orderPosition.isAcceptableOrUnknown(
+              data['order_position']!, _orderPositionMeta));
+    } else if (isInserting) {
+      context.missing(_orderPositionMeta);
+    }
+    if (data.containsKey('exercise')) {
+      context.handle(_exerciseMeta,
+          exercise.isAcceptableOrUnknown(data['exercise']!, _exerciseMeta));
+    } else if (isInserting) {
+      context.missing(_exerciseMeta);
+    }
+    if (data.containsKey('exercise_duration')) {
+      context.handle(
+          _exerciseDurationMeta,
+          exerciseDuration.isAcceptableOrUnknown(
+              data['exercise_duration']!, _exerciseDurationMeta));
+    } else if (isInserting) {
+      context.missing(_exerciseDurationMeta);
+    }
+    if (data.containsKey('completed_duration')) {
+      context.handle(
+          _completedDurationMeta,
+          completedDuration.isAcceptableOrUnknown(
+              data['completed_duration']!, _completedDurationMeta));
+    } else if (isInserting) {
+      context.missing(_completedDurationMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {workoutRecordId, orderPosition};
+  @override
+  WorkoutExerciseRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return WorkoutExerciseRecord.fromData(data,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  }
+
+  @override
+  $WorkoutExerciseRecordsTable createAlias(String alias) {
+    return $WorkoutExerciseRecordsTable(attachedDatabase, alias);
+  }
+}
+
 abstract class _$FeeelDB extends GeneratedDatabase {
   _$FeeelDB(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $ExercisesTable exercises = $ExercisesTable(this);
-  late final $ExerciseStepsTable exerciseSteps = $ExerciseStepsTable(this);
   late final $WorkoutsTable workouts = $WorkoutsTable(this);
   late final $WorkoutExercisesTable workoutExercises =
       $WorkoutExercisesTable(this);
+  late final $WorkoutRecordsTable workoutRecords = $WorkoutRecordsTable(this);
+  late final $WorkoutExerciseRecordsTable workoutExerciseRecords =
+      $WorkoutExerciseRecordsTable(this);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [exercises, exerciseSteps, workouts, workoutExercises];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [
+        exercises,
+        workouts,
+        workoutExercises,
+        workoutRecords,
+        workoutExerciseRecords
+      ];
 }
