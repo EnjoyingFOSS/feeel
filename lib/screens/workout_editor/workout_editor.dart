@@ -273,7 +273,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
       if (exercises != null) {
         widget.editableWorkout.workoutExercises.addAll(
             exercises.map((Exercise e) => EditableWorkoutExercise(
-                exerciseId: e.id,
+                exercise: e.wgerId,
                 key:
                     UniqueKey())) // todo make sure list works with zero exercise
             );
