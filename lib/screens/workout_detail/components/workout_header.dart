@@ -21,7 +21,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
-import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +86,7 @@ class WorkoutHeader extends StatelessWidget {
                         //todo workaround for https://github.com/flutter/flutter/issues/30647
                         type: MaterialType.transparency,
                         child: Text(
-                            workout.type == WorkoutType.bundled.dbValue
+                            workout.type == WorkoutType.bundled
                                 ? workout.title.i18n
                                 : workout.title,
                             maxLines: 3,

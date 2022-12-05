@@ -20,17 +20,14 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'dart:io';
-
 import 'package:feeel/db/database.dart';
-import 'package:feeel/screens/exercise_creator/exercise_creator.dart';
+import 'package:feeel/screens/exercise_picker/components/contribute_sheet.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ExercisePickerScreen extends StatefulWidget {
   final FeeelSwatch swatch;

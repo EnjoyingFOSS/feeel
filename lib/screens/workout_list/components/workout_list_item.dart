@@ -21,7 +21,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/workout_detail/workout_detail.dart';
 import 'package:feeel/theming/feeel_shade.dart';

@@ -72,7 +72,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   @override
   Widget build(BuildContext context) {
     final exercise = _getExercise(_exercisePos);
-    final headOnly = exercise.type == ExerciseType.head.dbValue;
+    final headOnly = exercise.type == ExerciseType.head;
 
     return
         // CallbackShortcuts(
@@ -114,7 +114,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
             togglePlayPause: () {
               widget.workoutController.togglePlayPause();
             },
-            headOnly: exercise.type == ExerciseType.head.dbValue,
+            headOnly: exercise.type == ExerciseType.head,
             title: exercise.name.i18n,
             onBreak: _stage == WorkoutStage.workoutBreak ||
                 _stage == WorkoutStage.countdown,

@@ -24,7 +24,6 @@ import 'dart:io';
 
 import 'package:feeel/db/database.dart';
 import 'package:feeel/db/full_workout.dart';
-import 'package:feeel/enums/workout_category.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wakelock/wakelock.dart';
