@@ -1,0 +1,1 @@
+Lanzamiento de corrección de errores en Android 12L+
