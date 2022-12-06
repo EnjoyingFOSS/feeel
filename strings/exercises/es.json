@@ -2,7 +2,7 @@
     "workoutScientific7Minute": "Entrenamiento científico de 7 minutos",
     "workoutLeg": "Entrenamiento de piernas",
     "exerciseJumpingJacks": "Polichilenas",
-    "stepsJumpingJacks": "1. Párese con los pies juntos y los brazos a los lados\n2. Salte a una posición con las piernas abiertas y las manos tocandose por encima de la cabeza\n3. Repita",
+    "stepsJumpingJacks": "Posición inicial:\nPárese con los pies juntos, espalda derecha y los brazos a los lados\n\nPasos:\n1. Salte a una posición con las piernas abiertas y las manos tocandose por encima de la cabeza\n2. Salte de vuelta a la posición inicial\n3. Repita",
     "exerciseWallSit": "Asiento en pared",
     "stepsWallSit": "1. Apóyese en la pared, mirando hacia adelante y con los pies plantados firmemente en el suelo, sus hombros deben separarse y estar a 50 centímetros de la pared\n2. Deslízate por la pared, manteniendo la espalda presionada a ella, hasta que las piernas estén en ángulo recto. Las rodillas deben estar directamente sobre los tobillos\nEl dolor en el cuádriceps es normal, deténgase si siente dolor en la rodilla o en la rótula",
     "exercisePushups": "Lagartijas",
@@ -58,5 +58,6 @@
     "stepsLegRaises": "Posición inicial:\nTúmbate de espaldas, con los pies juntos y los brazos a los lados.\n\nPasos:\n1. Dobla las rodillas y luego enderézalas para que apunten hacia arriba.\n2. Manteniendo las piernas rectas, bájalas juntas sin tocar el suelo. Cuanto más bajes, más intenso será el ejercicio.\n3. Sube las dos piernas juntas hasta que vuelvan a apuntar hacia arriba.\n4. Repite desde el paso 2.",
     "stepsReverseLunges": "Posición inicial:\nDe pie, con los pies separados a la altura de las caderas.\n\nPasos:\n1. Da un paso hacia atrás con una pierna para que pueda doblarse cómodamente hasta un ángulo de 90 grados.\n2. Doble lentamente ambas rodillas hasta formar un ángulo de 90 grados.\n3. Vuelva a la posición inicial.\n4. Repita, alternando las piernas.",
     "stepsBurpees": "Posición inicial:\nDe pie, con los pies separados a la altura de las caderas.\n\nPasos:\n1. Ponte en cuclillas y apóyate en el suelo con las manos entre las rodillas y delante de los pies, con la espalda recta.\n2. Manteniendo las manos en el suelo, salta las piernas hacia atrás hasta la posición de plancha alta.\n3. Realiza una flexión de brazos.\n4. Salta los pies hacia delante para volver a la posición de sentadilla.\n5. Salte hacia arriba.\n6. Repite.",
-    "exerciseBurpees": "Los Burpees"
+    "exerciseBurpees": "Los Burpees",
+    "workoutNeckShoulderStretch": "Estiramientos de cuello y hombros"
 }
