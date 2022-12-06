@@ -95,5 +95,12 @@
     "txtLearnTheExercise": "Aprende el ejercicio",
     "txtCommunityDrivenHeader": "Feeel es un proyecto comunitario",
     "txtDisclaimerHeading": "Aviso legal",
-    "txtDuplicateImportInfo": "Si importas rutinas que sean idénticas a rutinas que ya tienes en Feeel, tendrás esas rutinas dos veces en la aplicación y tendrás que eliminarlas manualmente."
+    "txtDuplicateImportInfo": "Si importas rutinas que sean idénticas a rutinas que ya tienes en Feeel, tendrás esas rutinas dos veces en la aplicación y tendrás que eliminarlas manualmente.",
+    "btnWgerLogIn": "Iniciar sesión con wger",
+    "btnContributeTTS": "Ayuda a traer texto-a-voz a Linux",
+    "btnWgerSignUp": "Registrarse en wger",
+    "btnImportAnyway": "Importar de todas formas",
+    "txtContributeViaWger": "Los ejercicios son contribuidos a través de **el sitio web wger**, otro proyecto comunitario de código abierto. En un lanzamiento futuro, Feeel incorporará todos los ejercicios de este sitio web.",
+    "txtWger21Days": "Contribuir vía wger requiere una cuenta con mas de 21 días de antigüedad.",
+    "btnIunderstand": "Entiendo"
 }
