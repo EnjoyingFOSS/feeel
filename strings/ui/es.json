@@ -83,5 +83,17 @@
     "txtDragToReorder": "Arrastre este controlador para reordenar los ejercicios.",
     "btnBackToWorkoutList": "Volver a la lista de ejercicios",
     "btnDeleteThisWorkout": "Eliminar este entrenamiento",
-    "txtNoExercises": "No hay ejercicios en este entrenamiento. :("
+    "txtNoExercises": "No hay ejercicios en este entrenamiento. :(",
+    "txtDuplicateImportTitle": "Los duplicados no serán omitidos",
+    "txtDisclaimerContent": "Los ejercicios y rutinas son contribuidos voluntariamente. Ni Feeel ni ningún otro voluntario es responsable de la exactitud de la información en esta aplicación o de tu salud. Úsala bajo tu propia discreción.",
+    "txtGetReady": "¡Prepárate!",
+    "txtExportCustomWorkouts": "Exportar rutinas personalizadas",
+    "txtImportWorkouts": "Importar rutinas",
+    "txtNoCustomWorkouts": "No tienes ninguna rutina personalizada",
+    "txtEnglishDescriptionLicense": "Descripción de licencia en inglés",
+    "txtImageLicense": "Licencia de imagen",
+    "txtLearnTheExercise": "Aprende el ejercicio",
+    "txtCommunityDrivenHeader": "Feeel es un proyecto comunitario",
+    "txtDisclaimerHeading": "Aviso legal",
+    "txtDuplicateImportInfo": "Si importas rutinas que sean idénticas a rutinas que ya tienes en Feeel, tendrás esas rutinas dos veces en la aplicación y tendrás que eliminarlas manualmente."
 }
