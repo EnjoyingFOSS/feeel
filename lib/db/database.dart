@@ -25,7 +25,7 @@ import 'package:drift/drift.dart';
 import 'dart:io';
 import 'package:drift/native.dart';
 import 'package:feeel/db/default_workouts.dart';
-import 'package:feeel/db/editable_workout_record.dart';
+import 'package:feeel/models/editable_workout_record.dart';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/languages.dart';
 import 'package:feeel/enums/muscle_type.dart';
@@ -35,8 +35,8 @@ import 'package:path/path.dart' as p;
 
 import '../enums/workout_type.dart';
 import 'default_exercises.dart';
-import 'editable_workout.dart';
-import 'full_workout.dart';
+import '../models/editable_workout.dart';
+import '../models/full_workout.dart';
 
 part 'database.g.dart';
 

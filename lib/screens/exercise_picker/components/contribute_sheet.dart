@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/asset_helper.dart';
+import 'package:feeel/utils/asset_helper.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -178,7 +178,7 @@ class ContributeSheet extends StatelessWidget {
                               onPressed: () => URLUtil.launchURL(context,
                                   "https://wger.de/$wgerLangBit/user/login"),
                               child: Text("Log in with wger".i18n)),
-                        if (!narrowLayout)
+                        if (!narrowLayout) //todo the CTA should be one button to a page with guidelines
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

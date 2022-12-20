@@ -24,9 +24,8 @@ import 'dart:io';
 
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_page_types.dart';
-import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/db/full_workout.dart';
-import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/utils/asset_helper.dart';
+import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
