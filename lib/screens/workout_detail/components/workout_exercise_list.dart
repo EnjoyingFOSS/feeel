@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/full_workout.dart';
+import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 

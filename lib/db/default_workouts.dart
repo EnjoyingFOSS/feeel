@@ -22,8 +22,8 @@
 
 // todo update based on latest shipped version
 import 'package:feeel/db/default_exercises.dart';
-import 'package:feeel/db/editable_workout.dart';
-import 'package:feeel/db/editable_workout_exercise.dart';
+import 'package:feeel/models/editable_workout.dart';
+import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
 

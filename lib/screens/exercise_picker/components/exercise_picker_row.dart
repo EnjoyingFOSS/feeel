@@ -1,4 +1,4 @@
-import 'package:feeel/db/asset_helper.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/components/flipped.dart';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
@@ -44,8 +44,8 @@ class ExercisePickerRow extends StatelessWidget {
               width: 0,
             )
           : (exercise.flipped
-              ? Flipped(child: Image.asset(AssetHelper.getThumb(imageSlug)))
-              : Image.asset(AssetHelper.getThumb(imageSlug))),
+              ? Flipped(child: Image.asset(AssetUtil.getThumb(imageSlug)))
+              : Image.asset(AssetUtil.getThumb(imageSlug))),
       onChanged: onChanged,
     );
   }

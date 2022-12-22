@@ -27,7 +27,7 @@ import 'package:feeel/i18n/translations.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../db/asset_helper.dart';
+import '../utils/asset_util.dart';
 
 class DisclaimerSheet extends StatelessWidget {
   const DisclaimerSheet({Key? key}) : super(key: key);
@@ -76,7 +76,7 @@ class DisclaimerSheet extends StatelessWidget {
                   // ),
                 )),
             Image.asset(
-              AssetHelper.getImage("image_volunteer_heart.webp"),
+              AssetUtil.getImage("image_volunteer_heart.webp"),
               width: 128,
             ),
           ]),

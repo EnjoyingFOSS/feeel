@@ -22,10 +22,10 @@
 
 import 'package:feeel/components/exercise_sheet.dart';
 import 'package:feeel/db/database.dart';
-import 'package:feeel/db/full_workout.dart';
+import 'package:feeel/models/full_workout.dart';
 import '../../../controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_view.dart';
-import 'package:feeel/db/asset_helper.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/workout_stage.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
@@ -194,7 +194,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
       final nextImageSlug = _getExercise(_exercisePos + 1).imageSlug;
       if (nextImageSlug != null) {
         precacheImage(
-            Image.asset(AssetHelper.getImage(nextImageSlug)).image, context);
+            Image.asset(AssetUtil.getImage(nextImageSlug)).image, context);
       }
     }
   }

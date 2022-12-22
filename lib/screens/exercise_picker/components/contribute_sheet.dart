@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/utils/asset_helper.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +97,7 @@ class ContributeSheet extends StatelessWidget {
                           color: bgColor,
                         )),
                     Image.asset(
-                      AssetHelper.getImage("wger-logo.webp"),
+                      AssetUtil.getImage("wger-logo.webp"),
                       width: 128,
                     ),
                   ]))),

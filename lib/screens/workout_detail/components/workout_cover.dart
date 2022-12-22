@@ -20,8 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/db/full_workout.dart';
+import 'package:feeel/utils/asset_util.dart';
+import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +47,7 @@ class WorkoutCover extends StatelessWidget {
     final imageSlug = fullWorkout.exercises[0].imageSlug;
     if (imageSlug != null) {
       precacheImage(
-          Image.asset(AssetHelper.getImage(imageSlug))
+          Image.asset(AssetUtil.getImage(imageSlug))
               .image, //todo precache inside workout page instead?
           context);
     }

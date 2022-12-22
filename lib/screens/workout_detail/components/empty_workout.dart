@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
-import 'package:feeel/db/full_workout.dart';
+import 'package:feeel/models/full_workout.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:provider/provider.dart';

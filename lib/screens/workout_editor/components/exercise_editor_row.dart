@@ -20,8 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/db/editable_workout_exercise.dart';
+import 'package:feeel/utils/asset_util.dart';
+import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/utils/local_exercise_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -57,9 +57,9 @@ class ExerciseEditorRow extends StatelessWidget {
                     ? Container()
                     : exercise.flipped
                         ? Flipped(
-                            child: Image.asset(AssetHelper.getThumb(imageSlug),
+                            child: Image.asset(AssetUtil.getThumb(imageSlug),
                                 width: 72, height: 72))
-                        : Image.asset(AssetHelper.getThumb(imageSlug),
+                        : Image.asset(AssetUtil.getThumb(imageSlug),
                             width: 72, height: 72),
               ),
               Expanded(

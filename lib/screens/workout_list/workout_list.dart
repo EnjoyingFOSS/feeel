@@ -22,7 +22,7 @@
 
 import 'package:feeel/components/disclaimer_sheet.dart';
 import 'package:feeel/db/database.dart';
-import 'package:feeel/db/editable_workout.dart';
+import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/settings/settings.dart';
 import 'package:feeel/screens/workout_editor/workout_editor.dart';

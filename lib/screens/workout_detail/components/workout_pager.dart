@@ -24,7 +24,7 @@ import 'dart:io';
 
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_page_types.dart';
-import 'package:feeel/utils/asset_helper.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
@@ -66,7 +66,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
       final imageSlug = widget.fullWorkout.exercises[0].imageSlug;
       if (imageSlug != null) {
         precacheImage(
-            Image.asset(AssetHelper.getImage(imageSlug))
+            Image.asset(AssetUtil.getImage(imageSlug))
                 .image, //todo precache inside workout page instead?
             context);
       }

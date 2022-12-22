@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/exercise_sheet.dart';
-import 'package:feeel/db/asset_helper.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/duration_util.dart';
@@ -57,9 +57,9 @@ class WorkoutExerciseItem extends StatelessWidget {
                 ? const SizedBox()
                 : exercise.flipped
                     ? Flipped(
-                        child: Image.asset(AssetHelper.getThumb(imageSlug),
+                        child: Image.asset(AssetUtil.getThumb(imageSlug),
                             width: 64, height: 64))
-                    : Image.asset(AssetHelper.getThumb(imageSlug),
+                    : Image.asset(AssetUtil.getThumb(imageSlug),
                         width: 64, height: 64),
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

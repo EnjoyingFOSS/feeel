@@ -24,7 +24,7 @@ import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 // import 'package:archive/archive_io.dart';
-import 'package:feeel/db/notification_helper.dart';
+import 'package:feeel/utils/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/screens/settings/components/theme_dialog.dart';
 import 'package:feeel/utils/url_util.dart';

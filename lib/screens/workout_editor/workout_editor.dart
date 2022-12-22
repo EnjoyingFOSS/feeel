@@ -21,8 +21,8 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
-import 'package:feeel/db/editable_workout.dart';
-import 'package:feeel/db/editable_workout_exercise.dart';
+import 'package:feeel/models/editable_workout.dart';
+import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/exercise_picker/exercise_picker.dart';

@@ -28,7 +28,7 @@ import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../db/asset_helper.dart';
+import '../utils/asset_util.dart';
 import '../enums/exercise_type.dart';
 import 'package:feeel/i18n/translations.dart';
 
@@ -115,14 +115,14 @@ class ExerciseSheet extends StatelessWidget {
                                       onBreak: false,
                                       illustration: IllustrationWidget(
                                           imageAssetString:
-                                              AssetHelper.getImage(imageSlug),
+                                              AssetUtil.getImage(imageSlug),
                                           flipped: exercise.flipped),
                                       triangleSeed: exercise.name.hashCode)
                                   : BodyExerciseContent(
                                       onBreak: false,
                                       illustration: IllustrationWidget(
                                         imageAssetString:
-                                            AssetHelper.getImage(imageSlug),
+                                            AssetUtil.getImage(imageSlug),
                                         flipped: exercise.flipped,
                                       )),
                             ])))),
@@ -140,7 +140,9 @@ class ExerciseSheet extends StatelessWidget {
                       children: [
                         Center(
                             child: Text(
-                          exercise.name.i18n,
+                          exercise.name.i18n +
+                              exercise.wgerId
+                                  .toString(), //todo return to normal
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontSize: 40,

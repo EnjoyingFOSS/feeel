@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-class AssetHelper {
+class AssetUtil {
   static const _assetsPath = "assets/";
   static const _thumbsPath = "assets/thumbs_";
   static String getImage(String imageSlug) => _assetsPath + imageSlug;

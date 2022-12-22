@@ -32,7 +32,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:provider/provider.dart';
-import 'db/notification_helper.dart';
+import 'utils/notification_helper.dart';
 import 'i18n/locale_helper.dart';
 import 'theming/feeel_themes.dart';
 // import 'package:window_size/window_size.dart';

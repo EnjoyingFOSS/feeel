@@ -24,7 +24,7 @@ import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/illustration_widget.dart';
-import '../../../db/asset_helper.dart';
+import '../../../utils/asset_util.dart';
 import '../../../theming/feeel_shade.dart';
 import 'body_exercise_content.dart';
 import 'head_exercise_content.dart';
@@ -65,7 +65,7 @@ class ExerciseIllustration extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
 
     String? imageAssetString =
-        (imageSlug != null) ? AssetHelper.getImage(imageSlug!) : null;
+        (imageSlug != null) ? AssetUtil.getImage(imageSlug!) : null;
 
     if (animated) {
       if (imageAssetString != null) {
