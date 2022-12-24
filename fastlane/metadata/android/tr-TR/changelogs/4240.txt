@@ -1,0 +1,11 @@
+Pek çok değişiklik:
+- Linux için ilk sürüm!
+- Yepyeni bir "Boyun ve omuz esnetme" antrenmanı
+- Çince ve Yunanca destek, gönüllü katkıcılar sayesinde
+- Yeni egzersizler
+- Yeni ekran geçişleri
+- Egzersiz açıklamalarını içeren yeni bir alt kısım
+- Yatay kip için; yeni, çok daha kullanışlı bir egzersiz düzeni
+- Android 13 desteği, temalı uygulama simgesi ve dil seçimini içerir
+- Yeni çeviriler
+- ve daha fazlası!

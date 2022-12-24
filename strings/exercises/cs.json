@@ -78,5 +78,10 @@
     "exercisePullUp": "Shyby",
     "exerciseNeckFlexion": "Protažení zadní strany krku",
     "exerciseLeftNeckStretch": "Protažení levé strany krku",
-    "exerciseSumoSquat": "Sumo dřepy"
+    "exerciseSumoSquat": "Sumo dřepy",
+    "exerciseAlternatingBicepCurls": "Střídavé bicepsové zdvihy",
+    "exerciseNeckCirclesCW": "Kroužení hlavou zleva doprava",
+    "exerciseNeckCirclesCCW": "Kroužení hlavou zprava doleva",
+    "exerciseNeckHalfCircles": "Půlkruhy hlavou",
+    "exerciseHeadTilts": "Úklony do strany"
 }
