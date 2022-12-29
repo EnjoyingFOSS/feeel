@@ -114,7 +114,9 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
                         onPressed: () {
                           Navigator.push<void>(context, MaterialPageRoute(
                               builder: (BuildContext context) {
-                            return WorkoutEditorScreen();
+                            return WorkoutEditorScreen(
+                              editableWorkout: EditableWorkout(),
+                            );
                           })).then((_) {
                             setState(() {}); //todo get rid of setState!
                           }); //todo will need to refresh on coming back

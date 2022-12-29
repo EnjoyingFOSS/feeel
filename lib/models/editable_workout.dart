@@ -27,6 +27,12 @@ import '../enums/workout_category.dart';
 import '../enums/workout_type.dart';
 
 class EditableWorkout {
+  static const int _defaultCountodwnDuration = 5;
+  static const int _defaultExerciseDuration = 30;
+  static const int _defaultBreakDuration = 10;
+  static const WorkoutCategory _defaultWorkoutCategory =
+      WorkoutCategory.strength;
+
   late final List<EditableWorkoutExercise> workoutExercises;
   String title;
   int? dbId;
@@ -40,10 +46,10 @@ class EditableWorkout {
       {this.dbId,
       this.title = "",
       List<EditableWorkoutExercise>? initialWorkoutExercises,
-      this.category = WorkoutCategory.strength,
-      this.countdownDuration = 5,
-      this.breakDuration = 10,
-      this.exerciseDuration = 30,
+      this.category = _defaultWorkoutCategory,
+      this.countdownDuration = _defaultCountodwnDuration,
+      this.breakDuration = _defaultBreakDuration,
+      this.exerciseDuration = _defaultExerciseDuration,
       this.type = WorkoutType.custom}) {
     workoutExercises = initialWorkoutExercises ??
         List<EditableWorkoutExercise>.empty(growable: true);

@@ -40,29 +40,13 @@ import 'package:feeel/i18n/translations.dart';
 import 'package:provider/provider.dart';
 
 class WorkoutEditorScreen extends StatefulWidget {
-  static const int _defaultCountodwnDuration = 5;
-  static const int _defaultExerciseDuration = 30;
-  static const int _defaultBreakDuration = 10;
-  static final EditableWorkout _defaultEditableWorkout = EditableWorkout(
-      type: WorkoutType.custom,
-      initialWorkoutExercises:
-          List<EditableWorkoutExercise>.empty(growable: true),
-      countdownDuration: _defaultCountodwnDuration,
-      breakDuration: _defaultBreakDuration,
-      exerciseDuration: _defaultExerciseDuration,
-      category: WorkoutCategory.strength);
+  final EditableWorkout editableWorkout;
 
-  late final EditableWorkout editableWorkout;
-
-  WorkoutEditorScreen({Key? key, EditableWorkout? editableWorkout})
-      : super(key: key) {
-    this.editableWorkout = editableWorkout ?? _defaultEditableWorkout;
-  }
+  const WorkoutEditorScreen({Key? key, required this.editableWorkout})
+      : super(key: key);
 
   @override
-  State<WorkoutEditorScreen> createState() {
-    return _WorkoutEditorScreenState();
-  }
+  State<WorkoutEditorScreen> createState() => _WorkoutEditorScreenState();
 }
 
 class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
@@ -310,7 +294,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
 
   void _onClose() {
     // todo show only if edits were made
-    showDialog<AlertDialog>(
+    showDialog<void>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
               title: Text("Discard changes?".i18n),
