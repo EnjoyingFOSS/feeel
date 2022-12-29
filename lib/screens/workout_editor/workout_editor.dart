@@ -24,7 +24,6 @@ import 'package:feeel/db/database.dart';
 import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/enums/workout_category.dart';
-import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/exercise_picker/exercise_picker.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
@@ -88,7 +87,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                               //todo EditorHeader and EditorSubheader are used several times here; refactor to deduplicate code
                               header: EditorHeader(
                                   onClose: _onClose,
-                                  onSaved: (String? text) {
+                                  saveState: (String? text) {
                                     if (text != null) {
                                       widget.editableWorkout.title = text;
                                     }
@@ -141,7 +140,7 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                               : WorkoutContentEditor(
                                   header: EditorHeader(
                                       onClose: _onClose,
-                                      onSaved: (String? text) {
+                                      saveState: (String? text) {
                                         if (text != null) {
                                           widget.editableWorkout.title = text;
                                         }

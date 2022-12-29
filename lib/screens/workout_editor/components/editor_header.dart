@@ -26,7 +26,7 @@ import 'package:flutter/material.dart';
 
 class EditorHeader extends StatelessWidget {
   final Function() onClose;
-  final Function(String? title) onSaved;
+  final Function(String? title) saveState;
   final FeeelSwatch colorSwatch;
   final String hintText;
   final String emptyError;
@@ -35,7 +35,7 @@ class EditorHeader extends StatelessWidget {
   const EditorHeader(
       {Key? key,
       required this.onClose,
-      required this.onSaved,
+      required this.saveState,
       required this.colorSwatch,
       required this.hintText,
       required this.emptyError,
@@ -76,7 +76,8 @@ class EditorHeader extends StatelessWidget {
                 }
                 return null;
               },
-              onSaved: onSaved,
+              onChanged: saveState,
+              onSaved: saveState,
             )),
       ),
     ]);
