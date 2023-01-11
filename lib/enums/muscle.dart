@@ -21,7 +21,16 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 enum Muscle {
-  anteriorDeltoid,
+  //todo map the first ones to wger's categories
+  absInGeneral,
+  armsInGeneral,
+  backInGeneral,
+  calvesInGeneral,
+  chestInGeneral,
+  legsInGeneral,
+  shouldersInGeneral,
+
+  anteriorDeltoid, //todo sort by body part, head to foot, rather than alphabetically
   bicepsBrachii,
   brachialis,
   obliquusExternusAbdominis,
@@ -35,5 +44,63 @@ enum Muscle {
   latissimusDorsi,
   soleus,
   trapezius,
-  tricepsBrachii
+  tricepsBrachii;
+
+  static Muscle fromWgerMuscle(int wgerMuscleId) {
+    switch (wgerMuscleId) {
+      case 1:
+        return Muscle.bicepsBrachii;
+      case 2:
+        return Muscle.anteriorDeltoid;
+      case 3:
+        return Muscle.serratusAnterior;
+      case 4:
+        return Muscle.pectoralisMajor;
+      case 5:
+        return Muscle.tricepsBrachii;
+      case 6:
+        return Muscle.rectusAbdominis;
+      case 7:
+        return Muscle.gastrocnemius;
+      case 8:
+        return Muscle.gluteusMaximus;
+      case 9:
+        return Muscle.trapezius;
+      case 10:
+        return Muscle.quadricepsFemoris;
+      case 11:
+        return Muscle.bicepsFemoris;
+      case 12:
+        return Muscle.latissimusDorsi;
+      case 13:
+        return Muscle.brachialis;
+      case 14:
+        return Muscle.obliquusExternusAbdominis;
+      case 15:
+        return Muscle.soleus;
+      default:
+        throw ArgumentError.value(wgerMuscleId);
+    }
+  }
+
+  static Muscle fromWgerCategory(int wgerCategoryId) {
+    switch (wgerCategoryId) {
+      case 8:
+        return Muscle.armsInGeneral;
+      case 9:
+        return Muscle.legsInGeneral;
+      case 10:
+        return Muscle.absInGeneral;
+      case 11:
+        return Muscle.chestInGeneral;
+      case 12:
+        return Muscle.backInGeneral;
+      case 13:
+        return Muscle.shouldersInGeneral;
+      case 14:
+        return Muscle.calvesInGeneral;
+      default:
+        throw ArgumentError.value(wgerCategoryId);
+    }
+  }
 }

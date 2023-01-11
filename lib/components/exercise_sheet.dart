@@ -140,9 +140,7 @@ class ExerciseSheet extends StatelessWidget {
                       children: [
                         Center(
                             child: Text(
-                          exercise.name.i18n +
-                              exercise.wgerId
-                                  .toString(), //todo return to normal
+                          exercise.name.i18n,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontSize: 40,
@@ -191,7 +189,18 @@ class ExerciseSheet extends StatelessWidget {
                               ?.copyWith(color: licenseColor),
                         ),
                         MarkdownBody(
-                            data: exercise.descLicense,
+                            data:
+                                "English description by %1s is licensed under the [%2s license]."
+                                    .i18n
+                                    .replaceFirst("]",
+                                        "](${exercise.descLicense.licenseLink})")
+                                    .replaceFirst(
+                                        "%1s",
+                                        exercise.descAuthors
+                                            .split(Exercises.listSeparator)
+                                            .join(", "))
+                                    .replaceFirst("%2s",
+                                        exercise.descLicense.licenseName),
                             styleSheet: markdownLicenseStyle,
                             onTapLink: (text, url, title) =>
                                 URLUtil.launchURL(context, url ?? "")),

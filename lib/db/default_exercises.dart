@@ -21,72 +21,74 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
+import 'package:feeel/enums/exercise_category.dart';
 import 'package:feeel/enums/exercise_type.dart';
+import 'package:feeel/enums/license.dart';
 
 // todo update based on latest shipped version
 class DefaultExercises {
-  static const int jumpingJacks = 1,
-      wallSit = 2,
-      pushUps = 3,
-      abCrunches = 4,
-      stepUps = 5,
-      squats = 6,
-      chairDips = 7,
-      forearmPlank = 8,
-      highKnees = 9,
-      lunges = 10,
-      pushUpRotations = 11,
-      sidePlankL = 12,
-      sidePlankR = 13,
-      sideSplitSquatsL = 14,
-      bulgarianSplitSquatsL = 15,
-      bulgarianSplitSquatsR = 16,
-      pistolSquatsL = 17,
-      pistolSquatsR = 18,
-      kneelingKickbacks = 19,
-      calfRaisesL = 20,
-      calfRaisesR = 21,
-      sideSplitSquatsR = 22,
-      splitSquatsL = 23,
-      splitSquatsR = 24,
-      jumpRopeBasic = 25,
-      armCirclesFW = 26,
-      pikePushUps = 27,
-      mountainClimbers = 28,
-      fourCountBurpees = 29,
-      noPushUpBurpees = 30,
-      squatThrusts = 31,
-      reverseLunges = 32,
-      legRaises = 33,
-      florrDips = 34, // v2.2.0
-      highPlank = 35,
-      armCirclesBW = 36,
-      childsPose = 37,
-      pullUp = 38,
-      kettlebellDeadlift = 39,
-      sumoSquat = 40,
-      shoulderRotationFW = 41,
-      shoulderRotationBW = 42,
-      shoulderShrug = 43,
-      chinTuck = 44,
-      headTurns = 45,
+  static const int jumpingJacks = 320,
+      wallSit = 718,
+      pushUps = 482,
+      abCrunches = 167,
+      stepUps = -5, // negative numbers represent stuff not in wger yet
+      squats = -6,
+      chairDips = -7,
+      forearmPlank = -8,
+      highKnees = -9,
+      lunges = -10,
+      pushUpRotations = -11,
+      sidePlankL = -12,
+      sidePlankR = -13,
+      sideSplitSquatsL = -14,
+      bulgarianSplitSquatsL = -15,
+      bulgarianSplitSquatsR = -16,
+      pistolSquatsL = -17,
+      pistolSquatsR = -18,
+      kneelingKickbacks = -19,
+      calfRaisesL = -20,
+      calfRaisesR = -21,
+      sideSplitSquatsR = -22,
+      splitSquatsL = -23,
+      splitSquatsR = -24,
+      jumpRopeBasic = -25,
+      armCirclesFW = -26,
+      pikePushUps = -27,
+      mountainClimbers = -28,
+      fourCountBurpees = -29,
+      noPushUpBurpees = -30,
+      squatThrusts = -31,
+      reverseLunges = -32,
+      legRaises = -33,
+      florrDips = -34, // v2.2.0
+      highPlank = -35,
+      armCirclesBW = -36,
+      childsPose = -37,
+      pullUp = -38,
+      kettlebellDeadlift = -39,
+      sumoSquat = -40,
+      shoulderRotationFW = -41,
+      shoulderRotationBW = -42,
+      shoulderShrug = -43,
+      chinTuck = -44,
+      headTurns = -45,
       backNeckStretch =
-          46, // todo double-check numbers from here onward + check which exercises are used
-      lateralNeckStretchL = 47,
-      lateralNeckStretchR = 48,
-      frontNeckStretch = 49,
-      alternatingBicepCurls = 50,
-      levatorScapulaeStretchL = 51,
-      levatorScapulaeStretchR = 52,
-      neckCirclesCW = 53,
-      neckCirclesCCW = 54,
-      neckHalfCircles = 55,
-      headTilts = 56;
+          -46, // todo double-check numbers from here onward + check which exercises are used
+      lateralNeckStretchL = -47,
+      lateralNeckStretchR = -48,
+      frontNeckStretch = -49,
+      alternatingBicepCurls = -50,
+      levatorScapulaeStretchL = -51,
+      levatorScapulaeStretchR = -52,
+      neckCirclesCW = -53,
+      neckCirclesCCW = -54,
+      neckHalfCircles = -55,
+      headTilts = -56;
 
-  static const myDescLicense =
-      "English description by Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).";
-  static const neckStretchDescLicense =
-      "English description by kettenfett and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).";
+  static const _authorMazel = "Miroslav Mazel";
+  static const _authorsKettenfettMazel = "kettenfett|Miroslav Mazel";
+  static const _authorsPaoloMazel = "paolo.dev|Miroslav Mazel";
+  static const _authorsMondsternMazel = "mondstern|Miroslav Mazel";
 
   static const sidePlankDesc =
       "1. Lie down on your side, with your bottom elbow at a right angle, arm sticking out\n2. Lift your pelvis off the floor by lifting your bottom shoulder up, keeping the forearm on the floor; your head, pelvis, and feet should be in a straight line\n3. Hold this position";
@@ -121,7 +123,7 @@ class DefaultExercises {
       'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
 
   static final defaultNoStepExercises = [
-    Exercise(
+    const Exercise(
         wgerId: jumpingJacks,
         name: "Jumping jacks",
         description:
@@ -129,12 +131,14 @@ class DefaultExercises {
         imageSlug: "exercise_jumpingjacks.webp",
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from United States Air Force's [\"Top leaders unite for senior enlisted summit\"](http://www.af.mil/News/Photos/igphoto/2000617206/), which is in the public domain.",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.cardio,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: wallSit,
         name: "Wall sit",
         description:
@@ -142,12 +146,14 @@ class DefaultExercises {
         imageSlug: "exercise_wallsit.webp",
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Fitness Gym Wall Sit Workout Vaughan Gray Fitness\"](http://maxpixel.freegreatpicture.com/Vaughan-Wall-Sit-Workout-Gym-Fitness-2523075) from Max Pixel, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: pushUps,
         name: "Push-ups",
         description:
@@ -155,12 +161,14 @@ class DefaultExercises {
         imageSlug: "exercise_pushup.webp",
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Keiji Yoshiki's [push-up photo](https://www.pexels.com/photo/adult-athlete-body-exercise-176782/), published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: abCrunches,
         name: "Crunches",
         description:
@@ -168,12 +176,14 @@ class DefaultExercises {
         imageSlug: "exercise_abcrunch.webp",
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from bwanderd's [\"26 Abs 1\"](https://www.flickr.com/photos/86598533@N04/8252254965), published under the [CC BY 2.0 license](https://creativecommons.org/licenses/by/2.0/).",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: stepUps,
         name: "Step-ups",
         description:
@@ -181,12 +191,14 @@ class DefaultExercises {
         imageSlug: "exercise_stepup.webp",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Bodyweight Step Up\"](https://www.youtube.com/watch?v=6tuRv_B-tj4) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.cardio,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: squats,
         name: "Squats",
         description:
@@ -194,12 +206,14 @@ class DefaultExercises {
         imageSlug: "exercise_squat.webp",
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Vinceypo0's [\"Parallel Squat Form\"](https://commons.wikimedia.org/wiki/File:Parallel_Squat_Form.jpeg), published under the [CC BY-SA 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/deed.en).",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: chairDips,
         name: "Chair dips",
         description:
@@ -207,12 +221,14 @@ class DefaultExercises {
         imageSlug: "exercise_tricepsdip.webp",
         imageLicense:
             "Miroslav Mazel's \"Chair Dips\" is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: forearmPlank,
         name: "Forearm plank",
         description:
@@ -220,12 +236,14 @@ class DefaultExercises {
         imageSlug: "exercise_plank.webp",
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a [plank photo](https://pxhere.com/en/photo/1165192) from PxHere, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: highKnees,
         name: "High knees",
         description:
@@ -233,12 +251,14 @@ class DefaultExercises {
         imageSlug: "exercise_highknees.webp",
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from US Air Force's [\"RIP It! New running program puts Airmen's best foot forward\"](http://www.barksdale.af.mil/News/Photos/igphoto/2000179280/), which is in the public domain.",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.cardio,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: lunges,
         name: "Lunges",
         description:
@@ -246,12 +266,14 @@ class DefaultExercises {
         imageSlug: "exercise_lunge.webp",
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Mass Communication Specialist 2nd Class Brian Morales's [\"U.S. Navy Gas Turbine Systems Technician (Mechanical) 2nd Class Milton Lovelace, left, and Logistics Specialist Seaman Brittney Joseph, both assigned to the Naval Air Station (NAS) Key West port operations department, perform lunges during a physical training session at NAS Key West, Fla., Aug. 28, 2013. The Sailors were preparing for a Navy-wide physical fitness assessment.\"](https://commons.wikimedia.org/wiki/File:U.S._Navy_Gas_Turbine_Systems_Technician_(Mechanical)_2nd_Class_Milton_Lovelace,_left,_and_Logistics_Specialist_Seaman_Brittney_Joseph,_both_assigned_to_the_Naval_Air_Station_(NAS)_Key_West_port_operations_130828-N-YB753-041.jpg), which is in the public domain.",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: pushUpRotations,
         name: "Push-up rotations",
         description:
@@ -259,217 +281,240 @@ class DefaultExercises {
         imageSlug: "exercise_pushuprotation.webp",
         imageLicense:
             "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Woman in Purple Tank Top and Gray Sweat Pants\"](https://www.pexels.com/photo/woman-in-purple-tank-top-and-gray-sweat-pants-163437/) on Pexels, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: sidePlankL,
         name: "Side plank left",
         description: sidePlankDesc,
         imageSlug: "exercise_sideplank.webp",
         imageLicense: sidePlankImageLicense,
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: sidePlankR,
         name: "Side plank right",
         description: sidePlankDesc,
         flipped: true,
         imageSlug: "exercise_sideplank.webp",
         imageLicense: sidePlankImageLicense,
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: sideSplitSquatsL,
         name: "Side split squats left",
         description: sideLungeDesc,
         flipped: true,
         imageSlug: "exercise_sidesplitsquat.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: bulgarianSplitSquatsL,
         name: "Bulgarian split squats left",
         description: bulgarianSquatsDesc,
         imageSlug: "exercise_bulgariansplitsquat.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: bulgarianSplitSquatsR,
         name: "Bulgarian split squats right",
         description: bulgarianSquatsDesc,
         flipped: true,
         imageSlug: "exercise_bulgariansplitsquat.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: pistolSquatsL,
         name: "Pistol squats left",
         description: pistolSquatDesc,
         flipped: true,
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageSlug: "exercise_pistolsquat.webp",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: pistolSquatsR,
         name: "Pistol squats right",
         description: pistolSquatDesc,
         imageSlug: "exercise_pistolsquat.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: kneelingKickbacks,
         name: "Kneeling kickbacks",
         description:
             "1. Get down on all fours.\n2. Push one foot back until fully extended, concentrating on the gluteus muscles.\n3. Stay for one second, then return to the initial position.\n4. Repeat, alternating feet",
         imageSlug: "exercise_kneelingkickback.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: calfRaisesL,
         name: "Left leg calf raises",
         description: singleLegCalfRaiseDesc,
         imageSlug: "exercise_singlelegcalfraise.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: calfRaisesR,
         name: "Right leg calf raises",
         flipped: true,
         description: singleLegCalfRaiseDesc,
         imageSlug: "exercise_singlelegcalfraise.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: sideSplitSquatsR,
         name: "Side split squats right",
         description: sideLungeDesc,
         imageSlug: "exercise_sidesplitsquat.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: splitSquatsL,
         name: "Split squats left",
         description: splitSquatsDesc,
         imageSlug: "exercise_splitsquat.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: splitSquatsR,
         name: "Split squats right",
         flipped: true,
         description: splitSquatsDesc,
         imageSlug: "exercise_splitsquat.webp",
-        descLicense:
-            "English description by paolo.dev and Miroslav Mazel is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsPaoloMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: jumpRopeBasic,
         name: "Jump rope: basic jumps",
         description:
             "Starting position:\nPut your feet close together, bend the knees a bit, keep your head and body straight, keep elbows in, open your arms.\n\nSteps:\n1. Spin only your wrists with enough force to make the rope spin.\n2. Jump just high enough to pass the rope below your feet.\n3. Repeat.\n\nNotes:\nThis exercise requires a jump rope. Make sure the rope length is adjusted to your height. One way to check is to grab both handles with one hand and stand on the middle of the rope hanging on the ground with one foot. If the rope (excluding the handles) reaches just below your chest, its length is right. A shorter rope would be hazardous, as you might hit yourself, and a longer rope would make for bad form.",
         imageSlug: "exercise_jumpropebasic.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by Mohammad H. Tajaddini, which was derived from [\"Jump rope - skipping\"](https://www.flickr.com/photos/90177949@N00/1394676434) by [Drew and Merissa](https://www.flickr.com/photos/90177949@N00), published under the [CC BY 2.0 license](https://creativecommons.org/licenses/by/2.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.cardio,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: armCirclesFW,
         name: "Forward arm circles",
         description:
             "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, move them down, behind your back, then over your head, and back to the initial position.\n3. Keep circling your arms as described in step 2.",
         imageSlug: "exercise_armcircles_fw.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Arm Circle to Shoulder Press Down\"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.stretching,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: pikePushUps,
         name: "Pike push-ups",
         description:
             "Staring position:\nDownward facing dog: Your body should make a V shape, with a straight back, arms, and legs. Your hips should be up in the air.\nYou can get to this position by walking your hands back from a high plank.\n\nSteps:\n1.Bend your elbows to the side, keeping your back and legs straight and moving your head closer to the floor.\n2. Straighten your arms, pushing your hips back up and keeping your back and legs straight.\n3. Repeat.",
         imageSlug: "exercise_pikepushup.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"FULL BODY Bodyweight Workout [NO EQUIPMENT] // School of Calisthenics\"](https://www.youtube.com/watch?v=96X4fYKe3QY) by School of Calisthenics on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: mountainClimbers,
         name: "Mountain climbers",
         description:
@@ -477,55 +522,59 @@ class DefaultExercises {
         imageSlug: "exercise_mountainclimber.webp",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Mountain Climber\"](https://vimeo.com/149362946) by Dr. Greg Wells on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        descLicense:
-            "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsMondsternMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: fourCountBurpees,
         name: "4-count burpees",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Repeat.",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        descLicense:
-            "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsMondsternMazel,
         imageSlug: "exercise_4countburpee.webp",
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: noPushUpBurpees,
         name: "No push-up burpees",
         description:
             "Starting position:\nStand straight, feet hip-width apart.\n\nSteps:\n1. Squat low and support yourself on the floor with your hands between the knees and in front of your feet, your back straight.\n2. Keeping your hands on the floor, jump your legs backward into high plank position.\n3. Jump your feet forward to return to the squat position.\n4. Jump up.\n5. Repeat.",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        descLicense:
-            "English description by mondstern, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsMondsternMazel,
         imageSlug: "exercise_nopushupburpee.webp",
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: squatThrusts,
         name: "Squat thrusts",
         description:
             "Starting position:\nStart in high plank position: back, arms, and legs straight and hands shoulder-width apart.\n\nSteps:\n1. Jump your feet forward between your arms, keeping your back flat.\n2. Keeping your hands on the floor, jump your legs back into high plank position.\n3. Repeat.",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        descLicense:
-            "English description by Miroslav Mazel, derived from a description by mondstern, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsMondsternMazel,
         imageSlug: "exercise_squatthrust.webp",
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: reverseLunges,
         name: "Reverse lunges",
         description:
@@ -533,12 +582,14 @@ class DefaultExercises {
         imageSlug: "exercise_reverselunge.webp",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Fraser Wilson Lower Body Home Workout - NO EQUIPMENT NEEDED | EHPlabs\"](https://www.youtube.com/watch?v=WROyapZyYME) by EHPlabs on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: legRaises,
         name: "Leg raises",
         description:
@@ -546,12 +597,14 @@ class DefaultExercises {
         imageSlug: "exercise_legraise.webp",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"20-Minute At-Home Full-Body Workout | No Equipment\"](https://www.youtube.com/watch?v=1A7pdAKODEU) by "EatMoveRest - The Stanczyks" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: florrDips,
         name: "Floor dips",
         description:
@@ -559,12 +612,14 @@ class DefaultExercises {
         imageSlug: "exercise_floordip.webp",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"20-Minute At-Home Full-Body Workout | No Equipment\"](https://www.youtube.com/watch?v=1A7pdAKODEU) by "EatMoveRest - The Stanczyks" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: highPlank,
         name: "High plank",
         description:
@@ -572,135 +627,156 @@ class DefaultExercises {
         imageSlug: "exercise_highplank.webp",
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: armCirclesBW,
         name: "Backward arm circles",
         description:
             "1. Stand up tall with your back straight.\n2. Keeping your arms straight, bring them in front of you, raise them over your head, then continue the motion behind your back and down to the initial position.\n3. Keep circling your arms as described in step 2.",
         imageSlug: "exercise_armcircles_bw.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Arm Circle to Shoulder Press Down\"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.stretching,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: childsPose,
         name: "Child's pose",
         description:
             "Starting position:\nStart on all fours, knees, toes, and hands touching the ground. Your two big toes should be touching.\n\nSteps:\n1. Move your knees so that they're about hip-width apart.\n2. On an exhale, move your pelvis back to sit on your heels. Your hands should still be touching the ground.\n3. Relax your upper body, lowering your forehead to the floor and letting your hands move forward naturally.\n4. Stay in this pose.\n\nTips:\n* To leave the pose, walk your arms back under your shoulders and move your upper body up into a seated position.",
         imageSlug: "exercise_childspose.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by Ali Aliyev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.stretching,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: pullUp,
         name: "Pull-ups",
         description:
             "Starting position:\nStart by hanging from the pull-up bar, palms facing away and feet off the floor.\nYour hands should be slightly wider than shoulder-width apart. Only slightly so, so that elbows are still in front of the body rather than squarely to the side.\nYour body should be straight and pointed slightly forward. Your arms should be extended.\n\nSteps:\n1. Use your strength to pull your body up evenly, bringing your chest closer to the pull-up bar and your chin just above it. Do NOT lift yourself up using momentum, such as kicking.\n2. Carefully lower your body back down to starting position.\n3. Repeat.\n\nTips:\n- To do pull-ups correctly, you must first build up strength in several key areas, including shoulders, arms, and abs. Start with pull-ups only after you have built up enough strength with other exercises.",
         imageSlug: "exercise_pullup.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"A US Marine Doing Pull-ups\"](https://commons.wikimedia.org/wiki/File:Marine_Pull-ups.jpg) by "Cpl. C. J. Yard, USMC", published under a public domain license.',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: kettlebellDeadlift,
         name: "Kettlebell deadlifts",
         description:
             "Starting position:\nStand hip-width apart, with your kettlebell centered between your ankles. Your back should be straight, your head facing forward.\n\nSteps:\n1. Hinge at the hips and slightly bend at the knees to put your hands on the kettlebell handles. Your back should be straight as you perform the movement.\n2. Grab the kettlebell handles, with your hands pushing in opposite directions as if to pull the handle apart.\n3. While contacting your abs and glutes, stand straight up.\n4. Hinge at the hips again to bring the kettlebell back down, similarly to step 1.\n5. Repeat from step 3.\n\nTips:\n* Be sure you're performing the movements correctly, as doing otherwise can lead to injury. For example, do not squat instead of hinging at the hips, do not round your back while reaching for the kettlebell, and do not lean back while standing up.",
         imageSlug: "exercise_kettlebelldeadlift.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Man In Blue Shorts Carrying Brown Exercise Equipments\"](https://www.dreamstime.com/man-blue-shorts-carrying-brown-exercise-equipments-public-domain-image-free-83059944) by creativecommonsstockphotos, published under the [CC0 1.0 license](https://creativecommons.org/publicdomain/zero/1.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: sumoSquat,
         name: "Sumo squats",
         description:
             "Starting position:\nStand with legs wide and toes turned outwards.\n\nSteps:\n1. Slowly sink down by bending your knees out. Reach arms forward. Keep your head, chest and hips in a straight line. Squeeze your glutes.\n2. Push back up into starting position.\n3. Repeat this exercise in a pulsing motion.",
         imageSlug: "exercise_sumosquat.webp",
-        descLicense:
-            "English description by kettenfett, modified by Miroslav Mazel, is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+        descLicense: License.ccBySa4,
+        descAuthors: _authorsKettenfettMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"GET SCULPTED LEGS & THIGHS IN 30 DAYS CHALLENGE! Day 18: 100 Tipsy Butterfly! 🦋 #StretchyFit100\"](https://www.youtube.com/watch?v=CbLwLgx6_kw) by Action Jacquelyn on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false,
+        category: ExerciseCategory.strength,
         type: ExerciseType.fullBody),
-    Exercise(
+    const Exercise(
         wgerId: shoulderRotationFW,
         name: "Forward shoulder rotation",
+        category: ExerciseCategory.stretching,
         type: ExerciseType.head,
         description: shoulderRotationDesc,
         imageSlug: "exercise_shoulderrotation_fw.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"SHOULDERS ROTATION EXERCISE (2020)\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Traditional Martial Arts by Dmitry Prosvirov" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false),
-    Exercise(
+    const Exercise(
         wgerId: shoulderRotationBW,
         name: "Backward shoulder rotation",
+        category: ExerciseCategory.stretching,
         type: ExerciseType.head,
         description: shoulderRotationDesc,
         imageSlug: "exercise_shoulderrotation_bw.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"SHOULDERS ROTATION EXERCISE (2020)\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by "Traditional Martial Arts by Dmitry Prosvirov" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false),
-    Exercise(
+    const Exercise(
         wgerId: chinTuck,
         name: "Chin tuck",
+        category: ExerciseCategory.stretching,
         type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Use fingers on your chin to slowly tuck your chin in, moving your head back to align it with your spine.\n2. Hold for 5 seconds.\n3. Go back to normal head position and repeat.",
         imageSlug: "exercise_chintuck.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Home Exercises for Cerivcal Disc Pain | Tim Keeley | Physio REHAB\"](https://www.youtube.com/watch?v=AiTt-zCdluc) by "Physio Fitness | Physio REHAB | Tim Keeley" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false),
-    Exercise(
+    const Exercise(
         wgerId: shoulderShrug,
         name: "Shoulder shrugs",
+        category: ExerciseCategory.stretching,
         type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight.\n\nSteps:\n1. Lift shoulders straight up as far as possible and hold for 5 sec.\n2. Release shoulders back down to a relaxed position.\n3. Repeat.",
         imageSlug: "exercise_shouldershrug.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Yoga class for shoulder relief\"](https://www.youtube.com/watch?v=H8tUMz9ydUw) by "Stewart Hamblin The Feldenkrais Way" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         // hasSteps: false,
         flipped: false,
         animated: false),
-    Exercise(
+    const Exercise(
         wgerId: headTurns,
         name: "Head turns",
+        category: ExerciseCategory.stretching,
         type: ExerciseType.head,
         description:
             "Starting position:\nSit or stand with your back straight and shoulders down.\n\nSteps:\n1. Sit or stand up straight, shoulders dropped.\n2. Turn your head to the side as far as possible. Stop when you hit a barrier and hold for 5 seconds.\n3. Return to center position and repeat, changing sides.",
         imageSlug: "exercise_headturn.webp",
-        descLicense: myDescLicense,
+        descLicense: License.ccBySa4,
+        descAuthors: _authorMazel,
         imageLicense:
             'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief\"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by "Kit Laughlin (Stretch Therapy)" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
         // hasSteps: false,

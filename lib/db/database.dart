@@ -24,12 +24,17 @@ import 'package:drift/drift.dart';
 
 import 'dart:io';
 import 'package:drift/native.dart';
+import 'package:feeel/db/db_migration_maps.dart';
 import 'package:feeel/db/default_workouts.dart';
+import 'package:feeel/enums/equipment.dart';
+import 'package:feeel/enums/exercise_category.dart';
+import 'package:feeel/enums/license.dart';
 import 'package:feeel/models/editable_workout_record.dart';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/languages.dart';
-import 'package:feeel/enums/muscle_type.dart';
+import 'package:feeel/enums/muscle_role.dart';
 import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/models/full_workout_record.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
@@ -40,25 +45,45 @@ import '../models/full_workout.dart';
 
 part 'database.g.dart';
 
+//todo consider using textEnum instead of intEnum in databases in general
+
 //todo differentiate between bundled and non-bundled exercises
 //todo add cache
+//todo convert wger json to Feeel json
 class Exercises extends Table {
+  static const listSeparator = "|";
+
   IntColumn get wgerId => integer()();
   TextColumn get name => text()();
+  TextColumn get aliases => text().nullable()();
+
+  /// pipe-separated list of aliases
+  IntColumn get category => intEnum<ExerciseCategory>()();
   TextColumn get description => text().nullable()();
+  TextColumn get notes => text().nullable()();
+  TextColumn get descLicense => textEnum<License>()();
+  TextColumn get descAuthors => text()();
+
+  /// pipe-separated list of authors
+  TextColumn get imageSlug => text().nullable()();
   IntColumn get type => intEnum<ExerciseType>()(); //todo how to convert this?
   BoolColumn get flipped => boolean().withDefault(const Constant(
       false))(); //todo what's the use of withDefault if constructor requires it anyway?
+  BoolColumn get animated => boolean().withDefault(const Constant(false))();
+  TextColumn get imageLicense => text().nullable()();
+
   // BoolColumn get hasSteps =>
   //     boolean()(); //todo rather than this, point directly to the rowid
-  TextColumn get imageSlug => text().nullable()();
-  TextColumn get descLicense => text()();
-  TextColumn get imageLicense => text().nullable()();
-  BoolColumn get animated => boolean().withDefault(const Constant(false))();
+  IntColumn get variationGroup => integer().nullable()();
 
   @override
   Set<Column>? get primaryKey => {wgerId};
 }
+
+// todo Missing from exercise database
+//
+// "images": [],
+// "videos": [],
 
 class ExerciseTranslations extends Table {
   IntColumn get exercise => integer()();
@@ -85,15 +110,17 @@ class ExerciseTranslations extends Table {
 class ExerciseMuscles extends Table {
   IntColumn get exercise => integer()();
   IntColumn get muscle => integer()();
-  IntColumn get type => intEnum<MuscleType>()();
+  IntColumn get role => intEnum<MuscleRole>()();
 
   @override
-  Set<Column>? get primaryKey => {exercise, muscle, type};
+  Set<Column>? get primaryKey => {exercise, muscle};
 }
 
+@DataClassName("ExerciseEquipmentPiece")
 class ExerciseEquipment extends Table {
+  //todo define singular
   IntColumn get exercise => integer()();
-  IntColumn get equipment => integer()();
+  IntColumn get equipment => intEnum<Equipment>()();
 
   @override
   Set<Column>? get primaryKey => {exercise, equipment};
@@ -107,9 +134,13 @@ class Workouts extends Table {
   IntColumn get countdownDuration => integer()();
   IntColumn get exerciseDuration => integer()();
   IntColumn get breakDuration => integer()();
+  DateTimeColumn get lastUsed => dateTime().nullable()();
+
+  /// only used for sorting, may be inconsistent with workout records
 }
 
 class WorkoutExercises extends Table {
+  //todo change to also work with sets, reps, etc.
   IntColumn get workoutId => integer()();
   IntColumn get orderPosition => integer()();
   IntColumn get exercise => integer()();
@@ -126,6 +157,10 @@ class WorkoutRecords extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text()();
   IntColumn get category => intEnum<WorkoutCategory>()();
+  IntColumn get completedDuration =>
+      integer()(); //potential inconsistency, but faster fetching
+  IntColumn get workoutDuration =>
+      integer()(); //potential inconsistency, but faster fetching
   DateTimeColumn get workoutStart => dateTime()();
 }
 
@@ -143,6 +178,8 @@ class WorkoutExerciseRecords extends Table {
 @DriftDatabase(tables: [
   //todo add new tables
   Exercises,
+  ExerciseMuscles,
+  ExerciseTranslations,
   Workouts,
   WorkoutExercises,
   WorkoutRecords,
@@ -154,7 +191,8 @@ class FeeelDB extends _$FeeelDB {
   static const String _dbFilename =
       "feeel2.db"; //todo this is temporary, before migration is ironed out
 
-  static const int _v3_0_0 = 300;
+  static const _v3_0_0 = 300;
+  static const _pre3_0_0WorkoutExerciseTableName = 'workoutExercises';
 
   FeeelDB() : super(_openConnection());
 
@@ -163,7 +201,6 @@ class FeeelDB extends _$FeeelDB {
 
   @override
   MigrationStrategy get migration {
-    //TODO BATCH RENAME EXERCISE IDS!!!
     return MigrationStrategy(
       onCreate: (Migrator m) async {
         await m.createAll();
@@ -171,36 +208,27 @@ class FeeelDB extends _$FeeelDB {
         await _addDefaultWorkouts();
       },
       onUpgrade: (Migrator m, int from, int to) async {
+        // NEW TABLES
+        if (from < _v3_0_0) {
+          await m.createTable(workoutRecords);
+          await m.createTable(workoutExerciseRecords);
+          await m.createTable(exerciseMuscles);
+          await m.createTable(exerciseTranslations);
+        }
+
         // EXERCISES
         await m.drop(exercises);
         // await m.drop(exerciseSteps);
-        await m.create(exercises);
+        await m.createTable(exercises);
         // await m.create(exerciseSteps);
         await _addDefaultExercises();
 
         // WORKOUTS
 
+        //todo add new time column to workout table too!
+
         // delete default workouts
-        final defaultWorkouts = await (select(workouts)
-              ..where((w) => w.type.equals(WorkoutType.bundled.dbValue)))
-            .get();
-
-        const currentWorkoutExerciseTableName = 'workout_exercises';
-        const pre3_0_0WorkoutExerciseTableName = 'workoutExercises';
-
-        if (from < _v3_0_0) {
-          await customStatement(
-              "DELETE FROM $pre3_0_0WorkoutExerciseTableName WHERE 'workoutType' = 0");
-        } else {
-          for (final dw in defaultWorkouts) {
-            await (delete(workoutExercises)
-                  ..where((we) => we.workoutId.equals(dw.id)))
-                .go();
-          }
-        }
-        await (delete(workouts)
-              ..where((w) => w.type.equals(WorkoutType.bundled.dbValue)))
-            .go();
+        _deteleDefaultWorkouts(from);
 
         // add new default workouts
         if (from < _v3_0_0) {
@@ -209,38 +237,42 @@ class FeeelDB extends _$FeeelDB {
 
         await _addDefaultWorkouts();
 
-        // move custom workouts from old table to new table for old versions
         if (from < _v3_0_0) {
+          // move custom workouts from old table to new table for old versions
+
           final customWorkouts = await (select(workouts)
-                ..where((w) => w.type.equals(WorkoutType.custom.dbValue)))
+                ..where((w) => w.type.equalsValue(WorkoutType.custom)))
               .get();
           for (final cw in customWorkouts) {
-            await customStatement(
-                "INSERT INTO $currentWorkoutExerciseTableName(workout_id, order_position, exercise_id, exercise_duration, break_duration) " +
-                    "SELECT workoutId, orderCol, exercise, exerciseDuration, breakDuration " +
-                    "FROM $pre3_0_0WorkoutExerciseTableName WHERE 'workoutId' = ${cw.id}");
+            final oldWorkoutExercises = await customSelect(
+                    "SELECT workoutId, orderCol, exercise, exerciseDuration, breakDuration "
+                    "FROM $_pre3_0_0WorkoutExerciseTableName WHERE 'workoutId' = ${cw.id}")
+                .get();
+            for (final queryRow in oldWorkoutExercises) {
+              await into(workoutExercises).insert(WorkoutExercisesCompanion(
+                  workoutId: queryRow.read("workoutId"),
+                  orderPosition: queryRow.read("orderCol"),
+                  exercise: Value<int>(DBMigrationMaps
+                      .pre300ToCurrentExercises[queryRow.read("exercise")]!),
+                  exerciseDuration: queryRow.read("exerciseDuration"),
+                  breakDuration: queryRow.read("breakDuration")));
+            }
           }
 
           await customStatement(
-              "DROP TABLE IF EXISTS $pre3_0_0WorkoutExerciseTableName");
+              "DROP TABLE IF EXISTS $_pre3_0_0WorkoutExerciseTableName");
         }
 
         //rename columns for the workout table if on older table version; other tables have been newly created
         if (from < _v3_0_0) {
-          await m.alterTable(TableMigration(
-            workouts,
-            columnTransformer: {
-              workouts.countdownDuration: const CustomExpression<void>(
-                  'countdownDuration'), //todo is the type important here?
-              workouts.exerciseDuration:
-                  const CustomExpression<void>('exerciseDuration'),
-              workouts.breakDuration:
-                  const CustomExpression<void>('breakDuration')
-            },
-          ));
+          await m.addColumn(workouts, workouts.lastUsed);
 
-          // TODO await m.create(workoutRecords);
-          // TODO await m.create(workoutExerciseRecords);
+          await m.renameColumn(
+              workouts, 'countdownDuration', workouts.countdownDuration);
+          await m.renameColumn(
+              workouts, 'exerciseDuration', workouts.exerciseDuration);
+          await m.renameColumn(
+              workouts, 'breakDuration', workouts.breakDuration);
         }
       },
     );
@@ -293,7 +325,12 @@ class FeeelDB extends _$FeeelDB {
     }
   }
 
-  Future<List<Workout>> get queryAllWorkouts => select(workouts).get();
+  Future<List<Workout>> get queryAllWorkouts => (select(workouts)
+        ..orderBy([
+          (w) => OrderingTerm.desc(w.lastUsed),
+          (w) => OrderingTerm.asc(w.id)
+        ]))
+      .get();
 
   Future<FullWorkout> queryWorkoutByRowId(int rowId) async {
     final w = await (select(workouts)..where((w) => w.rowId.equals(rowId)))
@@ -313,9 +350,8 @@ class FeeelDB extends _$FeeelDB {
 
   Future<List<FullWorkout>> queryFullWorkoutsByType(WorkoutType type) async {
     //todo is this really necessary? used only for export...
-    final ws = await (select(workouts)
-          ..where((w) => w.type.equals(type.dbValue)))
-        .get();
+    final ws =
+        await (select(workouts)..where((w) => w.type.equalsValue(type))).get();
 
     final futureList = ws.map((w) async => queryFullWorkout(w));
 
@@ -326,7 +362,7 @@ class FeeelDB extends _$FeeelDB {
     //todo double-check everything; ideally go by categories - R, C, U, D
     if (ew.dbId != null) {
       await (delete(workoutExercises)
-            ..where((we) => we.workoutId.equals(ew.dbId)))
+            ..where((we) => we.workoutId.equals(ew.dbId!)))
           .go();
     }
 
@@ -344,7 +380,7 @@ class FeeelDB extends _$FeeelDB {
 
     final insertedItem = await (select(workouts)
           ..where((w) => (ew.dbId != null)
-              ? w.id.equals(ew.dbId)
+              ? w.id.equals(ew.dbId!)
               : w.rowId.equals(createdRowId)))
         .getSingle();
 
@@ -372,50 +408,78 @@ class FeeelDB extends _$FeeelDB {
         .go(); //todo what if I passed in workout and just ran delete on that workout?
   }
 
-  Future<void> _deteleDefaultWorkouts() async {
-    final workoutTypeValue = WorkoutType.bundled.dbValue;
-    final defaults = await (select(workouts)
-          ..where((w) => w.type.equals(workoutTypeValue)))
-        .get();
+  Future<void> _deteleDefaultWorkouts(int fromDBVersion) async {
+    if (fromDBVersion < _v3_0_0) {
+      await customStatement(
+          "DELETE FROM $_pre3_0_0WorkoutExerciseTableName WHERE 'workoutType' = 0");
+    } else {
+      final defaultWorkouts = await (select(workouts)
+            ..where((w) => w.type.equalsValue(WorkoutType.bundled)))
+          .get();
 
-    for (final workout in defaults) {
-      await (delete(workoutExercises)
-            ..where((we) => we.workoutId.equals(workout.id)))
-          .go();
+      for (final dw in defaultWorkouts) {
+        await (delete(workoutExercises)
+              ..where((we) => we.workoutId.equals(dw.id)))
+            .go();
+      }
     }
-
-    await (delete(workouts)..where((w) => w.type.equals(workoutTypeValue)))
+    await (delete(workouts)
+          ..where((w) => w.type.equalsValue(WorkoutType.bundled)))
         .go();
   }
 
   Future<List<WorkoutRecord>> get queryAllWorkoutRecords =>
       select(workoutRecords).get();
 
+  Future<FullWorkoutRecord> queryFullWorkoutRecord(WorkoutRecord wr) async {
+    // todo fetch exercises or get them from cache?
+    final wers = await (select(workoutExerciseRecords)
+          ..where((wer) => wer.workoutRecordId.equals(wr.id)))
+        .get();
+    final es = await Future.wait(wers.map((wer) async =>
+        await (select(exercises)..where((e) => e.wgerId.equals(wer.exercise)))
+            .getSingle()));
+    return FullWorkoutRecord(
+        workoutRecord: wr, workoutExerciseRecords: wers, exercises: es);
+  }
+
   Future<void> createWorkoutRecord(final EditableWorkoutRecord ewr) async {
-    final rowid = await into(workoutRecords).insertOnConflictUpdate(
+    final wers = ewr.workoutExercises;
+
+    int workoutDuration = 0;
+    for (var i = 0; i < wers.length; i++) {
+      workoutDuration +=
+          wers[i].exerciseDuration ?? ewr.workout.exerciseDuration;
+    }
+
+    final createdRowId = await into(workoutRecords).insertOnConflictUpdate(
         WorkoutRecordsCompanion(
             id: const Value<int>.absent(),
             title: Value(ewr.workout.title),
             category: Value(ewr.workout.category),
-            workoutStart: Value(ewr.workoutStart)));
+            workoutStart: Value(ewr.workoutStart),
+            completedDuration: Value(ewr.completedDurations
+                .reduce((value, element) => value + element)),
+            workoutDuration: Value(workoutDuration)));
 
-    final insertedId = (await (select(workouts)
-              ..where((w) => w.rowId.equals(rowid)))
-            .getSingle())
-        .id; //todo is there a better way to get the inserted id?
+    final insertedItem = await (select(workoutRecords)
+          ..where((wr) => (ewr.dbId != null)
+              ? wr.id.equals(ewr.dbId!)
+              : wr.rowId.equals(createdRowId)))
+        .getSingle();
 
-    final ewers = ewr.workoutExercises;
     await batch((batch) {
       batch.insertAll(
           workoutExerciseRecords,
-          List.generate(ewers.length, (i) {
-            final ewer = ewers[i];
-            return WorkoutExercisesCompanion(
-              workoutId: Value(insertedId),
+          List.generate(wers.length, (i) {
+            final wer = wers[i];
+            return WorkoutExerciseRecordsCompanion(
+              workoutRecordId: Value(insertedItem.id),
               orderPosition: Value(i),
-              exercise: Value(ewer.exercise),
-              exerciseDuration: Value(ewer.exerciseDuration),
-              breakDuration: Value(ewer.breakDuration),
+              exercise: Value(wer.exercise),
+              exerciseDuration:
+                  Value(wer.exerciseDuration ?? ewr.workout.exerciseDuration),
+              completedDuration: Value(ewr.completedDurations[i]),
             );
           }, growable: false));
     });
