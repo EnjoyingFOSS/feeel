@@ -57,11 +57,16 @@ class NotificationHelper {
         macOS: darwinInitialization);
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (_) async {
-      return await Navigator.push<void>(
-        context,
-        MaterialPageRoute(builder: (context) => const WorkoutListScreen()),
-      );
-    });
+          return await Navigator.push<void>(
+            context,
+            MaterialPageRoute(builder: (context) => const WorkoutListScreen()),
+          );
+        });
+  }
+
+  void requestAndroidNotificationPermission() async {
+    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>()!.requestPermission();
   }
 
   void setNotification(BuildContext context, TimeOfDay? timeOfDay) async {
@@ -74,6 +79,8 @@ class NotificationHelper {
         _requestIOSPermissions();
       } else if (Platform.isMacOS) {
         _requestMacOSPermissions();
+      } else if(Platform.isAndroid){
+        requestAndroidNotificationPermission();
       }
 
       final platformChannelSpecifics = NotificationDetails(
@@ -92,7 +99,7 @@ class NotificationHelper {
           platformChannelSpecifics,
           androidAllowWhileIdle: true,
           uiLocalNotificationDateInterpretation:
-              UILocalNotificationDateInterpretation.absoluteTime,
+          UILocalNotificationDateInterpretation.absoluteTime,
           matchDateTimeComponents: DateTimeComponents.time);
     }
   }
@@ -108,23 +115,23 @@ class NotificationHelper {
   void _requestIOSPermissions() {
     flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            IOSFlutterLocalNotificationsPlugin>()
+        IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
+      alert: true,
+      badge: true,
+      sound: true,
+    );
   }
 
   void _requestMacOSPermissions() {
     flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            MacOSFlutterLocalNotificationsPlugin>()
+        MacOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
+      alert: true,
+      badge: true,
+      sound: true,
+    );
   }
 
   static TimeOfDay? timeFromInt(int? mins) =>
@@ -132,3 +139,4 @@ class NotificationHelper {
 
   static int timeToInt(TimeOfDay time) => time.hour * 60 + time.minute;
 }
+
