@@ -1,5 +1,5 @@
-Feeel je svobodná (free and open-source) Android aplikace s jednoduchými domácími cviky. Obsahuje uznávaný celotělový sedmiminutový trénink a umožňuje si vytvářet tréninky vlastní. Ačkoliv zatím obsahuje jen omezený počet cviků, s pomocí komunity je v plánu počet cviků i tréninků výrazně navýšit.
+Feeel je svobodná (free and open-source) Android aplikace s jednoduchými domácími cviky. Obsahuje uznávaný celotělový sedmiminutový trénink a umožňuje také vytváření tréninků vlastních. Ačkoliv zatím obsahuje jen omezený počet cviků, je v plánu počet cviků i tréninků výrazně navýšit s pomocí komunity.
 
-Zapojit se můžete na https://gitlab.com/enjoyingfoss/feeel/wikis .
+Zapojte se na https://gitlab.com/enjoyingfoss/feeel/wikis
 
-Darujte na https://liberapay.com/Feeel/ . Dary mi umožňují pracovat na aplikaci pravidelně a ne jen ve volných chvílích.
+Finančně podpořte na https://liberapay.com/Feeel/ . Dary mi umožňují pracovat na aplikaci pravidelně a ne jen ve volných chvílích.
