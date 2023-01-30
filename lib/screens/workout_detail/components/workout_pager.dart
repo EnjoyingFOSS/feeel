@@ -64,12 +64,10 @@ class _WorkoutPagerState extends State<WorkoutPager> {
 
     if (widget.fullWorkout.workoutExercises.isNotEmpty) {
       final imageSlug = widget.fullWorkout.exercises[0].imageSlug;
-      if (imageSlug != null) {
-        precacheImage(
-            Image.asset(AssetUtil.getImage(imageSlug))
-                .image, //todo precache inside workout page instead?
-            context);
-      }
+      precacheImage(
+          Image.asset(AssetUtil.getImageOrPlaceholderPath(imageSlug))
+              .image, //todo precache inside workout page instead?
+          context);
     }
   }
 
@@ -108,6 +106,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   @override
   void dispose() {
     super.dispose();
+    // _workoutController.recordState();
     _workoutController.close();
   }
 }

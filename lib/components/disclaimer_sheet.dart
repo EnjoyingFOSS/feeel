@@ -76,7 +76,7 @@ class DisclaimerSheet extends StatelessWidget {
                   // ),
                 )),
             Image.asset(
-              AssetUtil.getImage("image_volunteer_heart.webp"),
+              AssetUtil.getImagePath("image_volunteer_heart.webp"),
               width: 128,
             ),
           ]),

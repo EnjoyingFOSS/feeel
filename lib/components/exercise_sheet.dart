@@ -41,7 +41,10 @@ class ExerciseSheet extends StatelessWidget {
   final FeeelSwatch colorSwatch;
 
   const ExerciseSheet(
-      {required this.exercise, required this.colorSwatch, Key? key})
+      //todo make an alternative for Linux — a dialog with the same content
+      {required this.exercise,
+      required this.colorSwatch,
+      Key? key})
       : super(key: key);
 
   static void showSheet(
@@ -89,43 +92,44 @@ class ExerciseSheet extends StatelessWidget {
           slivers: [
             SliverList(
                 delegate: SliverChildListDelegate([
-              if (imageSlug != null)
-                ConstrainedBox(
-                    constraints: BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.height * 0.4),
-                    child: GestureDetector(
-                        onTap: () => Navigator.pop(context),
-                        child: Container(
-                            color: Colors
-                                .transparent, // used to make even the transparent areas clickable
-                            child: Stack(children: [
-                              Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: FractionallySizedBox(
-                                    heightFactor: 0.372,
-                                    widthFactor: 1.0,
-                                    child: Container(
-                                      color: bgColor,
-                                    ),
-                                  )),
-                              headOnly
-                                  ? HeadExerciseContent(
-                                      color: colorSwatch.getColorByBrightness(
-                                          FeeelShade.lightest, brightness),
-                                      onBreak: false,
-                                      illustration: IllustrationWidget(
-                                          imageAssetString:
-                                              AssetUtil.getImage(imageSlug),
-                                          flipped: exercise.flipped),
-                                      triangleSeed: exercise.name.hashCode)
-                                  : BodyExerciseContent(
-                                      onBreak: false,
-                                      illustration: IllustrationWidget(
+              ConstrainedBox(
+                  constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height * 0.4),
+                  child: GestureDetector(
+                      onTap: () => Navigator.pop(context),
+                      child: Container(
+                          color: Colors
+                              .transparent, // used to make even the transparent areas clickable
+                          child: Stack(children: [
+                            Align(
+                                alignment: Alignment.bottomCenter,
+                                child: FractionallySizedBox(
+                                  heightFactor: 0.372,
+                                  widthFactor: 1.0,
+                                  child: Container(
+                                    color: bgColor,
+                                  ),
+                                )),
+                            headOnly
+                                ? HeadExerciseContent(
+                                    color: colorSwatch.getColorByBrightness(
+                                        FeeelShade.lightest, brightness),
+                                    onBreak: false,
+                                    illustration: IllustrationWidget(
                                         imageAssetString:
-                                            AssetUtil.getImage(imageSlug),
-                                        flipped: exercise.flipped,
-                                      )),
-                            ])))),
+                                            AssetUtil.getImageOrPlaceholderPath(
+                                                imageSlug),
+                                        flipped: exercise.flipped),
+                                    triangleSeed: exercise.name.hashCode)
+                                : BodyExerciseContent(
+                                    onBreak: false,
+                                    illustration: IllustrationWidget(
+                                      imageAssetString:
+                                          AssetUtil.getImageOrPlaceholderPath(
+                                              imageSlug),
+                                      flipped: exercise.flipped,
+                                    )),
+                          ])))),
               Container(
                   padding: EdgeInsets.fromLTRB(
                       MediaQuery.of(context).padding.left + 16,

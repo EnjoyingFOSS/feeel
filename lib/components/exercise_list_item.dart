@@ -28,14 +28,14 @@ import 'package:feeel/utils/duration_util.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
-import '../../../components/flipped.dart';
+import 'flipped.dart';
 
-class WorkoutExerciseItem extends StatelessWidget {
+class ExerciseListItem extends StatelessWidget {
   final Exercise exercise;
   final FeeelSwatch colorSwatch;
   final int duration;
 
-  const WorkoutExerciseItem(
+  const ExerciseListItem(
       {Key? key,
       required this.exercise,
       required this.duration,
@@ -53,14 +53,14 @@ class WorkoutExerciseItem extends StatelessWidget {
               right: 8,
               bottom: 8,
             ),
-            child: imageSlug == null
-                ? const SizedBox()
-                : exercise.flipped
-                    ? Flipped(
-                        child: Image.asset(AssetUtil.getThumb(imageSlug),
-                            width: 64, height: 64))
-                    : Image.asset(AssetUtil.getThumb(imageSlug),
-                        width: 64, height: 64),
+            child: exercise.flipped
+                ? Flipped(
+                    child: Image.asset(
+                        AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                        width: 64,
+                        height: 64))
+                : Image.asset(AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                    width: 64, height: 64),
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(

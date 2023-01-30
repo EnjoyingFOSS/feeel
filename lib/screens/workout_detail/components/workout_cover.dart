@@ -45,12 +45,10 @@ class WorkoutCover extends StatelessWidget {
   Future<void> _precacheFirstImage(BuildContext context) async {
     //todo test
     final imageSlug = fullWorkout.exercises[0].imageSlug;
-    if (imageSlug != null) {
-      precacheImage(
-          Image.asset(AssetUtil.getImage(imageSlug))
-              .image, //todo precache inside workout page instead?
-          context);
-    }
+    precacheImage(
+        Image.asset(AssetUtil.getImageOrPlaceholderPath(imageSlug))
+            .image, //todo precache inside workout page instead?
+        context);
   }
 
   @override

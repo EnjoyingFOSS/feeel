@@ -192,10 +192,9 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   void _preloadUpcomingExercise() {
     if (_exercisePos + 1 < widget.fullWorkout.workoutExercises.length) {
       final nextImageSlug = _getExercise(_exercisePos + 1).imageSlug;
-      if (nextImageSlug != null) {
-        precacheImage(
-            Image.asset(AssetUtil.getImage(nextImageSlug)).image, context);
-      }
+      precacheImage(
+          Image.asset(AssetUtil.getImageOrPlaceholderPath(nextImageSlug)).image,
+          context);
     }
   }
 

@@ -39,13 +39,11 @@ class ExercisePickerRow extends StatelessWidget {
               ExerciseSheet.showSheet(context, exercise, colorSwatch),
         ),
       ]),
-      secondary: imageSlug == null
-          ? const SizedBox(
-              width: 0,
-            )
-          : (exercise.flipped
-              ? Flipped(child: Image.asset(AssetUtil.getThumb(imageSlug)))
-              : Image.asset(AssetUtil.getThumb(imageSlug))),
+      secondary: (exercise.flipped
+          ? Flipped(
+              child:
+                  Image.asset(AssetUtil.getThumbOrPlaceholderPath(imageSlug)))
+          : Image.asset(AssetUtil.getThumbOrPlaceholderPath(imageSlug))),
       onChanged: onChanged,
     );
   }

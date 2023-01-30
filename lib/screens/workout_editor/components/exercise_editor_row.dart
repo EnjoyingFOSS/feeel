@@ -53,14 +53,16 @@ class ExerciseEditorRow extends StatelessWidget {
             return Row(children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: imageSlug == null
-                    ? Container()
-                    : exercise.flipped
-                        ? Flipped(
-                            child: Image.asset(AssetUtil.getThumb(imageSlug),
-                                width: 72, height: 72))
-                        : Image.asset(AssetUtil.getThumb(imageSlug),
-                            width: 72, height: 72),
+                child: exercise.flipped
+                    ? Flipped(
+                        child: Image.asset(
+                            AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                            width: 72,
+                            height: 72))
+                    : Image.asset(
+                        AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                        width: 72,
+                        height: 72),
               ),
               Expanded(
                   child: Padding(

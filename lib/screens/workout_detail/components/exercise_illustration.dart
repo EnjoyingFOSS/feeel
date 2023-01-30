@@ -64,13 +64,10 @@ class ExerciseIllustration extends StatelessWidget {
     final brightness = Theme.of(context).brightness;
     final screenSize = MediaQuery.of(context).size;
 
-    String? imageAssetString =
-        (imageSlug != null) ? AssetUtil.getImage(imageSlug!) : null;
+    final imageAssetString = AssetUtil.getImageOrPlaceholderPath(imageSlug!);
 
     if (animated) {
-      if (imageAssetString != null) {
-        AssetImage(imageAssetString).evict();
-      }
+      AssetImage(imageAssetString).evict();
     }
 
     return Expanded(

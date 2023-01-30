@@ -20,11 +20,10 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/exercise_list_item.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-
-import 'workout_exercise_item.dart';
 
 class WorkoutExerciseList extends StatelessWidget {
   final FullWorkout fullWorkout;
@@ -40,7 +39,7 @@ class WorkoutExerciseList extends StatelessWidget {
       //todo use fixed extent
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
-          return WorkoutExerciseItem(
+          return ExerciseListItem(
             //todo allow two-row exercise names
             exercise: fullWorkout.exercises[index],
             duration: fullWorkout.workoutExercises[index].exerciseDuration ??
