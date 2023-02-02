@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Miroslav Mazel
+// Copyright (C) 2019 Miroslav Mazel and Aditya Arora
 //
 // This file is part of Feeel.
 //
@@ -23,7 +23,6 @@
 import 'dart:io';
 
 import 'package:feeel/screens/home_pager/home_pager.dart';
-import 'package:feeel/screens/workout_list/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -65,16 +64,23 @@ class NotificationHelper {
     });
   }
 
-  void setNotification(BuildContext context, TimeOfDay? timeOfDay) async {
+  Future<bool> setNotification(
+      BuildContext context, TimeOfDay? timeOfDay) async {
     final primaryColor = Theme.of(context).primaryColor;
 
     await flutterLocalNotificationsPlugin.cancel(_notificationIntId);
 
     if (timeOfDay != null) {
-      if (Platform.isIOS) {
-        _requestIOSPermissions();
-      } else if (Platform.isMacOS) {
-        _requestMacOSPermissions();
+      final notificationsAllowed = Platform.isAndroid
+          ? await _requestAndroidPermissions()
+          : Platform.isIOS
+              ? await _requestIOSPermissions()
+              : Platform.isMacOS
+                  ? await _requestMacOSPermissions()
+                  : false;
+
+      if (!notificationsAllowed) {
+        return false;
       }
 
       final platformChannelSpecifics = NotificationDetails(
@@ -96,6 +102,8 @@ class NotificationHelper {
               UILocalNotificationDateInterpretation.absoluteTime,
           matchDateTimeComponents: DateTimeComponents.time);
     }
+
+    return true;
   }
 
   tz.TZDateTime _nextDailyInstance(Time time) {
@@ -106,26 +114,36 @@ class NotificationHelper {
     return scheduledDate;
   }
 
-  void _requestIOSPermissions() {
-    flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            IOSFlutterLocalNotificationsPlugin>()
-        ?.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
+  Future<bool> _requestAndroidPermissions() async {
+    return await flutterLocalNotificationsPlugin
+            .resolvePlatformSpecificImplementation<
+                AndroidFlutterLocalNotificationsPlugin>()!
+            .requestPermission() ??
+        false;
   }
 
-  void _requestMacOSPermissions() {
-    flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            MacOSFlutterLocalNotificationsPlugin>()
-        ?.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
+  Future<bool> _requestIOSPermissions() async {
+    return await flutterLocalNotificationsPlugin
+            .resolvePlatformSpecificImplementation<
+                IOSFlutterLocalNotificationsPlugin>()!
+            .requestPermissions(
+              alert: true,
+              badge: true,
+              sound: true,
+            ) ??
+        false;
+  }
+
+  Future<bool> _requestMacOSPermissions() async {
+    return await flutterLocalNotificationsPlugin
+            .resolvePlatformSpecificImplementation<
+                MacOSFlutterLocalNotificationsPlugin>()!
+            .requestPermissions(
+              alert: true,
+              badge: true,
+              sound: true,
+            ) ??
+        false;
   }
 
   static TimeOfDay? timeFromInt(int? mins) =>

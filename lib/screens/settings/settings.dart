@@ -236,7 +236,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     leading: const Icon(Icons.volunteer_activism),
                     title: Text("Participate".i18n),
                     onTap: () => URLUtil.launchURL(context,
-                        "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
+                        "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"), //todo should also change the text on the wiki page — at least the intro
                   ),
                   ListTile(
                     leading: const Icon(Icons.attach_money),
@@ -294,17 +294,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _setNotificationTime(BuildContext context, TimeOfDay? timeOfDay,
-      SharedPreferences preferences) {
-    setState(() {
-      if (timeOfDay == null) {
+      SharedPreferences preferences) async {
+    if (timeOfDay == null) {
+      final notificationUnset =
+          await NotificationHelper.helper.setNotification(context, null);
+      if (notificationUnset) {
         preferences.remove(PreferenceKeys.notificationTimePref);
-        NotificationHelper.helper.setNotification(context, null);
-      } else {
+      }
+    } else {
+      final scaffoldMessenger = ScaffoldMessenger.of(context);
+      final notificationSet =
+          await NotificationHelper.helper.setNotification(context, timeOfDay);
+      if (notificationSet) {
         preferences.setInt(PreferenceKeys.notificationTimePref,
             NotificationHelper.timeToInt(timeOfDay));
-        NotificationHelper.helper.setNotification(context, timeOfDay);
+      } else {
+        scaffoldMessenger.showSnackBar(SnackBar(
+            content: Text(
+                "You must give Feeel permission to show notifications via your system settings."
+                    .i18n)));
       }
-    });
+    }
+    setState(() {});
   }
 
   Future<_SettingsBundle> _getSettingsBundle() async {

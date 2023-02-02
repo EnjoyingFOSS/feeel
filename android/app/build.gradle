@@ -43,7 +43,7 @@ android {
     defaultConfig {
         applicationId "com.enjoyingfoss.feeel"
         minSdkVersion 23
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true // required by flutter_local_notifications
