@@ -23,6 +23,7 @@
 import 'package:feeel/theming/feeel_colors.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 
+/// intEnum in DB
 enum WorkoutCategory {
   strength(0, "Strength", FeeelColors.blue),
   stretching(1, "Stretching & yoga", FeeelColors.green),

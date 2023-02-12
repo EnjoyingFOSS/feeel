@@ -20,25 +20,63 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+/// textEnum in DB
 enum ExerciseLanguage {
-  en('en', wgerDbId: 2),
+  en('en', wgerDbId: _wgerEn),
   ar('ar'), // TODO NEEDS WGER ID!!!
-  cs('cs', wgerDbId: 9),
-  de('de', wgerDbId: 1),
-  es('es', wgerDbId: 4),
+  cs('cs', wgerDbId: _wgerCs),
+  de('de', wgerDbId: _wgerDe),
+  es('es', wgerDbId: _wgerEs),
   eu('eu'), // TODO NEEDS WGER ID!!!
-  fr('fr', wgerDbId: 12),
+  fr('fr', wgerDbId: _wgerFr),
   hr('hr'), // TODO NEEDS WGER ID!!!
   id('id'), // TODO NEEDS WGER ID!!!
-  it('it', wgerDbId: 13),
-  nl('nl', wgerDbId: 6),
-  pt('pt', wgerDbId: 7),
-  ru('ru', wgerDbId: 5),
-  tr('tr', wgerDbId: 16);
+  it('it', wgerDbId: _wgerIt),
+  nl('nl', wgerDbId: _wgerNl),
+  pt('pt', wgerDbId: _wgerPt),
+  ru('ru', wgerDbId: _wgerRu),
+  tr('tr', wgerDbId: _wgerTr);
 
+  static const _wgerDe = 1,
+      _wgerEn = 2,
+      _wgerEs = 4,
+      _wgerRu = 5,
+      _wgerNl = 6,
+      _wgerPt = 7,
+      _wgerCs = 9,
+      _wgerFr = 12,
+      _wgerIt = 13,
+      _wgerTr = 16;
   static const defaultLang = en;
   final String langCode;
   final int? wgerDbId;
 
   const ExerciseLanguage(this.langCode, {this.wgerDbId});
+
+  static ExerciseLanguage fromWgerLanguage(int wgerLanguage) {
+    switch (wgerLanguage) {
+      case _wgerDe:
+        return de;
+      case _wgerEn:
+        return en;
+      case _wgerEs:
+        return es;
+      case _wgerRu:
+        return ru;
+      case _wgerNl:
+        return nl;
+      case _wgerPt:
+        return pt;
+      case _wgerCs:
+        return cs;
+      case _wgerFr:
+        return fr;
+      case _wgerIt:
+        return it;
+      case _wgerTr:
+        return tr;
+      default:
+        throw ArgumentError.value(wgerLanguage);
+    }
+  }
 }

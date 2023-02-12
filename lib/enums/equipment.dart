@@ -20,7 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-enum Equipment {
+/// intEnum in DB
+enum EquipmentPiece {
   none("None needed"),
   barbell("Barbell"),
   bench("Bench"),
@@ -34,5 +35,32 @@ enum Equipment {
 
   final String translationKey;
 
-  const Equipment(this.translationKey);
+  const EquipmentPiece(this.translationKey);
+
+  static EquipmentPiece fromWgerId(int wgerId) {
+    switch (wgerId) {
+      case 1:
+        return barbell;
+      case 2:
+        return ezCurlBar;
+      case 3:
+        return dumbbell;
+      case 4:
+        return gymMat;
+      case 5:
+        return swissBall; //todo double-check that that's actually the ID
+      case 6:
+        return pullUpBar;
+      case 7:
+        return none;
+      case 8:
+        return bench;
+      case 9:
+        return inclineBench;
+      case 10:
+        return kettlebell;
+      default:
+        throw ArgumentError.value(wgerId);
+    }
+  }
 }

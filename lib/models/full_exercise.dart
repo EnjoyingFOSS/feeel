@@ -21,11 +21,17 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
+import 'package:feeel/enums/language.dart';
 
 class FullExercise {
   final Exercise exercise;
-  final List<ExerciseEquipment>? equipment;
-  final List<ExerciseMuscles>? muscles;
+  final List<ExerciseEquipmentPiece>? equipment;
+  final List<ExerciseMuscle> muscles;
+  final Map<ExerciseLanguage, ExerciseTranslation>? translationsByLanguage;
 
-  FullExercise({required this.exercise, this.equipment, this.muscles});
+  FullExercise(
+      {required this.exercise,
+      required this.equipment,
+      required this.muscles,
+      this.translationsByLanguage});
 }

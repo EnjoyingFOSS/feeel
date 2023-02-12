@@ -20,11 +20,6 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-/// intEnum in DB
-enum ExerciseType {
-  fullBody(0),
-  head(1);
-
-  final int dbValue;
-  const ExerciseType(this.dbValue);
+class FeeelGrid {
+  static const sheetContentWidth = 600.0;
 }

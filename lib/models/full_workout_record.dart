@@ -20,11 +20,15 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-/// intEnum in DB
-enum ExerciseType {
-  fullBody(0),
-  head(1);
+import 'package:feeel/db/database.dart';
 
-  final int dbValue;
-  const ExerciseType(this.dbValue);
+class FullWorkoutRecord {
+  final WorkoutRecord workoutRecord;
+  final List<WorkoutExerciseRecord> workoutExerciseRecords;
+  final List<Exercise> exercises;
+
+  FullWorkoutRecord(
+      {required this.workoutRecord,
+      required this.workoutExerciseRecords,
+      required this.exercises});
 }

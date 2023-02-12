@@ -42,15 +42,16 @@ class EditableWorkout {
   WorkoutCategory category;
   WorkoutType type;
 
-  EditableWorkout(
-      {this.dbId,
-      this.title = "",
-      List<EditableWorkoutExercise>? initialWorkoutExercises,
-      this.category = _defaultWorkoutCategory,
-      this.countdownDuration = _defaultCountodwnDuration,
-      this.breakDuration = _defaultBreakDuration,
-      this.exerciseDuration = _defaultExerciseDuration,
-      this.type = WorkoutType.custom}) {
+  EditableWorkout({
+    required this.type,
+    this.dbId,
+    this.title = "",
+    List<EditableWorkoutExercise>? initialWorkoutExercises,
+    this.category = _defaultWorkoutCategory,
+    this.countdownDuration = _defaultCountodwnDuration,
+    this.breakDuration = _defaultBreakDuration,
+    this.exerciseDuration = _defaultExerciseDuration,
+  }) {
     workoutExercises = initialWorkoutExercises ??
         List<EditableWorkoutExercise>.empty(growable: true);
   }

@@ -20,4 +20,5 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+/// intEnum in DB
 enum MuscleRole { primary, secondary }

@@ -23,7 +23,9 @@
 import 'package:feeel/components/illustration_widget.dart';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/screens/workout_detail/components/body_exercise_content.dart';
+import 'package:feeel/screens/workout_detail/components/contribution_overlay.dart';
 import 'package:feeel/screens/workout_detail/components/head_exercise_content.dart';
+import 'package:feeel/theming/feeel_grid.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -78,6 +80,12 @@ class ExerciseSheet extends StatelessWidget {
             : colorSwatch.getColor(FeeelShade.dark);
         final licenseColor = fgColor.withAlpha(192);
 
+        final markdownBodyStyle =
+            MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+                p: const TextStyle(color: fgColor),
+                a: const TextStyle(
+                    color: fgColor, decoration: TextDecoration.none),
+                listBullet: const TextStyle(color: fgColor));
         final markdownLicenseStyle =
             MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
                 p: TextStyle(fontSize: 12, color: licenseColor),
@@ -121,14 +129,28 @@ class ExerciseSheet extends StatelessWidget {
                                                 imageSlug),
                                         flipped: exercise.flipped),
                                     triangleSeed: exercise.name.hashCode)
-                                : BodyExerciseContent(
-                                    onBreak: false,
-                                    illustration: IllustrationWidget(
-                                      imageAssetString:
-                                          AssetUtil.getImageOrPlaceholderPath(
-                                              imageSlug),
-                                      flipped: exercise.flipped,
-                                    )),
+                                : imageSlug != null
+                                    ? BodyExerciseContent(
+                                        onBreak: false,
+                                        illustration: IllustrationWidget(
+                                          imageAssetString: AssetUtil
+                                              .getImageOrPlaceholderPath(
+                                                  imageSlug),
+                                          flipped: exercise.flipped,
+                                        ))
+                                    : Stack(children: <Widget>[
+                                        BodyExerciseContent(
+                                          onBreak: false,
+                                          illustration: IllustrationWidget(
+                                              imageAssetString: AssetUtil
+                                                  .getImageOrPlaceholderPath(
+                                                      imageSlug),
+                                              flipped: exercise.flipped),
+                                          alignment: Alignment.center,
+                                        ),
+                                        ContributionOverlay(
+                                            colorSwatch: colorSwatch)
+                                      ]),
                           ])))),
               Container(
                   padding: EdgeInsets.fromLTRB(
@@ -138,92 +160,119 @@ class ExerciseSheet extends StatelessWidget {
                       16),
                   color: bgColor,
                   width: double.infinity,
-                  child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                            child: Text(
-                          exercise.name.i18n,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.w900,
-                              color: fgColor),
-                        )),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          exercise.description?.i18n ?? "",
-                          style: const TextStyle(color: fgColor),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Container(
-                            color: fgColor.withAlpha(48),
-                            height:
-                                1), //todo hide licenses under an expandable button
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Text(
-                          "Disclaimer".i18n.toUpperCase(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .overline
-                              ?.copyWith(color: licenseColor),
-                        ),
-                        MarkdownBody(
-                            data:
-                                "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion."
-                                    .i18n,
-                            styleSheet: markdownLicenseStyle,
-                            onTapLink: (text, url, title) =>
-                                URLUtil.launchURL(context, url ?? "")),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Text(
-                          "English description license".i18n.toUpperCase(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .overline
-                              ?.copyWith(color: licenseColor),
-                        ),
-                        MarkdownBody(
-                            data:
-                                "English description by %1s is licensed under the [%2s license]."
-                                    .i18n
-                                    .replaceFirst("]",
-                                        "](${exercise.descLicense.licenseLink})")
-                                    .replaceFirst(
-                                        "%1s",
-                                        exercise.descAuthors
-                                            .split(Exercises.listSeparator)
-                                            .join(", "))
-                                    .replaceFirst("%2s",
-                                        exercise.descLicense.licenseName),
-                            styleSheet: markdownLicenseStyle,
-                            onTapLink: (text, url, title) =>
-                                URLUtil.launchURL(context, url ?? "")),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        if (hasImageLicense)
-                          Text("Image license".i18n.toUpperCase(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .overline
-                                  ?.copyWith(color: licenseColor)),
-                        if (hasImageLicense)
-                          MarkdownBody(
-                              data: exercise.imageLicense ?? "",
-                              styleSheet: markdownLicenseStyle,
-                              onTapLink: (text, url, title) =>
-                                  URLUtil.launchURL(context, url ?? ""))
-                      ]))
+                  child: Center(
+                      child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                              maxWidth: FeeelGrid.sheetContentWidth),
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                    child: Text(
+                                  exercise.name.i18n,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w900,
+                                      color: fgColor),
+                                )),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                MarkdownBody(
+                                  data: exercise.description ?? "",
+                                  styleSheet: markdownBodyStyle,
+                                  imageBuilder: (a, b, c) => const SizedBox(),
+                                  onTapLink: (a, b, c) {},
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                if (exercise.notes != null)
+                                  Text(
+                                    "Notes:".i18n,
+                                    style: const TextStyle(
+                                        color: fgColor,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                if (exercise.notes != null)
+                                  MarkdownBody(
+                                    data: exercise.notes!,
+                                    styleSheet: markdownBodyStyle,
+                                    imageBuilder: (a, b, c) => const SizedBox(),
+                                    onTapLink: (a, b, c) {},
+                                  ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Container(
+                                    color: fgColor.withAlpha(48),
+                                    height:
+                                        1), //todo hide licenses under an expandable button
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Text(
+                                  "Disclaimer".i18n.toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .overline
+                                      ?.copyWith(color: licenseColor),
+                                ),
+                                MarkdownBody(
+                                    data:
+                                        "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion."
+                                            .i18n,
+                                    styleSheet: markdownLicenseStyle,
+                                    onTapLink: (text, url, title) =>
+                                        URLUtil.launchURL(context, url ?? "")),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Text(
+                                  "English description license"
+                                      .i18n
+                                      .toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .overline
+                                      ?.copyWith(color: licenseColor),
+                                ),
+                                MarkdownBody(
+                                    data: "English description by %1s is licensed under the [%2s license]."
+                                        .i18n
+                                        .replaceFirst("]",
+                                            "](${exercise.descLicense.licenseLink})")
+                                        .replaceFirst(
+                                            "%1s",
+                                            exercise.descAuthors
+                                                .split(Exercises.listSeparator)
+                                                .join(", "))
+                                        .replaceFirst("%2s",
+                                            exercise.descLicense.licenseName),
+                                    styleSheet: markdownLicenseStyle,
+                                    onTapLink: (text, url, title) =>
+                                        URLUtil.launchURL(context, url ?? "")),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                if (hasImageLicense)
+                                  Text("Image license".i18n.toUpperCase(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .overline
+                                          ?.copyWith(color: licenseColor)),
+                                if (hasImageLicense)
+                                  MarkdownBody(
+                                      data: exercise.imageLicense ?? "",
+                                      styleSheet: markdownLicenseStyle,
+                                      onTapLink: (text, url, title) =>
+                                          URLUtil.launchURL(context, url ?? ""))
+                              ]))))
             ])),
             SliverFillRemaining(
               hasScrollBody: false,

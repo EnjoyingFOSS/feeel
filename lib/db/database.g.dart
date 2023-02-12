@@ -81,25 +81,24 @@ class $ExercisesTable extends Exercises
             SqlDialect.postgres: '',
           }),
           defaultValue: const Constant(false));
-  static const VerificationMeta _animatedMeta =
-      const VerificationMeta('animated');
-  @override
-  late final GeneratedColumn<bool> animated =
-      GeneratedColumn<bool>('animated', aliasedName, false,
-          type: DriftSqlType.bool,
-          requiredDuringInsert: false,
-          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
-            SqlDialect.sqlite: 'CHECK ("animated" IN (0, 1))',
-            SqlDialect.mysql: '',
-            SqlDialect.postgres: '',
-          }),
-          defaultValue: const Constant(false));
   static const VerificationMeta _imageLicenseMeta =
       const VerificationMeta('imageLicense');
   @override
   late final GeneratedColumn<String> imageLicense = GeneratedColumn<String>(
       'image_license', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _animatedMeta =
+      const VerificationMeta('animated');
+  @override
+  late final GeneratedColumn<bool> animated =
+      GeneratedColumn<bool>('animated', aliasedName, false,
+          type: DriftSqlType.bool,
+          requiredDuringInsert: true,
+          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
+            SqlDialect.sqlite: 'CHECK ("animated" IN (0, 1))',
+            SqlDialect.mysql: '',
+            SqlDialect.postgres: '',
+          }));
   static const VerificationMeta _variationGroupMeta =
       const VerificationMeta('variationGroup');
   @override
@@ -119,8 +118,8 @@ class $ExercisesTable extends Exercises
         imageSlug,
         type,
         flipped,
-        animated,
         imageLicense,
+        animated,
         variationGroup
       ];
   @override
@@ -175,15 +174,17 @@ class $ExercisesTable extends Exercises
       context.handle(_flippedMeta,
           flipped.isAcceptableOrUnknown(data['flipped']!, _flippedMeta));
     }
-    if (data.containsKey('animated')) {
-      context.handle(_animatedMeta,
-          animated.isAcceptableOrUnknown(data['animated']!, _animatedMeta));
-    }
     if (data.containsKey('image_license')) {
       context.handle(
           _imageLicenseMeta,
           imageLicense.isAcceptableOrUnknown(
               data['image_license']!, _imageLicenseMeta));
+    }
+    if (data.containsKey('animated')) {
+      context.handle(_animatedMeta,
+          animated.isAcceptableOrUnknown(data['animated']!, _animatedMeta));
+    } else if (isInserting) {
+      context.missing(_animatedMeta);
     }
     if (data.containsKey('variation_group')) {
       context.handle(
@@ -224,10 +225,10 @@ class $ExercisesTable extends Exercises
           .read(DriftSqlType.int, data['${effectivePrefix}type'])!),
       flipped: attachedDatabase.typeMapping
           .read(DriftSqlType.bool, data['${effectivePrefix}flipped'])!,
-      animated: attachedDatabase.typeMapping
-          .read(DriftSqlType.bool, data['${effectivePrefix}animated'])!,
       imageLicense: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}image_license']),
+      animated: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}animated'])!,
       variationGroup: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}variation_group']),
     );
@@ -262,8 +263,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
   final String? imageSlug;
   final ExerciseType type;
   final bool flipped;
-  final bool animated;
   final String? imageLicense;
+  final bool animated;
   final int? variationGroup;
   const Exercise(
       {required this.wgerId,
@@ -277,8 +278,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       this.imageSlug,
       required this.type,
       required this.flipped,
-      required this.animated,
       this.imageLicense,
+      required this.animated,
       this.variationGroup});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -311,10 +312,10 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       map['type'] = Variable<int>(converter.toSql(type));
     }
     map['flipped'] = Variable<bool>(flipped);
-    map['animated'] = Variable<bool>(animated);
     if (!nullToAbsent || imageLicense != null) {
       map['image_license'] = Variable<String>(imageLicense);
     }
+    map['animated'] = Variable<bool>(animated);
     if (!nullToAbsent || variationGroup != null) {
       map['variation_group'] = Variable<int>(variationGroup);
     }
@@ -341,10 +342,10 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           : Value(imageSlug),
       type: Value(type),
       flipped: Value(flipped),
-      animated: Value(animated),
       imageLicense: imageLicense == null && nullToAbsent
           ? const Value.absent()
           : Value(imageLicense),
+      animated: Value(animated),
       variationGroup: variationGroup == null && nullToAbsent
           ? const Value.absent()
           : Value(variationGroup),
@@ -369,8 +370,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       type: $ExercisesTable.$convertertype
           .fromJson(serializer.fromJson<int>(json['type'])),
       flipped: serializer.fromJson<bool>(json['flipped']),
-      animated: serializer.fromJson<bool>(json['animated']),
       imageLicense: serializer.fromJson<String?>(json['imageLicense']),
+      animated: serializer.fromJson<bool>(json['animated']),
       variationGroup: serializer.fromJson<int?>(json['variationGroup']),
     );
   }
@@ -392,8 +393,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       'type':
           serializer.toJson<int>($ExercisesTable.$convertertype.toJson(type)),
       'flipped': serializer.toJson<bool>(flipped),
-      'animated': serializer.toJson<bool>(animated),
       'imageLicense': serializer.toJson<String?>(imageLicense),
+      'animated': serializer.toJson<bool>(animated),
       'variationGroup': serializer.toJson<int?>(variationGroup),
     };
   }
@@ -410,8 +411,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           Value<String?> imageSlug = const Value.absent(),
           ExerciseType? type,
           bool? flipped,
-          bool? animated,
           Value<String?> imageLicense = const Value.absent(),
+          bool? animated,
           Value<int?> variationGroup = const Value.absent()}) =>
       Exercise(
         wgerId: wgerId ?? this.wgerId,
@@ -425,9 +426,9 @@ class Exercise extends DataClass implements Insertable<Exercise> {
         imageSlug: imageSlug.present ? imageSlug.value : this.imageSlug,
         type: type ?? this.type,
         flipped: flipped ?? this.flipped,
-        animated: animated ?? this.animated,
         imageLicense:
             imageLicense.present ? imageLicense.value : this.imageLicense,
+        animated: animated ?? this.animated,
         variationGroup:
             variationGroup.present ? variationGroup.value : this.variationGroup,
       );
@@ -445,8 +446,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           ..write('imageSlug: $imageSlug, ')
           ..write('type: $type, ')
           ..write('flipped: $flipped, ')
-          ..write('animated: $animated, ')
           ..write('imageLicense: $imageLicense, ')
+          ..write('animated: $animated, ')
           ..write('variationGroup: $variationGroup')
           ..write(')'))
         .toString();
@@ -465,8 +466,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       imageSlug,
       type,
       flipped,
-      animated,
       imageLicense,
+      animated,
       variationGroup);
   @override
   bool operator ==(Object other) =>
@@ -483,8 +484,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           other.imageSlug == this.imageSlug &&
           other.type == this.type &&
           other.flipped == this.flipped &&
-          other.animated == this.animated &&
           other.imageLicense == this.imageLicense &&
+          other.animated == this.animated &&
           other.variationGroup == this.variationGroup);
 }
 
@@ -500,8 +501,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
   final Value<String?> imageSlug;
   final Value<ExerciseType> type;
   final Value<bool> flipped;
-  final Value<bool> animated;
   final Value<String?> imageLicense;
+  final Value<bool> animated;
   final Value<int?> variationGroup;
   const ExercisesCompanion({
     this.wgerId = const Value.absent(),
@@ -515,8 +516,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     this.imageSlug = const Value.absent(),
     this.type = const Value.absent(),
     this.flipped = const Value.absent(),
-    this.animated = const Value.absent(),
     this.imageLicense = const Value.absent(),
+    this.animated = const Value.absent(),
     this.variationGroup = const Value.absent(),
   });
   ExercisesCompanion.insert({
@@ -531,14 +532,15 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     this.imageSlug = const Value.absent(),
     required ExerciseType type,
     this.flipped = const Value.absent(),
-    this.animated = const Value.absent(),
     this.imageLicense = const Value.absent(),
+    required bool animated,
     this.variationGroup = const Value.absent(),
   })  : name = Value(name),
         category = Value(category),
         descLicense = Value(descLicense),
         descAuthors = Value(descAuthors),
-        type = Value(type);
+        type = Value(type),
+        animated = Value(animated);
   static Insertable<Exercise> custom({
     Expression<int>? wgerId,
     Expression<String>? name,
@@ -551,8 +553,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     Expression<String>? imageSlug,
     Expression<int>? type,
     Expression<bool>? flipped,
-    Expression<bool>? animated,
     Expression<String>? imageLicense,
+    Expression<bool>? animated,
     Expression<int>? variationGroup,
   }) {
     return RawValuesInsertable({
@@ -567,8 +569,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       if (imageSlug != null) 'image_slug': imageSlug,
       if (type != null) 'type': type,
       if (flipped != null) 'flipped': flipped,
-      if (animated != null) 'animated': animated,
       if (imageLicense != null) 'image_license': imageLicense,
+      if (animated != null) 'animated': animated,
       if (variationGroup != null) 'variation_group': variationGroup,
     });
   }
@@ -585,8 +587,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       Value<String?>? imageSlug,
       Value<ExerciseType>? type,
       Value<bool>? flipped,
-      Value<bool>? animated,
       Value<String?>? imageLicense,
+      Value<bool>? animated,
       Value<int?>? variationGroup}) {
     return ExercisesCompanion(
       wgerId: wgerId ?? this.wgerId,
@@ -600,8 +602,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       imageSlug: imageSlug ?? this.imageSlug,
       type: type ?? this.type,
       flipped: flipped ?? this.flipped,
-      animated: animated ?? this.animated,
       imageLicense: imageLicense ?? this.imageLicense,
+      animated: animated ?? this.animated,
       variationGroup: variationGroup ?? this.variationGroup,
     );
   }
@@ -646,11 +648,11 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     if (flipped.present) {
       map['flipped'] = Variable<bool>(flipped.value);
     }
-    if (animated.present) {
-      map['animated'] = Variable<bool>(animated.value);
-    }
     if (imageLicense.present) {
       map['image_license'] = Variable<String>(imageLicense.value);
+    }
+    if (animated.present) {
+      map['animated'] = Variable<bool>(animated.value);
     }
     if (variationGroup.present) {
       map['variation_group'] = Variable<int>(variationGroup.value);
@@ -672,8 +674,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
           ..write('imageSlug: $imageSlug, ')
           ..write('type: $type, ')
           ..write('flipped: $flipped, ')
-          ..write('animated: $animated, ')
           ..write('imageLicense: $imageLicense, ')
+          ..write('animated: $animated, ')
           ..write('variationGroup: $variationGroup')
           ..write(')'))
         .toString();
@@ -694,9 +696,10 @@ class $ExerciseMusclesTable extends ExerciseMuscles
       type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _muscleMeta = const VerificationMeta('muscle');
   @override
-  late final GeneratedColumn<int> muscle = GeneratedColumn<int>(
-      'muscle', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+  late final GeneratedColumnWithTypeConverter<Muscle, int> muscle =
+      GeneratedColumn<int>('muscle', aliasedName, false,
+              type: DriftSqlType.int, requiredDuringInsert: true)
+          .withConverter<Muscle>($ExerciseMusclesTable.$convertermuscle);
   static const VerificationMeta _roleMeta = const VerificationMeta('role');
   @override
   late final GeneratedColumnWithTypeConverter<MuscleRole, int> role =
@@ -720,12 +723,7 @@ class $ExerciseMusclesTable extends ExerciseMuscles
     } else if (isInserting) {
       context.missing(_exerciseMeta);
     }
-    if (data.containsKey('muscle')) {
-      context.handle(_muscleMeta,
-          muscle.isAcceptableOrUnknown(data['muscle']!, _muscleMeta));
-    } else if (isInserting) {
-      context.missing(_muscleMeta);
-    }
+    context.handle(_muscleMeta, const VerificationResult.success());
     context.handle(_roleMeta, const VerificationResult.success());
     return context;
   }
@@ -738,8 +736,9 @@ class $ExerciseMusclesTable extends ExerciseMuscles
     return ExerciseMuscle(
       exercise: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}exercise'])!,
-      muscle: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}muscle'])!,
+      muscle: $ExerciseMusclesTable.$convertermuscle.fromSql(attachedDatabase
+          .typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}muscle'])!),
       role: $ExerciseMusclesTable.$converterrole.fromSql(attachedDatabase
           .typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}role'])!),
@@ -751,13 +750,15 @@ class $ExerciseMusclesTable extends ExerciseMuscles
     return $ExerciseMusclesTable(attachedDatabase, alias);
   }
 
+  static JsonTypeConverter2<Muscle, int, int> $convertermuscle =
+      const EnumIndexConverter<Muscle>(Muscle.values);
   static JsonTypeConverter2<MuscleRole, int, int> $converterrole =
       const EnumIndexConverter<MuscleRole>(MuscleRole.values);
 }
 
 class ExerciseMuscle extends DataClass implements Insertable<ExerciseMuscle> {
   final int exercise;
-  final int muscle;
+  final Muscle muscle;
   final MuscleRole role;
   const ExerciseMuscle(
       {required this.exercise, required this.muscle, required this.role});
@@ -765,7 +766,10 @@ class ExerciseMuscle extends DataClass implements Insertable<ExerciseMuscle> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['exercise'] = Variable<int>(exercise);
-    map['muscle'] = Variable<int>(muscle);
+    {
+      final converter = $ExerciseMusclesTable.$convertermuscle;
+      map['muscle'] = Variable<int>(converter.toSql(muscle));
+    }
     {
       final converter = $ExerciseMusclesTable.$converterrole;
       map['role'] = Variable<int>(converter.toSql(role));
@@ -786,7 +790,8 @@ class ExerciseMuscle extends DataClass implements Insertable<ExerciseMuscle> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return ExerciseMuscle(
       exercise: serializer.fromJson<int>(json['exercise']),
-      muscle: serializer.fromJson<int>(json['muscle']),
+      muscle: $ExerciseMusclesTable.$convertermuscle
+          .fromJson(serializer.fromJson<int>(json['muscle'])),
       role: $ExerciseMusclesTable.$converterrole
           .fromJson(serializer.fromJson<int>(json['role'])),
     );
@@ -796,13 +801,14 @@ class ExerciseMuscle extends DataClass implements Insertable<ExerciseMuscle> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'exercise': serializer.toJson<int>(exercise),
-      'muscle': serializer.toJson<int>(muscle),
+      'muscle': serializer
+          .toJson<int>($ExerciseMusclesTable.$convertermuscle.toJson(muscle)),
       'role': serializer
           .toJson<int>($ExerciseMusclesTable.$converterrole.toJson(role)),
     };
   }
 
-  ExerciseMuscle copyWith({int? exercise, int? muscle, MuscleRole? role}) =>
+  ExerciseMuscle copyWith({int? exercise, Muscle? muscle, MuscleRole? role}) =>
       ExerciseMuscle(
         exercise: exercise ?? this.exercise,
         muscle: muscle ?? this.muscle,
@@ -831,7 +837,7 @@ class ExerciseMuscle extends DataClass implements Insertable<ExerciseMuscle> {
 
 class ExerciseMusclesCompanion extends UpdateCompanion<ExerciseMuscle> {
   final Value<int> exercise;
-  final Value<int> muscle;
+  final Value<Muscle> muscle;
   final Value<MuscleRole> role;
   const ExerciseMusclesCompanion({
     this.exercise = const Value.absent(),
@@ -840,7 +846,7 @@ class ExerciseMusclesCompanion extends UpdateCompanion<ExerciseMuscle> {
   });
   ExerciseMusclesCompanion.insert({
     required int exercise,
-    required int muscle,
+    required Muscle muscle,
     required MuscleRole role,
   })  : exercise = Value(exercise),
         muscle = Value(muscle),
@@ -858,7 +864,7 @@ class ExerciseMusclesCompanion extends UpdateCompanion<ExerciseMuscle> {
   }
 
   ExerciseMusclesCompanion copyWith(
-      {Value<int>? exercise, Value<int>? muscle, Value<MuscleRole>? role}) {
+      {Value<int>? exercise, Value<Muscle>? muscle, Value<MuscleRole>? role}) {
     return ExerciseMusclesCompanion(
       exercise: exercise ?? this.exercise,
       muscle: muscle ?? this.muscle,
@@ -873,7 +879,8 @@ class ExerciseMusclesCompanion extends UpdateCompanion<ExerciseMuscle> {
       map['exercise'] = Variable<int>(exercise.value);
     }
     if (muscle.present) {
-      map['muscle'] = Variable<int>(muscle.value);
+      final converter = $ExerciseMusclesTable.$convertermuscle;
+      map['muscle'] = Variable<int>(converter.toSql(muscle.value));
     }
     if (role.present) {
       final converter = $ExerciseMusclesTable.$converterrole;
@@ -908,9 +915,9 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
   static const VerificationMeta _languageMeta =
       const VerificationMeta('language');
   @override
-  late final GeneratedColumnWithTypeConverter<ExerciseLanguage, int> language =
-      GeneratedColumn<int>('language', aliasedName, false,
-              type: DriftSqlType.int, requiredDuringInsert: true)
+  late final GeneratedColumnWithTypeConverter<ExerciseLanguage, String>
+      language = GeneratedColumn<String>('language', aliasedName, false,
+              type: DriftSqlType.string, requiredDuringInsert: true)
           .withConverter<ExerciseLanguage>(
               $ExerciseTranslationsTable.$converterlanguage);
   static const VerificationMeta _nameMeta = const VerificationMeta('name');
@@ -924,15 +931,43 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
   late final GeneratedColumn<String> description = GeneratedColumn<String>(
       'description', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _notesMeta = const VerificationMeta('notes');
+  @override
+  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
+      'notes', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _translationLicenseMeta =
       const VerificationMeta('translationLicense');
   @override
-  late final GeneratedColumn<String> translationLicense =
-      GeneratedColumn<String>('translation_license', aliasedName, false,
-          type: DriftSqlType.string, requiredDuringInsert: true);
+  late final GeneratedColumnWithTypeConverter<License, String>
+      translationLicense = GeneratedColumn<String>(
+              'translation_license', aliasedName, false,
+              type: DriftSqlType.string, requiredDuringInsert: true)
+          .withConverter<License>(
+              $ExerciseTranslationsTable.$convertertranslationLicense);
+  static const VerificationMeta _translationAuthorsMeta =
+      const VerificationMeta('translationAuthors');
   @override
-  List<GeneratedColumn> get $columns =>
-      [exercise, language, name, description, translationLicense];
+  late final GeneratedColumn<String> translationAuthors =
+      GeneratedColumn<String>('translation_authors', aliasedName, false,
+          type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _aliasesMeta =
+      const VerificationMeta('aliases');
+  @override
+  late final GeneratedColumn<String> aliases = GeneratedColumn<String>(
+      'aliases', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns => [
+        exercise,
+        language,
+        name,
+        description,
+        notes,
+        translationLicense,
+        translationAuthors,
+        aliases
+      ];
   @override
   String get aliasedName => _alias ?? 'exercise_translations';
   @override
@@ -962,13 +997,22 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
           description.isAcceptableOrUnknown(
               data['description']!, _descriptionMeta));
     }
-    if (data.containsKey('translation_license')) {
+    if (data.containsKey('notes')) {
       context.handle(
-          _translationLicenseMeta,
-          translationLicense.isAcceptableOrUnknown(
-              data['translation_license']!, _translationLicenseMeta));
+          _notesMeta, notes.isAcceptableOrUnknown(data['notes']!, _notesMeta));
+    }
+    context.handle(_translationLicenseMeta, const VerificationResult.success());
+    if (data.containsKey('translation_authors')) {
+      context.handle(
+          _translationAuthorsMeta,
+          translationAuthors.isAcceptableOrUnknown(
+              data['translation_authors']!, _translationAuthorsMeta));
     } else if (isInserting) {
-      context.missing(_translationLicenseMeta);
+      context.missing(_translationAuthorsMeta);
+    }
+    if (data.containsKey('aliases')) {
+      context.handle(_aliasesMeta,
+          aliases.isAcceptableOrUnknown(data['aliases']!, _aliasesMeta));
     }
     return context;
   }
@@ -983,13 +1027,21 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
           .read(DriftSqlType.int, data['${effectivePrefix}exercise'])!,
       language: $ExerciseTranslationsTable.$converterlanguage.fromSql(
           attachedDatabase.typeMapping
-              .read(DriftSqlType.int, data['${effectivePrefix}language'])!),
+              .read(DriftSqlType.string, data['${effectivePrefix}language'])!),
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
       description: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}description']),
-      translationLicense: attachedDatabase.typeMapping.read(
-          DriftSqlType.string, data['${effectivePrefix}translation_license'])!,
+      notes: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}notes']),
+      translationLicense: $ExerciseTranslationsTable
+          .$convertertranslationLicense
+          .fromSql(attachedDatabase.typeMapping.read(DriftSqlType.string,
+              data['${effectivePrefix}translation_license'])!),
+      translationAuthors: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}translation_authors'])!,
+      aliases: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}aliases']),
     );
   }
 
@@ -998,8 +1050,12 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
     return $ExerciseTranslationsTable(attachedDatabase, alias);
   }
 
-  static JsonTypeConverter2<ExerciseLanguage, int, int> $converterlanguage =
-      const EnumIndexConverter<ExerciseLanguage>(ExerciseLanguage.values);
+  static JsonTypeConverter2<ExerciseLanguage, String, String>
+      $converterlanguage =
+      const EnumNameConverter<ExerciseLanguage>(ExerciseLanguage.values);
+  static JsonTypeConverter2<License, String, String>
+      $convertertranslationLicense =
+      const EnumNameConverter<License>(License.values);
 }
 
 class ExerciseTranslation extends DataClass
@@ -1008,26 +1064,43 @@ class ExerciseTranslation extends DataClass
   final ExerciseLanguage language;
   final String name;
   final String? description;
-  final String translationLicense;
+  final String? notes;
+  final License translationLicense;
+  final String translationAuthors;
+  final String? aliases;
   const ExerciseTranslation(
       {required this.exercise,
       required this.language,
       required this.name,
       this.description,
-      required this.translationLicense});
+      this.notes,
+      required this.translationLicense,
+      required this.translationAuthors,
+      this.aliases});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['exercise'] = Variable<int>(exercise);
     {
       final converter = $ExerciseTranslationsTable.$converterlanguage;
-      map['language'] = Variable<int>(converter.toSql(language));
+      map['language'] = Variable<String>(converter.toSql(language));
     }
     map['name'] = Variable<String>(name);
     if (!nullToAbsent || description != null) {
       map['description'] = Variable<String>(description);
     }
-    map['translation_license'] = Variable<String>(translationLicense);
+    if (!nullToAbsent || notes != null) {
+      map['notes'] = Variable<String>(notes);
+    }
+    {
+      final converter = $ExerciseTranslationsTable.$convertertranslationLicense;
+      map['translation_license'] =
+          Variable<String>(converter.toSql(translationLicense));
+    }
+    map['translation_authors'] = Variable<String>(translationAuthors);
+    if (!nullToAbsent || aliases != null) {
+      map['aliases'] = Variable<String>(aliases);
+    }
     return map;
   }
 
@@ -1039,7 +1112,13 @@ class ExerciseTranslation extends DataClass
       description: description == null && nullToAbsent
           ? const Value.absent()
           : Value(description),
+      notes:
+          notes == null && nullToAbsent ? const Value.absent() : Value(notes),
       translationLicense: Value(translationLicense),
+      translationAuthors: Value(translationAuthors),
+      aliases: aliases == null && nullToAbsent
+          ? const Value.absent()
+          : Value(aliases),
     );
   }
 
@@ -1049,11 +1128,16 @@ class ExerciseTranslation extends DataClass
     return ExerciseTranslation(
       exercise: serializer.fromJson<int>(json['exercise']),
       language: $ExerciseTranslationsTable.$converterlanguage
-          .fromJson(serializer.fromJson<int>(json['language'])),
+          .fromJson(serializer.fromJson<String>(json['language'])),
       name: serializer.fromJson<String>(json['name']),
       description: serializer.fromJson<String?>(json['description']),
-      translationLicense:
-          serializer.fromJson<String>(json['translationLicense']),
+      notes: serializer.fromJson<String?>(json['notes']),
+      translationLicense: $ExerciseTranslationsTable
+          .$convertertranslationLicense
+          .fromJson(serializer.fromJson<String>(json['translationLicense'])),
+      translationAuthors:
+          serializer.fromJson<String>(json['translationAuthors']),
+      aliases: serializer.fromJson<String?>(json['aliases']),
     );
   }
   @override
@@ -1061,11 +1145,16 @@ class ExerciseTranslation extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'exercise': serializer.toJson<int>(exercise),
-      'language': serializer.toJson<int>(
+      'language': serializer.toJson<String>(
           $ExerciseTranslationsTable.$converterlanguage.toJson(language)),
       'name': serializer.toJson<String>(name),
       'description': serializer.toJson<String?>(description),
-      'translationLicense': serializer.toJson<String>(translationLicense),
+      'notes': serializer.toJson<String?>(notes),
+      'translationLicense': serializer.toJson<String>($ExerciseTranslationsTable
+          .$convertertranslationLicense
+          .toJson(translationLicense)),
+      'translationAuthors': serializer.toJson<String>(translationAuthors),
+      'aliases': serializer.toJson<String?>(aliases),
     };
   }
 
@@ -1074,13 +1163,19 @@ class ExerciseTranslation extends DataClass
           ExerciseLanguage? language,
           String? name,
           Value<String?> description = const Value.absent(),
-          String? translationLicense}) =>
+          Value<String?> notes = const Value.absent(),
+          License? translationLicense,
+          String? translationAuthors,
+          Value<String?> aliases = const Value.absent()}) =>
       ExerciseTranslation(
         exercise: exercise ?? this.exercise,
         language: language ?? this.language,
         name: name ?? this.name,
         description: description.present ? description.value : this.description,
+        notes: notes.present ? notes.value : this.notes,
         translationLicense: translationLicense ?? this.translationLicense,
+        translationAuthors: translationAuthors ?? this.translationAuthors,
+        aliases: aliases.present ? aliases.value : this.aliases,
       );
   @override
   String toString() {
@@ -1089,14 +1184,17 @@ class ExerciseTranslation extends DataClass
           ..write('language: $language, ')
           ..write('name: $name, ')
           ..write('description: $description, ')
-          ..write('translationLicense: $translationLicense')
+          ..write('notes: $notes, ')
+          ..write('translationLicense: $translationLicense, ')
+          ..write('translationAuthors: $translationAuthors, ')
+          ..write('aliases: $aliases')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(exercise, language, name, description, translationLicense);
+  int get hashCode => Object.hash(exercise, language, name, description, notes,
+      translationLicense, translationAuthors, aliases);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1105,7 +1203,10 @@ class ExerciseTranslation extends DataClass
           other.language == this.language &&
           other.name == this.name &&
           other.description == this.description &&
-          other.translationLicense == this.translationLicense);
+          other.notes == this.notes &&
+          other.translationLicense == this.translationLicense &&
+          other.translationAuthors == this.translationAuthors &&
+          other.aliases == this.aliases);
 }
 
 class ExerciseTranslationsCompanion
@@ -1114,37 +1215,53 @@ class ExerciseTranslationsCompanion
   final Value<ExerciseLanguage> language;
   final Value<String> name;
   final Value<String?> description;
-  final Value<String> translationLicense;
+  final Value<String?> notes;
+  final Value<License> translationLicense;
+  final Value<String> translationAuthors;
+  final Value<String?> aliases;
   const ExerciseTranslationsCompanion({
     this.exercise = const Value.absent(),
     this.language = const Value.absent(),
     this.name = const Value.absent(),
     this.description = const Value.absent(),
+    this.notes = const Value.absent(),
     this.translationLicense = const Value.absent(),
+    this.translationAuthors = const Value.absent(),
+    this.aliases = const Value.absent(),
   });
   ExerciseTranslationsCompanion.insert({
     required int exercise,
     required ExerciseLanguage language,
     required String name,
     this.description = const Value.absent(),
-    required String translationLicense,
+    this.notes = const Value.absent(),
+    required License translationLicense,
+    required String translationAuthors,
+    this.aliases = const Value.absent(),
   })  : exercise = Value(exercise),
         language = Value(language),
         name = Value(name),
-        translationLicense = Value(translationLicense);
+        translationLicense = Value(translationLicense),
+        translationAuthors = Value(translationAuthors);
   static Insertable<ExerciseTranslation> custom({
     Expression<int>? exercise,
-    Expression<int>? language,
+    Expression<String>? language,
     Expression<String>? name,
     Expression<String>? description,
+    Expression<String>? notes,
     Expression<String>? translationLicense,
+    Expression<String>? translationAuthors,
+    Expression<String>? aliases,
   }) {
     return RawValuesInsertable({
       if (exercise != null) 'exercise': exercise,
       if (language != null) 'language': language,
       if (name != null) 'name': name,
       if (description != null) 'description': description,
+      if (notes != null) 'notes': notes,
       if (translationLicense != null) 'translation_license': translationLicense,
+      if (translationAuthors != null) 'translation_authors': translationAuthors,
+      if (aliases != null) 'aliases': aliases,
     });
   }
 
@@ -1153,13 +1270,19 @@ class ExerciseTranslationsCompanion
       Value<ExerciseLanguage>? language,
       Value<String>? name,
       Value<String?>? description,
-      Value<String>? translationLicense}) {
+      Value<String?>? notes,
+      Value<License>? translationLicense,
+      Value<String>? translationAuthors,
+      Value<String?>? aliases}) {
     return ExerciseTranslationsCompanion(
       exercise: exercise ?? this.exercise,
       language: language ?? this.language,
       name: name ?? this.name,
       description: description ?? this.description,
+      notes: notes ?? this.notes,
       translationLicense: translationLicense ?? this.translationLicense,
+      translationAuthors: translationAuthors ?? this.translationAuthors,
+      aliases: aliases ?? this.aliases,
     );
   }
 
@@ -1171,7 +1294,7 @@ class ExerciseTranslationsCompanion
     }
     if (language.present) {
       final converter = $ExerciseTranslationsTable.$converterlanguage;
-      map['language'] = Variable<int>(converter.toSql(language.value));
+      map['language'] = Variable<String>(converter.toSql(language.value));
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
@@ -1179,8 +1302,19 @@ class ExerciseTranslationsCompanion
     if (description.present) {
       map['description'] = Variable<String>(description.value);
     }
+    if (notes.present) {
+      map['notes'] = Variable<String>(notes.value);
+    }
     if (translationLicense.present) {
-      map['translation_license'] = Variable<String>(translationLicense.value);
+      final converter = $ExerciseTranslationsTable.$convertertranslationLicense;
+      map['translation_license'] =
+          Variable<String>(converter.toSql(translationLicense.value));
+    }
+    if (translationAuthors.present) {
+      map['translation_authors'] = Variable<String>(translationAuthors.value);
+    }
+    if (aliases.present) {
+      map['aliases'] = Variable<String>(aliases.value);
     }
     return map;
   }
@@ -1192,7 +1326,196 @@ class ExerciseTranslationsCompanion
           ..write('language: $language, ')
           ..write('name: $name, ')
           ..write('description: $description, ')
-          ..write('translationLicense: $translationLicense')
+          ..write('notes: $notes, ')
+          ..write('translationLicense: $translationLicense, ')
+          ..write('translationAuthors: $translationAuthors, ')
+          ..write('aliases: $aliases')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $ExerciseEquipmentTable extends ExerciseEquipment
+    with TableInfo<$ExerciseEquipmentTable, ExerciseEquipmentPiece> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ExerciseEquipmentTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _exerciseMeta =
+      const VerificationMeta('exercise');
+  @override
+  late final GeneratedColumn<int> exercise = GeneratedColumn<int>(
+      'exercise', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _equipmentMeta =
+      const VerificationMeta('equipment');
+  @override
+  late final GeneratedColumnWithTypeConverter<EquipmentPiece, int> equipment =
+      GeneratedColumn<int>('equipment', aliasedName, false,
+              type: DriftSqlType.int, requiredDuringInsert: true)
+          .withConverter<EquipmentPiece>(
+              $ExerciseEquipmentTable.$converterequipment);
+  @override
+  List<GeneratedColumn> get $columns => [exercise, equipment];
+  @override
+  String get aliasedName => _alias ?? 'exercise_equipment';
+  @override
+  String get actualTableName => 'exercise_equipment';
+  @override
+  VerificationContext validateIntegrity(
+      Insertable<ExerciseEquipmentPiece> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('exercise')) {
+      context.handle(_exerciseMeta,
+          exercise.isAcceptableOrUnknown(data['exercise']!, _exerciseMeta));
+    } else if (isInserting) {
+      context.missing(_exerciseMeta);
+    }
+    context.handle(_equipmentMeta, const VerificationResult.success());
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {exercise, equipment};
+  @override
+  ExerciseEquipmentPiece map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ExerciseEquipmentPiece(
+      exercise: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}exercise'])!,
+      equipment: $ExerciseEquipmentTable.$converterequipment.fromSql(
+          attachedDatabase.typeMapping
+              .read(DriftSqlType.int, data['${effectivePrefix}equipment'])!),
+    );
+  }
+
+  @override
+  $ExerciseEquipmentTable createAlias(String alias) {
+    return $ExerciseEquipmentTable(attachedDatabase, alias);
+  }
+
+  static JsonTypeConverter2<EquipmentPiece, int, int> $converterequipment =
+      const EnumIndexConverter<EquipmentPiece>(EquipmentPiece.values);
+}
+
+class ExerciseEquipmentPiece extends DataClass
+    implements Insertable<ExerciseEquipmentPiece> {
+  final int exercise;
+  final EquipmentPiece equipment;
+  const ExerciseEquipmentPiece(
+      {required this.exercise, required this.equipment});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['exercise'] = Variable<int>(exercise);
+    {
+      final converter = $ExerciseEquipmentTable.$converterequipment;
+      map['equipment'] = Variable<int>(converter.toSql(equipment));
+    }
+    return map;
+  }
+
+  ExerciseEquipmentCompanion toCompanion(bool nullToAbsent) {
+    return ExerciseEquipmentCompanion(
+      exercise: Value(exercise),
+      equipment: Value(equipment),
+    );
+  }
+
+  factory ExerciseEquipmentPiece.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ExerciseEquipmentPiece(
+      exercise: serializer.fromJson<int>(json['exercise']),
+      equipment: $ExerciseEquipmentTable.$converterequipment
+          .fromJson(serializer.fromJson<int>(json['equipment'])),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'exercise': serializer.toJson<int>(exercise),
+      'equipment': serializer.toJson<int>(
+          $ExerciseEquipmentTable.$converterequipment.toJson(equipment)),
+    };
+  }
+
+  ExerciseEquipmentPiece copyWith({int? exercise, EquipmentPiece? equipment}) =>
+      ExerciseEquipmentPiece(
+        exercise: exercise ?? this.exercise,
+        equipment: equipment ?? this.equipment,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('ExerciseEquipmentPiece(')
+          ..write('exercise: $exercise, ')
+          ..write('equipment: $equipment')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(exercise, equipment);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ExerciseEquipmentPiece &&
+          other.exercise == this.exercise &&
+          other.equipment == this.equipment);
+}
+
+class ExerciseEquipmentCompanion
+    extends UpdateCompanion<ExerciseEquipmentPiece> {
+  final Value<int> exercise;
+  final Value<EquipmentPiece> equipment;
+  const ExerciseEquipmentCompanion({
+    this.exercise = const Value.absent(),
+    this.equipment = const Value.absent(),
+  });
+  ExerciseEquipmentCompanion.insert({
+    required int exercise,
+    required EquipmentPiece equipment,
+  })  : exercise = Value(exercise),
+        equipment = Value(equipment);
+  static Insertable<ExerciseEquipmentPiece> custom({
+    Expression<int>? exercise,
+    Expression<int>? equipment,
+  }) {
+    return RawValuesInsertable({
+      if (exercise != null) 'exercise': exercise,
+      if (equipment != null) 'equipment': equipment,
+    });
+  }
+
+  ExerciseEquipmentCompanion copyWith(
+      {Value<int>? exercise, Value<EquipmentPiece>? equipment}) {
+    return ExerciseEquipmentCompanion(
+      exercise: exercise ?? this.exercise,
+      equipment: equipment ?? this.equipment,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (exercise.present) {
+      map['exercise'] = Variable<int>(exercise.value);
+    }
+    if (equipment.present) {
+      final converter = $ExerciseEquipmentTable.$converterequipment;
+      map['equipment'] = Variable<int>(converter.toSql(equipment.value));
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ExerciseEquipmentCompanion(')
+          ..write('exercise: $exercise, ')
+          ..write('equipment: $equipment')
           ..write(')'))
         .toString();
   }
@@ -1653,9 +1976,34 @@ class $WorkoutExercisesTable extends WorkoutExercises
   late final GeneratedColumn<int> breakDuration = GeneratedColumn<int>(
       'break_duration', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _repsMeta = const VerificationMeta('reps');
   @override
-  List<GeneratedColumn> get $columns =>
-      [workoutId, orderPosition, exercise, exerciseDuration, breakDuration];
+  late final GeneratedColumn<int> reps = GeneratedColumn<int>(
+      'reps', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _measureMeta =
+      const VerificationMeta('measure');
+  @override
+  late final GeneratedColumn<int> measure = GeneratedColumn<int>(
+      'measure', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _measureUnitMeta =
+      const VerificationMeta('measureUnit');
+  @override
+  late final GeneratedColumn<int> measureUnit = GeneratedColumn<int>(
+      'measure_unit', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns => [
+        workoutId,
+        orderPosition,
+        exercise,
+        exerciseDuration,
+        breakDuration,
+        reps,
+        measure,
+        measureUnit
+      ];
   @override
   String get aliasedName => _alias ?? 'workout_exercises';
   @override
@@ -1697,6 +2045,20 @@ class $WorkoutExercisesTable extends WorkoutExercises
           breakDuration.isAcceptableOrUnknown(
               data['break_duration']!, _breakDurationMeta));
     }
+    if (data.containsKey('reps')) {
+      context.handle(
+          _repsMeta, reps.isAcceptableOrUnknown(data['reps']!, _repsMeta));
+    }
+    if (data.containsKey('measure')) {
+      context.handle(_measureMeta,
+          measure.isAcceptableOrUnknown(data['measure']!, _measureMeta));
+    }
+    if (data.containsKey('measure_unit')) {
+      context.handle(
+          _measureUnitMeta,
+          measureUnit.isAcceptableOrUnknown(
+              data['measure_unit']!, _measureUnitMeta));
+    }
     return context;
   }
 
@@ -1716,6 +2078,12 @@ class $WorkoutExercisesTable extends WorkoutExercises
           .read(DriftSqlType.int, data['${effectivePrefix}exercise_duration']),
       breakDuration: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}break_duration']),
+      reps: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}reps']),
+      measure: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}measure']),
+      measureUnit: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}measure_unit']),
     );
   }
 
@@ -1731,12 +2099,20 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
   final int exercise;
   final int? exerciseDuration;
   final int? breakDuration;
+
+  /// refers to the break before this exercise
+  final int? reps;
+  final int? measure;
+  final int? measureUnit;
   const WorkoutExercise(
       {required this.workoutId,
       required this.orderPosition,
       required this.exercise,
       this.exerciseDuration,
-      this.breakDuration});
+      this.breakDuration,
+      this.reps,
+      this.measure,
+      this.measureUnit});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -1748,6 +2124,15 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
     }
     if (!nullToAbsent || breakDuration != null) {
       map['break_duration'] = Variable<int>(breakDuration);
+    }
+    if (!nullToAbsent || reps != null) {
+      map['reps'] = Variable<int>(reps);
+    }
+    if (!nullToAbsent || measure != null) {
+      map['measure'] = Variable<int>(measure);
+    }
+    if (!nullToAbsent || measureUnit != null) {
+      map['measure_unit'] = Variable<int>(measureUnit);
     }
     return map;
   }
@@ -1763,6 +2148,13 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
       breakDuration: breakDuration == null && nullToAbsent
           ? const Value.absent()
           : Value(breakDuration),
+      reps: reps == null && nullToAbsent ? const Value.absent() : Value(reps),
+      measure: measure == null && nullToAbsent
+          ? const Value.absent()
+          : Value(measure),
+      measureUnit: measureUnit == null && nullToAbsent
+          ? const Value.absent()
+          : Value(measureUnit),
     );
   }
 
@@ -1775,6 +2167,9 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
       exercise: serializer.fromJson<int>(json['exercise']),
       exerciseDuration: serializer.fromJson<int?>(json['exerciseDuration']),
       breakDuration: serializer.fromJson<int?>(json['breakDuration']),
+      reps: serializer.fromJson<int?>(json['reps']),
+      measure: serializer.fromJson<int?>(json['measure']),
+      measureUnit: serializer.fromJson<int?>(json['measureUnit']),
     );
   }
   @override
@@ -1786,6 +2181,9 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
       'exercise': serializer.toJson<int>(exercise),
       'exerciseDuration': serializer.toJson<int?>(exerciseDuration),
       'breakDuration': serializer.toJson<int?>(breakDuration),
+      'reps': serializer.toJson<int?>(reps),
+      'measure': serializer.toJson<int?>(measure),
+      'measureUnit': serializer.toJson<int?>(measureUnit),
     };
   }
 
@@ -1794,7 +2192,10 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
           int? orderPosition,
           int? exercise,
           Value<int?> exerciseDuration = const Value.absent(),
-          Value<int?> breakDuration = const Value.absent()}) =>
+          Value<int?> breakDuration = const Value.absent(),
+          Value<int?> reps = const Value.absent(),
+          Value<int?> measure = const Value.absent(),
+          Value<int?> measureUnit = const Value.absent()}) =>
       WorkoutExercise(
         workoutId: workoutId ?? this.workoutId,
         orderPosition: orderPosition ?? this.orderPosition,
@@ -1804,6 +2205,9 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
             : this.exerciseDuration,
         breakDuration:
             breakDuration.present ? breakDuration.value : this.breakDuration,
+        reps: reps.present ? reps.value : this.reps,
+        measure: measure.present ? measure.value : this.measure,
+        measureUnit: measureUnit.present ? measureUnit.value : this.measureUnit,
       );
   @override
   String toString() {
@@ -1812,14 +2216,17 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
           ..write('orderPosition: $orderPosition, ')
           ..write('exercise: $exercise, ')
           ..write('exerciseDuration: $exerciseDuration, ')
-          ..write('breakDuration: $breakDuration')
+          ..write('breakDuration: $breakDuration, ')
+          ..write('reps: $reps, ')
+          ..write('measure: $measure, ')
+          ..write('measureUnit: $measureUnit')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-      workoutId, orderPosition, exercise, exerciseDuration, breakDuration);
+  int get hashCode => Object.hash(workoutId, orderPosition, exercise,
+      exerciseDuration, breakDuration, reps, measure, measureUnit);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1828,7 +2235,10 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
           other.orderPosition == this.orderPosition &&
           other.exercise == this.exercise &&
           other.exerciseDuration == this.exerciseDuration &&
-          other.breakDuration == this.breakDuration);
+          other.breakDuration == this.breakDuration &&
+          other.reps == this.reps &&
+          other.measure == this.measure &&
+          other.measureUnit == this.measureUnit);
 }
 
 class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
@@ -1837,12 +2247,18 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
   final Value<int> exercise;
   final Value<int?> exerciseDuration;
   final Value<int?> breakDuration;
+  final Value<int?> reps;
+  final Value<int?> measure;
+  final Value<int?> measureUnit;
   const WorkoutExercisesCompanion({
     this.workoutId = const Value.absent(),
     this.orderPosition = const Value.absent(),
     this.exercise = const Value.absent(),
     this.exerciseDuration = const Value.absent(),
     this.breakDuration = const Value.absent(),
+    this.reps = const Value.absent(),
+    this.measure = const Value.absent(),
+    this.measureUnit = const Value.absent(),
   });
   WorkoutExercisesCompanion.insert({
     required int workoutId,
@@ -1850,6 +2266,9 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
     required int exercise,
     this.exerciseDuration = const Value.absent(),
     this.breakDuration = const Value.absent(),
+    this.reps = const Value.absent(),
+    this.measure = const Value.absent(),
+    this.measureUnit = const Value.absent(),
   })  : workoutId = Value(workoutId),
         orderPosition = Value(orderPosition),
         exercise = Value(exercise);
@@ -1859,6 +2278,9 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
     Expression<int>? exercise,
     Expression<int>? exerciseDuration,
     Expression<int>? breakDuration,
+    Expression<int>? reps,
+    Expression<int>? measure,
+    Expression<int>? measureUnit,
   }) {
     return RawValuesInsertable({
       if (workoutId != null) 'workout_id': workoutId,
@@ -1866,6 +2288,9 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
       if (exercise != null) 'exercise': exercise,
       if (exerciseDuration != null) 'exercise_duration': exerciseDuration,
       if (breakDuration != null) 'break_duration': breakDuration,
+      if (reps != null) 'reps': reps,
+      if (measure != null) 'measure': measure,
+      if (measureUnit != null) 'measure_unit': measureUnit,
     });
   }
 
@@ -1874,13 +2299,19 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
       Value<int>? orderPosition,
       Value<int>? exercise,
       Value<int?>? exerciseDuration,
-      Value<int?>? breakDuration}) {
+      Value<int?>? breakDuration,
+      Value<int?>? reps,
+      Value<int?>? measure,
+      Value<int?>? measureUnit}) {
     return WorkoutExercisesCompanion(
       workoutId: workoutId ?? this.workoutId,
       orderPosition: orderPosition ?? this.orderPosition,
       exercise: exercise ?? this.exercise,
       exerciseDuration: exerciseDuration ?? this.exerciseDuration,
       breakDuration: breakDuration ?? this.breakDuration,
+      reps: reps ?? this.reps,
+      measure: measure ?? this.measure,
+      measureUnit: measureUnit ?? this.measureUnit,
     );
   }
 
@@ -1902,6 +2333,15 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
     if (breakDuration.present) {
       map['break_duration'] = Variable<int>(breakDuration.value);
     }
+    if (reps.present) {
+      map['reps'] = Variable<int>(reps.value);
+    }
+    if (measure.present) {
+      map['measure'] = Variable<int>(measure.value);
+    }
+    if (measureUnit.present) {
+      map['measure_unit'] = Variable<int>(measureUnit.value);
+    }
     return map;
   }
 
@@ -1912,7 +2352,10 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
           ..write('orderPosition: $orderPosition, ')
           ..write('exercise: $exercise, ')
           ..write('exerciseDuration: $exerciseDuration, ')
-          ..write('breakDuration: $breakDuration')
+          ..write('breakDuration: $breakDuration, ')
+          ..write('reps: $reps, ')
+          ..write('measure: $measure, ')
+          ..write('measureUnit: $measureUnit')
           ..write(')'))
         .toString();
   }
@@ -2568,6 +3011,8 @@ abstract class _$FeeelDB extends GeneratedDatabase {
       $ExerciseMusclesTable(this);
   late final $ExerciseTranslationsTable exerciseTranslations =
       $ExerciseTranslationsTable(this);
+  late final $ExerciseEquipmentTable exerciseEquipment =
+      $ExerciseEquipmentTable(this);
   late final $WorkoutsTable workouts = $WorkoutsTable(this);
   late final $WorkoutExercisesTable workoutExercises =
       $WorkoutExercisesTable(this);
@@ -2582,6 +3027,7 @@ abstract class _$FeeelDB extends GeneratedDatabase {
         exercises,
         exerciseMuscles,
         exerciseTranslations,
+        exerciseEquipment,
         workouts,
         workoutExercises,
         workoutRecords,
