@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/theming/feeel_grid.dart';
 import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/gestures.dart';
@@ -111,7 +112,8 @@ class ContributeSheet extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.center,
               child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 600),
+                  constraints: const BoxConstraints(
+                      maxWidth: FeeelGrid.sheetContentWidth),
                   child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,

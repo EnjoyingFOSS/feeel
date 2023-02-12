@@ -21,6 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/preference_keys.dart';
+import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 
 import 'package:feeel/i18n/translations.dart';
@@ -101,7 +102,8 @@ class DisclaimerSheet extends StatelessWidget {
                       height: 8,
                     ),
                     ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 600),
+                        constraints: const BoxConstraints(
+                            maxWidth: FeeelGrid.sheetContentWidth),
                         child: Text(
                           "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion."
                               .i18n,
