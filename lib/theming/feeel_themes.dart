@@ -60,25 +60,49 @@ class FeeelThemes {
   static final ThemeData lightTheme = _getThemeFromScheme(_lightColors);
   static final ThemeData darkTheme = _getThemeFromScheme(_darkColors);
 
-  static ThemeData _getThemeFromScheme(ColorScheme colors) {
+  static ThemeData _getThemeFromScheme(ColorScheme colorScheme) {
     return ThemeData(
-        colorScheme: colors,
+        materialTapTargetSize: MaterialTapTargetSize.padded,
+        colorScheme: colorScheme,
         visualDensity: VisualDensity.standard,
-        backgroundColor: colors.background,
-        brightness: colors.brightness,
-        primaryColor: colors.primary,
-        scaffoldBackgroundColor: colors.background,
-        cardColor: colors.surface,
-        errorColor: colors.error,
-        toggleableActiveColor: colors.primary,
+        brightness: colorScheme.brightness,
+        primaryColor: colorScheme.primary,
+        scaffoldBackgroundColor: colorScheme.background,
+        cardColor: colorScheme.surface,
         appBarTheme: AppBarTheme(
-            color: colors.background,
-            iconTheme: IconThemeData(color: colors.primary),
+            color: colorScheme.background,
+            iconTheme: IconThemeData(color: colorScheme.primary),
             titleTextStyle: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.w900,
-                color: colors.primary),
+                color: colorScheme.primary),
             centerTitle: false,
-            elevation: 0));
+            elevation: 0),
+        navigationBarTheme: NavigationBarThemeData(
+            indicatorColor: colorScheme.primaryContainer,
+            backgroundColor: colorScheme.background,
+            height: 56,
+            elevation: 8),
+        switchTheme: SwitchThemeData(
+            thumbColor: MaterialStateProperty.resolveWith<Color?>((states) =>
+                (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected))
+                    ? colorScheme.primary
+                    : null),
+            trackColor: MaterialStateProperty.resolveWith<Color?>(
+                (states) => //todo check
+                    (!states.contains(MaterialState.disabled) &&
+                            states.contains(MaterialState.selected))
+                        ? colorScheme.primary.withAlpha(80)
+                        : null)),
+        radioTheme: RadioThemeData(
+          fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
+              (!states.contains(MaterialState.disabled) &&
+                      states.contains(MaterialState.selected))
+                  ? colorScheme.primary
+                  : null),
+        ),
+        checkboxTheme: CheckboxThemeData(
+            fillColor: MaterialStateProperty.resolveWith<Color?>(
+                (states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null)));
   }
 }
