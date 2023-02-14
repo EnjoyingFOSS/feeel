@@ -25,7 +25,7 @@ import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 
-import '../../../components/triangle.dart';
+import '../../../components/triangle_filled.dart';
 import '../../../enums/workout_type.dart';
 import '../../../theming/feeel_shade.dart';
 import '../../../utils/duration_util.dart';
@@ -60,7 +60,7 @@ class WorkoutHeader extends StatelessWidget {
           child: Hero(
               tag: HeroUtil.getWorkoutHero(
                   HeroType.illustration, workout.id, workout.type),
-              child: Triangle(
+              child: TriangleFilled(
                   color: colorSwatch.getColorByBrightness(
                       FeeelShade.lightest, theme.brightness),
                   seed: title.hashCode))),
@@ -104,7 +104,7 @@ class WorkoutHeader extends StatelessWidget {
                       tag: HeroUtil.getWorkoutHero(
                           HeroType.subtitle, workout.id, workout.type),
                       child: Text(translatedCategory,
-                          style: theme.textTheme.subtitle2?.copyWith(
+                          style: theme.textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: colorSwatch.getColorByBrightness(
                                   FeeelShade.darker, theme.brightness))),

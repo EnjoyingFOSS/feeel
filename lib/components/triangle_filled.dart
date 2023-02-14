@@ -24,26 +24,26 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class Triangle extends StatelessWidget {
+class TriangleFilled extends StatelessWidget {
   final Color color;
   final int seed;
 
-  const Triangle({super.key, required this.color, this.seed = 0});
+  const TriangleFilled({super.key, required this.color, this.seed = 0});
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(painter: TrianglePainter(color, seed));
+    return CustomPaint(painter: _TrianglePainter(color, seed));
   }
 }
 
-class TrianglePainter extends CustomPainter {
-  final Paint _paint = Paint();
+class _TrianglePainter extends CustomPainter {
+  final _fillPaint = Paint();
   late final double rX, rY, rRotation;
 
-  TrianglePainter(Color color, int seed) {
+  _TrianglePainter(Color color, int seed) {
     var random = Random(seed);
-    _paint.color = color;
-    _paint.style = PaintingStyle.fill;
+    _fillPaint.color = color;
+    _fillPaint.style = PaintingStyle.fill;
     rX = random.nextDouble();
     rY = random.nextDouble();
     rRotation = random.nextDouble();
@@ -65,7 +65,7 @@ class TrianglePainter extends CustomPainter {
     canvas.rotate(rotation * pi / 2);
     canvas.translate(-size.width / 2, -size.height / 2);
 
-    canvas.drawPath(path, _paint);
+    canvas.drawPath(path, _fillPaint);
   }
 
   @override
