@@ -52,7 +52,7 @@ class LearnInfo extends StatelessWidget {
                     "Learn the exercise".i18n,
                     style: Theme.of(context)
                         .textTheme
-                        .caption
+                        .bodySmall
                         ?.copyWith(color: Colors.white),
                   )
                 ], //todo size16 or 18

@@ -112,8 +112,8 @@ class ContributeSheet extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.center,
               child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                      maxWidth: FeeelGrid.sheetContentWidth),
+                  constraints: BoxConstraints(
+                      maxWidth: FeeelGrid.maxWidth[Cols12.cols8]!),
                   child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,7 +130,7 @@ class ContributeSheet extends StatelessWidget {
                                         textAlign: TextAlign.center,
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline6,
+                                            .titleLarge,
                                       ),
                                       const SizedBox(
                                         width: 4,

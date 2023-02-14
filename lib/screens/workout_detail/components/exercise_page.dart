@@ -93,7 +93,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
       //todo onHorizontalDrag
       onVerticalDragStart: (_) => onLearn(exercise),
       child: Material(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           child: ExerciseLayout(
             imageSlug:
                 // (exercise.steps?[_stepPos].imageSlug != null)

@@ -162,8 +162,8 @@ class ExerciseSheet extends StatelessWidget {
                   width: double.infinity,
                   child: Center(
                       child: ConstrainedBox(
-                          constraints: const BoxConstraints(
-                              maxWidth: FeeelGrid.sheetContentWidth),
+                          constraints: BoxConstraints(
+                              maxWidth: FeeelGrid.maxWidth[Cols12.cols8]!),
                           child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,7 +220,7 @@ class ExerciseSheet extends StatelessWidget {
                                   "Disclaimer".i18n.toUpperCase(),
                                   style: Theme.of(context)
                                       .textTheme
-                                      .overline
+                                      .labelSmall
                                       ?.copyWith(color: licenseColor),
                                 ),
                                 MarkdownBody(
@@ -239,7 +239,7 @@ class ExerciseSheet extends StatelessWidget {
                                       .toUpperCase(),
                                   style: Theme.of(context)
                                       .textTheme
-                                      .overline
+                                      .labelSmall
                                       ?.copyWith(color: licenseColor),
                                 ),
                                 MarkdownBody(
@@ -264,7 +264,7 @@ class ExerciseSheet extends StatelessWidget {
                                   Text("Image license".i18n.toUpperCase(),
                                       style: Theme.of(context)
                                           .textTheme
-                                          .overline
+                                          .labelSmall
                                           ?.copyWith(color: licenseColor)),
                                 if (hasImageLicense)
                                   MarkdownBody(

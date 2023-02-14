@@ -24,7 +24,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/workout_detail/workout_detail.dart';
 import 'package:feeel/theming/feeel_shade.dart';
-import 'package:feeel/components/triangle.dart';
+import 'package:feeel/components/triangle_filled.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
@@ -45,7 +45,7 @@ class WorkoutListItem extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Material(
-        color: theme.backgroundColor,
+        color: theme.colorScheme.background,
         child: // Row(children: [
             InkWell(
                 onTap: () {
@@ -70,7 +70,7 @@ class WorkoutListItem extends StatelessWidget {
                                     HeroType.illustration,
                                     workout.id,
                                     workout.type),
-                                child: Triangle(
+                                child: TriangleFilled(
                                   color: workout.category.colorSwatch
                                       .getColorByBrightness(FeeelShade.lightest,
                                           theme.brightness),
@@ -92,7 +92,7 @@ class WorkoutListItem extends StatelessWidget {
                                         (workout.type == WorkoutType.bundled)
                                             ? origTitle.i18n
                                             : origTitle,
-                                        style: theme.textTheme.headline6,
+                                        style: theme.textTheme.titleLarge,
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -107,7 +107,7 @@ class WorkoutListItem extends StatelessWidget {
                                       workout.type),
                                   child: Text(
                                     workout.category.translationKey.i18n,
-                                    style: theme.textTheme.subtitle2?.copyWith(
+                                    style: theme.textTheme.titleSmall?.copyWith(
                                         fontWeight: FontWeight.bold,
                                         color: workout.category.colorSwatch
                                             .getColorByBrightness(

@@ -47,7 +47,7 @@ class EditorSubheader extends StatelessWidget {
           children: [
             DropdownButtonHideUnderline(
                 child: DropdownButton(
-                    style: theme.textTheme.subtitle2
+                    style: theme.textTheme.titleSmall
                         ?.copyWith(fontWeight: FontWeight.bold),
                     value: category,
                     onChanged: onCategoryChanged,

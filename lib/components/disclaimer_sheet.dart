@@ -96,14 +96,14 @@ class DisclaimerSheet extends StatelessWidget {
                     Text(
                       "Feeel is a community project".i18n,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     ConstrainedBox(
-                        constraints: const BoxConstraints(
-                            maxWidth: FeeelGrid.sheetContentWidth),
+                        constraints: BoxConstraints(
+                            maxWidth: FeeelGrid.maxWidth[Cols12.cols8]!),
                         child: Text(
                           "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion."
                               .i18n,

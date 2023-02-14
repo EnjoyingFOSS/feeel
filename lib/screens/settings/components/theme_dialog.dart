@@ -21,6 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/theming/theme_mode_extensions.dart';
@@ -35,8 +36,9 @@ class ThemeDialog extends StatelessWidget {
     return AlertDialog(
       title: Text("Theme".i18n),
       content: SizedBox(
-        width: double.maxFinite,
+        width: FeeelGrid.maxWidth[Cols12.cols6]!,
         child: ListView.builder(
+          shrinkWrap: true,
           itemCount: AdaptiveThemeMode.values.length,
           itemBuilder: (BuildContext context, int index) {
             final itemTheme = AdaptiveThemeMode.values[index];
@@ -52,7 +54,6 @@ class ThemeDialog extends StatelessWidget {
               },
             );
           },
-          shrinkWrap: true,
         ),
       ),
     );

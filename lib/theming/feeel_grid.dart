@@ -13,13 +13,41 @@
 // channel without those restrictive terms and conditions.
 //
 // Feeel is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// but WITHOUT ANY WARRANTY, without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+enum Cols12 {
+  cols1,
+  cols2,
+  cols3,
+  cols4,
+  cols5,
+  cols6,
+  cols7,
+  cols8,
+  cols9,
+  cols10,
+  cols11,
+  cols12
+}
+
 class FeeelGrid {
-  static const sheetContentWidth = 600.0;
+  static const maxWidth = {
+    Cols12.cols1: 73.0,
+    Cols12.cols2: 170.0,
+    Cols12.cols3: 267.0,
+    Cols12.cols4: 364.0,
+    Cols12.cols5: 461.0,
+    Cols12.cols6: 558.0,
+    Cols12.cols7: 655.0,
+    Cols12.cols8: 752.0,
+    Cols12.cols9: 849.0,
+    Cols12.cols10: 946.0,
+    Cols12.cols11: 1043.0,
+    Cols12.cols12: 1140.0,
+  };
 }
