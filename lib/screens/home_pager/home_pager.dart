@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-// import 'package:feeel/screens/history/history_screen.dart';
+// import 'package:feeel/screens/activity/activity_screen.dart';
 import 'package:feeel/screens/settings/settings.dart';
 import 'package:feeel/screens/workout_list/workout_list.dart';
 import 'package:flutter/material.dart';
@@ -41,27 +41,40 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         //todo do I need SafeArea here?
-        backgroundColor: Theme.of(context).backgroundColor,
-        bottomNavigationBar: BottomNavigationBar(
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            currentIndex: _currentPage,
-            elevation: 0,
-            backgroundColor: Theme.of(context)
-                .colorScheme
-                .primaryContainer, //todo figure out the color scheme
-            selectedItemColor: Theme.of(context).colorScheme.onPrimaryContainer,
-            // unselectedItemColor:
-            //     Theme.of(context).colorScheme.onPrimary.withAlpha(128),
-            items: [
-              BottomNavigationBarItem(
-                  icon: const Icon(Icons.home), label: "Home".i18n),
-              // BottomNavigationBarItem(
-              //     icon: const Icon(Icons.history), label: "History".i18n),
-              BottomNavigationBarItem(
-                  icon: const Icon(Icons.settings), label: "Settings".i18n)
+        backgroundColor: Theme.of(context).colorScheme.background,
+        bottomNavigationBar: NavigationBar(
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+            selectedIndex: _currentPage,
+            destinations: [
+              NavigationDestination(
+                  icon: const Icon(
+                    Icons.home,
+                  ),
+                  selectedIcon: Icon(
+                    Icons.home,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  label: "Home".i18n),
+              NavigationDestination(
+                  icon: const Icon(
+                    Icons.history,
+                  ),
+                  selectedIcon: Icon(
+                    Icons.history,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  label: "Your activity".i18n),
+              NavigationDestination(
+                  icon: const Icon(
+                    Icons.settings,
+                  ),
+                  selectedIcon: Icon(
+                    Icons.settings,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  label: "Settings".i18n)
             ],
-            onTap: (pagePos) {
+            onDestinationSelected: (pagePos) {
               _controller.animateToPage(pagePos,
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeIn);
@@ -74,7 +87,7 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
           physics: const NeverScrollableScrollPhysics(),
           children: const [
             WorkoutListScreen(),
-            // HistoryScreen(),
+            // ActivityScreen(),
             SettingsScreen()
           ],
         ));
