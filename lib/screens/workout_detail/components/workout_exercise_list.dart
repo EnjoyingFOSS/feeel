@@ -23,6 +23,7 @@
 import 'package:feeel/components/exercise_list_item.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/utils/duration_util.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutExerciseList extends StatelessWidget {
@@ -39,11 +40,13 @@ class WorkoutExerciseList extends StatelessWidget {
       //todo use fixed extent
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
+          final duration =
+              fullWorkout.workoutExercises[index].exerciseDuration ??
+                  fullWorkout.workout.exerciseDuration;
           return ExerciseListItem(
             //todo allow two-row exercise names
             exercise: fullWorkout.exercises[index],
-            duration: fullWorkout.workoutExercises[index].exerciseDuration ??
-                fullWorkout.workout.exerciseDuration,
+            subtitle: Text(DurationUtil.getDurationShortform(duration)),
             colorSwatch: colorSwatch,
           );
         },
