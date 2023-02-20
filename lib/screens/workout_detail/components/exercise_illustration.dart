@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/screens/workout_detail/components/contribution_overlay.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +65,9 @@ class ExerciseIllustration extends StatelessWidget {
     final brightness = Theme.of(context).brightness;
     final screenSize = MediaQuery.of(context).size;
 
-    final imageAssetString = AssetUtil.getImageOrPlaceholderPath(imageSlug!);
+    final imageAssetString = AssetUtil.getImageOrPlaceholderPath(imageSlug);
+
+    final showContributionOverlay = imageSlug == null;
 
     if (animated) {
       AssetImage(imageAssetString).evict();
@@ -84,12 +87,24 @@ class ExerciseIllustration extends StatelessWidget {
                 alignment: floating ? Alignment.center : Alignment.bottomCenter,
               )
             : (floating
-                ? BodyExerciseContent(
-                    onBreak: onBreak,
-                    illustration: IllustrationWidget(
-                        imageAssetString: imageAssetString, flipped: flipped),
-                    alignment: Alignment.center,
-                  )
+                ? showContributionOverlay
+                    ? Stack(children: <Widget>[
+                        BodyExerciseContent(
+                          onBreak: onBreak,
+                          illustration: IllustrationWidget(
+                              imageAssetString: imageAssetString,
+                              flipped: flipped),
+                          alignment: Alignment.center,
+                        ),
+                        ContributionOverlay(colorSwatch: colorSwatch)
+                      ])
+                    : BodyExerciseContent(
+                        onBreak: onBreak,
+                        illustration: IllustrationWidget(
+                            imageAssetString: imageAssetString,
+                            flipped: flipped),
+                        alignment: Alignment.center,
+                      )
                 : Stack(children: <Widget>[
                     Align(
                         alignment: Alignment.bottomCenter,
@@ -105,10 +120,12 @@ class ExerciseIllustration extends StatelessWidget {
                                 color: bgColor,
                                 height: screenSize.width * 0.372)),
                     BodyExerciseContent(
-                        onBreak: onBreak,
-                        illustration: IllustrationWidget(
-                            imageAssetString: imageAssetString,
-                            flipped: flipped))
+                      onBreak: onBreak,
+                      illustration: IllustrationWidget(
+                          imageAssetString: imageAssetString, flipped: flipped),
+                    ),
+                    if (showContributionOverlay)
+                      ContributionOverlay(colorSwatch: colorSwatch)
                   ])));
   }
 }
