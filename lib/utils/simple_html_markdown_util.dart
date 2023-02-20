@@ -31,7 +31,7 @@ class SimpleHtmlMarkdownUtil {
 
   static List<String> _getParagraphs(String htmlString) {
     final paragraphMatches =
-        RegExp("<p>|<ul>|<ol>").allMatches(htmlString).toList();
+        RegExp("<p[^>]*>|<ul[^>]*>|<ol[^>]*>").allMatches(htmlString).toList();
 
     if (paragraphMatches.isEmpty) {
       final trimmedString = htmlString.trim();
@@ -57,14 +57,14 @@ class SimpleHtmlMarkdownUtil {
             .trim();
 
         if (paragraphString.isNotEmpty) {
-          switch (matchedTag) {
-            case "<ul>":
+          switch (matchedTag[1]) {
+            case "u": //ul
               paragraphs.addAll(_getList(paragraphString, false));
               break;
-            case "<ol>":
+            case "o": //ol
               paragraphs.addAll(_getList(paragraphString, true));
               break;
-            case "<p>":
+            case "p": //p
               paragraphs.add(paragraphString);
               break;
             default:
@@ -77,7 +77,7 @@ class SimpleHtmlMarkdownUtil {
   }
 
   static List<String> _getList(String listString, bool ordered) {
-    final splitString = listString.split("<li>");
+    final splitString = listString.split(RegExp("<li[^>]*>"));
     if (splitString.first.trim().isEmpty) {
       return List.generate(
           splitString.length - 1,
@@ -99,7 +99,7 @@ class SimpleHtmlMarkdownUtil {
         .replaceAll(RegExp("\\s*>"), ">")
         .replaceAll(RegExp("</\\s*"), "</")
         .replaceAll(RegExp("/\\s*>"), "/>")
-        .replaceAll(RegExp("</p>|</ul>|</ol>|</li>|\\r|\r|\\n"), "")
+        .replaceAll(RegExp("</p>|</ul>|</ol>|</li>|\\r|\r"), "")
         .replaceAll("&nbsp;", " ")
         .replaceAll(RegExp("<br>|<br />"),
             "<p>"); //todo \\s translates to whitespace, right?
@@ -108,7 +108,7 @@ class SimpleHtmlMarkdownUtil {
   static String _replaceTextSpans(List<String> paragraphs) {
     return paragraphs
         .join("\n\n")
-        .replaceAll(RegExp("<strong>|<b>|</strong>|</b>"), "**")
-        .replaceAll(RegExp("<em>|<i>|</em>|</i>"), "_");
+        .replaceAll(RegExp("<strong[^>]*>|<b>|</strong>|</b>"), "**")
+        .replaceAll(RegExp("<em[^>]*>|<i>|</em>|</i>"), "_");
   }
 }
