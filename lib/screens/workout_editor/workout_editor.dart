@@ -20,11 +20,13 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/body_container.dart';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/screens/exercise_picker/exercise_picker.dart';
+import 'package:feeel/theming/feeel_grid.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_editor/components/editor_header.dart';
@@ -49,11 +51,11 @@ class WorkoutEditorScreen extends StatefulWidget {
 }
 
 class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
-  late FeeelSwatch _colorSwatch;
   final _titleController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _timingFormKey = GlobalKey<FormState>();
   bool _editingTimeMode = false;
+  late FeeelSwatch _colorSwatch;
 
   @override
   void initState() {
@@ -68,76 +70,25 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
     return WillPopScope(
         onWillPop: _onWillPop,
         child: Scaffold(
-          body: SafeArea(
-              bottom: false,
-              child: Form(
-                  key: _formKey,
-                  child: FormField<void>(
-                    validator: (_) {
-                      if (widget.editableWorkout.workoutExercises.isEmpty) {
-                        return "Please add at least 1 exercise".i18n;
-                      }
-                      return null;
-                    },
-                    builder: (FormFieldState state) {
-                      //todo not sure if using formfield and its state correctly, should probably hold widget.editableWorkout.workoutExercises in state
-                      return (widget.editableWorkout.workoutExercises.isEmpty)
-                          ? EmptyPlaceholder(
-                              //todo there's too much empty space in landscape view
-                              //todo EditorHeader and EditorSubheader are used several times here; refactor to deduplicate code
-                              header: EditorHeader(
-                                  onClose: _onClose,
-                                  saveState: (String? text) {
-                                    if (text != null) {
-                                      widget.editableWorkout.title = text;
-                                    }
-                                  },
-                                  colorSwatch: _colorSwatch,
-                                  hintText: 'Workout title'.i18n,
-                                  emptyError:
-                                      "Please specify a workout title".i18n,
-                                  textEditingController: _titleController),
-                              subheader: EditorSubheader(
-                                  workoutDuration:
-                                      widget.editableWorkout.getDuration(),
-                                  category: widget.editableWorkout.category,
-                                  onCategoryChanged: _onCategoryChanged),
-                              heading: "Be your own coach!".i18n,
-                              subheading:
-                                  "Design the workout that makes you feel the best"
-                                      .i18n,
-                              errorMessage: state.errorText,
-                              child: TriangleFrame(
-                                seed: 52,
-                                color: _colorSwatch.getColorByBrightness(
-                                    FeeelShade.lightest,
-                                    Theme.of(context).brightness),
-                                child: Image.asset("assets/image_coach.webp"),
-                              ),
-                            )
-                          : _editingTimeMode
-                              ? WorkoutTimingEditor(
-                                  exerciseDuration:
-                                      widget.editableWorkout.exerciseDuration,
-                                  breakDuration:
-                                      widget.editableWorkout.breakDuration,
-                                  onExerciseDurationChanged: (int value) {
-                                    setState(() {
-                                      widget.editableWorkout.exerciseDuration =
-                                          value;
-                                    });
-                                  },
-                                  onBreakDurationChanged: (int value) {
-                                    setState(() {
-                                      widget.editableWorkout.breakDuration =
-                                          value;
-                                    });
-                                  },
-                                  workoutExercises:
-                                      widget.editableWorkout.workoutExercises,
-                                  timingFormKey: _timingFormKey,
-                                )
-                              : WorkoutContentEditor(
+          body: BodyContainer(
+              child: SafeArea(
+                  bottom: false,
+                  child: Form(
+                      key: _formKey,
+                      child: FormField<void>(
+                        validator: (_) {
+                          if (widget.editableWorkout.workoutExercises.isEmpty) {
+                            return "Please add at least 1 exercise".i18n;
+                          }
+                          return null;
+                        },
+                        builder: (FormFieldState state) {
+                          //todo not sure if using formfield and its state correctly, should probably hold widget.editableWorkout.workoutExercises in state
+                          return (widget
+                                  .editableWorkout.workoutExercises.isEmpty)
+                              ? EmptyPlaceholder(
+                                  //todo there's too much empty space in landscape view
+                                  //todo EditorHeader and EditorSubheader are used several times here; refactor to deduplicate code
                                   header: EditorHeader(
                                       onClose: _onClose,
                                       saveState: (String? text) {
@@ -155,28 +106,90 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                           widget.editableWorkout.getDuration(),
                                       category: widget.editableWorkout.category,
                                       onCategoryChanged: _onCategoryChanged),
-                                  workoutExercises:
-                                      widget.editableWorkout.workoutExercises,
-                                  onRemove: (int i) {
-                                    setState(() {
-                                      widget.editableWorkout.workoutExercises
-                                          .removeAt(i);
-                                    });
-                                  },
-                                  onReorder: (oldI, newI) {
-                                    if (newI > oldI) newI--;
+                                  heading: "Be your own coach!".i18n,
+                                  subheading:
+                                      "Design the workout that makes you feel the best"
+                                          .i18n,
+                                  errorMessage: state.errorText,
+                                  child: TriangleFrame(
+                                    seed: 52,
+                                    color: _colorSwatch.getColorByBrightness(
+                                        FeeelShade.lightest,
+                                        Theme.of(context).brightness),
+                                    child:
+                                        Image.asset("assets/image_coach.webp"),
+                                  ),
+                                )
+                              : _editingTimeMode
+                                  ? WorkoutTimingEditor(
+                                      exerciseDuration: widget
+                                          .editableWorkout.exerciseDuration,
+                                      breakDuration:
+                                          widget.editableWorkout.breakDuration,
+                                      onExerciseDurationChanged: (int value) {
+                                        setState(() {
+                                          widget.editableWorkout
+                                              .exerciseDuration = value;
+                                        });
+                                      },
+                                      onBreakDurationChanged: (int value) {
+                                        setState(() {
+                                          widget.editableWorkout.breakDuration =
+                                              value;
+                                        });
+                                      },
+                                      workoutExercises: widget
+                                          .editableWorkout.workoutExercises,
+                                      timingFormKey: _timingFormKey,
+                                    )
+                                  : WorkoutContentEditor(
+                                      header: EditorHeader(
+                                          onClose: _onClose,
+                                          saveState: (String? text) {
+                                            if (text != null) {
+                                              widget.editableWorkout.title =
+                                                  text;
+                                            }
+                                          },
+                                          colorSwatch: _colorSwatch,
+                                          hintText: 'Workout title'.i18n,
+                                          emptyError:
+                                              "Please specify a workout title"
+                                                  .i18n,
+                                          textEditingController:
+                                              _titleController),
+                                      subheader: EditorSubheader(
+                                          workoutDuration: widget
+                                              .editableWorkout
+                                              .getDuration(),
+                                          category:
+                                              widget.editableWorkout.category,
+                                          onCategoryChanged:
+                                              _onCategoryChanged),
+                                      workoutExercises: widget
+                                          .editableWorkout.workoutExercises,
+                                      onRemove: (int i) {
+                                        setState(() {
+                                          widget
+                                              .editableWorkout.workoutExercises
+                                              .removeAt(i);
+                                        });
+                                      },
+                                      onReorder: (oldI, newI) {
+                                        if (newI > oldI) newI--;
 
-                                    setState(() {
-                                      final temp = widget
-                                          .editableWorkout.workoutExercises
-                                          .removeAt(oldI);
-                                      widget.editableWorkout.workoutExercises
-                                          .insert(newI, temp);
-                                    });
-                                  },
-                                );
-                    },
-                  ))),
+                                        setState(() {
+                                          final temp = widget
+                                              .editableWorkout.workoutExercises
+                                              .removeAt(oldI);
+                                          widget
+                                              .editableWorkout.workoutExercises
+                                              .insert(newI, temp);
+                                        });
+                                      },
+                                    );
+                        },
+                      )))),
           bottomNavigationBar: Builder(
               builder: (context) => Visibility(
                   visible: !_editingTimeMode,
@@ -184,27 +197,34 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                       color: _colorSwatch.getColorByBrightness(
                           FeeelShade.lightest, theme.brightness),
                       shape: const CircularNotchedRectangle(),
-                      child: Row(
-                        children: <Widget>[
-                          TextButton.icon(
-                              label: Text("Add exercises".i18n,
-                                  style: TextStyle(
-                                      color: theme.colorScheme.onSurface)),
-                              icon: Icon(Icons.add,
-                                  color: theme.colorScheme.onSurface),
-                              onPressed: _addExercisesOnPressed),
-                          //todo if (widget.editableWorkout.workoutExercises.length > 0)
-                          TextButton.icon(
-                              label: Text("Adjust timing".i18n,
-                                  style: TextStyle(
-                                      color: theme.colorScheme.onSurface)),
-                              icon: Icon(Icons.timer,
-                                  color: theme.colorScheme.onSurface),
-                              onPressed: () {
-                                _adjustTimingOnPressed(context);
-                              }),
-                        ],
-                      )))),
+                      height: FeeelGrid.bottomAppBarHeight,
+                      child: Center(
+                          child: ConstrainedBox(
+                              constraints: BoxConstraints(
+                                  maxWidth: LayoutXL.cols12.width),
+                              child: Row(
+                                children: <Widget>[
+                                  TextButton.icon(
+                                      label: Text("Add exercises".i18n,
+                                          style: TextStyle(
+                                              color:
+                                                  theme.colorScheme.onSurface)),
+                                      icon: Icon(Icons.add,
+                                          color: theme.colorScheme.onSurface),
+                                      onPressed: _addExercisesOnPressed),
+                                  //todo if (widget.editableWorkout.workoutExercises.length > 0)
+                                  TextButton.icon(
+                                      label: Text("Adjust timing".i18n,
+                                          style: TextStyle(
+                                              color:
+                                                  theme.colorScheme.onSurface)),
+                                      icon: Icon(Icons.timer,
+                                          color: theme.colorScheme.onSurface),
+                                      onPressed: () {
+                                        _adjustTimingOnPressed(context);
+                                      }),
+                                ],
+                              )))))),
           floatingActionButtonLocation: _editingTimeMode
               ? FloatingActionButtonLocation.centerFloat
               : FloatingActionButtonLocation.endDocked,
@@ -271,7 +291,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Add an exercise first".i18n),
+        content:
+            Text("Add an exercise first".i18n, textAlign: TextAlign.center),
         duration: const Duration(seconds: 2),
       ));
     }

@@ -102,8 +102,8 @@ class DisclaimerSheet extends StatelessWidget {
                       height: 8,
                     ),
                     ConstrainedBox(
-                        constraints: BoxConstraints(
-                            maxWidth: FeeelGrid.maxWidth[Cols12.cols8]!),
+                        constraints:
+                            BoxConstraints(maxWidth: LayoutXL.cols8.width),
                         child: Text(
                           "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion."
                               .i18n,

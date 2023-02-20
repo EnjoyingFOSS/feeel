@@ -45,7 +45,7 @@ class WorkoutListItem extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Material(
-        color: theme.colorScheme.background,
+        color: Colors.transparent,
         child: // Row(children: [
             InkWell(
                 onTap: () {

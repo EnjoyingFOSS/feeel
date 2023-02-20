@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/body_container.dart';
 import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
@@ -55,8 +56,10 @@ class WorkoutCover extends StatelessWidget {
   Widget build(BuildContext context) {
     _precacheFirstImage(context);
     return SafeArea(
-        child: Stack(children: <Widget>[
+        child: BodyContainer(
+            child: Stack(clipBehavior: Clip.none, children: <Widget>[
       CustomScrollView(
+        clipBehavior: Clip.none,
         slivers: <Widget>[
           SliverToBoxAdapter(
               child: WorkoutHeader(
@@ -81,6 +84,6 @@ class WorkoutCover extends StatelessWidget {
                 backgroundColor: colorSwatch.getColorByBrightness(
                     FeeelShade.dark, Theme.of(context).brightness),
               )))
-    ]));
+    ])));
   }
 }

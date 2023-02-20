@@ -13,33 +13,26 @@
 // channel without those restrictive terms and conditions.
 //
 // Feeel is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY, without even the implied warranty of
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-enum LayoutXL {
-  cols1(73.0),
-  cols2(170.0),
-  cols3(267.0),
-  cols4(364.0),
-  cols5(461.0),
-  cols6(558.0),
-  cols7(655.0),
-  cols8(752.0),
-  cols9(849.0),
-  cols10(946.0),
-  cols11(1043.0),
-  cols12(1140.0);
+import 'package:feeel/theming/feeel_grid.dart';
+import 'package:flutter/widgets.dart';
 
-  final double width;
+class BodyContainer extends StatelessWidget {
+  final Widget child;
 
-  const LayoutXL(this.width);
-}
+  const BodyContainer({super.key, required this.child});
 
-class FeeelGrid {
-  static const breakpointXL = 960;
-  static const bottomAppBarHeight = 48.0;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: LayoutXL.cols12.width),
+            child: child));
+  }
 }

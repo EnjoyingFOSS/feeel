@@ -70,7 +70,7 @@ class FeeelThemes {
         scaffoldBackgroundColor: colorScheme.background,
         cardColor: colorScheme.surface,
         appBarTheme: AppBarTheme(
-            color: colorScheme.background,
+            color: Colors.transparent,
             iconTheme: IconThemeData(color: colorScheme.primary),
             titleTextStyle: TextStyle(
                 fontSize: 32,
@@ -79,21 +79,28 @@ class FeeelThemes {
             centerTitle: false,
             elevation: 0),
         navigationBarTheme: NavigationBarThemeData(
+            shadowColor: colorScheme.onBackground,
             indicatorColor: colorScheme.primaryContainer,
             backgroundColor: colorScheme.background,
             height: 56,
             elevation: 8),
+        navigationDrawerTheme: NavigationDrawerThemeData(
+            shadowColor: colorScheme.onBackground,
+            backgroundColor: colorScheme.background,
+            indicatorColor: colorScheme.primaryContainer,
+            elevation: 8,
+            labelTextStyle: MaterialStateProperty.resolveWith((states) =>
+                (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected))
+                    ? TextStyle(color: colorScheme.primary)
+                    : null)),
         switchTheme: SwitchThemeData(
             thumbColor: MaterialStateProperty.resolveWith<Color?>((states) =>
-                (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected))
+                (!states.contains(MaterialState.disabled) &&
+                        states.contains(MaterialState.selected))
                     ? colorScheme.primary
                     : null),
             trackColor: MaterialStateProperty.resolveWith<Color?>(
-                (states) => //todo check
-                    (!states.contains(MaterialState.disabled) &&
-                            states.contains(MaterialState.selected))
-                        ? colorScheme.primary.withAlpha(80)
-                        : null)),
+                (states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary.withAlpha(80) : null)),
         radioTheme: RadioThemeData(
           fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
               (!states.contains(MaterialState.disabled) &&
@@ -101,8 +108,6 @@ class FeeelThemes {
                   ? colorScheme.primary
                   : null),
         ),
-        checkboxTheme: CheckboxThemeData(
-            fillColor: MaterialStateProperty.resolveWith<Color?>(
-                (states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null)));
+        checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null)));
   }
 }

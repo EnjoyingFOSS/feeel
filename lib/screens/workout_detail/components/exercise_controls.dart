@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
@@ -39,33 +40,35 @@ class ExerciseControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: <Widget>[
-      Expanded(
-          child: IconButton(
-        iconSize: 32,
-        color: themeDarkColor,
-        tooltip: "Previous exercise".i18n,
-        icon: const Icon(Icons.skip_previous),
-        onPressed: skipToPrevious,
-      )),
-      Expanded(
-        child: IconButton(
-            iconSize: 64,
-            color: themeDarkColor,
-            tooltip: "Resume workout".i18n,
-            icon: const Icon(Icons.play_arrow),
-            onPressed: togglePlayPause),
-      ),
-      Expanded(
-        child: IconButton(
+    return ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: LayoutXL.cols12.width),
+        child: Row(children: <Widget>[
+          Expanded(
+              child: IconButton(
             iconSize: 32,
             color: themeDarkColor,
-            tooltip: "Next exercise".i18n,
-            icon: const Icon(
-              Icons.skip_next,
-            ),
-            onPressed: skipToNext),
-      )
-    ]);
+            tooltip: "Previous exercise".i18n,
+            icon: const Icon(Icons.skip_previous),
+            onPressed: skipToPrevious,
+          )),
+          Expanded(
+            child: IconButton(
+                iconSize: 64,
+                color: themeDarkColor,
+                tooltip: "Resume workout".i18n,
+                icon: const Icon(Icons.play_arrow),
+                onPressed: togglePlayPause),
+          ),
+          Expanded(
+            child: IconButton(
+                iconSize: 32,
+                color: themeDarkColor,
+                tooltip: "Next exercise".i18n,
+                icon: const Icon(
+                  Icons.skip_next,
+                ),
+                onPressed: skipToNext),
+          )
+        ]));
   }
 }

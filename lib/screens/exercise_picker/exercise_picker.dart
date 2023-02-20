@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/body_container.dart';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/screens/exercise_picker/components/contribute_sheet.dart';
 import 'package:feeel/theming/feeel_shade.dart';
@@ -61,13 +62,6 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
         widget.swatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
     return Scaffold(
         backgroundColor: bgColor,
-        appBar: AppBar(
-          backgroundColor: bgColor,
-          titleTextStyle:
-              theme.appBarTheme.titleTextStyle?.copyWith(color: fgColor),
-          iconTheme: theme.iconTheme,
-          title: Text("Add exercises".i18n),
-        ),
         floatingActionButton: FloatingActionButton(
           foregroundColor: widget.swatch.getColor(FeeelShade.darker),
           backgroundColor: Colors.white,
@@ -89,38 +83,50 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
               if (snapshot.hasData) {
                 _exercises = snapshot.data!;
 
-                return ListView.builder(
-                    //todo add itemExtent here, but test for responsiveness
-                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 64),
-                    itemCount: _exercises!.length + 1,
-                    itemBuilder: (context, i) {
-                      if (i < _exercises!.length) {
-                        return ExercisePickerRow(
-                            checked: _chosenExerciseIndices.contains(i),
-                            exercise: _exercises![i],
-                            colorSwatch: widget.swatch,
-                            onChanged: (chosen) {
-                              setState(() {
-                                if (chosen != null && chosen) {
-                                  _chosenExerciseIndices.add(i);
-                                } else {
-                                  _chosenExerciseIndices.remove(i);
-                                }
-                              });
-                            });
-                      } else {
-                        return ListTile(
-                          leading: Container(
-                              width: 56,
-                              alignment: Alignment.center,
-                              child: const Icon(Icons.add)),
-                          title: Text("Propose custom exercise".i18n),
-                          onTap: () async {
-                            ContributeSheet.showSheet(context);
+                return BodyContainer(
+                    child: CustomScrollView(
+                  slivers: [
+                    SliverAppBar(
+                      titleTextStyle: theme.appBarTheme.titleTextStyle
+                          ?.copyWith(color: fgColor),
+                      title: Text("Add exercises".i18n),
+                    ),
+                    SliverPadding(
+                        padding: const EdgeInsets.fromLTRB(0, 16, 0, 64),
+                        sliver: SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                          childCount: _exercises!.length + 1,
+                          (context, i) {
+                            if (i < _exercises!.length) {
+                              return ExercisePickerRow(
+                                  checked: _chosenExerciseIndices.contains(i),
+                                  exercise: _exercises![i],
+                                  colorSwatch: widget.swatch,
+                                  onChanged: (chosen) {
+                                    setState(() {
+                                      if (chosen != null && chosen) {
+                                        _chosenExerciseIndices.add(i);
+                                      } else {
+                                        _chosenExerciseIndices.remove(i);
+                                      }
+                                    });
+                                  });
+                            } else {
+                              return ListTile(
+                                leading: Container(
+                                    width: 56,
+                                    alignment: Alignment.center,
+                                    child: const Icon(Icons.add)),
+                                title: Text("Propose custom exercise".i18n),
+                                onTap: () async {
+                                  ContributeSheet.showSheet(context);
+                                },
+                              );
+                            }
                           },
-                        );
-                      }
-                    });
+                        )))
+                  ],
+                ));
               } else {
                 return const Center(
                   child: CircularProgressIndicator.adaptive(),

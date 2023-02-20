@@ -74,7 +74,8 @@ class WorkoutContentEditor extends StatelessWidget {
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text(
                                       "Drag this handle to reorder exercises."
-                                          .i18n)));
+                                          .i18n,
+                                      textAlign: TextAlign.center)));
                               //todo test this, shouldn't show up on drag
                             },
                             icon: const Icon(Icons.drag_handle)),

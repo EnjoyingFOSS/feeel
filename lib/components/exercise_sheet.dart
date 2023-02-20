@@ -162,8 +162,8 @@ class ExerciseSheet extends StatelessWidget {
                   width: double.infinity,
                   child: Center(
                       child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                              maxWidth: FeeelGrid.maxWidth[Cols12.cols8]!),
+                          constraints:
+                              BoxConstraints(maxWidth: LayoutXL.cols8.width),
                           child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,

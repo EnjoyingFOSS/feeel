@@ -36,7 +36,7 @@ class ThemeDialog extends StatelessWidget {
     return AlertDialog(
       title: Text("Theme".i18n),
       content: SizedBox(
-        width: FeeelGrid.maxWidth[Cols12.cols6]!,
+        width: LayoutXL.cols6.width,
         child: ListView.builder(
           shrinkWrap: true,
           itemCount: AdaptiveThemeMode.values.length,

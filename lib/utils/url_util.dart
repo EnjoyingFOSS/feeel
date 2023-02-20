@@ -32,7 +32,7 @@ class URLUtil {
         await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
     if (!launched) {
       scaffoldMessenger.showSnackBar(SnackBar(
-        content: Text("Could not open URL.".i18n),
+        content: Text("Could not open URL.".i18n, textAlign: TextAlign.center),
       ));
     }
   }

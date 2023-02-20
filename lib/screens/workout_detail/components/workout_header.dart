@@ -51,7 +51,7 @@ class WorkoutHeader extends StatelessWidget {
         colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
 
     final String translatedCategory = workout.category.translationKey.i18n;
-    return Stack(children: [
+    return Stack(clipBehavior: Clip.none, children: [
       Positioned.directional(
           textDirection: Directionality.of(context),
           start: -12,
