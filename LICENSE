@@ -188,12 +188,14 @@ Translations in "strings/ui" are released under the AGPLv3, those in "strings/ex
 * J. Lavoie
 * mondstern
 * Marco Galli
+* albanobattistella
 
 ## Italian - ui strings
 
 * Gianluca Vespignani
 * J. Lavoie
 * Marco Galli
+* albanobattistella
 
 ## Persian - both ui and exercise strings
 
@@ -227,12 +229,18 @@ Translations in "strings/ui" are released under the AGPLv3, those in "strings/ex
 * mondstern
 * flexagoon
 * AHOHNMYC
+* Александр Барышников
+
+## Russian - exercise strings
+* Александр Барышников
+* flexagoon
 
 ## Spanish - exercise strings
 
 * Gabriel Tandil
 * Diego Sanguinetti
 * mondstern
+* Luis Alfredo Figueroa Bracamontes
 
 ## Spanish - ui strings
 
@@ -241,6 +249,7 @@ Translations in "strings/ui" are released under the AGPLv3, those in "strings/ex
 * Sebastián Pujá López
 * martingetzel
 * mondstern
+* Luis Alfredo Figueroa Bracamontes
 
 ## Swedish - ui and exercise strings
 * Joel A
@@ -254,3 +263,12 @@ Translations in "strings/ui" are released under the AGPLv3, those in "strings/ex
 ## Turkish - ui strings
 
 * Oğuz Ersen
+
+## Ukranian - ui strings
+
+* Dan
+
+## Ukranian - exercise strings
+
+* Олександр Стеренкевич
+* Dan
