@@ -6,7 +6,6 @@
     "txtSecondsLeft5plus": "%d seconds left",
     "txtBreak": "Break!",
     "txtTapForControls": "Tap for controls",
-    "txtImageMissing": "Image missing",
     "txtWorkoutTitle": "Workout title",
     "txtBeYourOwnCoach": "Be your own coach!",
     "txtWorkoutToMakeYouFeelBest": "Design the workout that makes you feel the best",
@@ -72,6 +71,10 @@
     "txtNotesInDesc": "Notes:",
     "txtNotificationSystemSettingsPermission": "You must give Feeel permission to show notifications via your system settings.",
     "txtEnglishDescLicense": "English description by %1s is licensed under the [%2s license].",
+    "txtShowXUncompletedWorkouts": "Show %d uncompleted workouts",
+    "txtHideUncompletedWorkouts": "Hide uncompleted workouts",
+    "txtNoExerciseImageYet": "No exercise image yet",
+    "txtNoWorkoutsOnDate": "No workouts on %s",
     "btnStartWorkout": "Start workout",
     "btnResumeWorkout": "Resume workout",
     "btnPreviousExercise": "Previous exercise",
@@ -100,5 +103,6 @@
     "btnBackToWorkoutList": "Back to workout list",
     "btnImportAnyway": "Import anyway",
     "btnWgerSignUp": "Sign up for wger",
-    "btnWgerLogIn": "Log in with wger"
+    "btnWgerLogIn": "Log in with wger",
+    "btnContributeAnImage": "Contribute one now"
 }
