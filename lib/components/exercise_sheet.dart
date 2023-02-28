@@ -120,8 +120,9 @@ class ExerciseSheet extends StatelessWidget {
                                 )),
                             headOnly
                                 ? HeadExerciseContent(
-                                    color: colorSwatch.getColorByBrightness(
-                                        FeeelShade.lightest, brightness),
+                                    color: colorSwatch.getColor(FeeelShade
+                                        .lightest
+                                        .invertIfDark(brightness)),
                                     onBreak: false,
                                     illustration: IllustrationWidget(
                                         imageAssetString:

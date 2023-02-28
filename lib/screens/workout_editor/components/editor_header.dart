@@ -46,15 +46,15 @@ class EditorHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final color =
-        colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
+        colorSwatch.getColor(FeeelShade.dark.invertIfDark(theme.brightness));
     return Row(children: <Widget>[
       const SizedBox(
         width: 4,
       ),
       CloseButton(
         onPressed: onClose,
-        color:
-            colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness),
+        color: colorSwatch
+            .getColor(FeeelShade.dark.invertIfDark(theme.brightness)),
       ),
       Expanded(
         child: Padding(

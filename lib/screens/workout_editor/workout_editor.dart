@@ -113,9 +113,9 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                                   errorMessage: state.errorText,
                                   child: TriangleFrame(
                                     seed: 52,
-                                    color: _colorSwatch.getColorByBrightness(
-                                        FeeelShade.lightest,
-                                        Theme.of(context).brightness),
+                                    color: _colorSwatch.getColor(FeeelShade
+                                        .lightest
+                                        .invertIfDark(theme.brightness)),
                                     child:
                                         Image.asset("assets/image_coach.webp"),
                                   ),
@@ -194,8 +194,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
               builder: (context) => Visibility(
                   visible: !_editingTimeMode,
                   child: BottomAppBar(
-                      color: _colorSwatch.getColorByBrightness(
-                          FeeelShade.lightest, theme.brightness),
+                      color: _colorSwatch.getColor(
+                          FeeelShade.lightest.invertIfDark(theme.brightness)),
                       shape: const CircularNotchedRectangle(),
                       height: FeeelGrid.bottomAppBarHeight,
                       child: Center(
@@ -230,8 +230,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
               : FloatingActionButtonLocation.endDocked,
           floatingActionButton: _editingTimeMode
               ? FloatingActionButton.extended(
-                  backgroundColor: _colorSwatch.getColorByBrightness(
-                      FeeelShade.dark, theme.brightness),
+                  backgroundColor: _colorSwatch
+                      .getColor(FeeelShade.dark.invertIfDark(theme.brightness)),
                   onPressed: () {
                     setState(() {
                       final timingForm = _timingFormKey.currentState;
@@ -246,8 +246,10 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                   icon: const Icon(Icons.done),
                   label: Text("Done editing timing".i18n))
               : FloatingActionButton(
-                  backgroundColor: _colorSwatch.getColorByBrightness(
-                      FeeelShade.dark, theme.brightness),
+                  backgroundColor: _colorSwatch
+                      .getColor(FeeelShade.dark.invertIfDark(theme.brightness)),
+                  foregroundColor: _colorSwatch.getForegroundColor(
+                      FeeelShade.dark.invertIfDark(theme.brightness)),
                   tooltip: "Done".i18n,
                   child: const Icon(Icons.done),
                   onPressed: () {

@@ -58,8 +58,9 @@ class EditorSubheader extends StatelessWidget {
                         child: Text(
                           value.translationKey.i18n,
                           style: TextStyle(
-                              color: value.colorSwatch.getColorByBrightness(
-                                  FeeelShade.darker, theme.brightness)),
+                              color: value.colorSwatch.getColor(FeeelShade
+                                  .darker
+                                  .invertIfDark(theme.brightness))),
                         ),
                       );
                     }))),

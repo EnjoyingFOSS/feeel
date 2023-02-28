@@ -96,8 +96,8 @@ class _WorkoutPagerState extends State<WorkoutPager> {
             fullWorkout: widget.fullWorkout,
             colorSwatch: colorSwatch),
         FinishPage(
-          color: colorSwatch.getColorByBrightness(
-              FeeelShade.dark, Theme.of(context).brightness),
+          color: colorSwatch.getColor(
+              FeeelShade.dark.invertIfDark(Theme.of(context).brightness)),
         )
       ],
     );

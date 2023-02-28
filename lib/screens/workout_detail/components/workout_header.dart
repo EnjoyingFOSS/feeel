@@ -48,7 +48,7 @@ class WorkoutHeader extends StatelessWidget {
     final theme = Theme.of(context);
     final title = workout.title;
     final fgColor =
-        colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
+        colorSwatch.getColor(FeeelShade.dark.invertIfDark(theme.brightness));
 
     final String translatedCategory = workout.category.translationKey.i18n;
     return Stack(clipBehavior: Clip.none, children: [
@@ -61,8 +61,8 @@ class WorkoutHeader extends StatelessWidget {
               tag: HeroUtil.getWorkoutHero(
                   HeroType.illustration, workout.id, workout.type),
               child: TriangleFilled(
-                  color: colorSwatch.getColorByBrightness(
-                      FeeelShade.lightest, theme.brightness),
+                  color: colorSwatch.getColor(
+                      FeeelShade.lightest.invertIfDark(theme.brightness)),
                   seed: title.hashCode))),
       Positioned.directional(
           textDirection: Directionality.of(context),
@@ -106,8 +106,8 @@ class WorkoutHeader extends StatelessWidget {
                       child: Text(translatedCategory,
                           style: theme.textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: colorSwatch.getColorByBrightness(
-                                  FeeelShade.darker, theme.brightness))),
+                              color: colorSwatch.getColor(FeeelShade.darker
+                                  .invertIfDark(theme.brightness)))),
                     ),
                     const SizedBox(
                       width: 16,

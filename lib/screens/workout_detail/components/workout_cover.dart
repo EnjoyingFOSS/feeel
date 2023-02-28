@@ -55,6 +55,7 @@ class WorkoutCover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _precacheFirstImage(context);
+    final brightness = Theme.of(context).brightness;
     return SafeArea(
         child: BodyContainer(
             child: Stack(clipBehavior: Clip.none, children: <Widget>[
@@ -81,8 +82,10 @@ class WorkoutCover extends StatelessWidget {
                 icon: const Icon(Icons.play_arrow),
                 label: Text("Start workout".i18n),
                 onPressed: startWorkout,
-                backgroundColor: colorSwatch.getColorByBrightness(
-                    FeeelShade.dark, Theme.of(context).brightness),
+                backgroundColor: colorSwatch
+                    .getColor(FeeelShade.dark.invertIfDark(brightness)),
+                foregroundColor: colorSwatch.getForegroundColor(
+                    FeeelShade.dark.invertIfDark(brightness)),
               )))
     ])));
   }

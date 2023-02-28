@@ -35,8 +35,8 @@ class ContributionOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainColor = colorSwatch.getColorByBrightness(
-        FeeelShade.dark, Theme.of(context).brightness);
+    final mainColor = colorSwatch
+        .getColor(FeeelShade.dark.invertIfDark(Theme.of(context).brightness));
     return Center(
         child: Container(
       decoration: BoxDecoration(

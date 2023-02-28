@@ -57,9 +57,9 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final bgColor = widget.swatch
-        .getColorByBrightness(FeeelShade.lightest, theme.brightness);
+        .getColor(FeeelShade.lightest.invertIfDark(theme.brightness));
     final fgColor =
-        widget.swatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
+        widget.swatch.getColor(FeeelShade.dark.invertIfDark(theme.brightness));
     return Scaffold(
         backgroundColor: bgColor,
         floatingActionButton: FloatingActionButton(

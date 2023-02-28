@@ -52,11 +52,12 @@ class ExerciseLayout extends StatelessWidget {
     //todo use two-pane layout in landscape
     final theme = Theme.of(context);
 
-    final themeDarkColor =
-        colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
+    final onBackgroundColor =
+        colorSwatch.getColor(FeeelShade.dark.invertIfDark(theme.brightness));
 
-    final fgColor =
-        headOnly ? colorSwatch.getColor(FeeelShade.dark) : Colors.white;
+    final fgColor = headOnly
+        ? onBackgroundColor
+        : colorSwatch.getForegroundColor(FeeelShade.dark);
     final bgColor = headOnly
         ? Colors.transparent
         : (theme.brightness == Brightness.dark
@@ -94,19 +95,19 @@ class ExerciseLayout extends StatelessWidget {
                         child: Column(
                           children: [
                             ExerciseCounter(
-                                color: themeDarkColor,
+                                color: onBackgroundColor,
                                 paused: paused,
                                 counterText: secondsString),
                             paused
                                 ? ExerciseControls(
-                                    themeDarkColor: themeDarkColor,
+                                    themeDarkColor: onBackgroundColor,
                                     skipToPrevious: skipToPrevious,
                                     skipToNext: skipToNext,
                                     togglePlayPause: togglePlayPause,
                                   )
                                 : Text(
                                     "Tap for controls".i18n,
-                                    style: TextStyle(color: themeDarkColor),
+                                    style: TextStyle(color: onBackgroundColor),
                                   ),
                             const Expanded(
                               child: SizedBox(),
@@ -154,19 +155,19 @@ class ExerciseLayout extends StatelessWidget {
         : Column(
             children: <Widget>[
               ExerciseCounter(
-                  color: themeDarkColor,
+                  color: onBackgroundColor,
                   paused: paused,
                   counterText: secondsString),
               paused
                   ? ExerciseControls(
-                      themeDarkColor: themeDarkColor,
+                      themeDarkColor: onBackgroundColor,
                       skipToPrevious: skipToPrevious,
                       skipToNext: skipToNext,
                       togglePlayPause: togglePlayPause,
                     )
                   : Text(
                       "Tap for controls".i18n,
-                      style: TextStyle(color: themeDarkColor),
+                      style: TextStyle(color: onBackgroundColor),
                     ),
               const SizedBox(
                 height: 16,

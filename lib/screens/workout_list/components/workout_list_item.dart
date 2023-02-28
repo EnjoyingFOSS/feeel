@@ -71,9 +71,9 @@ class WorkoutListItem extends StatelessWidget {
                                     workout.id,
                                     workout.type),
                                 child: TriangleFilled(
-                                  color: workout.category.colorSwatch
-                                      .getColorByBrightness(FeeelShade.lightest,
-                                          theme.brightness),
+                                  color: workout.category.colorSwatch.getColor(
+                                      FeeelShade.lightest
+                                          .invertIfDark(theme.brightness)),
                                   seed: origTitle.hashCode,
                                 ))),
                         Padding(
@@ -110,9 +110,9 @@ class WorkoutListItem extends StatelessWidget {
                                     style: theme.textTheme.titleSmall?.copyWith(
                                         fontWeight: FontWeight.bold,
                                         color: workout.category.colorSwatch
-                                            .getColorByBrightness(
-                                                FeeelShade.darker,
-                                                theme.brightness)),
+                                            .getColor(FeeelShade.darker
+                                                .invertIfDark(
+                                                    theme.brightness))),
                                   ),
                                 )
                               ],

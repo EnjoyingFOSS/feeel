@@ -26,8 +26,8 @@ class ExercisePickerRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final imageSlug = exercise.imageSlug;
     return CheckboxListTile(
-      activeColor: colorSwatch.getColorByBrightness(
-          FeeelShade.dark, Theme.of(context).brightness),
+      activeColor: colorSwatch
+          .getColor(FeeelShade.dark.invertIfDark(Theme.of(context).brightness)),
       value: checked,
       title: Row(children: [
         Expanded(child: Text(exercise.name.i18n)),
