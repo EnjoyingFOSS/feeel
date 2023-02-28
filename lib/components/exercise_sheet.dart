@@ -74,18 +74,17 @@ class ExerciseSheet extends StatelessWidget {
         final headOnly = exercise.type == ExerciseType.head;
 
         final brightness = Theme.of(context).brightness;
-        const fgColor = Colors.white;
         final bgColor = brightness == Brightness.dark
             ? colorSwatch.getColor(FeeelShade.darker)
             : colorSwatch.getColor(FeeelShade.dark);
+        final fgColor = colorSwatch.getForegroundColor(FeeelShade.dark);
         final licenseColor = fgColor.withAlpha(192);
 
         final markdownBodyStyle =
             MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-                p: const TextStyle(color: fgColor),
-                a: const TextStyle(
-                    color: fgColor, decoration: TextDecoration.none),
-                listBullet: const TextStyle(color: fgColor));
+                p: TextStyle(color: fgColor),
+                a: TextStyle(color: fgColor, decoration: TextDecoration.none),
+                listBullet: TextStyle(color: fgColor));
         final markdownLicenseStyle =
             MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
                 p: TextStyle(fontSize: 12, color: licenseColor),
@@ -173,7 +172,7 @@ class ExerciseSheet extends StatelessWidget {
                                     child: Text(
                                   exercise.name.i18n,
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       fontSize: 40,
                                       fontWeight: FontWeight.w900,
                                       color: fgColor),
@@ -193,7 +192,7 @@ class ExerciseSheet extends StatelessWidget {
                                 if (exercise.notes != null)
                                   Text(
                                     "Notes:".i18n,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         color: fgColor,
                                         fontWeight: FontWeight.bold),
                                   ),

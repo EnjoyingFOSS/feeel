@@ -64,7 +64,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
         backgroundColor: bgColor,
         floatingActionButton: FloatingActionButton(
           foregroundColor: widget.swatch.getColor(FeeelShade.darker),
-          backgroundColor: Colors.white,
+          backgroundColor: widget.swatch.getForegroundColor(FeeelShade.darker),
           tooltip: "Done".i18n,
           onPressed: () {
             if (_exercises != null) {

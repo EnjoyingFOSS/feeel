@@ -105,6 +105,7 @@ class ExerciseFooter extends StatelessWidget {
                       ? colorSwatch.getColor(FeeelShade.darker)
                       : colorSwatch.getColor(FeeelShade.dark))
                   : const Color(0x26000000),
+              fgColor: colorSwatch.getForegroundColor(FeeelShade.dark),
             ),
         ]),
       ),

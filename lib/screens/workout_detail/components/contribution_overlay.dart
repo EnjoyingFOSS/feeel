@@ -53,7 +53,8 @@ class ContributionOverlay extends StatelessWidget {
         ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: colorSwatch.getColor(FeeelShade.dark),
-                foregroundColor: Colors.white),
+                foregroundColor:
+                    colorSwatch.getForegroundColor(FeeelShade.dark)),
             onPressed: () => URLUtil.launchURL(context,
                 "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"), //todo have a more fitting page for just contributing the photos
             child: Text("Contribute one now".i18n))

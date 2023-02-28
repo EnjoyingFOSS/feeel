@@ -26,9 +26,14 @@ import 'package:feeel/i18n/translations.dart';
 class LearnInfo extends StatelessWidget {
   //todo indicate when an exercise has steps
   final Color bgColor;
+  final Color fgColor;
   final void Function() onTap;
 
-  const LearnInfo({Key? key, required this.onTap, required this.bgColor})
+  const LearnInfo(
+      {Key? key,
+      required this.onTap,
+      required this.bgColor,
+      required this.fgColor})
       : super(key: key);
 
   @override
@@ -47,13 +52,13 @@ class LearnInfo extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.expand_less, color: Colors.white),
+                  Icon(Icons.expand_less, color: fgColor),
                   Text(
                     "Learn the exercise".i18n,
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall
-                        ?.copyWith(color: Colors.white),
+                        ?.copyWith(color: fgColor),
                   )
                 ], //todo size16 or 18
               ))),
