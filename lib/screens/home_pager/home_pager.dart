@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/navigation_pills.dart';
 import 'package:feeel/screens/home_pager/components/home_pageview.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
@@ -50,90 +51,35 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
                 onDestinationSelected: _onDestinationSelected,
                 destinations: [
                   NavigationDestination(
-                      icon: const Icon(
-                        Icons.home,
-                      ),
-                      selectedIcon: Icon(
-                        Icons.home,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      label: "Home".i18n),
+                      icon: const Icon(Icons.home), label: "Home".i18n),
                   NavigationDestination(
-                      icon: const Icon(
-                        Icons.history,
-                      ),
-                      selectedIcon: Icon(
-                        Icons.history,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                      icon: const Icon(Icons.history),
                       label: "Your activity".i18n),
                   NavigationDestination(
-                      icon: const Icon(
-                        Icons.settings,
-                      ),
-                      selectedIcon: Icon(
-                        Icons.settings,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      label: "Settings".i18n)
+                      icon: const Icon(Icons.settings), label: "Settings".i18n)
                 ],
               )
-            : null,
-        body:
-            // showSidebar ?
-            Row(mainAxisSize: MainAxisSize.max, children: [
-          //todo only use row and expanded with NavigationRail and drawer
-          if (showSidebar)
-            NavigationDrawer(
-              shadowColor: Theme.of(context).colorScheme.onBackground,
-              elevation: 8,
-              backgroundColor: Theme.of(context).colorScheme.background,
-              onDestinationSelected: _onDestinationSelected,
-              selectedIndex: _currentPage,
-              children: [
-                const SizedBox(height: 16),
-                NavigationDrawerDestination(
-                    icon: const Icon(
-                      Icons.home,
-                    ),
-                    selectedIcon: Icon(
-                      Icons.home,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    label: Text("Home".i18n)),
-                NavigationDrawerDestination(
-                    icon: const Icon(
-                      Icons.history,
-                    ),
-                    selectedIcon: Icon(
-                      Icons.history,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    label: Text("Your activity".i18n)),
-                NavigationDrawerDestination(
-                    icon: const Icon(
-                      Icons.settings,
-                    ),
-                    selectedIcon: Icon(
-                      Icons.settings,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    label: Text("Settings".i18n))
-              ],
-            ),
-          Expanded(
-              child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: HomePageView(
-                    // key: _homePageViewKey, //todo DOES NOT REUSE COMPONENT! FIGURE OUT HOW TO DO THAT! (AND THEN UNCOMMENT THE CONDITIONAL CODE BELOW AND ABOVE)
-                    controller: _controller,
-                  )))
-        ])
-        // : HomePageView(
-        //     key: _homePageViewKey,
-        //     controller: _controller,
-        //   )
-        );
+            : NavigationPills(
+                shadowColor: Theme.of(context).colorScheme.onBackground,
+                elevation: 8,
+                backgroundColor: Theme.of(context).colorScheme.background,
+                onDestinationSelected: _onDestinationSelected,
+                selectedIndex: _currentPage,
+                effectiveHeight: 64,
+                children: [
+                  NavigationPill(
+                      icon: const Icon(Icons.home), label: Text("Home".i18n)),
+                  NavigationPill(
+                      icon: const Icon(Icons.history),
+                      label: Text("Your activity".i18n)),
+                  NavigationPill(
+                      icon: const Icon(Icons.settings),
+                      label: Text("Settings".i18n))
+                ],
+              ),
+        body: HomePageView(
+          controller: _controller,
+        ));
   }
 
   void _onDestinationSelected(int pagePos) {
