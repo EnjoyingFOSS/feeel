@@ -24,17 +24,15 @@ import 'dart:io';
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/components/body_container.dart';
-import 'package:feeel/db/database.dart';
-import 'package:feeel/db/workout_import_export.dart';
-import 'package:feeel/enums/workout_type.dart';
+// import 'package:feeel/screens/settings/components/import_export_tile.dart';
 // import 'package:archive/archive_io.dart';
 import 'package:feeel/utils/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/screens/settings/components/theme_dialog.dart';
+import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/theming/theme_mode_extensions.dart';
@@ -77,7 +75,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     : NotificationHelper.timeFromInt(settingsBundle.preferences
                         .getInt(PreferenceKeys.notificationTimePref));
                 final curTheme = settingsBundle.themeMode;
-                final activeColor = Theme.of(context).colorScheme.primary;
+                final switchActiveColor =
+                    Theme.of(context).colorScheme.secondary;
                 return CustomScrollView(slivers: [
                   SliverAppBar(
                     title: Text(
@@ -100,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     PreferenceKeys.ttsDisabledPref, newValue);
                               });
                             },
-                            activeColor: activeColor),
+                            activeColor: switchActiveColor),
                       if (!Platform.isLinux)
                         SwitchListTile.adaptive(
                           secondary: const Icon(Icons.notifications),
@@ -112,7 +111,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 setOn ? _getDefaultNotificationTime() : null,
                                 settingsBundle.preferences);
                           },
-                          activeColor: activeColor,
+                          activeColor: switchActiveColor,
                         ),
                       if (notificationTime != null && Platform.isAndroid)
                         Padding(
@@ -152,98 +151,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           });
                         },
                       ),
-                      // todo ListTile(
-                      //   leading: const Icon(Icons.download),
-                      //   title: Text("Export custom workouts"
-                      //       .i18n), //todo figure out how to focus dialogs right away
-
-                      //   onTap: () async {
-                      //     //todo add try catch
-                      //     final scaffoldMessenger =
-                      //         ScaffoldMessenger.of(context);
-                      //     final fullCustomWorkouts =
-                      //         await Provider.of<FeeelDB>(context, listen: false)
-                      //             .queryFullWorkoutsByType(WorkoutType.custom);
-                      //     if (fullCustomWorkouts.isEmpty) {
-                      //       scaffoldMessenger.showSnackBar(SnackBar(
-                      //           content: Text(
-                      //               "You don't have any custom workouts"
-                      //                   .i18n)));
-                      //     } else {
-                      //       final export =
-                      //           await WorkoutImportExport.exportCustomWorkouts(
-                      //               fullCustomWorkouts);
-                      //       if (Platform.isMacOS || Platform.isLinux) {
-                      //         final outputFile =
-                      //             await FilePicker.platform.saveFile(
-                      //           dialogTitle: "",
-                      //           fileName: "Feeel workouts " +
-                      //               formatDate(DateTime.now(), [
-                      //                 yyyy,
-                      //                 '-',
-                      //                 mm,
-                      //                 '-',
-                      //                 dd,
-                      //                 " (",
-                      //                 HH,
-                      //                 ';',
-                      //                 nn,
-                      //                 ")"
-                      //               ]) +
-                      //               ".feeel",
-                      //         );
-                      //         if (outputFile != null) {
-                      //           await export.copy(outputFile);
-                      //         }
-                      //       } else {
-                      //         SharePlus.shareFiles([export.path]);
-                      //       }
-                      //     }
-                      //   },
-                      // ),
-                      // ListTile(
-                      //   leading: Icon(Icons.upload),
-                      //   title: Text("Import workouts".i18n),
-                      //   onTap: () async {
-                      //     //todo add try catch
-                      //     final pickedFiles = await FilePicker.platform.pickFiles(
-                      //         type: FileType.any,
-                      //         allowedExtensions: ["feeel"],
-                      //         allowMultiple: false,
-                      //         withReadStream: Platform.isLinux);
-
-                      //     final filePath = pickedFiles?.files.first.path;
-
-                      //     if (filePath == null) {
-                      //       return;
-                      //     } else {
-                      //       showDialog<void>(
-                      //           //todo try catch in case it's a corrupt/invalid file
-                      //           context: context,
-                      //           builder: (context) => AlertDialog(
-                      //                 title: Text(
-                      //                     "Duplicates will not be overriden"
-                      //                         .i18n),
-                      //                 content: Text(
-                      //                     "If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them."
-                      //                         .i18n),
-                      //                 actions: [
-                      //                   TextButton(
-                      //                       onPressed: () =>
-                      //                           Navigator.of(context).pop(),
-                      //                       child: Text("Cancel".i18n)),
-                      //                   TextButton(
-                      //                       onPressed: () {
-                      //                         WorkoutImportExport.importWorkouts(
-                      //                             InputFileStream(filePath));
-                      //                         Navigator.of(context).pop();
-                      //                       },
-                      //                       child: Text("Import anyway".i18n))
-                      //                 ],
-                      //               ));
-                      //     }
-                      //   },
-                      // ),
+                      // const ImportExportTile(import: false),
+                      // const ImportExportTile(import: true),
                       ListTile(
                         leading: const Icon(Icons.volunteer_activism),
                         title: Text("Participate".i18n),
@@ -323,11 +232,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         preferences.setInt(PreferenceKeys.notificationTimePref,
             NotificationHelper.timeToInt(timeOfDay));
       } else {
-        scaffoldMessenger.showSnackBar(SnackBar(
-            content: Text(
-                "You must give Feeel permission to show notifications via your system settings."
-                    .i18n,
-                textAlign: TextAlign.center)));
+        SnackBarHelper.showInfoSnackBar(
+            scaffoldMessenger,
+            "You must give Feeel permission to show notifications via your system settings."
+                .i18n);
       }
     }
     setState(() {});

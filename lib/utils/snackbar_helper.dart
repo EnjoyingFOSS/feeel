@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Miroslav Mazel
+// Copyright (C) 2019 Miroslav Mazel and Aditya Arora
 //
 // This file is part of Feeel.
 //
@@ -20,20 +20,15 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/i18n/translations.dart';
-import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class URLUtil {
-  //todo launch in a new window
-  static void launchURL(BuildContext context, String url) async {
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final launched =
-        await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-    if (!launched) {
-      SnackBarHelper.showInfoSnackBar(
-          scaffoldMessenger, "Could not open URL.".i18n);
-    }
+class SnackBarHelper {
+  static ScaffoldFeatureController showInfoSnackBar(
+      ScaffoldMessengerState scaffoldMessenger, String content) {
+    return scaffoldMessenger.showSnackBar(SnackBar(
+        content: Text(
+      content,
+      textAlign: TextAlign.center,
+    )));
   }
 }

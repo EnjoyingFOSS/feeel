@@ -35,6 +35,7 @@ import 'package:feeel/screens/workout_editor/components/empty_placeholder.dart';
 import 'package:feeel/components/triangle_frame.dart';
 import 'package:feeel/screens/workout_editor/components/workout_content_editor.dart';
 import 'package:feeel/screens/workout_editor/components/workout_timing_editor.dart';
+import 'package:feeel/utils/snackbar_helper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -292,11 +293,8 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
         _editingTimeMode = true;
       });
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content:
-            Text("Add an exercise first".i18n, textAlign: TextAlign.center),
-        duration: const Duration(seconds: 2),
-      ));
+      SnackBarHelper.showInfoSnackBar(
+          ScaffoldMessenger.of(context), "Add an exercise first".i18n);
     }
   }
 

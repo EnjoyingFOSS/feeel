@@ -21,6 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/models/editable_workout_exercise.dart';
+import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
@@ -71,11 +72,10 @@ class WorkoutContentEditor extends StatelessWidget {
                         index: i,
                         child: IconButton(
                             onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      "Drag this handle to reorder exercises."
-                                          .i18n,
-                                      textAlign: TextAlign.center)));
+                              SnackBarHelper.showInfoSnackBar(
+                                  ScaffoldMessenger.of(context),
+                                  "Drag this handle to reorder exercises."
+                                      .i18n);
                               //todo test this, shouldn't show up on drag
                             },
                             icon: const Icon(Icons.drag_handle)),
