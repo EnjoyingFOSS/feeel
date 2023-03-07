@@ -22,13 +22,26 @@
 
 import 'package:flutter/material.dart';
 
+enum SnackBarDuration {
+  short(2000),
+  long(3500);
+
+  final int milliseconds;
+
+  const SnackBarDuration(this.milliseconds);
+}
+
 class SnackBarHelper {
   static ScaffoldFeatureController showInfoSnackBar(
-      ScaffoldMessengerState scaffoldMessenger, String content) {
+      //todo add success and error variants
+      ScaffoldMessengerState scaffoldMessenger,
+      String content,
+      {SnackBarDuration duration = SnackBarDuration.short}) {
     return scaffoldMessenger.showSnackBar(SnackBar(
         content: Text(
-      content,
-      textAlign: TextAlign.center,
-    )));
+          content,
+          textAlign: TextAlign.center,
+        ),
+        duration: Duration(milliseconds: duration.milliseconds)));
   }
 }
