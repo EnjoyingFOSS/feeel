@@ -87,6 +87,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
                     child: CustomScrollView(
                   slivers: [
                     SliverAppBar(
+                      leading: CloseButton(color: fgColor),
                       titleTextStyle: theme.appBarTheme.titleTextStyle
                           ?.copyWith(color: fgColor),
                       title: Text("Add exercises".i18n),
