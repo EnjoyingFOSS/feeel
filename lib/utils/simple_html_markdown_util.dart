@@ -101,7 +101,7 @@ class SimpleHtmlMarkdownUtil {
         .replaceAll(RegExp("/\\s*>"), "/>")
         .replaceAll(RegExp("</p>|</ul>|</ol>|</li>|\\r|\r"), "")
         .replaceAll("&nbsp;", " ")
-        .replaceAll(RegExp("<br>|<br />"),
+        .replaceAll(RegExp("<br[^>]*>|<div[^>]*>"),
             "<p>"); //todo \\s translates to whitespace, right?
   }
 
