@@ -28,7 +28,7 @@ import 'package:feeel/enums/workout_type.dart';
 
 class BundledWorkouts {
   static const _defaultCountdownDuration = 5;
-  static const _defaultBreakDuration = 5;
+  static const _defaultBreakDuration = 10;
 
   static final bundledEditableWorkouts = [
     EditableWorkout(
