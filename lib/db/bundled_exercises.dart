@@ -77,7 +77,12 @@ class BundledExercises {
       neckCirclesCW = 1015,
       neckCirclesCCW = 1016,
       neckHalfCircles = 1017,
-      headTilts = 1018;
+      headTilts = 1018,
+      quadrupedThoracicRotationL = 1028,
+      quadrupedThoracicRotationR = 1029,
+      shoulderDislocates = 1081,
+      bentOverRowToExternalRotation = 1082,
+      ywts = 1083;
 
   static const headExercises = {
     shoulderRotationFW,

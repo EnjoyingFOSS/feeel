@@ -23,6 +23,7 @@
 import 'package:feeel/db/bundled_exercises.dart';
 
 class DBImageHelper {
+  //Todo introduce each license with image name and author ("Feeel", in this case)
   static const _paoloDevLicense =
       'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).';
   static const _sidePlankImageLicense =
@@ -35,6 +36,8 @@ class DBImageHelper {
       'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["Neck Circles"](https://www.youtube.com/watch?v=CQlqdL8rok8) by ["Paleo University"](https://www.youtube.com/channel/UCQwF6JMwi_iZKX1DbYrYDWg/featured) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
   static const _burpeeLicense =
       'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from ["The 6-Minute Sweat Workout: Burpee"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
+  static const _quadrupedThoracicRotationLicense =
+      'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["Quadruped Thoracic Rotation"](https://www.youtube.com/watch?v=8_XIYNYuHO8) by "Onyx Athletic Perfomance" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).';
   static const flipped = {
     BundledExercises.sidePlankR,
     BundledExercises.sideSplitSquatsL,
@@ -44,6 +47,7 @@ class DBImageHelper {
     BundledExercises.sideSplitSquatsR,
     BundledExercises.lateralNeckStretchL,
     BundledExercises.levatorScapulaeStretchR,
+    BundledExercises.quadrupedThoracicRotationR
   };
   static const animated = {
     BundledExercises.sideSplitSquatsL,
@@ -170,7 +174,18 @@ class DBImageHelper {
     BundledExercises.neckCirclesCW: _neckCircleLicense,
     BundledExercises.neckCirclesCCW: _neckCircleLicense,
     BundledExercises.neckHalfCircles: _neckCircleLicense,
-    BundledExercises.headTilts: _lateralNeckStretchImageLicense
+    BundledExercises.headTilts: _lateralNeckStretchImageLicense,
+    //TODO !!!
+    BundledExercises.quadrupedThoracicRotationL:
+        _quadrupedThoracicRotationLicense,
+    BundledExercises.quadrupedThoracicRotationR:
+        _quadrupedThoracicRotationLicense,
+    BundledExercises.shoulderDislocates:
+        'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["Wanna Stand Taller? Yoga for Back and Shoulder Mobility (10 Minutes)"](https://www.youtube.com/watch?v=5EzGZqvvOmo) by "Action Jacquelyn" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+    BundledExercises.bentOverRowToExternalRotation:
+        'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["Bent-Over External Rotation @ 90 degrees"](https://www.youtube.com/watch?v=iXOkQBgRTrE) by "Change Your Body Boot Camps, Newton, MA" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).',
+    BundledExercises.ywts:
+        'Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from ["Prone YWTs - Exercise Demo"](https://www.youtube.com/watch?v=k05bf8UOqVA) by "CrossFit Chiltern - Personal and Group Fitness" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).'
   };
   static const slugs = {
     BundledExercises.jumpingJacks: "exercise_jumpingjacks.webp",
@@ -230,6 +245,14 @@ class DBImageHelper {
     BundledExercises.neckCirclesCW: "exercise_neckcircles_cw.webp",
     BundledExercises.neckCirclesCCW: "exercise_neckcircles_ccw.webp",
     BundledExercises.neckHalfCircles: "exercise_neckhalfcircles.webp",
-    BundledExercises.headTilts: "exercise_headtilts.webp"
+    BundledExercises.headTilts: "exercise_headtilts.webp",
+    BundledExercises.quadrupedThoracicRotationL:
+        "exercise_quadrupedthoracicrotation.webp",
+    BundledExercises.quadrupedThoracicRotationR:
+        "exercise_quadrupedthoracicrotation.webp",
+    BundledExercises.shoulderDislocates: "exercise_shoulderdislocates.webp",
+    BundledExercises.bentOverRowToExternalRotation:
+        "exercise_bentoverrowtoexternalrotation.webp",
+    BundledExercises.ywts: "exercise_ywts.webp"
   };
 }
