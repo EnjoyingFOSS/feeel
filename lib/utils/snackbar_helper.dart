@@ -37,6 +37,7 @@ class SnackBarHelper {
       ScaffoldMessengerState scaffoldMessenger,
       String content,
       {SnackBarDuration duration = SnackBarDuration.short}) {
+    scaffoldMessenger.removeCurrentSnackBar();
     return scaffoldMessenger.showSnackBar(SnackBar(
         content: Text(
           content,
