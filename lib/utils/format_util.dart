@@ -20,29 +20,17 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/database.dart';
+import 'package:diacritic/diacritic.dart' as dia;
 
-class JSONMetadata {
-  static const _curMetadataVersion = 1;
+class FormatUtil {
+  static String getDateTimeStringToSec(DateTime dateTime) =>
+      dateTime.toString().split('.').first.replaceAll(':', "-");
 
-  static const _metadataVersionKey = 'metadataVersion';
-  static const _databaseVersionKey = 'databaseVersion';
+  static String getDateString(DateTime dateTime) =>
+      dateTime.toString().split(' ').first;
 
-  final int metadataVersion;
-  final int databaseVersion;
-
-  JSONMetadata(
-      {this.metadataVersion = _curMetadataVersion,
-      required this.databaseVersion});
-
-  static JSONMetadata fromJson(Map<String, dynamic> json) {
-    return JSONMetadata(
-        metadataVersion: json[_metadataVersionKey] as int,
-        databaseVersion: json[_databaseVersionKey] as int);
-  }
-
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        _metadataVersionKey: metadataVersion,
-        _databaseVersionKey: databaseVersion,
-      };
+  static String getSafeLatinFilename(String name) => RegExp("[a-zA-Z0-9]*")
+      .allMatches(dia.removeDiacritics(name))
+      .map((match) => name.substring(match.start, match.end))
+      .join();
 }

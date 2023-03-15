@@ -25,10 +25,10 @@ import 'dart:math';
 import 'package:feeel/components/body_container.dart';
 import 'package:feeel/components/disclaimer_sheet.dart';
 import 'package:feeel/db/database.dart';
-import 'package:feeel/models/editable_workout.dart';
-import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/screens/workout_editor/workout_editor.dart';
+import 'package:feeel/screens/workout_list/components/workout_add_speed_dial.dart';
 import 'package:feeel/screens/workout_list/components/workout_list_item.dart';
+import 'package:feeel/screens/workout_list/components/workout_list_item_menu.dart';
+import 'package:feeel/screens/workout_list/components/workout_list_menu.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -47,10 +47,17 @@ class WorkoutListScreen extends StatefulWidget {
   }
 }
 
+enum _WorkoutListActivity {
+  exporting("Export in progress..."),
+  importing("Import in progress...");
+
+  final String translationKey;
+
+  const _WorkoutListActivity(this.translationKey);
+}
+
 class _WorkoutListScreenState extends State<WorkoutListScreen> {
-  static const String _menuDelete = "delete";
-  static const String _menuEdit = "edit";
-  static const String _menuDuplicate = "duplicate";
+  _WorkoutListActivity? _curActivity;
 
   // Unhandled Exception: setState() called after dispose() after canceling editing
   //todo allow showing disclaimer from Settings too!
@@ -73,174 +80,142 @@ class _WorkoutListScreenState extends State<WorkoutListScreen> {
   Widget build(BuildContext context) {
     //todo implement pull to refresh gesture
     return BodyContainer(
-        child: FutureBuilder<List<Workout>>(
-            future: Provider.of<FeeelDB>(context).queryAllWorkouts,
-            builder:
-                (BuildContext context, AsyncSnapshot<List<Workout>> snapshot) {
-              if (snapshot.hasData) {
-                final workouts = snapshot.data!;
+        child: Stack(children: [
+      FutureBuilder<List<Workout>>(
+          future: Provider.of<FeeelDB>(context)
+              .queryAllWorkouts, //todo need to refresh, watch for changes
+          builder:
+              (BuildContext context, AsyncSnapshot<List<Workout>> snapshot) {
+            if (snapshot.hasData) {
+              final workouts = snapshot.data!;
 
-                const crossAxisSpacing = 16.0;
-                final gridColumns = (min(MediaQuery.of(context).size.width,
-                            LayoutXL.cols12.width) /
-                        (600 +
-                            crossAxisSpacing)) //todo does the 600 need to be hardcoded?
-                    .ceil();
+              const crossAxisSpacing = 16.0;
+              final gridColumns = (min(MediaQuery.of(context).size.width,
+                          LayoutXL.cols12.width) /
+                      (600 +
+                          crossAxisSpacing)) //todo does the 600 need to be hardcoded?
+                  .ceil();
 
-                return AnimationLimiter(
-                    child: CustomScrollView(clipBehavior: Clip.none, slivers: <
-                        Widget>[
-                  SliverPadding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      sliver: SliverAppBar(
-                        //todo add floating: true, but with dynamic shadow
-                        title: Text.rich(
-                            //todo add varying spans, e.g. "Feeel energized", "Feeel goood", "Feeel fresh" ,"Feeel the burn", ...
-                            TextSpan(children: <InlineSpan>[
-                          TextSpan(
-                            text: "Feeel ",
-                            style: Theme.of(context)
-                                .appBarTheme
-                                .titleTextStyle
-                                ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                          ),
-                          // todo TextSpan(
-                          //   text: "energized",
-                          //   style: TextStyle(
-                          //       fontSize: 32,
-                          //       fontWeight: FontWeight.w900,
-                          //       color:
-                          //           Theme.of(context).colorScheme.onBackground),
-                          // )
-                        ])),
-                        actions: <Widget>[
-                          IconButton(
-                            icon: Icon(
-                              Icons.add,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            tooltip: "Create custom workout".i18n,
-                            onPressed: () {
-                              Navigator.push<void>(context, MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                return WorkoutEditorScreen(
-                                  editableWorkout:
-                                      EditableWorkout(type: WorkoutType.custom),
-                                );
-                              })).then((_) {
-                                setState(() {}); //todo get rid of setState!
-                              }); //todo will need to refresh on coming back
+              return AnimationLimiter(
+                  child: CustomScrollView(
+                      clipBehavior: Clip.none,
+                      slivers: <Widget>[
+                    SliverAppBar(
+                      //todo add floating: true, but with dynamic shadow
+                      title: Text.rich(
+                          //todo add varying spans, e.g. "Feeel energized", "Feeel goood", "Feeel fresh" ,"Feeel the burn", ...
+                          TextSpan(children: <InlineSpan>[
+                        TextSpan(text: "Feeel "),
+                        // todo TextSpan(
+                        //   text: "energized",
+                        //   style: TextStyle(
+                        //       fontSize: 32,
+                        //       fontWeight: FontWeight.w900,
+                        //       color:
+                        //           Theme.of(context).colorScheme.onBackground),
+                        // )
+                      ])),
+                      actions: <Widget>[
+                        WorkoutListMenu(
+                            afterAction: () => setState(
+                                () {}), //todo this is a hack, remove after moving to riverpod!
+                            onExportStart: () => setState(() {
+                                  _curActivity = _WorkoutListActivity.exporting;
+                                }),
+                            onExportEnd: () => setState(() {
+                                  if (_curActivity ==
+                                      _WorkoutListActivity.exporting) {
+                                    _curActivity = null;
+                                  }
+                                })),
+                      ],
+                    ),
+                    if (_curActivity != null)
+                      SliverToBoxAdapter(
+                          child: Center(
+                              child: Container(
+                                  margin: const EdgeInsets.all(16),
+                                  padding: const EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(1000),
+                                      border: Border.all(
+                                          width: 2,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground
+                                              .withAlpha(63))),
+                                  child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const CircularProgressIndicator
+                                            .adaptive(), //todo replaces with progress indicators on the relevant menu icons
+                                        const SizedBox(width: 12),
+                                        Text(_curActivity!.translationKey.i18n)
+                                      ])))),
+                    SliverPadding(
+                        padding: const EdgeInsets.only(bottom: 80),
+                        sliver: SliverGrid(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: gridColumns,
+                                  crossAxisSpacing: crossAxisSpacing,
+                                  mainAxisExtent: WorkoutListItem.extent),
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              final workout = workouts[index];
+                              return AnimationConfiguration.staggeredGrid(
+                                  position: index,
+                                  duration: const Duration(milliseconds: 375),
+                                  columnCount: gridColumns,
+                                  child: FadeInAnimation(
+                                      child: WorkoutListItem(
+                                    workout,
+                                    trailing: WorkoutListItemMenu(
+                                      workout: workout,
+                                      onExportStart: () => setState(() {
+                                        _curActivity =
+                                            _WorkoutListActivity.exporting;
+                                      }),
+                                      onExportEnd: () => setState(() {
+                                        if (_curActivity ==
+                                            _WorkoutListActivity.exporting) {
+                                          _curActivity = null;
+                                        }
+                                      }),
+                                      afterAction: () => setState(
+                                          () {}), //todo this is a hack, remove after moving to riverpod!
+                                    ),
+                                  )));
                             },
-                          )
-                        ],
-                      )),
-                  SliverPadding(
-                      padding: const EdgeInsets.only(bottom: 80),
-                      sliver: SliverGrid(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: gridColumns,
-                            crossAxisSpacing: crossAxisSpacing,
-                            mainAxisExtent: WorkoutListItem.extent),
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            final workout = workouts[index];
-                            return AnimationConfiguration.staggeredGrid(
-                                position: index,
-                                duration: const Duration(milliseconds: 375),
-                                columnCount: gridColumns,
-                                child: FadeInAnimation(
-                                    child: WorkoutListItem(
-                                  workout,
-                                  trailing: PopupMenuButton(
-                                    itemBuilder: (context) {
-                                      return workout.type == WorkoutType.custom
-                                          ? [
-                                              PopupMenuItem<String>(
-                                                  value: _menuEdit,
-                                                  child: Text("Edit".i18n)),
-                                              PopupMenuItem<String>(
-                                                  value: _menuDelete,
-                                                  child: Text("Delete".i18n)),
-                                              PopupMenuItem<String>(
-                                                  value: _menuDuplicate,
-                                                  child:
-                                                      Text("Duplicate".i18n)),
-                                            ]
-                                          : [
-                                              PopupMenuItem<String>(
-                                                  value: _menuDuplicate,
-                                                  child:
-                                                      Text("Duplicate".i18n)),
-                                            ];
-                                    },
-                                    onSelected: (String value) {
-                                      switch (value) {
-                                        case _menuDelete:
-                                          _onDeleteCustom(workout);
-                                          break;
-                                        case _menuEdit:
-                                          _onEditCustom(workout);
-                                          break;
-                                        case _menuDuplicate:
-                                          _onDuplicate(workout);
-                                          break;
-                                      }
-                                    },
-                                  ),
-                                )));
-                          },
-                          childCount: workouts.length,
-                        ),
-                      ))
-                ]));
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                );
+                            childCount: workouts.length,
+                          ),
+                        ))
+                  ]));
+            } else {
+              return const Center(
+                child: CircularProgressIndicator.adaptive(),
+              );
+            }
+          }),
+      Positioned.directional(
+          bottom: 16,
+          end: 16,
+          textDirection: Directionality.of(context),
+          child: WorkoutAddSpeedDial(
+            afterCreateOrImport: () => setState(() {}),
+            onImportStart: () {
+              setState(() {
+                _curActivity = _WorkoutListActivity.importing;
+              });
+            },
+            onImportEnd: () {
+              if (_curActivity == _WorkoutListActivity.importing) {
+                setState(() {
+                  _curActivity = null;
+                });
               }
-            }));
-  }
-
-  void _onDeleteCustom(Workout workoutListed) {
-    // todo allow an undo !!!
-    Provider.of<FeeelDB>(context, listen: false)
-        .deleteWorkout(workoutListed.id)
-        .then((_) {
-      setState(() {}); //todo is this needed?
-    });
-  }
-
-  void _onEditCustom(Workout workout) async {
-    final navigator = Navigator.of(context);
-    final fullWorkout = await Provider.of<FeeelDB>(context, listen: false)
-        .queryFullWorkout(workout);
-    navigator
-        .push<void>(MaterialPageRoute(
-            builder: (context) => WorkoutEditorScreen(
-                  editableWorkout: EditableWorkout.fromWorkout(fullWorkout),
-                )))
-        .then((_) {
-      setState(() {}); //todo is this needed?
-    });
-  }
-
-  void _onDuplicate(Workout origWorkout) async {
-    final navigator = Navigator.of(context);
-    final origFullWorkout = await Provider.of<FeeelDB>(context, listen: false)
-        .queryFullWorkout(origWorkout);
-    final editableCopy = EditableWorkout.fromWorkout(origFullWorkout);
-    editableCopy.dbId = null;
-    editableCopy.type = WorkoutType.custom;
-
-    navigator
-        .push<void>(MaterialPageRoute(
-            builder: (context) => WorkoutEditorScreen(
-                  editableWorkout: editableCopy,
-                )))
-        .then((_) {
-      setState(() {}); //todo is this needed?
-    });
+            },
+          )) //todo this is a hack, remove after moving to riverpod!
+    ]));
   }
 }

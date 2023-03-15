@@ -21,6 +21,8 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
+// import 'package:feeel/db/db_migration_maps.dart';
+import 'package:get_it/get_it.dart';
 
 class FullWorkout {
   final Workout workout;
@@ -28,6 +30,9 @@ class FullWorkout {
   final List<Exercise> exercises;
   late int _duration;
   int get duration => _duration;
+
+  static const _workoutKey = 'workout';
+  static const _workoutExerciseKey = 'workoutExercises';
 
   FullWorkout({
     required this.workout,
@@ -43,4 +48,35 @@ class FullWorkout {
       _duration += workoutExercises[i].breakDuration ?? workout.breakDuration;
     }
   }
+
+  static Future<FullWorkout> fromJson(
+      Map<String, dynamic> json, DateTime utcMetadataDate) async {
+    final workoutExercises =
+        (json[_workoutExerciseKey] as List).map((dynamic weJson) {
+      final weTemp = WorkoutExercise.fromJson(weJson as Map<String, dynamic>);
+      //TODO DOWNGRADE AND UPGRADE BASED ON DOWNLOADED EXERCISE DATA!!!
+      // if (FeeelDB.v3_0_0ImportDate.compareTo(utcMetadataDate) > 0) {
+      //   //utcMetadataDate is older than v3.0.0 import date
+      //   final exercise = DBMigrationMaps.pre300ToCurrentExercises[
+      //       weTemp.exercise]!; //todo what to do if null?
+      //   return WorkoutExercise(
+      //       workoutId: weTemp.workoutId,
+      //       orderPosition: weTemp.orderPosition,
+      //       exercise: exercise);
+      // } else {
+      return weTemp;
+      // }
+    }).toList();
+    final exerciseIds = workoutExercises.map((we) => we.exercise).toList();
+    return FullWorkout(
+        workoutExercises: workoutExercises,
+        workout: Workout.fromJson(json[_workoutKey] as Map<String, dynamic>),
+        exercises: await GetIt.I<FeeelDB>()
+            .queryExercisesFromExerciseIds(exerciseIds));
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        _workoutKey: workout.toJson(),
+        _workoutExerciseKey: workoutExercises.map((we) => we.toJson()).toList(),
+      };
 }
