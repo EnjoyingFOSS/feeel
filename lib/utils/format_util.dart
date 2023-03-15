@@ -29,8 +29,9 @@ class FormatUtil {
   static String getDateString(DateTime dateTime) =>
       dateTime.toString().split(' ').first;
 
-  static String getSafeLatinFilename(String name) => RegExp("[a-zA-Z0-9]*")
+  static String getSafeLatinFilename(String name) => RegExp("[a-zA-Z0-9-_ ]*")
       .allMatches(dia.removeDiacritics(name))
       .map((match) => name.substring(match.start, match.end))
-      .join();
+      .join()
+      .trim();
 }
