@@ -20,25 +20,11 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/components/body_container.dart';
-import 'package:feeel/screens/workout_list/components/workout_add_speed_dial.dart';
-import 'package:feeel/screens/workout_list/components/workout_list_listview.dart';
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'workout_list_state.freezed.dart';
 
-class WorkoutListScreen extends StatelessWidget {
-  const WorkoutListScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BodyContainer(
-        child: Stack(children: [
-      const WorkoutListListView(),
-      Positioned.directional(
-          bottom: 16,
-          end: 16,
-          textDirection: Directionality.of(context),
-          child:
-              const WorkoutAddSpeedDial()) //todo this is a hack, remove after moving to riverpod!
-    ]));
-  }
+@freezed
+class WorkoutListState with _$WorkoutListState {
+  const factory WorkoutListState(
+      {required bool exporting, required bool importing}) = _WorkoutListState;
 }

@@ -25,11 +25,13 @@ import 'package:feeel/db/workout_import_export.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/models/editable_workout.dart';
+import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/screens/workout_editor/workout_editor.dart';
+import 'package:feeel/screens/workout_list/providers/workout_list_provider.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
 
 enum _WorkoutListItemAction {
   edit("Edit"),
@@ -42,22 +44,14 @@ enum _WorkoutListItemAction {
   const _WorkoutListItemAction(this.translationKey);
 }
 
-class WorkoutListItemMenu extends StatelessWidget {
+class WorkoutListItemMenu extends ConsumerWidget {
   final Workout workout;
-  final Function
-      afterAction; //todo this is a hack, remove after moving to riverpod!
-  final Function onExportStart; //todo replace with riverpod's providers too!
-  final Function onExportEnd; //todo replace with riverpod's providers too!
 
-  const WorkoutListItemMenu(
-      {super.key,
-      required this.workout,
-      required this.afterAction,
-      required this.onExportStart,
-      required this.onExportEnd});
+  const WorkoutListItemMenu({super.key, required this.workout});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final providerNotifier = ref.read(workoutProvider.notifier);
     return PopupMenuButton<_WorkoutListItemAction>(
       itemBuilder: (context) {
         final menuItemValues = workout.type == WorkoutType.bundled
@@ -71,40 +65,37 @@ class WorkoutListItemMenu extends StatelessWidget {
       onSelected: (_WorkoutListItemAction value) async {
         switch (value) {
           case _WorkoutListItemAction.delete:
-            return _onDeleteCustom(context, workout);
+            return _onDeleteCustom(context, workout, providerNotifier);
           case _WorkoutListItemAction.edit:
             return _onEditCustom(context, workout);
           case _WorkoutListItemAction.duplicate:
             return _onDuplicate(context, workout);
           case _WorkoutListItemAction.export:
-            return await _onExport(context, workout);
+            return await _onExport(context, workout, ref);
         }
       },
     );
   }
 
-  void _onDeleteCustom(BuildContext context, Workout workoutListed) {
+  void _onDeleteCustom(BuildContext context, Workout workoutListed,
+      WorkoutProviderNotifier notifier) {
     // todo allow an undo !!!
-    Provider.of<FeeelDB>(context, listen: false)
-        .deleteWorkout(workoutListed.id);
-    afterAction();
+    notifier.deleteWorkout(workoutListed.id);
   }
 
   void _onEditCustom(BuildContext context, Workout workout) async {
     final navigator = Navigator.of(context);
-    final fullWorkout = await Provider.of<FeeelDB>(context, listen: false)
-        .queryFullWorkout(workout);
+    final fullWorkout = await GetIt.I<FeeelDB>().queryFullWorkout(workout);
     navigator.push<void>(MaterialPageRoute(
         builder: (context) => WorkoutEditorScreen(
               editableWorkout: EditableWorkout.fromWorkout(fullWorkout),
             )));
-    afterAction();
   }
 
   void _onDuplicate(BuildContext context, Workout origWorkout) async {
     final navigator = Navigator.of(context);
-    final origFullWorkout = await Provider.of<FeeelDB>(context, listen: false)
-        .queryFullWorkout(origWorkout);
+    final origFullWorkout =
+        await GetIt.I<FeeelDB>().queryFullWorkout(origWorkout);
     final editableCopy = EditableWorkout.fromWorkout(origFullWorkout);
     editableCopy.dbId = null;
     editableCopy.type = WorkoutType.custom;
@@ -113,12 +104,13 @@ class WorkoutListItemMenu extends StatelessWidget {
         builder: (context) => WorkoutEditorScreen(
               editableWorkout: editableCopy,
             )));
-    afterAction();
   }
 
-  Future<void> _onExport(BuildContext context, Workout workout) async {
+  Future<void> _onExport(
+      BuildContext context, Workout workout, WidgetRef ref) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
-    onExportStart();
+    final workoutListNotifier = ref.read(workoutListProvider.notifier);
+    workoutListNotifier.startExporting();
     final fullWorkout = await GetIt.I<FeeelDB>().queryFullWorkout(workout);
     try {
       final exported = await WorkoutImportExport.exportWorkout(fullWorkout);
@@ -137,7 +129,6 @@ class WorkoutListItemMenu extends StatelessWidget {
               .replaceFirst("%s", fullWorkout.workout.title),
           duration: SnackBarDuration.long);
     }
-    onExportEnd();
-    afterAction();
+    workoutListNotifier.stopExporting();
   }
 }

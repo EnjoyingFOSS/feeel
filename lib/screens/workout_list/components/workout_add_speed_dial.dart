@@ -27,25 +27,20 @@ import 'package:feeel/db/workout_import_export.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/models/editable_workout.dart';
+import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/screens/workout_editor/workout_editor.dart';
+import 'package:feeel/screens/workout_list/providers/workout_list_provider.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-class WorkoutAddSpeedDial extends StatelessWidget {
-  final Function
-      afterCreateOrImport; //todo get rid of this after riverpod implementation
-  final Function onImportStart; //todo replace with riverpod's providers too!
-  final Function onImportEnd; //todo replace with riverpod's providers too!
-  const WorkoutAddSpeedDial(
-      {super.key,
-      required this.afterCreateOrImport,
-      required this.onImportStart,
-      required this.onImportEnd});
+class WorkoutAddSpeedDial extends ConsumerWidget {
+  const WorkoutAddSpeedDial({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SpeedDial(
       icon: Icons.add,
       activeIcon: Icons.close,
@@ -59,25 +54,24 @@ class WorkoutAddSpeedDial extends StatelessWidget {
               return WorkoutEditorScreen(
                 editableWorkout: EditableWorkout(type: WorkoutType.custom),
               );
-            })).then((_) {
-              afterCreateOrImport();
-            });
+            }));
           },
         ),
         SpeedDialChild(
             child: const Icon(Icons.upload),
             label: "Import workout(s)".i18n,
-            onTap: () => _importFiles(context).then((_) {
-                  afterCreateOrImport();
-                }))
+            onTap: () => _importFiles(context, ref))
       ],
     );
   }
 
-  Future<void> _importFiles(BuildContext context) async {
+  Future<void> _importFiles(BuildContext context, WidgetRef ref) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
 
-    onImportStart();
+    final screenStateNotifier = ref.read(workoutListProvider.notifier);
+    final dbNotifier = ref.read(workoutProvider.notifier);
+
+    screenStateNotifier.startImporting();
 
     final pickedFiles = await FilePicker.platform.pickFiles(
         type: FileType.any,
@@ -89,6 +83,8 @@ class WorkoutAddSpeedDial extends StatelessWidget {
         try {
           final imported = await _importFile(context, file);
           if (imported) {
+            dbNotifier
+                .refresh(); //todo this is a hack, should be part of a future EditableWorkout provider itself
             SnackBarHelper.showInfoSnackBar(
                 scaffoldMessenger,
                 "\"%s\" imported!".i18n.replaceFirst("%s",
@@ -101,7 +97,7 @@ class WorkoutAddSpeedDial extends StatelessWidget {
         }
       }
     }
-    onImportEnd();
+    screenStateNotifier.stopImporting();
   }
 
   Future<bool> _importFile(BuildContext context, PlatformFile file) async {

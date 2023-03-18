@@ -22,25 +22,28 @@
 
 import 'dart:io';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/screens/home_pager/home_pager.dart';
-import 'package:feeel/screens/workout_list/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:i18n_extension/i18n_widget.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'utils/notification_helper.dart';
 import 'i18n/locale_helper.dart';
 import 'theming/feeel_themes.dart';
 // import 'package:window_size/window_size.dart';
 
-void main() {
+void main() async {
   // todo think about implementing auto-update: https://pub.dev/packages/auto_update, https://github.com/GrapheneOS/Camera/issues/227#issuecomment-1132208894
   // debugRepaintRainbowEnabled = true; //todo debug
-  runApp(const Feeel());
+  // await initializeDateFormatting(); //TODO NOT WORKING, even though TableCalendar seems to require it for localization
+  GetIt.I.registerSingleton(
+      FeeelDB()); //todo get rid of this after migrating to Riverpod fully
+  runApp(const ProviderScope(child: Feeel()));
 }
 
 class Feeel extends StatelessWidget {
@@ -62,27 +65,45 @@ class Feeel extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
 
-    return Provider<FeeelDB>(
-        //todo see https://drift.simonbinder.eu/faq/#using-the-database
-        create: (context) => FeeelDB(),
-        dispose: (context, db) => db.close(),
-        child: AdaptiveTheme(
-            light: FeeelThemes.lightTheme,
-            dark: FeeelThemes.darkTheme,
-            initial: AdaptiveThemeMode.light,
-            builder: (theme, darkTheme) => MaterialApp(
-                title: 'Feeel',
-                theme: theme,
-                darkTheme: darkTheme,
-                supportedLocales: LocaleHelper.supportedLocales,
-                localizationsDelegates: const [
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                home: I18n(child: const HomePagerScreen()))
-            //)
-            ));
+    return DynamicColorBuilder(builder: (dynamicLightTheme, dynamicDarkTheme) {
+      // print("THEMES : $dynamicDarkTheme $dynamicLightTheme");
+      // todo return AdaptiveTheme(
+      //     light: dynamicLightTheme != null
+      //         ? FeeelThemes.getThemeFromScheme(dynamicLightTheme)
+      //         : FeeelThemes.lightTheme, //todo let the user choose
+      //     dark: dynamicDarkTheme != null
+      //         ? FeeelThemes.getThemeFromScheme(dynamicDarkTheme)
+      //         : FeeelThemes.darkTheme, //todo let the user choose
+      //     initial: AdaptiveThemeMode.light,
+      // builder: (theme, darkTheme) {
+      return MaterialApp(
+          title: 'Feeel',
+          theme: dynamicLightTheme != null
+              ? FeeelThemes
+                  .lightTheme //todo FeeelThemes.getThemeFromScheme(dynamicLightTheme)
+              : FeeelThemes.lightTheme,
+          darkTheme: dynamicDarkTheme != null
+              ? FeeelThemes
+                  .darkTheme // todo FeeelThemes.getThemeFromScheme(dynamicDarkTheme)
+              : FeeelThemes.darkTheme,
+          supportedLocales: LocaleHelper.supportedLocales,
+          // localeResolutionCallback: (locale, supportedLocales) { //todo this is also not working
+          //   if (supportedLocales.contains(locale)) {
+          //     initializeDateFormatting(locale?.scriptCode ?? 'en_US');
+          //   } else {
+          //     initializeDateFormatting('en_US');
+          //   }
+          // },
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          home: I18n(child: const HomePagerScreen()));
+    })
+        // );
+        // })
+        ;
   }
 
   void _onWidgetBuilt(BuildContext context) {

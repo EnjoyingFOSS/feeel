@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+// todo capitalize: commando pull-ups, kettlebell swing, knee raises, one-handed kettlebell curls, BUS DRIVERS, LYING DUMBELL ROW ...
+
 import 'package:drift/drift.dart';
 
 import 'dart:io';
@@ -158,6 +160,12 @@ class WorkoutExercises extends Table {
 
   /// refers to the break before this exercise
 
+  // BoolColumn get timed => boolean()();
+  // IntColumn get goal => integer().nullable()();
+  // TextColumn get goalUnit => textEnum<GoalUnit>().nullable()();
+  // IntColumn get measure => integer().nullable()();
+  // TextColumn get measureUnit => textEnum<MeasureUnit>().nullable()();
+
   @override
   Set<Column>? get primaryKey => {workoutId, orderPosition};
 }
@@ -198,7 +206,10 @@ class WorkoutExerciseRecords extends Table {
 ])
 class FeeelDB extends _$FeeelDB {
   //todo write DB migration tests with test .db files
-  static const _databaseVersion = 300;
+  static final bundledExerciseImportDate = DateTime(
+      2023, 02, 17, 20, 0, 0); //todo update with each import, store separately
+
+  static const dbVersion = 300;
   static const _dbFilename =
       "feeel2.db"; //todo this is temporary, before migration is ironed out
 
@@ -208,7 +219,7 @@ class FeeelDB extends _$FeeelDB {
   FeeelDB() : super(_openConnection());
 
   @override
-  int get schemaVersion => _databaseVersion;
+  int get schemaVersion => dbVersion;
 
   @override
   MigrationStrategy get migration {
@@ -310,14 +321,18 @@ class FeeelDB extends _$FeeelDB {
 
     final fullExercises = WgerExerciseUtil.parseWgerJson(exerciseFileContents);
 
+    fullExercises.sort((a, b) => a.exercise.name.compareTo(b.exercise
+        .name)); //todo check if this reflects on how they're actually stored
+
     for (final fe in fullExercises) {
       try {
+        //TODO get rid of the try catches
         //todo REMOVE AFTER WGER DISALLOWS SAME PRIMARY AND SECONDARY MUSCLES!
         for (final muscle in fe.muscles) {
           await into(exerciseMuscles).insert(muscle);
         }
       } catch (e) {
-        print("${fe.exercise.wgerId} $e");
+        print("muscle: ${fe.exercise.wgerId} $e");
       }
       for (final translation
           in fe.translationsByLanguage?.values ?? <ExerciseTranslation>[]) {
@@ -345,7 +360,15 @@ class FeeelDB extends _$FeeelDB {
   //       exercise: e, steps: steps, equipment: equipment, muscles: muscles);
   // }
 
-  Future<List<Exercise>> get queryAllExercises => select(exercises).get();
+  Future<List<Exercise>> get queryAllExercises =>
+      (select(exercises)..orderBy([(e) => OrderingTerm.asc(e.name)])).get();
+
+  Future<List<Exercise>> queryExercisesFromExerciseIds(
+      List<int> exerciseIds) async {
+    final futureList = exerciseIds.map((id) =>
+        (select(exercises)..where((e) => e.wgerId.equals(id))).getSingle());
+    return await Future.wait(futureList);
+  }
 
   //   return FullExercise(
   //       exercise: e, steps: steps, equipment: equipment, muscles: muscles);
@@ -360,13 +383,6 @@ class FeeelDB extends _$FeeelDB {
       await createOrUpdateWorkout(ew);
     }
   }
-
-  Future<List<Workout>> get queryAllWorkouts => (select(workouts)
-        ..orderBy([
-          (w) => OrderingTerm.desc(w.lastUsed),
-          (w) => OrderingTerm.asc(w.id)
-        ]))
-      .get();
 
   Future<FullWorkout> queryWorkoutByRowId(int rowId) async {
     final w = await (select(workouts)..where((w) => w.rowId.equals(rowId)))
@@ -441,12 +457,12 @@ class FeeelDB extends _$FeeelDB {
     });
   }
 
-  Future<void> deleteWorkout(int workoutId) async {
-    await (delete(workoutExercises)
-          ..where((we) => we.workoutId.equals(workoutId)))
-        .go();
-    await (delete(workouts)..where((w) => w.id.equals(workoutId)))
-        .go(); //todo what if I passed in workout and just ran delete on that workout?
+  Future<int> _setWorkoutLastUsed(int workoutId, DateTime time) {
+    return (update(workouts)..where((w) => w.id.equals(workoutId))).write(
+      WorkoutsCompanion(
+        lastUsed: Value(time),
+      ),
+    );
   }
 
   Future<void> _deleteBundledWorkouts(int fromDBVersion) async {
@@ -484,7 +500,12 @@ class FeeelDB extends _$FeeelDB {
         workoutRecord: wr, workoutExerciseRecords: wers, exercises: es);
   }
 
-  Future<void> createWorkoutRecord(final EditableWorkoutRecord ewr) async {
+  Future<void> recordWorkout(final EditableWorkoutRecord ewr) async {
+    await _createWorkoutRecord(ewr);
+    await _setWorkoutLastUsed(ewr.workout.id, ewr.workoutStart);
+  }
+
+  Future<void> _createWorkoutRecord(final EditableWorkoutRecord ewr) async {
     final wers = ewr.workoutExercises;
 
     int workoutDuration = 0;

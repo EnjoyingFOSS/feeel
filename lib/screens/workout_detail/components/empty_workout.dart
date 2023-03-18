@@ -20,21 +20,22 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/database.dart';
 import 'package:feeel/models/full_workout.dart';
+import 'package:feeel/providers/workout_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../enums/workout_type.dart';
 
-class EmptyWorkout extends StatelessWidget {
+class EmptyWorkout extends ConsumerWidget {
   final FullWorkout fullWorkout;
 
   const EmptyWorkout({Key? key, required this.fullWorkout}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final providerNotifier = ref.read(workoutProvider.notifier);
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -57,8 +58,7 @@ class EmptyWorkout extends StatelessWidget {
               ElevatedButton(
                 child: Text("Delete this workout".i18n),
                 onPressed: () {
-                  Provider.of<FeeelDB>(context)
-                      .deleteWorkout(fullWorkout.workout.id);
+                  providerNotifier.deleteWorkout(fullWorkout.workout.id);
                   Navigator.pop(context);
                 },
               )

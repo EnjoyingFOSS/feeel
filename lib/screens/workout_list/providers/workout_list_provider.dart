@@ -20,25 +20,35 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/components/body_container.dart';
-import 'package:feeel/screens/workout_list/components/workout_add_speed_dial.dart';
-import 'package:feeel/screens/workout_list/components/workout_list_listview.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WorkoutListScreen extends StatelessWidget {
-  const WorkoutListScreen({super.key});
+import 'workout_list_state.dart';
 
+class WorkoutListNotifier extends Notifier<WorkoutListState> {
   @override
-  Widget build(BuildContext context) {
-    return BodyContainer(
-        child: Stack(children: [
-      const WorkoutListListView(),
-      Positioned.directional(
-          bottom: 16,
-          end: 16,
-          textDirection: Directionality.of(context),
-          child:
-              const WorkoutAddSpeedDial()) //todo this is a hack, remove after moving to riverpod!
-    ]));
+  WorkoutListState build() {
+    return const WorkoutListState(exporting: false, importing: false);
   }
+
+  void startImporting() {
+    state = state.copyWith(importing: true);
+  }
+
+  void stopImporting() {
+    state = state.copyWith(importing: false);
+  }
+
+  void startExporting() {
+    state = state.copyWith(exporting: true);
+  }
+
+  void stopExporting() {
+    state = state.copyWith(exporting: false);
+  }
+
+  //todo does this autodispose?
 }
+
+final workoutListProvider =
+    NotifierProvider<WorkoutListNotifier, WorkoutListState>(
+        WorkoutListNotifier.new);

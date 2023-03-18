@@ -25,6 +25,7 @@ import 'package:feeel/db/database.dart';
 import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/screens/exercise_picker/exercise_picker.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:feeel/theming/feeel_shade.dart';
@@ -39,19 +40,21 @@ import 'package:feeel/utils/snackbar_helper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
 
-class WorkoutEditorScreen extends StatefulWidget {
+class WorkoutEditorScreen extends ConsumerStatefulWidget {
   final EditableWorkout editableWorkout;
 
   const WorkoutEditorScreen({Key? key, required this.editableWorkout})
       : super(key: key);
 
   @override
-  State<WorkoutEditorScreen> createState() => _WorkoutEditorScreenState();
+  ConsumerState<WorkoutEditorScreen> createState() =>
+      _WorkoutEditorScreenState();
 }
 
-class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
+class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
   final _titleController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _timingFormKey = GlobalKey<FormState>();
@@ -257,9 +260,12 @@ class _WorkoutEditorScreenState extends State<WorkoutEditorScreen> {
                     final form = _formKey.currentState;
                     if (form != null && form.validate()) {
                       form.save();
-                      Provider.of<FeeelDB>(context, listen: false)
+                      GetIt.I<FeeelDB>()
                           .createOrUpdateWorkout(widget.editableWorkout)
                           .then((_) {
+                        ref
+                            .read(workoutProvider.notifier)
+                            .refresh(); //todo this is a hack, should be part of a future EditableWorkout provider itself
                         Navigator.pop(context);
                       });
                     }

@@ -20,25 +20,14 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/components/body_container.dart';
-import 'package:feeel/screens/workout_list/components/workout_add_speed_dial.dart';
-import 'package:feeel/screens/workout_list/components/workout_list_listview.dart';
-import 'package:flutter/material.dart';
+import 'package:feeel/db/database.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
 
-class WorkoutListScreen extends StatelessWidget {
-  const WorkoutListScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BodyContainer(
-        child: Stack(children: [
-      const WorkoutListListView(),
-      Positioned.directional(
-          bottom: 16,
-          end: 16,
-          textDirection: Directionality.of(context),
-          child:
-              const WorkoutAddSpeedDial()) //todo this is a hack, remove after moving to riverpod!
-    ]));
-  }
-}
+final dbProvider = Provider<FeeelDB>((ref) {
+  final db = GetIt.I<FeeelDB>(); // todo FeeelDB(), get rid of getIt
+  ref.onDispose(() {
+    db.close();
+  });
+  return db;
+});

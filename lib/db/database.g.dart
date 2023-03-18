@@ -1976,34 +1976,9 @@ class $WorkoutExercisesTable extends WorkoutExercises
   late final GeneratedColumn<int> breakDuration = GeneratedColumn<int>(
       'break_duration', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
-  static const VerificationMeta _repsMeta = const VerificationMeta('reps');
   @override
-  late final GeneratedColumn<int> reps = GeneratedColumn<int>(
-      'reps', aliasedName, true,
-      type: DriftSqlType.int, requiredDuringInsert: false);
-  static const VerificationMeta _measureMeta =
-      const VerificationMeta('measure');
-  @override
-  late final GeneratedColumn<int> measure = GeneratedColumn<int>(
-      'measure', aliasedName, true,
-      type: DriftSqlType.int, requiredDuringInsert: false);
-  static const VerificationMeta _measureUnitMeta =
-      const VerificationMeta('measureUnit');
-  @override
-  late final GeneratedColumn<int> measureUnit = GeneratedColumn<int>(
-      'measure_unit', aliasedName, true,
-      type: DriftSqlType.int, requiredDuringInsert: false);
-  @override
-  List<GeneratedColumn> get $columns => [
-        workoutId,
-        orderPosition,
-        exercise,
-        exerciseDuration,
-        breakDuration,
-        reps,
-        measure,
-        measureUnit
-      ];
+  List<GeneratedColumn> get $columns =>
+      [workoutId, orderPosition, exercise, exerciseDuration, breakDuration];
   @override
   String get aliasedName => _alias ?? 'workout_exercises';
   @override
@@ -2045,20 +2020,6 @@ class $WorkoutExercisesTable extends WorkoutExercises
           breakDuration.isAcceptableOrUnknown(
               data['break_duration']!, _breakDurationMeta));
     }
-    if (data.containsKey('reps')) {
-      context.handle(
-          _repsMeta, reps.isAcceptableOrUnknown(data['reps']!, _repsMeta));
-    }
-    if (data.containsKey('measure')) {
-      context.handle(_measureMeta,
-          measure.isAcceptableOrUnknown(data['measure']!, _measureMeta));
-    }
-    if (data.containsKey('measure_unit')) {
-      context.handle(
-          _measureUnitMeta,
-          measureUnit.isAcceptableOrUnknown(
-              data['measure_unit']!, _measureUnitMeta));
-    }
     return context;
   }
 
@@ -2078,12 +2039,6 @@ class $WorkoutExercisesTable extends WorkoutExercises
           .read(DriftSqlType.int, data['${effectivePrefix}exercise_duration']),
       breakDuration: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}break_duration']),
-      reps: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}reps']),
-      measure: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}measure']),
-      measureUnit: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}measure_unit']),
     );
   }
 
@@ -2099,20 +2054,12 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
   final int exercise;
   final int? exerciseDuration;
   final int? breakDuration;
-
-  /// refers to the break before this exercise
-  final int? reps;
-  final int? measure;
-  final int? measureUnit;
   const WorkoutExercise(
       {required this.workoutId,
       required this.orderPosition,
       required this.exercise,
       this.exerciseDuration,
-      this.breakDuration,
-      this.reps,
-      this.measure,
-      this.measureUnit});
+      this.breakDuration});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -2124,15 +2071,6 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
     }
     if (!nullToAbsent || breakDuration != null) {
       map['break_duration'] = Variable<int>(breakDuration);
-    }
-    if (!nullToAbsent || reps != null) {
-      map['reps'] = Variable<int>(reps);
-    }
-    if (!nullToAbsent || measure != null) {
-      map['measure'] = Variable<int>(measure);
-    }
-    if (!nullToAbsent || measureUnit != null) {
-      map['measure_unit'] = Variable<int>(measureUnit);
     }
     return map;
   }
@@ -2148,13 +2086,6 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
       breakDuration: breakDuration == null && nullToAbsent
           ? const Value.absent()
           : Value(breakDuration),
-      reps: reps == null && nullToAbsent ? const Value.absent() : Value(reps),
-      measure: measure == null && nullToAbsent
-          ? const Value.absent()
-          : Value(measure),
-      measureUnit: measureUnit == null && nullToAbsent
-          ? const Value.absent()
-          : Value(measureUnit),
     );
   }
 
@@ -2167,9 +2098,6 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
       exercise: serializer.fromJson<int>(json['exercise']),
       exerciseDuration: serializer.fromJson<int?>(json['exerciseDuration']),
       breakDuration: serializer.fromJson<int?>(json['breakDuration']),
-      reps: serializer.fromJson<int?>(json['reps']),
-      measure: serializer.fromJson<int?>(json['measure']),
-      measureUnit: serializer.fromJson<int?>(json['measureUnit']),
     );
   }
   @override
@@ -2181,9 +2109,6 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
       'exercise': serializer.toJson<int>(exercise),
       'exerciseDuration': serializer.toJson<int?>(exerciseDuration),
       'breakDuration': serializer.toJson<int?>(breakDuration),
-      'reps': serializer.toJson<int?>(reps),
-      'measure': serializer.toJson<int?>(measure),
-      'measureUnit': serializer.toJson<int?>(measureUnit),
     };
   }
 
@@ -2192,10 +2117,7 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
           int? orderPosition,
           int? exercise,
           Value<int?> exerciseDuration = const Value.absent(),
-          Value<int?> breakDuration = const Value.absent(),
-          Value<int?> reps = const Value.absent(),
-          Value<int?> measure = const Value.absent(),
-          Value<int?> measureUnit = const Value.absent()}) =>
+          Value<int?> breakDuration = const Value.absent()}) =>
       WorkoutExercise(
         workoutId: workoutId ?? this.workoutId,
         orderPosition: orderPosition ?? this.orderPosition,
@@ -2205,9 +2127,6 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
             : this.exerciseDuration,
         breakDuration:
             breakDuration.present ? breakDuration.value : this.breakDuration,
-        reps: reps.present ? reps.value : this.reps,
-        measure: measure.present ? measure.value : this.measure,
-        measureUnit: measureUnit.present ? measureUnit.value : this.measureUnit,
       );
   @override
   String toString() {
@@ -2216,17 +2135,14 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
           ..write('orderPosition: $orderPosition, ')
           ..write('exercise: $exercise, ')
           ..write('exerciseDuration: $exerciseDuration, ')
-          ..write('breakDuration: $breakDuration, ')
-          ..write('reps: $reps, ')
-          ..write('measure: $measure, ')
-          ..write('measureUnit: $measureUnit')
+          ..write('breakDuration: $breakDuration')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(workoutId, orderPosition, exercise,
-      exerciseDuration, breakDuration, reps, measure, measureUnit);
+  int get hashCode => Object.hash(
+      workoutId, orderPosition, exercise, exerciseDuration, breakDuration);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2235,10 +2151,7 @@ class WorkoutExercise extends DataClass implements Insertable<WorkoutExercise> {
           other.orderPosition == this.orderPosition &&
           other.exercise == this.exercise &&
           other.exerciseDuration == this.exerciseDuration &&
-          other.breakDuration == this.breakDuration &&
-          other.reps == this.reps &&
-          other.measure == this.measure &&
-          other.measureUnit == this.measureUnit);
+          other.breakDuration == this.breakDuration);
 }
 
 class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
@@ -2247,18 +2160,12 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
   final Value<int> exercise;
   final Value<int?> exerciseDuration;
   final Value<int?> breakDuration;
-  final Value<int?> reps;
-  final Value<int?> measure;
-  final Value<int?> measureUnit;
   const WorkoutExercisesCompanion({
     this.workoutId = const Value.absent(),
     this.orderPosition = const Value.absent(),
     this.exercise = const Value.absent(),
     this.exerciseDuration = const Value.absent(),
     this.breakDuration = const Value.absent(),
-    this.reps = const Value.absent(),
-    this.measure = const Value.absent(),
-    this.measureUnit = const Value.absent(),
   });
   WorkoutExercisesCompanion.insert({
     required int workoutId,
@@ -2266,9 +2173,6 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
     required int exercise,
     this.exerciseDuration = const Value.absent(),
     this.breakDuration = const Value.absent(),
-    this.reps = const Value.absent(),
-    this.measure = const Value.absent(),
-    this.measureUnit = const Value.absent(),
   })  : workoutId = Value(workoutId),
         orderPosition = Value(orderPosition),
         exercise = Value(exercise);
@@ -2278,9 +2182,6 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
     Expression<int>? exercise,
     Expression<int>? exerciseDuration,
     Expression<int>? breakDuration,
-    Expression<int>? reps,
-    Expression<int>? measure,
-    Expression<int>? measureUnit,
   }) {
     return RawValuesInsertable({
       if (workoutId != null) 'workout_id': workoutId,
@@ -2288,9 +2189,6 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
       if (exercise != null) 'exercise': exercise,
       if (exerciseDuration != null) 'exercise_duration': exerciseDuration,
       if (breakDuration != null) 'break_duration': breakDuration,
-      if (reps != null) 'reps': reps,
-      if (measure != null) 'measure': measure,
-      if (measureUnit != null) 'measure_unit': measureUnit,
     });
   }
 
@@ -2299,19 +2197,13 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
       Value<int>? orderPosition,
       Value<int>? exercise,
       Value<int?>? exerciseDuration,
-      Value<int?>? breakDuration,
-      Value<int?>? reps,
-      Value<int?>? measure,
-      Value<int?>? measureUnit}) {
+      Value<int?>? breakDuration}) {
     return WorkoutExercisesCompanion(
       workoutId: workoutId ?? this.workoutId,
       orderPosition: orderPosition ?? this.orderPosition,
       exercise: exercise ?? this.exercise,
       exerciseDuration: exerciseDuration ?? this.exerciseDuration,
       breakDuration: breakDuration ?? this.breakDuration,
-      reps: reps ?? this.reps,
-      measure: measure ?? this.measure,
-      measureUnit: measureUnit ?? this.measureUnit,
     );
   }
 
@@ -2333,15 +2225,6 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
     if (breakDuration.present) {
       map['break_duration'] = Variable<int>(breakDuration.value);
     }
-    if (reps.present) {
-      map['reps'] = Variable<int>(reps.value);
-    }
-    if (measure.present) {
-      map['measure'] = Variable<int>(measure.value);
-    }
-    if (measureUnit.present) {
-      map['measure_unit'] = Variable<int>(measureUnit.value);
-    }
     return map;
   }
 
@@ -2352,10 +2235,7 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
           ..write('orderPosition: $orderPosition, ')
           ..write('exercise: $exercise, ')
           ..write('exerciseDuration: $exerciseDuration, ')
-          ..write('breakDuration: $breakDuration, ')
-          ..write('reps: $reps, ')
-          ..write('measure: $measure, ')
-          ..write('measureUnit: $measureUnit')
+          ..write('breakDuration: $breakDuration')
           ..write(')'))
         .toString();
   }

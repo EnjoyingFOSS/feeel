@@ -24,10 +24,12 @@ import 'package:feeel/db/database.dart';
 import 'package:feeel/db/workout_import_export.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:feeel/screens/workout_list/providers/workout_list_provider.dart';
 import 'package:feeel/utils/format_util.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
 
 enum _WorkoutListAction {
   exportCustom("Export all custom workouts");
@@ -37,25 +39,16 @@ enum _WorkoutListAction {
   const _WorkoutListAction(this.translationKey);
 }
 
-class WorkoutListMenu extends StatelessWidget {
-  final Function
-      afterAction; //todo this is a hack, remove after moving to riverpod!
-  final Function onExportStart; //todo replace with riverpod's providers too!
-  final Function onExportEnd; //todo replace with riverpod's providers too!
-
-  const WorkoutListMenu(
-      {super.key,
-      required this.afterAction,
-      required this.onExportStart,
-      required this.onExportEnd});
+class WorkoutListMenu extends ConsumerWidget {
+  const WorkoutListMenu({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return PopupMenuButton<_WorkoutListAction>(
       onSelected: (actionItem) async {
         switch (actionItem) {
           case _WorkoutListAction.exportCustom:
-            await _exportZipFile(context);
+            await _exportZipFile(context, ref);
             return;
         }
       },
@@ -69,16 +62,15 @@ class WorkoutListMenu extends StatelessWidget {
     );
   }
 
-  Future<void> _exportZipFile(BuildContext context) async {
-    onExportStart();
+  Future<void> _exportZipFile(BuildContext context, WidgetRef ref) async {
+    final workoutListNotifier = ref.read(workoutListProvider.notifier);
+    workoutListNotifier.startExporting();
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final fullCustomWorkouts =
-        await Provider.of<FeeelDB>(context, listen: false)
-            .queryFullWorkoutsByType(WorkoutType.custom);
+        await GetIt.I<FeeelDB>().queryFullWorkoutsByType(WorkoutType.custom);
     if (fullCustomWorkouts.isEmpty) {
       SnackBarHelper.showInfoSnackBar(
           scaffoldMessenger, "You don't have any custom workouts".i18n);
-      onExportEnd();
     } else {
       final zipFilename =
           "${"Feeel ${FormatUtil.getDateTimeStringToSec(DateTime.now())}"}.zip";
@@ -94,8 +86,7 @@ class WorkoutListMenu extends StatelessWidget {
             "Could not export \"%s\".".i18n.replaceFirst("%s", zipFilename),
             duration: SnackBarDuration.long);
       }
-
-      onExportEnd();
     }
+    workoutListNotifier.stopExporting();
   }
 }
