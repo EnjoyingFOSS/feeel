@@ -23,6 +23,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/audio/sound_view.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
@@ -35,8 +36,7 @@ import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/enums/workout_stage.dart';
 // import 'package:feeel/models/view/exercise_step.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum _ViewTypes { gui, audio }
@@ -153,6 +153,7 @@ class WorkoutController {
           _coordinateExerciseStage(restore: true);
           break;
         case WorkoutStage.exercise:
+          _recordCompletedExercise();
           if (_workoutMeta.isLastExercise()) {
             _coordinateEndStage();
           } else {
@@ -168,7 +169,7 @@ class WorkoutController {
 
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
-      if (prefs.getBool(PreferenceKeys.ttsDisabledPref) ?? Platform.isLinux) {
+      if (prefs.getBool(PreferenceKeys.ttsDisabled) ?? Platform.isLinux) {
         final SoundView soundView = SoundView();
         _views[_ViewTypes.audio.index] = soundView;
         _onFinishes[_ViewTypes.audio.index] = () {
@@ -213,6 +214,7 @@ class WorkoutController {
         _stage == WorkoutStage.countdown) {
       if (_timer.isRunning()) {
         _timer.stop();
+        _recordInProgressExercise();
         _renderPausePlay();
       } else {
         if (_stage == WorkoutStage.exercise) {
@@ -366,20 +368,32 @@ class WorkoutController {
     _views[_ViewTypes.gui.index] = null;
   }
 
-  void logWorkout(BuildContext context) {
-    if (_stage == WorkoutStage.exercise) _recordCurrentExercise();
-    Provider.of<FeeelDB>(context, listen: false)
-        .createWorkoutRecord(_editableWorkoutRecord);
+  void _recordInProgressExercise() {
+    //todo on timer finish, on skip, on clo se, on pause (because of countdown)
+    if (_stage == WorkoutStage.exercise) {
+      final remainingDuration = _timer.getTimeRemaining();
+      final exercisePos = _workoutMeta.getExercisePos();
+      final newDuration =
+          _workoutMeta.getCurExerciseDuration() - remainingDuration;
+      _editableWorkoutRecord.completedDurations[exercisePos] = max(
+          _editableWorkoutRecord.completedDurations[exercisePos], newDuration);
+    }
   }
 
-  void _recordCurrentExercise() {
+  void _recordCompletedExercise() {
     //todo on timer finish, on skip, on close, on pause (because of countdown)
-    final remainingDuration = _timer.getTimeRemaining();
-    final exercisePos = _workoutMeta.getExercisePos();
-    final newDuration =
-        _workoutMeta.getCurExerciseDuration() - remainingDuration;
-    _editableWorkoutRecord.completedDurations[exercisePos] = max(
-        _editableWorkoutRecord.completedDurations[exercisePos], newDuration);
+    _editableWorkoutRecord.completedDurations[_workoutMeta.getExercisePos()] =
+        _workoutMeta.getCurExerciseDuration();
+  }
+
+  Future<void> recordState() async {
+    _recordInProgressExercise();
+    for (final completed in _editableWorkoutRecord.completedDurations) {
+      if (completed > 0) {
+        await GetIt.I<FeeelDB>().recordWorkout(_editableWorkoutRecord);
+        return;
+      }
+    }
   }
 
   void close() {
