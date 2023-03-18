@@ -21,16 +21,16 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
+import 'package:get_it/get_it.dart';
 
 import '../db/database.dart';
 
 class LocalExerciseCache {
+  //todo is this needed?
   static Map<int, Exercise>? _exerciseCache;
 
   static Future<void> initExercises(BuildContext context) async {
-    final allExercises =
-        await Provider.of<FeeelDB>(context, listen: false).queryAllExercises;
+    final allExercises = await GetIt.I<FeeelDB>().queryAllExercises;
     _exerciseCache = <int, Exercise>{for (final e in allExercises) e.wgerId: e};
   }
 

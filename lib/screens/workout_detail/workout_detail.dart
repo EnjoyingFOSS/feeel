@@ -25,7 +25,7 @@ import 'dart:io';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get_it/get_it.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'components/empty_workout.dart';
@@ -50,8 +50,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
   @override
   void initState() {
     super.initState();
-    _future = Provider.of<FeeelDB>(context, listen: false)
-        .queryFullWorkout(widget.workout);
+    _future = GetIt.I<FeeelDB>().queryFullWorkout(widget.workout);
   }
 
   @override

@@ -176,6 +176,6 @@ class WorkoutImportExport {
     ew.dbId = null;
     ew.type = WorkoutType.custom;
 
-    GetIt.I<FeeelDB>().createOrUpdateWorkout(ew);
+    await GetIt.I<FeeelDB>().createOrUpdateWorkout(ew);
   }
 }

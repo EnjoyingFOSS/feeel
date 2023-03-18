@@ -28,7 +28,7 @@ import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'package:provider/provider.dart';
+import 'package:get_it/get_it.dart';
 
 class ExercisePickerScreen extends StatefulWidget {
   final FeeelSwatch swatch;
@@ -49,7 +49,7 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
 
   @override
   void initState() {
-    _future = Provider.of<FeeelDB>(context, listen: false).queryAllExercises;
+    _future = GetIt.I<FeeelDB>().queryAllExercises;
     super.initState();
   }
 
