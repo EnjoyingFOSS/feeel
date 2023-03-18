@@ -20,11 +20,16 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-class PreferenceKeys {
-  // todo static const locale = "locale";
-  static const themeMode = "themeMode";
-  static const themePersonalized = "themePersonalized";
-  static const showDisclaimer = "showDisclaimer";
-  static const ttsDisabled = "ttsDisabled";
-  static const notificationTime = "notificationTime";
+// intEnum in SharedPreferences
+import 'package:flutter/material.dart';
+
+enum FeeelThemeMode {
+  light("Light", ThemeMode.light),
+  dark("Dark", ThemeMode.dark),
+  system("System", ThemeMode.system);
+
+  final String translationKey;
+  final ThemeMode themeMode;
+
+  const FeeelThemeMode(this.translationKey, this.themeMode);
 }

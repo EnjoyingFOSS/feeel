@@ -20,35 +20,40 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:feeel/enums/feeel_theme_mode.dart';
+import 'package:feeel/models/feeel_theme.dart';
+import 'package:feeel/providers/global_settings_provider.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'package:feeel/theming/theme_mode_extensions.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ThemeDialog extends StatelessWidget {
-  final AdaptiveThemeMode? curTheme;
+class ThemeDialog extends ConsumerWidget {
+  final FeeelTheme curTheme;
 
   const ThemeDialog({required this.curTheme, Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    //todo integrate the personalized switch into this too!
+    final globalSettingsNotifier = ref.read(globalSettingsProvider.notifier);
     return AlertDialog(
       title: Text("Theme".i18n),
       content: SizedBox(
         width: LayoutXL.cols6.width,
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: AdaptiveThemeMode.values.length,
+          itemCount: FeeelThemeMode.values.length,
           itemBuilder: (BuildContext context, int index) {
-            final itemTheme = AdaptiveThemeMode.values[index];
+            final itemTheme = FeeelThemeMode.values[index];
             return RadioListTile(
               value: index,
-              groupValue: curTheme?.index,
-              title: Text(itemTheme.uiName().i18n),
+              groupValue: curTheme.mode.index,
+              title: Text(itemTheme.translationKey.i18n),
               onChanged: (int? newIndex) {
                 if (newIndex != null) {
-                  AdaptiveThemeMode.values[newIndex].apply(context);
+                  globalSettingsNotifier
+                      .setTheme(curTheme.copyWith(mode: itemTheme));
                 }
                 Navigator.pop(context);
               },

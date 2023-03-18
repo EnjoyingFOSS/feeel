@@ -22,8 +22,9 @@
 
 import 'dart:io';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:feeel/components/body_container.dart';
+import 'package:feeel/enums/feeel_theme_mode.dart';
+import 'package:feeel/providers/global_settings_provider.dart';
 // import 'package:feeel/screens/settings/components/import_export_tile.dart';
 // import 'package:archive/archive_io.dart';
 import 'package:feeel/utils/notification_helper.dart';
@@ -32,26 +33,25 @@ import 'package:feeel/screens/settings/components/theme_dialog.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'package:feeel/theming/theme_mode_extensions.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsBundle {
   final SharedPreferences preferences;
-  final AdaptiveThemeMode? themeMode;
 
-  _SettingsBundle(this.preferences, this.themeMode);
+  _SettingsBundle(this.preferences);
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   late Future<_SettingsBundle> _preferencesFuture;
 
   @override
@@ -63,6 +63,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final globalSettingsValue = ref.watch(globalSettingsProvider);
+    final globalSettingsNotifier = ref.read(globalSettingsProvider.notifier);
     return BodyContainer(
         child: FutureBuilder(
             future: _preferencesFuture,
@@ -73,8 +75,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 final notificationTime = Platform.isLinux
                     ? null
                     : NotificationHelper.timeFromInt(settingsBundle.preferences
-                        .getInt(PreferenceKeys.notificationTimePref));
-                final curTheme = settingsBundle.themeMode;
+                        .getInt(PreferenceKeys.notificationTime));
+                final curTheme = globalSettingsValue.theme;
                 final switchActiveColor =
                     Theme.of(context).colorScheme.secondary;
                 return CustomScrollView(slivers: [
@@ -90,13 +92,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         SwitchListTile.adaptive(
                             secondary: const Icon(Icons.music_note),
                             value: (settingsBundle.preferences
-                                    .getBool(PreferenceKeys.ttsDisabledPref) ??
+                                    .getBool(PreferenceKeys.ttsDisabled) ??
                                 false),
                             title: Text("Sounds instead of voice".i18n),
                             onChanged: (bool newValue) {
                               setState(() {
                                 settingsBundle.preferences.setBool(
-                                    PreferenceKeys.ttsDisabledPref, newValue);
+                                    PreferenceKeys.ttsDisabled, newValue);
                               });
                             },
                             activeColor: switchActiveColor),
@@ -126,7 +128,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           contentPadding:
                               const EdgeInsets.only(left: 72, right: 24),
                           title: Text("Notification time".i18n),
-                          trailing: Text(notificationTime.format(context)),
+                          subtitle: Text(notificationTime.format(context)),
                           onTap: () async {
                             var selectedTime = await showTimePicker(
                                 context: context,
@@ -140,7 +142,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ListTile(
                         leading: const Icon(Icons.palette),
                         title: Text("Theme".i18n),
-                        subtitle: Text(curTheme?.uiName().i18n ?? ""),
+                        subtitle: Text(curTheme.mode.translationKey
+                            .i18n), //todo say whether personalized or not
                         onTap: () async {
                           await showDialog<void>(
                               context: context,
@@ -151,8 +154,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           });
                         },
                       ),
-                      // const ImportExportTile(import: false),
-                      // const ImportExportTile(import: true),
+                      if (Platform.isAndroid || Platform.isLinux)
+                        SwitchListTile.adaptive(
+                          secondary: const SizedBox(),
+                          title: Text("Personalized colors".i18n),
+                          value: globalSettingsValue.theme.personalized,
+                          onChanged: (value) async {
+                            globalSettingsNotifier.setTheme(
+                                curTheme.copyWith(personalized: value));
+                          },
+                        ),
                       ListTile(
                         leading: const Icon(Icons.volunteer_activism),
                         title: Text("Participate".i18n),
@@ -183,7 +194,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         leading: const Icon(Icons.info),
                         title: Text("About Feeel".i18n),
                         onTap: _showAboutDialog,
-                      )
+                      ),
                     ],
                   ))
                 ]);
@@ -222,14 +233,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
       final notificationUnset =
           await NotificationHelper.helper.setNotification(context, null);
       if (notificationUnset) {
-        preferences.remove(PreferenceKeys.notificationTimePref);
+        preferences.remove(PreferenceKeys.notificationTime);
       }
     } else {
       final scaffoldMessenger = ScaffoldMessenger.of(context);
       final notificationSet =
           await NotificationHelper.helper.setNotification(context, timeOfDay);
       if (notificationSet) {
-        preferences.setInt(PreferenceKeys.notificationTimePref,
+        preferences.setInt(PreferenceKeys.notificationTime,
             NotificationHelper.timeToInt(timeOfDay));
       } else {
         SnackBarHelper.showInfoSnackBar(
@@ -244,7 +255,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<_SettingsBundle> _getSettingsBundle() async {
     //todo add language to bundle
     final preferences = await SharedPreferences.getInstance();
-    final themeMode = await AdaptiveTheme.getThemeMode();
-    return _SettingsBundle(preferences, themeMode);
+    return _SettingsBundle(preferences);
   }
 }

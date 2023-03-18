@@ -25,6 +25,7 @@ import 'dart:io';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/db/database.dart';
+import 'package:feeel/providers/global_settings_provider.dart';
 import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,11 +47,11 @@ void main() async {
   runApp(const ProviderScope(child: Feeel()));
 }
 
-class Feeel extends StatelessWidget {
+class Feeel extends ConsumerWidget {
   const Feeel({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     WidgetsFlutterBinding.ensureInitialized();
 
     // if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) { //todo not supported on Linux for ARM yet
@@ -65,7 +66,8 @@ class Feeel extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
 
-    return DynamicColorBuilder(builder: (dynamicLightTheme, dynamicDarkTheme) {
+    return DynamicColorBuilder(
+            builder: (dynamicLightScheme, dynamicDarkScheme) {
       // print("THEMES : $dynamicDarkTheme $dynamicLightTheme");
       // todo return AdaptiveTheme(
       //     light: dynamicLightTheme != null
@@ -76,16 +78,19 @@ class Feeel extends StatelessWidget {
       //         : FeeelThemes.darkTheme, //todo let the user choose
       //     initial: AdaptiveThemeMode.light,
       // builder: (theme, darkTheme) {
+      final theme = ref.watch(globalSettingsProvider).theme;
+      final personalizedTheme = theme.personalized;
       return MaterialApp(
           title: 'Feeel',
-          theme: dynamicLightTheme != null
-              ? FeeelThemes
-                  .lightTheme //todo FeeelThemes.getThemeFromScheme(dynamicLightTheme)
-              : FeeelThemes.lightTheme,
-          darkTheme: dynamicDarkTheme != null
-              ? FeeelThemes
-                  .darkTheme // todo FeeelThemes.getThemeFromScheme(dynamicDarkTheme)
-              : FeeelThemes.darkTheme,
+          themeMode: theme.mode.themeMode,
+          theme: personalizedTheme
+              ? FeeelThemes.getThemeFromScheme(
+                  dynamicLightScheme ?? FeeelThemes.lightColors)
+              : FeeelThemes.getThemeFromScheme(FeeelThemes.lightColors),
+          darkTheme: personalizedTheme
+              ? FeeelThemes.getThemeFromScheme(
+                  dynamicLightScheme ?? FeeelThemes.darkColors)
+              : FeeelThemes.getThemeFromScheme(FeeelThemes.darkColors),
           supportedLocales: LocaleHelper.supportedLocales,
           // localeResolutionCallback: (locale, supportedLocales) { //todo this is also not working
           //   if (supportedLocales.contains(locale)) {

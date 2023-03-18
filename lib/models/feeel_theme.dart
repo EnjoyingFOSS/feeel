@@ -20,11 +20,12 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-class PreferenceKeys {
-  // todo static const locale = "locale";
-  static const themeMode = "themeMode";
-  static const themePersonalized = "themePersonalized";
-  static const showDisclaimer = "showDisclaimer";
-  static const ttsDisabled = "ttsDisabled";
-  static const notificationTime = "notificationTime";
+import 'package:feeel/enums/feeel_theme_mode.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'feeel_theme.freezed.dart';
+
+@freezed
+class FeeelTheme with _$FeeelTheme {
+  const factory FeeelTheme(
+      {required FeeelThemeMode mode, required bool personalized}) = _FeeelTheme;
 }
