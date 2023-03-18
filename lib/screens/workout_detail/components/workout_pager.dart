@@ -23,7 +23,6 @@
 import 'dart:io';
 
 import 'package:feeel/controllers/workout_controller.dart';
-import 'package:feeel/controllers/workout_page_types.dart';
 import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
