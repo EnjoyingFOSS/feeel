@@ -20,11 +20,14 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/disclaimer_sheet.dart';
 import 'package:feeel/components/navigation_pills.dart';
+import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/screens/home_pager/components/home_pageview.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePagerScreen extends StatefulWidget {
   const HomePagerScreen({super.key});
@@ -36,6 +39,19 @@ class HomePagerScreen extends StatefulWidget {
 class _HomePagerScreenState extends State<HomePagerScreen> {
   final _controller = PageController();
   int _currentPage = 0;
+
+  @override
+  void initState() {
+    // todo CHECK IF USER IS UPGRADING FROM < 3.0.0 AND ASK HIM IF TO ALLOW INTERNET (have it by default post-3.0.0, but still in settings)
+    // todo turn this screen into a stateless widget, use WidgetsBinding.instance.addPostFrameCallback((_) => yourFunction(context)) INSTEAD;
+    SharedPreferences.getInstance().then((prefs) {
+      //todo is the initState method the right place for this?
+      if (prefs.getBool(PreferenceKeys.showDisclaimer) ?? true) {
+        DisclaimerSheet.showSheet(context);
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

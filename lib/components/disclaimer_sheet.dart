@@ -117,7 +117,7 @@ class DisclaimerSheet extends StatelessWidget {
                         //todo set a setting here
                         final navigator = Navigator.of(context);
                         final prefs = await SharedPreferences.getInstance();
-                        prefs.setBool(PreferenceKeys.showDisclaimerPref, false);
+                        prefs.setBool(PreferenceKeys.showDisclaimer, false);
                         navigator.pop();
                       },
                       child: Text("I understand".i18n),
