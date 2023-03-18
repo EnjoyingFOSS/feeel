@@ -35,6 +35,8 @@ import 'package:wakelock/wakelock.dart';
 import 'exercise_page.dart';
 import 'finish_page.dart';
 
+enum _WorkoutPageTypes { cover, exercise, finish }
+
 class WorkoutPager extends StatefulWidget {
   final FullWorkout fullWorkout;
 
@@ -75,7 +77,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   Widget build(BuildContext context) {
     _workoutController.setOnFinish(() {
       if (!Platform.isLinux) Wakelock.disable();
-      _pageController.jumpToPage(WorkoutPageTypes.finish.index);
+      _pageController.jumpToPage(_WorkoutPageTypes.finish.index);
     });
 
     return PageView(
@@ -86,7 +88,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
           fullWorkout: widget.fullWorkout,
           colorSwatch: colorSwatch,
           startWorkout: () {
-            _pageController.jumpToPage(WorkoutPageTypes.exercise.index);
+            _pageController.jumpToPage(_WorkoutPageTypes.exercise.index);
             _workoutController.start();
             if (!Platform.isLinux) Wakelock.enable(); //
           },
@@ -106,7 +108,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   @override
   void dispose() {
     super.dispose();
-    // _workoutController.recordState();
+    _workoutController.recordState();
     _workoutController.close();
   }
 }
