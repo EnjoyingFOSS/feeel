@@ -20,16 +20,15 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/flipped.dart';
+import 'package:feeel/models/full_exercise.dart';
+import 'package:feeel/providers/exercise_provider.dart';
 import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/models/editable_workout_exercise.dart';
-import 'package:feeel/utils/local_exercise_cache.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../components/flipped.dart';
-import '../../../db/database.dart';
-
-class ExerciseEditorRow extends StatelessWidget {
+class ExerciseEditorRow extends ConsumerWidget {
   final EditableWorkoutExercise editableWorkoutExercise;
   final Widget trailing;
   final Widget? handle;
@@ -42,45 +41,50 @@ class ExerciseEditorRow extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: LocalExerciseCache.getExercise(
-            context, editableWorkoutExercise.exercise),
-        builder: (_, snapshot) {
-          if (snapshot.hasData) {
-            Exercise exercise = snapshot.data as Exercise;
-            final imageSlug = exercise.imageSlug;
-            return Row(children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: exercise.flipped
-                    ? Flipped(
-                        child: Image.asset(
-                            AssetUtil.getThumbOrPlaceholderPath(imageSlug),
-                            width: 72,
-                            height: 72))
-                    : Image.asset(
-                        AssetUtil.getThumbOrPlaceholderPath(imageSlug),
-                        width: 72,
-                        height: 72),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final exerciseAsyncValue = ref.read(
+        exerciseProvider); //todo refactor this, I don't think this should be here
+    return exerciseAsyncValue.when(
+        error: (e, _) => const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text(
+              "Error loading exercise",
+              textAlign: TextAlign.center,
+            )),
+        loading: () => const Padding(
+            padding: EdgeInsets.all(16),
+            child: CircularProgressIndicator.adaptive()),
+        data: (data) {
+          FullExercise fullExercise =
+              data.primaryLanguageExercises[editableWorkoutExercise.exercise]!;
+          final imageSlug = fullExercise.exercise.imageSlug;
+          return Row(children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: fullExercise.exercise.flipped
+                  ? Flipped(
+                      child: Image.asset(
+                          AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                          width: 72,
+                          height: 72))
+                  : Image.asset(AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                      width: 72, height: 72),
+            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                fullExercise.translationsByLanguage?.values.first.name ??
+                    fullExercise.exercise.name,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  exercise.name.i18n,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              )),
-              trailing,
-              handle ??
-                  Container(
-                    width: 16,
-                  )
-            ]);
-          } else {
-            return const CircularProgressIndicator.adaptive();
-          }
+            )),
+            trailing,
+            handle ??
+                Container(
+                  width: 16,
+                )
+          ]);
         });
   }
 }

@@ -22,13 +22,15 @@
 
 import 'package:feeel/db/database.dart';
 
+import 'full_exercise.dart';
+
 class FullWorkoutRecord {
   final WorkoutRecord workoutRecord;
   final List<WorkoutExerciseRecord> workoutExerciseRecords;
-  final List<Exercise> exercises;
+  final List<FullExercise> primaryLangFullExercises;
 
   FullWorkoutRecord(
       {required this.workoutRecord,
       required this.workoutExerciseRecords,
-      required this.exercises});
+      required this.primaryLangFullExercises});
 }

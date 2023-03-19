@@ -27,7 +27,6 @@ import 'package:feeel/db/workout_import_export.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/models/editable_workout.dart';
-import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/screens/workout_editor/workout_editor.dart';
 import 'package:feeel/screens/workout_list/providers/workout_list_provider.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
@@ -69,7 +68,6 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
 
     final screenStateNotifier = ref.read(workoutListProvider.notifier);
-    final dbNotifier = ref.read(workoutProvider.notifier);
 
     screenStateNotifier.startImporting();
 

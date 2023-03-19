@@ -21,40 +21,34 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/body_container.dart';
-import 'package:feeel/db/database.dart';
+import 'package:feeel/providers/exercise_provider.dart';
 import 'package:feeel/screens/exercise_picker/components/contribute_sheet.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ExercisePickerScreen extends StatefulWidget {
+class ExercisePickerScreen extends ConsumerStatefulWidget {
   final FeeelSwatch swatch;
 
   const ExercisePickerScreen({Key? key, required this.swatch})
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<ConsumerStatefulWidget> createState() {
     return _ExercisePickerScreenState();
   }
 }
 
-class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
-  List<Exercise>? _exercises;
-  final _chosenExerciseIndices = List<int>.empty(growable: true);
-  late Future<List<Exercise>> _future;
-
-  @override
-  void initState() {
-    _future = GetIt.I<FeeelDB>().queryAllExercises;
-    super.initState();
-  }
+class _ExercisePickerScreenState extends ConsumerState<ExercisePickerScreen> {
+  final _chosenExerciseIds = List<int>.empty(growable: true);
 
   @override
   Widget build(BuildContext context) {
+    final exerciseAsyncValue = ref.watch(exerciseProvider);
+
     final theme = Theme.of(context);
     final bgColor = widget.swatch
         .getColor(FeeelShade.lightest.invertIfDark(theme.brightness));
@@ -67,72 +61,68 @@ class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
           backgroundColor: widget.swatch.getForegroundColor(FeeelShade.darker),
           tooltip: "Done".i18n,
           onPressed: () {
-            if (_exercises != null) {
-              List<Exercise> chosenExercises =
-                  List.generate(_chosenExerciseIndices.length, (index) {
-                return _exercises![_chosenExerciseIndices[index]];
-              });
-              Navigator.pop(context, chosenExercises);
-            }
+            Navigator.pop(context, _chosenExerciseIds);
           },
           child: const Icon(Icons.done),
         ),
-        body: FutureBuilder(
-            future: _future,
-            builder: (context, AsyncSnapshot<List<Exercise>> snapshot) {
-              if (snapshot.hasData) {
-                _exercises = snapshot.data!;
-
-                return BodyContainer(
-                    child: CustomScrollView(
-                  slivers: [
-                    SliverAppBar(
-                      leading: CloseButton(color: fgColor),
-                      titleTextStyle: theme.appBarTheme.titleTextStyle
-                          ?.copyWith(color: fgColor),
-                      title: Text("Add exercises".i18n),
-                    ),
-                    SliverPadding(
-                        padding: const EdgeInsets.fromLTRB(0, 16, 0, 64),
-                        sliver: SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                          childCount: _exercises!.length + 1,
-                          (context, i) {
-                            if (i < _exercises!.length) {
-                              return ExercisePickerRow(
-                                  checked: _chosenExerciseIndices.contains(i),
-                                  exercise: _exercises![i],
-                                  colorSwatch: widget.swatch,
-                                  onChanged: (chosen) {
-                                    setState(() {
-                                      if (chosen != null && chosen) {
-                                        _chosenExerciseIndices.add(i);
-                                      } else {
-                                        _chosenExerciseIndices.remove(i);
-                                      }
-                                    });
-                                  });
-                            } else {
-                              return ListTile(
-                                leading: Container(
-                                    width: 56,
-                                    alignment: Alignment.center,
-                                    child: const Icon(Icons.add)),
-                                title: Text("Propose custom exercise".i18n),
-                                onTap: () async {
-                                  ContributeSheet.showSheet(context);
-                                },
-                              );
-                            }
-                          },
-                        )))
-                  ],
-                ));
-              } else {
-                return const Center(
+        body: exerciseAsyncValue.when(
+            error: (Object error, StackTrace stackTrace) => Center(
+                child:
+                    Text(":( There was an error")), //TODO error component !!!
+            loading: () => const Center(
                   child: CircularProgressIndicator.adaptive(),
-                );
-              }
+                ),
+            data: (data) {
+              final fullExercises =
+                  data.primaryLanguageExercises.values.toList();
+              return BodyContainer(
+                  child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    leading: CloseButton(color: fgColor),
+                    titleTextStyle: theme.appBarTheme.titleTextStyle
+                        ?.copyWith(color: fgColor),
+                    title: Text("Add exercises".i18n),
+                  ),
+                  SliverPadding(
+                      padding: const EdgeInsets.fromLTRB(0, 16, 0, 64),
+                      sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                        childCount: fullExercises.length + 1,
+                        (context, i) {
+                          if (i < fullExercises.length) {
+                            final exercise = fullExercises[i].exercise;
+                            return ExercisePickerRow(
+                                checked: _chosenExerciseIds
+                                    .contains(exercise.wgerId),
+                                primaryLangFullExercise: fullExercises[i],
+                                colorSwatch: widget.swatch,
+                                onChanged: (chosen) {
+                                  setState(() {
+                                    if (chosen != null && chosen) {
+                                      _chosenExerciseIds.add(exercise.wgerId);
+                                    } else {
+                                      _chosenExerciseIds
+                                          .remove(exercise.wgerId);
+                                    }
+                                  });
+                                });
+                          } else {
+                            return ListTile(
+                              leading: Container(
+                                  width: 56,
+                                  alignment: Alignment.center,
+                                  child: const Icon(Icons.add)),
+                              title: Text("Propose custom exercise".i18n),
+                              onTap: () async {
+                                ContributeSheet.showSheet(context);
+                              },
+                            );
+                          }
+                        },
+                      )))
+                ],
+              ));
             }));
   }
 }

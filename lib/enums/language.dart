@@ -47,7 +47,7 @@ enum ExerciseLanguage {
       _wgerFr = 12,
       _wgerIt = 13,
       _wgerTr = 16;
-  static const defaultLang = en;
+  static const fallbackLang = en;
   final String langCode;
   final int? wgerDbId;
 

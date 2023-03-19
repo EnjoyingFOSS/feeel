@@ -38,6 +38,7 @@ import 'package:feeel/models/editable_workout_record.dart';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/muscle_role.dart';
 import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/models/full_workout_record.dart';
 import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/utils/wger_exercise_util.dart';
@@ -345,23 +346,28 @@ class FeeelDB extends _$FeeelDB {
     }
   }
 
-  // Future<FullExercise> queryFullExercise(Exercise e) async {
-  //   final steps = (e.hasSteps)
-  //       ? await (select(exerciseSteps)..where((s) => s.exerciseId.equals(e.id)))
-  //           .get()
-  //       : null; //todo change if I will have the rowid pointing to the right item
-  //   final equipment = await (select(exerciseEquipment)
-  //         ..where((eq) => eq.exerciseId.equals(e.id)))
-  //       .get();
-  //   final muscles = await (select(exerciseMuscles)
-  //         ..where((m) => m.exerciseId.equals(e.id)))
-  //       .get();
-  //   return FullExercise(
-  //       exercise: e, steps: steps, equipment: equipment, muscles: muscles);
-  // }
-
-  Future<List<Exercise>> get queryAllExercises =>
-      (select(exercises)..orderBy([(e) => OrderingTerm.asc(e.name)])).get();
+  Future<FullExercise> queryPrimaryLangFullExercise(
+      //todo move to ExerciseProvider?
+      Exercise exercise,
+      ExerciseLanguage language) async {
+    final translation = (language == ExerciseLanguage.fallbackLang)
+        ? null
+        : await (select(exerciseTranslations)
+              ..where((et) => et.language.equals(language.toString())))
+            .getSingleOrNull();
+    final equipment = await (select(exerciseEquipment)
+          ..where((eq) => eq.exercise.equals(exercise.wgerId)))
+        .get();
+    final muscles = await (select(exerciseMuscles)
+          ..where((m) => m.exercise.equals(exercise.wgerId)))
+        .get();
+    return FullExercise(
+        exercise: exercise,
+        equipment: equipment,
+        muscles: muscles,
+        translationsByLanguage:
+            translation != null ? {language: translation} : null);
+  }
 
   Future<List<Exercise>> queryExercisesFromExerciseIds(
       List<int> exerciseIds) async {
@@ -488,7 +494,8 @@ class FeeelDB extends _$FeeelDB {
   Future<List<WorkoutRecord>> get queryAllWorkoutRecords =>
       select(workoutRecords).get();
 
-  Future<FullWorkoutRecord> queryFullWorkoutRecord(WorkoutRecord wr) async {
+  Future<FullWorkoutRecord> queryFullWorkoutRecord(
+      WorkoutRecord wr, ExerciseLanguage language) async {
     // todo fetch exercises or get them from cache?
     final wers = await (select(workoutExerciseRecords)
           ..where((wer) => wer.workoutRecordId.equals(wr.id)))
@@ -496,8 +503,12 @@ class FeeelDB extends _$FeeelDB {
     final es = await Future.wait(wers.map((wer) async =>
         await (select(exercises)..where((e) => e.wgerId.equals(wer.exercise)))
             .getSingle()));
+    final fes = await Future.wait(
+        es.map((e) => queryPrimaryLangFullExercise(e, language)));
     return FullWorkoutRecord(
-        workoutRecord: wr, workoutExerciseRecords: wers, exercises: es);
+        workoutRecord: wr,
+        workoutExerciseRecords: wers,
+        primaryLangFullExercises: fes);
   }
 
   Future<void> recordWorkout(final EditableWorkoutRecord ewr) async {

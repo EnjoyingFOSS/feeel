@@ -21,7 +21,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/body_container.dart';
-import 'package:feeel/db/database.dart';
 import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/enums/workout_category.dart';
@@ -41,7 +40,6 @@ import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
 
 class WorkoutEditorScreen extends ConsumerStatefulWidget {
   final EditableWorkout editableWorkout;
@@ -274,17 +272,17 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
 
   Future<void> _addExercisesOnPressed() async {
     // _saveTempState(); todo not needed
-    List<Exercise>? exercises = await Navigator.push(
+    List<int>? exerciseIds = await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ExercisePickerScreen(swatch: _colorSwatch),
           fullscreenDialog: true,
         ));
     setState(() {
-      if (exercises != null) {
+      if (exerciseIds != null) {
         widget.editableWorkout.workoutExercises.addAll(
-            exercises.map((Exercise e) => EditableWorkoutExercise(
-                exercise: e.wgerId,
+            exerciseIds.map((int exerciseId) => EditableWorkoutExercise(
+                exercise: exerciseId,
                 key:
                     UniqueKey())) // todo make sure list works with zero exercise
             );
