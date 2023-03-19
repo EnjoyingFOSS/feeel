@@ -29,9 +29,10 @@ import 'package:feeel/models/feeel_workout_json.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/models/full_workout.dart';
+import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/utils/format_util.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:share_plus/share_plus.dart';
@@ -154,21 +155,22 @@ class WorkoutImportExport {
     }
   }
 
-  static Future<void> importWorkoutZip(InputFileStream readStream) async {
+  static Future<void> importWorkoutZip(
+      InputFileStream readStream, WidgetRef ref) async {
     final archive = ZipDecoder().decodeBuffer(readStream);
 
     for (final file in archive.files) {
       if (file.isFile) {
-        await _importWorkout(utf8.decode(file.content as List<int>));
+        await _importWorkout(utf8.decode(file.content as List<int>), ref);
       }
     }
   }
 
-  static Future<void> importWorkoutFile(File feeelFile) async {
-    await _importWorkout(await feeelFile.readAsString());
+  static Future<void> importWorkoutFile(File feeelFile, WidgetRef ref) async {
+    await _importWorkout(await feeelFile.readAsString(), ref);
   }
 
-  static Future<void> _importWorkout(String jsonContent) async {
+  static Future<void> _importWorkout(String jsonContent, WidgetRef ref) async {
     final decodedJson = jsonDecode(jsonContent) as Map<String, dynamic>;
     final feeelJsonWorkout = await FeeelWorkoutJson.fromJson(decodedJson);
 
@@ -176,6 +178,7 @@ class WorkoutImportExport {
     ew.dbId = null;
     ew.type = WorkoutType.custom;
 
-    await GetIt.I<FeeelDB>().createOrUpdateWorkout(ew);
+    final workoutNotifier = ref.read(workoutProvider.notifier);
+    await workoutNotifier.createOrUpdateWorkout(ew);
   }
 }

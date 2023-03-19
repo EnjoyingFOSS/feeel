@@ -81,10 +81,8 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
     if (pickedFiles != null) {
       for (final file in pickedFiles.files) {
         try {
-          final imported = await _importFile(context, file);
+          final imported = await _importFile(context, file, ref);
           if (imported) {
-            dbNotifier
-                .refresh(); //todo this is a hack, should be part of a future EditableWorkout provider itself
             SnackBarHelper.showInfoSnackBar(
                 scaffoldMessenger,
                 "\"%s\" imported!".i18n.replaceFirst("%s",
@@ -100,7 +98,8 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
     screenStateNotifier.stopImporting();
   }
 
-  Future<bool> _importFile(BuildContext context, PlatformFile file) async {
+  Future<bool> _importFile(
+      BuildContext context, PlatformFile file, WidgetRef ref) async {
     final chosenFilePath = file.path;
     final chosenFileExtension = file.extension;
 
@@ -131,12 +130,12 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
 
         if (shouldImport) {
           await WorkoutImportExport.importWorkoutZip(
-              InputFileStream(chosenFilePath));
+              InputFileStream(chosenFilePath), ref);
         }
 
         return shouldImport;
       } else if (chosenFileExtension == "feeel") {
-        await WorkoutImportExport.importWorkoutFile(File(chosenFilePath));
+        await WorkoutImportExport.importWorkoutFile(File(chosenFilePath), ref);
         return true;
       } else {
         throw ArgumentError("${file.name} has an unsupported file extension.");

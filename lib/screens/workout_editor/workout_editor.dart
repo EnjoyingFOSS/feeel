@@ -71,6 +71,8 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     _titleController.text = widget.editableWorkout.title;
+    final workoutNotifier = ref.read(workoutProvider.notifier);
+
     return WillPopScope(
         onWillPop: _onWillPop,
         child: Scaffold(
@@ -260,12 +262,9 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
                     final form = _formKey.currentState;
                     if (form != null && form.validate()) {
                       form.save();
-                      GetIt.I<FeeelDB>()
+                      workoutNotifier
                           .createOrUpdateWorkout(widget.editableWorkout)
                           .then((_) {
-                        ref
-                            .read(workoutProvider.notifier)
-                            .refresh(); //todo this is a hack, should be part of a future EditableWorkout provider itself
                         Navigator.pop(context);
                       });
                     }

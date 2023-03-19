@@ -21,6 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:drift/drift.dart';
+import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/providers/db_provider.dart';
 import 'package:feeel/db/database.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,10 +38,15 @@ class WorkoutProviderNotifier extends AsyncNotifier<WorkoutProviderState> {
     return WorkoutProviderState(await _queryAllWorkouts());
   }
 
-  Future<void> refresh() async {
-    //todo get rid of this after EditableWorkout provider is implemented
+  Future<void> createOrUpdateWorkout(final EditableWorkout ew) async {
     state = const AsyncValue.loading();
-    state = AsyncValue.data(WorkoutProviderState(await _queryAllWorkouts()));
+
+    final db = ref.read(dbProvider);
+
+    await db.createOrUpdateWorkout(ew);
+
+    state = AsyncValue.data(WorkoutProviderState(
+        await _queryAllWorkouts())); //todo is this too expensive?
   }
 
   Future<void> deleteWorkout(int workoutId) async {
