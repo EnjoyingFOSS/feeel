@@ -65,64 +65,51 @@ class FeeelThemes {
   static ThemeData getThemeFromScheme(ColorScheme colorScheme) {
     //todo system bar icon colors are wrong
     return ThemeData(
-      materialTapTargetSize: MaterialTapTargetSize.padded,
-      colorScheme: colorScheme,
-      visualDensity: VisualDensity.standard,
-      brightness: colorScheme.brightness,
-      primaryColor: colorScheme.primary,
-      scaffoldBackgroundColor: colorScheme.background,
-      cardColor: colorScheme.surface,
-      appBarTheme: AppBarTheme(
-          color: Colors.transparent,
-          iconTheme: IconThemeData(color: colorScheme.primary),
-          titleTextStyle: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.w900,
-              color: colorScheme.primary),
-          centerTitle: false,
-          elevation: 0),
-      navigationBarTheme: NavigationBarThemeData(
-          iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
-              (states) => (states.contains(MaterialState.selected)
-                  ? IconThemeData(color: colorScheme.onPrimaryContainer)
-                  : IconThemeData(color: colorScheme.onSurface))),
-          shadowColor: colorScheme.onBackground,
-          indicatorColor: colorScheme.primaryContainer,
-          backgroundColor: colorScheme.background,
-          height: 56,
-          elevation: 8),
-      navigationDrawerTheme: NavigationDrawerThemeData(
-          iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
-              (states) => (states.contains(MaterialState.selected)
-                  ? IconThemeData(color: colorScheme.onPrimaryContainer)
-                  : IconThemeData(color: colorScheme.onSurface))),
-          shadowColor: colorScheme.onBackground,
-          backgroundColor: colorScheme.background,
-          indicatorColor: colorScheme.primaryContainer,
-          elevation: 8,
-          labelTextStyle: MaterialStateProperty.resolveWith((states) =>
+        materialTapTargetSize: MaterialTapTargetSize.padded,
+        colorScheme: colorScheme,
+        visualDensity: VisualDensity.standard,
+        brightness: colorScheme.brightness,
+        primaryColor: colorScheme.primary,
+        scaffoldBackgroundColor: colorScheme.background,
+        cardColor: colorScheme.surface,
+        appBarTheme: AppBarTheme(
+            color: Colors.transparent,
+            iconTheme: IconThemeData(color: colorScheme.primary),
+            titleTextStyle: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.w900,
+                color: colorScheme.primary),
+            centerTitle: false,
+            elevation: 0),
+        navigationBarTheme: NavigationBarThemeData(
+            iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
+                (states) => (states.contains(MaterialState.selected)
+                    ? IconThemeData(color: colorScheme.onPrimaryContainer)
+                    : IconThemeData(color: colorScheme.onSurface))),
+            shadowColor: colorScheme.onBackground,
+            indicatorColor: colorScheme.primaryContainer,
+            backgroundColor: colorScheme.background,
+            height: 56,
+            elevation: 8),
+        navigationDrawerTheme: NavigationDrawerThemeData(
+            iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
+                (states) => (states.contains(MaterialState.selected)
+                    ? IconThemeData(color: colorScheme.onPrimaryContainer)
+                    : IconThemeData(color: colorScheme.onSurface))),
+            shadowColor: colorScheme.onBackground,
+            backgroundColor: colorScheme.background,
+            indicatorColor: colorScheme.primaryContainer,
+            elevation: 8,
+            labelTextStyle: MaterialStateProperty.resolveWith((states) =>
+                (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? TextStyle(color: colorScheme.onPrimaryContainer, fontWeight: FontWeight.w500) : null)),
+        switchTheme: SwitchThemeData(thumbColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null), trackColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary.withAlpha(80) : null)),
+        radioTheme: RadioThemeData(
+          fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
               (!states.contains(MaterialState.disabled) &&
                       states.contains(MaterialState.selected))
-                  ? TextStyle(
-                      color: colorScheme.onPrimaryContainer,
-                      fontWeight: FontWeight.w500)
-                  : null)),
-      // switchTheme: SwitchThemeData(
-      //     thumbColor: MaterialStateProperty.resolveWith<Color?>((states) =>
-      //         (!states.contains(MaterialState.disabled) &&
-      //                 states.contains(MaterialState.selected))
-      //             ? colorScheme.primary
-      //             : null),
-      //     trackColor: MaterialStateProperty.resolveWith<Color?>(
-      //         (states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary.withAlpha(80) : null)),
-      // radioTheme: RadioThemeData(
-      //   fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
-      //       (!states.contains(MaterialState.disabled) &&
-      //               states.contains(MaterialState.selected))
-      //           ? colorScheme.primary
-      //           : null),
-      // ),
-      // checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null))
-    );
+                  ? colorScheme.primary
+                  : null),
+        ),
+        checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null)));
   }
 }

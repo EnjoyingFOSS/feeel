@@ -23,7 +23,6 @@
 import 'dart:io';
 
 import 'package:feeel/components/body_container.dart';
-import 'package:feeel/enums/feeel_theme_mode.dart';
 import 'package:feeel/providers/global_settings_provider.dart';
 // import 'package:feeel/screens/settings/components/import_export_tile.dart';
 // import 'package:archive/archive_io.dart';
@@ -77,8 +76,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     : NotificationHelper.timeFromInt(settingsBundle.preferences
                         .getInt(PreferenceKeys.notificationTime));
                 final curTheme = globalSettingsValue.theme;
-                final switchActiveColor =
-                    Theme.of(context).colorScheme.secondary;
+                final switchActiveColor = Theme.of(context).colorScheme.primary;
                 return CustomScrollView(slivers: [
                   SliverAppBar(
                     title: Text(
@@ -130,7 +128,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           title: Text("Notification time".i18n),
                           subtitle: Text(notificationTime.format(context)),
                           onTap: () async {
-                            var selectedTime = await showTimePicker(
+                            final selectedTime = await showTimePicker(
                                 context: context,
                                 initialTime: notificationTime);
                             if (selectedTime != null) {
