@@ -52,7 +52,7 @@ class TrailingSecondsInput extends StatelessWidget {
             keyboardType: TextInputType.number,
             validator: (String? input) {
               if (input == "") return null;
-              var secs = int.tryParse(input ?? "");
+              final secs = int.tryParse(input ?? "");
               if (secs == null) {
                 //todo upper bound?
                 return "Non-numeric".i18n;

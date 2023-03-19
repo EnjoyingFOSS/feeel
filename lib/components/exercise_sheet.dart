@@ -38,6 +38,7 @@ import '../theming/feeel_shade.dart';
 import '../theming/feeel_swatch.dart';
 
 class ExerciseSheet extends StatelessWidget {
+  //todo migrate to FullExercise!
   //todo make responsive // todo show during breaks
   final Exercise exercise;
   final FeeelSwatch colorSwatch;

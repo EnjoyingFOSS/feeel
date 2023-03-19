@@ -55,7 +55,7 @@ class _TrianglePainter extends CustomPainter {
 
   _TrianglePainter(
       Color fillColor, Color strokeColor, this.ratioDone, int seed) {
-    var random = Random(seed);
+    final random = Random(seed);
     _fillPaint.color = fillColor;
     _fillPaint.style = PaintingStyle.fill;
     _strokePaint.color = strokeColor;
@@ -67,7 +67,7 @@ class _TrianglePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var path = Path();
+    final path = Path();
     path.lineTo(rX * size.width, size.height);
     if (rX < 0.5) {
       path.lineTo(size.width, (rY + 1) * size.height / 2);

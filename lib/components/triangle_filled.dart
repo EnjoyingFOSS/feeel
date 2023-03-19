@@ -41,7 +41,7 @@ class _TrianglePainter extends CustomPainter {
   late final double rX, rY, rRotation;
 
   _TrianglePainter(Color color, int seed) {
-    var random = Random(seed);
+    final random = Random(seed);
     _fillPaint.color = color;
     _fillPaint.style = PaintingStyle.fill;
     rX = random.nextDouble();
@@ -51,7 +51,7 @@ class _TrianglePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var path = Path();
+    final path = Path();
     path.lineTo(rX * size.width, size.height);
     if (rX < 0.5) {
       path.lineTo(size.width, (rY + 1) * size.height / 2);

@@ -71,7 +71,7 @@ class WorkoutTimingEditor extends StatelessWidget {
                       initialValue: workoutExercise.exerciseDuration,
                       defaultDuration: exerciseDuration,
                       onSaved: (String? input) {
-                        var secs = int.tryParse(input ?? "");
+                        final secs = int.tryParse(input ?? "");
                         workoutExercise.exerciseDuration = secs;
                       }));
             },

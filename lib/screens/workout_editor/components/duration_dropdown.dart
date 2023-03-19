@@ -97,7 +97,7 @@ class DurationDropdown extends StatelessWidget {
                   TextButton(
                     child: Text("OK".i18n),
                     onPressed: () {
-                      var value =
+                      final value =
                           int.tryParse(_durationController.text.toString());
                       if (value != null && value > 0) onChanged(value);
                       Navigator.pop(context);

@@ -123,7 +123,6 @@ class NavigationPills extends StatelessWidget {
     final int totalNumberOfDestinations =
         children.whereType<NavigationPill>().toList().length;
 
-    final List<Widget> wrappedChildren = <Widget>[];
     Widget wrapChild(Widget child, int index) => _SelectableAnimatedBuilder(
         duration: const Duration(milliseconds: 500),
         isSelected: index == selectedIndex,

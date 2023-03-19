@@ -30,7 +30,7 @@ import 'package:feeel/i18n/translations.dart';
 import 'flipped.dart';
 
 class ExerciseListItem extends StatelessWidget {
-  final Exercise exercise;
+  final Exercise exercise; //todo migrate to FullExercise
   final FeeelSwatch colorSwatch;
   final Widget subtitle;
 
@@ -43,7 +43,7 @@ class ExerciseListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var imageSlug = exercise.imageSlug;
+    final imageSlug = exercise.imageSlug;
     return InkWell(
         child: Row(children: [
           Padding(
