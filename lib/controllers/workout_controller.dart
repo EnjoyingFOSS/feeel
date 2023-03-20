@@ -178,7 +178,7 @@ class WorkoutController {
       } else {
         _views[_ViewTypes.audio.index] = TTSView(); //todo allow audio setting
         _onFinishes[_ViewTypes.audio.index] = () {
-          TTSHelper.tts.speak("You did it!".i18n);
+          TTSHelper.tts.speak("You did it!".i18n, priority: AudioPriority.high);
         };
       }
     });

@@ -32,30 +32,34 @@ class TTSView implements WorkoutView {
 
   @override
   void onStart(int exercisePos, Exercise nextExercise, int duration) {
-    TTSHelper.tts.speak("Let's go! First up: %s".i18n.replaceFirst(
-        "%s", nextExercise.name.i18n)); //todo internationalization
+    TTSHelper.tts.speak(
+        "Let's go! First up: %s"
+            .i18n
+            .replaceFirst("%s", nextExercise.name.i18n),
+        priority: AudioPriority.high); //todo internationalization
   }
 
   @override
   void onBreak(int exercisePos, Exercise nextExercise, int duration) {
-    TTSHelper.tts
-        .speak("${"Break!".i18n} ${"Next up:".i18n} ${nextExercise.name.i18n}");
+    TTSHelper.tts.speak(
+        "${"Break!".i18n} ${"Next up:".i18n} ${nextExercise.name.i18n}",
+        priority: AudioPriority.high);
   }
 
   @override
   void onCount(int seconds, WorkoutStage stage) {
     //todo eliminate conflicts with step content
     if (seconds <= AudioHelper.countdown) {
-      TTSHelper.tts.speak(seconds.toString());
+      TTSHelper.tts.speak(seconds.toString(), priority: AudioPriority.low);
     } else if (seconds == _halfTime && stage == WorkoutStage.exercise) {
-      TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst(
-          "%d", "$seconds")); //todo internationalize with declension
+      TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst("%d", "$seconds"),
+          priority: AudioPriority.low); //todo internationalize with declension
     }
   }
 
   @override
   void onExercise(int exercisePos, Exercise exercise, int duration) {
-    TTSHelper.tts.speak(exercise.name.i18n);
+    TTSHelper.tts.speak(exercise.name.i18n, priority: AudioPriority.high);
     _halfTime = (duration / 2).ceil();
     // todo handle first step
   }
@@ -74,7 +78,7 @@ class TTSView implements WorkoutView {
 
   @override
   void onCountdown(int exercisePos) {
-    TTSHelper.tts.speak("Get ready!".i18n);
+    TTSHelper.tts.speak("Get ready!".i18n, priority: AudioPriority.high);
   }
 
   void stop() {
