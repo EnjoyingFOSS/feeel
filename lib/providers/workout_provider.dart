@@ -35,7 +35,8 @@ class WorkoutProviderState {
 class WorkoutProviderNotifier extends AsyncNotifier<WorkoutProviderState> {
   @override
   Future<WorkoutProviderState> build() async {
-    return WorkoutProviderState(await _queryAllWorkouts());
+    final db = ref.read(dbProvider);
+    return WorkoutProviderState(await _queryAllWorkouts(db));
   }
 
   Future<void> createOrUpdateWorkout(final EditableWorkout ew) async {
@@ -46,7 +47,7 @@ class WorkoutProviderNotifier extends AsyncNotifier<WorkoutProviderState> {
     await db.createOrUpdateWorkout(ew);
 
     state = AsyncValue.data(WorkoutProviderState(
-        await _queryAllWorkouts())); //todo is this too expensive?
+        await _queryAllWorkouts(db))); //todo is this too expensive?
   }
 
   Future<void> deleteWorkout(int workoutId) async {
@@ -60,11 +61,10 @@ class WorkoutProviderNotifier extends AsyncNotifier<WorkoutProviderState> {
         .go(); //todo what if I passed in workout and just ran delete on that workout?
 
     state = AsyncValue.data(WorkoutProviderState(
-        await _queryAllWorkouts())); //todo is this too expensive?
+        await _queryAllWorkouts(db))); //todo is this too expensive?
   }
 
-  Future<List<Workout>> _queryAllWorkouts() async {
-    final db = ref.read(dbProvider);
+  Future<List<Workout>> _queryAllWorkouts(FeeelDB db) async {
     final workouts = await (db.select(db.workouts)
           ..orderBy([
             (w) => OrderingTerm.desc(w.lastUsed),

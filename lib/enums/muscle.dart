@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+/// intEnum in DB
 enum Muscle {
   //todo map the first ones to wger's categories
   absInGeneral,
@@ -79,7 +80,8 @@ enum Muscle {
       case 15:
         return Muscle.soleus;
       default:
-        throw ArgumentError.value(wgerMuscleId);
+        throw ArgumentError.value(
+            wgerMuscleId); // TODO ALWAYS CATCH THIS, AS WGER'S DB MIGHT BE UPDATED!
     }
   }
 
@@ -100,7 +102,8 @@ enum Muscle {
       case 14:
         return Muscle.calvesInGeneral;
       default:
-        throw ArgumentError.value(wgerCategoryId);
+        throw ArgumentError.value(
+            wgerCategoryId); // TODO ALWAYS CATCH THIS, AS WGER'S DB MIGHT BE UPDATED!
     }
   }
 }

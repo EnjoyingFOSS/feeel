@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+/// textEnum in DB
 enum License {
   ccBySa3(1, "CC BY-SA 3.0", "https://creativecommons.org/licenses/by-sa/3.0/"),
   ccBySa4(2, "CC BY-SA 4.0", "https://creativecommons.org/licenses/by-sa/4.0/"),
@@ -44,7 +45,8 @@ enum License {
       case 4:
         return License.ccBy4;
       default:
-        throw ArgumentError.value(wgerId);
+        throw ArgumentError.value(
+            wgerId); // TODO ALWAYS CATCH THIS, AS WGER'S DB MIGHT BE UPDATED!
     }
   }
 }

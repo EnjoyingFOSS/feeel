@@ -26,7 +26,7 @@
 import 'package:i18n_extension/i18n_extension.dart';
 
 extension Localization on String {
-  static var t = Translations("en") +
+  static final t = Translations("en") +
       {
         "zh": """完成了！""",
         "tr": """Başardınız!""",
