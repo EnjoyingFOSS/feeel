@@ -22,42 +22,36 @@
 
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/enums/feeel_theme_mode.dart';
-import 'package:feeel/models/feeel_theme.dart';
-import 'package:feeel/providers/global_settings_state.dart';
+import 'package:feeel/models/feeel_theme_meta.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// settings that affect every screen
-class GlobalSettingsProviderNotifier extends Notifier<GlobalSettingsState> {
+class ThemeMetaProviderNotifier extends Notifier<FeeelThemeMeta> {
   static const _defaultTheme =
-      FeeelTheme(mode: FeeelThemeMode.light, personalized: false);
+      FeeelThemeMeta(mode: FeeelThemeMode.light, personalized: false);
 
   @override
-  GlobalSettingsState build() {
+  FeeelThemeMeta build() {
     SharedPreferences.getInstance().then((sharedPreferences) {
       final themePref = FeeelThemeMode.values[
           sharedPreferences.getInt(PreferenceKeys.themeMode) ??
               _defaultTheme.mode.index];
       final themePersonalized =
           sharedPreferences.getBool(PreferenceKeys.themePersonalized) ?? false;
-      _loadTheme(FeeelTheme(mode: themePref, personalized: themePersonalized));
+      state = FeeelThemeMeta(mode: themePref, personalized: themePersonalized);
     });
-    return const GlobalSettingsState(theme: _defaultTheme);
+    return _defaultTheme;
   }
 
-  Future<void> setTheme(FeeelTheme theme) async {
+  Future<void> setTheme(FeeelThemeMeta theme) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setInt(PreferenceKeys.themeMode, theme.mode.index);
     await sharedPreferences.setBool(
         PreferenceKeys.themePersonalized, theme.personalized);
-    state = state.copyWith(theme: theme);
-  }
-
-  void _loadTheme(FeeelTheme theme) {
-    state = state.copyWith(theme: theme);
+    state = theme;
   }
 }
 
-final globalSettingsProvider =
-    NotifierProvider<GlobalSettingsProviderNotifier, GlobalSettingsState>(
-        GlobalSettingsProviderNotifier.new);
+final themeMetaProvider =
+    NotifierProvider<ThemeMetaProviderNotifier, FeeelThemeMeta>(
+        ThemeMetaProviderNotifier.new);

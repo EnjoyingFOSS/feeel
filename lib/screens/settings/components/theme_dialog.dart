@@ -21,22 +21,22 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/enums/feeel_theme_mode.dart';
-import 'package:feeel/models/feeel_theme.dart';
-import 'package:feeel/providers/global_settings_provider.dart';
+import 'package:feeel/models/feeel_theme_meta.dart';
+import 'package:feeel/providers/theme_meta_provider.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ThemeDialog extends ConsumerWidget {
-  final FeeelTheme curTheme;
+  final FeeelThemeMeta themeMeta;
 
-  const ThemeDialog({required this.curTheme, Key? key}) : super(key: key);
+  const ThemeDialog({required this.themeMeta, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     //todo integrate the personalized switch into this too!
-    final globalSettingsNotifier = ref.read(globalSettingsProvider.notifier);
+    final themeNotifier = ref.read(themeMetaProvider.notifier);
     return AlertDialog(
       title: Text("Theme".i18n),
       content: SizedBox(
@@ -48,12 +48,11 @@ class ThemeDialog extends ConsumerWidget {
             final itemTheme = FeeelThemeMode.values[index];
             return RadioListTile(
               value: index,
-              groupValue: curTheme.mode.index,
+              groupValue: themeMeta.mode.index,
               title: Text(itemTheme.translationKey.i18n),
               onChanged: (int? newIndex) {
                 if (newIndex != null) {
-                  globalSettingsNotifier
-                      .setTheme(curTheme.copyWith(mode: itemTheme));
+                  themeNotifier.setTheme(themeMeta.copyWith(mode: itemTheme));
                 }
                 Navigator.pop(context);
               },

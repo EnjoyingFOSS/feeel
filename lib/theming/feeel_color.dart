@@ -20,13 +20,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/models/feeel_theme.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-part 'global_settings_state.freezed.dart';
-
-@freezed
-class GlobalSettingsState with _$GlobalSettingsState {
-  const factory GlobalSettingsState(
-      { //todo required Locale preferredLocale,
-      required FeeelTheme theme}) = _GlobalSettingsState;
+enum FeeelColor {
+  blue,
+  orange,
+  green,
+  gray;
 }

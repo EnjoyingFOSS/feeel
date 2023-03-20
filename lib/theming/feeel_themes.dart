@@ -20,23 +20,30 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/theming/feeel_swatches.dart';
 import 'package:flutter/material.dart';
 
-import 'feeel_colors.dart';
+import 'feeel_color.dart';
 import 'feeel_shade.dart';
 
 class FeeelThemes {
   //todo make into providers too?
   static final lightColors = ColorScheme(
       //todo extract colors to separate file
-      primary: FeeelColors.blue.getColor(FeeelShade.dark),
+      primary:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.dark),
       onPrimary: Colors.white,
-      primaryContainer: FeeelColors.blue.getColor(FeeelShade.lightest),
-      onPrimaryContainer: FeeelColors.blue.getColor(FeeelShade.dark),
-      secondary: FeeelColors.orange.getColor(FeeelShade.dark),
+      primaryContainer: FeeelSwatches.swatches[FeeelColor.blue]!
+          .getColor(FeeelShade.lightest),
+      onPrimaryContainer:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.dark),
+      secondary:
+          FeeelSwatches.swatches[FeeelColor.orange]!.getColor(FeeelShade.dark),
       onSecondary: Colors.white,
-      secondaryContainer: FeeelColors.orange.getColor(FeeelShade.lightest),
-      onSecondaryContainer: FeeelColors.orange.getColor(FeeelShade.dark),
+      secondaryContainer: FeeelSwatches.swatches[FeeelColor.orange]!
+          .getColor(FeeelShade.lightest),
+      onSecondaryContainer:
+          FeeelSwatches.swatches[FeeelColor.orange]!.getColor(FeeelShade.dark),
       surface: Colors.white,
       onSurface: Colors.black87,
       background: Colors.white,
@@ -46,14 +53,20 @@ class FeeelThemes {
       brightness: Brightness.light);
 
   static final darkColors = ColorScheme(
-      primary: FeeelColors.blue.getColor(FeeelShade.light),
+      primary:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.light),
       onPrimary: Colors.black87,
-      primaryContainer: FeeelColors.blue.getColor(FeeelShade.darkest),
-      onPrimaryContainer: FeeelColors.blue.getColor(FeeelShade.light),
-      secondary: FeeelColors.orange.getColor(FeeelShade.light),
+      primaryContainer:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.darkest),
+      onPrimaryContainer:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.light),
+      secondary:
+          FeeelSwatches.swatches[FeeelColor.orange]!.getColor(FeeelShade.light),
       onSecondary: Colors.black87,
-      secondaryContainer: FeeelColors.orange.getColor(FeeelShade.darkest),
-      onSecondaryContainer: FeeelColors.orange.getColor(FeeelShade.light),
+      secondaryContainer: FeeelSwatches.swatches[FeeelColor.orange]!
+          .getColor(FeeelShade.darkest),
+      onSecondaryContainer:
+          FeeelSwatches.swatches[FeeelColor.orange]!.getColor(FeeelShade.light),
       surface: Colors.grey.shade900, //todo test
       onSurface: Colors.white,
       background: Colors.black,

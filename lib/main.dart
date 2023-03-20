@@ -25,7 +25,8 @@ import 'dart:io';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/db/database.dart';
-import 'package:feeel/providers/global_settings_provider.dart';
+import 'package:feeel/providers/feeel_swatch_provider.dart';
+import 'package:feeel/providers/theme_meta_provider.dart';
 import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -78,19 +79,44 @@ class Feeel extends ConsumerWidget {
       //         : FeeelThemes.darkTheme, //todo let the user choose
       //     initial: AdaptiveThemeMode.light,
       // builder: (theme, darkTheme) {
-      final theme = ref.watch(globalSettingsProvider).theme;
-      final personalizedTheme = theme.personalized;
+      final themeMeta = ref.watch(themeMetaProvider);
+      final swatchNotifier = ref.read(feeelSwatchProvider.notifier);
+
+      final isThemePersonalized = themeMeta.personalized;
+      final curThemeMode = themeMeta.mode.themeMode;
+
+      final lightTheme = isThemePersonalized
+          ? FeeelThemes.getThemeFromScheme(
+              dynamicLightScheme ?? FeeelThemes.lightColors)
+          : FeeelThemes.getThemeFromScheme(FeeelThemes.lightColors);
+
+      final darkTheme = isThemePersonalized
+          ? FeeelThemes.getThemeFromScheme(
+              dynamicLightScheme ?? FeeelThemes.darkColors)
+          : FeeelThemes.getThemeFromScheme(FeeelThemes.darkColors);
+
+      if (isThemePersonalized) {
+        final platformBrightness =
+            MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+                .platformBrightness;
+
+        final curTheme = (curThemeMode == ThemeMode.dark ||
+                (curThemeMode == ThemeMode.system &&
+                    platformBrightness == Brightness.dark))
+            ? darkTheme
+            : lightTheme;
+
+        Future(() =>
+            swatchNotifier.setHarmonizationColor(curTheme.colorScheme.primary));
+      } else {
+        Future(() => swatchNotifier.setHarmonizationColor(null));
+      }
+
       return MaterialApp(
           title: 'Feeel',
-          themeMode: theme.mode.themeMode,
-          theme: personalizedTheme
-              ? FeeelThemes.getThemeFromScheme(
-                  dynamicLightScheme ?? FeeelThemes.lightColors)
-              : FeeelThemes.getThemeFromScheme(FeeelThemes.lightColors),
-          darkTheme: personalizedTheme
-              ? FeeelThemes.getThemeFromScheme(
-                  dynamicLightScheme ?? FeeelThemes.darkColors)
-              : FeeelThemes.getThemeFromScheme(FeeelThemes.darkColors),
+          themeMode: curThemeMode,
+          theme: lightTheme,
+          darkTheme: darkTheme,
           supportedLocales: LocaleHelper.supportedLocales,
           // localeResolutionCallback: (locale, supportedLocales) { //todo this is also not working
           //   if (supportedLocales.contains(locale)) {

@@ -22,6 +22,7 @@
 
 import 'dart:math';
 
+import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:feeel/screens/workout_list/components/workout_list_item.dart';
 import 'package:feeel/screens/workout_list/components/workout_list_item_menu.dart';
 import 'package:feeel/screens/workout_list/components/workout_list_menu.dart';
@@ -41,6 +42,8 @@ class WorkoutListListView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final workoutAsyncValue = ref.watch(workoutProvider);
     final workoutListValue = ref.watch(workoutListProvider);
+    final colorSwatches = ref.read(feeelSwatchProvider);
+
     final gridColumns = (min(
                 MediaQuery.of(context).size.width, LayoutXL.cols12.width) /
             (600 + _crossAxisSpacing)) //todo does the 600 need to be hardcoded?
@@ -97,6 +100,8 @@ class WorkoutListListView extends ConsumerWidget {
                           child: FadeInAnimation(
                               child: WorkoutListItem(
                             workout,
+                            colorSwatch:
+                                colorSwatches[workout.category.feeelColor]!,
                             trailing: WorkoutListItemMenu(
                               workout: workout,
                             ),

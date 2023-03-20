@@ -38,8 +38,11 @@ enum _WorkoutPageTypes { cover, exercise, finish }
 
 class WorkoutPager extends StatefulWidget {
   final FullWorkout fullWorkout;
+  final FeeelSwatch colorSwatch;
 
-  const WorkoutPager({Key? key, required this.fullWorkout}) : super(key: key);
+  const WorkoutPager(
+      {Key? key, required this.fullWorkout, required this.colorSwatch})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -50,12 +53,10 @@ class WorkoutPager extends StatefulWidget {
 class _WorkoutPagerState extends State<WorkoutPager> {
   final _pageController = PageController();
   late WorkoutController _workoutController;
-  late FeeelSwatch colorSwatch;
 
   @override
   void initState() {
     super.initState();
-    colorSwatch = widget.fullWorkout.workout.category.colorSwatch;
     _workoutController = WorkoutController(widget.fullWorkout);
   }
 
@@ -85,7 +86,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
       children: <Widget>[
         WorkoutCover(
           fullWorkout: widget.fullWorkout,
-          colorSwatch: colorSwatch,
+          colorSwatch: widget.colorSwatch,
           startWorkout: () {
             _pageController.jumpToPage(_WorkoutPageTypes.exercise.index);
             _workoutController.start();
@@ -95,9 +96,9 @@ class _WorkoutPagerState extends State<WorkoutPager> {
         ExercisePage(
             workoutController: _workoutController,
             fullWorkout: widget.fullWorkout,
-            colorSwatch: colorSwatch),
+            colorSwatch: widget.colorSwatch),
         FinishPage(
-          color: colorSwatch.getColor(
+          color: widget.colorSwatch.getColor(
               FeeelShade.dark.invertIfDark(Theme.of(context).brightness)),
         )
       ],

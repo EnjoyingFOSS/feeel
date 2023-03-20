@@ -25,6 +25,7 @@ import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/workout_detail/workout_detail.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/components/triangle_filled.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
@@ -35,8 +36,10 @@ class WorkoutListItem extends StatelessWidget {
   static const extent = 112.0;
   final Widget? trailing;
   final Workout workout;
+  final FeeelSwatch colorSwatch;
 
-  const WorkoutListItem(this.workout, {Key? key, this.trailing})
+  const WorkoutListItem(this.workout,
+      {required this.colorSwatch, Key? key, this.trailing})
       : super(key: key);
 
   @override
@@ -71,9 +74,9 @@ class WorkoutListItem extends StatelessWidget {
                                     workout.id,
                                     workout.type),
                                 child: TriangleFilled(
-                                  color: workout.category.colorSwatch.getColor(
-                                      FeeelShade.lightest
-                                          .invertIfDark(theme.brightness)),
+                                  color: colorSwatch.getColor(FeeelShade
+                                      .lightest
+                                      .invertIfDark(theme.brightness)),
                                   seed: origTitle.hashCode,
                                 ))),
                         Padding(
@@ -109,10 +112,9 @@ class WorkoutListItem extends StatelessWidget {
                                     workout.category.translationKey.i18n,
                                     style: theme.textTheme.titleSmall?.copyWith(
                                         fontWeight: FontWeight.bold,
-                                        color: workout.category.colorSwatch
-                                            .getColor(FeeelShade.darker
-                                                .invertIfDark(
-                                                    theme.brightness))),
+                                        color: colorSwatch.getColor(FeeelShade
+                                            .darker
+                                            .invertIfDark(theme.brightness))),
                                   ),
                                 )
                               ],

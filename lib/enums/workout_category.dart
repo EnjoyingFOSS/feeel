@@ -20,20 +20,19 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/theming/feeel_colors.dart';
-import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/theming/feeel_color.dart';
 
 /// intEnum in DB
 enum WorkoutCategory {
-  strength(0, "Strength", FeeelColors.blue),
-  stretching(1, "Stretching & yoga", FeeelColors.green),
-  cardio(2, "Cardio", FeeelColors.orange),
-  other(3, "Other", FeeelColors.gray);
+  strength(0, "Strength", FeeelColor.blue),
+  stretching(1, "Stretching & yoga", FeeelColor.green),
+  cardio(2, "Cardio", FeeelColor.orange),
+  other(3, "Other", FeeelColor.gray);
 
   final String translationKey;
-  final FeeelSwatch colorSwatch;
+  final FeeelColor feeelColor;
   final int dbValue;
-  const WorkoutCategory(this.dbValue, this.translationKey, this.colorSwatch);
+  const WorkoutCategory(this.dbValue, this.translationKey, this.feeelColor);
 
   // static WorkoutCategory fromDBValue(int dbValue) {
   //   //todo use map

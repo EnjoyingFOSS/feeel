@@ -21,12 +21,14 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/utils/duration_util.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class EditorSubheader extends StatelessWidget {
+class EditorSubheader extends ConsumerWidget {
   final WorkoutCategory category;
   final Function(WorkoutCategory? category) onCategoryChanged;
   final int? workoutDuration;
@@ -39,7 +41,8 @@ class EditorSubheader extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colorSwatches = ref.read(feeelSwatchProvider);
     final theme = Theme.of(context);
     return Padding(
         padding: const EdgeInsets.only(left: 67, right: 16),
@@ -58,9 +61,9 @@ class EditorSubheader extends StatelessWidget {
                         child: Text(
                           value.translationKey.i18n,
                           style: TextStyle(
-                              color: value.colorSwatch.getColor(FeeelShade
-                                  .darker
-                                  .invertIfDark(theme.brightness))),
+                              color: colorSwatches[value.feeelColor]!.getColor(
+                                  FeeelShade.darker
+                                      .invertIfDark(theme.brightness))),
                         ),
                       );
                     }))),

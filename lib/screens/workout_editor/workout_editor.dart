@@ -24,17 +24,18 @@ import 'package:feeel/components/body_container.dart';
 import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/screens/exercise_picker/exercise_picker.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:feeel/theming/feeel_shade.dart';
-import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_editor/components/editor_header.dart';
 import 'package:feeel/screens/workout_editor/components/editor_subheader.dart';
 import 'package:feeel/screens/workout_editor/components/empty_placeholder.dart';
 import 'package:feeel/components/triangle_frame.dart';
 import 'package:feeel/screens/workout_editor/components/workout_content_editor.dart';
 import 'package:feeel/screens/workout_editor/components/workout_timing_editor.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 
 import 'package:flutter/material.dart';
@@ -61,7 +62,8 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
 
   @override
   void initState() {
-    _colorSwatch = widget.editableWorkout.category.colorSwatch;
+    _colorSwatch = ref
+        .read(feeelSwatchProvider)[widget.editableWorkout.category.feeelColor]!;
     super.initState();
   }
 
@@ -310,7 +312,8 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
     if (category != null) {
       setState(() {
         widget.editableWorkout.category = category;
-        _colorSwatch = widget.editableWorkout.category.colorSwatch;
+        _colorSwatch = ref.read(
+            feeelSwatchProvider)[widget.editableWorkout.category.feeelColor]!;
       });
     }
   }

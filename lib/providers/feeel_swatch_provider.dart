@@ -20,30 +20,29 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:ui';
+
 import 'package:feeel/theming/feeel_color.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/theming/feeel_swatches.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/// intEnum in DB
-enum ExerciseCategory {
-  strength(0, "Strength", FeeelColor.blue),
-  stretching(1, "Stretching & yoga", FeeelColor.green),
-  cardio(2, "Cardio", FeeelColor.orange);
+class FeeelSwatchNotifier extends Notifier<Map<FeeelColor, FeeelSwatch>> {
+  @override
+  Map<FeeelColor, FeeelSwatch> build() {
+    return FeeelSwatches.swatches;
+  }
 
-  final String translationKey;
-  final FeeelColor feeelColor;
-  final int dbValue;
-  const ExerciseCategory(this.dbValue, this.translationKey, this.feeelColor);
-
-  // static ExerciseCategory fromDBValue(int dbValue) {
-  //   //todo use map
-  //   switch (dbValue) {
-  //     case 0:
-  //       return WorkoutCategory.strength;
-  //     case 1:
-  //       return WorkoutCategory.stretching;
-  //     case 2:
-  //       return WorkoutCategory.cardio;
-  //     default:
-  //       throw Exception("No workout category with this dbValue exists.");
-  //   }
-  // }
+  void setHarmonizationColor(Color? harmonizationColor) {
+    if (harmonizationColor == null) {
+      state = FeeelSwatches.swatches;
+    } else {
+      state = FeeelSwatches.swatches.map((feeelColor, swatch) => MapEntry(
+          feeelColor, FeeelSwatch.harmonized(swatch, harmonizationColor)));
+    }
+  }
 }
+
+final feeelSwatchProvider =
+    NotifierProvider<FeeelSwatchNotifier, Map<FeeelColor, FeeelSwatch>>(
+        FeeelSwatchNotifier.new);

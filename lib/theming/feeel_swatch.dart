@@ -24,7 +24,6 @@ import 'dart:ui';
 
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feeel/theming/feeel_shade.dart';
-import 'package:flutter/material.dart';
 
 class FeeelSwatch {
   final Map<FeeelShade, Color> _swatch;
@@ -44,5 +43,11 @@ class FeeelSwatch {
       case FeeelShade.darkest:
         return const Color(0xFFFFFFFF);
     }
+  }
+
+  static FeeelSwatch harmonized(FeeelSwatch swatch, Color harmonizationColor) {
+    final newSwatch = swatch._swatch.map((shade, color) =>
+        MapEntry(shade, color.harmonizeWith(harmonizationColor)));
+    return FeeelSwatch(newSwatch);
   }
 }

@@ -24,7 +24,9 @@ import 'dart:io';
 
 import 'package:feeel/db/database.dart';
 import 'package:feeel/models/full_workout.dart';
+import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -32,19 +34,19 @@ import 'components/empty_workout.dart';
 import 'components/workout_header.dart';
 import 'components/workout_pager.dart';
 
-class WorkoutDetailScreen extends StatefulWidget {
+class WorkoutDetailScreen extends ConsumerStatefulWidget {
   final Workout workout;
 
   const WorkoutDetailScreen({Key? key, required this.workout})
       : super(key: key);
 
   @override
-  State<WorkoutDetailScreen> createState() {
+  ConsumerState<WorkoutDetailScreen> createState() {
     return _WorkoutDetailScreenState();
   }
 }
 
-class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
+class _WorkoutDetailScreenState extends ConsumerState<WorkoutDetailScreen> {
   late Future<FullWorkout> _future;
 
   @override
@@ -55,7 +57,8 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colorSwatch = widget.workout.category.colorSwatch;
+    final colorSwatch =
+        ref.read(feeelSwatchProvider)[widget.workout.category.feeelColor]!;
     return WillPopScope(
         onWillPop: () async {
           if (!Platform.isLinux) {
@@ -71,8 +74,7 @@ class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
                     final fullWorkout = snapshot.data!;
                     if (fullWorkout.workoutExercises.isNotEmpty) {
                       return WorkoutPager(
-                        fullWorkout: fullWorkout,
-                      );
+                          fullWorkout: fullWorkout, colorSwatch: colorSwatch);
                     } else {
                       return SafeArea(
                           child: Column(children: [

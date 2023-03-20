@@ -23,7 +23,7 @@
 import 'dart:io';
 
 import 'package:feeel/components/body_container.dart';
-import 'package:feeel/providers/global_settings_provider.dart';
+import 'package:feeel/providers/theme_meta_provider.dart';
 // import 'package:feeel/screens/settings/components/import_export_tile.dart';
 // import 'package:archive/archive_io.dart';
 import 'package:feeel/utils/notification_helper.dart';
@@ -62,8 +62,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final globalSettingsValue = ref.watch(globalSettingsProvider);
-    final globalSettingsNotifier = ref.read(globalSettingsProvider.notifier);
+    final themeMetaValue = ref.watch(themeMetaProvider);
+    final themeMetaNotifier = ref.read(themeMetaProvider.notifier);
     return BodyContainer(
         child: FutureBuilder(
             future: _preferencesFuture,
@@ -75,7 +75,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     ? null
                     : NotificationHelper.timeFromInt(settingsBundle.preferences
                         .getInt(PreferenceKeys.notificationTime));
-                final curTheme = globalSettingsValue.theme;
                 final switchActiveColor = Theme.of(context).colorScheme.primary;
                 return CustomScrollView(slivers: [
                   SliverAppBar(
@@ -140,13 +139,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       ListTile(
                         leading: const Icon(Icons.palette),
                         title: Text("Theme".i18n),
-                        subtitle: Text(curTheme.mode.translationKey
+                        subtitle: Text(themeMetaValue.mode.translationKey
                             .i18n), //todo say whether personalized or not
                         onTap: () async {
                           await showDialog<void>(
                               context: context,
                               builder: (context) =>
-                                  ThemeDialog(curTheme: curTheme));
+                                  ThemeDialog(themeMeta: themeMetaValue));
                           setState(() {
                             _preferencesFuture = _getSettingsBundle();
                           });
@@ -154,14 +153,14 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       ),
                       if (Platform.isAndroid || Platform.isLinux)
                         SwitchListTile.adaptive(
-                          secondary: const SizedBox(),
-                          title: Text("Personalized colors".i18n),
-                          value: globalSettingsValue.theme.personalized,
-                          onChanged: (value) async {
-                            globalSettingsNotifier.setTheme(
-                                curTheme.copyWith(personalized: value));
-                          },
-                        ),
+                            secondary: const SizedBox(),
+                            title: Text("Personalized colors".i18n),
+                            value: themeMetaValue.personalized,
+                            onChanged: (value) async {
+                              themeMetaNotifier.setTheme(
+                                  themeMetaValue.copyWith(personalized: value));
+                            },
+                            activeColor: switchActiveColor),
                       ListTile(
                         leading: const Icon(Icons.volunteer_activism),
                         title: Text("Participate".i18n),

@@ -20,12 +20,15 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:ui';
+
 import 'package:feeel/enums/feeel_theme_mode.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'feeel_theme.freezed.dart';
+part 'feeel_theme_meta.freezed.dart';
 
 @freezed
-class FeeelTheme with _$FeeelTheme {
-  const factory FeeelTheme(
-      {required FeeelThemeMode mode, required bool personalized}) = _FeeelTheme;
+class FeeelThemeMeta with _$FeeelThemeMeta {
+  const factory FeeelThemeMeta(
+      {required FeeelThemeMode mode,
+      required bool personalized}) = _FeeelThemeMeta;
 }
