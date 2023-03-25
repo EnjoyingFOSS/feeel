@@ -21,10 +21,4 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 /// intEnum in DB
-enum ExerciseType {
-  fullBody(0),
-  head(1);
-
-  final int dbValue;
-  const ExerciseType(this.dbValue);
-}
+enum ExerciseType { fullBody, head }

@@ -24,26 +24,11 @@ import 'package:feeel/theming/feeel_color.dart';
 
 /// intEnum in DB
 enum ExerciseCategory {
-  strength(0, "Strength", FeeelColor.blue),
-  stretching(1, "Stretching & yoga", FeeelColor.green),
-  cardio(2, "Cardio", FeeelColor.orange);
+  strength("Strength", FeeelColor.blue),
+  stretching("Stretching & yoga", FeeelColor.green),
+  cardio("Cardio", FeeelColor.orange);
 
   final String translationKey;
   final FeeelColor feeelColor;
-  final int dbValue;
-  const ExerciseCategory(this.dbValue, this.translationKey, this.feeelColor);
-
-  // static ExerciseCategory fromDBValue(int dbValue) {
-  //   //todo use map
-  //   switch (dbValue) {
-  //     case 0:
-  //       return WorkoutCategory.strength;
-  //     case 1:
-  //       return WorkoutCategory.stretching;
-  //     case 2:
-  //       return WorkoutCategory.cardio;
-  //     default:
-  //       throw Exception("No workout category with this dbValue exists.");
-  //   }
-  // }
+  const ExerciseCategory(this.translationKey, this.feeelColor);
 }

@@ -22,21 +22,6 @@
 
 /// intEnum in DB
 enum WorkoutType {
-  bundled(0),
-  custom(1);
-
-  final int dbValue;
-  const WorkoutType(this.dbValue);
-
-  // static WorkoutType fromDBValue(int dbValue) {
-  //   //todo use map
-  //   switch (dbValue) {
-  //     case 0:
-  //       return WorkoutType.bundled;
-  //     case 1:
-  //       return WorkoutType.custom;
-  //     default:
-  //       throw Exception("No workout type with this dbValue exists.");
-  //   }
-  // }
+  bundled,
+  custom;
 }
