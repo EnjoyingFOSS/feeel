@@ -25,6 +25,7 @@ import 'dart:ui';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LocaleProviderNotifier extends Notifier<Locale?> {
   @override
@@ -32,7 +33,8 @@ class LocaleProviderNotifier extends Notifier<Locale?> {
     SharedPreferences.getInstance().then((sharedPreferences) {
       final localeString = sharedPreferences.getString(PreferenceKeys.locale);
       if (localeString != null) {
-        state = _localeFromString(localeString);
+        final locale = _localeFromString(localeString);
+        if (AppLocalizations.supportedLocales.contains(locale)) state = locale;
       }
     });
     return null;
