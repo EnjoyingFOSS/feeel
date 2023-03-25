@@ -55,7 +55,7 @@ class WorkoutImportExport {
 
     // delete old temp directories
     for (final fileOrDir in tempDir.listSync()) {
-      //todo this always leaves a temp directory for one or two days; ideally, delete all automatically, outside the import / export process
+      //TODO this always leaves a temp directory for one or two days; ideally, delete all automatically, outside the import / export process
       final filename = p.basename(fileOrDir.path);
       if (filename != todayDirName && filename != yesterdayDirName) {
         fileOrDir.delete(recursive: true);
@@ -173,6 +173,12 @@ class WorkoutImportExport {
   static Future<void> _importWorkout(String jsonContent, WidgetRef ref) async {
     final decodedJson = jsonDecode(jsonContent) as Map<String, dynamic>;
     final feeelJsonWorkout = await FeeelWorkoutJson.fromJson(decodedJson);
+
+    if (feeelJsonWorkout.exerciseDbUtcImportDate
+        .isAfter(FeeelDB.bundledExerciseImportDate)) {
+      throw Exception(
+          "The imported file's source exercise database is newer than this app's database."); // TODO communicate this error to the user too!
+    }
 
     final ew = EditableWorkout.fromWorkout(feeelJsonWorkout.fullWorkout);
     ew.dbId = null;
