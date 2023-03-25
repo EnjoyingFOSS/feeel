@@ -149,6 +149,7 @@ Translations in "strings/ui" are released under the AGPLv3, those in "strings/ex
 ## German - exercise strings
 
 * mondstern
+* kettenfett
 * Miroslav Mazel
 
 ## German - ui strings
@@ -202,6 +203,10 @@ Translations in "strings/ui" are released under the AGPLv3, those in "strings/ex
 * Mohammad Hossein Tajaddini
 * alefvanoon
 
+## Polish - both ui and exercise strings
+
+* Eryk Michalak
+
 ## Portuguese - ui strings
 
 * Rodolfo Candido
@@ -221,6 +226,8 @@ Translations in "strings/ui" are released under the AGPLv3, those in "strings/ex
 
 ## Portuguese (Brazilian) - both ui and exercise strings
 * Jonathan Soares
+* workingsea
+* Rodrigo
 
 ## Russian - ui strings
 
@@ -272,3 +279,4 @@ Translations in "strings/ui" are released under the AGPLv3, those in "strings/ex
 
 * Олександр Стеренкевич
 * Dan
+* Kefir
