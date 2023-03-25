@@ -21,7 +21,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 class PreferenceKeys {
-  // todo static const locale = "locale";
   static const themeMode = "themeMode";
   static const themePersonalized = "themePersonalized";
   static const showDisclaimer = "showDisclaimer";
