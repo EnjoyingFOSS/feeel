@@ -22,20 +22,21 @@
 
 /// textEnum in DB
 enum ExerciseLanguage {
-  en('en', wgerDbId: _wgerEn),
-  ar('ar'), // TODO NEEDS WGER ID!!!
-  cs('cs', wgerDbId: _wgerCs),
-  de('de', wgerDbId: _wgerDe),
-  es('es', wgerDbId: _wgerEs),
-  eu('eu'), // TODO NEEDS WGER ID!!!
-  fr('fr', wgerDbId: _wgerFr),
-  hr('hr'), // TODO NEEDS WGER ID!!!
-  id('id'), // TODO NEEDS WGER ID!!!
-  it('it', wgerDbId: _wgerIt),
-  nl('nl', wgerDbId: _wgerNl),
-  pt('pt', wgerDbId: _wgerPt),
-  ru('ru', wgerDbId: _wgerRu),
-  tr('tr', wgerDbId: _wgerTr);
+  en('en', wgerDbId: _wgerEn), // English
+  ar('ar', wgerDbId: _wgerAr), // Arabic
+  cs('cs', wgerDbId: _wgerCs), // Czech
+  de('de', wgerDbId: _wgerDe), // German
+  el('el', wgerDbId: _wgerEl), // Greek
+  es('es', wgerDbId: _wgerEs), // Spanish
+  fr('fr', wgerDbId: _wgerFr), // French
+  hr('hr', wgerDbId: _wgerHr), // Croatian
+  id('id', wgerDbId: _wgerId), // Indonesian
+  it('it', wgerDbId: _wgerIt), // Italian
+  nl('nl', wgerDbId: _wgerNl), // Dutch
+  pt('pt', wgerDbId: _wgerPt), // Portuguese
+  ru('ru', wgerDbId: _wgerRu), // Russian
+  tr('tr', wgerDbId: _wgerTr), // Turkish
+  zh('zh', wgerDbId: _wgerZhHans); // Chinese (simplified)
 
   static const _wgerDe = 1,
       _wgerEn = 2,
@@ -43,10 +44,20 @@ enum ExerciseLanguage {
       _wgerRu = 5,
       _wgerNl = 6,
       _wgerPt = 7,
+      _wgerEl = 8,
       _wgerCs = 9,
+      _wgerSv = 10,
       _wgerFr = 12,
       _wgerIt = 13,
-      _wgerTr = 16;
+      _wgerTr = 16,
+      _wgerAr = 17,
+      _wgerAz = 18,
+      _wgerEo = 19,
+      _wgerFa = 20,
+      _wgerHe = 21,
+      _wgerHr = 22,
+      _wgerId = 23,
+      _wgerZhHans = 24;
   static const fallbackLang = en;
   final String langCode;
   final int? wgerDbId;
