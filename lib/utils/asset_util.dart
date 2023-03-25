@@ -20,18 +20,18 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'dart:io';
-
 import 'package:path/path.dart' as p;
 
 class AssetUtil {
   static const _assetsDir = "assets";
   static const _thumbsPrefix = "thumbs_";
-  static const _exerciseFilename = "exercises.json";
   static const _placeholderAsset = "placeholder.webp";
-  static const _fullPlaceholderPath = "$_assetsDir/$_placeholderAsset";
+  static const _fullPlaceholderPath =
+      "$_assetsDir/$_placeholderAsset"; // hard-coded path
   static const _fullPlaceholderThumbsPath =
-      "$_assetsDir/$_thumbsPrefix$_placeholderAsset";
+      "$_assetsDir/$_thumbsPrefix$_placeholderAsset"; // hard-coded path
+  static const _fullExercisesPath =
+      "$_assetsDir/exercises.json"; // hard-coded path
 
   static String getImageOrPlaceholderPath(String? imageSlug) {
     if (imageSlug == null) {
@@ -39,26 +39,26 @@ class AssetUtil {
     }
 
     final path = getImagePath(imageSlug);
-    if (File(path).existsSync()) {
-      return path;
-    } else {
-      return _fullPlaceholderPath;
-    }
-  } //todo test p.join
+    // TODO  figure out how to check: if (File(path).existsSync()) {
+    return path;
+    // } else {
+    // return _fullPlaceholderPath;
+    // }
+  }
 
   static String getThumbOrPlaceholderPath(String? imageSlug) {
     if (imageSlug == null) {
       return _fullPlaceholderThumbsPath;
     }
     final path = getImagePath(_thumbsPrefix + imageSlug);
-    if (File(path).existsSync()) {
-      return path;
-    } else {
-      return _fullPlaceholderThumbsPath;
-    }
-  } //todo test p.join
+    // TODO  figure out how to check: if (File(path).existsSync()) {
+    return path;
+    // } else {
+    // return _fullPlaceholderThumbsPath;
+    // }
+  }
 
   static String getImagePath(String imageSlug) =>
-      p.join(_assetsDir, imageSlug); //todo test p.join
-  static String getExerciseJson() => p.join(_assetsDir, _exerciseFilename);
+      p.join(_assetsDir, imageSlug); //TODO test p.join
+  static String getExerciseJson() => _fullExercisesPath;
 }
