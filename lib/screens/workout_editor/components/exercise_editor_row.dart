@@ -42,8 +42,9 @@ class ExerciseEditorRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final exerciseAsyncValue = ref.read(
-        exerciseProvider); //todo refactor this, I don't think this should be here
+    final exerciseAsyncValue = ref.watch(
+        //TODO check if I fixed sporadic indefinite loading on workout duplication
+        exerciseProvider); //TODO refactor this, I don't think this should be here
     return exerciseAsyncValue.when(
         error: (e, _) => const Padding(
             padding: EdgeInsets.all(16),

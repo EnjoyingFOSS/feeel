@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-// todo look into using the "html_unescape" package too
+// TODO look into using the "html_unescape" package too
 
 class SimpleHtmlMarkdownUtil {
   static String simpleHtmlToMarkdown(String htmlString) {
@@ -102,7 +102,7 @@ class SimpleHtmlMarkdownUtil {
         .replaceAll(RegExp("</p>|</ul>|</ol>|</li>|\\r|\r"), "")
         .replaceAll("&nbsp;", " ")
         .replaceAll(RegExp("<br[^>]*>|<div[^>]*>"),
-            "<p>"); //todo \\s translates to whitespace, right?
+            "<p>"); //TODO \\s translates to whitespace, right?
   }
 
   static String _replaceTextSpans(List<String> paragraphs) {

@@ -27,16 +27,16 @@ import 'package:feeel/db/database.dart';
 import 'audio_helper.dart';
 
 class SoundView implements WorkoutView {
-  //todo should this whole thing be static? TTS as well?
+  //TODO should this whole thing be static? TTS as well?
   static final _soundExercise = AssetSource("sound_exercise.mp3");
   static final _soundBreak = AssetSource("sound_break.mp3");
   static final _soundFinish = AssetSource("sound_finish.mp3");
   static final _soundTick = AssetSource(
-      "sound_tick.mp3"); // todo use ogg, or debug how tinny it sounds
+      "sound_tick.mp3"); // TODO use ogg, or debug how tinny it sounds
   static final AudioPlayer _player = AudioPlayer();
 
   SoundView() {
-    // if (Platform.isAndroid) _player.setPlayerMode(PlayerMode.lowLatency); //todo don't set until this bug is fixed: https://github.com/bluefireteam/audioplayers/issues/1193
+    // if (Platform.isAndroid) _player.setPlayerMode(PlayerMode.lowLatency); //TODO don't set until this bug is fixed: https://github.com/bluefireteam/audioplayers/issues/1193
   }
 
   @override
@@ -49,7 +49,7 @@ class SoundView implements WorkoutView {
   void onCount(int seconds, _) {
     if (seconds <= AudioHelper.countdown) {
       _player.play(_soundTick);
-      _player.stop(); //todo this is temporary, due to bug
+      _player.stop(); //TODO this is temporary, due to bug
     }
   }
 
@@ -57,7 +57,7 @@ class SoundView implements WorkoutView {
   void onExercise(
       int exercisePos, Exercise exercise, int defaultExerciseDuration) {
     _player.play(_soundExercise);
-    //todo handle step
+    //TODO handle step
   }
 
   @override
@@ -81,4 +81,9 @@ class SoundView implements WorkoutView {
 
   @override
   void onCountdown(int exercisePos) {}
+
+  @override
+  void onDispose() {
+    _player.dispose();
+  }
 }

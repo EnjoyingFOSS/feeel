@@ -28,16 +28,16 @@ import 'package:i18n_extension/i18n_widget.dart';
 enum _TtsState { playing, stopped }
 
 class TTSHelper {
-  //todo use provider, perhaps one for both available sound views?
+  //TODO use provider, perhaps one for both available sound views?
   TTSHelper._();
   static final tts = TTSHelper._();
   static final _flutterTts = FlutterTts();
 
-  _TtsState _ttsState = _TtsState.stopped; //todo see if I need this
+  _TtsState _ttsState = _TtsState.stopped; //TODO see if I need this
   AudioPriority _formerPriority = AudioPriority.low;
 
   void init(BuildContext context) async {
-    // todo set to current language ONLY IF translations are available; _flutterTts.setLanguage(Localizations.localeOf(context).languageCode);
+    // TODO set to current language ONLY IF translations are available; _flutterTts.setLanguage(Localizations.localeOf(context).languageCode);
     _flutterTts.setStartHandler(() {
       _ttsState = _TtsState.playing;
     });
@@ -72,8 +72,8 @@ class TTSHelper {
   Future<void> speak(String message,
       {AudioPriority priority = AudioPriority.low}) async {
     //TODO PRIORITY DOESN't WORK BECAUSE OF ITS ASYNC NATURE — DEBUG!!!
-    //todo could just have speakPriority and speak functions here, maybe
-    //todo add priority
+    //TODO could just have speakPriority and speak functions here, maybe
+    //TODO add priority
     if (message.isNotEmpty) {
       if (_ttsState == _TtsState.playing) {
         if (priority == AudioPriority.low &&

@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-// todo capitalize: commando pull-ups, kettlebell swing, knee raises, one-handed kettlebell curls, BUS DRIVERS, LYING DUMBELL ROW ...
+// TODO capitalize: commando pull-ups, kettlebell swing, knee raises, one-handed kettlebell curls, BUS DRIVERS, LYING DUMBELL ROW ...
 
 import 'package:drift/drift.dart';
 
@@ -52,9 +52,9 @@ import '../models/full_workout.dart';
 
 part 'database.g.dart';
 
-//todo consider using textEnum instead of intEnum in databases in general
+//TODO consider using textEnum instead of intEnum in databases in general
 
-//todo add cache
+//TODO add cache
 
 class Exercises extends Table {
   static const listSeparator = "|";
@@ -72,21 +72,19 @@ class Exercises extends Table {
 
   /// pipe-separated list of authors
   TextColumn get imageSlug => text().nullable()();
-  IntColumn get type => intEnum<ExerciseType>()(); //todo how to convert this?
+  IntColumn get type => intEnum<ExerciseType>()(); //TODO how to convert this?
   BoolColumn get flipped => boolean().withDefault(const Constant(
-      false))(); //todo what's the use of withDefault if constructor requires it anyway?
+      false))(); //TODO what's the use of withDefault if constructor requires it anyway?
   TextColumn get imageLicense => text().nullable()();
   BoolColumn get animated => boolean()();
 
-  // BoolColumn get hasSteps =>
-  //     boolean()(); //todo rather than this, point directly to the rowid
   IntColumn get variationGroup => integer().nullable()();
 
   @override
   Set<Column>? get primaryKey => {wgerId};
 }
 
-// todo Missing from exercise database
+// TODO Missing from exercise database
 //
 // "images": [],
 // "videos": [],
@@ -107,17 +105,6 @@ class ExerciseTranslations extends Table {
   Set<Column>? get primaryKey => {exercise, language};
 }
 
-// class ExerciseSteps extends Table {
-//   IntColumn get exerciseId => integer()();
-//   IntColumn get orderPosition => integer()();
-//   TextColumn get imageSlug => text().nullable()();
-//   TextColumn get voiceHint => text().nullable()();
-//   IntColumn get stepDuration => integer()();
-
-//   @override
-//   Set<Column>? get primaryKey => {exerciseId, orderPosition};
-// }
-
 class ExerciseMuscles extends Table {
   IntColumn get exercise => integer()();
   IntColumn get muscle => intEnum<Muscle>()();
@@ -129,7 +116,6 @@ class ExerciseMuscles extends Table {
 
 @DataClassName("ExerciseEquipmentPiece")
 class ExerciseEquipment extends Table {
-  //todo define singular
   IntColumn get exercise => integer()();
   IntColumn get equipment => intEnum<EquipmentPiece>()();
 
@@ -138,6 +124,7 @@ class ExerciseEquipment extends Table {
 }
 
 class Workouts extends Table {
+  //TODO FIGURE OUT TRANSLATABLE WORKOUT NAMES!!!
   IntColumn get id => integer().autoIncrement()();
   IntColumn get type => intEnum<WorkoutType>()();
   TextColumn get title => text()();
@@ -146,13 +133,13 @@ class Workouts extends Table {
   IntColumn get exerciseDuration => integer()();
   IntColumn get breakDuration => integer()();
   DateTimeColumn get lastUsed =>
-      dateTime().nullable()(); //todo figure out how timezones fit into this
+      dateTime().nullable()(); //TODO figure out how timezones fit into this
 
   /// only used for sorting, may be inconsistent with workout records
 }
 
 class WorkoutExercises extends Table {
-  //todo change to also work with sets, reps, etc.
+  //TODO change to also work with sets, reps, etc.
   IntColumn get workoutId => integer()();
   IntColumn get orderPosition => integer()();
   IntColumn get exercise => integer()();
@@ -180,7 +167,7 @@ class WorkoutRecords extends Table {
   IntColumn get workoutDuration =>
       integer()(); //potential inconsistency, but faster fetching
   DateTimeColumn get workoutStart =>
-      dateTime()(); //todo figure out how timezones fit into this
+      dateTime()(); //TODO figure out how timezones fit into this
 }
 
 class WorkoutExerciseRecords extends Table {
@@ -195,7 +182,6 @@ class WorkoutExerciseRecords extends Table {
 }
 
 @DriftDatabase(tables: [
-  //todo add new tables
   Exercises,
   ExerciseMuscles,
   ExerciseTranslations,
@@ -206,13 +192,12 @@ class WorkoutExerciseRecords extends Table {
   WorkoutExerciseRecords
 ])
 class FeeelDB extends _$FeeelDB {
-  //todo write DB migration tests with test .db files
+  //TODO write DB migration tests with test .db files
   static final bundledExerciseImportDate = DateTime(
-      2023, 02, 17, 20, 0, 0); //todo update with each import, store separately
+      2023, 02, 17, 20, 0, 0); //TODO update with each import, store separately
 
   static const dbVersion = 300;
-  static const _dbFilename =
-      "feeel2.db"; //todo this is temporary, before migration is ironed out
+  static const _dbFilename = "feeel.db";
 
   static const _v3_0_0 = 300;
   static const _pre3_0_0WorkoutExerciseTableName = 'workoutExercises';
@@ -263,7 +248,7 @@ class FeeelDB extends _$FeeelDB {
   //
 
   Future<void> _reshapePre3_0_0WorkoutTable(Migrator m) async {
-    //todo double-check that I have all the columns
+    //TODO double-check that I have all the columns
     await m.addColumn(workouts, workouts.lastUsed);
 
     await m.renameColumn(
@@ -323,12 +308,12 @@ class FeeelDB extends _$FeeelDB {
     final fullExercises = WgerExerciseUtil.parseWgerJson(exerciseFileContents);
 
     fullExercises.sort((a, b) => a.exercise.name.compareTo(b.exercise
-        .name)); //todo check if this reflects on how they're actually stored
+        .name)); //TODO check if this reflects on how they're actually stored
 
     for (final fe in fullExercises) {
       try {
         //TODO get rid of the try catches
-        //todo REMOVE AFTER WGER DISALLOWS SAME PRIMARY AND SECONDARY MUSCLES!
+        //TODO REMOVE AFTER WGER DISALLOWS SAME PRIMARY AND SECONDARY MUSCLES!
         for (final muscle in fe.muscles) {
           await into(exerciseMuscles).insert(muscle);
         }
@@ -347,7 +332,7 @@ class FeeelDB extends _$FeeelDB {
   }
 
   Future<FullExercise> queryPrimaryLangFullExercise(
-      //todo move to ExerciseProvider?
+      //TODO move to ExerciseProvider?
       Exercise exercise,
       ExerciseLanguage language) async {
     final translation = (language == ExerciseLanguage.fallbackLang)
@@ -409,7 +394,7 @@ class FeeelDB extends _$FeeelDB {
   }
 
   Future<List<FullWorkout>> queryFullWorkoutsByType(WorkoutType type) async {
-    //todo is this really necessary? used only for export...
+    //TODO is this really necessary? used only for export...
     final ws =
         await (select(workouts)..where((w) => w.type.equalsValue(type))).get();
 
@@ -419,14 +404,14 @@ class FeeelDB extends _$FeeelDB {
   }
 
   Future<void> createOrUpdateWorkout(final EditableWorkout ew) async {
-    //todo double-check everything; ideally go by categories - R, C, U, D
+    //TODO double-check everything; ideally go by categories - R, C, U, D
     if (ew.dbId != null) {
       await (delete(workoutExercises)
             ..where((we) => we.workoutId.equals(ew.dbId!)))
           .go();
     }
 
-    //todo onConflictUpdate might not return the right rowID
+    //TODO onConflictUpdate might not return the right rowID
 
     final createdRowId = await into(workouts).insertOnConflictUpdate(
         WorkoutsCompanion(
@@ -496,7 +481,7 @@ class FeeelDB extends _$FeeelDB {
 
   Future<FullWorkoutRecord> queryFullWorkoutRecord(
       WorkoutRecord wr, ExerciseLanguage language) async {
-    // todo fetch exercises or get them from cache?
+    // TODO fetch exercises or get them from cache?
     final wers = await (select(workoutExerciseRecords)
           ..where((wer) => wer.workoutRecordId.equals(wr.id)))
         .get();

@@ -48,7 +48,7 @@ enum EquipmentPiece {
       case 4:
         return gymMat;
       case 5:
-        return swissBall; //todo double-check that that's actually the ID
+        return swissBall;
       case 6:
         return pullUpBar;
       case 7:

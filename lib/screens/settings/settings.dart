@@ -60,7 +60,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   void initState() {
     super.initState();
     _preferencesFuture =
-        _getSettingsBundle(); //todo use provider for preferences
+        _getSettingsBundle(); //TODO use provider for preferences
   }
 
   @override
@@ -148,7 +148,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         leading: const Icon(Icons.palette),
                         title: Text(AppLocalizations.of(context)!.txtTheme),
                         subtitle: Text(themeMetaValue.mode.getTranslation(
-                            context)), //todo say whether personalized or not
+                            context)), //TODO say whether personalized or not
                         onTap: () async {
                           await showDialog<void>(
                               context: context,
@@ -188,33 +188,33 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                                   themeMetaValue.copyWith(personalized: value));
                             },
                             activeColor: switchActiveColor),
-                      SwitchListTile.adaptive(
-                          activeColor: switchActiveColor,
-                          secondary: const Icon(Icons.wifi),
-                          value: false //todo
-                          ,
-                          title: Text(AppLocalizations.of(context)!
-                              .txtExerciseUpdateFromWeb) //todo translate
-                          ,
-                          onChanged: (_) => null //todo
-                          ),
-                      SwitchListTile.adaptive(
-                          activeColor: switchActiveColor,
-                          value: false //todo
-                          ,
-                          contentPadding:
-                              const EdgeInsets.only(left: 72, right: 16),
-                          title: Text(AppLocalizations.of(context)!
-                              .txtOnlyUpdateOverWifi) //todo translate // limit downloads to wifi-only? only update on non-metered connections?
-                          ,
-                          onChanged: (_) => null //todo
-                          ),
+                      // SwitchListTile.adaptive(
+                      //     activeColor: switchActiveColor,
+                      //     secondary: const Icon(Icons.wifi),
+                      //     value: false //TODO
+                      //     ,
+                      //     title: Text(AppLocalizations.of(context)!
+                      //         .txtExerciseUpdateFromWeb) //TODO translate
+                      //     ,
+                      //     onChanged: (_) => null //TODO
+                      //     ),
+                      // SwitchListTile.adaptive(
+                      //     activeColor: switchActiveColor,
+                      //     value: false //TODO
+                      //     ,
+                      //     contentPadding:
+                      //         const EdgeInsets.only(left: 72, right: 16),
+                      //     title: Text(AppLocalizations.of(context)!
+                      //         .txtOnlyUpdateOverWifi) //TODO translate // limit downloads to wifi-only? only update on non-metered connections?
+                      //     ,
+                      //     onChanged: (_) => null //TODO
+                      //     ),
                       ListTile(
                         leading: const Icon(Icons.volunteer_activism),
                         title:
                             Text(AppLocalizations.of(context)!.txtParticipate),
                         onTap: () => URLUtil.launchURL(context,
-                            "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"), //todo should also change the text on the wiki page — at least the intro
+                            "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"), //TODO should also change the text on the wiki page — at least the intro
                       ),
                       ListTile(
                         leading: const Icon(Icons.attach_money),
@@ -272,7 +272,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ),
         ),
         applicationLegalese: "© Miroslav Mazel et al., 2021");
-    //todo add app LICENSE info to LicenseRegistry + source code and donate items
+    //TODO add app LICENSE info to LicenseRegistry + source code and donate items
   }
 
   void _setNotificationTime(BuildContext context, TimeOfDay? timeOfDay,
@@ -300,7 +300,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Future<_SettingsBundle> _getSettingsBundle() async {
-    //todo add language to bundle
+    //TODO add language to bundle
     final preferences = await SharedPreferences.getInstance();
     return _SettingsBundle(preferences);
   }

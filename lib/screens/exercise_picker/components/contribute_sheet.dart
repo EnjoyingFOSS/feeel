@@ -180,7 +180,7 @@ class ContributeSheet extends StatelessWidget {
                                   "https://wger.de/$wgerLangBit/user/login"),
                               child: Text(
                                   AppLocalizations.of(context)!.btnWgerLogIn)),
-                        if (!narrowLayout) //todo the CTA should be one button to a page with guidelines
+                        if (!narrowLayout) //TODO the CTA should be one button to a page with guidelines
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

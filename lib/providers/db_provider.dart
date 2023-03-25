@@ -25,7 +25,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
 final dbProvider = Provider<FeeelDB>((ref) {
-  final db = GetIt.I<FeeelDB>(); // todo FeeelDB(), get rid of getIt
+  final db = GetIt.I<FeeelDB>(); // TODO FeeelDB(), get rid of getIt
   ref.onDispose(() {
     db.close();
   });

@@ -37,10 +37,10 @@ class LanguageDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final localeNotifier = ref.read(localeProvider.notifier);
     const supportedLocales = AppLocalizations
-        .supportedLocales; //todo test that AppLocalization.supportedLocales.length == LocaleHelper.supportedLocaleNames.length
+        .supportedLocales; //TODO test that AppLocalization.supportedLocales.length == LocaleHelper.supportedLocaleNames.length
     final chosenIndex = chosenLocale != null
         ? supportedLocales.indexOf(chosenLocale!) + 1
-        : 0; //todo double-check, maybe I need to split up lang, then country
+        : 0; //TODO double-check, maybe I need to split up lang, then country
     return AlertDialog(
       title: Text(AppLocalizations.of(context)!.txtLanguage),
       content: SizedBox(

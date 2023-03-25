@@ -89,7 +89,7 @@ class WorkoutListItem extends StatelessWidget {
                                     tag: HeroUtil.getWorkoutHero(HeroType.title,
                                         workout.id, workout.type),
                                     child: Material(
-                                      //todo workaround for https://github.com/flutter/flutter/issues/30647
+                                      //TODO workaround for https://github.com/flutter/flutter/issues/30647
                                       type: MaterialType.transparency,
                                       child: AutoSizeText(
                                         (workout.type == WorkoutType.bundled)
@@ -109,7 +109,7 @@ class WorkoutListItem extends StatelessWidget {
                                       workout.id,
                                       workout.type),
                                   child: Text(
-                                    workout.category.translationKey.i18n,
+                                    workout.category.getTranslation(context),
                                     style: theme.textTheme.titleSmall?.copyWith(
                                         fontWeight: FontWeight.bold,
                                         color: colorSwatch.getColor(FeeelShade

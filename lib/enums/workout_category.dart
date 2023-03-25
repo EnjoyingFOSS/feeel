@@ -49,7 +49,7 @@ enum WorkoutCategory {
   }
 
   // static WorkoutCategory fromDBValue(int dbValue) {
-  //   //todo use map
+  //   //TODO use map
   //   switch (dbValue) {
   //     case 0:
   //       return WorkoutCategory.strength;

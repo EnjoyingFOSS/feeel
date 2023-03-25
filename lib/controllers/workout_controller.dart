@@ -43,7 +43,7 @@ enum _ViewTypes { gui, audio }
 
 class WorkoutMeta {
   static const _startDuration =
-      5; //todo get rid of countdown duration in the database
+      5; //TODO get rid of countdown duration in the database
   static const _countdownDuration = 3;
   final FullWorkout _fullWorkout;
   int _exercisePos = 0;
@@ -112,9 +112,9 @@ class WorkoutController {
   final List<Function?> _onFinishes =
       List.filled(_ViewTypes.values.length, null);
   final List<WorkoutView?> _views = List.filled(
-      _ViewTypes.values.length, null); //todo weak references + NOT NULL SAFE!
+      _ViewTypes.values.length, null); //TODO weak references + NOT NULL SAFE!
   WorkoutStage _stage = WorkoutStage.ready;
-  late final WorkoutTimer _timer; //todo init timer
+  late final WorkoutTimer _timer; //TODO init timer
   late final WorkoutMeta _workoutMeta;
   late final EditableWorkoutRecord _editableWorkoutRecord; //TODO INTEGRATE
 
@@ -135,7 +135,7 @@ class WorkoutController {
     _timer = WorkoutTimer(0,
         // _workoutMeta.getCurStepDurations(),
         onSecondDecrease: () {
-      //todo initTime seems useless
+      //TODO initTime seems useless
       for (final view in _views) {
         view?.onCount(_timer.getTimeRemaining(), _stage);
       }
@@ -165,7 +165,7 @@ class WorkoutController {
           break;
       }
     });
-  } //todo how to init _exerciseCount ???
+  } //TODO how to init _exerciseCount ???
 
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
@@ -176,7 +176,7 @@ class WorkoutController {
           soundView.onFinish();
         };
       } else {
-        _views[_ViewTypes.audio.index] = TTSView(); //todo allow audio setting
+        _views[_ViewTypes.audio.index] = TTSView(); //TODO allow audio setting
         _onFinishes[_ViewTypes.audio.index] = () {
           TTSHelper.tts.speak("You did it!".i18n, priority: AudioPriority.high);
         };
@@ -255,7 +255,7 @@ class WorkoutController {
 
     _timer.reset(_workoutMeta.getCountdownDuration(), null);
     _renderSeconds();
-    _timer.start(); //todo is this the right place to do this?
+    _timer.start(); //TODO is this the right place to do this?
 
     _renderPausePlay();
   }
@@ -369,7 +369,7 @@ class WorkoutController {
   }
 
   void _recordInProgressExercise() {
-    //todo on timer finish, on skip, on clo se, on pause (because of countdown)
+    //TODO on timer finish, on skip, on close, on pause (because of countdown)
     if (_stage == WorkoutStage.exercise) {
       final remainingDuration = _timer.getTimeRemaining();
       final exercisePos = _workoutMeta.getExercisePos();
@@ -381,7 +381,7 @@ class WorkoutController {
   }
 
   void _recordCompletedExercise() {
-    //todo on timer finish, on skip, on close, on pause (because of countdown)
+    //TODO on timer finish, on skip, on close, on pause (because of countdown)
     _editableWorkoutRecord.completedDurations[_workoutMeta.getExercisePos()] =
         _workoutMeta.getCurExerciseDuration();
   }
@@ -405,6 +405,6 @@ class WorkoutController {
     }
     _views[_ViewTypes.audio.index] = null;
     _onFinishes[_ViewTypes.audio.index] = null;
-    // todo views.clear() needed?
+    // TODO views.clear() needed?
   }
 }

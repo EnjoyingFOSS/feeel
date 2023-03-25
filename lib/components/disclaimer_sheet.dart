@@ -47,20 +47,11 @@ class DisclaimerSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo make this themable
-    // return DraggableScrollableSheet(
-    //   expand: false,
-    //   initialChildSize: 0.6,
-    //   minChildSize: 0.6,
-    //   snap: true,
-    //   snapSizes: const [0.6, 1.0], //todo 0 needed?
-    //   builder: (BuildContext context, ScrollController scrollController) {
     final fgColor = Theme.of(context).colorScheme.onBackground;
     final bgColor = Theme.of(context).colorScheme.background;
 
     return CustomScrollView(
       shrinkWrap: true,
-      // controller: scrollController,
       physics: const ClampingScrollPhysics(),
       slivers: [
         SliverList(
@@ -68,13 +59,9 @@ class DisclaimerSheet extends StatelessWidget {
           Stack(alignment: Alignment.bottomCenter, children: [
             Align(
                 alignment: Alignment.bottomCenter,
-                // child: FractionallySizedBox(
-                //   heightFactor: 0.5,
-                //   widthFactor: 1.0,
                 child: Container(
                   height: 64,
                   color: bgColor,
-                  // ),
                 )),
             Image.asset(
               AssetUtil.getImagePath("image_volunteer_heart.webp"),
@@ -113,7 +100,6 @@ class DisclaimerSheet extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () async {
-                        //todo set a setting here
                         final navigator = Navigator.of(context);
                         final prefs = await SharedPreferences.getInstance();
                         prefs.setBool(PreferenceKeys.showDisclaimer, false);

@@ -63,14 +63,14 @@ class ExerciseFooter extends StatelessWidget {
       child: Container(
         height: contentHeight,
         alignment:
-            Alignment.bottomCenter, //todo make illustrationTitle responsive
+            Alignment.bottomCenter, //TODO make illustrationTitle responsive
         width: double.infinity,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           onBreak
               ? Column(children: [
                   Text(AppLocalizations.of(context)!.txtNextUp,
                       style: TextStyle(
-                          //todo use a style for this
+                          //TODO use a style for this
                           fontSize: 16,
                           fontWeight: FontWeight.w900,
                           color: fgColor)),
@@ -92,7 +92,7 @@ class ExerciseFooter extends StatelessWidget {
                       color: fgColor),
                   minFontSize: 14,
                   maxLines:
-                      2, //todo use a fixed height (wrap with Expanded and Align for centering) instead once I implement the description sheet (and get rid of the up arrow that way)
+                      2, //TODO use a fixed height (wrap with Expanded and Align for centering) instead once I implement the description sheet (and get rid of the up arrow that way)
                   overflow: TextOverflow.ellipsis),
           const SizedBox(
             height: 8,

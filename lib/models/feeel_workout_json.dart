@@ -23,7 +23,7 @@
 import 'package:feeel/db/database.dart';
 import 'package:feeel/models/full_workout.dart';
 
-// todo save export files, create import/export tests
+// TODO save export files, create import/export tests
 class FeeelWorkoutJson {
   static const _curMetadataVersion = FeeelDB.dbVersion;
 

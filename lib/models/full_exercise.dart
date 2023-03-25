@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
-import 'package:feeel/enums/language.dart';
+import 'package:feeel/enums/language.dart'; //TODO start actually using the translations in the UI
 
 class FullExercise {
   final Exercise exercise;

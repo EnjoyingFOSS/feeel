@@ -37,14 +37,14 @@ class WorkoutExerciseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverList(
-      //todo use fixed extent
+      //TODO use fixed extent
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
           final duration =
               fullWorkout.workoutExercises[index].exerciseDuration ??
                   fullWorkout.workout.exerciseDuration;
           return ExerciseListItem(
-            //todo allow two-row exercise names
+            //TODO allow two-row exercise names
             exercise: fullWorkout.exercises[index],
             subtitle: Text(DurationUtil.getDurationShortform(duration)),
             colorSwatch: colorSwatch,

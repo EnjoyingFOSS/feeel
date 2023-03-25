@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LearnInfo extends StatelessWidget {
-  //todo indicate when an exercise has steps
+  //TODO indicate when an exercise has steps
   final Color bgColor;
   final Color fgColor;
   final void Function() onTap;
@@ -38,7 +38,7 @@ class LearnInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo make this possible to activate using the keyboard only!
+    //TODO make this possible to activate using the keyboard only!
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -60,7 +60,7 @@ class LearnInfo extends StatelessWidget {
                         .bodySmall
                         ?.copyWith(color: fgColor),
                   )
-                ], //todo size16 or 18
+                ], //TODO size16 or 18
               ))),
     );
   }

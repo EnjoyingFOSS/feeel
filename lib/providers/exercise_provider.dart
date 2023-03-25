@@ -28,7 +28,7 @@ import 'package:feeel/db/database.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ExerciseProviderState {
-  //todo not sure if it's best to load all of this into memory at all times...
+  //TODO not sure if it's best to load all of this into memory at all times...
   final Map<int, FullExercise> primaryLanguageExercises;
 
   ExerciseProviderState(this.primaryLanguageExercises);
@@ -39,7 +39,7 @@ class ExerciseProviderNotifier extends AsyncNotifier<ExerciseProviderState> {
   Future<ExerciseProviderState> build() async {
     final db = ref.read(dbProvider);
     return ExerciseProviderState(await _queryPrimaryLanguageFullExercises(
-        db, ExerciseLanguage.en)); //todo exercise language!!!
+        db, ExerciseLanguage.en)); //TODO exercise language!!!
   }
 
   Future<Map<int, FullExercise>> _queryPrimaryLanguageFullExercises(

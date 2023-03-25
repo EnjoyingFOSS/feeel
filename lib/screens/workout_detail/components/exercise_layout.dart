@@ -49,7 +49,7 @@ class ExerciseLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo use two-pane layout in landscape
+    //TODO use two-pane layout in landscape
     final theme = Theme.of(context);
 
     final onBackgroundColor =
@@ -76,7 +76,7 @@ class ExerciseLayout extends StatelessWidget {
     return (screenSize.width > screenSize.height &&
             screenSize.width >= 568 &&
             screenSize.height <
-                568) //todo at small screen landscape sizes, allow image to be smaller
+                568) //TODO at small screen landscape sizes, allow image to be smaller
         ? Stack(children: [
             if (!headOnly)
               Align(
@@ -133,7 +133,7 @@ class ExerciseLayout extends StatelessWidget {
                   constraints:
                       const BoxConstraints(minWidth: 284, maxWidth: 640),
                   child:
-                      //todo column here seems unnecessarily complex
+                      //TODO column here seems unnecessarily complex
                       Padding(
                           padding: const EdgeInsets.all(8),
                           child: ExerciseIllustration(

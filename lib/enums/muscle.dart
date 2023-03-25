@@ -22,7 +22,7 @@
 
 /// intEnum in DB
 enum Muscle {
-  //todo map the first ones to wger's categories
+  //TODO map the first ones to wger's categories
   absInGeneral,
   armsInGeneral,
   backInGeneral,
@@ -31,7 +31,7 @@ enum Muscle {
   legsInGeneral,
   shouldersInGeneral,
 
-  anteriorDeltoid, //todo sort by body part, head to foot, rather than alphabetically
+  anteriorDeltoid, //TODO sort by body part, head to foot, rather than alphabetically
   bicepsBrachii,
   brachialis,
   obliquusExternusAbdominis,

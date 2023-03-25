@@ -47,7 +47,7 @@ class WorkoutProviderNotifier extends AsyncNotifier<WorkoutProviderState> {
     await db.createOrUpdateWorkout(ew);
 
     state = AsyncValue.data(WorkoutProviderState(
-        await _queryAllWorkouts(db))); //todo is this too expensive?
+        await _queryAllWorkouts(db))); //TODO is this too expensive?
   }
 
   Future<void> deleteWorkout(int workoutId) async {
@@ -58,10 +58,10 @@ class WorkoutProviderNotifier extends AsyncNotifier<WorkoutProviderState> {
           ..where((we) => we.workoutId.equals(workoutId)))
         .go();
     await (db.delete(db.workouts)..where((w) => w.id.equals(workoutId)))
-        .go(); //todo what if I passed in workout and just ran delete on that workout?
+        .go(); //TODO what if I passed in workout and just ran delete on that workout?
 
     state = AsyncValue.data(WorkoutProviderState(
-        await _queryAllWorkouts(db))); //todo is this too expensive?
+        await _queryAllWorkouts(db))); //TODO is this too expensive?
   }
 
   Future<List<Workout>> _queryAllWorkouts(FeeelDB db) async {
@@ -70,7 +70,7 @@ class WorkoutProviderNotifier extends AsyncNotifier<WorkoutProviderState> {
             (w) => OrderingTerm.desc(w.lastUsed),
             (w) => OrderingTerm.asc(w.id)
           ]))
-        .get(); //todo use watch instead?
+        .get(); //TODO use watch instead?
     return workouts;
   }
 }

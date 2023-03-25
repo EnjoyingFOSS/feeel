@@ -36,7 +36,7 @@ class TTSView implements WorkoutView {
         "Let's go! First up: %s"
             .i18n
             .replaceFirst("%s", nextExercise.name.i18n),
-        priority: AudioPriority.high); //todo internationalization
+        priority: AudioPriority.high); //TODO internationalization
   }
 
   @override
@@ -48,12 +48,12 @@ class TTSView implements WorkoutView {
 
   @override
   void onCount(int seconds, WorkoutStage stage) {
-    //todo eliminate conflicts with step content
+    //TODO eliminate conflicts with step content
     if (seconds <= AudioHelper.countdown) {
       TTSHelper.tts.speak(seconds.toString(), priority: AudioPriority.low);
     } else if (seconds == _halfTime && stage == WorkoutStage.exercise) {
       TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst("%d", "$seconds"),
-          priority: AudioPriority.low); //todo internationalize with declension
+          priority: AudioPriority.low); //TODO internationalize with declension
     }
   }
 
@@ -61,7 +61,7 @@ class TTSView implements WorkoutView {
   void onExercise(int exercisePos, Exercise exercise, int duration) {
     TTSHelper.tts.speak(exercise.name.i18n, priority: AudioPriority.high);
     _halfTime = (duration / 2).ceil();
-    // todo handle first step
+    // TODO handle first step
   }
 
   @override
@@ -82,6 +82,9 @@ class TTSView implements WorkoutView {
   }
 
   void stop() {
-    TTSHelper.tts.stop(); //todo once stopped, does it restart?
+    TTSHelper.tts.stop(); //TODO once stopped, does it restart?
   }
+
+  @override
+  void onDispose() {}
 }

@@ -45,8 +45,6 @@ class WorkoutListNotifier extends Notifier<WorkoutListState> {
   void stopExporting() {
     state = state.copyWith(exporting: false);
   }
-
-  //todo does this autodispose?
 }
 
 final workoutListProvider =

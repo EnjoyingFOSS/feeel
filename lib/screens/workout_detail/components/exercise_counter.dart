@@ -24,7 +24,7 @@ import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseCounter extends StatelessWidget {
-  final String counterText; //todo is this really the best way to rerender time?
+  final String counterText; //TODO is this really the best way to rerender time?
   final Color color;
   final bool paused;
 

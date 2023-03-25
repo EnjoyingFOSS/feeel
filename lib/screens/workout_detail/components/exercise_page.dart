@@ -59,7 +59,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   // int _stepPos = 0;
   WorkoutStage _stage = WorkoutStage.workoutBreak;
 
-  // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
+  // TODO on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
 
   @override
   void initState() {
@@ -76,7 +76,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
 
     return
         // CallbackShortcuts(
-        //     //todo doesn't always activate!!!
+        //     //TODO doesn't always activate!!!
         //     bindings: {
         //       const SingleActivator(LogicalKeyboardKey.space): () => setState(() {
         //             widget.workoutController.togglePlayPause();
@@ -85,12 +85,12 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
         //     child:
         GestureDetector(
       onTap: () {
-        //todo setstate
+        //TODO setstate
         setState(() {
           widget.workoutController.togglePlayPause();
         });
       },
-      //todo onHorizontalDrag
+      //TODO onHorizontalDrag
       onVerticalDragStart: (_) => onLearn(exercise),
       child: Material(
           color: Theme.of(context).colorScheme.background,
@@ -170,7 +170,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
       _seconds = duration;
       _exercisePos = exercisePos;
       _stage = WorkoutStage.exercise;
-      // _stepPos = 0; //todo should I do this for the break too?
+      // _stepPos = 0; //TODO should I do this for the break too?
     });
   }
 
@@ -233,4 +233,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
       _stage = WorkoutStage.countdown;
     });
   }
+
+  @override
+  void onDispose() {}
 }

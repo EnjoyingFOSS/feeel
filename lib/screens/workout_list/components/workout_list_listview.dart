@@ -46,7 +46,7 @@ class WorkoutListListView extends ConsumerWidget {
 
     final gridColumns = (min(
                 MediaQuery.of(context).size.width, LayoutXL.cols12.width) /
-            (600 + _crossAxisSpacing)) //todo does the 600 need to be hardcoded?
+            (600 + _crossAxisSpacing)) //TODO does the 600 need to be hardcoded?
         .ceil();
 
     return workoutAsyncValue.when(
@@ -61,12 +61,12 @@ class WorkoutListListView extends ConsumerWidget {
               child:
                   CustomScrollView(clipBehavior: Clip.none, slivers: <Widget>[
             const SliverAppBar(
-              //todo add floating: true, but with dynamic shadow
+              //TODO add floating: true, but with dynamic shadow
               title: Text.rich(
-                  //todo add varying spans, e.g. "Feeel energized", "Feeel goood", "Feeel fresh" ,"Feeel the burn", ...
+                  //TODO add varying spans, e.g. "Feeel energized", "Feeel goood", "Feeel fresh" ,"Feeel the burn", ...
                   TextSpan(children: <InlineSpan>[
                 TextSpan(text: "Feeel "),
-                // todo TextSpan(
+                // TODO TextSpan(
                 //   text: "energized",
                 //   style: TextStyle(
                 //       fontSize: 32,
@@ -82,7 +82,7 @@ class WorkoutListListView extends ConsumerWidget {
             if (workoutListValue.exporting || workoutListValue.importing)
               const SliverToBoxAdapter(
                   child:
-                      LinearProgressIndicator()), //todo is there a way to get it to be at the bottom of the app bar?
+                      LinearProgressIndicator()), //TODO is there a way to get it to be at the bottom of the app bar?
             SliverPadding(
                 padding: const EdgeInsets.only(bottom: 80),
                 sliver: SliverGrid(

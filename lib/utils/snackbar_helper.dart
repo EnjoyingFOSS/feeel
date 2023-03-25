@@ -33,7 +33,7 @@ enum SnackBarDuration {
 
 class SnackBarHelper {
   static ScaffoldFeatureController showInfoSnackBar(
-      //todo add success and error variants
+      //TODO add success and error variants
       ScaffoldMessengerState scaffoldMessenger,
       String content,
       {SnackBarDuration duration = SnackBarDuration.short}) {

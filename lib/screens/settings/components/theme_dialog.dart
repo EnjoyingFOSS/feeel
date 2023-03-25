@@ -35,7 +35,7 @@ class ThemeDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //todo integrate the personalized switch into this too!
+    //TODO integrate the personalized switch into this too!
     final themeNotifier = ref.read(themeMetaProvider.notifier);
     return AlertDialog(
       title: Text(AppLocalizations.of(context)!.txtTheme),

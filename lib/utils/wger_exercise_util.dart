@@ -50,7 +50,7 @@ class WgerExerciseUtil {
 
     final wgerExerciseEn = wgerExercises.firstWhere((dynamic wgerExercise) =>
             (wgerExercise["language"] as int) == ExerciseLanguage.en.wgerDbId)
-        as Map; //todo do I need to deal with cases where there is no English original?
+        as Map; //TODO do I need to deal with cases where there is no English original?
     final wgerBaseId = wgerBase["id"] as int;
     final category = ((wgerBase["category"] as Map)["id"] as int) == 15
         ? ExerciseCategory.cardio
@@ -58,10 +58,10 @@ class WgerExerciseUtil {
             .strength; //TODO change when Stretching and Yoga becomes a category too !!!
     final enAuthors = <String>{};
     enAuthors.addAll(List<String>.from(wgerBase["author_history"] as List? ??
-        const <String>[])); //todo nullable author_history is just temporary
+        const <String>[])); //TODO nullable author_history is just temporary
     enAuthors.addAll(List<String>.from(
         wgerExerciseEn["author_history"] as List? ??
-            const <String>[])); //todo nullable author_history is just temporary
+            const <String>[])); //TODO nullable author_history is just temporary
     final descAuthors = enAuthors.join(Exercises.listSeparator);
     final type = BundledExercises.headExercises.contains(wgerBaseId)
         ? ExerciseType.head
@@ -148,10 +148,16 @@ class WgerExerciseUtil {
             (wgerExercise["aliases"] as List?)?.join(Exercises.listSeparator);
         final aliases = (aliasesJoined?.isEmpty ?? true) ? null : aliasesJoined;
 
-        final translationAuthors =
-            (wgerExercise["author_history"] as List<String>)
+        final translationAuthors = () {
+          //TODO simplify later and remove try catch, after fixing: _CastError (type 'List<dynamic>' is not a subtype of type 'List<String>' in type cast)
+          try {
+            return (wgerExercise["author_history"] as List<String>)
                 .map((author) => author)
                 .join(Exercises.listSeparator);
+          } catch (_) {
+            return "";
+          }
+        }();
 
         exerciseTranslations.putIfAbsent(
             language,
@@ -164,7 +170,7 @@ class WgerExerciseUtil {
                 notes: notes,
                 translationAuthors: translationAuthors,
                 translationLicense:
-                    descLicense)); //todo is the translation license the description one?
+                    descLicense)); //TODO is the translation license the description one?
       }
     }
     return exerciseTranslations;

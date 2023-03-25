@@ -30,7 +30,7 @@ import 'package:feeel/i18n/translations.dart';
 import 'flipped.dart';
 
 class ExerciseListItem extends StatelessWidget {
-  final Exercise exercise; //todo migrate to FullExercise
+  final Exercise exercise; //TODO migrate to FullExercise
   final FeeelSwatch colorSwatch;
   final Widget subtitle;
 

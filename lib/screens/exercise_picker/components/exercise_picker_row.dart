@@ -35,7 +35,7 @@ class ExercisePickerRow extends StatelessWidget {
                     .translationsByLanguage?.values.first.name ??
                 primaryLangFullExercise.exercise.name)),
         IconButton(
-          //todo add labels to all icons
+          //TODO add labels to all icons
           icon: const Icon(Icons.info_outline),
           tooltip: AppLocalizations.of(context)!.btnMoreInfo,
           onPressed: () => ExerciseSheet.showSheet(

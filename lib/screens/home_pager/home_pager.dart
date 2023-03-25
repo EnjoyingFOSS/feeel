@@ -42,10 +42,10 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
 
   @override
   void initState() {
-    // todo CHECK IF USER IS UPGRADING FROM < 3.0.0 AND ASK HIM IF TO ALLOW INTERNET (have it by default post-3.0.0, but still in settings)
-    // todo turn this screen into a stateless widget, use WidgetsBinding.instance.addPostFrameCallback((_) => yourFunction(context)) INSTEAD;
+    // TODO CHECK IF USER IS UPGRADING FROM < 3.0.0 AND ASK HIM IF TO ALLOW INTERNET (have it by default post-3.0.0, but still in settings)
+    // TODO turn this screen into a stateless widget, use WidgetsBinding.instance.addPostFrameCallback((_) => yourFunction(context)) INSTEAD;
     SharedPreferences.getInstance().then((prefs) {
-      //todo is the initState method the right place for this?
+      //TODO is the initState method the right place for this?
       if (prefs.getBool(PreferenceKeys.showDisclaimer) ?? true) {
         DisclaimerSheet.showSheet(context);
       }
@@ -58,7 +58,7 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
     final showSidebar =
         MediaQuery.of(context).size.width > FeeelGrid.breakpointXL;
     return Scaffold(
-        //todo do I need SafeArea here?
+        //TODO do I need SafeArea here?
         backgroundColor: Theme.of(context).colorScheme.background,
         bottomNavigationBar: (!showSidebar)
             ? NavigationBar(

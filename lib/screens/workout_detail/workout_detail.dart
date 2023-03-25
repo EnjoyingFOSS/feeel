@@ -63,7 +63,7 @@ class _WorkoutDetailScreenState extends ConsumerState<WorkoutDetailScreen> {
         onWillPop: () async {
           if (!Platform.isLinux) {
             Wakelock.disable();
-          } //todo use provider for wakelock?
+          } //TODO use provider for wakelock?
           return true;
         },
         child: Scaffold(
@@ -78,7 +78,7 @@ class _WorkoutDetailScreenState extends ConsumerState<WorkoutDetailScreen> {
                     } else {
                       return SafeArea(
                           child: Column(children: [
-                        //todo make scrollable (for landscape)
+                        //TODO make scrollable (for landscape)
                         WorkoutHeader(
                             workout: widget.workout, colorSwatch: colorSwatch),
                         Flexible(child: EmptyWorkout(fullWorkout: fullWorkout))
@@ -87,7 +87,7 @@ class _WorkoutDetailScreenState extends ConsumerState<WorkoutDetailScreen> {
                   } else {
                     return SafeArea(
                         child: Column(children: [
-                      //todo make scrollable (for landscape)
+                      //TODO make scrollable (for landscape)
                       WorkoutHeader(
                         workout: widget.workout,
                         colorSwatch: colorSwatch,

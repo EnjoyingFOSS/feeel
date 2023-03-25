@@ -27,9 +27,9 @@ import 'feeel_color.dart';
 import 'feeel_shade.dart';
 
 class FeeelThemes {
-  //todo make into providers too?
+  //TODO make into providers too?
   static final lightColors = ColorScheme(
-      //todo extract colors to separate file
+      //TODO extract colors to separate file
       primary:
           FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.dark),
       onPrimary: Colors.white,
@@ -67,7 +67,7 @@ class FeeelThemes {
           .getColor(FeeelShade.darkest),
       onSecondaryContainer:
           FeeelSwatches.swatches[FeeelColor.orange]!.getColor(FeeelShade.light),
-      surface: Colors.grey.shade900, //todo test
+      surface: Colors.grey.shade900, //TODO test
       onSurface: Colors.white,
       background: Colors.black,
       onBackground: Colors.white,
@@ -76,7 +76,7 @@ class FeeelThemes {
       brightness: Brightness.dark);
 
   static ThemeData getThemeFromScheme(ColorScheme colorScheme) {
-    //todo system bar icon colors are wrong
+    //TODO system bar icon colors are wrong
     return ThemeData(
         materialTapTargetSize: MaterialTapTargetSize.padded,
         colorScheme: colorScheme,

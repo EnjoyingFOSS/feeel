@@ -31,7 +31,7 @@ class ContributionOverlay extends StatelessWidget {
 
   const ContributionOverlay(
       {super.key,
-      required this.colorSwatch}); //todo not sure this can be const if using translations
+      required this.colorSwatch}); //TODO not sure this can be const if using translations
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class ContributionOverlay extends StatelessWidget {
                 foregroundColor:
                     colorSwatch.getForegroundColor(FeeelShade.dark)),
             onPressed: () => URLUtil.launchURL(context,
-                "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"), //todo have a more fitting page for just contributing the photos
+                "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"), //TODO have a more fitting page for just contributing the photos
             child: Text(AppLocalizations.of(context)!.btnContributeAnImage))
       ]),
     ));

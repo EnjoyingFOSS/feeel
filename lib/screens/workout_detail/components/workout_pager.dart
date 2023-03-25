@@ -68,7 +68,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
       final imageSlug = widget.fullWorkout.exercises[0].imageSlug;
       precacheImage(
           Image.asset(AssetUtil.getImageOrPlaceholderPath(imageSlug))
-              .image, //todo precache inside workout page instead?
+              .image, //TODO precache inside workout page instead?
           context);
     }
   }

@@ -39,13 +39,13 @@ import '../theming/feeel_shade.dart';
 import '../theming/feeel_swatch.dart';
 
 class ExerciseSheet extends StatelessWidget {
-  //todo migrate to FullExercise!
-  //todo make responsive // todo show during breaks
+  //TODO migrate to FullExercise!
+  //TODO make responsive // TODO show during breaks
   final Exercise exercise;
   final FeeelSwatch colorSwatch;
 
   const ExerciseSheet(
-      //todo make an alternative for Linux — a dialog with the same content
+      //TODO make an alternative for Linux — a dialog with the same content
       {required this.exercise,
       required this.colorSwatch,
       Key? key})
@@ -65,14 +65,14 @@ class ExerciseSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo make this themable
+    //TODO make this themable
     return DraggableScrollableSheet(
       expand: false,
       initialChildSize: 0.75,
       snap: true,
       snapSizes: const [0.75, 1.0],
       builder: (BuildContext context, ScrollController scrollController) {
-        final imageSlug = exercise.imageSlug; //todo reset image slug on display
+        final imageSlug = exercise.imageSlug; //TODO reset image slug on display
         final headOnly = exercise.type == ExerciseType.head;
 
         final brightness = Theme.of(context).brightness;
@@ -215,7 +215,7 @@ class ExerciseSheet extends StatelessWidget {
                                 Container(
                                     color: fgColor.withAlpha(48),
                                     height:
-                                        1), //todo hide licenses under an expandable button
+                                        1), //TODO hide licenses under an expandable button
                                 const SizedBox(
                                   height: 16,
                                 ),
