@@ -26,7 +26,7 @@ import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 
@@ -71,9 +71,7 @@ class ContributeSheet extends StatelessWidget {
     final wgerLangBit =
         _wgerSupportedLanguages.contains(I18n.language) ? I18n.language : "en";
     final wgerSentenceSplit =
-        "Exercises are contributed through **the wger website**, another open-source community project. In a future release, Feeel will incorporate all exercises from this website."
-            .i18n
-            .split("**");
+        AppLocalizations.of(context)!.txtContributeViaWger.split("**");
     if (wgerSentenceSplit.length < 3) {
       wgerSentenceSplit.add("");
       wgerSentenceSplit.add("");
@@ -125,7 +123,8 @@ class ContributeSheet extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "Contribute".i18n,
+                                        AppLocalizations.of(context)!
+                                            .txtSubmitNewExercise,
                                         textAlign: TextAlign.center,
                                         style: Theme.of(context)
                                             .textTheme
@@ -159,7 +158,7 @@ class ContributeSheet extends StatelessWidget {
                                 TextSpan(text: wgerSentenceSplit[2]),
                                 TextSpan(
                                     text:
-                                        "\n\n${"Contributing via wger requires an account older than 21 days.".i18n}")
+                                        "\n\n${AppLocalizations.of(context)!.txtWger21Days}")
                               ]),
                         ),
                         const SizedBox(
@@ -169,7 +168,8 @@ class ContributeSheet extends StatelessWidget {
                           ElevatedButton(
                               onPressed: () => URLUtil.launchURL(context,
                                   "https://wger.de/$wgerLangBit/user/registration"),
-                              child: Text("Sign up for wger".i18n)),
+                              child: Text(
+                                  AppLocalizations.of(context)!.btnWgerSignUp)),
                         if (narrowLayout)
                           const SizedBox(
                             height: 8,
@@ -178,7 +178,8 @@ class ContributeSheet extends StatelessWidget {
                           OutlinedButton(
                               onPressed: () => URLUtil.launchURL(context,
                                   "https://wger.de/$wgerLangBit/user/login"),
-                              child: Text("Log in with wger".i18n)),
+                              child: Text(
+                                  AppLocalizations.of(context)!.btnWgerLogIn)),
                         if (!narrowLayout) //todo the CTA should be one button to a page with guidelines
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -186,14 +187,18 @@ class ContributeSheet extends StatelessWidget {
                                 ElevatedButton(
                                     onPressed: () => URLUtil.launchURL(context,
                                         "https://wger.de/$wgerLangBit/user/registration"),
-                                    child: Text("Sign up for wger".i18n)),
+                                    child: Text(AppLocalizations.of(context)!
+                                        .btnWgerSignUp)),
                                 const SizedBox(
                                   width: 8,
                                 ),
                                 OutlinedButton(
-                                    onPressed: () => URLUtil.launchURL(context,
-                                        "https://wger.de/$wgerLangBit/user/login"),
-                                    child: Text("Log in with wger".i18n))
+                                    onPressed: () => URLUtil.launchURL(
+                                        context,
+                                        AppLocalizations.of(context)!
+                                            .btnWgerLogIn),
+                                    child: Text(AppLocalizations.of(context)!
+                                        .btnWgerLogIn))
                               ])
                       ])))
         ])),

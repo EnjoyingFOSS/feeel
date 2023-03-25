@@ -39,7 +39,7 @@ import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WorkoutEditorScreen extends ConsumerStatefulWidget {
@@ -84,17 +84,18 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
                       child: FormField<void>(
                         validator: (_) {
                           if (widget.editableWorkout.workoutExercises.isEmpty) {
-                            return "Please add at least 1 exercise".i18n;
+                            return AppLocalizations.of(context)!
+                                .txtWorkoutExercisesEmpty;
                           }
                           return null;
                         },
                         builder: (FormFieldState state) {
-                          //todo not sure if using formfield and its state correctly, should probably hold widget.editableWorkout.workoutExercises in state
+                          //TODO not sure if using formfield and its state correctly, should probably hold widget.editableWorkout.workoutExercises in state
                           return (widget
                                   .editableWorkout.workoutExercises.isEmpty)
                               ? EmptyPlaceholder(
-                                  //todo there's too much empty space in landscape view
-                                  //todo EditorHeader and EditorSubheader are used several times here; refactor to deduplicate code
+                                  //TODO there's too much empty space in landscape view
+                                  //TODO EditorHeader and EditorSubheader are used several times here; refactor to deduplicate code
                                   header: EditorHeader(
                                       onClose: _onClose,
                                       saveState: (String? text) {
@@ -103,19 +104,20 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
                                         }
                                       },
                                       colorSwatch: _colorSwatch,
-                                      hintText: 'Workout title'.i18n,
-                                      emptyError:
-                                          "Please specify a workout title".i18n,
+                                      hintText: AppLocalizations.of(context)!
+                                          .txtWorkoutTitle,
+                                      emptyError: AppLocalizations.of(context)!
+                                          .txtWorkoutTitleEmpty,
                                       textEditingController: _titleController),
                                   subheader: EditorSubheader(
                                       workoutDuration:
                                           widget.editableWorkout.getDuration(),
                                       category: widget.editableWorkout.category,
                                       onCategoryChanged: _onCategoryChanged),
-                                  heading: "Be your own coach!".i18n,
-                                  subheading:
-                                      "Design the workout that makes you feel the best"
-                                          .i18n,
+                                  heading: AppLocalizations.of(context)!
+                                      .txtBeYourOwnCoach,
+                                  subheading: AppLocalizations.of(context)!
+                                      .txtWorkoutToMakeYouFeelBest,
                                   errorMessage: state.errorText,
                                   child: TriangleFrame(
                                     seed: 52,
@@ -158,10 +160,12 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
                                             }
                                           },
                                           colorSwatch: _colorSwatch,
-                                          hintText: 'Workout title'.i18n,
+                                          hintText:
+                                              AppLocalizations.of(context)!
+                                                  .txtWorkoutTitle,
                                           emptyError:
-                                              "Please specify a workout title"
-                                                  .i18n,
+                                              AppLocalizations.of(context)!
+                                                  .txtWorkoutTitleEmpty,
                                           textEditingController:
                                               _titleController),
                                       subheader: EditorSubheader(
@@ -211,16 +215,20 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
                               child: Row(
                                 children: <Widget>[
                                   TextButton.icon(
-                                      label: Text("Add exercises".i18n,
+                                      label: Text(
+                                          AppLocalizations.of(context)!
+                                              .btnAddExercise,
                                           style: TextStyle(
                                               color:
                                                   theme.colorScheme.onSurface)),
                                       icon: Icon(Icons.add,
                                           color: theme.colorScheme.onSurface),
                                       onPressed: _addExercisesOnPressed),
-                                  //todo if (widget.editableWorkout.workoutExercises.length > 0)
+                                  //TODO if (widget.editableWorkout.workoutExercises.length > 0)
                                   TextButton.icon(
-                                      label: Text("Adjust timing".i18n,
+                                      label: Text(
+                                          AppLocalizations.of(context)!
+                                              .btnAdjustTiming,
                                           style: TextStyle(
                                               color:
                                                   theme.colorScheme.onSurface)),
@@ -250,13 +258,14 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
                     });
                   },
                   icon: const Icon(Icons.done),
-                  label: Text("Done editing timing".i18n))
+                  label:
+                      Text(AppLocalizations.of(context)!.btnDoneEditingTiming))
               : FloatingActionButton(
                   backgroundColor: _colorSwatch
                       .getColor(FeeelShade.dark.invertIfDark(theme.brightness)),
                   foregroundColor: _colorSwatch.getForegroundColor(
                       FeeelShade.dark.invertIfDark(theme.brightness)),
-                  tooltip: "Done".i18n,
+                  tooltip: AppLocalizations.of(context)!.btnDone,
                   child: const Icon(Icons.done),
                   onPressed: () {
                     final form = _formKey.currentState;
@@ -273,7 +282,7 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
   }
 
   Future<void> _addExercisesOnPressed() async {
-    // _saveTempState(); todo not needed
+    // _saveTempState(); // todo not needed
     List<int>? exerciseIds = await Navigator.push(
         context,
         MaterialPageRoute(
@@ -286,7 +295,7 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
             exerciseIds.map((int exerciseId) => EditableWorkoutExercise(
                 exercise: exerciseId,
                 key:
-                    UniqueKey())) // todo make sure list works with zero exercise
+                    UniqueKey())) // TODO make sure list works with zero exercise
             );
       }
     });
@@ -298,8 +307,8 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
         _editingTimeMode = true;
       });
     } else {
-      SnackBarHelper.showInfoSnackBar(
-          ScaffoldMessenger.of(context), "Add an exercise first".i18n);
+      SnackBarHelper.showInfoSnackBar(ScaffoldMessenger.of(context),
+          AppLocalizations.of(context)!.txtAddExerciseFirst);
     }
   }
 
@@ -319,23 +328,23 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
   }
 
   void _onClose() {
-    // todo show only if edits were made
+    // TODO show only if edits were made
     showDialog<void>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-              title: Text("Discard changes?".i18n),
+              title: Text(AppLocalizations.of(context)!.txtDiscardChanges),
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text("Cancel".i18n)),
+                    child: Text(AppLocalizations.of(context)!.btnCancel)),
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                       Navigator.pop(context);
                     },
-                    child: Text("Discard".i18n))
+                    child: Text(AppLocalizations.of(context)!.btnDiscard))
               ],
             ));
   }

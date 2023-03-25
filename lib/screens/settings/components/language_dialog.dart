@@ -20,39 +20,48 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/enums/feeel_theme_mode.dart';
-import 'package:feeel/models/feeel_theme_meta.dart';
-import 'package:feeel/providers/theme_meta_provider.dart';
+import 'package:feeel/i18n/ui_locale_helper.dart';
+import 'package:feeel/providers/locale_provider.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ThemeDialog extends ConsumerWidget {
-  final FeeelThemeMeta themeMeta;
+class LanguageDialog extends ConsumerWidget {
+  final Locale? chosenLocale;
 
-  const ThemeDialog({required this.themeMeta, Key? key}) : super(key: key);
+  const LanguageDialog({required this.chosenLocale, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //todo integrate the personalized switch into this too!
-    final themeNotifier = ref.read(themeMetaProvider.notifier);
+    final localeNotifier = ref.read(localeProvider.notifier);
+    const supportedLocales = AppLocalizations
+        .supportedLocales; //todo test that AppLocalization.supportedLocales.length == LocaleHelper.supportedLocaleNames.length
+    final chosenIndex = chosenLocale != null
+        ? supportedLocales.indexOf(chosenLocale!) + 1
+        : 0; //todo double-check, maybe I need to split up lang, then country
     return AlertDialog(
-      title: Text(AppLocalizations.of(context)!.txtTheme),
+      title: Text(AppLocalizations.of(context)!.txtLanguage),
       content: SizedBox(
         width: LayoutXL.cols6.width,
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: FeeelThemeMode.values.length,
+          itemCount: supportedLocales.length + 1,
           itemBuilder: (BuildContext context, int index) {
-            final itemTheme = FeeelThemeMode.values[index];
-            return RadioListTile(
+            final itemLocale = index == 0 ? null : supportedLocales[index - 1];
+            return RadioListTile<int?>(
               value: index,
-              groupValue: themeMeta.mode.index,
-              title: Text(itemTheme.getTranslation(context)),
+              groupValue: chosenIndex,
+              title: Text(itemLocale == null
+                  ? AppLocalizations.of(context)!.txtUseSystemLanguage
+                  : (UILocaleHelper.supportedLocaleNames[itemLocale] ??
+                      itemLocale.toLanguageTag())),
               onChanged: (int? newIndex) {
                 if (newIndex != null) {
-                  themeNotifier.setTheme(themeMeta.copyWith(mode: itemTheme));
+                  final preferredLocale =
+                      newIndex == 0 ? null : supportedLocales[newIndex - 1];
+                  localeNotifier.setPreferredLocale(preferredLocale);
                 }
                 Navigator.pop(context);
               },

@@ -24,7 +24,7 @@ import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -94,7 +94,7 @@ class DisclaimerSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Feeel is a community project".i18n,
+                      AppLocalizations.of(context)!.txtCommunityDrivenHeader,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
@@ -105,8 +105,7 @@ class DisclaimerSheet extends StatelessWidget {
                         constraints:
                             BoxConstraints(maxWidth: LayoutXL.cols8.width),
                         child: Text(
-                          "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion."
-                              .i18n,
+                          AppLocalizations.of(context)!.txtDisclaimerContent,
                           style: TextStyle(color: fgColor),
                         )),
                     const SizedBox(
@@ -120,7 +119,7 @@ class DisclaimerSheet extends StatelessWidget {
                         prefs.setBool(PreferenceKeys.showDisclaimer, false);
                         navigator.pop();
                       },
-                      child: Text("I understand".i18n),
+                      child: Text(AppLocalizations.of(context)!.btnIunderstand),
                     )
                   ]))
         ])),

@@ -23,7 +23,7 @@
 import 'package:feeel/db/database.dart';
 import 'package:feeel/db/workout_import_export.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/screens/workout_editor/workout_editor.dart';
@@ -33,17 +33,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
-enum _WorkoutListItemAction {
-  edit("Edit"),
-  delete("Delete"),
-  duplicate("Duplicate"),
-  export("Export");
-
-  final String translationKey;
-
-  const _WorkoutListItemAction(this.translationKey);
-}
-
 class WorkoutListItemMenu extends ConsumerWidget {
   final Workout workout;
 
@@ -52,34 +41,29 @@ class WorkoutListItemMenu extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final providerNotifier = ref.read(workoutProvider.notifier);
-    return PopupMenuButton<_WorkoutListItemAction>(
-      itemBuilder: (context) {
-        final menuItemValues = workout.type == WorkoutType.bundled
-            ? [_WorkoutListItemAction.duplicate, _WorkoutListItemAction.export]
-            : _WorkoutListItemAction.values;
-        return menuItemValues
-            .map((wlia) => PopupMenuItem(
-                value: wlia, child: Text(wlia.translationKey.i18n)))
-            .toList();
-      },
-      onSelected: (_WorkoutListItemAction value) async {
-        switch (value) {
-          case _WorkoutListItemAction.delete:
-            return _onDeleteCustom(context, workout, providerNotifier);
-          case _WorkoutListItemAction.edit:
-            return _onEditCustom(context, workout);
-          case _WorkoutListItemAction.duplicate:
-            return _onDuplicate(context, workout);
-          case _WorkoutListItemAction.export:
-            return await _onExport(context, workout, ref);
-        }
-      },
-    );
+    return PopupMenuButton<void>(
+        itemBuilder: (context) => [
+              if (workout.type == WorkoutType.custom)
+                PopupMenuItem(
+                    child: Text(AppLocalizations.of(context)!.btnEdit),
+                    onTap: () => _onEditCustom(context, workout)),
+              if (workout.type == WorkoutType.custom)
+                PopupMenuItem(
+                    child: Text(AppLocalizations.of(context)!.btnDelete),
+                    onTap: () =>
+                        _onDeleteCustom(context, workout, providerNotifier)),
+              PopupMenuItem(
+                  child: Text(AppLocalizations.of(context)!.btnDuplicate),
+                  onTap: () => _onDuplicate(context, workout)),
+              PopupMenuItem(
+                  child: Text(AppLocalizations.of(context)!.btnExport),
+                  onTap: () => _onExport(context, workout, ref))
+            ]);
   }
 
   void _onDeleteCustom(BuildContext context, Workout workoutListed,
       WorkoutProviderNotifier notifier) {
-    // todo allow an undo !!!
+    // TODO allow an undo !!!
     notifier.deleteWorkout(workoutListed.id);
   }
 
@@ -109,23 +93,21 @@ class WorkoutListItemMenu extends ConsumerWidget {
   Future<void> _onExport(
       BuildContext context, Workout workout, WidgetRef ref) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final workoutListNotifier = ref.read(workoutListProvider.notifier);
+
     workoutListNotifier.startExporting();
     final fullWorkout = await GetIt.I<FeeelDB>().queryFullWorkout(workout);
     try {
       final exported = await WorkoutImportExport.exportWorkout(fullWorkout);
       if (exported) {
-        SnackBarHelper.showInfoSnackBar(
-            scaffoldMessenger,
-            "\"%s\" exported!"
-                .i18n
-                .replaceFirst("%s", fullWorkout.workout.title));
+        SnackBarHelper.showInfoSnackBar(scaffoldMessenger,
+            l10n.txtItemExported.replaceFirst("%s", fullWorkout.workout.title));
       }
     } catch (_) {
       SnackBarHelper.showInfoSnackBar(
           scaffoldMessenger,
-          "Could not export \"%s\"."
-              .i18n
+          l10n.txtCouldNotExportItem
               .replaceFirst("%s", fullWorkout.workout.title),
           duration: SnackBarDuration.long);
     }

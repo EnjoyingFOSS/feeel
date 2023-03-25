@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'duration_dropdown.dart';
 
@@ -49,7 +49,8 @@ class TimingHeader extends StatelessWidget {
               chosenValue: exerciseDuration,
               predefinedValues: const [15, 30, 60],
               decoration: InputDecoration(
-                  labelText: "Exercise duration".i18n, filled: true),
+                  labelText: AppLocalizations.of(context)!.txtExerciseDuration,
+                  filled: true),
               onChanged: onExerciseDurationChanged,
             )),
             const SizedBox(
@@ -60,8 +61,8 @@ class TimingHeader extends StatelessWidget {
               chosenValue: breakDuration,
               predefinedValues: const [5, 10, 15],
               decoration: InputDecoration(
-                  //todo ellipsize
-                  labelText: "Break duration".i18n,
+                  //TODO ellipsize
+                  labelText: AppLocalizations.of(context)!.txtBreakDuration,
                   filled: true),
               onChanged: onBreakDurationChanged,
             ))

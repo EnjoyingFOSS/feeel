@@ -25,7 +25,6 @@ import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/utils/duration_util.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EditorSubheader extends ConsumerWidget {
@@ -59,7 +58,7 @@ class EditorSubheader extends ConsumerWidget {
                       return DropdownMenuItem(
                         value: value,
                         child: Text(
-                          value.translationKey.i18n,
+                          value.getTranslation(context),
                           style: TextStyle(
                               color: colorSwatches[value.feeelColor]!.getColor(
                                   FeeelShade.darker
@@ -69,7 +68,7 @@ class EditorSubheader extends ConsumerWidget {
                     }))),
             const Spacer(),
             if (workoutDuration != null && workoutDuration! > 0)
-              Text(DurationUtil.getDurationLongform(workoutDuration!))
+              Text(DurationUtil.getDurationLongform(context, workoutDuration!))
           ],
         ));
   }

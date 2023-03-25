@@ -37,8 +37,7 @@ class WorkoutListScreen extends StatelessWidget {
           bottom: 16,
           end: 16,
           textDirection: Directionality.of(context),
-          child:
-              const WorkoutAddSpeedDial()) //todo this is a hack, remove after moving to riverpod!
+          child: const WorkoutAddSpeedDial())
     ]));
   }
 }

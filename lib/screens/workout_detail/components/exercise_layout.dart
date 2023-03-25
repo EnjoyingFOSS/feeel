@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../theming/feeel_shade.dart';
 import '../../../theming/feeel_swatch.dart';
@@ -106,7 +106,8 @@ class ExerciseLayout extends StatelessWidget {
                                     togglePlayPause: togglePlayPause,
                                   )
                                 : Text(
-                                    "Tap for controls".i18n,
+                                    AppLocalizations.of(context)!
+                                        .txtTapForControls,
                                     style: TextStyle(color: onBackgroundColor),
                                   ),
                             const Expanded(
@@ -166,7 +167,7 @@ class ExerciseLayout extends StatelessWidget {
                       togglePlayPause: togglePlayPause,
                     )
                   : Text(
-                      "Tap for controls".i18n,
+                      AppLocalizations.of(context)!.txtTapForControls,
                       style: TextStyle(color: onBackgroundColor),
                     ),
               const SizedBox(

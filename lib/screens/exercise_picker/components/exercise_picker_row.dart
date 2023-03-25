@@ -3,7 +3,7 @@ import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/components/flipped.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../components/exercise_sheet.dart';
 import '../../../theming/feeel_shade.dart';
@@ -37,7 +37,7 @@ class ExercisePickerRow extends StatelessWidget {
         IconButton(
           //todo add labels to all icons
           icon: const Icon(Icons.info_outline),
-          tooltip: "More info".i18n,
+          tooltip: AppLocalizations.of(context)!.btnMoreInfo,
           onPressed: () => ExerciseSheet.showSheet(
               context, primaryLangFullExercise.exercise, colorSwatch),
         ),

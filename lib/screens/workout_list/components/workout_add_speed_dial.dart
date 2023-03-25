@@ -25,7 +25,7 @@ import 'dart:io';
 import 'package:archive/archive_io.dart';
 import 'package:feeel/db/workout_import_export.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/screens/workout_editor/workout_editor.dart';
 import 'package:feeel/screens/workout_list/providers/workout_list_provider.dart';
@@ -46,7 +46,7 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
       children: [
         SpeedDialChild(
           child: const Icon(Icons.create),
-          label: "Create custom workout".i18n,
+          label: AppLocalizations.of(context)!.btnCreateCustomWorkout,
           onTap: () {
             Navigator.push<void>(context,
                 MaterialPageRoute(builder: (BuildContext context) {
@@ -58,7 +58,7 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
         ),
         SpeedDialChild(
             child: const Icon(Icons.upload),
-            label: "Import workout(s)".i18n,
+            label: AppLocalizations.of(context)!.txtImportWorkout,
             onTap: () => _importFiles(context, ref))
       ],
     );
@@ -66,6 +66,7 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
 
   Future<void> _importFiles(BuildContext context, WidgetRef ref) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     final screenStateNotifier = ref.read(workoutListProvider.notifier);
 
@@ -83,12 +84,12 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
           if (imported) {
             SnackBarHelper.showInfoSnackBar(
                 scaffoldMessenger,
-                "\"%s\" imported!".i18n.replaceFirst("%s",
-                    file.name)); //todo keep track of imported files, then show one message summarizing import results
+                l10n.txtItemImported.replaceFirst("%s",
+                    file.name)); //TODO keep track of imported files, then show one message summarizing import results
           }
         } catch (_) {
           SnackBarHelper.showInfoSnackBar(scaffoldMessenger,
-              "Could not import \"%s\".".i18n.replaceFirst("%s", file.name),
+              l10n.txtCouldNotImportItem.replaceFirst("%s", file.name),
               duration: SnackBarDuration.long);
         }
       }
@@ -106,22 +107,24 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
     } else {
       if (chosenFileExtension == "zip") {
         final shouldImport = await showDialog<bool>(
-                //todo try catch in case it's a corrupt/invalid file
+                //TODO try catch in case it's a corrupt/invalid file
                 context: context,
                 builder: (context) => AlertDialog(
-                      title: Text("Duplicates will not be overriden".i18n),
+                      title: Text(AppLocalizations.of(context)!
+                          .txtDuplicateImportTitle),
                       content: Text(
-                          "If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them."
-                              .i18n),
+                          AppLocalizations.of(context)!.txtDuplicateImportInfo),
                       actions: [
                         TextButton(
                             onPressed: () => Navigator.of(context).pop(false),
-                            child: Text("Cancel".i18n)),
+                            child:
+                                Text(AppLocalizations.of(context)!.btnCancel)),
                         TextButton(
                             onPressed: () {
                               Navigator.of(context).pop(true);
                             },
-                            child: Text("Import anyway".i18n))
+                            child: Text(
+                                AppLocalizations.of(context)!.btnImportAnyway))
                       ],
                     )) ??
             false;

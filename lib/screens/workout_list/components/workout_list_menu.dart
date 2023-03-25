@@ -23,7 +23,7 @@
 import 'package:feeel/db/database.dart';
 import 'package:feeel/db/workout_import_export.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:feeel/screens/workout_list/providers/workout_list_provider.dart';
 import 'package:feeel/utils/format_util.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
@@ -31,46 +31,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
-enum _WorkoutListAction {
-  exportCustom("Export all custom workouts");
-
-  final String translationKey;
-
-  const _WorkoutListAction(this.translationKey);
-}
-
 class WorkoutListMenu extends ConsumerWidget {
   const WorkoutListMenu({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return PopupMenuButton<_WorkoutListAction>(
-      onSelected: (actionItem) async {
-        switch (actionItem) {
-          case _WorkoutListAction.exportCustom:
-            await _exportZipFile(context, ref);
-            return;
-        }
-      },
-      itemBuilder: (_) => _WorkoutListAction.values
-          .map((_WorkoutListAction actionItem) =>
-              PopupMenuItem<_WorkoutListAction>(
-                value: actionItem,
-                child: Text(actionItem.translationKey.i18n),
-              ))
-          .toList(),
-    );
+    return PopupMenuButton<void>(
+        itemBuilder: (_) => [
+              PopupMenuItem(
+                  child: Text(
+                      AppLocalizations.of(context)!.txtExportCustomWorkouts),
+                  onTap: () => _exportZipFile(context, ref))
+            ]);
   }
 
   Future<void> _exportZipFile(BuildContext context, WidgetRef ref) async {
     final workoutListNotifier = ref.read(workoutListProvider.notifier);
-    workoutListNotifier.startExporting();
     final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final l10n = AppLocalizations.of(context)!;
+
+    workoutListNotifier.startExporting();
     final fullCustomWorkouts =
         await GetIt.I<FeeelDB>().queryFullWorkoutsByType(WorkoutType.custom);
     if (fullCustomWorkouts.isEmpty) {
       SnackBarHelper.showInfoSnackBar(
-          scaffoldMessenger, "You don't have any custom workouts".i18n);
+          scaffoldMessenger, l10n.txtNoCustomWorkouts);
     } else {
       final zipFilename =
           "${"Feeel ${FormatUtil.getDateTimeStringToSec(DateTime.now())}"}.zip";
@@ -79,11 +64,11 @@ class WorkoutListMenu extends ConsumerWidget {
             fullCustomWorkouts, zipFilename);
         if (exported) {
           SnackBarHelper.showInfoSnackBar(scaffoldMessenger,
-              "\"%s\" exported!".i18n.replaceFirst("%s", zipFilename));
+              l10n.txtItemExported.replaceFirst("%s", zipFilename));
         }
       } catch (_) {
         SnackBarHelper.showInfoSnackBar(scaffoldMessenger,
-            "Could not export \"%s\".".i18n.replaceFirst("%s", zipFilename),
+            l10n.txtCouldNotExportItem.replaceFirst("%s", zipFilename),
             duration: SnackBarDuration.long);
       }
     }

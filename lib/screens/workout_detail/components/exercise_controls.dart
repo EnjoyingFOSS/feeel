@@ -22,7 +22,7 @@
 
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ExerciseControls extends StatelessWidget {
   final Color themeDarkColor;
@@ -47,7 +47,7 @@ class ExerciseControls extends StatelessWidget {
               child: IconButton(
             iconSize: 32,
             color: themeDarkColor,
-            tooltip: "Previous exercise".i18n,
+            tooltip: AppLocalizations.of(context)!.btnPreviousExercise,
             icon: const Icon(Icons.skip_previous),
             onPressed: skipToPrevious,
           )),
@@ -55,7 +55,7 @@ class ExerciseControls extends StatelessWidget {
             child: IconButton(
                 iconSize: 64,
                 color: themeDarkColor,
-                tooltip: "Resume workout".i18n,
+                tooltip: AppLocalizations.of(context)!.btnResumeWorkout,
                 icon: const Icon(Icons.play_arrow),
                 onPressed: togglePlayPause),
           ),
@@ -63,7 +63,7 @@ class ExerciseControls extends StatelessWidget {
             child: IconButton(
                 iconSize: 32,
                 color: themeDarkColor,
-                tooltip: "Next exercise".i18n,
+                tooltip: AppLocalizations.of(context)!.btnNextExercise,
                 icon: const Icon(
                   Icons.skip_next,
                 ),

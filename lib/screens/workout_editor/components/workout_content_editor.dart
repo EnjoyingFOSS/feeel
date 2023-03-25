@@ -23,7 +23,7 @@
 import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'exercise_editor_row.dart';
 
@@ -53,7 +53,7 @@ class WorkoutContentEditor extends StatelessWidget {
       ),
       Expanded(
           child: ReorderableListView.builder(
-              //todo somehow, this seems to no longer work on Android; could it be the onPressed aspect of the drag handle?
+              //TODO somehow, this seems to no longer work on Android; could it be the onPressed aspect of the drag handle?
               buildDefaultDragHandles: false,
               padding: const EdgeInsets.only(bottom: 32),
               itemBuilder: (context, i) {
@@ -64,7 +64,7 @@ class WorkoutContentEditor extends StatelessWidget {
                     trailing: Row(children: [
                       IconButton(
                           icon: const Icon(Icons.delete),
-                          tooltip: "Delete".i18n,
+                          tooltip: AppLocalizations.of(context)!.btnDelete,
                           onPressed: () {
                             onRemove(i);
                           }),
@@ -74,9 +74,9 @@ class WorkoutContentEditor extends StatelessWidget {
                             onPressed: () {
                               SnackBarHelper.showInfoSnackBar(
                                   ScaffoldMessenger.of(context),
-                                  "Drag this handle to reorder exercises."
-                                      .i18n);
-                              //todo test this, shouldn't show up on drag
+                                  AppLocalizations.of(context)!
+                                      .txtDragToReorder);
+                              //TODO test this, shouldn't show up on drag
                             },
                             icon: const Icon(Icons.drag_handle)),
                       )

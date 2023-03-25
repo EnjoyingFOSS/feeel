@@ -22,14 +22,25 @@
 
 // intEnum in SharedPreferences
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum FeeelThemeMode {
-  light("Light", ThemeMode.light),
-  dark("Dark", ThemeMode.dark),
-  system("System", ThemeMode.system);
+  light(ThemeMode.light),
+  dark(ThemeMode.dark),
+  system(ThemeMode.system);
 
-  final String translationKey;
   final ThemeMode themeMode;
 
-  const FeeelThemeMode(this.translationKey, this.themeMode);
+  const FeeelThemeMode(this.themeMode);
+
+  String getTranslation(BuildContext context) {
+    switch (this) {
+      case FeeelThemeMode.light:
+        return AppLocalizations.of(context)!.txtThemeLight;
+      case FeeelThemeMode.dark:
+        return AppLocalizations.of(context)!.txtThemeDark;
+      case FeeelThemeMode.system:
+        return AppLocalizations.of(context)!.txtThemeSystem;
+    }
+  }
 }

@@ -23,7 +23,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../theming/feeel_shade.dart';
 import 'learn_info.dart';
@@ -68,7 +68,7 @@ class ExerciseFooter extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           onBreak
               ? Column(children: [
-                  Text("Next up:".i18n,
+                  Text(AppLocalizations.of(context)!.txtNextUp,
                       style: TextStyle(
                           //todo use a style for this
                           fontSize: 16,

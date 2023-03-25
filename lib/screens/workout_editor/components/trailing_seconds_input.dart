@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TrailingSecondsInput extends StatelessWidget {
   final Function(String?) onSaved;
@@ -47,18 +47,18 @@ class TrailingSecondsInput extends StatelessWidget {
                 hintStyle: const TextStyle(fontStyle: FontStyle.italic),
                 hintText:
                     initialValue != null ? "" : defaultDuration.toString(),
-                //todo i18n annotation
+                //TODO i18n annotation
                 filled: true),
             keyboardType: TextInputType.number,
             validator: (String? input) {
               if (input == "") return null;
               final secs = int.tryParse(input ?? "");
               if (secs == null) {
-                //todo upper bound?
-                return "Non-numeric".i18n;
+                //TODO upper bound?
+                return AppLocalizations.of(context)!.txtNumberInputNonnumeric;
               }
               if (secs < 1) {
-                return "Nonpositive".i18n;
+                return AppLocalizations.of(context)!.txtNegativeNumber;
               }
               return null;
             },

@@ -21,18 +21,32 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/theming/feeel_color.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// intEnum in DB
 enum WorkoutCategory {
-  strength(0, "Strength", FeeelColor.blue),
-  stretching(1, "Stretching & yoga", FeeelColor.green),
-  cardio(2, "Cardio", FeeelColor.orange),
-  other(3, "Other", FeeelColor.gray);
+  strength(0, FeeelColor.blue),
+  stretching(1, FeeelColor.green),
+  cardio(2, FeeelColor.orange),
+  other(3, FeeelColor.gray);
 
-  final String translationKey;
   final FeeelColor feeelColor;
   final int dbValue;
-  const WorkoutCategory(this.dbValue, this.translationKey, this.feeelColor);
+  const WorkoutCategory(this.dbValue, this.feeelColor);
+
+  String getTranslation(BuildContext context) {
+    switch (this) {
+      case WorkoutCategory.strength:
+        return AppLocalizations.of(context)!.txtStrength;
+      case WorkoutCategory.stretching:
+        return AppLocalizations.of(context)!.txtStretchingAndYoga;
+      case WorkoutCategory.cardio:
+        return AppLocalizations.of(context)!.txtCardio;
+      case WorkoutCategory.other:
+        return AppLocalizations.of(context)!.txtOther;
+    }
+  }
 
   // static WorkoutCategory fromDBValue(int dbValue) {
   //   //todo use map

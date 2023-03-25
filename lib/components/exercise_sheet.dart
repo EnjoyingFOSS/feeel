@@ -33,6 +33,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import '../utils/asset_util.dart';
 import '../enums/exercise_type.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../theming/feeel_shade.dart';
 import '../theming/feeel_swatch.dart';
@@ -192,7 +193,8 @@ class ExerciseSheet extends StatelessWidget {
                                 ),
                                 if (exercise.notes != null)
                                   Text(
-                                    "Notes:".i18n,
+                                    AppLocalizations.of(context)!
+                                        .txtNotesInDesc,
                                     style: TextStyle(
                                         color: fgColor,
                                         fontWeight: FontWeight.bold),
@@ -218,25 +220,8 @@ class ExerciseSheet extends StatelessWidget {
                                   height: 16,
                                 ),
                                 Text(
-                                  "Disclaimer".i18n.toUpperCase(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelSmall
-                                      ?.copyWith(color: licenseColor),
-                                ),
-                                MarkdownBody(
-                                    data:
-                                        "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion."
-                                            .i18n,
-                                    styleSheet: markdownLicenseStyle,
-                                    onTapLink: (text, url, title) =>
-                                        URLUtil.launchURL(context, url ?? "")),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                Text(
-                                  "English description license"
-                                      .i18n
+                                  AppLocalizations.of(context)!
+                                      .txtDisclaimerHeading
                                       .toUpperCase(),
                                   style: Theme.of(context)
                                       .textTheme
@@ -244,8 +229,26 @@ class ExerciseSheet extends StatelessWidget {
                                       ?.copyWith(color: licenseColor),
                                 ),
                                 MarkdownBody(
-                                    data: "English description by %1s is licensed under the [%2s license]."
-                                        .i18n
+                                    data: AppLocalizations.of(context)!
+                                        .txtDisclaimerContent,
+                                    styleSheet: markdownLicenseStyle,
+                                    onTapLink: (text, url, title) =>
+                                        URLUtil.launchURL(context, url ?? "")),
+                                const SizedBox(
+                                  height: 16,
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!
+                                      .txtEnglishDescriptionLicense
+                                      .toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelSmall
+                                      ?.copyWith(color: licenseColor),
+                                ),
+                                MarkdownBody(
+                                    data: AppLocalizations.of(context)!
+                                        .txtEnglishDescLicense
                                         .replaceFirst("]",
                                             "](${exercise.descLicense.licenseLink})")
                                         .replaceFirst(
@@ -262,7 +265,10 @@ class ExerciseSheet extends StatelessWidget {
                                   height: 16,
                                 ),
                                 if (hasImageLicense)
-                                  Text("Image license".i18n.toUpperCase(),
+                                  Text(
+                                      AppLocalizations.of(context)!
+                                          .txtImageLicense
+                                          .toUpperCase(),
                                       style: Theme.of(context)
                                           .textTheme
                                           .labelSmall

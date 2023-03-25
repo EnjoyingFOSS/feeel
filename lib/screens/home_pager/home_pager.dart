@@ -26,7 +26,7 @@ import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/screens/home_pager/components/home_pageview.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePagerScreen extends StatefulWidget {
@@ -67,12 +67,14 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
                 onDestinationSelected: _onDestinationSelected,
                 destinations: [
                   NavigationDestination(
-                      icon: const Icon(Icons.home), label: "Home".i18n),
+                      icon: const Icon(Icons.home),
+                      label: AppLocalizations.of(context)!.txtHome),
                   NavigationDestination(
                       icon: const Icon(Icons.history),
-                      label: "Your activity".i18n),
+                      label: AppLocalizations.of(context)!.txtYourActivity),
                   NavigationDestination(
-                      icon: const Icon(Icons.settings), label: "Settings".i18n)
+                      icon: const Icon(Icons.settings),
+                      label: AppLocalizations.of(context)!.txtSettings)
                 ],
               )
             : NavigationPills(
@@ -84,13 +86,15 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
                 effectiveHeight: 64,
                 children: [
                   NavigationPill(
-                      icon: const Icon(Icons.home), label: Text("Home".i18n)),
+                      icon: const Icon(Icons.home),
+                      label: Text(AppLocalizations.of(context)!.txtHome)),
                   NavigationPill(
                       icon: const Icon(Icons.history),
-                      label: Text("Your activity".i18n)),
+                      label:
+                          Text(AppLocalizations.of(context)!.txtYourActivity)),
                   NavigationPill(
                       icon: const Icon(Icons.settings),
-                      label: Text("Settings".i18n))
+                      label: Text(AppLocalizations.of(context)!.txtSettings))
                 ],
               ),
         body: HomePageView(

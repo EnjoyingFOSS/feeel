@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LearnInfo extends StatelessWidget {
   //todo indicate when an exercise has steps
@@ -54,7 +54,7 @@ class LearnInfo extends StatelessWidget {
                 children: [
                   Icon(Icons.expand_less, color: fgColor),
                   Text(
-                    "Learn the exercise".i18n,
+                    AppLocalizations.of(context)!.txtLearnTheExercise,
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall

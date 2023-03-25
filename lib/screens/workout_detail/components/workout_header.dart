@@ -50,7 +50,7 @@ class WorkoutHeader extends StatelessWidget {
     final fgColor =
         colorSwatch.getColor(FeeelShade.dark.invertIfDark(theme.brightness));
 
-    final String translatedCategory = workout.category.translationKey.i18n;
+    final String translatedCategory = workout.category.getTranslation(context);
     return Stack(clipBehavior: Clip.none, children: [
       Positioned.directional(
           textDirection: Directionality.of(context),
@@ -113,7 +113,8 @@ class WorkoutHeader extends StatelessWidget {
                       width: 16,
                     ),
                     if (workoutDuration != null)
-                      Text(DurationUtil.getDurationLongform(workoutDuration!))
+                      Text(DurationUtil.getDurationLongform(
+                          context, workoutDuration!))
                   ],
                 )
               ])))

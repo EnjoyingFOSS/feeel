@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/url_util.dart';
@@ -46,7 +46,7 @@ class ContributionOverlay extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Text(
-          "No exercise image yet".i18n,
+          AppLocalizations.of(context)!.txtNoExerciseImageYet,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
@@ -57,7 +57,7 @@ class ContributionOverlay extends StatelessWidget {
                     colorSwatch.getForegroundColor(FeeelShade.dark)),
             onPressed: () => URLUtil.launchURL(context,
                 "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"), //todo have a more fitting page for just contributing the photos
-            child: Text("Contribute one now".i18n))
+            child: Text(AppLocalizations.of(context)!.btnContributeAnImage))
       ]),
     ));
   }

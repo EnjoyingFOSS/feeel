@@ -23,7 +23,7 @@
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/providers/workout_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../enums/workout_type.dart';
@@ -41,7 +41,7 @@ class EmptyWorkout extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text("There are no exercises in this workout. :(".i18n),
+        Text(AppLocalizations.of(context)!.txtNoExercises),
         const SizedBox(
           height: 8,
         ),
@@ -49,14 +49,14 @@ class EmptyWorkout extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextButton(
-              child: Text("Back to workout list".i18n),
+              child: Text(AppLocalizations.of(context)!.btnBackToWorkoutList),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             if (fullWorkout.workout.type == WorkoutType.custom)
               ElevatedButton(
-                child: Text("Delete this workout".i18n),
+                child: Text(AppLocalizations.of(context)!.btnDeleteThisWorkout),
                 onPressed: () {
                   providerNotifier.deleteWorkout(fullWorkout.workout.id);
                   Navigator.pop(context);

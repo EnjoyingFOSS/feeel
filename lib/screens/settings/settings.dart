@@ -23,7 +23,10 @@
 import 'dart:io';
 
 import 'package:feeel/components/body_container.dart';
+import 'package:feeel/i18n/ui_locale_helper.dart';
+import 'package:feeel/providers/locale_provider.dart';
 import 'package:feeel/providers/theme_meta_provider.dart';
+import 'package:feeel/screens/settings/components/language_dialog.dart';
 // import 'package:feeel/screens/settings/components/import_export_tile.dart';
 // import 'package:archive/archive_io.dart';
 import 'package:feeel/utils/notification_helper.dart';
@@ -35,7 +38,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -64,6 +67,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Widget build(BuildContext context) {
     final themeMetaValue = ref.watch(themeMetaProvider);
     final themeMetaNotifier = ref.read(themeMetaProvider.notifier);
+    final localeValue = ref.watch(localeProvider);
+
     return BodyContainer(
         child: FutureBuilder(
             future: _preferencesFuture,
@@ -79,7 +84,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 return CustomScrollView(slivers: [
                   SliverAppBar(
                     title: Text(
-                      "Settings".i18n,
+                      AppLocalizations.of(context)!.txtSettings,
                     ),
                   ),
                   SliverList(
@@ -91,7 +96,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                             value: (settingsBundle.preferences
                                     .getBool(PreferenceKeys.ttsDisabled) ??
                                 false),
-                            title: Text("Sounds instead of voice".i18n),
+                            title: Text(
+                                AppLocalizations.of(context)!.btnDisableTTS),
                             onChanged: (bool newValue) {
                               setState(() {
                                 settingsBundle.preferences.setBool(
@@ -103,7 +109,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         SwitchListTile.adaptive(
                           secondary: const Icon(Icons.notifications),
                           value: notificationTime != null,
-                          title: Text("Daily reminder".i18n),
+                          title:
+                              Text(AppLocalizations.of(context)!.txtRemindMe),
                           onChanged: (bool setOn) {
                             _setNotificationTime(
                                 context,
@@ -116,15 +123,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         Padding(
                             padding: const EdgeInsets.only(left: 72, right: 16),
                             child: Text(
-                              "On some devices, you may need to disable battery optimization for Feeel for this to work reliably."
-                                  .i18n,
+                              AppLocalizations.of(context)!
+                                  .txtBatteryOptimization,
                               style: Theme.of(context).textTheme.bodySmall,
                             )),
                       if (notificationTime != null)
                         ListTile(
                           contentPadding:
                               const EdgeInsets.only(left: 72, right: 24),
-                          title: Text("Notification time".i18n),
+                          title: Text(AppLocalizations.of(context)!
+                              .txtNotificationTime),
                           subtitle: Text(notificationTime.format(context)),
                           onTap: () async {
                             final selectedTime = await showTimePicker(
@@ -138,9 +146,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         ),
                       ListTile(
                         leading: const Icon(Icons.palette),
-                        title: Text("Theme".i18n),
-                        subtitle: Text(themeMetaValue.mode.translationKey
-                            .i18n), //todo say whether personalized or not
+                        title: Text(AppLocalizations.of(context)!.txtTheme),
+                        subtitle: Text(themeMetaValue.mode.getTranslation(
+                            context)), //todo say whether personalized or not
                         onTap: () async {
                           await showDialog<void>(
                               context: context,
@@ -151,45 +159,88 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           });
                         },
                       ),
+                      ListTile(
+                        leading: const Icon(Icons.language),
+                        title: Text(AppLocalizations.of(context)!.txtLanguage),
+                        subtitle: Text(localeValue == null
+                            ? AppLocalizations.of(context)!.txtUseSystemLanguage
+                            : (UILocaleHelper
+                                    .supportedLocaleNames[localeValue] ??
+                                localeValue.toLanguageTag())),
+                        onTap: () async {
+                          await showDialog<void>(
+                              context: context,
+                              builder: (context) =>
+                                  LanguageDialog(chosenLocale: localeValue));
+                          setState(() {
+                            _preferencesFuture = _getSettingsBundle();
+                          });
+                        },
+                      ),
                       if (Platform.isAndroid || Platform.isLinux)
                         SwitchListTile.adaptive(
                             secondary: const SizedBox(),
-                            title: Text("Personalized colors".i18n),
+                            title: Text(AppLocalizations.of(context)!
+                                .txtPersonalizedColors),
                             value: themeMetaValue.personalized,
                             onChanged: (value) async {
                               themeMetaNotifier.setTheme(
                                   themeMetaValue.copyWith(personalized: value));
                             },
                             activeColor: switchActiveColor),
+                      SwitchListTile.adaptive(
+                          activeColor: switchActiveColor,
+                          secondary: const Icon(Icons.wifi),
+                          value: false //todo
+                          ,
+                          title: Text(AppLocalizations.of(context)!
+                              .txtExerciseUpdateFromWeb) //todo translate
+                          ,
+                          onChanged: (_) => null //todo
+                          ),
+                      SwitchListTile.adaptive(
+                          activeColor: switchActiveColor,
+                          value: false //todo
+                          ,
+                          contentPadding:
+                              const EdgeInsets.only(left: 72, right: 16),
+                          title: Text(AppLocalizations.of(context)!
+                              .txtOnlyUpdateOverWifi) //todo translate // limit downloads to wifi-only? only update on non-metered connections?
+                          ,
+                          onChanged: (_) => null //todo
+                          ),
                       ListTile(
                         leading: const Icon(Icons.volunteer_activism),
-                        title: Text("Participate".i18n),
+                        title:
+                            Text(AppLocalizations.of(context)!.txtParticipate),
                         onTap: () => URLUtil.launchURL(context,
                             "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"), //todo should also change the text on the wiki page — at least the intro
                       ),
                       ListTile(
                         leading: const Icon(Icons.attach_money),
-                        title: Text("Donate".i18n),
+                        title: Text(AppLocalizations.of(context)!.txtDonate),
                         onTap: () => URLUtil.launchURL(
                             context, "https://liberapay.com/Feeel/"),
                       ),
                       ListTile(
                         leading: const Icon(Icons.code),
-                        title: Text("Source code".i18n),
+                        title:
+                            Text(AppLocalizations.of(context)!.txtSourceCode),
                         onTap: () => URLUtil.launchURL(
                             context, "https://gitlab.com/enjoyingfoss/feeel/"),
                       ),
                       if (Platform.isLinux)
                         ListTile(
                           leading: const Icon(Icons.record_voice_over),
-                          title:
-                              Text("Help bring text-to-speech to Linux".i18n),
+                          title: Text(
+                              AppLocalizations.of(context)!.btnContributeTTS),
                           onTap: () => URLUtil.launchURL(context,
                               "https://github.com/dlutton/flutter_tts/issues/175"),
                         ),
                       ListTile(
                         leading: const Icon(Icons.info),
-                        title: Text("About Feeel".i18n),
+                        title:
+                            Text(AppLocalizations.of(context)!.txtAboutFeeel),
                         onTap: _showAboutDialog,
                       ),
                     ],
@@ -226,6 +277,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   void _setNotificationTime(BuildContext context, TimeOfDay? timeOfDay,
       SharedPreferences preferences) async {
+    final l10n = AppLocalizations.of(context)!;
     if (timeOfDay == null) {
       final notificationUnset =
           await NotificationHelper.helper.setNotification(context, null);
@@ -241,9 +293,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             NotificationHelper.timeToInt(timeOfDay));
       } else {
         SnackBarHelper.showInfoSnackBar(
-            scaffoldMessenger,
-            "You must give Feeel permission to show notifications via your system settings."
-                .i18n);
+            scaffoldMessenger, l10n.txtNotificationSystemSettingsPermission);
       }
     }
     setState(() {});

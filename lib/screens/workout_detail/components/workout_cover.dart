@@ -26,7 +26,7 @@ import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'workout_exercise_list.dart';
 import 'workout_header.dart';
@@ -80,7 +80,7 @@ class WorkoutCover extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
               child: FloatingActionButton.extended(
                 icon: const Icon(Icons.play_arrow),
-                label: Text("Start workout".i18n),
+                label: Text(AppLocalizations.of(context)!.btnStartWorkout),
                 onPressed: startWorkout,
                 backgroundColor: colorSwatch
                     .getColor(FeeelShade.dark.invertIfDark(brightness)),

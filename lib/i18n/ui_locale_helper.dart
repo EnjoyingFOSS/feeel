@@ -20,12 +20,24 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-class PreferenceKeys {
-  // todo static const locale = "locale";
-  static const themeMode = "themeMode";
-  static const themePersonalized = "themePersonalized";
-  static const showDisclaimer = "showDisclaimer";
-  static const ttsDisabled = "ttsDisabled";
-  static const notificationTime = "notificationTime";
-  static const locale = "locale";
+import 'dart:ui';
+
+class UILocaleHelper {
+  static final supportedLocaleNames = {
+    const Locale('en'): "English",
+    const Locale('ar'): "العربية",
+    const Locale('cs'): "Česky",
+    const Locale('de'): "Deutsch",
+    const Locale('el'): "Ελληνικά",
+    const Locale('es'): "Español",
+    const Locale('fr'): "Français",
+    const Locale('hr'): "Hrvatski",
+    const Locale('id'): "Bahasa Indonesia",
+    const Locale('it'): "Italiano",
+    const Locale('nl'): "Nederlands",
+    const Locale('pt'): "Português",
+    const Locale('ru'): "Русский",
+    const Locale('tr'): "Türkçe",
+    const Locale('zh'): "中文"
+  };
 }

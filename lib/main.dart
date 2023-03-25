@@ -26,25 +26,27 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/db/database.dart';
 import 'package:feeel/providers/feeel_swatch_provider.dart';
+import 'package:feeel/providers/locale_provider.dart';
 import 'package:feeel/providers/theme_meta_provider.dart';
 import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'utils/notification_helper.dart';
-import 'i18n/locale_helper.dart';
 import 'theming/feeel_themes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/date_symbol_data_local.dart' as date_intl;
 // import 'package:window_size/window_size.dart';
 
 void main() async {
-  // todo think about implementing auto-update: https://pub.dev/packages/auto_update, https://github.com/GrapheneOS/Camera/issues/227#issuecomment-1132208894
-  // debugRepaintRainbowEnabled = true; //todo debug
-  // await initializeDateFormatting(); //TODO NOT WORKING, even though TableCalendar seems to require it for localization
+  //TODO could maybe do my theme and language init here...
+  // TODO think about implementing auto-update: https://pub.dev/packages/auto_update, https://github.com/GrapheneOS/Camera/issues/227#issuecomment-1132208894
+  // debugRepaintRainbowEnabled = true; //TODO debug
   GetIt.I.registerSingleton(
-      FeeelDB()); //todo get rid of this after migrating to Riverpod fully
+      FeeelDB()); //TODO get rid of this after migrating to Riverpod fully
+  await date_intl.initializeDateFormatting();
   runApp(const ProviderScope(child: Feeel()));
 }
 
@@ -55,7 +57,7 @@ class Feeel extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     WidgetsFlutterBinding.ensureInitialized();
 
-    // if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) { //todo not supported on Linux for ARM yet
+    // if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) { //TODO not supported on Linux for ARM yet
     //   setWindowTitle('Feeel');
     //   setWindowMinSize(const Size(320, 568));
     //   setWindowMaxSize(Size.infinite);
@@ -69,16 +71,7 @@ class Feeel extends ConsumerWidget {
 
     return DynamicColorBuilder(
             builder: (dynamicLightScheme, dynamicDarkScheme) {
-      // print("THEMES : $dynamicDarkTheme $dynamicLightTheme");
-      // todo return AdaptiveTheme(
-      //     light: dynamicLightTheme != null
-      //         ? FeeelThemes.getThemeFromScheme(dynamicLightTheme)
-      //         : FeeelThemes.lightTheme, //todo let the user choose
-      //     dark: dynamicDarkTheme != null
-      //         ? FeeelThemes.getThemeFromScheme(dynamicDarkTheme)
-      //         : FeeelThemes.darkTheme, //todo let the user choose
-      //     initial: AdaptiveThemeMode.light,
-      // builder: (theme, darkTheme) {
+      final preferredLocale = ref.watch(localeProvider);
       final themeMeta = ref.watch(themeMetaProvider);
       final swatchNotifier = ref.read(feeelSwatchProvider.notifier);
 
@@ -117,19 +110,9 @@ class Feeel extends ConsumerWidget {
           themeMode: curThemeMode,
           theme: lightTheme,
           darkTheme: darkTheme,
-          supportedLocales: LocaleHelper.supportedLocales,
-          // localeResolutionCallback: (locale, supportedLocales) { //todo this is also not working
-          //   if (supportedLocales.contains(locale)) {
-          //     initializeDateFormatting(locale?.scriptCode ?? 'en_US');
-          //   } else {
-          //     initializeDateFormatting('en_US');
-          //   }
-          // },
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: preferredLocale,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
           home: I18n(child: const HomePagerScreen()));
     })
         // );
@@ -140,7 +123,7 @@ class Feeel extends ConsumerWidget {
   void _onWidgetBuilt(BuildContext context) {
     if (!Platform.isLinux) {
       TTSHelper.tts.init(
-          context); //todo should really depend on whether the TTS preference is set
+          context); //TODO should really depend on whether the TTS preference is set
       NotificationHelper.helper.init(context);
     }
   }

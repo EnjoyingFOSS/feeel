@@ -25,13 +25,13 @@ import 'dart:io';
 import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationHelper {
-  //todo use provider?
+  //TODO use provider?
   static final NotificationHelper helper = NotificationHelper._();
   static const _notificationChannelId = "exercise_reminder";
   static const _notificationIntId = 0;
@@ -67,6 +67,7 @@ class NotificationHelper {
   Future<bool> setNotification(
       BuildContext context, TimeOfDay? timeOfDay) async {
     final primaryColor = Theme.of(context).primaryColor;
+    final l10n = AppLocalizations.of(context)!;
 
     await flutterLocalNotificationsPlugin.cancel(_notificationIntId);
 
@@ -85,16 +86,16 @@ class NotificationHelper {
 
       final platformChannelSpecifics = NotificationDetails(
           android: AndroidNotificationDetails(
-              _notificationChannelId, "Daily notification".i18n,
-              channelDescription: "A daily reminder to work out".i18n,
+              _notificationChannelId, l10n.txtNotificationInfoTitle,
+              channelDescription: l10n.txtNotificationInfoDesc,
               color: primaryColor),
           iOS: const DarwinNotificationDetails(),
           macOS: const DarwinNotificationDetails());
 
       await flutterLocalNotificationsPlugin.zonedSchedule(
           _notificationIntId,
-          "Time to put on workout clothes!".i18n,
-          "It takes just a few minutes to feel fresh and fit".i18n,
+          l10n.txtNotificationTitle,
+          l10n.txtNotificationDesc,
           _nextDailyInstance(Time(timeOfDay.hour, timeOfDay.minute)),
           platformChannelSpecifics,
           androidAllowWhileIdle: true,
@@ -108,7 +109,7 @@ class NotificationHelper {
 
   tz.TZDateTime _nextDailyInstance(Time time) {
     final now = tz.TZDateTime.now(tz.local).add(const Duration(
-        days: 1)); //todo is this necessary with a daily notification?
+        days: 1)); //TODO is this necessary with a daily notification?
     final tz.TZDateTime scheduledDate = tz.TZDateTime(
         tz.local, now.year, now.month, now.day, time.hour, time.minute);
     return scheduledDate;

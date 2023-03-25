@@ -27,7 +27,7 @@ import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ExercisePickerScreen extends ConsumerStatefulWidget {
@@ -59,7 +59,7 @@ class _ExercisePickerScreenState extends ConsumerState<ExercisePickerScreen> {
         floatingActionButton: FloatingActionButton(
           foregroundColor: widget.swatch.getColor(FeeelShade.darker),
           backgroundColor: widget.swatch.getForegroundColor(FeeelShade.darker),
-          tooltip: "Done".i18n,
+          tooltip: AppLocalizations.of(context)!.btnDone,
           onPressed: () {
             Navigator.pop(context, _chosenExerciseIds);
           },
@@ -82,7 +82,7 @@ class _ExercisePickerScreenState extends ConsumerState<ExercisePickerScreen> {
                     leading: CloseButton(color: fgColor),
                     titleTextStyle: theme.appBarTheme.titleTextStyle
                         ?.copyWith(color: fgColor),
-                    title: Text("Add exercises".i18n),
+                    title: Text(AppLocalizations.of(context)!.btnAddExercise),
                   ),
                   SliverPadding(
                       padding: const EdgeInsets.fromLTRB(0, 16, 0, 64),
@@ -113,7 +113,8 @@ class _ExercisePickerScreenState extends ConsumerState<ExercisePickerScreen> {
                                   width: 56,
                                   alignment: Alignment.center,
                                   child: const Icon(Icons.add)),
-                              title: Text("Propose custom exercise".i18n),
+                              title: Text(AppLocalizations.of(context)!
+                                  .btnAddCustomExerice),
                               onTap: () async {
                                 ContributeSheet.showSheet(context);
                               },
