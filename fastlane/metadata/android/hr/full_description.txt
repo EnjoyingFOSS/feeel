@@ -1,5 +1,0 @@
-Feeel je Android program otvorenog koda za jednostavno vježbanje kod kuće. Sadrži znanstvene 7-minutne treninge cijelog tijela i omogućuje stvaranje prilagođenih treninga. Iako program trenutačno sadrži ograničenu količinu vježbi, plan je da se broj vježbi i treninga drastično proširi uz pomoć zajednice.
-
-Doprinesi na https://gitlab.com/enjoyingfoss/feeel/wikis
-
-Doniraj na https://liberapay.com/Feeel/. Donacije mi pomažu redovito razvijati program, umjesto samo u slobodno vrijeme..
