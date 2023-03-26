@@ -20,10 +20,11 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseCounter extends StatelessWidget {
-  final String counterText; //todo is this really the best way to rerender time?
+  final String counterText; //TODO is this really the best way to rerender time?
   final Color color;
   final bool paused;
 
@@ -40,30 +41,32 @@ class ExerciseCounter extends StatelessWidget {
         bottom: false,
         child: Align(
             alignment: Alignment.topCenter,
-            child: Stack(
-              children: <Widget>[
-                if (paused)
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: BackButton(
-                        color: color,
+            child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: LayoutXL.cols12.width),
+                child: Stack(
+                  children: <Widget>[
+                    if (paused)
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: BackButton(
+                            color: color,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Text(
-                          counterText,
-                          style: TextStyle(
-                              fontSize: paused ? 24 : 72,
-                              fontWeight: FontWeight.w900,
-                              color: color),
-                        ))),
-              ],
-            )));
+                    Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Text(
+                              counterText,
+                              style: TextStyle(
+                                  fontSize: paused ? 24 : 72,
+                                  fontWeight: FontWeight.w900,
+                                  color: color),
+                            ))),
+                  ],
+                ))));
   }
 }

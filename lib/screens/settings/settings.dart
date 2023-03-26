@@ -22,52 +22,55 @@
 
 import 'dart:io';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:feeel/components/body_container.dart';
+import 'package:feeel/i18n/ui_locale_helper.dart';
+import 'package:feeel/providers/locale_provider.dart';
+import 'package:feeel/providers/theme_meta_provider.dart';
+import 'package:feeel/screens/settings/components/language_dialog.dart';
+// import 'package:feeel/screens/settings/components/import_export_tile.dart';
 // import 'package:archive/archive_io.dart';
-import 'package:feeel/db/notification_helper.dart';
+import 'package:feeel/utils/notification_helper.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/screens/settings/components/theme_dialog.dart';
+import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:feeel/i18n/translations.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:feeel/theming/theme_mode_extensions.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsBundle {
   final SharedPreferences preferences;
-  final AdaptiveThemeMode? themeMode;
 
-  _SettingsBundle(this.preferences, this.themeMode);
+  _SettingsBundle(this.preferences);
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   late Future<_SettingsBundle> _preferencesFuture;
 
   @override
   void initState() {
     super.initState();
     _preferencesFuture =
-        _getSettingsBundle(); //todo use provider for preferences
+        _getSettingsBundle(); //TODO use provider for preferences
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Settings".i18n,
-          ),
-        ),
-        body: FutureBuilder(
+    final themeMetaValue = ref.watch(themeMetaProvider);
+    final themeMetaNotifier = ref.read(themeMetaProvider.notifier);
+    final localeValue = ref.watch(localeProvider);
+
+    return BodyContainer(
+        child: FutureBuilder(
             future: _preferencesFuture,
             builder: (BuildContext context,
                 AsyncSnapshot<_SettingsBundle> snapshot) {
@@ -76,196 +79,176 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 final notificationTime = Platform.isLinux
                     ? null
                     : NotificationHelper.timeFromInt(settingsBundle.preferences
-                        .getInt(PreferenceKeys.notificationTimePref));
-                final curTheme = settingsBundle.themeMode;
-                final activeColor = Theme.of(context).colorScheme.primary;
-                return ListView(
-                  children: <Widget>[
-                    if (!Platform.isLinux)
-                      SwitchListTile.adaptive(
-                          secondary: const Icon(Icons.music_note),
-                          value: (settingsBundle.preferences
-                                  .getBool(PreferenceKeys.ttsDisabledPref) ??
-                              false),
-                          title: Text("Sounds instead of voice".i18n),
-                          onChanged: (bool newValue) {
-                            setState(() {
-                              settingsBundle.preferences.setBool(
-                                  PreferenceKeys.ttsDisabledPref, newValue);
-                            });
-                          },
-                          activeColor: activeColor),
-                    if (!Platform.isLinux)
-                      SwitchListTile.adaptive(
-                        secondary: const Icon(Icons.notifications),
-                        value: notificationTime != null,
-                        title: Text("Daily reminder".i18n),
-                        onChanged: (bool setOn) {
-                          _setNotificationTime(
-                              context,
-                              setOn ? _getDefaultNotificationTime() : null,
-                              settingsBundle.preferences);
-                        },
-                        activeColor: activeColor,
-                      ),
-                    if (notificationTime != null && Platform.isAndroid)
-                      Padding(
-                          padding: const EdgeInsets.only(left: 72, right: 16),
-                          child: Text(
-                            "On some devices, you may need to disable battery optimization for Feeel for this to work reliably."
-                                .i18n,
-                            style: Theme.of(context).textTheme.caption,
-                          )),
-                    if (notificationTime != null)
-                      ListTile(
-                        contentPadding:
-                            const EdgeInsets.only(left: 72, right: 24),
-                        title: Text("Notification time".i18n),
-                        trailing: Text(notificationTime.format(context)),
-                        onTap: () async {
-                          var selectedTime = await showTimePicker(
-                              context: context, initialTime: notificationTime);
-                          if (selectedTime != null) {
-                            _setNotificationTime(context, selectedTime,
+                        .getInt(PreferenceKeys.notificationTime));
+                final switchActiveColor = Theme.of(context).colorScheme.primary;
+                return CustomScrollView(slivers: [
+                  SliverAppBar(
+                    title: Text(
+                      AppLocalizations.of(context)!.txtSettings,
+                    ),
+                  ),
+                  SliverList(
+                      delegate: SliverChildListDelegate.fixed(
+                    <Widget>[
+                      if (!Platform.isLinux)
+                        SwitchListTile.adaptive(
+                            secondary: const Icon(Icons.music_note),
+                            value: (settingsBundle.preferences
+                                    .getBool(PreferenceKeys.ttsDisabled) ??
+                                false),
+                            title: Text(
+                                AppLocalizations.of(context)!.btnDisableTTS),
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                settingsBundle.preferences.setBool(
+                                    PreferenceKeys.ttsDisabled, newValue);
+                              });
+                            },
+                            activeColor: switchActiveColor),
+                      if (!Platform.isLinux)
+                        SwitchListTile.adaptive(
+                          secondary: const Icon(Icons.notifications),
+                          value: notificationTime != null,
+                          title:
+                              Text(AppLocalizations.of(context)!.txtRemindMe),
+                          onChanged: (bool setOn) {
+                            _setNotificationTime(
+                                context,
+                                setOn ? _getDefaultNotificationTime() : null,
                                 settingsBundle.preferences);
-                          }
+                          },
+                          activeColor: switchActiveColor,
+                        ),
+                      if (notificationTime != null && Platform.isAndroid)
+                        Padding(
+                            padding: const EdgeInsets.only(left: 72, right: 16),
+                            child: Text(
+                              AppLocalizations.of(context)!
+                                  .txtBatteryOptimization,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            )),
+                      if (notificationTime != null)
+                        ListTile(
+                          contentPadding:
+                              const EdgeInsets.only(left: 72, right: 24),
+                          title: Text(AppLocalizations.of(context)!
+                              .txtNotificationTime),
+                          subtitle: Text(notificationTime.format(context)),
+                          onTap: () async {
+                            final selectedTime = await showTimePicker(
+                                context: context,
+                                initialTime: notificationTime);
+                            if (selectedTime != null) {
+                              _setNotificationTime(context, selectedTime,
+                                  settingsBundle.preferences);
+                            }
+                          },
+                        ),
+                      ListTile(
+                        leading: const Icon(Icons.palette),
+                        title: Text(AppLocalizations.of(context)!.txtTheme),
+                        subtitle: Text(themeMetaValue.mode.getTranslation(
+                            context)), //TODO say whether personalized or not
+                        onTap: () async {
+                          await showDialog<void>(
+                              context: context,
+                              builder: (context) =>
+                                  ThemeDialog(themeMeta: themeMetaValue));
+                          setState(() {
+                            _preferencesFuture = _getSettingsBundle();
+                          });
                         },
                       ),
-                    ListTile(
-                      leading: const Icon(Icons.palette),
-                      title: Text("Theme".i18n),
-                      subtitle: Text(curTheme?.uiName().i18n ?? ""),
-                      onTap: () async {
-                        await showDialog<void>(
-                            context: context,
-                            builder: (context) =>
-                                ThemeDialog(curTheme: curTheme));
-                        setState(() {
-                          _preferencesFuture = _getSettingsBundle();
-                        });
-                      },
-                    ),
-                    // todo import export ListTile(
-                    //   leading: Icon(Icons.download),
-                    //   title: Text("Export custom workouts"
-                    //       .i18n), //todo figure out how to focus dialogs right away
-                    //   onTap: () async {
-                    //     //todo add try catch
-                    //     final customWorkouts = await DBHelper.db
-                    //         .queryFullWorkoutsByType(WorkoutType.CUSTOM);
-                    //     if (customWorkouts == null) {
-                    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    //           content: Text(
-                    //               "You don't have any custom workouts".i18n)));
-                    //     } else {
-                    //       final export =
-                    //           await WorkoutImportExport.exportWorkouts(
-                    //               customWorkouts);
-                    //       if (Platform.isMacOS || Platform.isLinux) {
-                    //         final outputFile =
-                    //             await FilePicker.platform.saveFile(
-                    //           dialogTitle: "",
-                    //           fileName: "Feeel workouts " +
-                    //               formatDate(DateTime.now(), [
-                    //                 yyyy,
-                    //                 '-',
-                    //                 mm,
-                    //                 '-',
-                    //                 dd,
-                    //                 " (",
-                    //                 HH,
-                    //                 ';',
-                    //                 nn,
-                    //                 ")"
-                    //               ]) +
-                    //               ".feeel",
-                    //         );
-                    //         if (outputFile != null) {
-                    //           await export.copy(outputFile);
-                    //         }
-                    //       } else {
-                    //         Share.shareFiles([export.path]);
-                    //       }
-                    //     }
-                    //   },
-                    // ),
-                    // ListTile(
-                    //   leading: Icon(Icons.upload),
-                    //   title: Text("Import workouts".i18n),
-                    //   onTap: () async {
-                    //     //todo add try catch
-                    //     final pickedFiles = await FilePicker.platform.pickFiles(
-                    //         type: FileType.any,
-                    //         allowedExtensions: ["feeel"],
-                    //         allowMultiple: false,
-                    //         withReadStream: Platform.isLinux);
-
-                    //     final filePath = pickedFiles?.files.first.path;
-
-                    //     if (filePath == null) {
-                    //       return;
-                    //     } else {
-                    //       showDialog<void>(
-                    //           //todo try catch in case it's a corrupt/invalid file
-                    //           context: context,
-                    //           builder: (context) => AlertDialog(
-                    //                 title: Text(
-                    //                     "Duplicates will not be overriden"
-                    //                         .i18n),
-                    //                 content: Text(
-                    //                     "If you import workouts that are identical to workouts you have in Feeel already, you will have those workouts twice in the app and will have to manually delete them."
-                    //                         .i18n),
-                    //                 actions: [
-                    //                   TextButton(
-                    //                       onPressed: () =>
-                    //                           Navigator.of(context).pop(),
-                    //                       child: Text("Cancel".i18n)),
-                    //                   TextButton(
-                    //                       onPressed: () {
-                    //                         WorkoutImportExport.importWorkouts(
-                    //                             InputFileStream(filePath));
-                    //                         Navigator.of(context).pop();
-                    //                       },
-                    //                       child: Text("Import anyway".i18n))
-                    //                 ],
-                    //               ));
-                    //     }
-                    //   },
-                    // ),
-                    ListTile(
-                      leading: const Icon(Icons.volunteer_activism),
-                      title: Text("Participate".i18n),
-                      onTap: () => URLUtil.launchURL(context,
-                          "https://gitlab.com/enjoyingfoss/feeel/-/wikis/home"),
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.attach_money),
-                      title: Text("Donate".i18n),
-                      onTap: () => URLUtil.launchURL(
-                          context, "https://liberapay.com/Feeel/"),
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.code),
-                      title: Text("Source code".i18n),
-                      onTap: () => URLUtil.launchURL(
-                          context, "https://gitlab.com/enjoyingfoss/feeel/"),
-                    ),
-                    if (Platform.isLinux)
                       ListTile(
-                        leading: const Icon(Icons.record_voice_over),
-                        title: Text("Help bring text-to-speech to Linux".i18n),
-                        onTap: () => URLUtil.launchURL(context,
-                            "https://github.com/dlutton/flutter_tts/issues/175"),
+                        leading: const Icon(Icons.language),
+                        title: Text(AppLocalizations.of(context)!.txtLanguage),
+                        subtitle: Text(localeValue == null
+                            ? AppLocalizations.of(context)!.txtUseSystemLanguage
+                            : (UILocaleHelper
+                                    .supportedLocaleNames[localeValue] ??
+                                localeValue.toLanguageTag())),
+                        onTap: () async {
+                          await showDialog<void>(
+                              context: context,
+                              builder: (context) =>
+                                  LanguageDialog(chosenLocale: localeValue));
+                          setState(() {
+                            _preferencesFuture = _getSettingsBundle();
+                          });
+                        },
                       ),
-                    ListTile(
-                      leading: const Icon(Icons.info),
-                      title: Text("About Feeel".i18n),
-                      onTap: _showAboutDialog,
-                    )
-                  ],
-                );
+                      if (Platform.isAndroid || Platform.isLinux)
+                        SwitchListTile.adaptive(
+                            secondary: const SizedBox(),
+                            title: Text(AppLocalizations.of(context)!
+                                .txtPersonalizedColors),
+                            value: themeMetaValue.personalized,
+                            onChanged: (value) async {
+                              themeMetaNotifier.setTheme(
+                                  themeMetaValue.copyWith(personalized: value));
+                            },
+                            activeColor: switchActiveColor),
+                      // SwitchListTile.adaptive(
+                      //     activeColor: switchActiveColor,
+                      //     secondary: const Icon(Icons.wifi),
+                      //     value: false //TODO
+                      //     ,
+                      //     title: Text(AppLocalizations.of(context)!
+                      //         .txtExerciseUpdateFromWeb) //TODO translate
+                      //     ,
+                      //     onChanged: (_) => null //TODO
+                      //     ),
+                      // SwitchListTile.adaptive(
+                      //     activeColor: switchActiveColor,
+                      //     value: false //TODO
+                      //     ,
+                      //     contentPadding:
+                      //         const EdgeInsets.only(left: 72, right: 16),
+                      //     title: Text(AppLocalizations.of(context)!
+                      //         .txtOnlyUpdateOverWifi) //TODO translate // limit downloads to wifi-only? only update on non-metered connections?
+                      //     ,
+                      //     onChanged: (_) => null //TODO
+                      //     ),
+                      ListTile(
+                        leading: const Icon(Icons.volunteer_activism),
+                        title:
+                            Text(AppLocalizations.of(context)!.txtParticipate),
+                        onTap: () => URLUtil.launchURL(context,
+                            "https://gitlab.com/enjoyingfoss/feeel/-/wikis/Contributing"), //TODO should also change the text on the wiki page — at least the intro
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.attach_money),
+                        title: Text(AppLocalizations.of(context)!.txtDonate),
+                        onTap: () => URLUtil.launchURL(
+                            context, "https://liberapay.com/Feeel/"),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.code),
+                        title:
+                            Text(AppLocalizations.of(context)!.txtSourceCode),
+                        onTap: () => URLUtil.launchURL(
+                            context, "https://gitlab.com/enjoyingfoss/feeel/"),
+                      ),
+                      if (Platform.isLinux)
+                        ListTile(
+                          leading: const Icon(Icons.record_voice_over),
+                          title: Text(
+                              AppLocalizations.of(context)!.btnContributeTTS),
+                          onTap: () => URLUtil.launchURL(context,
+                              "https://github.com/dlutton/flutter_tts/issues/175"),
+                        ),
+                      ListTile(
+                        leading: const Icon(Icons.info),
+                        title:
+                            Text(AppLocalizations.of(context)!.txtAboutFeeel),
+                        onTap: _showAboutDialog,
+                      ),
+                    ],
+                  ))
+                ]);
               } else {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                    child: CircularProgressIndicator.adaptive());
               }
             }));
   }
@@ -289,27 +272,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
         applicationLegalese: "© Miroslav Mazel et al., 2021");
-    //todo add app LICENSE info to LicenseRegistry + source code and donate items
+    //TODO add app LICENSE info to LicenseRegistry + source code and donate items
   }
 
   void _setNotificationTime(BuildContext context, TimeOfDay? timeOfDay,
-      SharedPreferences preferences) {
-    setState(() {
-      if (timeOfDay == null) {
-        preferences.remove(PreferenceKeys.notificationTimePref);
-        NotificationHelper.helper.setNotification(context, null);
-      } else {
-        preferences.setInt(PreferenceKeys.notificationTimePref,
-            NotificationHelper.timeToInt(timeOfDay));
-        NotificationHelper.helper.setNotification(context, timeOfDay);
+      SharedPreferences preferences) async {
+    final l10n = AppLocalizations.of(context)!;
+    if (timeOfDay == null) {
+      final notificationUnset =
+          await NotificationHelper.helper.setNotification(context, null);
+      if (notificationUnset) {
+        preferences.remove(PreferenceKeys.notificationTime);
       }
-    });
+    } else {
+      final scaffoldMessenger = ScaffoldMessenger.of(context);
+      final notificationSet =
+          await NotificationHelper.helper.setNotification(context, timeOfDay);
+      if (notificationSet) {
+        preferences.setInt(PreferenceKeys.notificationTime,
+            NotificationHelper.timeToInt(timeOfDay));
+      } else {
+        SnackBarHelper.showInfoSnackBar(
+            scaffoldMessenger, l10n.txtNotificationSystemSettingsPermission);
+      }
+    }
+    setState(() {});
   }
 
   Future<_SettingsBundle> _getSettingsBundle() async {
-    //todo add language to bundle
+    //TODO add language to bundle
     final preferences = await SharedPreferences.getInstance();
-    final themeMode = await AdaptiveTheme.getThemeMode();
-    return _SettingsBundle(preferences, themeMode);
+    return _SettingsBundle(preferences);
   }
 }

@@ -20,59 +20,58 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/models/view/workout_listed.dart';
+import 'package:feeel/components/body_container.dart';
+import 'package:feeel/utils/asset_util.dart';
+import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../db/asset_helper.dart';
 import 'workout_exercise_list.dart';
 import 'workout_header.dart';
 
 class WorkoutCover extends StatelessWidget {
-  final Workout workout;
-  final WorkoutListed workoutListed;
+  final FullWorkout fullWorkout;
   final void Function() startWorkout;
   final FeeelSwatch colorSwatch;
 
   const WorkoutCover(
       {Key? key,
-      required this.workout,
-      required this.workoutListed,
+      required this.fullWorkout,
       required this.colorSwatch,
       required this.startWorkout})
       : super(key: key);
 
   Future<void> _precacheFirstImage(BuildContext context) async {
-    //todo test
-    final imageSlug = workout.workoutExercises[0].exercise.imageSlug;
-    if (imageSlug != null) {
-      precacheImage(
-          Image.asset(AssetHelper.getImage(imageSlug))
-              .image, //todo precache inside workout page instead?
-          context);
-    }
+    //TODO test
+    final imageSlug = fullWorkout.exercises[0].imageSlug;
+    precacheImage(
+        Image.asset(AssetUtil.getImageOrPlaceholderPath(imageSlug))
+            .image, //TODO precache inside workout page instead?
+        context);
   }
 
   @override
   Widget build(BuildContext context) {
     _precacheFirstImage(context);
+    final brightness = Theme.of(context).brightness;
     return SafeArea(
-        child: Stack(children: <Widget>[
+        child: BodyContainer(
+            child: Stack(clipBehavior: Clip.none, children: <Widget>[
       CustomScrollView(
+        clipBehavior: Clip.none,
         slivers: <Widget>[
           SliverToBoxAdapter(
               child: WorkoutHeader(
-            workoutListed: workoutListed,
+            workout: fullWorkout.workout,
             colorSwatch: colorSwatch,
-            workoutDuration: workout.duration,
+            workoutDuration: fullWorkout.duration,
           )),
           SliverPadding(
               padding: const EdgeInsets.only(bottom: 80, top: 24),
               sliver: WorkoutExerciseList(
-                  workout: workout, colorSwatch: colorSwatch)),
+                  fullWorkout: fullWorkout, colorSwatch: colorSwatch)),
         ],
       ),
       Align(
@@ -81,11 +80,13 @@ class WorkoutCover extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
               child: FloatingActionButton.extended(
                 icon: const Icon(Icons.play_arrow),
-                label: Text("Start workout".i18n),
+                label: Text(AppLocalizations.of(context)!.btnStartWorkout),
                 onPressed: startWorkout,
-                backgroundColor: colorSwatch.getColorByBrightness(
-                    FeeelShade.dark, Theme.of(context).brightness),
+                backgroundColor: colorSwatch
+                    .getColor(FeeelShade.dark.invertIfDark(brightness)),
+                foregroundColor: colorSwatch.getForegroundColor(
+                    FeeelShade.dark.invertIfDark(brightness)),
               )))
-    ]));
+    ])));
   }
 }

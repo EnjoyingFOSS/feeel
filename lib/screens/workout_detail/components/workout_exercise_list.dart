@@ -20,35 +20,37 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/exercise_list_item.dart';
+import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/utils/duration_util.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/models/view/workout.dart';
-
-import 'workout_exercise_item.dart';
 
 class WorkoutExerciseList extends StatelessWidget {
-  final Workout workout;
+  final FullWorkout fullWorkout;
   final FeeelSwatch colorSwatch;
 
   const WorkoutExerciseList(
-      {Key? key, required this.workout, required this.colorSwatch})
+      {Key? key, required this.fullWorkout, required this.colorSwatch})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SliverList(
-      //todo use fixed extent
+      //TODO use fixed extent
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
-          final workoutExercise = workout.workoutExercises[index];
-          return WorkoutExerciseItem(
-            //todo allow two-row exercise names
-            workoutExercise: workoutExercise,
-            duration: workoutExercise.duration ?? workout.exerciseDuration,
+          final duration =
+              fullWorkout.workoutExercises[index].exerciseDuration ??
+                  fullWorkout.workout.exerciseDuration;
+          return ExerciseListItem(
+            //TODO allow two-row exercise names
+            exercise: fullWorkout.exercises[index],
+            subtitle: Text(DurationUtil.getDurationShortform(duration)),
             colorSwatch: colorSwatch,
           );
         },
-        childCount: workout.workoutExercises.length,
+        childCount: fullWorkout.workoutExercises.length,
       ),
     );
   }

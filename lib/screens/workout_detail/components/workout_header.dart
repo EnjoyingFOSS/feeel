@@ -20,25 +20,25 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/database.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 
-import '../../../components/triangle.dart';
+import '../../../components/triangle_filled.dart';
 import '../../../enums/workout_type.dart';
-import '../../../models/view/workout_listed.dart';
 import '../../../theming/feeel_shade.dart';
 import '../../../utils/duration_util.dart';
 import '../../../utils/hero_util.dart';
 
 class WorkoutHeader extends StatelessWidget {
-  final WorkoutListed workoutListed;
+  final Workout workout;
   final FeeelSwatch colorSwatch;
   final int? workoutDuration;
 
   const WorkoutHeader(
       {Key? key,
-      required this.workoutListed,
+      required this.workout,
       required this.colorSwatch,
       this.workoutDuration})
       : super(key: key);
@@ -46,23 +46,23 @@ class WorkoutHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final title = workoutListed.title;
+    final title = workout.title;
     final fgColor =
-        colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
-    final String translatedCategory =
-        workoutListed.category.translationKey.i18n;
-    return Stack(children: [
+        colorSwatch.getColor(FeeelShade.dark.invertIfDark(theme.brightness));
+
+    final String translatedCategory = workout.category.getTranslation(context);
+    return Stack(clipBehavior: Clip.none, children: [
       Positioned.directional(
           textDirection: Directionality.of(context),
           start: -12,
           width: 208,
           height: 208,
           child: Hero(
-              tag: HeroUtil.getWorkoutHero(HeroType.illustration,
-                  workoutListed.dbId, workoutListed.type),
-              child: Triangle(
-                  color: colorSwatch.getColorByBrightness(
-                      FeeelShade.lightest, theme.brightness),
+              tag: HeroUtil.getWorkoutHero(
+                  HeroType.illustration, workout.id, workout.type),
+              child: TriangleFilled(
+                  color: colorSwatch.getColor(
+                      FeeelShade.lightest.invertIfDark(theme.brightness)),
                   seed: title.hashCode))),
       Positioned.directional(
           textDirection: Directionality.of(context),
@@ -81,14 +81,14 @@ class WorkoutHeader extends StatelessWidget {
                   alignment: AlignmentDirectional.bottomStart,
                   child: Hero(
                     tag: HeroUtil.getWorkoutHero(
-                        HeroType.title, workoutListed.dbId, workoutListed.type),
+                        HeroType.title, workout.id, workout.type),
                     child: Material(
-                        //todo workaround for https://github.com/flutter/flutter/issues/30647
+                        //TODO workaround for https://github.com/flutter/flutter/issues/30647
                         type: MaterialType.transparency,
                         child: Text(
-                            workoutListed.type == WorkoutType.bundled
-                                ? workoutListed.title.i18n
-                                : workoutListed.title,
+                            workout.type == WorkoutType.bundled
+                                ? workout.title.i18n
+                                : workout.title,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             style: theme.appBarTheme.titleTextStyle
@@ -101,19 +101,20 @@ class WorkoutHeader extends StatelessWidget {
                 Row(
                   children: [
                     Hero(
-                      tag: HeroUtil.getWorkoutHero(HeroType.subtitle,
-                          workoutListed.dbId, workoutListed.type),
+                      tag: HeroUtil.getWorkoutHero(
+                          HeroType.subtitle, workout.id, workout.type),
                       child: Text(translatedCategory,
-                          style: theme.textTheme.subtitle2?.copyWith(
+                          style: theme.textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: colorSwatch.getColorByBrightness(
-                                  FeeelShade.darker, theme.brightness))),
+                              color: colorSwatch.getColor(FeeelShade.darker
+                                  .invertIfDark(theme.brightness)))),
                     ),
                     const SizedBox(
                       width: 16,
                     ),
                     if (workoutDuration != null)
-                      Text(DurationUtil.getDurationLongform(workoutDuration!))
+                      Text(DurationUtil.getDurationLongform(
+                          context, workoutDuration!))
                   ],
                 )
               ])))

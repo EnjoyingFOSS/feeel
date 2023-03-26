@@ -22,6 +22,7 @@
 
 import 'dart:ui';
 
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 
 class FeeelSwatch {
@@ -31,30 +32,22 @@ class FeeelSwatch {
 
   Color getColor(FeeelShade shade) => _swatch[shade]!;
 
-  Color getColorByBrightness(FeeelShade shade, Brightness brightness) {
-    if (brightness == Brightness.dark) {
-      switch (shade) {
-        case FeeelShade.lightest:
-          shade = FeeelShade.darkest;
-          break;
-        case FeeelShade.lighter:
-          shade = FeeelShade.darker;
-          break;
-        case FeeelShade.light:
-          shade = FeeelShade.dark;
-          break;
-        case FeeelShade.dark:
-          shade = FeeelShade.light;
-          break;
-        case FeeelShade.darker:
-          shade = FeeelShade.lighter;
-          break;
-        case FeeelShade.darkest:
-          shade = FeeelShade.lightest;
-          break;
-      }
+  Color getForegroundColor(FeeelShade backgroundShade) {
+    switch (backgroundShade) {
+      case FeeelShade.lightest:
+      case FeeelShade.lighter:
+      case FeeelShade.light:
+        return const Color(0xDD000000);
+      case FeeelShade.dark:
+      case FeeelShade.darker:
+      case FeeelShade.darkest:
+        return const Color(0xFFFFFFFF);
     }
+  }
 
-    return getColor(shade);
+  static FeeelSwatch harmonized(FeeelSwatch swatch, Color harmonizationColor) {
+    final newSwatch = swatch._swatch.map((shade, color) =>
+        MapEntry(shade, color.harmonizeWith(harmonizationColor)));
+    return FeeelSwatch(newSwatch);
   }
 }

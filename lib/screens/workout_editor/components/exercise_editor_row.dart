@@ -20,53 +20,72 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
+import 'package:feeel/components/flipped.dart';
+import 'package:feeel/models/full_exercise.dart';
+import 'package:feeel/providers/exercise_provider.dart';
+import 'package:feeel/utils/asset_util.dart';
+import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../components/flipped.dart';
-
-class ExerciseEditorRow extends StatelessWidget {
-  final WorkoutExercise workoutExercise;
+class ExerciseEditorRow extends ConsumerWidget {
+  final EditableWorkoutExercise editableWorkoutExercise;
   final Widget trailing;
   final Widget? handle;
 
   const ExerciseEditorRow(
       {Key? key,
-      required this.workoutExercise,
+      required this.editableWorkoutExercise,
       required this.trailing,
       this.handle})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    var imageSlug = workoutExercise.exercise.imageSlug;
-    return Row(children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: imageSlug == null
-            ? const SizedBox()
-            : workoutExercise.exercise.flipped
-                ? Flipped(
-                    child: Image.asset(AssetHelper.getThumb(imageSlug),
-                        width: 72, height: 72))
-                : Image.asset(AssetHelper.getThumb(imageSlug),
-                    width: 72, height: 72),
-      ),
-      Expanded(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Text(
-          workoutExercise.exercise.name.i18n,
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-      )),
-      trailing,
-      handle ??
-          const SizedBox(
-            width: 16,
-          )
-    ]);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final exerciseAsyncValue = ref.watch(
+        //TODO check if I fixed sporadic indefinite loading on workout duplication
+        exerciseProvider); //TODO refactor this, I don't think this should be here
+    return exerciseAsyncValue.when(
+        error: (e, _) => const Padding(
+            padding: EdgeInsets.all(16),
+            child: Text(
+              "Error loading exercise",
+              textAlign: TextAlign.center,
+            )),
+        loading: () => const Padding(
+            padding: EdgeInsets.all(16),
+            child: CircularProgressIndicator.adaptive()),
+        data: (data) {
+          FullExercise fullExercise =
+              data.primaryLanguageExercises[editableWorkoutExercise.exercise]!;
+          final imageSlug = fullExercise.exercise.imageSlug;
+          return Row(children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: fullExercise.exercise.flipped
+                  ? Flipped(
+                      child: Image.asset(
+                          AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                          width: 72,
+                          height: 72))
+                  : Image.asset(AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                      width: 72, height: 72),
+            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                fullExercise.translationsByLanguage?.values.first.name ??
+                    fullExercise.exercise.name,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            )),
+            trailing,
+            handle ??
+                Container(
+                  width: 16,
+                )
+          ]);
+        });
   }
 }

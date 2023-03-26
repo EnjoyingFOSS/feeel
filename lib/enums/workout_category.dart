@@ -20,32 +20,47 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/theming/feeel_colors.dart';
-import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/theming/feeel_color.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+/// intEnum in DB
 enum WorkoutCategory {
-  strength(0, "Strength", FeeelColors.blue),
-  stretching(1, "Stretching & yoga", FeeelColors.green),
-  cardio(2, "Cardio", FeeelColors.orange),
-  other(3, "Other", FeeelColors.gray);
+  strength(0, FeeelColor.blue),
+  stretching(1, FeeelColor.green),
+  cardio(2, FeeelColor.orange),
+  other(3, FeeelColor.gray);
 
-  final String translationKey;
-  final FeeelSwatch colorSwatch;
+  final FeeelColor feeelColor;
   final int dbValue;
-  const WorkoutCategory(this.dbValue, this.translationKey, this.colorSwatch);
+  const WorkoutCategory(this.dbValue, this.feeelColor);
 
-  static WorkoutCategory fromDBValue(int dbValue) {
-    switch (dbValue) {
-      case 0:
-        return WorkoutCategory.strength;
-      case 1:
-        return WorkoutCategory.stretching;
-      case 2:
-        return WorkoutCategory.cardio;
-      case 3:
-        return WorkoutCategory.other;
-      default:
-        throw Exception("No workout category with this dbValue exists.");
+  String getTranslation(BuildContext context) {
+    switch (this) {
+      case WorkoutCategory.strength:
+        return AppLocalizations.of(context)!.txtStrength;
+      case WorkoutCategory.stretching:
+        return AppLocalizations.of(context)!.txtStretchingAndYoga;
+      case WorkoutCategory.cardio:
+        return AppLocalizations.of(context)!.txtCardio;
+      case WorkoutCategory.other:
+        return AppLocalizations.of(context)!.txtOther;
     }
   }
+
+  // static WorkoutCategory fromDBValue(int dbValue) {
+  //   //TODO use map
+  //   switch (dbValue) {
+  //     case 0:
+  //       return WorkoutCategory.strength;
+  //     case 1:
+  //       return WorkoutCategory.stretching;
+  //     case 2:
+  //       return WorkoutCategory.cardio;
+  //     case 3:
+  //       return WorkoutCategory.other;
+  //     default:
+  //       throw Exception("No workout category with this dbValue exists.");
+  //   }
+  // }
 }

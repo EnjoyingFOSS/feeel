@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/models/editor/editor_workout_exercise.dart';
+import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/screens/workout_editor/components/timing_header.dart';
 import 'package:feeel/screens/workout_editor/components/trailing_seconds_input.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class WorkoutTimingEditor extends StatelessWidget {
   final int exerciseDuration;
   final int breakDuration;
   final Key timingFormKey;
-  final List<EditorWorkoutExercise> workoutExercises;
+  final List<EditableWorkoutExercise> workoutExercises;
   final Function(int value) onExerciseDurationChanged;
   final Function(int value) onBreakDurationChanged;
 
@@ -62,17 +62,17 @@ class WorkoutTimingEditor extends StatelessWidget {
           Expanded(
               child: ListView.builder(
             padding: const EdgeInsets.only(bottom: 72),
-            //todo add itemExtent here, but test for responsiveness
+            //TODO add itemExtent here, but test for responsiveness
             itemBuilder: (BuildContext context, int index) {
-              final workoutExercise = workoutExercises[index].exercise;
+              final workoutExercise = workoutExercises[index];
               return ExerciseEditorRow(
-                  workoutExercise: workoutExercise,
+                  editableWorkoutExercise: workoutExercise,
                   trailing: TrailingSecondsInput(
-                      initialValue: workoutExercise.duration,
+                      initialValue: workoutExercise.exerciseDuration,
                       defaultDuration: exerciseDuration,
                       onSaved: (String? input) {
-                        var secs = int.tryParse(input ?? "");
-                        workoutExercise.duration = secs;
+                        final secs = int.tryParse(input ?? "");
+                        workoutExercise.exerciseDuration = secs;
                       }));
             },
             itemCount: workoutExercises.length,

@@ -20,39 +20,44 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:feeel/enums/feeel_theme_mode.dart';
+import 'package:feeel/models/feeel_theme_meta.dart';
+import 'package:feeel/providers/theme_meta_provider.dart';
+import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
-import 'package:feeel/theming/theme_mode_extensions.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ThemeDialog extends StatelessWidget {
-  final AdaptiveThemeMode? curTheme;
+class ThemeDialog extends ConsumerWidget {
+  final FeeelThemeMeta themeMeta;
 
-  const ThemeDialog({required this.curTheme, Key? key}) : super(key: key);
+  const ThemeDialog({required this.themeMeta, Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    //TODO integrate the personalized switch into this too!
+    final themeNotifier = ref.read(themeMetaProvider.notifier);
     return AlertDialog(
-      title: Text("Theme".i18n),
+      title: Text(AppLocalizations.of(context)!.txtTheme),
       content: SizedBox(
-        width: double.maxFinite,
+        width: LayoutXL.cols6.width,
         child: ListView.builder(
-          itemCount: AdaptiveThemeMode.values.length,
+          shrinkWrap: true,
+          itemCount: FeeelThemeMode.values.length,
           itemBuilder: (BuildContext context, int index) {
-            final itemTheme = AdaptiveThemeMode.values[index];
+            final itemTheme = FeeelThemeMode.values[index];
             return RadioListTile(
               value: index,
-              groupValue: curTheme?.index,
-              title: Text(itemTheme.uiName().i18n),
+              groupValue: themeMeta.mode.index,
+              title: Text(itemTheme.getTranslation(context)),
               onChanged: (int? newIndex) {
                 if (newIndex != null) {
-                  AdaptiveThemeMode.values[newIndex].apply(context);
+                  themeNotifier.setTheme(themeMeta.copyWith(mode: itemTheme));
                 }
                 Navigator.pop(context);
               },
             );
           },
-          shrinkWrap: true,
         ),
       ),
     );

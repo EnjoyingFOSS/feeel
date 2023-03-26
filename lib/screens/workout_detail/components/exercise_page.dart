@@ -21,14 +21,13 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/exercise_sheet.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/models/full_workout.dart';
 import '../../../controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_view.dart';
-import 'package:feeel/db/asset_helper.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/workout_stage.dart';
-import 'package:feeel/models/view/exercise.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
@@ -36,13 +35,13 @@ import 'package:feeel/i18n/translations.dart';
 import 'exercise_layout.dart';
 
 class ExercisePage extends StatefulWidget {
-  final Workout workout;
+  final FullWorkout fullWorkout;
   final FeeelSwatch colorSwatch;
   final WorkoutController workoutController;
 
   const ExercisePage(
       {Key? key,
-      required this.workout,
+      required this.fullWorkout,
       required this.colorSwatch,
       required this.workoutController})
       : super(key: key);
@@ -60,12 +59,12 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   // int _stepPos = 0;
   WorkoutStage _stage = WorkoutStage.workoutBreak;
 
-  // todo on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
+  // TODO on setup, do _second = widget.workoutExercise.breakBeforeDuration ?
 
   @override
   void initState() {
     widget.workoutController.setView(this);
-    _seconds = widget.workout.countdownDuration;
+    _seconds = widget.fullWorkout.workout.countdownDuration;
 
     super.initState();
   }
@@ -77,7 +76,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
 
     return
         // CallbackShortcuts(
-        //     //todo doesn't always activate!!!
+        //     //TODO doesn't always activate!!!
         //     bindings: {
         //       const SingleActivator(LogicalKeyboardKey.space): () => setState(() {
         //             widget.workoutController.togglePlayPause();
@@ -86,15 +85,15 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
         //     child:
         GestureDetector(
       onTap: () {
-        //todo setstate
+        //TODO setstate
         setState(() {
           widget.workoutController.togglePlayPause();
         });
       },
+      //TODO onHorizontalDrag
       onVerticalDragStart: (_) => onLearn(exercise),
-      //todo onHorizontalDrag
       child: Material(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           child: ExerciseLayout(
             imageSlug:
                 // (exercise.steps?[_stepPos].imageSlug != null)
@@ -142,7 +141,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onStart(int exercisePos, WorkoutExercise nextExercise, int duration) {
+  void onStart(int exercisePos, _, int duration) {
     setState(() {
       _seconds = duration;
       _exercisePos = exercisePos;
@@ -151,7 +150,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onBreak(int exercisePos, WorkoutExercise nextExercise, int duration) {
+  void onBreak(int exercisePos, _, int duration) {
     setState(() {
       _seconds = duration;
       _exercisePos = exercisePos;
@@ -160,7 +159,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   }
 
   @override
-  void onExercise(int exercisePos, WorkoutExercise exercise, int duration) {
+  void onExercise(int exercisePos, _, int duration) {
     setState(() {
       // if ((exercise.exercise.steps?.length ?? 0) > 1) {
       //   _preloadUpcomingStep();
@@ -171,11 +170,11 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
       _seconds = duration;
       _exercisePos = exercisePos;
       _stage = WorkoutStage.exercise;
-      // _stepPos = 0; //todo should I do this for the break too?
+      // _stepPos = 0; //TODO should I do this for the break too?
     });
   }
 
-  Exercise _getExercise(int i) => widget.workout.workoutExercises[i].exercise;
+  Exercise _getExercise(int i) => widget.fullWorkout.exercises[i];
 
   // void _preloadUpcomingStep() {
   // final steps = _getExercise(_exercisePos).steps;
@@ -191,12 +190,11 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
   // }
 
   void _preloadUpcomingExercise() {
-    if (_exercisePos + 1 < widget.workout.workoutExercises.length) {
+    if (_exercisePos + 1 < widget.fullWorkout.workoutExercises.length) {
       final nextImageSlug = _getExercise(_exercisePos + 1).imageSlug;
-      if (nextImageSlug != null) {
-        precacheImage(
-            Image.asset(AssetHelper.getImage(nextImageSlug)).image, context);
-      }
+      precacheImage(
+          Image.asset(AssetUtil.getImageOrPlaceholderPath(nextImageSlug)).image,
+          context);
     }
   }
 
@@ -235,4 +233,7 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
       _stage = WorkoutStage.countdown;
     });
   }
+
+  @override
+  void onDispose() {}
 }

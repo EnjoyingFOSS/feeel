@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../theming/feeel_shade.dart';
 import '../../../theming/feeel_swatch.dart';
@@ -49,14 +49,15 @@ class ExerciseLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo use two-pane layout in landscape
+    //TODO use two-pane layout in landscape
     final theme = Theme.of(context);
 
-    final themeDarkColor =
-        colorSwatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
+    final onBackgroundColor =
+        colorSwatch.getColor(FeeelShade.dark.invertIfDark(theme.brightness));
 
-    final fgColor =
-        headOnly ? colorSwatch.getColor(FeeelShade.dark) : Colors.white;
+    final fgColor = headOnly
+        ? onBackgroundColor
+        : colorSwatch.getForegroundColor(FeeelShade.dark);
     final bgColor = headOnly
         ? Colors.transparent
         : (theme.brightness == Brightness.dark
@@ -75,7 +76,7 @@ class ExerciseLayout extends StatelessWidget {
     return (screenSize.width > screenSize.height &&
             screenSize.width >= 568 &&
             screenSize.height <
-                568) //todo at small screen landscape sizes, allow image to be smaller
+                568) //TODO at small screen landscape sizes, allow image to be smaller
         ? Stack(children: [
             if (!headOnly)
               Align(
@@ -94,19 +95,20 @@ class ExerciseLayout extends StatelessWidget {
                         child: Column(
                           children: [
                             ExerciseCounter(
-                                color: themeDarkColor,
+                                color: onBackgroundColor,
                                 paused: paused,
                                 counterText: secondsString),
                             paused
                                 ? ExerciseControls(
-                                    themeDarkColor: themeDarkColor,
+                                    themeDarkColor: onBackgroundColor,
                                     skipToPrevious: skipToPrevious,
                                     skipToNext: skipToNext,
                                     togglePlayPause: togglePlayPause,
                                   )
                                 : Text(
-                                    "Tap for controls".i18n,
-                                    style: TextStyle(color: themeDarkColor),
+                                    AppLocalizations.of(context)!
+                                        .txtTapForControls,
+                                    style: TextStyle(color: onBackgroundColor),
                                   ),
                             const Expanded(
                               child: SizedBox(),
@@ -131,7 +133,7 @@ class ExerciseLayout extends StatelessWidget {
                   constraints:
                       const BoxConstraints(minWidth: 284, maxWidth: 640),
                   child:
-                      //todo column here seems unnecessarily complex
+                      //TODO column here seems unnecessarily complex
                       Padding(
                           padding: const EdgeInsets.all(8),
                           child: ExerciseIllustration(
@@ -154,19 +156,19 @@ class ExerciseLayout extends StatelessWidget {
         : Column(
             children: <Widget>[
               ExerciseCounter(
-                  color: themeDarkColor,
+                  color: onBackgroundColor,
                   paused: paused,
                   counterText: secondsString),
               paused
                   ? ExerciseControls(
-                      themeDarkColor: themeDarkColor,
+                      themeDarkColor: onBackgroundColor,
                       skipToPrevious: skipToPrevious,
                       skipToNext: skipToNext,
                       togglePlayPause: togglePlayPause,
                     )
                   : Text(
-                      "Tap for controls".i18n,
-                      style: TextStyle(color: themeDarkColor),
+                      AppLocalizations.of(context)!.txtTapForControls,
+                      style: TextStyle(color: onBackgroundColor),
                     ),
               const SizedBox(
                 height: 16,

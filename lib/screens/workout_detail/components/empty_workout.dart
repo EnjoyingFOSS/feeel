@@ -20,26 +20,28 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/models/full_workout.dart';
+import 'package:feeel/providers/workout_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../db/db_helper.dart';
 import '../../../enums/workout_type.dart';
-import '../../../models/view/workout.dart';
 
-class EmptyWorkout extends StatelessWidget {
-  final Workout workout;
+class EmptyWorkout extends ConsumerWidget {
+  final FullWorkout fullWorkout;
 
-  const EmptyWorkout({Key? key, required this.workout}) : super(key: key);
+  const EmptyWorkout({Key? key, required this.fullWorkout}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final providerNotifier = ref.read(workoutProvider.notifier);
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text("There are no exercises in this workout. :(".i18n),
+        Text(AppLocalizations.of(context)!.txtNoExercises),
         const SizedBox(
           height: 8,
         ),
@@ -47,19 +49,17 @@ class EmptyWorkout extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextButton(
-              child: Text("Back to workout list".i18n),
+              child: Text(AppLocalizations.of(context)!.btnBackToWorkoutList),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
-            if (workout.type == WorkoutType.custom)
+            if (fullWorkout.workout.type == WorkoutType.custom)
               ElevatedButton(
-                child: Text("Delete this workout".i18n),
+                child: Text(AppLocalizations.of(context)!.btnDeleteThisWorkout),
                 onPressed: () {
-                  if (workout.dbId != null) {
-                    DBHelper.db.deleteCustomWorkout(workout.dbId!);
-                    Navigator.pop(context);
-                  }
+                  providerNotifier.deleteWorkout(fullWorkout.workout.id);
+                  Navigator.pop(context);
                 },
               )
           ],

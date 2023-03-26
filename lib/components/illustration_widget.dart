@@ -20,7 +20,6 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/components/flipped.dart';
 import 'package:flutter/widgets.dart';
 
@@ -29,15 +28,13 @@ class IllustrationWidget extends StatelessWidget {
       {Key? key, required this.imageAssetString, required this.flipped})
       : super(key: key);
 
-  final String? imageAssetString;
+  final String imageAssetString;
   final bool flipped;
 
   @override
   Widget build(BuildContext context) {
-    return (imageAssetString != null)
-        ? flipped
-            ? Flipped(child: Image.asset(imageAssetString!))
-            : Image.asset(imageAssetString!)
-        : Text("Image missing".i18n);
+    return flipped
+        ? Flipped(child: Image.asset(imageAssetString))
+        : Image.asset(imageAssetString);
   }
 }

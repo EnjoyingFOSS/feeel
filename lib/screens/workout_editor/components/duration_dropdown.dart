@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DurationDropdown extends StatelessWidget {
   static const _custom = -1;
@@ -49,13 +49,15 @@ class DurationDropdown extends StatelessWidget {
       items: [
         ...predefinedValues.map((int secs) => DropdownMenuItem(
               value: secs,
-              child: Text(_formatSecs(secs)),
+              child: Text(_formatSecs(secs, context)),
             )),
         DropdownMenuItem(
           value: _custom,
           child: _chosenIsPredefined
-              ? Text("Custom".i18n)
-              : Text("${"Custom".i18n}: ${_formatSecs(chosenValue)}"),
+              ? Text(AppLocalizations.of(context)!.txtCustom)
+              : Text(AppLocalizations.of(context)!
+                  .txtCustomWithDuration
+                  .replaceFirst("%s", _formatSecs(chosenValue, context))),
         )
       ],
       onChanged: (int? value) {
@@ -65,11 +67,15 @@ class DurationDropdown extends StatelessWidget {
     );
   }
 
-  String _formatSecs(int secs) {
+  String _formatSecs(int secs, BuildContext context) {
     if (secs % 60 == 0) {
-      return "${secs ~/ 60} min";
+      return AppLocalizations.of(context)!
+          .txtDurationMin
+          .replaceFirst("%d", "${secs ~/ 60}");
     } else {
-      return "$secs s";
+      return AppLocalizations.of(context)!
+          .txtDurationSec
+          .replaceFirst("%d", "$secs");
     }
   }
 
@@ -80,30 +86,31 @@ class DurationDropdown extends StatelessWidget {
       showDialog<void>(
           builder: (context) {
             return AlertDialog(
-                //todo save custom value
+                //TODO save custom value
                 content: TextField(
-                  decoration:
-                      InputDecoration(labelText: "Custom duration (s.)".i18n),
+                  decoration: InputDecoration(
+                      labelText:
+                          AppLocalizations.of(context)!.txtCustomDuration),
                   keyboardType: TextInputType.number,
                   controller: _durationController,
-                ) //todo use validation for text field
+                ) //TODO use validation for text field
                 ,
                 actions: [
                   TextButton(
-                      child: Text("Cancel".i18n),
+                      child: Text(AppLocalizations.of(context)!.btnCancel),
                       onPressed: () {
                         Navigator.pop(context);
                       }),
                   TextButton(
-                    child: Text("OK".i18n),
+                    child: Text(AppLocalizations.of(context)!.btnOK),
                     onPressed: () {
-                      var value =
+                      final value =
                           int.tryParse(_durationController.text.toString());
                       if (value != null && value > 0) onChanged(value);
                       Navigator.pop(context);
-                    }, //todo
+                    }, //TODO
                   )
-                ] //todo isn't the default? + i18n
+                ] //TODO isn't the default? + i18n
                 );
           },
           context: context);

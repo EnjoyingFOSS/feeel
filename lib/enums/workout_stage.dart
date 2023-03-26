@@ -26,4 +26,4 @@ enum WorkoutStage {
   countdown,
   workoutBreak,
   end
-} //todo remove READY
+} //TODO remove READY

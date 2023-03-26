@@ -21,13 +21,14 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/preference_keys.dart';
+import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
 
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../db/asset_helper.dart';
+import '../utils/asset_util.dart';
 
 class DisclaimerSheet extends StatelessWidget {
   const DisclaimerSheet({Key? key}) : super(key: key);
@@ -46,20 +47,11 @@ class DisclaimerSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo make this themable
-    // return DraggableScrollableSheet(
-    //   expand: false,
-    //   initialChildSize: 0.6,
-    //   minChildSize: 0.6,
-    //   snap: true,
-    //   snapSizes: const [0.6, 1.0], //todo 0 needed?
-    //   builder: (BuildContext context, ScrollController scrollController) {
     final fgColor = Theme.of(context).colorScheme.onBackground;
     final bgColor = Theme.of(context).colorScheme.background;
 
     return CustomScrollView(
       shrinkWrap: true,
-      // controller: scrollController,
       physics: const ClampingScrollPhysics(),
       slivers: [
         SliverList(
@@ -67,16 +59,12 @@ class DisclaimerSheet extends StatelessWidget {
           Stack(alignment: Alignment.bottomCenter, children: [
             Align(
                 alignment: Alignment.bottomCenter,
-                // child: FractionallySizedBox(
-                //   heightFactor: 0.5,
-                //   widthFactor: 1.0,
                 child: Container(
                   height: 64,
                   color: bgColor,
-                  // ),
                 )),
             Image.asset(
-              AssetHelper.getImage("image_volunteer_heart.webp"),
+              AssetUtil.getImagePath("image_volunteer_heart.webp"),
               width: 128,
             ),
           ]),
@@ -93,18 +81,18 @@ class DisclaimerSheet extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Feeel is a community project".i18n,
+                      AppLocalizations.of(context)!.txtCommunityDrivenHeader,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 600),
+                        constraints:
+                            BoxConstraints(maxWidth: LayoutXL.cols8.width),
                         child: Text(
-                          "Exercises and workouts are volunteer-contributed. Neither Feeel nor any volunteer is responsible for the correctness of any info in this app or for your health. Use at your own discretion."
-                              .i18n,
+                          AppLocalizations.of(context)!.txtDisclaimerContent,
                           style: TextStyle(color: fgColor),
                         )),
                     const SizedBox(
@@ -112,13 +100,12 @@ class DisclaimerSheet extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () async {
-                        //todo set a setting here
                         final navigator = Navigator.of(context);
                         final prefs = await SharedPreferences.getInstance();
-                        prefs.setBool(PreferenceKeys.showDisclaimerPref, false);
+                        prefs.setBool(PreferenceKeys.showDisclaimer, false);
                         navigator.pop();
                       },
-                      child: Text("I understand".i18n),
+                      child: Text(AppLocalizations.of(context)!.btnIunderstand),
                     )
                   ]))
         ])),

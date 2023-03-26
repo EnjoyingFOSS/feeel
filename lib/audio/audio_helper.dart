@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+enum AudioPriority { high, low }
+
 class AudioHelper {
   static const int countdown = 5;
 }

@@ -32,7 +32,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 33 // todo change to flutter.compileSdkVersion again later
+    compileSdkVersion flutter.compileSdkVersion
 
     compileOptions { 
         sourceCompatibility JavaVersion.VERSION_1_8

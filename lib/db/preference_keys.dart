@@ -21,7 +21,10 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 class PreferenceKeys {
-  static const showDisclaimerPref = "showDisclaimer";
-  static const ttsDisabledPref = "ttsDisabled";
-  static const notificationTimePref = "notificationTime";
+  static const themeMode = "themeMode";
+  static const themePersonalized = "themePersonalized";
+  static const showDisclaimer = "showDisclaimer";
+  static const ttsDisabled = "ttsDisabled";
+  static const notificationTime = "notificationTime";
+  static const locale = "locale";
 }

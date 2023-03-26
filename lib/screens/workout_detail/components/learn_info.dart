@@ -21,19 +21,24 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LearnInfo extends StatelessWidget {
-  //todo indicate when an exercise has steps
+  //TODO indicate when an exercise has steps
   final Color bgColor;
+  final Color fgColor;
   final void Function() onTap;
 
-  const LearnInfo({Key? key, required this.onTap, required this.bgColor})
+  const LearnInfo(
+      {Key? key,
+      required this.onTap,
+      required this.bgColor,
+      required this.fgColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //todo make this possible to activate using the keyboard only!
+    //TODO make this possible to activate using the keyboard only!
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -47,15 +52,15 @@ class LearnInfo extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.expand_less, color: Colors.white),
+                  Icon(Icons.expand_less, color: fgColor),
                   Text(
-                    "Learn the exercise".i18n,
+                    AppLocalizations.of(context)!.txtLearnTheExercise,
                     style: Theme.of(context)
                         .textTheme
-                        .caption
-                        ?.copyWith(color: Colors.white),
+                        .bodySmall
+                        ?.copyWith(color: fgColor),
                   )
-                ], //todo size16 or 18
+                ], //TODO size16 or 18
               ))),
     );
   }

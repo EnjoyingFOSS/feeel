@@ -11,7 +11,7 @@ import Flutter
     if #available(iOS 10.0, *) {
       UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
     }
-    if(!UserDefaults.standard.bool(forKey: "exercise_reminder")) { //todo should I use the notification key here?
+    if(!UserDefaults.standard.bool(forKey: "exercise_reminder")) { //TODO should I use the notification key here?
       UIApplication.shared.cancelAllLocalNotifications()
       UserDefaults.standard.set(true, forKey: "exercise_reminder")
     }

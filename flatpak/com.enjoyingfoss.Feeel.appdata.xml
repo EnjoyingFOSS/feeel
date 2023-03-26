@@ -22,7 +22,7 @@
 	</custom>
 
 	<description>
-		<p>Feeel is an open-source app for doing simple at-home exercises. It holds the acclaimed full body scientific 7-minute workout regime and allows creating custom workouts as well. While the app currently contains a limited amount of exercises, the plan is to drastically expand the number of both exercises and workouts with the help of the community.</p>
+		<p>Feeel is an open-source app for doing simple at-home exercises. It holds the acclaimed full body scientific 7-minute workout regime and allows creating custom workouts as well. The app sources exercises from wger, a free and open-source online exercise wiki.</p>
 
 		<p>Features:</p>
 		<ul>

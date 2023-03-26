@@ -20,220 +20,24 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/components/disclaimer_sheet.dart';
-import 'package:feeel/db/db_helper.dart';
-import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/view/workout_listed.dart';
-import 'package:feeel/screens/settings/settings.dart';
-import 'package:feeel/screens/workout_editor/workout_editor.dart';
-import 'package:feeel/screens/workout_list/components/workout_list_item.dart';
+import 'package:feeel/components/body_container.dart';
+import 'package:feeel/screens/workout_list/components/workout_add_speed_dial.dart';
+import 'package:feeel/screens/workout_list/components/workout_list_listview.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../db/preference_keys.dart';
-
-class WorkoutListScreen extends StatefulWidget {
+class WorkoutListScreen extends StatelessWidget {
   const WorkoutListScreen({super.key});
 
   @override
-  State<WorkoutListScreen> createState() {
-    return _WorkoutListScreenState();
-  }
-}
-
-class _WorkoutListScreenState extends State<WorkoutListScreen> {
-  static const String _menuDelete = "delete";
-  static const String _menuEdit = "edit";
-  static const String _menuDuplicate = "duplicate";
-
-  //todo allow showing disclaimer from Settings too!
-
-  @override
-  void initState() {
-    // todo TURN THIS SCREEN INTO A STATELESS WIDGET, USE WidgetsBinding.instance.addPostFrameCallback((_) => yourFunction(context)) INSTEAD;
-    SharedPreferences.getInstance().then((prefs) {
-      //todo is the initState method the right place for this?
-      if (prefs.getBool(PreferenceKeys.showDisclaimerPref) ?? true) {
-        DisclaimerSheet.showSheet(context);
-      }
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    //todo implement pull to refresh gesture
-    return Scaffold(
-        //todo do I need SafeArea here?
-        backgroundColor: Theme.of(context).backgroundColor,
-        floatingActionButton: FloatingActionButton(
-          tooltip: "Create custom workout".i18n,
-          child: const Icon(Icons.add),
-          onPressed: () {
-            Navigator.push<void>(context,
-                MaterialPageRoute(builder: (BuildContext context) {
-              return const WorkoutEditorScreen();
-            })).then((_) {
-              setState(() {});
-            });
-          },
-        ),
-        body: FutureBuilder<List<WorkoutListed>>(
-            future: DBHelper.db.queryAllWorkouts(),
-            builder: (BuildContext context,
-                AsyncSnapshot<List<WorkoutListed>> snapshot) {
-              if (snapshot.hasData) {
-                final workoutsListed = snapshot.data!;
-
-                const crossAxisSpacing = 16.0;
-                final gridColumns = (MediaQuery.of(context).size.width /
-                        (600 + crossAxisSpacing))
-                    .ceil();
-
-                return AnimationLimiter(
-                    child: CustomScrollView(slivers: <Widget>[
-                  SliverPadding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      sliver: SliverAppBar(
-                        //todo add floating: true, but with dynamic shadow
-                        title: Text.rich(
-                            //todo add varying spans, e.g. "Feeel energized", "Feeel goood", "Feeel fresh" ,"Feeel the burn", ...
-                            TextSpan(children: <InlineSpan>[
-                          TextSpan(
-                            text: "Feeel ",
-                            style: Theme.of(context)
-                                .appBarTheme
-                                .titleTextStyle
-                                ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                          ),
-                          // todo TextSpan(
-                          //   text: "energized",
-                          //   style: TextStyle(
-                          //       fontSize: 32,
-                          //       fontWeight: FontWeight.w900,
-                          //       color:
-                          //           Theme.of(context).colorScheme.onBackground),
-                          // )
-                        ])),
-                        backgroundColor: Theme.of(context).backgroundColor,
-                        actions: <Widget>[
-                          IconButton(
-                            icon: Icon(
-                              Icons.settings,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            tooltip: "Settings".i18n,
-                            onPressed: () {
-                              Navigator.push<void>(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SettingsScreen())); //todo will need to refresh on coming back
-                            },
-                          )
-                        ],
-                      )),
-                  SliverPadding(
-                      padding: const EdgeInsets.only(bottom: 80),
-                      sliver: SliverGrid(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: gridColumns,
-                            crossAxisSpacing: crossAxisSpacing,
-                            mainAxisExtent: WorkoutListItem.extent),
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            WorkoutListed workoutListed = workoutsListed[index];
-                            return AnimationConfiguration.staggeredGrid(
-                                position: index,
-                                duration: const Duration(milliseconds: 375),
-                                columnCount: gridColumns,
-                                child: FadeInAnimation(
-                                    child: WorkoutListItem(
-                                  workoutListed,
-                                  trailing: PopupMenuButton(
-                                    itemBuilder: (context) {
-                                      return workoutListed.type ==
-                                              WorkoutType.custom
-                                          ? [
-                                              PopupMenuItem<String>(
-                                                  value: _menuEdit,
-                                                  child: Text("Edit".i18n)),
-                                              PopupMenuItem<String>(
-                                                  value: _menuDelete,
-                                                  child: Text("Delete".i18n)),
-                                              PopupMenuItem<String>(
-                                                  value: _menuDuplicate,
-                                                  child:
-                                                      Text("Duplicate".i18n)),
-                                            ]
-                                          : [
-                                              PopupMenuItem<String>(
-                                                  value: _menuDuplicate,
-                                                  child:
-                                                      Text("Duplicate".i18n)),
-                                            ];
-                                    },
-                                    onSelected: (String value) {
-                                      switch (value) {
-                                        case _menuDelete:
-                                          _onDeleteCustom(workoutListed);
-                                          break;
-                                        case _menuEdit:
-                                          _onEditCustom(workoutListed);
-                                          break;
-                                        case _menuDuplicate:
-                                          _onDuplicate(workoutListed);
-                                          break;
-                                      }
-                                    },
-                                  ),
-                                )));
-                          },
-                          childCount: workoutsListed.length,
-                        ),
-                      ))
-                ]));
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            }));
-  }
-
-  void _onDeleteCustom(WorkoutListed workoutListed) {
-    // todo allow an undo !!!
-    DBHelper.db.deleteCustomWorkout(workoutListed.dbId).then((_) {
-      setState(() {});
-    });
-  }
-
-  void _onEditCustom(WorkoutListed workoutListed) {
-    Navigator.push<void>(
-        context,
-        MaterialPageRoute(
-            builder: (context) => WorkoutEditorScreen(
-                  workoutListed: workoutListed,
-                ))).then((_) {
-      setState(() {});
-    });
-  }
-
-  void _onDuplicate(WorkoutListed origListed) async {
-    final navigator = Navigator.of(context);
-    final newListed =
-        await DBHelper.db.duplicateWorkout(origListed.dbId, origListed.type);
-    navigator
-        .push<void>(MaterialPageRoute(
-            builder: (context) => WorkoutEditorScreen(
-                  workoutListed: newListed,
-                )))
-        .then((_) {
-      setState(() {});
-    });
+    return BodyContainer(
+        child: Stack(children: [
+      const WorkoutListListView(),
+      Positioned.directional(
+          bottom: 16,
+          end: 16,
+          textDirection: Directionality.of(context),
+          child: const WorkoutAddSpeedDial())
+    ]));
   }
 }

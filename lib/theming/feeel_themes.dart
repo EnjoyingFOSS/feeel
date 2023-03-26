@@ -20,18 +20,30 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/theming/feeel_swatches.dart';
 import 'package:flutter/material.dart';
 
-import 'feeel_colors.dart';
+import 'feeel_color.dart';
 import 'feeel_shade.dart';
 
 class FeeelThemes {
-  static final _lightColors = ColorScheme(
-      //todo extract colors to separate file
-      primary: FeeelColors.blue.getColor(FeeelShade.dark),
+  //TODO make into providers too?
+  static final lightColors = ColorScheme(
+      //TODO extract colors to separate file
+      primary:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.dark),
       onPrimary: Colors.white,
-      secondary: FeeelColors.orange.getColor(FeeelShade.dark),
+      primaryContainer: FeeelSwatches.swatches[FeeelColor.blue]!
+          .getColor(FeeelShade.lightest),
+      onPrimaryContainer:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.dark),
+      secondary:
+          FeeelSwatches.swatches[FeeelColor.orange]!.getColor(FeeelShade.dark),
       onSecondary: Colors.white,
+      secondaryContainer: FeeelSwatches.swatches[FeeelColor.orange]!
+          .getColor(FeeelShade.lightest),
+      onSecondaryContainer:
+          FeeelSwatches.swatches[FeeelColor.orange]!.getColor(FeeelShade.dark),
       surface: Colors.white,
       onSurface: Colors.black87,
       background: Colors.white,
@@ -40,41 +52,77 @@ class FeeelThemes {
       onError: Colors.white,
       brightness: Brightness.light);
 
-  static final _darkColors = ColorScheme(
-      primary: FeeelColors.blue.getColor(FeeelShade.light),
+  static final darkColors = ColorScheme(
+      primary:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.light),
       onPrimary: Colors.black87,
-      secondary: FeeelColors.orange.getColor(FeeelShade.light),
+      primaryContainer:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.darkest),
+      onPrimaryContainer:
+          FeeelSwatches.swatches[FeeelColor.blue]!.getColor(FeeelShade.light),
+      secondary:
+          FeeelSwatches.swatches[FeeelColor.orange]!.getColor(FeeelShade.light),
       onSecondary: Colors.black87,
-      surface: Colors.black,
+      secondaryContainer: FeeelSwatches.swatches[FeeelColor.orange]!
+          .getColor(FeeelShade.darkest),
+      onSecondaryContainer:
+          FeeelSwatches.swatches[FeeelColor.orange]!.getColor(FeeelShade.light),
+      surface: Colors.grey.shade900, //TODO test
       onSurface: Colors.white,
       background: Colors.black,
       onBackground: Colors.white,
-      error: const Color(0xFFB00020),
-      onError: Colors.white,
+      error: const Color(0xFFFF2828),
+      onError: Colors.black87,
       brightness: Brightness.dark);
 
-  static final ThemeData lightTheme = _getThemeFromScheme(_lightColors);
-  static final ThemeData darkTheme = _getThemeFromScheme(_darkColors);
-
-  static ThemeData _getThemeFromScheme(ColorScheme colors) {
+  static ThemeData getThemeFromScheme(ColorScheme colorScheme) {
+    //TODO system bar icon colors are wrong
     return ThemeData(
-        colorScheme: colors,
+        materialTapTargetSize: MaterialTapTargetSize.padded,
+        colorScheme: colorScheme,
         visualDensity: VisualDensity.standard,
-        backgroundColor: colors.background,
-        brightness: colors.brightness,
-        primaryColor: colors.primary,
-        scaffoldBackgroundColor: colors.background,
-        cardColor: colors.surface,
-        errorColor: colors.error,
-        toggleableActiveColor: colors.primary,
+        brightness: colorScheme.brightness,
+        primaryColor: colorScheme.primary,
+        scaffoldBackgroundColor: colorScheme.background,
+        cardColor: colorScheme.surface,
         appBarTheme: AppBarTheme(
-            color: colors.background,
-            iconTheme: IconThemeData(color: colors.primary),
+            color: Colors.transparent,
+            iconTheme: IconThemeData(color: colorScheme.primary),
             titleTextStyle: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.w900,
-                color: colors.primary),
+                color: colorScheme.primary),
             centerTitle: false,
-            elevation: 0));
+            elevation: 0),
+        navigationBarTheme: NavigationBarThemeData(
+            iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
+                (states) => (states.contains(MaterialState.selected)
+                    ? IconThemeData(color: colorScheme.onPrimaryContainer)
+                    : IconThemeData(color: colorScheme.onSurface))),
+            shadowColor: colorScheme.onBackground,
+            indicatorColor: colorScheme.primaryContainer,
+            backgroundColor: colorScheme.background,
+            height: 56,
+            elevation: 8),
+        navigationDrawerTheme: NavigationDrawerThemeData(
+            iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
+                (states) => (states.contains(MaterialState.selected)
+                    ? IconThemeData(color: colorScheme.onPrimaryContainer)
+                    : IconThemeData(color: colorScheme.onSurface))),
+            shadowColor: colorScheme.onBackground,
+            backgroundColor: colorScheme.background,
+            indicatorColor: colorScheme.primaryContainer,
+            elevation: 8,
+            labelTextStyle: MaterialStateProperty.resolveWith((states) =>
+                (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? TextStyle(color: colorScheme.onPrimaryContainer, fontWeight: FontWeight.w500) : null)),
+        switchTheme: SwitchThemeData(thumbColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null), trackColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary.withAlpha(80) : null)),
+        radioTheme: RadioThemeData(
+          fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
+              (!states.contains(MaterialState.disabled) &&
+                      states.contains(MaterialState.selected))
+                  ? colorScheme.primary
+                  : null),
+        ),
+        checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null)));
   }
 }

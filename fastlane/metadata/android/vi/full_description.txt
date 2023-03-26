@@ -1,5 +1,0 @@
-Feeel là một nguồn Các ứng dụng để làm đơn giản xuống-bài tập về nhà. Nó nắm giữ các nổi tiếng toàn thân khoa học, 7-phút chế độ tập luyện và cho phép tạo tập luyện cũng. Trong khi các ứng dụng nay, có một giới hạn số lượng của bài tập, kế hoạch là để quyết liệt mở rộng lượng và tập luyện với sự giúp đỡ của các cộng đồng.
-
-Đóng góp vào https://gitlab.com/enjoyingfoss/feeel/wikis
-
-Tặng xuống https://liberapay.com/Feeel/ . Quyên góp sẽ để tôi làm việc trên các ứng dụng thường xuyên, chứ không phải chỉ trong thời gian rảnh của tôi.

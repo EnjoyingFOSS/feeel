@@ -23,41 +23,45 @@
 import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/controllers/workout_view.dart';
+import 'package:feeel/db/database.dart';
 import 'package:feeel/enums/workout_stage.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
 
 class TTSView implements WorkoutView {
   int _halfTime = 0;
 
   @override
-  void onStart(int exercisePos, WorkoutExercise nextExercise, int duration) {
-    TTSHelper.tts.speak("Let's go! First up: %s".i18n.replaceFirst(
-        "%s", nextExercise.exercise.name.i18n)); //todo internationalization
+  void onStart(int exercisePos, Exercise nextExercise, int duration) {
+    TTSHelper.tts.speak(
+        "Let's go! First up: %s"
+            .i18n
+            .replaceFirst("%s", nextExercise.name.i18n),
+        priority: AudioPriority.high); //TODO internationalization
   }
 
   @override
-  void onBreak(int exercisePos, WorkoutExercise nextExercise, int duration) {
+  void onBreak(int exercisePos, Exercise nextExercise, int duration) {
     TTSHelper.tts.speak(
-        "${"Break!".i18n} ${"Next up:".i18n} ${nextExercise.exercise.name.i18n}");
+        "${"Break!".i18n} ${"Next up:".i18n} ${nextExercise.name.i18n}",
+        priority: AudioPriority.high);
   }
 
   @override
   void onCount(int seconds, WorkoutStage stage) {
-    //todo eliminate conflicts with step content
+    //TODO eliminate conflicts with step content
     if (seconds <= AudioHelper.countdown) {
-      TTSHelper.tts.speak(seconds.toString());
+      TTSHelper.tts.speak(seconds.toString(), priority: AudioPriority.low);
     } else if (seconds == _halfTime && stage == WorkoutStage.exercise) {
-      TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst(
-          "%d", "$seconds")); //todo internationalize with declension
+      TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst("%d", "$seconds"),
+          priority: AudioPriority.low); //TODO internationalize with declension
     }
   }
 
   @override
-  void onExercise(int exercisePos, WorkoutExercise exercise, int duration) {
-    TTSHelper.tts.speak(exercise.exercise.name.i18n);
+  void onExercise(int exercisePos, Exercise exercise, int duration) {
+    TTSHelper.tts.speak(exercise.name.i18n, priority: AudioPriority.high);
     _halfTime = (duration / 2).ceil();
-    // todo handle first step
+    // TODO handle first step
   }
 
   @override
@@ -74,10 +78,13 @@ class TTSView implements WorkoutView {
 
   @override
   void onCountdown(int exercisePos) {
-    TTSHelper.tts.speak("Get ready!".i18n);
+    TTSHelper.tts.speak("Get ready!".i18n, priority: AudioPriority.high);
   }
 
   void stop() {
-    TTSHelper.tts.stop(); //todo once stopped, does it restart?
+    TTSHelper.tts.stop(); //TODO once stopped, does it restart?
   }
+
+  @override
+  void onDispose() {}
 }

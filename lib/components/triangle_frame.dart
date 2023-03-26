@@ -34,7 +34,7 @@ class TriangleFrame extends StatelessWidget {
 
   TriangleFrame({super.key, required this.color, this.seed = 60, this.child}) {
     final random = Random(seed);
-    rRightLean = random.nextBool(); //todo use this
+    rRightLean = random.nextBool();
     rYOffset = random.nextDouble();
     rPeakX = random.nextDouble();
   }

@@ -20,14 +20,15 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DurationUtil {
-  static String getDurationLongform(int durationSecs) {
+  static String getDurationLongform(BuildContext context, int durationSecs) {
     final mins = durationSecs ~/ 60;
     final secs = durationSecs % 60;
-    return "%1d min., %2d sec."
-        .i18n
+    return AppLocalizations.of(context)!
+        .txtDurationLong
         .replaceFirst("%1d", mins.toString())
         .replaceFirst("%2d", secs.toString());
   }

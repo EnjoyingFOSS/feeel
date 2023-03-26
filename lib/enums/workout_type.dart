@@ -20,21 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+/// intEnum in DB
 enum WorkoutType {
-  bundled(0),
-  custom(1);
-
-  final int dbValue;
-  const WorkoutType(this.dbValue);
-
-  static WorkoutType fromDBValue(int dbValue) {
-    switch (dbValue) {
-      case 0:
-        return WorkoutType.bundled;
-      case 1:
-        return WorkoutType.custom;
-      default:
-        throw Exception("No workout type with this dbValue exists.");
-    }
-  }
+  bundled,
+  custom;
 }

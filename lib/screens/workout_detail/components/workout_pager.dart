@@ -23,10 +23,8 @@
 import 'dart:io';
 
 import 'package:feeel/controllers/workout_controller.dart';
-import 'package:feeel/controllers/workout_page_types.dart';
-import 'package:feeel/db/asset_helper.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/models/view/workout_listed.dart';
+import 'package:feeel/utils/asset_util.dart';
+import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
@@ -36,12 +34,14 @@ import 'package:wakelock/wakelock.dart';
 import 'exercise_page.dart';
 import 'finish_page.dart';
 
+enum _WorkoutPageTypes { cover, exercise, finish }
+
 class WorkoutPager extends StatefulWidget {
-  final Workout workout;
-  final WorkoutListed workoutListed;
+  final FullWorkout fullWorkout;
+  final FeeelSwatch colorSwatch;
 
   const WorkoutPager(
-      {Key? key, required this.workout, required this.workoutListed})
+      {Key? key, required this.fullWorkout, required this.colorSwatch})
       : super(key: key);
 
   @override
@@ -53,27 +53,23 @@ class WorkoutPager extends StatefulWidget {
 class _WorkoutPagerState extends State<WorkoutPager> {
   final _pageController = PageController();
   late WorkoutController _workoutController;
-  late FeeelSwatch colorSwatch;
 
   @override
   void initState() {
     super.initState();
-    colorSwatch = widget.workout.category.colorSwatch;
-    _workoutController = WorkoutController(widget.workout);
+    _workoutController = WorkoutController(widget.fullWorkout);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    if (widget.workout.workoutExercises.isNotEmpty) {
-      final imageSlug = widget.workout.workoutExercises[0].exercise.imageSlug;
-      if (imageSlug != null) {
-        precacheImage(
-            Image.asset(AssetHelper.getImage(imageSlug))
-                .image, //todo precache inside workout page instead?
-            context);
-      }
+    if (widget.fullWorkout.workoutExercises.isNotEmpty) {
+      final imageSlug = widget.fullWorkout.exercises[0].imageSlug;
+      precacheImage(
+          Image.asset(AssetUtil.getImageOrPlaceholderPath(imageSlug))
+              .image, //TODO precache inside workout page instead?
+          context);
     }
   }
 
@@ -81,7 +77,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   Widget build(BuildContext context) {
     _workoutController.setOnFinish(() {
       if (!Platform.isLinux) Wakelock.disable();
-      _pageController.jumpToPage(WorkoutPageTypes.finish.index);
+      _pageController.jumpToPage(_WorkoutPageTypes.finish.index);
     });
 
     return PageView(
@@ -89,22 +85,21 @@ class _WorkoutPagerState extends State<WorkoutPager> {
       controller: _pageController,
       children: <Widget>[
         WorkoutCover(
-          workout: widget.workout,
-          workoutListed: widget.workoutListed,
-          colorSwatch: colorSwatch,
+          fullWorkout: widget.fullWorkout,
+          colorSwatch: widget.colorSwatch,
           startWorkout: () {
-            _pageController.jumpToPage(WorkoutPageTypes.exercise.index);
+            _pageController.jumpToPage(_WorkoutPageTypes.exercise.index);
             _workoutController.start();
             if (!Platform.isLinux) Wakelock.enable(); //
           },
         ),
         ExercisePage(
             workoutController: _workoutController,
-            workout: widget.workout,
-            colorSwatch: colorSwatch),
+            fullWorkout: widget.fullWorkout,
+            colorSwatch: widget.colorSwatch),
         FinishPage(
-          color: colorSwatch.getColorByBrightness(
-              FeeelShade.dark, Theme.of(context).brightness),
+          color: widget.colorSwatch.getColor(
+              FeeelShade.dark.invertIfDark(Theme.of(context).brightness)),
         )
       ],
     );
@@ -113,6 +108,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   @override
   void dispose() {
     super.dispose();
+    _workoutController.recordState();
     _workoutController.close();
   }
 }

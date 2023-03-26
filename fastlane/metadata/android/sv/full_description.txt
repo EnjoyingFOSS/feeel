@@ -1,5 +1,0 @@
-Feeel är en Android-app med öppen källkod för att göra enkla övningar hemma. Den innehåller den hyllade vetenskapliga 7-minuters träningsplanen för hela kroppen och gör det möjligt att skapa egna träningspass. Även om appen för närvarande innehåller ett begränsat antal övningar är planen att drastiskt utöka antalet både övningar och träningspass med hjälp av gemenskapen.
-
-Bidra till https://gitlab.com/enjoyingfoss/feeel/wikis
-
-Donera på https://liberapay.com/Feeel/ . Donationer kommer att göra det möjligt för mig att arbeta med appen regelbundet, snarare än bara på min fritid.

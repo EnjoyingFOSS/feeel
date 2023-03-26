@@ -20,8 +20,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/body_container.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FinishPage extends StatelessWidget {
   final Color color;
@@ -31,7 +32,8 @@ class FinishPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Column(
+        child: BodyContainer(
+            child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         BackButton(
@@ -42,12 +44,12 @@ class FinishPage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
             child: Center(
                 child: Text(
-              "You're glowing!".i18n,
+              AppLocalizations.of(context)!.txtYoureGlowing,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 40, fontWeight: FontWeight.w900, color: color),
             )))
       ],
-    ));
+    )));
   }
 }

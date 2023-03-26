@@ -20,114 +20,110 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'dart:io';
-
-import 'package:feeel/db/db_helper.dart';
-import 'package:feeel/models/view/exercise.dart';
+import 'package:feeel/components/body_container.dart';
+import 'package:feeel/providers/exercise_provider.dart';
 import 'package:feeel/screens/exercise_picker/components/contribute_sheet.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ExercisePickerScreen extends StatefulWidget {
+class ExercisePickerScreen extends ConsumerStatefulWidget {
   final FeeelSwatch swatch;
 
   const ExercisePickerScreen({Key? key, required this.swatch})
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<ConsumerStatefulWidget> createState() {
     return _ExercisePickerScreenState();
   }
 }
 
-class _ExercisePickerScreenState extends State<ExercisePickerScreen> {
-  List<Exercise>? _exercises;
-  final _chosenExerciseIndices = List<int>.empty(growable: true);
-  late Future<List<Exercise>> _future;
-
-  @override
-  void initState() {
-    _future = DBHelper.db.queryExercises();
-    super.initState();
-  }
+class _ExercisePickerScreenState extends ConsumerState<ExercisePickerScreen> {
+  final _chosenExerciseIds = List<int>.empty(growable: true);
 
   @override
   Widget build(BuildContext context) {
+    final exerciseAsyncValue = ref.watch(exerciseProvider);
+
     final theme = Theme.of(context);
     final bgColor = widget.swatch
-        .getColorByBrightness(FeeelShade.lightest, theme.brightness);
+        .getColor(FeeelShade.lightest.invertIfDark(theme.brightness));
     final fgColor =
-        widget.swatch.getColorByBrightness(FeeelShade.dark, theme.brightness);
+        widget.swatch.getColor(FeeelShade.dark.invertIfDark(theme.brightness));
     return Scaffold(
         backgroundColor: bgColor,
-        appBar: AppBar(
-          backgroundColor: bgColor,
-          titleTextStyle:
-              theme.appBarTheme.titleTextStyle?.copyWith(color: fgColor),
-          iconTheme: theme.iconTheme,
-          title: Text("Add exercises".i18n),
-        ),
         floatingActionButton: FloatingActionButton(
           foregroundColor: widget.swatch.getColor(FeeelShade.darker),
-          backgroundColor: Colors.white,
-          tooltip: "Done".i18n,
+          backgroundColor: widget.swatch.getForegroundColor(FeeelShade.darker),
+          tooltip: AppLocalizations.of(context)!.btnDone,
           onPressed: () {
-            if (_exercises != null) {
-              List<Exercise> chosenExercises =
-                  List.generate(_chosenExerciseIndices.length, (index) {
-                return _exercises![_chosenExerciseIndices[index]];
-              });
-              Navigator.pop(context, chosenExercises);
-            }
+            Navigator.pop(context, _chosenExerciseIds);
           },
           child: const Icon(Icons.done),
         ),
-        body: FutureBuilder(
-            future: _future,
-            builder: (context, AsyncSnapshot<List<Exercise>> snapshot) {
-              if (snapshot.hasData) {
-                _exercises = snapshot.data!;
-
-                return ListView.builder(
-                    //todo add itemExtent here, but test for responsiveness
-                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 64),
-                    itemCount: _exercises!.length + 1,
-                    itemBuilder: (context, i) {
-                      if (i < _exercises!.length) {
-                        return ExercisePickerRow(
-                            checked: _chosenExerciseIndices.contains(i),
-                            exercise: _exercises![i],
-                            colorSwatch: widget.swatch,
-                            onChanged: (chosen) {
-                              setState(() {
-                                if (chosen != null && chosen) {
-                                  _chosenExerciseIndices.add(i);
-                                } else {
-                                  _chosenExerciseIndices.remove(i);
-                                }
-                              });
-                            });
-                      } else {
-                        return ListTile(
-                          leading: Container(
-                              width: 56,
-                              alignment: Alignment.center,
-                              child: const Icon(Icons.add)),
-                          title: Text("Propose custom exercise".i18n),
-                          onTap: () async {
-                            ContributeSheet.showSheet(context);
-                          },
-                        );
-                      }
-                    });
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
+        body: exerciseAsyncValue.when(
+            error: (Object error, StackTrace stackTrace) => Center(
+                child:
+                    Text(":( There was an error")), //TODO error component !!!
+            loading: () => const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                ),
+            data: (data) {
+              final fullExercises =
+                  data.primaryLanguageExercises.values.toList();
+              return BodyContainer(
+                  child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    leading: CloseButton(color: fgColor),
+                    titleTextStyle: theme.appBarTheme.titleTextStyle
+                        ?.copyWith(color: fgColor),
+                    title: Text(AppLocalizations.of(context)!.btnAddExercise),
+                  ),
+                  SliverPadding(
+                      padding: const EdgeInsets.fromLTRB(0, 16, 0, 64),
+                      sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                        childCount: fullExercises.length + 1,
+                        (context, i) {
+                          if (i < fullExercises.length) {
+                            final exercise = fullExercises[i].exercise;
+                            return ExercisePickerRow(
+                                checked: _chosenExerciseIds
+                                    .contains(exercise.wgerId),
+                                primaryLangFullExercise: fullExercises[i],
+                                colorSwatch: widget.swatch,
+                                onChanged: (chosen) {
+                                  setState(() {
+                                    if (chosen != null && chosen) {
+                                      _chosenExerciseIds.add(exercise.wgerId);
+                                    } else {
+                                      _chosenExerciseIds
+                                          .remove(exercise.wgerId);
+                                    }
+                                  });
+                                });
+                          } else {
+                            return ListTile(
+                              leading: Container(
+                                  width: 56,
+                                  alignment: Alignment.center,
+                                  child: const Icon(Icons.add)),
+                              title: Text(AppLocalizations.of(context)!
+                                  .btnAddCustomExerice),
+                              onTap: () async {
+                                ContributeSheet.showSheet(context);
+                              },
+                            );
+                          }
+                        },
+                      )))
+                ],
+              ));
             }));
   }
 }

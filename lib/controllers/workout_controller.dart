@@ -21,47 +21,53 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'dart:io';
+import 'dart:math';
 
+import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/audio/sound_view.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
 import 'package:feeel/controllers/workout_view.dart';
+import 'package:feeel/models/editable_workout_record.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/enums/workout_stage.dart';
 // import 'package:feeel/models/view/exercise_step.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/models/view/workout_exercise.dart';
 import 'package:feeel/i18n/translations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum _ViewTypes { gui, audio }
 
 class WorkoutMeta {
   static const _startDuration =
-      5; //todo get rid of countdown duration in the database
+      5; //TODO get rid of countdown duration in the database
   static const _countdownDuration = 3;
-  final Workout _workout;
+  final FullWorkout _fullWorkout;
   int _exercisePos = 0;
-  int _stepPos = 0;
+  // int _stepPos = 0;
   int? timerRestore;
 
-  WorkoutMeta(this._workout);
+  WorkoutMeta(this._fullWorkout);
 
   int getExercisePos() => _exercisePos;
 
-  int getStepPos() => _stepPos;
+  // int getStepPos() => _stepPos;
 
   int getStartDuration() =>
-      getCurWorkoutExercise().breakBeforeDuration ?? _startDuration;
+      _getCurWorkoutExercise().breakDuration ?? _startDuration;
 
   int getCountdownDuration() => _countdownDuration;
 
   int getCurBreakDuration() =>
-      getCurWorkoutExercise().breakBeforeDuration ?? _workout.breakDuration;
+      _getCurWorkoutExercise().breakDuration ??
+      _fullWorkout.workout.breakDuration;
 
   int getCurExerciseDuration() =>
-      getCurWorkoutExercise().duration ?? _workout.exerciseDuration;
+      _getCurWorkoutExercise().exerciseDuration ??
+      _fullWorkout.workout.exerciseDuration;
 
   // List<int>? getCurStepDurations() => getCurWorkoutExercise()
   //     .exercise
@@ -71,12 +77,12 @@ class WorkoutMeta {
 
   void next() {
     _exercisePos++;
-    _stepPos = 0;
+    // _stepPos = 0;
   }
 
   void previous() {
     _exercisePos--;
-    _stepPos = 0;
+    // _stepPos = 0;
   }
 
   // void nextStep() {
@@ -88,12 +94,15 @@ class WorkoutMeta {
   //   }
   // }
 
-  bool isLastExercise() => _exercisePos == _workout.workoutExercises.length - 1;
+  bool isLastExercise() =>
+      _exercisePos == _fullWorkout.workoutExercises.length - 1;
 
   bool isFirstExercise() => _exercisePos == 0;
 
-  WorkoutExercise getCurWorkoutExercise() =>
-      _workout.workoutExercises[_exercisePos];
+  Exercise getCurExercise() => _fullWorkout.exercises[_exercisePos];
+
+  WorkoutExercise _getCurWorkoutExercise() =>
+      _fullWorkout.workoutExercises[_exercisePos];
 
   // ExerciseStep? getCurStep() =>
   //     getCurWorkoutExercise().exercise.steps?[_stepPos];
@@ -103,24 +112,30 @@ class WorkoutController {
   final List<Function?> _onFinishes =
       List.filled(_ViewTypes.values.length, null);
   final List<WorkoutView?> _views = List.filled(
-      _ViewTypes.values.length, null); //todo weak references + NOT NULL SAFE!
+      _ViewTypes.values.length, null); //TODO weak references + NOT NULL SAFE!
   WorkoutStage _stage = WorkoutStage.ready;
-  late WorkoutTimer _timer; //todo init timer
-  late WorkoutMeta _workoutMeta;
+  late final WorkoutTimer _timer; //TODO init timer
+  late final WorkoutMeta _workoutMeta;
+  late final EditableWorkoutRecord _editableWorkoutRecord; //TODO INTEGRATE
 
-  WorkoutController(Workout workout) {
+  WorkoutController(FullWorkout workout) {
     if (workout.workoutExercises.isEmpty) {
       throw Exception("Workout must have length > 0");
     }
 
     _workoutMeta = WorkoutMeta(workout);
 
+    _editableWorkoutRecord = EditableWorkoutRecord(
+        workoutStart: DateTime.now(),
+        workout: workout.workout,
+        workoutExercises: workout.workoutExercises);
+
     _setUpAudio();
 
     _timer = WorkoutTimer(0,
         // _workoutMeta.getCurStepDurations(),
         onSecondDecrease: () {
-      //todo initTime seems useless
+      //TODO initTime seems useless
       for (final view in _views) {
         view?.onCount(_timer.getTimeRemaining(), _stage);
       }
@@ -138,6 +153,7 @@ class WorkoutController {
           _coordinateExerciseStage(restore: true);
           break;
         case WorkoutStage.exercise:
+          _recordCompletedExercise();
           if (_workoutMeta.isLastExercise()) {
             _coordinateEndStage();
           } else {
@@ -149,20 +165,20 @@ class WorkoutController {
           break;
       }
     });
-  } //todo how to init _exerciseCount ???
+  } //TODO how to init _exerciseCount ???
 
   void _setUpAudio() {
     SharedPreferences.getInstance().then((prefs) {
-      if (prefs.getBool(PreferenceKeys.ttsDisabledPref) ?? Platform.isLinux) {
+      if (prefs.getBool(PreferenceKeys.ttsDisabled) ?? Platform.isLinux) {
         final SoundView soundView = SoundView();
         _views[_ViewTypes.audio.index] = soundView;
         _onFinishes[_ViewTypes.audio.index] = () {
           soundView.onFinish();
         };
       } else {
-        _views[_ViewTypes.audio.index] = TTSView(); //todo allow audio setting
+        _views[_ViewTypes.audio.index] = TTSView(); //TODO allow audio setting
         _onFinishes[_ViewTypes.audio.index] = () {
-          TTSHelper.tts.speak("You did it!".i18n);
+          TTSHelper.tts.speak("You did it!".i18n, priority: AudioPriority.high);
         };
       }
     });
@@ -198,6 +214,7 @@ class WorkoutController {
         _stage == WorkoutStage.countdown) {
       if (_timer.isRunning()) {
         _timer.stop();
+        _recordInProgressExercise();
         _renderPausePlay();
       } else {
         if (_stage == WorkoutStage.exercise) {
@@ -238,7 +255,7 @@ class WorkoutController {
 
     _timer.reset(_workoutMeta.getCountdownDuration(), null);
     _renderSeconds();
-    _timer.start(); //todo is this the right place to do this?
+    _timer.start(); //TODO is this the right place to do this?
 
     _renderPausePlay();
   }
@@ -276,10 +293,8 @@ class WorkoutController {
     switch (_stage) {
       case WorkoutStage.ready:
         for (final view in _views) {
-          view?.onStart(
-              _workoutMeta.getExercisePos(),
-              _workoutMeta.getCurWorkoutExercise(),
-              _workoutMeta.getStartDuration());
+          view?.onStart(_workoutMeta.getExercisePos(),
+              _workoutMeta.getCurExercise(), _workoutMeta.getStartDuration());
         }
         break;
       case WorkoutStage.countdown:
@@ -291,7 +306,7 @@ class WorkoutController {
         for (final view in _views) {
           view?.onExercise(
               _workoutMeta.getExercisePos(),
-              _workoutMeta.getCurWorkoutExercise(),
+              _workoutMeta.getCurExercise(),
               //_workoutMeta.getCurStep(),
               _workoutMeta.getCurExerciseDuration());
         }
@@ -300,7 +315,7 @@ class WorkoutController {
         for (final view in _views) {
           view?.onBreak(
               _workoutMeta.getExercisePos(),
-              _workoutMeta.getCurWorkoutExercise(),
+              _workoutMeta.getCurExercise(),
               _workoutMeta.getCurBreakDuration());
         }
         break;
@@ -353,6 +368,34 @@ class WorkoutController {
     _views[_ViewTypes.gui.index] = null;
   }
 
+  void _recordInProgressExercise() {
+    //TODO on timer finish, on skip, on close, on pause (because of countdown)
+    if (_stage == WorkoutStage.exercise) {
+      final remainingDuration = _timer.getTimeRemaining();
+      final exercisePos = _workoutMeta.getExercisePos();
+      final newDuration =
+          _workoutMeta.getCurExerciseDuration() - remainingDuration;
+      _editableWorkoutRecord.completedDurations[exercisePos] = max(
+          _editableWorkoutRecord.completedDurations[exercisePos], newDuration);
+    }
+  }
+
+  void _recordCompletedExercise() {
+    //TODO on timer finish, on skip, on close, on pause (because of countdown)
+    _editableWorkoutRecord.completedDurations[_workoutMeta.getExercisePos()] =
+        _workoutMeta.getCurExerciseDuration();
+  }
+
+  Future<void> recordState() async {
+    _recordInProgressExercise();
+    for (final completed in _editableWorkoutRecord.completedDurations) {
+      if (completed > 0) {
+        await GetIt.I<FeeelDB>().recordWorkout(_editableWorkoutRecord);
+        return;
+      }
+    }
+  }
+
   void close() {
     _timer.stop();
     clearView();
@@ -362,6 +405,6 @@ class WorkoutController {
     }
     _views[_ViewTypes.audio.index] = null;
     _onFinishes[_ViewTypes.audio.index] = null;
-    // todo views.clear() needed?
+    // TODO views.clear() needed?
   }
 }

@@ -22,32 +22,42 @@
 
 import 'dart:io';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:feeel/audio/tts_helper.dart';
-import 'package:feeel/screens/workout_list/workout_list.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/providers/feeel_swatch_provider.dart';
+import 'package:feeel/providers/locale_provider.dart';
+import 'package:feeel/providers/theme_meta_provider.dart';
+import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:i18n_extension/i18n_widget.dart';
-import 'db/notification_helper.dart';
-import 'i18n/locale_helper.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'utils/notification_helper.dart';
 import 'theming/feeel_themes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/date_symbol_data_local.dart' as date_intl;
 // import 'package:window_size/window_size.dart';
 
-void main() {
-  // todo think about implementing auto-update: https://pub.dev/packages/auto_update, https://github.com/GrapheneOS/Camera/issues/227#issuecomment-1132208894
-  // debugRepaintRainbowEnabled = true; //todo debug
-  runApp(const Feeel());
+void main() async {
+  //TODO could maybe do my theme and language init here...
+  // TODO think about implementing auto-update: https://pub.dev/packages/auto_update, https://github.com/GrapheneOS/Camera/issues/227#issuecomment-1132208894
+  // debugRepaintRainbowEnabled = true; //TODO debug
+  GetIt.I.registerSingleton(
+      FeeelDB()); //TODO get rid of this after migrating to Riverpod fully
+  await date_intl.initializeDateFormatting();
+  runApp(const ProviderScope(child: Feeel()));
 }
 
-class Feeel extends StatelessWidget {
+class Feeel extends ConsumerWidget {
   const Feeel({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     WidgetsFlutterBinding.ensureInitialized();
 
-    // if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) { //todo not supported on Linux for ARM yet
+    // if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) { //TODO not supported on Linux for ARM yet
     //   setWindowTitle('Feeel');
     //   setWindowMinSize(const Size(320, 568));
     //   setWindowMaxSize(Size.infinite);
@@ -59,35 +69,61 @@ class Feeel extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
 
-    return
-        // Provider<FeeelDB>(
-        //     //todo see https://drift.simonbinder.eu/faq/#using-the-database
-        //     create: (context) => FeeelDB(),
-        //     dispose: (context, db) => db.close(),
-        //     child:
-        AdaptiveTheme(
-            light: FeeelThemes.lightTheme,
-            dark: FeeelThemes.darkTheme,
-            initial: AdaptiveThemeMode.light,
-            builder: (theme, darkTheme) => MaterialApp(
-                title: 'Feeel',
-                theme: theme,
-                darkTheme: darkTheme,
-                supportedLocales: LocaleHelper.supportedLocales,
-                localizationsDelegates: const [
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                home: I18n(child: const WorkoutListScreen()))
-            //)
-            );
+    return DynamicColorBuilder(
+            builder: (dynamicLightScheme, dynamicDarkScheme) {
+      final preferredLocale = ref.watch(localeProvider);
+      final themeMeta = ref.watch(themeMetaProvider);
+      final swatchNotifier = ref.read(feeelSwatchProvider.notifier);
+
+      final isThemePersonalized = themeMeta.personalized;
+      final curThemeMode = themeMeta.mode.themeMode;
+
+      final lightTheme = isThemePersonalized
+          ? FeeelThemes.getThemeFromScheme(
+              dynamicLightScheme ?? FeeelThemes.lightColors)
+          : FeeelThemes.getThemeFromScheme(FeeelThemes.lightColors);
+
+      final darkTheme = isThemePersonalized
+          ? FeeelThemes.getThemeFromScheme(
+              dynamicLightScheme ?? FeeelThemes.darkColors)
+          : FeeelThemes.getThemeFromScheme(FeeelThemes.darkColors);
+
+      if (isThemePersonalized) {
+        final platformBrightness =
+            MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+                .platformBrightness;
+
+        final curTheme = (curThemeMode == ThemeMode.dark ||
+                (curThemeMode == ThemeMode.system &&
+                    platformBrightness == Brightness.dark))
+            ? darkTheme
+            : lightTheme;
+
+        Future(() =>
+            swatchNotifier.setHarmonizationColor(curTheme.colorScheme.primary));
+      } else {
+        Future(() => swatchNotifier.setHarmonizationColor(null));
+      }
+
+      return MaterialApp(
+          title: 'Feeel',
+          themeMode: curThemeMode,
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: preferredLocale,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          home: I18n(child: const HomePagerScreen()));
+    })
+        // );
+        // })
+        ;
   }
 
   void _onWidgetBuilt(BuildContext context) {
     if (!Platform.isLinux) {
       TTSHelper.tts.init(
-          context); //todo should really depend on whether the TTS preference is set
+          context); //TODO should really depend on whether the TTS preference is set
       NotificationHelper.helper.init(context);
     }
   }

@@ -60,14 +60,14 @@ class EmptyPlaceholder extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
-                child:
-                    Text(heading, style: Theme.of(context).textTheme.headline5),
+                child: Text(heading,
+                    style: Theme.of(context).textTheme.headlineSmall),
               ),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Text(subheading,
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: Theme.of(context)
                               .colorScheme
                               .onBackground
@@ -77,7 +77,7 @@ class EmptyPlaceholder extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
                     child: Text(errorMessage!,
-                        style: Theme.of(context).textTheme.caption?.copyWith(
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Theme.of(context).colorScheme.error))),
             ]))
       ],

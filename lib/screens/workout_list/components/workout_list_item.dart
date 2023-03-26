@@ -22,36 +22,39 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:feeel/enums/workout_type.dart';
-import 'package:feeel/models/view/workout_listed.dart';
 import 'package:feeel/screens/workout_detail/workout_detail.dart';
 import 'package:feeel/theming/feeel_shade.dart';
-import 'package:feeel/components/triangle.dart';
+import 'package:feeel/components/triangle_filled.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 import 'package:feeel/i18n/translations.dart';
 
+import '../../../db/database.dart';
 import '../../../utils/hero_util.dart';
 
 class WorkoutListItem extends StatelessWidget {
   static const extent = 112.0;
   final Widget? trailing;
-  final WorkoutListed workoutListed;
+  final Workout workout;
+  final FeeelSwatch colorSwatch;
 
-  const WorkoutListItem(this.workoutListed, {Key? key, this.trailing})
+  const WorkoutListItem(this.workout,
+      {required this.colorSwatch, Key? key, this.trailing})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final origTitle = workoutListed.title;
+    final origTitle = workout.title;
     final theme = Theme.of(context);
 
     return Material(
-        color: theme.backgroundColor,
+        color: Colors.transparent,
         child: // Row(children: [
             InkWell(
                 onTap: () {
                   Navigator.push<void>(context,
                       MaterialPageRoute(builder: (BuildContext context) {
-                    return WorkoutDetailScreen(workoutListed: workoutListed);
+                    return WorkoutDetailScreen(workout: workout);
                   }));
                 },
                 child: SizedBox(
@@ -68,12 +71,12 @@ class WorkoutListItem extends StatelessWidget {
                             child: Hero(
                                 tag: HeroUtil.getWorkoutHero(
                                     HeroType.illustration,
-                                    workoutListed.dbId,
-                                    workoutListed.type),
-                                child: Triangle(
-                                  color: workoutListed.category.colorSwatch
-                                      .getColorByBrightness(FeeelShade.lightest,
-                                          theme.brightness),
+                                    workout.id,
+                                    workout.type),
+                                child: TriangleFilled(
+                                  color: colorSwatch.getColor(FeeelShade
+                                      .lightest
+                                      .invertIfDark(theme.brightness)),
                                   seed: origTitle.hashCode,
                                 ))),
                         Padding(
@@ -84,16 +87,15 @@ class WorkoutListItem extends StatelessWidget {
                               children: [
                                 Hero(
                                     tag: HeroUtil.getWorkoutHero(HeroType.title,
-                                        workoutListed.dbId, workoutListed.type),
+                                        workout.id, workout.type),
                                     child: Material(
-                                      //todo workaround for https://github.com/flutter/flutter/issues/30647
+                                      //TODO workaround for https://github.com/flutter/flutter/issues/30647
                                       type: MaterialType.transparency,
                                       child: AutoSizeText(
-                                        (workoutListed.type ==
-                                                WorkoutType.bundled)
+                                        (workout.type == WorkoutType.bundled)
                                             ? origTitle.i18n
                                             : origTitle,
-                                        style: theme.textTheme.headline6,
+                                        style: theme.textTheme.titleLarge,
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -104,17 +106,15 @@ class WorkoutListItem extends StatelessWidget {
                                 Hero(
                                   tag: HeroUtil.getWorkoutHero(
                                       HeroType.subtitle,
-                                      workoutListed.dbId,
-                                      workoutListed.type),
+                                      workout.id,
+                                      workout.type),
                                   child: Text(
-                                    workoutListed.category.translationKey.i18n,
-                                    style: theme.textTheme.subtitle2?.copyWith(
+                                    workout.category.getTranslation(context),
+                                    style: theme.textTheme.titleSmall?.copyWith(
                                         fontWeight: FontWeight.bold,
-                                        color: workoutListed
-                                            .category.colorSwatch
-                                            .getColorByBrightness(
-                                                FeeelShade.darker,
-                                                theme.brightness)),
+                                        color: colorSwatch.getColor(FeeelShade
+                                            .darker
+                                            .invertIfDark(theme.brightness))),
                                   ),
                                 )
                               ],

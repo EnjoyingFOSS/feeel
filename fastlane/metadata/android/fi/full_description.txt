@@ -1,5 +1,0 @@
-Feeel on avoimen lähdekoodin Android-sovellus yksinkertaisten kotiharjoitusten tekemiseen. Se pitää sisällään kehutun koko kehon tieteellisen 7 minuutin harjoitusohjelman ja mahdollistaa myös mukautettujen harjoitusten luomisen. Vaikka sovelluksessa on tällä hetkellä rajallinen määrä harjoituksia, suunnitelmana on laajentaa sekä harjoitusten että harjoitusten määrää huomattavasti yhteisön avulla.
-
-Osallistu osoitteessa https://gitlab.com/enjoyingfoss/feeel/wikis
-
-Lahjoita osoitteessa https://liberapay.com/Feeel/ . Lahjoitusten avulla voin työskennellä sovelluksen parissa säännöllisesti, enkä vain vapaa-ajallani.

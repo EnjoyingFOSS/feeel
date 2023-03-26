@@ -20,4 +20,34 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-enum FeeelShade { lightest, lighter, light, dark, darker, darkest }
+import 'dart:ui';
+
+enum FeeelShade {
+  lightest,
+  lighter,
+  light,
+  dark,
+  darker,
+  darkest;
+
+  FeeelShade invertIfDark(Brightness brightness) {
+    if (brightness == Brightness.dark) {
+      switch (this) {
+        case FeeelShade.lightest:
+          return FeeelShade.darkest;
+        case FeeelShade.lighter:
+          return FeeelShade.darker;
+        case FeeelShade.light:
+          return FeeelShade.dark;
+        case FeeelShade.dark:
+          return FeeelShade.light;
+        case FeeelShade.darker:
+          return FeeelShade.lighter;
+        case FeeelShade.darkest:
+          return FeeelShade.lightest;
+      }
+    } else {
+      return this;
+    }
+  }
+}

@@ -20,20 +20,21 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class URLUtil {
-  //todo launch in a new window
   static void launchURL(BuildContext context, String url) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final l10n = AppLocalizations.of(context)!;
+
     final launched =
         await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
     if (!launched) {
-      scaffoldMessenger.showSnackBar(SnackBar(
-        content: Text("Could not open URL.".i18n),
-      ));
+      SnackBarHelper.showInfoSnackBar(
+          scaffoldMessenger, l10n.txtCouldNotOpenURL);
     }
   }
 }

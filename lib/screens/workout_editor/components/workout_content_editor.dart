@@ -20,16 +20,17 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/models/editor/editor_workout_exercise.dart';
+import 'package:feeel/models/editable_workout_exercise.dart';
+import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'exercise_editor_row.dart';
 
 class WorkoutContentEditor extends StatelessWidget {
   final Widget header;
   final Widget subheader;
-  final List<EditorWorkoutExercise> workoutExercises;
+  final List<EditableWorkoutExercise> workoutExercises;
   final Function(int) onRemove;
   final Function(int, int) onReorder;
 
@@ -52,18 +53,18 @@ class WorkoutContentEditor extends StatelessWidget {
       ),
       Expanded(
           child: ReorderableListView.builder(
-              //todo somehow, this seems to no longer work on Android; could it be the onPressed aspect of the drag handle?
+              //TODO somehow, this seems to no longer work on Android; could it be the onPressed aspect of the drag handle?
               buildDefaultDragHandles: false,
               padding: const EdgeInsets.only(bottom: 32),
               itemBuilder: (context, i) {
-                final editableExercise = workoutExercises[i];
+                final editableWorkoutExercise = workoutExercises[i];
                 return ExerciseEditorRow(
-                    key: editableExercise.key,
-                    workoutExercise: editableExercise.exercise,
+                    key: editableWorkoutExercise.key,
+                    editableWorkoutExercise: editableWorkoutExercise,
                     trailing: Row(children: [
                       IconButton(
                           icon: const Icon(Icons.delete),
-                          tooltip: "Delete".i18n,
+                          tooltip: AppLocalizations.of(context)!.btnDelete,
                           onPressed: () {
                             onRemove(i);
                           }),
@@ -71,11 +72,11 @@ class WorkoutContentEditor extends StatelessWidget {
                         index: i,
                         child: IconButton(
                             onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      "Drag this handle to reorder exercises."
-                                          .i18n)));
-                              //todo test this, shouldn't show up on drag
+                              SnackBarHelper.showInfoSnackBar(
+                                  ScaffoldMessenger.of(context),
+                                  AppLocalizations.of(context)!
+                                      .txtDragToReorder);
+                              //TODO test this, shouldn't show up on drag
                             },
                             icon: const Icon(Icons.drag_handle)),
                       )

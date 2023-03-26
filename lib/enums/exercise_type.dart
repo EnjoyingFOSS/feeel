@@ -20,10 +20,5 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-enum ExerciseType {
-  fullBody(0),
-  head(1);
-
-  final int dbValue;
-  const ExerciseType(this.dbValue);
-}
+/// intEnum in DB
+enum ExerciseType { fullBody, head }

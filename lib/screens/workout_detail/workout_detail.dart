@@ -22,80 +22,79 @@
 
 import 'dart:io';
 
-import 'package:feeel/db/db_helper.dart';
-import 'package:feeel/models/view/workout.dart';
-import 'package:feeel/models/view/workout_listed.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/models/full_workout.dart';
+import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
 import 'package:wakelock/wakelock.dart';
 
 import 'components/empty_workout.dart';
 import 'components/workout_header.dart';
 import 'components/workout_pager.dart';
 
-class WorkoutDetailScreen extends StatefulWidget {
-  final WorkoutListed workoutListed;
+class WorkoutDetailScreen extends ConsumerStatefulWidget {
+  final Workout workout;
 
-  const WorkoutDetailScreen({Key? key, required this.workoutListed})
+  const WorkoutDetailScreen({Key? key, required this.workout})
       : super(key: key);
 
   @override
-  State<WorkoutDetailScreen> createState() {
+  ConsumerState<WorkoutDetailScreen> createState() {
     return _WorkoutDetailScreenState();
   }
 }
 
-class _WorkoutDetailScreenState extends State<WorkoutDetailScreen> {
-  late Future<Workout?> _future;
+class _WorkoutDetailScreenState extends ConsumerState<WorkoutDetailScreen> {
+  late Future<FullWorkout> _future;
 
   @override
   void initState() {
     super.initState();
-    _future = DBHelper.db
-        .queryWorkout(widget.workoutListed.dbId, widget.workoutListed.type);
+    _future = GetIt.I<FeeelDB>().queryFullWorkout(widget.workout);
   }
 
   @override
   Widget build(BuildContext context) {
-    final colorSwatch = widget.workoutListed.category.colorSwatch;
+    final colorSwatch =
+        ref.read(feeelSwatchProvider)[widget.workout.category.feeelColor]!;
     return WillPopScope(
         onWillPop: () async {
           if (!Platform.isLinux) {
             Wakelock.disable();
-          } //todo use provider for wakelock?
+          } //TODO use provider for wakelock?
           return true;
         },
         child: Scaffold(
-            body: FutureBuilder<Workout?>(
+            body: FutureBuilder<FullWorkout>(
                 future: _future,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    Workout workout = snapshot.data!;
-                    if (workout.workoutExercises.isNotEmpty) {
+                    final fullWorkout = snapshot.data!;
+                    if (fullWorkout.workoutExercises.isNotEmpty) {
                       return WorkoutPager(
-                        workout: workout,
-                        workoutListed: widget.workoutListed,
-                      );
+                          fullWorkout: fullWorkout, colorSwatch: colorSwatch);
                     } else {
                       return SafeArea(
                           child: Column(children: [
-                        //todo make scrollable (for landscape)
+                        //TODO make scrollable (for landscape)
                         WorkoutHeader(
-                            workoutListed: widget.workoutListed,
-                            colorSwatch: colorSwatch),
-                        Flexible(child: EmptyWorkout(workout: workout))
+                            workout: widget.workout, colorSwatch: colorSwatch),
+                        Flexible(child: EmptyWorkout(fullWorkout: fullWorkout))
                       ]));
                     }
                   } else {
                     return SafeArea(
                         child: Column(children: [
-                      //todo make scrollable (for landscape)
+                      //TODO make scrollable (for landscape)
                       WorkoutHeader(
-                        workoutListed: widget.workoutListed,
+                        workout: widget.workout,
                         colorSwatch: colorSwatch,
                       ),
                       const Flexible(
                           child: Center(
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator.adaptive(),
                       ))
                     ]));
                   }
