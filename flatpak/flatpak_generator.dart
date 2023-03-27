@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -16,15 +18,15 @@ void main(List<String> arguments) {
   final specJson = SpecJson.fromJson(jsonFile);
 
   final outputDir =
-      Directory("${Directory.current.path}/flatpak_generator exports");
+      Directory('${Directory.current.path}/flatpak_generator exports');
   outputDir.createSync();
 
   final packageGenerator =
       PackageGenerator(inputDir: jsonFile.parent, specJson: specJson);
-  packageGenerator.generatePackage(outputDir, _Platform.x86_64);
+  packageGenerator.generatePackage(outputDir, CPUArchitecture.x86_64);
 
   if (specJson.linuxArmReleaseBundleDirPath != null) {
-    packageGenerator.generatePackage(outputDir, _Platform.aarch64);
+    packageGenerator.generatePackage(outputDir, CPUArchitecture.aarch64);
   }
 
   final sha256x64 = packageGenerator.sha256x64;
@@ -51,7 +53,7 @@ void main(List<String> arguments) {
   }
 }
 
-enum _Platform { x86_64, aarch64 }
+enum CPUArchitecture { x86_64, aarch64 }
 
 class PackageGenerator {
   final Directory inputDir;
@@ -61,7 +63,7 @@ class PackageGenerator {
 
   PackageGenerator({required this.inputDir, required this.specJson});
 
-  void generatePackage(Directory outputDir, _Platform platform) {
+  void generatePackage(Directory outputDir, CPUArchitecture platform) {
     final tempDir = outputDir.createTempSync('flutter_generator_temp');
     final appId = specJson.appId;
 
@@ -102,9 +104,9 @@ class PackageGenerator {
     editedAppDataFile.writeAsStringSync(editedAppDataContent);
 
     // build files
-    final bundlePath = platform == _Platform.aarch64
-        ? "${inputDir.path}/${specJson.linuxArmReleaseBundleDirPath}"
-        : "${inputDir.path}/${specJson.linuxReleaseBundleDirPath}";
+    final bundlePath = platform == CPUArchitecture.aarch64
+        ? '${inputDir.path}/${specJson.linuxArmReleaseBundleDirPath}'
+        : '${inputDir.path}/${specJson.linuxReleaseBundleDirPath}';
     final buildDir = Directory(bundlePath);
     if (!buildDir.existsSync()) {
       throw Exception(
@@ -113,7 +115,8 @@ class PackageGenerator {
     final destDir = Directory('${tempDir.path}/bin');
     destDir.createSync();
 
-    final platformSuffix = platform == _Platform.aarch64 ? 'aarch64' : 'x86_64';
+    final platformSuffix =
+        platform == CPUArchitecture.aarch64 ? 'aarch64' : 'x86_64';
     final packagePath =
         '${outputDir.absolute.path}/${specJson.lowercaseAppName}-linux-$platformSuffix.tar.gz';
 
@@ -126,7 +129,7 @@ class PackageGenerator {
 
     final preShasum = Process.runSync('shasum', ['-a', '256', packagePath]);
 
-    if (platform == _Platform.aarch64) {
+    if (platform == CPUArchitecture.aarch64) {
       sha256aarch64 = preShasum.stdout.toString().split(' ').first;
     } else {
       sha256x64 = preShasum.stdout.toString().split(' ').first;
@@ -175,8 +178,8 @@ class FlatpakManifestGenerator {
       'command': appName,
       'separate-locales': false,
       'finish-args': specJson.finishArgs,
-      'modules': [
-        ...specJson.extraModules ?? [],
+      'modules': <dynamic>[
+        ...specJson.extraModules ?? <dynamic>[],
         {
           'name': appName,
           'buildsystem': 'simple',
@@ -285,33 +288,38 @@ class SpecJson {
 
   static SpecJson fromJson(File jsonFile) {
     try {
-      final json = jsonDecode(jsonFile.readAsStringSync());
+      final dynamic json = jsonDecode(jsonFile.readAsStringSync());
       return SpecJson(
-          appId: json['appId'],
-          lowercaseAppName: json['lowercaseAppName'],
-          releases: (json['releases'] as List).map((r) {
+          appId: json['appId'] as String,
+          lowercaseAppName: json['lowercaseAppName'] as String,
+          releases: (json['releases'] as List).map((dynamic r) {
             final rMap = r as Map;
-            return Release(version: rMap['version'], date: rMap['date']);
+            return Release(
+                version: rMap['version'] as String,
+                date: rMap['date'] as String);
           }).toList(),
-          runtimeVersion: json['runtimeVersion'],
-          linuxReleaseBundleDirPath: json['linuxReleaseBundleDirPath'],
-          appDataPath: json['appDataPath'],
-          desktopPath: json['desktopPath'],
+          runtimeVersion: json['runtimeVersion'] as String,
+          linuxReleaseBundleDirPath:
+              json['linuxReleaseBundleDirPath'] as String,
+          appDataPath: json['appDataPath'] as String,
+          desktopPath: json['desktopPath'] as String,
           icons: (json['icons'] as Map).entries.map((mapEntry) {
             return Icon(
                 type: mapEntry.key as String, path: mapEntry.value as String);
           }).toList(),
           flatpakCommandsAfterUnpack:
               (json['buildCommandsAfterUnpack'] as List?)
-                  ?.map((bc) => bc as String)
+                  ?.map((dynamic bc) => bc as String)
                   .toList(),
           linuxArmReleaseBundleDirPath:
               json['linuxArmReleaseBundleDirPath'] as String?,
           extraModules: json['extraModules'] as List?,
-          finishArgs:
-              (json['finishArgs'] as List).map((fa) => fa as String).toList(),
-          githubReleaseOrganization: json['githubReleaseOrganization'],
-          githubReleaseProject: json['githubReleaseProject']);
+          finishArgs: (json['finishArgs'] as List)
+              .map((dynamic fa) => fa as String)
+              .toList(),
+          githubReleaseOrganization:
+              json['githubReleaseOrganization'] as String,
+          githubReleaseProject: json['githubReleaseProject'] as String);
     } catch (e) {
       throw Exception('Could not parse JSON file, due to this error:\n$e');
     }
