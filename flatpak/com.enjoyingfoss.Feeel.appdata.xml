@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-	<id>com.enjoyingfoss.Feeel</id>
+	<id>com.enjoyingfoss.feeel</id>
 	<name>Feeel</name>
 	<summary>A simple home workout/exercise app that respects your privacy</summary>
 
@@ -66,5 +66,5 @@
 
 	<content_rating type="oars-1.1" />
 
-	<launchable type="desktop-id">com.enjoyingfoss.Feeel.desktop</launchable>
+	<launchable type="desktop-id">com.enjoyingfoss.feeel.desktop</launchable>
 </component>
