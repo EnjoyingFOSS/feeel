@@ -50,8 +50,6 @@
     "txtCouldNotOpenURL": "Could not open URL.",
     "txtItemImported": "\"%s\" imported!",
     "txtCouldNotImportItem": "Could not import \"%s\".",
-    "txtExportInProgress": "Export in progress...",
-    "txtImportInProgress": "Import in progress...",
     "txtItemExported": "\"%s\" exported!",
     "txtCouldNotExportItem": "Could not export \"%s\".",
     "txtStrength": "Strength",
