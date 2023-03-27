@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FeeelThemeMeta {
   FeeelThemeMode get mode => throw _privateConstructorUsedError;
   bool get personalized => throw _privateConstructorUsedError;
-  Color? get primaryColor => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeeelThemeMetaCopyWith<FeeelThemeMeta> get copyWith =>
@@ -31,7 +30,7 @@ abstract class $FeeelThemeMetaCopyWith<$Res> {
           FeeelThemeMeta value, $Res Function(FeeelThemeMeta) then) =
       _$FeeelThemeMetaCopyWithImpl<$Res, FeeelThemeMeta>;
   @useResult
-  $Res call({FeeelThemeMode mode, bool personalized, Color? primaryColor});
+  $Res call({FeeelThemeMode mode, bool personalized});
 }
 
 /// @nodoc
@@ -49,7 +48,6 @@ class _$FeeelThemeMetaCopyWithImpl<$Res, $Val extends FeeelThemeMeta>
   $Res call({
     Object? mode = null,
     Object? personalized = null,
-    Object? primaryColor = freezed,
   }) {
     return _then(_value.copyWith(
       mode: null == mode
@@ -60,10 +58,6 @@ class _$FeeelThemeMetaCopyWithImpl<$Res, $Val extends FeeelThemeMeta>
           ? _value.personalized
           : personalized // ignore: cast_nullable_to_non_nullable
               as bool,
-      primaryColor: freezed == primaryColor
-          ? _value.primaryColor
-          : primaryColor // ignore: cast_nullable_to_non_nullable
-              as Color?,
     ) as $Val);
   }
 }
@@ -76,7 +70,7 @@ abstract class _$$_FeeelThemeMetaCopyWith<$Res>
       __$$_FeeelThemeMetaCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FeeelThemeMode mode, bool personalized, Color? primaryColor});
+  $Res call({FeeelThemeMode mode, bool personalized});
 }
 
 /// @nodoc
@@ -92,7 +86,6 @@ class __$$_FeeelThemeMetaCopyWithImpl<$Res>
   $Res call({
     Object? mode = null,
     Object? personalized = null,
-    Object? primaryColor = freezed,
   }) {
     return _then(_$_FeeelThemeMeta(
       mode: null == mode
@@ -103,10 +96,6 @@ class __$$_FeeelThemeMetaCopyWithImpl<$Res>
           ? _value.personalized
           : personalized // ignore: cast_nullable_to_non_nullable
               as bool,
-      primaryColor: freezed == primaryColor
-          ? _value.primaryColor
-          : primaryColor // ignore: cast_nullable_to_non_nullable
-              as Color?,
     ));
   }
 }
@@ -114,19 +103,16 @@ class __$$_FeeelThemeMetaCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_FeeelThemeMeta implements _FeeelThemeMeta {
-  const _$_FeeelThemeMeta(
-      {required this.mode, required this.personalized, this.primaryColor});
+  const _$_FeeelThemeMeta({required this.mode, required this.personalized});
 
   @override
   final FeeelThemeMode mode;
   @override
   final bool personalized;
-  @override
-  final Color? primaryColor;
 
   @override
   String toString() {
-    return 'FeeelThemeMeta(mode: $mode, personalized: $personalized, primaryColor: $primaryColor)';
+    return 'FeeelThemeMeta(mode: $mode, personalized: $personalized)';
   }
 
   @override
@@ -136,14 +122,11 @@ class _$_FeeelThemeMeta implements _FeeelThemeMeta {
             other is _$_FeeelThemeMeta &&
             (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.personalized, personalized) ||
-                other.personalized == personalized) &&
-            (identical(other.primaryColor, primaryColor) ||
-                other.primaryColor == primaryColor));
+                other.personalized == personalized));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, mode, personalized, primaryColor);
+  int get hashCode => Object.hash(runtimeType, mode, personalized);
 
   @JsonKey(ignore: true)
   @override
@@ -155,15 +138,12 @@ class _$_FeeelThemeMeta implements _FeeelThemeMeta {
 abstract class _FeeelThemeMeta implements FeeelThemeMeta {
   const factory _FeeelThemeMeta(
       {required final FeeelThemeMode mode,
-      required final bool personalized,
-      final Color? primaryColor}) = _$_FeeelThemeMeta;
+      required final bool personalized}) = _$_FeeelThemeMeta;
 
   @override
   FeeelThemeMode get mode;
   @override
   bool get personalized;
-  @override
-  Color? get primaryColor;
   @override
   @JsonKey(ignore: true)
   _$$_FeeelThemeMetaCopyWith<_$_FeeelThemeMeta> get copyWith =>
