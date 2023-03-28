@@ -86,7 +86,7 @@ class BundledWorkouts {
         title: "Neck and shoulder stretches",
         category: WorkoutCategory.stretching,
         countdownDuration: _defaultCountdownDuration,
-        breakDuration: _defaultBreakDuration,
+        breakDuration: 5,
         exerciseDuration: 20,
         initialWorkoutExercises: [
           EditableWorkoutExercise(exercise: BundledExercises.chinTuck),
