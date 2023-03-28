@@ -46,6 +46,8 @@ import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
+import 'package:sqlite3/sqlite3.dart';
+
 import '../enums/workout_type.dart';
 import '../models/editable_workout.dart';
 import '../models/full_workout.dart';
@@ -216,29 +218,18 @@ class FeeelDB extends _$FeeelDB {
         await _addBundledWorkouts();
       },
       onUpgrade: (Migrator m, int from, int to) async {
-        // ACTIVITIES
+        // CREATE BACKUP
+        final dbFile = await _getDBFile();
+        final backupPath = p.join(dbFile.parent.path, "feeel.db.backup");
+        final backupFile = await dbFile.copy(backupPath);
+
+        // MIGRATE
         if (from < _v3_0_0) {
-          await m.createTable(workoutRecords);
-          await m.createTable(workoutExerciseRecords);
+          await _migrateFromPre3_0_0(m, backupFile);
         }
 
-        // EXERCISES
-        await _dropAndCreateAllExerciseTables(m);
-        await _addAllExercises();
-
-        // WORKOUTS
-        await _deleteBundledWorkouts(from);
-
-        if (from < _v3_0_0) {
-          await _reshapePre3_0_0WorkoutTable(m);
-          await m.createTable(workoutExercises);
-        }
-
-        await _addBundledWorkouts();
-
-        if (from < _v3_0_0) {
-          await _movePre3_0_0CustomWorkoutExercisesFromOldTable();
-        }
+        // DELETE BACKUP
+        await backupFile.delete();
       },
     );
   }
@@ -247,59 +238,97 @@ class FeeelDB extends _$FeeelDB {
   // MIGRATION
   //
 
-  Future<void> _reshapePre3_0_0WorkoutTable(Migrator m) async {
-    //TODO double-check that I have all the columns
-    await m.addColumn(workouts, workouts.lastUsed);
+  Future<void> _migrateFromPre3_0_0(Migrator m, File oldDbFile) async {
+    const oldWorkoutTable = "workouts";
+    const oldWorkoutExerciseTable = "workoutExercises";
+    const oldExerciseTable = "exercises";
 
-    await m.renameColumn(
-        workouts, 'countdownDuration', workouts.countdownDuration);
-    await m.renameColumn(
-        workouts, 'exerciseDuration', workouts.exerciseDuration);
-    await m.renameColumn(workouts, 'breakDuration', workouts.breakDuration);
-  }
+    await m.deleteTable(oldWorkoutTable);
+    await m.deleteTable(oldWorkoutExerciseTable);
+    await m.deleteTable(oldExerciseTable);
 
-  Future<void> _movePre3_0_0CustomWorkoutExercisesFromOldTable() async {
-    /// moves custom workouts from old table to new table for old versions
-    final customWorkouts = await (select(workouts)
-          ..where((w) => w.type.equalsValue(WorkoutType.custom)))
-        .get();
-    for (final cw in customWorkouts) {
-      final oldWorkoutExercises = await customSelect(
-              "SELECT workoutId, orderCol, exercise, exerciseDuration, breakDuration "
-              "FROM $_pre3_0_0WorkoutExerciseTableName WHERE 'workoutId' = ${cw.id}")
-          .get();
-      for (final queryRow in oldWorkoutExercises) {
-        await into(workoutExercises).insert(WorkoutExercisesCompanion(
-            workoutId: queryRow.read("workoutId"),
-            orderPosition: queryRow.read("orderCol"),
-            exercise: Value<int>(DBMigrationMaps
-                .pre300ToCurrentExercises[queryRow.read("exercise")]!),
-            exerciseDuration: queryRow.read("exerciseDuration"),
-            breakDuration: queryRow.read("breakDuration")));
-      }
-    }
+    await m.createAll();
 
-    await customStatement(
-        "DROP TABLE IF EXISTS $_pre3_0_0WorkoutExerciseTableName");
+    final oldDb = sqlite3.open(oldDbFile.path, mode: OpenMode.readOnly);
+
+    // CUSTOM WORKOUTS
+
+    final oldWorkouts =
+        oldDb.select("SELECT * from $oldWorkoutTable WHERE type=?", [
+      1 // custom workout type
+    ]);
+
+    await batch((batch) {
+      batch.insertAll(workouts, oldWorkouts.map((ow) {
+        final WorkoutCategory category;
+        switch (ow['category'] as int) {
+          case 0:
+            category = WorkoutCategory.strength;
+            break;
+          case 1:
+            category = WorkoutCategory.stretching;
+            break;
+          case 2:
+            category = WorkoutCategory.cardio;
+            break;
+          case 3:
+            category = WorkoutCategory.other;
+            break;
+          default:
+            category = WorkoutCategory.other;
+            break;
+        }
+        return WorkoutsCompanion(
+            id: Value(ow['id'] as int),
+            type: const Value(WorkoutType.custom),
+            title: Value(ow['title'] as String),
+            category: Value(category),
+            countdownDuration: Value(ow['countdownDuration'] as int),
+            exerciseDuration: Value(ow['exerciseDuration'] as int),
+            breakDuration: Value(ow['breakDuration'] as int),
+            lastUsed: const Value.absent());
+      }));
+    });
+
+    // CUSTOM WORKOUT EXERCISES
+
+    final oldWorkoutExercises = oldDb
+        .select("SELECT * from $oldWorkoutExerciseTable WHERE workoutType=?", [
+      1 // custom workout type
+    ]);
+
+    await batch((batch) {
+      batch.insertAll(workoutExercises, oldWorkoutExercises.map((owe) {
+        final newExercise =
+            DBMigrationMaps.pre300ToCurrentExercises[(owe['exercise'] as int)]!;
+        final exerciseDuration = owe["exerciseDuration"] as int?;
+        final breakDuration = owe["breakDuration"] as int?;
+        return WorkoutExercisesCompanion(
+          workoutId: Value(owe['workoutId'] as int),
+          orderPosition: Value(owe['orderCol'] as int),
+          exercise: Value(newExercise),
+          exerciseDuration: exerciseDuration != null
+              ? Value(exerciseDuration)
+              : const Value.absent(),
+          breakDuration: breakDuration != null
+              ? Value(breakDuration)
+              : const Value.absent(),
+        );
+      }));
+    });
+
+    // BUNDLED WORKOUTS
+    await _addBundledWorkouts();
+
+    // EXERCISES
+    await _addAllExercises();
+
+    oldDb.dispose();
   }
 
   //
   // EXERCISES
   //
-
-  Future<void> _dropAndCreateAllExerciseTables(Migrator m) async {
-    // drop and create tables
-    await m.drop(exercises);
-    await m.createTable(exercises);
-    await m.drop(exerciseTranslations);
-    await m.createTable(exerciseTranslations);
-    await m.drop(exerciseMuscles);
-    await m.createTable(exerciseMuscles);
-    await m.drop(exerciseEquipment);
-    await m.createTable(exerciseEquipment);
-    // await m.drop(exerciseSteps);
-    // await m.create(exerciseSteps);
-  }
 
   Future<void> _addAllExercises() async {
     final exerciseFileContents =
@@ -542,12 +571,16 @@ class FeeelDB extends _$FeeelDB {
           }, growable: false));
     });
   }
-}
 
-LazyDatabase _openConnection() {
-  return LazyDatabase(() async {
-    final documentsDirectory = await getApplicationDocumentsDirectory();
-    final sqlFile = File(p.join(documentsDirectory.path, FeeelDB._dbFilename));
-    return NativeDatabase(sqlFile);
-  });
+  static Future<File> _getDBFile() async {
+    final documentsDir = await getApplicationDocumentsDirectory();
+    return File(p.join(documentsDir.path, _dbFilename));
+  }
+
+  static LazyDatabase _openConnection() {
+    return LazyDatabase(() async {
+      final sqlFile = await _getDBFile();
+      return NativeDatabase(sqlFile);
+    });
+  }
 }

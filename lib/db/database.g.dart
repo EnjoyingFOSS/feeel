@@ -839,15 +839,18 @@ class ExerciseMusclesCompanion extends UpdateCompanion<ExerciseMuscle> {
   final Value<int> exercise;
   final Value<Muscle> muscle;
   final Value<MuscleRole> role;
+  final Value<int> rowid;
   const ExerciseMusclesCompanion({
     this.exercise = const Value.absent(),
     this.muscle = const Value.absent(),
     this.role = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   ExerciseMusclesCompanion.insert({
     required int exercise,
     required Muscle muscle,
     required MuscleRole role,
+    this.rowid = const Value.absent(),
   })  : exercise = Value(exercise),
         muscle = Value(muscle),
         role = Value(role);
@@ -855,20 +858,26 @@ class ExerciseMusclesCompanion extends UpdateCompanion<ExerciseMuscle> {
     Expression<int>? exercise,
     Expression<int>? muscle,
     Expression<int>? role,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (exercise != null) 'exercise': exercise,
       if (muscle != null) 'muscle': muscle,
       if (role != null) 'role': role,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
   ExerciseMusclesCompanion copyWith(
-      {Value<int>? exercise, Value<Muscle>? muscle, Value<MuscleRole>? role}) {
+      {Value<int>? exercise,
+      Value<Muscle>? muscle,
+      Value<MuscleRole>? role,
+      Value<int>? rowid}) {
     return ExerciseMusclesCompanion(
       exercise: exercise ?? this.exercise,
       muscle: muscle ?? this.muscle,
       role: role ?? this.role,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -886,6 +895,9 @@ class ExerciseMusclesCompanion extends UpdateCompanion<ExerciseMuscle> {
       final converter = $ExerciseMusclesTable.$converterrole;
       map['role'] = Variable<int>(converter.toSql(role.value));
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -894,7 +906,8 @@ class ExerciseMusclesCompanion extends UpdateCompanion<ExerciseMuscle> {
     return (StringBuffer('ExerciseMusclesCompanion(')
           ..write('exercise: $exercise, ')
           ..write('muscle: $muscle, ')
-          ..write('role: $role')
+          ..write('role: $role, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
@@ -1219,6 +1232,7 @@ class ExerciseTranslationsCompanion
   final Value<License> translationLicense;
   final Value<String> translationAuthors;
   final Value<String?> aliases;
+  final Value<int> rowid;
   const ExerciseTranslationsCompanion({
     this.exercise = const Value.absent(),
     this.language = const Value.absent(),
@@ -1228,6 +1242,7 @@ class ExerciseTranslationsCompanion
     this.translationLicense = const Value.absent(),
     this.translationAuthors = const Value.absent(),
     this.aliases = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   ExerciseTranslationsCompanion.insert({
     required int exercise,
@@ -1238,6 +1253,7 @@ class ExerciseTranslationsCompanion
     required License translationLicense,
     required String translationAuthors,
     this.aliases = const Value.absent(),
+    this.rowid = const Value.absent(),
   })  : exercise = Value(exercise),
         language = Value(language),
         name = Value(name),
@@ -1252,6 +1268,7 @@ class ExerciseTranslationsCompanion
     Expression<String>? translationLicense,
     Expression<String>? translationAuthors,
     Expression<String>? aliases,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (exercise != null) 'exercise': exercise,
@@ -1262,6 +1279,7 @@ class ExerciseTranslationsCompanion
       if (translationLicense != null) 'translation_license': translationLicense,
       if (translationAuthors != null) 'translation_authors': translationAuthors,
       if (aliases != null) 'aliases': aliases,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -1273,7 +1291,8 @@ class ExerciseTranslationsCompanion
       Value<String?>? notes,
       Value<License>? translationLicense,
       Value<String>? translationAuthors,
-      Value<String?>? aliases}) {
+      Value<String?>? aliases,
+      Value<int>? rowid}) {
     return ExerciseTranslationsCompanion(
       exercise: exercise ?? this.exercise,
       language: language ?? this.language,
@@ -1283,6 +1302,7 @@ class ExerciseTranslationsCompanion
       translationLicense: translationLicense ?? this.translationLicense,
       translationAuthors: translationAuthors ?? this.translationAuthors,
       aliases: aliases ?? this.aliases,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -1316,6 +1336,9 @@ class ExerciseTranslationsCompanion
     if (aliases.present) {
       map['aliases'] = Variable<String>(aliases.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -1329,7 +1352,8 @@ class ExerciseTranslationsCompanion
           ..write('notes: $notes, ')
           ..write('translationLicense: $translationLicense, ')
           ..write('translationAuthors: $translationAuthors, ')
-          ..write('aliases: $aliases')
+          ..write('aliases: $aliases, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
@@ -1471,30 +1495,38 @@ class ExerciseEquipmentCompanion
     extends UpdateCompanion<ExerciseEquipmentPiece> {
   final Value<int> exercise;
   final Value<EquipmentPiece> equipment;
+  final Value<int> rowid;
   const ExerciseEquipmentCompanion({
     this.exercise = const Value.absent(),
     this.equipment = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   ExerciseEquipmentCompanion.insert({
     required int exercise,
     required EquipmentPiece equipment,
+    this.rowid = const Value.absent(),
   })  : exercise = Value(exercise),
         equipment = Value(equipment);
   static Insertable<ExerciseEquipmentPiece> custom({
     Expression<int>? exercise,
     Expression<int>? equipment,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (exercise != null) 'exercise': exercise,
       if (equipment != null) 'equipment': equipment,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
   ExerciseEquipmentCompanion copyWith(
-      {Value<int>? exercise, Value<EquipmentPiece>? equipment}) {
+      {Value<int>? exercise,
+      Value<EquipmentPiece>? equipment,
+      Value<int>? rowid}) {
     return ExerciseEquipmentCompanion(
       exercise: exercise ?? this.exercise,
       equipment: equipment ?? this.equipment,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -1508,6 +1540,9 @@ class ExerciseEquipmentCompanion
       final converter = $ExerciseEquipmentTable.$converterequipment;
       map['equipment'] = Variable<int>(converter.toSql(equipment.value));
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -1515,7 +1550,8 @@ class ExerciseEquipmentCompanion
   String toString() {
     return (StringBuffer('ExerciseEquipmentCompanion(')
           ..write('exercise: $exercise, ')
-          ..write('equipment: $equipment')
+          ..write('equipment: $equipment, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
@@ -2160,12 +2196,14 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
   final Value<int> exercise;
   final Value<int?> exerciseDuration;
   final Value<int?> breakDuration;
+  final Value<int> rowid;
   const WorkoutExercisesCompanion({
     this.workoutId = const Value.absent(),
     this.orderPosition = const Value.absent(),
     this.exercise = const Value.absent(),
     this.exerciseDuration = const Value.absent(),
     this.breakDuration = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   WorkoutExercisesCompanion.insert({
     required int workoutId,
@@ -2173,6 +2211,7 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
     required int exercise,
     this.exerciseDuration = const Value.absent(),
     this.breakDuration = const Value.absent(),
+    this.rowid = const Value.absent(),
   })  : workoutId = Value(workoutId),
         orderPosition = Value(orderPosition),
         exercise = Value(exercise);
@@ -2182,6 +2221,7 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
     Expression<int>? exercise,
     Expression<int>? exerciseDuration,
     Expression<int>? breakDuration,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (workoutId != null) 'workout_id': workoutId,
@@ -2189,6 +2229,7 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
       if (exercise != null) 'exercise': exercise,
       if (exerciseDuration != null) 'exercise_duration': exerciseDuration,
       if (breakDuration != null) 'break_duration': breakDuration,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -2197,13 +2238,15 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
       Value<int>? orderPosition,
       Value<int>? exercise,
       Value<int?>? exerciseDuration,
-      Value<int?>? breakDuration}) {
+      Value<int?>? breakDuration,
+      Value<int>? rowid}) {
     return WorkoutExercisesCompanion(
       workoutId: workoutId ?? this.workoutId,
       orderPosition: orderPosition ?? this.orderPosition,
       exercise: exercise ?? this.exercise,
       exerciseDuration: exerciseDuration ?? this.exerciseDuration,
       breakDuration: breakDuration ?? this.breakDuration,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -2225,6 +2268,9 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
     if (breakDuration.present) {
       map['break_duration'] = Variable<int>(breakDuration.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -2235,7 +2281,8 @@ class WorkoutExercisesCompanion extends UpdateCompanion<WorkoutExercise> {
           ..write('orderPosition: $orderPosition, ')
           ..write('exercise: $exercise, ')
           ..write('exerciseDuration: $exerciseDuration, ')
-          ..write('breakDuration: $breakDuration')
+          ..write('breakDuration: $breakDuration, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
@@ -2801,12 +2848,14 @@ class WorkoutExerciseRecordsCompanion
   final Value<int> exercise;
   final Value<int> exerciseDuration;
   final Value<int> completedDuration;
+  final Value<int> rowid;
   const WorkoutExerciseRecordsCompanion({
     this.workoutRecordId = const Value.absent(),
     this.orderPosition = const Value.absent(),
     this.exercise = const Value.absent(),
     this.exerciseDuration = const Value.absent(),
     this.completedDuration = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   WorkoutExerciseRecordsCompanion.insert({
     required int workoutRecordId,
@@ -2814,6 +2863,7 @@ class WorkoutExerciseRecordsCompanion
     required int exercise,
     required int exerciseDuration,
     required int completedDuration,
+    this.rowid = const Value.absent(),
   })  : workoutRecordId = Value(workoutRecordId),
         orderPosition = Value(orderPosition),
         exercise = Value(exercise),
@@ -2825,6 +2875,7 @@ class WorkoutExerciseRecordsCompanion
     Expression<int>? exercise,
     Expression<int>? exerciseDuration,
     Expression<int>? completedDuration,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (workoutRecordId != null) 'workout_record_id': workoutRecordId,
@@ -2832,6 +2883,7 @@ class WorkoutExerciseRecordsCompanion
       if (exercise != null) 'exercise': exercise,
       if (exerciseDuration != null) 'exercise_duration': exerciseDuration,
       if (completedDuration != null) 'completed_duration': completedDuration,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -2840,13 +2892,15 @@ class WorkoutExerciseRecordsCompanion
       Value<int>? orderPosition,
       Value<int>? exercise,
       Value<int>? exerciseDuration,
-      Value<int>? completedDuration}) {
+      Value<int>? completedDuration,
+      Value<int>? rowid}) {
     return WorkoutExerciseRecordsCompanion(
       workoutRecordId: workoutRecordId ?? this.workoutRecordId,
       orderPosition: orderPosition ?? this.orderPosition,
       exercise: exercise ?? this.exercise,
       exerciseDuration: exerciseDuration ?? this.exerciseDuration,
       completedDuration: completedDuration ?? this.completedDuration,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -2868,6 +2922,9 @@ class WorkoutExerciseRecordsCompanion
     if (completedDuration.present) {
       map['completed_duration'] = Variable<int>(completedDuration.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -2878,7 +2935,8 @@ class WorkoutExerciseRecordsCompanion
           ..write('orderPosition: $orderPosition, ')
           ..write('exercise: $exercise, ')
           ..write('exerciseDuration: $exerciseDuration, ')
-          ..write('completedDuration: $completedDuration')
+          ..write('completedDuration: $completedDuration, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
