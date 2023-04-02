@@ -113,8 +113,8 @@ class WorkoutHeader extends StatelessWidget {
                       width: 16,
                     ),
                     if (workoutDuration != null)
-                      Text(DurationUtil.getDurationLongform(
-                          context, workoutDuration!))
+                      Text(DurationUtil.getDuration(context, workoutDuration!),
+                          style: DurationUtil.textStyle)
                   ],
                 )
               ])))

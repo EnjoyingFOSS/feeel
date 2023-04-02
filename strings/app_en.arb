@@ -61,9 +61,36 @@
     "txtHome": "Home",
     "txtNumberInputEmpty": "Can't be empty",
     "txtNumberInputNonnumeric": "Must be numeric",
-    "txtDurationLong": "%1d min., %2d sec.",
-    "txtDurationMin": "%d min.",
-    "txtDurationSec": "%d sec.",
+    "txtDurationFormat": "{minutes}m {seconds}s",
+    "@txtDurationFormat": {
+        "description": "Representation of a duration in the format '00m 00s'",
+        "placeholders": {
+            "minutes": {
+                "type": "String"
+            },
+            "seconds": {
+                "type": "String"
+            }
+        }
+    },
+    "txtDurationMin": "{minutes}m",
+    "@txtDurationMin": {
+        "description": "Representation of a minute duration in the format '00m'",
+        "placeholders": {
+            "minutes": {
+                "type": "String"
+            }
+        }
+    },
+    "txtDurationSec": "{seconds}s",
+    "@txtDurationSec": {
+        "description": "Representation of a second duration in the format '00s'",
+        "placeholders": {
+            "seconds": {
+                "type": "String"
+            }
+        }
+    },
     "txtDragToReorder": "Drag this handle to reorder exercises.",
     "txtNoExercises": "There are no exercises in this workout. :(",
     "txtEnglishDescriptionLicense": "English description license",
@@ -81,8 +108,6 @@
     "txtUseSystemLanguage": "Use system language",
     "txtEnglishDescLicense": "English description by %1s is licensed under the [%2s license].",
     "txtNoExerciseImageYet": "No exercise image yet",
-    "txtNoWorkoutsOnDate": "No workouts on %s",
-    "txtXWorkoutsOnDate": "%d workouts on %s",
     "txtChooseSupportedFiletypes": "Choose a .feeel file to import one workout or a .zip file to import several.",
     "txtExerciseUpdateFromWeb": "Get exercise updates from the web",
     "txtOnlyUpdateOverWifi": "Only update exercises over wifi",

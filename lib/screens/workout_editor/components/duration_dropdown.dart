@@ -20,6 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/utils/duration_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -49,7 +50,8 @@ class DurationDropdown extends StatelessWidget {
       items: [
         ...predefinedValues.map((int secs) => DropdownMenuItem(
               value: secs,
-              child: Text(_formatSecs(secs, context)),
+              child: Text(DurationUtil.getDuration(context, secs),
+                  style: DurationUtil.textStyle),
             )),
         DropdownMenuItem(
           value: _custom,
@@ -57,7 +59,8 @@ class DurationDropdown extends StatelessWidget {
               ? Text(AppLocalizations.of(context)!.txtCustom)
               : Text(AppLocalizations.of(context)!
                   .txtCustomWithDuration
-                  .replaceFirst("%s", _formatSecs(chosenValue, context))),
+                  .replaceFirst(
+                      "%s", DurationUtil.getDuration(context, chosenValue))),
         )
       ],
       onChanged: (int? value) {
@@ -65,18 +68,6 @@ class DurationDropdown extends StatelessWidget {
       },
       decoration: decoration,
     );
-  }
-
-  String _formatSecs(int secs, BuildContext context) {
-    if (secs % 60 == 0) {
-      return AppLocalizations.of(context)!
-          .txtDurationMin
-          .replaceFirst("%d", "${secs ~/ 60}");
-    } else {
-      return AppLocalizations.of(context)!
-          .txtDurationSec
-          .replaceFirst("%d", "$secs");
-    }
   }
 
   void _onChanged(BuildContext context, int value) {

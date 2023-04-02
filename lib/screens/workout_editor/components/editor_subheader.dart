@@ -68,7 +68,8 @@ class EditorSubheader extends ConsumerWidget {
                     }))),
             const Spacer(),
             if (workoutDuration != null && workoutDuration! > 0)
-              Text(DurationUtil.getDurationLongform(context, workoutDuration!))
+              Text(DurationUtil.getDuration(context, workoutDuration!),
+                  style: DurationUtil.textStyle)
           ],
         ));
   }

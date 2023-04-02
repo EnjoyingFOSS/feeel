@@ -46,7 +46,10 @@ class WorkoutExerciseList extends StatelessWidget {
           return ExerciseListItem(
             //TODO allow two-row exercise names
             exercise: fullWorkout.exercises[index],
-            subtitle: Text(DurationUtil.getDurationShortform(duration)),
+            subtitle: Text(
+              DurationUtil.getDuration(context, duration),
+              style: DurationUtil.textStyle,
+            ),
             colorSwatch: colorSwatch,
           );
         },
