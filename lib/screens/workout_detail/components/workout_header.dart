@@ -23,12 +23,12 @@
 import 'package:feeel/db/database.dart';
 import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/utils/format_util.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/triangle_filled.dart';
 import '../../../enums/workout_type.dart';
 import '../../../theming/feeel_shade.dart';
-import '../../../utils/duration_util.dart';
 import '../../../utils/hero_util.dart';
 
 class WorkoutHeader extends StatelessWidget {
@@ -113,8 +113,8 @@ class WorkoutHeader extends StatelessWidget {
                       width: 16,
                     ),
                     if (workoutDuration != null)
-                      Text(DurationUtil.getDuration(context, workoutDuration!),
-                          style: DurationUtil.textStyle)
+                      Text(FormatUtil.getDuration(context, workoutDuration!),
+                          style: FormatUtil.durationTextStyle)
                   ],
                 )
               ])))

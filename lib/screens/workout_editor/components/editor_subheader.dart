@@ -23,7 +23,7 @@
 import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:feeel/theming/feeel_shade.dart';
-import 'package:feeel/utils/duration_util.dart';
+import 'package:feeel/utils/format_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -68,8 +68,8 @@ class EditorSubheader extends ConsumerWidget {
                     }))),
             const Spacer(),
             if (workoutDuration != null && workoutDuration! > 0)
-              Text(DurationUtil.getDuration(context, workoutDuration!),
-                  style: DurationUtil.textStyle)
+              Text(FormatUtil.getDuration(context, workoutDuration!),
+                  style: FormatUtil.durationTextStyle)
           ],
         ));
   }

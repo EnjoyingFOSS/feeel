@@ -23,7 +23,7 @@
 import 'package:feeel/components/exercise_list_item.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
-import 'package:feeel/utils/duration_util.dart';
+import 'package:feeel/utils/format_util.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutExerciseList extends StatelessWidget {
@@ -47,8 +47,8 @@ class WorkoutExerciseList extends StatelessWidget {
             //TODO allow two-row exercise names
             exercise: fullWorkout.exercises[index],
             subtitle: Text(
-              DurationUtil.getDuration(context, duration),
-              style: DurationUtil.textStyle,
+              FormatUtil.getDuration(context, duration),
+              style: FormatUtil.durationTextStyle,
             ),
             colorSwatch: colorSwatch,
           );

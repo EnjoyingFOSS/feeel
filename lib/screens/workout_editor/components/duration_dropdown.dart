@@ -20,7 +20,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/utils/duration_util.dart';
+import 'package:feeel/utils/format_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -50,8 +50,8 @@ class DurationDropdown extends StatelessWidget {
       items: [
         ...predefinedValues.map((int secs) => DropdownMenuItem(
               value: secs,
-              child: Text(DurationUtil.getDuration(context, secs),
-                  style: DurationUtil.textStyle),
+              child: Text(FormatUtil.getDuration(context, secs),
+                  style: FormatUtil.durationTextStyle),
             )),
         DropdownMenuItem(
           value: _custom,
@@ -60,7 +60,7 @@ class DurationDropdown extends StatelessWidget {
               : Text(AppLocalizations.of(context)!
                   .txtCustomWithDuration
                   .replaceFirst(
-                      "%s", DurationUtil.getDuration(context, chosenValue))),
+                      "%s", FormatUtil.getDuration(context, chosenValue))),
         )
       ],
       onChanged: (int? value) {
