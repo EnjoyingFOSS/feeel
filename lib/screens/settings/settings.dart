@@ -159,6 +159,17 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           });
                         },
                       ),
+                      if (Platform.isAndroid || Platform.isLinux)
+                        SwitchListTile.adaptive(
+                            secondary: const SizedBox(),
+                            title: Text(AppLocalizations.of(context)!
+                                .txtPersonalizedColors),
+                            value: themeMetaValue.personalized,
+                            onChanged: (value) async {
+                              themeMetaNotifier.setTheme(
+                                  themeMetaValue.copyWith(personalized: value));
+                            },
+                            activeColor: switchActiveColor),
                       ListTile(
                         leading: const Icon(Icons.language),
                         title: Text(AppLocalizations.of(context)!.txtLanguage),
@@ -177,17 +188,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           });
                         },
                       ),
-                      if (Platform.isAndroid || Platform.isLinux)
-                        SwitchListTile.adaptive(
-                            secondary: const SizedBox(),
-                            title: Text(AppLocalizations.of(context)!
-                                .txtPersonalizedColors),
-                            value: themeMetaValue.personalized,
-                            onChanged: (value) async {
-                              themeMetaNotifier.setTheme(
-                                  themeMetaValue.copyWith(personalized: value));
-                            },
-                            activeColor: switchActiveColor),
                       // SwitchListTile.adaptive(
                       //     activeColor: switchActiveColor,
                       //     secondary: const Icon(Icons.wifi),
