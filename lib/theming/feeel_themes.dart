@@ -22,6 +22,7 @@
 
 import 'package:feeel/theming/feeel_swatches.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'feeel_color.dart';
 import 'feeel_shade.dart';
@@ -86,6 +87,15 @@ class FeeelThemes {
         scaffoldBackgroundColor: colorScheme.background,
         cardColor: colorScheme.surface,
         appBarTheme: AppBarTheme(
+            systemOverlayStyle: colorScheme.brightness == Brightness.light
+                ? SystemUiOverlayStyle.dark.copyWith(
+                    statusBarColor: colorScheme.background,
+                    statusBarBrightness: Brightness.light,
+                    statusBarIconBrightness: Brightness.dark)
+                : SystemUiOverlayStyle.light.copyWith(
+                    statusBarColor: colorScheme.background,
+                    statusBarBrightness: Brightness.dark,
+                    statusBarIconBrightness: Brightness.light),
             color: Colors.transparent,
             iconTheme: IconThemeData(color: colorScheme.primary),
             titleTextStyle: TextStyle(
@@ -113,8 +123,8 @@ class FeeelThemes {
             backgroundColor: colorScheme.background,
             indicatorColor: colorScheme.primaryContainer,
             elevation: 8,
-            labelTextStyle: MaterialStateProperty.resolveWith((states) =>
-                (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? TextStyle(color: colorScheme.onPrimaryContainer, fontWeight: FontWeight.w500) : null)),
+            labelTextStyle: MaterialStateProperty.resolveWith(
+                (states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? TextStyle(color: colorScheme.onPrimaryContainer, fontWeight: FontWeight.w500) : null)),
         switchTheme: SwitchThemeData(thumbColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null), trackColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary.withAlpha(80) : null)),
         radioTheme: RadioThemeData(
           fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>

@@ -30,7 +30,6 @@ import 'package:feeel/providers/locale_provider.dart';
 import 'package:feeel/providers/theme_meta_provider.dart';
 import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -66,11 +65,8 @@ class Feeel extends ConsumerWidget {
     WidgetsBinding.instance
         .addPostFrameCallback((_) => _onWidgetBuilt(context));
 
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
-
     return DynamicColorBuilder(
-            builder: (dynamicLightScheme, dynamicDarkScheme) {
+        builder: (dynamicLightScheme, dynamicDarkScheme) {
       final preferredLocale = ref.watch(localeProvider);
       final themeMeta = ref.watch(themeMetaProvider);
       final swatchNotifier = ref.read(feeelSwatchProvider.notifier);
@@ -114,10 +110,7 @@ class Feeel extends ConsumerWidget {
           locale: preferredLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           home: I18n(child: const HomePagerScreen()));
-    })
-        // );
-        // })
-        ;
+    });
   }
 
   void _onWidgetBuilt(BuildContext context) {

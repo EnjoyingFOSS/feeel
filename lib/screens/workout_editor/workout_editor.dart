@@ -39,6 +39,7 @@ import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -72,6 +73,10 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
     final theme = Theme.of(context);
     _titleController.text = widget.editableWorkout.title;
     final workoutNotifier = ref.read(workoutProvider.notifier);
+    final systemOverlayStyle = Theme.of(context).appBarTheme.systemOverlayStyle;
+    if (systemOverlayStyle != null) {
+      SystemChrome.setSystemUIOverlayStyle(systemOverlayStyle);
+    }
 
     return WillPopScope(
         onWillPop: _onWillPop,

@@ -79,6 +79,10 @@ class _ExercisePickerScreenState extends ConsumerState<ExercisePickerScreen> {
                   child: CustomScrollView(
                 slivers: [
                   SliverAppBar(
+                    systemOverlayStyle: Theme.of(context)
+                        .appBarTheme
+                        .systemOverlayStyle
+                        ?.copyWith(statusBarColor: bgColor),
                     leading: CloseButton(color: fgColor),
                     titleTextStyle: theme.appBarTheme.titleTextStyle
                         ?.copyWith(color: fgColor),
