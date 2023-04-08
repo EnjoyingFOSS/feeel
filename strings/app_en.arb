@@ -61,6 +61,17 @@
     "txtHome": "Home",
     "txtNumberInputEmpty": "Can't be empty",
     "txtNumberInputNonnumeric": "Must be numeric",
+    "txtDurationOverXWorkouts": "{count, plural, zero{No workouts} one{{duration} over {count} workout} other{{duration} over {count} workouts}}",
+    "@txtDurationOverXWorkouts": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            },
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
     "txtDurationFormat": "{minutes}m {seconds}s",
     "@txtDurationFormat": {
         "description": "Representation of a duration in the format '00m 00s'",
@@ -73,8 +84,8 @@
             }
         }
     },
-    "txtDurationMin": "{minutes}m",
-    "@txtDurationMin": {
+    "txtDurationFormatMin": "{minutes}m",
+    "@txtDurationFormatMin": {
         "description": "Representation of a minute duration in the format '00m'",
         "placeholders": {
             "minutes": {
@@ -82,8 +93,8 @@
             }
         }
     },
-    "txtDurationSec": "{seconds}s",
-    "@txtDurationSec": {
+    "txtDurationFormatSec": "{seconds}s",
+    "@txtDurationFormatSec": {
         "description": "Representation of a second duration in the format '00s'",
         "placeholders": {
             "seconds": {
