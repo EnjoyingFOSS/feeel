@@ -1,6 +1,30 @@
-Feeel is a hobby project that I'm working on in my spare time. As such, any further development relies on the work of enthusiastic volunteers wanting to make the project a bit better.
+Feeel is a hobby project that I'm working on in my spare time. As such, help is appreciated. :)
 
 Here's how you can get involved:
+
+Write exercise descriptions
+=====
+Exercises are now contributed via **[the wger website](https://wger.de/en/exercise/overview/)**, another open-source community project.
+
+To cut back on spam, contributing via wger currently requires an account older than 21 days. [Create an account now](https://wger.de/en-gb/user/registration) so that you can start contributing later!
+
+Take exercise photos
+======
+Exercise photos are sorely needed. Take a look at wger's [list of exercises](https://wger.de/en/exercise/overview) and take photos of those that don't have any.
+
+The photos you submit **must be your own work** (copyright belongs only to you).
+
+Unfortunately, wger currently does not support adding license information for photos. Please send your contributions along with the necessary license info to this e-mail: ![contribution email](https://gitlab.com/enjoyingfoss/feeel/-/wikis/uploads/cf757eceb7db13b395bed6516ad4b4b9/Artboard12.png).
+
+Process exercise photos
+======
+You can take CC0, CC BY, or CC BY-SA photos and turn them into low-poly versions using the [FOSStriangulator app](https://github.com/FOSStriangulator/FOSStriangulator).
+
+See **[this tutorial](https://gitlab.com/enjoyingfoss/feeel/-/wikis/Processing-photos)** for a guide on how to triangulate.
+
+Note that license of the source photo is extremely important here! Your contribution won't be accepted if it's based on a photo that isn't CC BY-SA-compatible. If in doubt, start with a photo you took yourself.
+
+Send your contributions along with the necessary license info to this e-mail: ![contribution email](https://gitlab.com/enjoyingfoss/feeel/-/wikis/uploads/cf757eceb7db13b395bed6516ad4b4b9/Artboard12.png).
 
 Develop
 =======
@@ -10,21 +34,20 @@ Once that's done, find a development issue on [Gitlab](https://gitlab.com/enjoyi
 
 Need help getting around the code? Get help from the community on [Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org).
 
-Submit exercise photos
-======
-Exercise photos are sorely needed. See [this issue](https://gitlab.com/enjoyingfoss/feeel/-/issues/10) for a list.
+As a sidenote, you might want to disable Google's analytics built into Flutter:
 
-The photos you submit must be your own work (copyright belongs only to you).
-
-Process exercise photos
-======
-You can take already contributed or CC0, CC BY, or CC BY-SA photos and turn them into low-poly versions using the [FOSStriangulator app](https://github.com/FOSStriangulator/FOSStriangulator).
-
-See [this tutorial](https://gitlab.com/enjoyingfoss/feeel/-/wikis/Processing-photos) for a guide on how to triangulate.
+```
+flutter config --no-analytics
+dart --disable-analytics
+```
 
 Translate
 =========
-You can help translate through [Weblate](https://hosted.weblate.org/projects/feeel/strings/).
+Know a foreign language?
+
+You can translate:
+* The app's UI through [Weblate](https://hosted.weblate.org/projects/feeel/strings/)
+* Individual exercises via [wger](https://wger.de/en-gb/exercise/overview/). You'll need an account older than 21 days ([register here](https://wger.de/en-gb/user/registration) and simply wait). To translate, use the language menu on an exercise's detail page.
 
 Spread the word
 ===============
@@ -33,6 +56,12 @@ Have a social media account? Or a blog? Give Feeel a mention!
 Rate and review the app
 =======================
 Here is a [list of sites where you can rate or review Feeel](https://gitlab.com/enjoyingfoss/feeel/-/wikis/App-rating-and-reviews).
+
+Donate
+======
+Donations are much appreciated, as they allow me to be able to devote more time to the app.
+
+You can donate via [Liberapay](https://liberapay.com/Feeel/).
 
 Other ways to help
 ===============
