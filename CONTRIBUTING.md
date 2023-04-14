@@ -30,7 +30,13 @@ Develop
 =======
 You'll need to set up Flutter on your device ([Linux](https://docs.flutter.dev/get-started/install/linux#install-flutter-manually), [macOS](https://docs.flutter.dev/get-started/install/macos), or [Windows](https://docs.flutter.dev/get-started/install/windows)) to work on Feeel. If you're developing for Linux, you'll also need to [install the prerequisites for the audio library Feeel uses](https://github.com/bluefireteam/audioplayers/blob/main/packages/audioplayers_linux/requirements.md).
 
-Once that's done, find a development issue on [Gitlab](https://gitlab.com/enjoyingfoss/feeel/-/issues) and start working on it.
+Before running the app for the first time, you'll need to run the build runner and generate the localizations:
+```
+flutter pub run build_runner build --delete-conflicting-outputs
+flutter gen-l10n
+```
+
+Once you're all set up, find a development issue on [Gitlab](https://gitlab.com/enjoyingfoss/feeel/-/issues) and start working on it.
 
 Need help getting around the code? Get help from the community on [Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org).
 
