@@ -67,7 +67,7 @@ class WorkoutProviderNotifier extends AsyncNotifier<WorkoutProviderState> {
   Future<List<Workout>> _queryAllWorkouts(FeeelDB db) async {
     final workouts = await (db.select(db.workouts)
           ..orderBy([
-            (w) => OrderingTerm.desc(w.lastUsed),
+            (w) => OrderingTerm.desc(w.cachedLastUse),
             (w) => OrderingTerm.asc(w.id)
           ]))
         .get(); //TODO use watch instead?
