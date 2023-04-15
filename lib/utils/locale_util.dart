@@ -100,4 +100,8 @@ class LocaleUtil {
     }
     return workout.title;
   }
+
+  /// only used for the cases where a CLDR language tag is required
+  static String basicBcp47ToCLDR(String bcp47LanguageTag) =>
+      bcp47LanguageTag.replaceAll("-", "_");
 }

@@ -23,6 +23,7 @@
 import 'package:feeel/db/database.dart';
 import 'package:feeel/screens/activity/components/workout_donut_chart.dart';
 import 'package:feeel/screens/activity/components/workout_record_util.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -61,14 +62,14 @@ class ActivityCalendar extends StatelessWidget {
           color: Theme.of(context).colorScheme.primary,
           shape: BoxShape.circle,
         ));
-    final curLocale = Localizations.localeOf(context);
     return TableCalendar<WorkoutRecord>(
       daysOfWeekStyle: DaysOfWeekStyle(
           weekdayStyle:
               TextStyle(color: Theme.of(context).colorScheme.onBackground),
           weekendStyle:
               TextStyle(color: Theme.of(context).colorScheme.onBackground)),
-      locale: "${curLocale.languageCode}_${curLocale.countryCode}",
+      locale: LocaleUtil.basicBcp47ToCLDR(
+          Localizations.localeOf(context).toLanguageTag()),
       availableGestures: AvailableGestures.horizontalSwipe,
       calendarStyle: calendarStyle,
       onDaySelected: onDaySelected,
