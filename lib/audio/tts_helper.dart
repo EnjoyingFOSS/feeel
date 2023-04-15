@@ -21,9 +21,9 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/audio/audio_helper.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:i18n_extension/i18n_widget.dart';
 
 enum _TtsState { playing, stopped }
 
@@ -36,7 +36,7 @@ class TTSHelper {
   _TtsState _ttsState = _TtsState.stopped; //TODO see if I need this
   AudioPriority _formerPriority = AudioPriority.low;
 
-  void init(BuildContext context) async {
+  void init(Locale locale) async {
     // TODO set to current language ONLY IF translations are available; _flutterTts.setLanguage(Localizations.localeOf(context).languageCode);
     _flutterTts.setStartHandler(() {
       _ttsState = _TtsState.playing;
@@ -54,18 +54,23 @@ class TTSHelper {
       _ttsState = _TtsState.stopped;
     });
 
-    _initLanguage(context);
+    _initLocale(locale);
   }
 
-  void _initLanguage(BuildContext context) async {
-    final curLanguage = I18n.language;
+  void _initLocale(Locale curLocale) async {
+    final fullLocaleTag = curLocale.toLanguageTag();
     final isLanguageAvailable =
-        await _flutterTts.isLanguageAvailable(curLanguage) as bool;
+        await _flutterTts.isLanguageAvailable(fullLocaleTag) as bool;
 
     if (isLanguageAvailable) {
-      _flutterTts.setLanguage(curLanguage);
+      _flutterTts.setLanguage(fullLocaleTag);
     } else {
-      _flutterTts.setLanguage(I18n.defaultLocale.toLanguageTag());
+      final languageTag = curLocale.languageCode;
+      if (await _flutterTts.isLanguageAvailable(languageTag) as bool) {
+        //TODO not sure if this is needed, not sure how the fallback mechanism works for TTS
+        _flutterTts.setLanguage(languageTag);
+      }
+      _flutterTts.setLanguage(LocaleUtil.fallbackLocale.toLanguageTag());
     }
   }
 

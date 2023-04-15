@@ -19,7 +19,6 @@ dependencies:
   flutter_tts: ^3.6.3
   wakelock: ^0.6.2
   path_provider: ^2.0.13
-  i18n_extension: ^8.0.0
   shared_preferences: ^2.0.20
   audioplayers: ^3.0.1
   flutter_local_notifications: ^13.0.0

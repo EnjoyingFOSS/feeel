@@ -20,6 +20,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:io';
+
+import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/components/disclaimer_sheet.dart';
 import 'package:feeel/components/navigation_pills.dart';
 import 'package:feeel/db/preference_keys.dart';
@@ -57,6 +60,11 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
   Widget build(BuildContext context) {
     final showSidebar =
         MediaQuery.of(context).size.width > FeeelGrid.breakpointXL;
+    if (!Platform.isLinux) {
+      //TODO SHOULDN'T INIT HERE! THIS IS AN UGLY HACK :( NEED TO TURN TTS INTO A PROVIDER
+      TTSHelper.tts.init(Localizations.localeOf(
+          context)); //TODO should really depend on whether the TTS preference is set
+    }
     return Scaffold(
         //TODO do I need SafeArea here?
         backgroundColor: Theme.of(context).colorScheme.background,

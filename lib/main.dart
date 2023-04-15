@@ -31,7 +31,6 @@ import 'package:feeel/providers/theme_meta_provider.dart';
 import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:i18n_extension/i18n_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'utils/notification_helper.dart';
 import 'theming/feeel_themes.dart';
@@ -109,14 +108,12 @@ class Feeel extends ConsumerWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           locale: preferredLocale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          home: I18n(child: const HomePagerScreen()));
+          home: const HomePagerScreen());
     });
   }
 
   void _onWidgetBuilt(BuildContext context) {
     if (!Platform.isLinux) {
-      TTSHelper.tts.init(
-          context); //TODO should really depend on whether the TTS preference is set
       NotificationHelper.helper.init(context);
     }
   }
