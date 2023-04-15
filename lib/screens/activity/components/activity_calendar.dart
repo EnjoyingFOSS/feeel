@@ -91,54 +91,6 @@ class ActivityCalendar extends StatelessWidget {
                       WorkoutRecordUtil.calcSecondsByWorkoutCategory(
                           events))); // TODO cache this calculation
         },
-        // todayBuilder: (context, day, focusedDay) => _buildCalendarCell(
-        //   context,
-        //   day,
-        //   focusedDay,
-        //   calendarStyle,
-        //   false,
-        //   false,
-        // ),
-        // selectedBuilder: (context, day, focusedDay) => _buildCalendarCell(
-        //   context,
-        //   day,
-        //   focusedDay,
-        //   calendarStyle,
-        //   true,
-        //   false,
-        // ),
-        // outsideBuilder: (context, day, focusedDay) => _buildCalendarCell(
-        //   context,
-        //   day,
-        //   focusedDay,
-        //   calendarStyle,
-        //   false,
-        //   true,
-        // ),
-        // disabledBuilder: (context, day, focusedDay) => _buildCalendarCell(
-        //   context,
-        //   day,
-        //   focusedDay,
-        //   calendarStyle,
-        //   false,
-        //   true,
-        // ),
-        // defaultBuilder: (context, day, focusedDay) => _buildCalendarCell(
-        //   context,
-        //   day,
-        //   focusedDay,
-        //   calendarStyle,
-        //   false,
-        //   false,
-        // ),
-        // holidayBuilder: (context, day, focusedDay) => _buildCalendarCell(
-        //   context,
-        //   day,
-        //   focusedDay,
-        //   calendarStyle,
-        //   false,
-        //   false,
-        // ),
       ),
     );
   }
@@ -165,57 +117,4 @@ class ActivityCalendar extends StatelessWidget {
             "Unknown weekday (from MaterialLocalizations.of(context).firstDayOfWeekIndex)");
     }
   }
-
-  // bool _isWeekend(DateTime day) =>
-  //     day.weekday == DateTime.saturday || day.weekday == DateTime.sunday;
-
-  // bool _isSameDay(DateTime a, DateTime b) =>
-  //     a.year == b.year && a.month == b.month && a.day == b.day;
-
-  // Widget _buildCalendarCell(
-  //     BuildContext context,
-  //     DateTime day,
-  //     DateTime focusedDay, // first day or selected day of displayed month
-  //     CalendarStyle calendarStyle,
-  //     bool isSelected,
-  //     bool isOutsideOrDisabled) {
-  //   final isToday = _isSameDay(DateTime.now(), day);
-  //   final hasEvents = eventLoader(day).isNotEmpty;
-  //   return AnimatedContainer(
-  //       duration: const Duration(milliseconds: 250),
-  //       margin: calendarStyle.cellMargin,
-  //       padding: calendarStyle.cellPadding,
-  //       decoration: isSelected
-  //           ? calendarStyle.selectedDecoration
-  //           : isToday
-  //               ? calendarStyle.todayDecoration
-  //               : isOutsideOrDisabled
-  //                   ? calendarStyle.outsideDecoration
-  //                   : _isWeekend(day)
-  //                       ? calendarStyle.weekendDecoration
-  //                       : calendarStyle.defaultDecoration,
-  //       alignment: calendarStyle.cellAlignment,
-  //       child: Text(
-  //         day.day.toString(),
-  //         style: hasEvents
-  //             ? isSelected
-  //                 ? calendarStyle.selectedTextStyle
-  //                     .copyWith(fontWeight: FontWeight.bold)
-  //                 : isOutsideOrDisabled
-  //                     ? calendarStyle.outsideTextStyle
-  //                         .copyWith(fontWeight: FontWeight.bold)
-  //                     : _isWeekend(day)
-  //                         ? calendarStyle.weekendTextStyle
-  //                             .copyWith(fontWeight: FontWeight.bold)
-  //                         : calendarStyle.defaultTextStyle
-  //                             .copyWith(fontWeight: FontWeight.bold)
-  //             : isSelected
-  //                 ? calendarStyle.selectedTextStyle
-  //                 : isOutsideOrDisabled
-  //                     ? calendarStyle.outsideTextStyle
-  //                     : _isWeekend(day)
-  //                         ? calendarStyle.weekendTextStyle
-  //                         : calendarStyle.defaultTextStyle,
-  //       ));
-  // }
 }
