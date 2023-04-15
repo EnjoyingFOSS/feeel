@@ -925,14 +925,11 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
   late final GeneratedColumn<int> exercise = GeneratedColumn<int>(
       'exercise', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _languageMeta =
-      const VerificationMeta('language');
+  static const VerificationMeta _localeMeta = const VerificationMeta('locale');
   @override
-  late final GeneratedColumnWithTypeConverter<ExerciseLanguage, String>
-      language = GeneratedColumn<String>('language', aliasedName, false,
-              type: DriftSqlType.string, requiredDuringInsert: true)
-          .withConverter<ExerciseLanguage>(
-              $ExerciseTranslationsTable.$converterlanguage);
+  late final GeneratedColumn<String> locale = GeneratedColumn<String>(
+      'locale', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
@@ -973,7 +970,7 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
   @override
   List<GeneratedColumn> get $columns => [
         exercise,
-        language,
+        locale,
         name,
         description,
         notes,
@@ -997,7 +994,12 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
     } else if (isInserting) {
       context.missing(_exerciseMeta);
     }
-    context.handle(_languageMeta, const VerificationResult.success());
+    if (data.containsKey('locale')) {
+      context.handle(_localeMeta,
+          locale.isAcceptableOrUnknown(data['locale']!, _localeMeta));
+    } else if (isInserting) {
+      context.missing(_localeMeta);
+    }
     if (data.containsKey('name')) {
       context.handle(
           _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
@@ -1031,16 +1033,15 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {exercise, language};
+  Set<GeneratedColumn> get $primaryKey => {exercise, locale};
   @override
   ExerciseTranslation map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return ExerciseTranslation(
       exercise: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}exercise'])!,
-      language: $ExerciseTranslationsTable.$converterlanguage.fromSql(
-          attachedDatabase.typeMapping
-              .read(DriftSqlType.string, data['${effectivePrefix}language'])!),
+      locale: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}locale'])!,
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
       description: attachedDatabase.typeMapping
@@ -1063,9 +1064,6 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
     return $ExerciseTranslationsTable(attachedDatabase, alias);
   }
 
-  static JsonTypeConverter2<ExerciseLanguage, String, String>
-      $converterlanguage =
-      const EnumNameConverter<ExerciseLanguage>(ExerciseLanguage.values);
   static JsonTypeConverter2<License, String, String>
       $convertertranslationLicense =
       const EnumNameConverter<License>(License.values);
@@ -1074,7 +1072,7 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
 class ExerciseTranslation extends DataClass
     implements Insertable<ExerciseTranslation> {
   final int exercise;
-  final ExerciseLanguage language;
+  final String locale;
   final String name;
   final String? description;
   final String? notes;
@@ -1083,7 +1081,7 @@ class ExerciseTranslation extends DataClass
   final String? aliases;
   const ExerciseTranslation(
       {required this.exercise,
-      required this.language,
+      required this.locale,
       required this.name,
       this.description,
       this.notes,
@@ -1094,10 +1092,7 @@ class ExerciseTranslation extends DataClass
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['exercise'] = Variable<int>(exercise);
-    {
-      final converter = $ExerciseTranslationsTable.$converterlanguage;
-      map['language'] = Variable<String>(converter.toSql(language));
-    }
+    map['locale'] = Variable<String>(locale);
     map['name'] = Variable<String>(name);
     if (!nullToAbsent || description != null) {
       map['description'] = Variable<String>(description);
@@ -1120,7 +1115,7 @@ class ExerciseTranslation extends DataClass
   ExerciseTranslationsCompanion toCompanion(bool nullToAbsent) {
     return ExerciseTranslationsCompanion(
       exercise: Value(exercise),
-      language: Value(language),
+      locale: Value(locale),
       name: Value(name),
       description: description == null && nullToAbsent
           ? const Value.absent()
@@ -1140,8 +1135,7 @@ class ExerciseTranslation extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return ExerciseTranslation(
       exercise: serializer.fromJson<int>(json['exercise']),
-      language: $ExerciseTranslationsTable.$converterlanguage
-          .fromJson(serializer.fromJson<String>(json['language'])),
+      locale: serializer.fromJson<String>(json['locale']),
       name: serializer.fromJson<String>(json['name']),
       description: serializer.fromJson<String?>(json['description']),
       notes: serializer.fromJson<String?>(json['notes']),
@@ -1158,8 +1152,7 @@ class ExerciseTranslation extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'exercise': serializer.toJson<int>(exercise),
-      'language': serializer.toJson<String>(
-          $ExerciseTranslationsTable.$converterlanguage.toJson(language)),
+      'locale': serializer.toJson<String>(locale),
       'name': serializer.toJson<String>(name),
       'description': serializer.toJson<String?>(description),
       'notes': serializer.toJson<String?>(notes),
@@ -1173,7 +1166,7 @@ class ExerciseTranslation extends DataClass
 
   ExerciseTranslation copyWith(
           {int? exercise,
-          ExerciseLanguage? language,
+          String? locale,
           String? name,
           Value<String?> description = const Value.absent(),
           Value<String?> notes = const Value.absent(),
@@ -1182,7 +1175,7 @@ class ExerciseTranslation extends DataClass
           Value<String?> aliases = const Value.absent()}) =>
       ExerciseTranslation(
         exercise: exercise ?? this.exercise,
-        language: language ?? this.language,
+        locale: locale ?? this.locale,
         name: name ?? this.name,
         description: description.present ? description.value : this.description,
         notes: notes.present ? notes.value : this.notes,
@@ -1194,7 +1187,7 @@ class ExerciseTranslation extends DataClass
   String toString() {
     return (StringBuffer('ExerciseTranslation(')
           ..write('exercise: $exercise, ')
-          ..write('language: $language, ')
+          ..write('locale: $locale, ')
           ..write('name: $name, ')
           ..write('description: $description, ')
           ..write('notes: $notes, ')
@@ -1206,14 +1199,14 @@ class ExerciseTranslation extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(exercise, language, name, description, notes,
+  int get hashCode => Object.hash(exercise, locale, name, description, notes,
       translationLicense, translationAuthors, aliases);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is ExerciseTranslation &&
           other.exercise == this.exercise &&
-          other.language == this.language &&
+          other.locale == this.locale &&
           other.name == this.name &&
           other.description == this.description &&
           other.notes == this.notes &&
@@ -1225,7 +1218,7 @@ class ExerciseTranslation extends DataClass
 class ExerciseTranslationsCompanion
     extends UpdateCompanion<ExerciseTranslation> {
   final Value<int> exercise;
-  final Value<ExerciseLanguage> language;
+  final Value<String> locale;
   final Value<String> name;
   final Value<String?> description;
   final Value<String?> notes;
@@ -1235,7 +1228,7 @@ class ExerciseTranslationsCompanion
   final Value<int> rowid;
   const ExerciseTranslationsCompanion({
     this.exercise = const Value.absent(),
-    this.language = const Value.absent(),
+    this.locale = const Value.absent(),
     this.name = const Value.absent(),
     this.description = const Value.absent(),
     this.notes = const Value.absent(),
@@ -1246,7 +1239,7 @@ class ExerciseTranslationsCompanion
   });
   ExerciseTranslationsCompanion.insert({
     required int exercise,
-    required ExerciseLanguage language,
+    required String locale,
     required String name,
     this.description = const Value.absent(),
     this.notes = const Value.absent(),
@@ -1255,13 +1248,13 @@ class ExerciseTranslationsCompanion
     this.aliases = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : exercise = Value(exercise),
-        language = Value(language),
+        locale = Value(locale),
         name = Value(name),
         translationLicense = Value(translationLicense),
         translationAuthors = Value(translationAuthors);
   static Insertable<ExerciseTranslation> custom({
     Expression<int>? exercise,
-    Expression<String>? language,
+    Expression<String>? locale,
     Expression<String>? name,
     Expression<String>? description,
     Expression<String>? notes,
@@ -1272,7 +1265,7 @@ class ExerciseTranslationsCompanion
   }) {
     return RawValuesInsertable({
       if (exercise != null) 'exercise': exercise,
-      if (language != null) 'language': language,
+      if (locale != null) 'locale': locale,
       if (name != null) 'name': name,
       if (description != null) 'description': description,
       if (notes != null) 'notes': notes,
@@ -1285,7 +1278,7 @@ class ExerciseTranslationsCompanion
 
   ExerciseTranslationsCompanion copyWith(
       {Value<int>? exercise,
-      Value<ExerciseLanguage>? language,
+      Value<String>? locale,
       Value<String>? name,
       Value<String?>? description,
       Value<String?>? notes,
@@ -1295,7 +1288,7 @@ class ExerciseTranslationsCompanion
       Value<int>? rowid}) {
     return ExerciseTranslationsCompanion(
       exercise: exercise ?? this.exercise,
-      language: language ?? this.language,
+      locale: locale ?? this.locale,
       name: name ?? this.name,
       description: description ?? this.description,
       notes: notes ?? this.notes,
@@ -1312,9 +1305,8 @@ class ExerciseTranslationsCompanion
     if (exercise.present) {
       map['exercise'] = Variable<int>(exercise.value);
     }
-    if (language.present) {
-      final converter = $ExerciseTranslationsTable.$converterlanguage;
-      map['language'] = Variable<String>(converter.toSql(language.value));
+    if (locale.present) {
+      map['locale'] = Variable<String>(locale.value);
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
@@ -1346,7 +1338,7 @@ class ExerciseTranslationsCompanion
   String toString() {
     return (StringBuffer('ExerciseTranslationsCompanion(')
           ..write('exercise: $exercise, ')
-          ..write('language: $language, ')
+          ..write('locale: $locale, ')
           ..write('name: $name, ')
           ..write('description: $description, ')
           ..write('notes: $notes, ')
@@ -1607,12 +1599,12 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
   late final GeneratedColumn<int> breakDuration = GeneratedColumn<int>(
       'break_duration', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _lastUsedMeta =
-      const VerificationMeta('lastUsed');
+  static const VerificationMeta _cachedLastUseMeta =
+      const VerificationMeta('cachedLastUse');
   @override
-  late final GeneratedColumn<DateTime> lastUsed = GeneratedColumn<DateTime>(
-      'last_used', aliasedName, true,
-      type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  late final GeneratedColumn<DateTime> cachedLastUse =
+      GeneratedColumn<DateTime>('cached_last_use', aliasedName, true,
+          type: DriftSqlType.dateTime, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -1622,7 +1614,7 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
         countdownDuration,
         exerciseDuration,
         breakDuration,
-        lastUsed
+        cachedLastUse
       ];
   @override
   String get aliasedName => _alias ?? 'workouts';
@@ -1668,9 +1660,11 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
     } else if (isInserting) {
       context.missing(_breakDurationMeta);
     }
-    if (data.containsKey('last_used')) {
-      context.handle(_lastUsedMeta,
-          lastUsed.isAcceptableOrUnknown(data['last_used']!, _lastUsedMeta));
+    if (data.containsKey('cached_last_use')) {
+      context.handle(
+          _cachedLastUseMeta,
+          cachedLastUse.isAcceptableOrUnknown(
+              data['cached_last_use']!, _cachedLastUseMeta));
     }
     return context;
   }
@@ -1696,8 +1690,8 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
           .read(DriftSqlType.int, data['${effectivePrefix}exercise_duration'])!,
       breakDuration: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}break_duration'])!,
-      lastUsed: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}last_used']),
+      cachedLastUse: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}cached_last_use']),
     );
   }
 
@@ -1720,7 +1714,7 @@ class Workout extends DataClass implements Insertable<Workout> {
   final int countdownDuration;
   final int exerciseDuration;
   final int breakDuration;
-  final DateTime? lastUsed;
+  final DateTime? cachedLastUse;
   const Workout(
       {required this.id,
       required this.type,
@@ -1729,7 +1723,7 @@ class Workout extends DataClass implements Insertable<Workout> {
       required this.countdownDuration,
       required this.exerciseDuration,
       required this.breakDuration,
-      this.lastUsed});
+      this.cachedLastUse});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -1746,8 +1740,8 @@ class Workout extends DataClass implements Insertable<Workout> {
     map['countdown_duration'] = Variable<int>(countdownDuration);
     map['exercise_duration'] = Variable<int>(exerciseDuration);
     map['break_duration'] = Variable<int>(breakDuration);
-    if (!nullToAbsent || lastUsed != null) {
-      map['last_used'] = Variable<DateTime>(lastUsed);
+    if (!nullToAbsent || cachedLastUse != null) {
+      map['cached_last_use'] = Variable<DateTime>(cachedLastUse);
     }
     return map;
   }
@@ -1761,9 +1755,9 @@ class Workout extends DataClass implements Insertable<Workout> {
       countdownDuration: Value(countdownDuration),
       exerciseDuration: Value(exerciseDuration),
       breakDuration: Value(breakDuration),
-      lastUsed: lastUsed == null && nullToAbsent
+      cachedLastUse: cachedLastUse == null && nullToAbsent
           ? const Value.absent()
-          : Value(lastUsed),
+          : Value(cachedLastUse),
     );
   }
 
@@ -1780,7 +1774,7 @@ class Workout extends DataClass implements Insertable<Workout> {
       countdownDuration: serializer.fromJson<int>(json['countdownDuration']),
       exerciseDuration: serializer.fromJson<int>(json['exerciseDuration']),
       breakDuration: serializer.fromJson<int>(json['breakDuration']),
-      lastUsed: serializer.fromJson<DateTime?>(json['lastUsed']),
+      cachedLastUse: serializer.fromJson<DateTime?>(json['cachedLastUse']),
     );
   }
   @override
@@ -1796,7 +1790,7 @@ class Workout extends DataClass implements Insertable<Workout> {
       'countdownDuration': serializer.toJson<int>(countdownDuration),
       'exerciseDuration': serializer.toJson<int>(exerciseDuration),
       'breakDuration': serializer.toJson<int>(breakDuration),
-      'lastUsed': serializer.toJson<DateTime?>(lastUsed),
+      'cachedLastUse': serializer.toJson<DateTime?>(cachedLastUse),
     };
   }
 
@@ -1808,7 +1802,7 @@ class Workout extends DataClass implements Insertable<Workout> {
           int? countdownDuration,
           int? exerciseDuration,
           int? breakDuration,
-          Value<DateTime?> lastUsed = const Value.absent()}) =>
+          Value<DateTime?> cachedLastUse = const Value.absent()}) =>
       Workout(
         id: id ?? this.id,
         type: type ?? this.type,
@@ -1817,7 +1811,8 @@ class Workout extends DataClass implements Insertable<Workout> {
         countdownDuration: countdownDuration ?? this.countdownDuration,
         exerciseDuration: exerciseDuration ?? this.exerciseDuration,
         breakDuration: breakDuration ?? this.breakDuration,
-        lastUsed: lastUsed.present ? lastUsed.value : this.lastUsed,
+        cachedLastUse:
+            cachedLastUse.present ? cachedLastUse.value : this.cachedLastUse,
       );
   @override
   String toString() {
@@ -1829,14 +1824,14 @@ class Workout extends DataClass implements Insertable<Workout> {
           ..write('countdownDuration: $countdownDuration, ')
           ..write('exerciseDuration: $exerciseDuration, ')
           ..write('breakDuration: $breakDuration, ')
-          ..write('lastUsed: $lastUsed')
+          ..write('cachedLastUse: $cachedLastUse')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(id, type, title, category, countdownDuration,
-      exerciseDuration, breakDuration, lastUsed);
+      exerciseDuration, breakDuration, cachedLastUse);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1848,7 +1843,7 @@ class Workout extends DataClass implements Insertable<Workout> {
           other.countdownDuration == this.countdownDuration &&
           other.exerciseDuration == this.exerciseDuration &&
           other.breakDuration == this.breakDuration &&
-          other.lastUsed == this.lastUsed);
+          other.cachedLastUse == this.cachedLastUse);
 }
 
 class WorkoutsCompanion extends UpdateCompanion<Workout> {
@@ -1859,7 +1854,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
   final Value<int> countdownDuration;
   final Value<int> exerciseDuration;
   final Value<int> breakDuration;
-  final Value<DateTime?> lastUsed;
+  final Value<DateTime?> cachedLastUse;
   const WorkoutsCompanion({
     this.id = const Value.absent(),
     this.type = const Value.absent(),
@@ -1868,7 +1863,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
     this.countdownDuration = const Value.absent(),
     this.exerciseDuration = const Value.absent(),
     this.breakDuration = const Value.absent(),
-    this.lastUsed = const Value.absent(),
+    this.cachedLastUse = const Value.absent(),
   });
   WorkoutsCompanion.insert({
     this.id = const Value.absent(),
@@ -1878,7 +1873,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
     required int countdownDuration,
     required int exerciseDuration,
     required int breakDuration,
-    this.lastUsed = const Value.absent(),
+    this.cachedLastUse = const Value.absent(),
   })  : type = Value(type),
         title = Value(title),
         category = Value(category),
@@ -1893,7 +1888,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
     Expression<int>? countdownDuration,
     Expression<int>? exerciseDuration,
     Expression<int>? breakDuration,
-    Expression<DateTime>? lastUsed,
+    Expression<DateTime>? cachedLastUse,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1903,7 +1898,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
       if (countdownDuration != null) 'countdown_duration': countdownDuration,
       if (exerciseDuration != null) 'exercise_duration': exerciseDuration,
       if (breakDuration != null) 'break_duration': breakDuration,
-      if (lastUsed != null) 'last_used': lastUsed,
+      if (cachedLastUse != null) 'cached_last_use': cachedLastUse,
     });
   }
 
@@ -1915,7 +1910,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
       Value<int>? countdownDuration,
       Value<int>? exerciseDuration,
       Value<int>? breakDuration,
-      Value<DateTime?>? lastUsed}) {
+      Value<DateTime?>? cachedLastUse}) {
     return WorkoutsCompanion(
       id: id ?? this.id,
       type: type ?? this.type,
@@ -1924,7 +1919,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
       countdownDuration: countdownDuration ?? this.countdownDuration,
       exerciseDuration: exerciseDuration ?? this.exerciseDuration,
       breakDuration: breakDuration ?? this.breakDuration,
-      lastUsed: lastUsed ?? this.lastUsed,
+      cachedLastUse: cachedLastUse ?? this.cachedLastUse,
     );
   }
 
@@ -1954,8 +1949,8 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
     if (breakDuration.present) {
       map['break_duration'] = Variable<int>(breakDuration.value);
     }
-    if (lastUsed.present) {
-      map['last_used'] = Variable<DateTime>(lastUsed.value);
+    if (cachedLastUse.present) {
+      map['cached_last_use'] = Variable<DateTime>(cachedLastUse.value);
     }
     return map;
   }
@@ -1970,7 +1965,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
           ..write('countdownDuration: $countdownDuration, ')
           ..write('exerciseDuration: $exerciseDuration, ')
           ..write('breakDuration: $breakDuration, ')
-          ..write('lastUsed: $lastUsed')
+          ..write('cachedLastUse: $cachedLastUse')
           ..write(')'))
         .toString();
   }

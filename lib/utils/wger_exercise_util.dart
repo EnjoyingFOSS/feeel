@@ -21,6 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:feeel/db/bundled_exercises.dart';
 import 'package:feeel/db/database.dart';
@@ -28,7 +29,7 @@ import 'package:feeel/db/db_image_helper.dart';
 import 'package:feeel/enums/equipment.dart';
 import 'package:feeel/enums/exercise_category.dart';
 import 'package:feeel/enums/exercise_type.dart';
-import 'package:feeel/enums/language.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:feeel/enums/license.dart';
 import 'package:feeel/enums/muscle.dart';
 import 'package:feeel/enums/muscle_role.dart';
@@ -49,7 +50,7 @@ class WgerExerciseUtil {
     final wgerExercises = wgerBase["exercises"] as List;
 
     final wgerExerciseEn = wgerExercises.firstWhere((dynamic wgerExercise) =>
-            (wgerExercise["language"] as int) == ExerciseLanguage.en.wgerDbId)
+            (wgerExercise["language"] as int) == LocaleUtil.wgerFallbackId)
         as Map; //TODO do I need to deal with cases where there is no English original?
     final wgerBaseId = wgerBase["id"] as int;
     final category = ((wgerBase["category"] as Map)["id"] as int) == 15
@@ -128,14 +129,13 @@ class WgerExerciseUtil {
         translationsByLanguage: wgerTranslations);
   }
 
-  static Map<ExerciseLanguage, ExerciseTranslation> _parseTranslations(
+  static Map<Locale, ExerciseTranslation> _parseTranslations(
       int exerciseWgerId, List wgerExercises, License descLicense) {
-    final exerciseTranslations = <ExerciseLanguage, ExerciseTranslation>{};
+    final exerciseTranslations = <Locale, ExerciseTranslation>{};
 
     for (final wgerExercise in wgerExercises) {
-      final language = _parseLanguage(wgerExercise as Map);
-      if (language != null &&
-          language.wgerDbId != ExerciseLanguage.en.wgerDbId) {
+      final locale = _parseLocale(wgerExercise as Map);
+      if (locale != null && locale != LocaleUtil.fallbackLocale) {
         final name = wgerExercise["name"] as String;
         final description = SimpleHtmlMarkdownUtil.simpleHtmlToMarkdown(
             wgerExercise["description"] as String);
@@ -160,10 +160,10 @@ class WgerExerciseUtil {
         }();
 
         exerciseTranslations.putIfAbsent(
-            language,
+            locale,
             () => ExerciseTranslation(
                 exercise: exerciseWgerId,
-                language: language,
+                locale: locale.toLanguageTag(),
                 name: name,
                 aliases: aliases,
                 description: description,
@@ -176,9 +176,9 @@ class WgerExerciseUtil {
     return exerciseTranslations;
   }
 
-  static ExerciseLanguage? _parseLanguage(Map wgerExercise) {
+  static Locale? _parseLocale(Map wgerExercise) {
     try {
-      return ExerciseLanguage.fromWgerLanguage(wgerExercise["language"] as int);
+      return LocaleUtil.fromWgerLanguage(wgerExercise["language"] as int);
     } on ArgumentError catch (_) {
       return null;
     } // catching ArgumentException here, in case a wger language is not yet implemented in Feeel

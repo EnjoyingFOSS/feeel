@@ -20,11 +20,14 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:ui';
+
 import 'package:drift/drift.dart';
-import 'package:feeel/enums/language.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/providers/db_provider.dart';
 import 'package:feeel/db/database.dart';
+import 'package:feeel/providers/locale_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ExerciseProviderState {
@@ -38,17 +41,18 @@ class ExerciseProviderNotifier extends AsyncNotifier<ExerciseProviderState> {
   @override
   Future<ExerciseProviderState> build() async {
     final db = ref.read(dbProvider);
+    final locale = ref.read(localeProvider);
     return ExerciseProviderState(await _queryPrimaryLanguageFullExercises(
-        db, ExerciseLanguage.en)); //TODO exercise language!!!
+        db, locale ?? LocaleUtil.fallbackLocale));
   }
 
   Future<Map<int, FullExercise>> _queryPrimaryLanguageFullExercises(
-      FeeelDB db, ExerciseLanguage language) async {
+      FeeelDB db, Locale locale) async {
     final exercises = await (db.select(db.exercises)
           ..orderBy([(e) => OrderingTerm.asc(e.name)]))
         .get();
     final fullExercises = await Future.wait(
-        exercises.map((e) => db.queryPrimaryLangFullExercise(e, language)));
+        exercises.map((e) => db.queryPrimaryLangFullExercise(e, locale)));
 
     return {for (final fe in fullExercises) (fe).exercise.wgerId: fe};
   }

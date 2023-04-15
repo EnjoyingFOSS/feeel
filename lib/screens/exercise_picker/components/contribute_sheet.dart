@@ -22,35 +22,16 @@
 
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:feeel/utils/asset_util.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:i18n_extension/i18n_widget.dart';
 
 class ContributeSheet extends StatelessWidget {
   const ContributeSheet({super.key});
-
-  static final _wgerSupportedLanguages = [
-    "en",
-    "de",
-    "bg",
-    "es",
-    "ru",
-    "nl",
-    "pt",
-    "el",
-    "cs",
-    "sv",
-    "no",
-    "fr",
-    "it",
-    "pl",
-    "uk",
-    "tr"
-  ];
 
   static void showSheet(BuildContext context) {
     SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -68,8 +49,10 @@ class ContributeSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final bgColor = Theme.of(context).colorScheme.background;
     final narrowLayout = _isNarrowLayout(context);
-    final wgerLangBit =
-        _wgerSupportedLanguages.contains(I18n.language) ? I18n.language : "en";
+    final curLocale = Localizations.localeOf(context);
+    final wgerLangBit = LocaleUtil.wgerSupportsLocale(curLocale)
+        ? curLocale.languageCode
+        : "en";
     final wgerSentenceSplit =
         AppLocalizations.of(context)!.txtContributeViaWger.split("**");
     if (wgerSentenceSplit.length < 3) {

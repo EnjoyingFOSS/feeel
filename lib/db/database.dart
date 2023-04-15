@@ -22,6 +22,8 @@
 
 // TODO capitalize: commando pull-ups, kettlebell swing, knee raises, one-handed kettlebell curls, BUS DRIVERS, LYING DUMBELL ROW ...
 
+import 'dart:ui';
+
 import 'package:drift/drift.dart';
 
 import 'dart:io';
@@ -31,7 +33,7 @@ import 'package:feeel/db/bundled_exercises.dart';
 import 'package:feeel/db/bundled_workouts.dart';
 import 'package:feeel/enums/equipment.dart';
 import 'package:feeel/enums/exercise_category.dart';
-import 'package:feeel/enums/language.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:feeel/enums/license.dart';
 import 'package:feeel/enums/muscle.dart';
 import 'package:feeel/models/editable_workout_record.dart';
@@ -93,7 +95,7 @@ class Exercises extends Table {
 
 class ExerciseTranslations extends Table {
   IntColumn get exercise => integer()();
-  TextColumn get language => textEnum<ExerciseLanguage>()();
+  TextColumn get locale => text()();
   TextColumn get name => text()();
   TextColumn get description => text().nullable()();
   TextColumn get notes => text().nullable()();
@@ -104,7 +106,7 @@ class ExerciseTranslations extends Table {
   /// pipe-separated list of aliases
 
   @override
-  Set<Column>? get primaryKey => {exercise, language};
+  Set<Column>? get primaryKey => {exercise, locale};
 }
 
 class ExerciseMuscles extends Table {
@@ -134,7 +136,8 @@ class Workouts extends Table {
   IntColumn get countdownDuration => integer()();
   IntColumn get exerciseDuration => integer()();
   IntColumn get breakDuration => integer()();
-  DateTimeColumn get lastUsed =>
+  //TODO IntColumn get cachedTotalDuration => integer()();
+  DateTimeColumn get cachedLastUse =>
       dateTime().nullable()(); //TODO figure out how timezones fit into this
 
   /// only used for sorting, may be inconsistent with workout records
@@ -286,7 +289,9 @@ class FeeelDB extends _$FeeelDB {
             countdownDuration: Value(ow['countdownDuration'] as int),
             exerciseDuration: Value(ow['exerciseDuration'] as int),
             breakDuration: Value(ow['breakDuration'] as int),
-            lastUsed: const Value.absent());
+            // cachedTotalDuration:
+            //     Value(), // TODO !!! figure out how to sum this !!!
+            cachedLastUse: const Value.absent());
       }));
     });
 
@@ -353,8 +358,13 @@ class FeeelDB extends _$FeeelDB {
           in fe.translationsByLanguage?.values ?? <ExerciseTranslation>[]) {
         await into(exerciseTranslations).insert(translation);
       }
-      for (final equipmentPiece in fe.equipment ?? <ExerciseEquipmentPiece>[]) {
-        await into(exerciseEquipment).insert(equipmentPiece);
+      try {
+        for (final equipmentPiece
+            in fe.equipment ?? <ExerciseEquipmentPiece>[]) {
+          await into(exerciseEquipment).insert(equipmentPiece);
+        }
+      } catch (e) {
+        print("duplicated equipment: ${fe.equipment} $e");
       }
       await into(exercises).insert(fe.exercise);
     }
@@ -363,11 +373,13 @@ class FeeelDB extends _$FeeelDB {
   Future<FullExercise> queryPrimaryLangFullExercise(
       //TODO move to ExerciseProvider?
       Exercise exercise,
-      ExerciseLanguage language) async {
-    final translation = (language == ExerciseLanguage.fallbackLang)
+      Locale locale) async {
+    final translation = (locale == LocaleUtil.fallbackLocale)
         ? null
         : await (select(exerciseTranslations)
-              ..where((et) => et.language.equals(language.toString())))
+              ..where((et) =>
+                  et.exercise.equals(exercise.wgerId) &
+                  et.locale.equals(locale.toLanguageTag())))
             .getSingleOrNull();
     final equipment = await (select(exerciseEquipment)
           ..where((eq) => eq.exercise.equals(exercise.wgerId)))
@@ -380,20 +392,18 @@ class FeeelDB extends _$FeeelDB {
         equipment: equipment,
         muscles: muscles,
         translationsByLanguage:
-            translation != null ? {language: translation} : null);
+            translation != null ? {locale: translation} : null);
   }
 
-  Future<List<Exercise>> queryExercisesFromExerciseIds(
-      List<int> exerciseIds) async {
-    final futureList = exerciseIds.map((id) =>
+  Future<List<FullExercise>> queryPrimaryLangFullExercisesFromIds(
+      List<int> exerciseIds, Locale locale) async {
+    final futureExerciseList = exerciseIds.map((id) =>
         (select(exercises)..where((e) => e.wgerId.equals(id))).getSingle());
-    return await Future.wait(futureList);
+    final exerciseList = await Future.wait(futureExerciseList);
+    final futureFullExerciseList =
+        exerciseList.map((e) => queryPrimaryLangFullExercise(e, locale));
+    return await Future.wait(futureFullExerciseList);
   }
-
-  //   return FullExercise(
-  //       exercise: e, steps: steps, equipment: equipment, muscles: muscles);
-  // }
-
   //
   // WORKOUTS
   //
@@ -404,30 +414,29 @@ class FeeelDB extends _$FeeelDB {
     }
   }
 
-  Future<FullWorkout> queryWorkoutByRowId(int rowId) async {
+  Future<FullWorkout> queryWorkoutByRowId(int rowId, Locale locale) async {
     final w = await (select(workouts)..where((w) => w.rowId.equals(rowId)))
         .getSingle();
-    return await queryFullWorkout(w);
+    return await queryFullWorkout(w, locale);
   }
 
-  Future<FullWorkout> queryFullWorkout(Workout w) async {
+  Future<FullWorkout> queryFullWorkout(Workout w, Locale locale) async {
     final wes = await (select(workoutExercises)
           ..where((we) => we.workoutId.equals(w.id)))
         .get();
-    final es = await Future.wait(wes.map((we) async {
-      return await (select(exercises)
-            ..where((e) => e.wgerId.equals(we.exercise)))
-          .getSingle();
-    }));
-    return FullWorkout(workout: w, workoutExercises: wes, exercises: es);
+    final exerciseIds = wes.map((we) => we.exercise).toList();
+    final es = await queryPrimaryLangFullExercisesFromIds(exerciseIds, locale);
+    return FullWorkout(
+        workout: w, workoutExercises: wes, primaryLangFullExercises: es);
   }
 
-  Future<List<FullWorkout>> queryFullWorkoutsByType(WorkoutType type) async {
+  Future<List<FullWorkout>> queryFullWorkoutsByType(
+      WorkoutType type, Locale locale) async {
     //TODO is this really necessary? used only for export...
     final ws =
         await (select(workouts)..where((w) => w.type.equalsValue(type))).get();
 
-    final futureList = ws.map((w) async => queryFullWorkout(w));
+    final futureList = ws.map((w) async => queryFullWorkout(w, locale));
 
     return Future.wait(futureList);
   }
@@ -442,15 +451,17 @@ class FeeelDB extends _$FeeelDB {
 
     //TODO onConflictUpdate might not return the right rowID
 
-    final createdRowId = await into(workouts).insertOnConflictUpdate(
-        WorkoutsCompanion(
-            id: ew.dbId != null ? Value(ew.dbId!) : const Value<int>.absent(),
-            type: Value(ew.type),
-            title: Value(ew.title),
-            category: Value(ew.category),
-            countdownDuration: Value(ew.countdownDuration),
-            exerciseDuration: Value(ew.exerciseDuration),
-            breakDuration: Value(ew.breakDuration)));
+    final createdRowId =
+        await into(workouts).insertOnConflictUpdate(WorkoutsCompanion(
+      id: ew.dbId != null ? Value(ew.dbId!) : const Value<int>.absent(),
+      type: Value(ew.type),
+      title: Value(ew.title),
+      category: Value(ew.category),
+      countdownDuration: Value(ew.countdownDuration),
+      exerciseDuration: Value(ew.exerciseDuration),
+      breakDuration: Value(ew.breakDuration),
+      // TODO cachedTotalDuration: Value(ew.getDuration())
+    ));
 
     final insertedItem = await (select(workouts)
           ..where((w) => (ew.dbId != null)
@@ -480,7 +491,7 @@ class FeeelDB extends _$FeeelDB {
   Future<int> _setWorkoutLastUsed(int workoutId, DateTime time) {
     return (update(workouts)..where((w) => w.id.equals(workoutId))).write(
       WorkoutsCompanion(
-        lastUsed: Value(time),
+        cachedLastUse: Value(time),
       ),
     );
   }
@@ -509,7 +520,7 @@ class FeeelDB extends _$FeeelDB {
       select(workoutRecords).get();
 
   Future<FullWorkoutRecord> queryFullWorkoutRecord(
-      WorkoutRecord wr, ExerciseLanguage language) async {
+      WorkoutRecord wr, Locale locale) async {
     // TODO fetch exercises or get them from cache?
     final wers = await (select(workoutExerciseRecords)
           ..where((wer) => wer.workoutRecordId.equals(wr.id)))
@@ -518,7 +529,7 @@ class FeeelDB extends _$FeeelDB {
         await (select(exercises)..where((e) => e.wgerId.equals(wer.exercise)))
             .getSingle()));
     final fes = await Future.wait(
-        es.map((e) => queryPrimaryLangFullExercise(e, language)));
+        es.map((e) => queryPrimaryLangFullExercise(e, locale)));
     return FullWorkoutRecord(
         workoutRecord: wr,
         workoutExerciseRecords: wers,
