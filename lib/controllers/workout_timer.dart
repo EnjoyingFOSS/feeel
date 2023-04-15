@@ -24,22 +24,14 @@ import 'dart:async';
 
 class WorkoutTimer {
   final Function onSecondDecrease;
-  final Function onBreakpoint;
   final Function onDone;
   Timer? _timer;
 
   int _timeRemaining;
-  int _nextBreakpoint;
-  List<int>? breakpoints;
-  int _breakpointPos = 0;
 
   WorkoutTimer(int totalTime,
-      {this.breakpoints,
-      required this.onSecondDecrease,
-      required this.onBreakpoint,
-      required this.onDone})
-      : _timeRemaining = totalTime,
-        _nextBreakpoint = totalTime - (breakpoints?.first ?? totalTime);
+      {required this.onSecondDecrease, required this.onDone})
+      : _timeRemaining = totalTime;
 
   int getTimeRemaining() => _timeRemaining;
 
@@ -47,32 +39,12 @@ class WorkoutTimer {
 
   void reset(int totalTime, List<int>? breakpoints) {
     _timeRemaining = totalTime;
-    _nextBreakpoint = totalTime - (breakpoints?.first ?? totalTime);
   }
 
   void _countSecond(Timer t) {
     _timeRemaining--;
-    if (_timeRemaining <= _nextBreakpoint) {
-      if (_nextBreakpoint <= 0) {
-        // done
-        onDone.call();
-      } else {
-        onSecondDecrease.call();
-
-        if (breakpoints != null) {
-          _breakpointPos++;
-          if (_breakpointPos >= (breakpoints!.length)) {
-            _breakpointPos = 0;
-          }
-          _nextBreakpoint = _timeRemaining - breakpoints![_breakpointPos];
-        }
-
-        if (_nextBreakpoint < 0) {
-          _nextBreakpoint = 0;
-        }
-
-        onBreakpoint.call();
-      }
+    if (_timeRemaining <= 0) {
+      onDone.call();
     } else {
       onSecondDecrease.call();
     }
