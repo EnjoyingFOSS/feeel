@@ -57,7 +57,23 @@ class BundledWorkouts {
               exercise: BundledExercises.sidePlankR,
               breakDuration: 5,
               exerciseDuration: 15)
-        ]),
+        ],
+        translations: {
+          "ar": "تمرين علمي لمدة 7 دقائق",
+          "cs": "Vědecký sedmiminutový trénink",
+          "de": "Wissenschaftliches 7-Minuten-Training",
+          "el": "Επιστημονική προπόνηση 7 λεπτών",
+          "es": "Entrenamiento científico de 7 minutos",
+          "fr": "Entraînement scientifique de 7 min",
+          "hr": "Znanstveni 7-minutni treninzi",
+          "id": "Latihan ilmiah 7 menit",
+          "it": "Allenamento scientifico di 7 minuti",
+          "nl": "Wetenschappelijk bewezen 7-minutenworkout",
+          "pt": "Treino científico de 7 minutos",
+          "ru": "Научно-доказанная 7-минутная тренировка",
+          "tr": "Bilimsel 7 dakikalık antrenman",
+          "zh": "7 分钟科学锻炼"
+        }),
     EditableWorkout(
         dbId: null,
         type: WorkoutType.bundled,
@@ -79,7 +95,23 @@ class BundledWorkouts {
           EditableWorkoutExercise(exercise: BundledExercises.kneelingKickbacks),
           EditableWorkoutExercise(exercise: BundledExercises.calfRaisesL),
           EditableWorkoutExercise(exercise: BundledExercises.calfRaisesR)
-        ]),
+        ],
+        translations: {
+          "ar": "تمرين الساق",
+          "cs": "Trénink nohou",
+          "de": "Bein-Training",
+          "el": "Προπόνηση ποδιών",
+          "es": "Entrenamiento de piernas",
+          "fr": "Entraînement des jambes",
+          "hr": "Trening za noge",
+          "id": "Latihan kaki",
+          "it": "Allenamento delle gambe",
+          "nl": "Beenworkout",
+          "pt": "Treino de perna",
+          "ru": "Тренировка ног",
+          "tr": "Bacak antrenmanı",
+          "zh": "腿部锻炼"
+        }),
     EditableWorkout(
         dbId: null,
         type: WorkoutType.bundled,
@@ -108,6 +140,22 @@ class BundledWorkouts {
               exercise: BundledExercises.shoulderRotationBW),
           EditableWorkoutExercise(
               exercise: BundledExercises.shoulderRotationFW),
-        ])
+        ],
+        translations: {
+          "ar": "تمتد الرقبة والكتف",
+          "cs": "Protažení krku a ramen",
+          "de": "Nacken- und Schulterdehnungen",
+          "el": "Διατάσεις αυχένα και ώμων",
+          "es": "Neck and shoulder stretches",
+          "fr": "Étirements de la nuque et des épaules",
+          "hr": "Istezanje vrata i ramena",
+          "id": "Peregangan leher dan bahu",
+          "it": "Stretching per collo e spalle",
+          "nl": "Nek en schouder rekken",
+          "pt": "Alongamento de pescoço e ombros",
+          "ru": "Растяжка шеи и плеч",
+          "tr": "Boyun ve omuz esnemeleri",
+          "zh": "颈肩拉伸"
+        })
   ];
 }

@@ -20,6 +20,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:convert';
+
 import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/models/full_workout.dart';
 
@@ -35,6 +37,7 @@ class EditableWorkout {
 
   late final List<EditableWorkoutExercise> workoutExercises;
   String title;
+  Map<String, String> translations;
   int? dbId;
   int countdownDuration;
   int exerciseDuration;
@@ -46,6 +49,7 @@ class EditableWorkout {
     required this.type,
     this.dbId,
     this.title = "",
+    this.translations = const {},
     List<EditableWorkoutExercise>? initialWorkoutExercises,
     this.category = _defaultWorkoutCategory,
     this.countdownDuration = _defaultCountodwnDuration,
@@ -68,9 +72,15 @@ class EditableWorkout {
   }
 
   static EditableWorkout fromWorkout(FullWorkout fullWorkout) {
+    final translationJson = fullWorkout.workout.translationJson;
     return EditableWorkout(
         dbId: fullWorkout.workout.id,
         title: fullWorkout.workout.title,
+        translations: translationJson != null
+            ? (jsonDecode(translationJson) as Map).map(
+                (dynamic key, dynamic value) =>
+                    MapEntry(key as String, value as String))
+            : {},
         initialWorkoutExercises: fullWorkout.workoutExercises.map((we) {
           return EditableWorkoutExercise.fromWorkoutExercise(we);
         }).toList(),

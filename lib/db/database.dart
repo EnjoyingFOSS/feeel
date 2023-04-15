@@ -22,6 +22,7 @@
 
 // TODO capitalize: commando pull-ups, kettlebell swing, knee raises, one-handed kettlebell curls, BUS DRIVERS, LYING DUMBELL ROW ...
 
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:drift/drift.dart';
@@ -132,6 +133,7 @@ class Workouts extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get type => intEnum<WorkoutType>()();
   TextColumn get title => text()();
+  TextColumn get translationJson => text().nullable()();
   IntColumn get category => intEnum<WorkoutCategory>()();
   IntColumn get countdownDuration => integer()();
   IntColumn get exerciseDuration => integer()();
@@ -456,6 +458,8 @@ class FeeelDB extends _$FeeelDB {
       id: ew.dbId != null ? Value(ew.dbId!) : const Value<int>.absent(),
       type: Value(ew.type),
       title: Value(ew.title),
+      translationJson: Value(
+          ew.translations.isNotEmpty ? jsonEncode(ew.translations) : null),
       category: Value(ew.category),
       countdownDuration: Value(ew.countdownDuration),
       exerciseDuration: Value(ew.exerciseDuration),

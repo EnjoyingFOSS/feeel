@@ -26,8 +26,8 @@ import 'package:feeel/screens/workout_detail/workout_detail.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/components/triangle_filled.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
 
 import '../../../db/database.dart';
 import '../../../utils/hero_util.dart';
@@ -93,7 +93,9 @@ class WorkoutListItem extends StatelessWidget {
                                       type: MaterialType.transparency,
                                       child: AutoSizeText(
                                         (workout.type == WorkoutType.bundled)
-                                            ? origTitle.i18n
+                                            ? LocaleUtil.getWorkoutTranslation(
+                                                workout,
+                                                Localizations.localeOf(context))
                                             : origTitle,
                                         style: theme.textTheme.titleLarge,
                                         maxLines: 3,
@@ -117,7 +119,7 @@ class WorkoutListItem extends StatelessWidget {
                                             .invertIfDark(theme.brightness))),
                                   ),
                                 )
-                              ],
+                              ], //TODO show workout duration here too
                             )),
                         if (trailing != null)
                           Align(

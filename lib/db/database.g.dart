@@ -1574,6 +1574,12 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
   late final GeneratedColumn<String> title = GeneratedColumn<String>(
       'title', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _translationJsonMeta =
+      const VerificationMeta('translationJson');
+  @override
+  late final GeneratedColumn<String> translationJson = GeneratedColumn<String>(
+      'translation_json', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _categoryMeta =
       const VerificationMeta('category');
   @override
@@ -1610,6 +1616,7 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
         id,
         type,
         title,
+        translationJson,
         category,
         countdownDuration,
         exerciseDuration,
@@ -1634,6 +1641,12 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
           _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
     } else if (isInserting) {
       context.missing(_titleMeta);
+    }
+    if (data.containsKey('translation_json')) {
+      context.handle(
+          _translationJsonMeta,
+          translationJson.isAcceptableOrUnknown(
+              data['translation_json']!, _translationJsonMeta));
     }
     context.handle(_categoryMeta, const VerificationResult.success());
     if (data.containsKey('countdown_duration')) {
@@ -1681,6 +1694,8 @@ class $WorkoutsTable extends Workouts with TableInfo<$WorkoutsTable, Workout> {
           .read(DriftSqlType.int, data['${effectivePrefix}type'])!),
       title: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
+      translationJson: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}translation_json']),
       category: $WorkoutsTable.$convertercategory.fromSql(attachedDatabase
           .typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}category'])!),
@@ -1710,6 +1725,7 @@ class Workout extends DataClass implements Insertable<Workout> {
   final int id;
   final WorkoutType type;
   final String title;
+  final String? translationJson;
   final WorkoutCategory category;
   final int countdownDuration;
   final int exerciseDuration;
@@ -1719,6 +1735,7 @@ class Workout extends DataClass implements Insertable<Workout> {
       {required this.id,
       required this.type,
       required this.title,
+      this.translationJson,
       required this.category,
       required this.countdownDuration,
       required this.exerciseDuration,
@@ -1733,6 +1750,9 @@ class Workout extends DataClass implements Insertable<Workout> {
       map['type'] = Variable<int>(converter.toSql(type));
     }
     map['title'] = Variable<String>(title);
+    if (!nullToAbsent || translationJson != null) {
+      map['translation_json'] = Variable<String>(translationJson);
+    }
     {
       final converter = $WorkoutsTable.$convertercategory;
       map['category'] = Variable<int>(converter.toSql(category));
@@ -1751,6 +1771,9 @@ class Workout extends DataClass implements Insertable<Workout> {
       id: Value(id),
       type: Value(type),
       title: Value(title),
+      translationJson: translationJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(translationJson),
       category: Value(category),
       countdownDuration: Value(countdownDuration),
       exerciseDuration: Value(exerciseDuration),
@@ -1769,6 +1792,7 @@ class Workout extends DataClass implements Insertable<Workout> {
       type: $WorkoutsTable.$convertertype
           .fromJson(serializer.fromJson<int>(json['type'])),
       title: serializer.fromJson<String>(json['title']),
+      translationJson: serializer.fromJson<String?>(json['translationJson']),
       category: $WorkoutsTable.$convertercategory
           .fromJson(serializer.fromJson<int>(json['category'])),
       countdownDuration: serializer.fromJson<int>(json['countdownDuration']),
@@ -1785,6 +1809,7 @@ class Workout extends DataClass implements Insertable<Workout> {
       'type':
           serializer.toJson<int>($WorkoutsTable.$convertertype.toJson(type)),
       'title': serializer.toJson<String>(title),
+      'translationJson': serializer.toJson<String?>(translationJson),
       'category': serializer
           .toJson<int>($WorkoutsTable.$convertercategory.toJson(category)),
       'countdownDuration': serializer.toJson<int>(countdownDuration),
@@ -1798,6 +1823,7 @@ class Workout extends DataClass implements Insertable<Workout> {
           {int? id,
           WorkoutType? type,
           String? title,
+          Value<String?> translationJson = const Value.absent(),
           WorkoutCategory? category,
           int? countdownDuration,
           int? exerciseDuration,
@@ -1807,6 +1833,9 @@ class Workout extends DataClass implements Insertable<Workout> {
         id: id ?? this.id,
         type: type ?? this.type,
         title: title ?? this.title,
+        translationJson: translationJson.present
+            ? translationJson.value
+            : this.translationJson,
         category: category ?? this.category,
         countdownDuration: countdownDuration ?? this.countdownDuration,
         exerciseDuration: exerciseDuration ?? this.exerciseDuration,
@@ -1820,6 +1849,7 @@ class Workout extends DataClass implements Insertable<Workout> {
           ..write('id: $id, ')
           ..write('type: $type, ')
           ..write('title: $title, ')
+          ..write('translationJson: $translationJson, ')
           ..write('category: $category, ')
           ..write('countdownDuration: $countdownDuration, ')
           ..write('exerciseDuration: $exerciseDuration, ')
@@ -1830,8 +1860,8 @@ class Workout extends DataClass implements Insertable<Workout> {
   }
 
   @override
-  int get hashCode => Object.hash(id, type, title, category, countdownDuration,
-      exerciseDuration, breakDuration, cachedLastUse);
+  int get hashCode => Object.hash(id, type, title, translationJson, category,
+      countdownDuration, exerciseDuration, breakDuration, cachedLastUse);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1839,6 +1869,7 @@ class Workout extends DataClass implements Insertable<Workout> {
           other.id == this.id &&
           other.type == this.type &&
           other.title == this.title &&
+          other.translationJson == this.translationJson &&
           other.category == this.category &&
           other.countdownDuration == this.countdownDuration &&
           other.exerciseDuration == this.exerciseDuration &&
@@ -1850,6 +1881,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
   final Value<int> id;
   final Value<WorkoutType> type;
   final Value<String> title;
+  final Value<String?> translationJson;
   final Value<WorkoutCategory> category;
   final Value<int> countdownDuration;
   final Value<int> exerciseDuration;
@@ -1859,6 +1891,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
     this.id = const Value.absent(),
     this.type = const Value.absent(),
     this.title = const Value.absent(),
+    this.translationJson = const Value.absent(),
     this.category = const Value.absent(),
     this.countdownDuration = const Value.absent(),
     this.exerciseDuration = const Value.absent(),
@@ -1869,6 +1902,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
     this.id = const Value.absent(),
     required WorkoutType type,
     required String title,
+    this.translationJson = const Value.absent(),
     required WorkoutCategory category,
     required int countdownDuration,
     required int exerciseDuration,
@@ -1884,6 +1918,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
     Expression<int>? id,
     Expression<int>? type,
     Expression<String>? title,
+    Expression<String>? translationJson,
     Expression<int>? category,
     Expression<int>? countdownDuration,
     Expression<int>? exerciseDuration,
@@ -1894,6 +1929,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
       if (id != null) 'id': id,
       if (type != null) 'type': type,
       if (title != null) 'title': title,
+      if (translationJson != null) 'translation_json': translationJson,
       if (category != null) 'category': category,
       if (countdownDuration != null) 'countdown_duration': countdownDuration,
       if (exerciseDuration != null) 'exercise_duration': exerciseDuration,
@@ -1906,6 +1942,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
       {Value<int>? id,
       Value<WorkoutType>? type,
       Value<String>? title,
+      Value<String?>? translationJson,
       Value<WorkoutCategory>? category,
       Value<int>? countdownDuration,
       Value<int>? exerciseDuration,
@@ -1915,6 +1952,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
       id: id ?? this.id,
       type: type ?? this.type,
       title: title ?? this.title,
+      translationJson: translationJson ?? this.translationJson,
       category: category ?? this.category,
       countdownDuration: countdownDuration ?? this.countdownDuration,
       exerciseDuration: exerciseDuration ?? this.exerciseDuration,
@@ -1935,6 +1973,9 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
     }
     if (title.present) {
       map['title'] = Variable<String>(title.value);
+    }
+    if (translationJson.present) {
+      map['translation_json'] = Variable<String>(translationJson.value);
     }
     if (category.present) {
       final converter = $WorkoutsTable.$convertercategory;
@@ -1961,6 +2002,7 @@ class WorkoutsCompanion extends UpdateCompanion<Workout> {
           ..write('id: $id, ')
           ..write('type: $type, ')
           ..write('title: $title, ')
+          ..write('translationJson: $translationJson, ')
           ..write('category: $category, ')
           ..write('countdownDuration: $countdownDuration, ')
           ..write('exerciseDuration: $exerciseDuration, ')

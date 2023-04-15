@@ -20,9 +20,40 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:convert';
 import 'dart:ui';
 
+import 'package:feeel/db/database.dart';
+
 class LocaleUtil {
+  static final supportedLocaleNames = {
+    const Locale('en'): "English",
+    const Locale('ar'): "العربية",
+    const Locale('az'): "Azərbaycan dili",
+    const Locale('ca'): "Català",
+    const Locale('cs'): "Česky",
+    const Locale('de'): "Deutsch",
+    const Locale('el'): "Ελληνικά",
+    const Locale('eo'): "Esperanto",
+    const Locale('es'): "Español",
+    const Locale('eu'): "Euskara",
+    const Locale('fa'): "فارسی",
+    const Locale('fr'): "Français",
+    const Locale('he'): "עברית",
+    const Locale('hr'): "Hrvatski",
+    const Locale('id'): "Bahasa Indonesia",
+    const Locale('it'): "Italiano",
+    const Locale('nl'): "Nederlands",
+    const Locale('pl'): "Polski",
+    const Locale('pt', 'BR'): "Português (Brasil)",
+    const Locale('pt'): "Português",
+    const Locale('ru'): "Русский",
+    const Locale('sv'): "Svenska",
+    const Locale('tr'): "Türkçe",
+    const Locale('uk'): "Українська мова",
+    const Locale('zh'): "中文"
+  };
+
   static const wgerMap = {
     17: Locale('ar'),
     18: Locale('az'),
@@ -57,5 +88,16 @@ class LocaleUtil {
     } else {
       return wgerMap[wgerLanguage];
     }
+  }
+
+  static String getWorkoutTranslation(Workout workout, Locale locale) {
+    if (workout.translationJson != null) {
+      final decodedJson = jsonDecode(workout.translationJson!) as Map;
+      final localeTag = locale.toLanguageTag();
+      if (decodedJson.containsKey(localeTag)) {
+        return decodedJson[localeTag] as String;
+      }
+    }
+    return workout.title;
   }
 }

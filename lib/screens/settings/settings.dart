@@ -23,10 +23,10 @@
 import 'dart:io';
 
 import 'package:feeel/components/body_container.dart';
-import 'package:feeel/i18n/ui_locale_helper.dart';
 import 'package:feeel/providers/locale_provider.dart';
 import 'package:feeel/providers/theme_meta_provider.dart';
 import 'package:feeel/screens/settings/components/language_dialog.dart';
+import 'package:feeel/utils/locale_util.dart';
 // import 'package:feeel/screens/settings/components/import_export_tile.dart';
 // import 'package:archive/archive_io.dart';
 import 'package:feeel/utils/notification_helper.dart';
@@ -175,8 +175,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                         title: Text(AppLocalizations.of(context)!.txtLanguage),
                         subtitle: Text(localeValue == null
                             ? AppLocalizations.of(context)!.txtUseSystemLanguage
-                            : (UILocaleHelper
-                                    .supportedLocaleNames[localeValue] ??
+                            : (LocaleUtil.supportedLocaleNames[localeValue] ??
                                 localeValue.toLanguageTag())),
                         onTap: () async {
                           await showDialog<void>(

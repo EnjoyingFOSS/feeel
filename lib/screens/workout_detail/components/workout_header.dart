@@ -21,9 +21,9 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
-import 'package:feeel/i18n/translations.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/format_util.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/triangle_filled.dart';
@@ -87,7 +87,8 @@ class WorkoutHeader extends StatelessWidget {
                         type: MaterialType.transparency,
                         child: Text(
                             workout.type == WorkoutType.bundled
-                                ? workout.title.i18n
+                                ? LocaleUtil.getWorkoutTranslation(
+                                    workout, Localizations.localeOf(context))
                                 : workout.title,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
