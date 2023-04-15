@@ -242,5 +242,66 @@
         "type": "int"
       }
     }
-  }
+  },
+  "txtNotificationSystemSettingsPermission": "Je potřeba přidělit aplikaci povolení zobrazovat notifikace z nastavení systému.",
+  "@txtNotificationSystemSettingsPermission": {},
+  "txtExerciseUpdateFromWeb": "Stahovat aktualizace cviků z internetu",
+  "@txtExerciseUpdateFromWeb": {},
+  "btnContributeTTS": "Pomoz se syntézou řeči na Linuxu",
+  "@btnContributeTTS": {},
+  "txtOnlyUpdateOverWifi": "Aktualizovat cviky jen přes wifi",
+  "@txtOnlyUpdateOverWifi": {},
+  "btnExport": "Exportovat",
+  "@btnExport": {},
+  "btnContributeAnImage": "Přispět obrázek",
+  "@btnContributeAnImage": {},
+  "btnShowXUncompletedWorkouts": "Zobrazit %d nedokončených tréninků",
+  "@btnShowXUncompletedWorkouts": {},
+  "btnHideUncompletedWorkouts": "Skrýt nedokončené tréninky",
+  "@btnHideUncompletedWorkouts": {},
+  "txtDurationFormat": "{minutes}m {seconds}s",
+  "@txtDurationFormat": {
+    "description": "Representation of a duration in the format '00m 00s'",
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      },
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "txtDurationFormatSec": "{seconds}s",
+  "@txtDurationFormatSec": {
+    "description": "Representation of a second duration in the format '00s'",
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "txtDurationFormatMin": "{minutes}m",
+  "@txtDurationFormatMin": {
+    "description": "Representation of a minute duration in the format '00m'",
+    "placeholders": {
+      "minutes": {
+        "type": "String"
+      }
+    }
+  },
+  "txtDurationOverXWorkouts": "{count, plural, zero{Žádné tréninky} one{{duration} za {count} trénink} few{{duration} za {count} tréninky} other{{duration} za {count} tréninků}}",
+  "@txtDurationOverXWorkouts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "txtEnglishDescLicense": "Anglický popis od autora %1s je byl vydán pod [licencí %2s].",
+  "@txtEnglishDescLicense": {},
+  "txtNoExerciseImageYet": "Obrázek cviku zatím neexistuje",
+  "@txtNoExerciseImageYet": {}
 }
