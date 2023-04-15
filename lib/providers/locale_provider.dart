@@ -28,12 +28,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LocaleProviderNotifier extends Notifier<Locale?> {
+  static const _bcp47LocaleSeperator = '-';
   @override
   Locale? build() {
     SharedPreferences.getInstance().then((sharedPreferences) {
-      final localeString = sharedPreferences.getString(PreferenceKeys.locale);
-      if (localeString != null) {
-        final locale = _localeFromString(localeString);
+      final localeStringSplit = sharedPreferences
+          .getString(PreferenceKeys.locale)
+          ?.split(_bcp47LocaleSeperator);
+      if (localeStringSplit != null) {
+        final locale = localeStringSplit.length > 1
+            ? Locale(localeStringSplit[0], localeStringSplit[1])
+            : Locale(localeStringSplit[0]);
         if (AppLocalizations.supportedLocales.contains(locale)) state = locale;
       }
     });
@@ -44,22 +49,12 @@ class LocaleProviderNotifier extends Notifier<Locale?> {
     final sharedPreferences = await SharedPreferences.getInstance();
     if (locale != null) {
       await sharedPreferences.setString(
-          PreferenceKeys.locale, _localeToString(locale));
+          PreferenceKeys.locale, locale.toLanguageTag());
     } else {
       await sharedPreferences.remove(PreferenceKeys.locale);
     }
 
     state = locale;
-  }
-
-  String _localeToString(Locale locale) => locale.countryCode == null
-      ? locale.languageCode
-      : "${locale.languageCode}_${locale.countryCode}";
-  Locale _localeFromString(String string) {
-    final splitString = string.split("_");
-    return splitString.length == 1
-        ? Locale(splitString.first)
-        : Locale(splitString.first, splitString.last);
   }
 }
 
