@@ -31,13 +31,15 @@ import 'package:feeel/controllers/workout_timer.dart';
 import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/models/editable_workout_record.dart';
 import 'package:feeel/db/database.dart';
+import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/enums/workout_stage.dart';
 // import 'package:feeel/models/view/exercise_step.dart';
-import 'package:feeel/i18n/translations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum _ViewTypes { gui, audio }
 
@@ -99,7 +101,8 @@ class WorkoutMeta {
 
   bool isFirstExercise() => _exercisePos == 0;
 
-  Exercise getCurExercise() => _fullWorkout.exercises[_exercisePos];
+  FullExercise getCurExercise() =>
+      _fullWorkout.primaryLangFullExercises[_exercisePos];
 
   WorkoutExercise _getCurWorkoutExercise() =>
       _fullWorkout.workoutExercises[_exercisePos];
@@ -113,12 +116,13 @@ class WorkoutController {
       List.filled(_ViewTypes.values.length, null);
   final List<WorkoutView?> _views = List.filled(
       _ViewTypes.values.length, null); //TODO weak references + NOT NULL SAFE!
+  final AppLocalizations l10n;
   WorkoutStage _stage = WorkoutStage.ready;
   late final WorkoutTimer _timer; //TODO init timer
   late final WorkoutMeta _workoutMeta;
   late final EditableWorkoutRecord _editableWorkoutRecord; //TODO INTEGRATE
 
-  WorkoutController(FullWorkout workout) {
+  WorkoutController(FullWorkout workout, this.l10n) {
     if (workout.workoutExercises.isEmpty) {
       throw Exception("Workout must have length > 0");
     }
@@ -132,22 +136,17 @@ class WorkoutController {
 
     _setUpAudio();
 
-    _timer = WorkoutTimer(0,
-        // _workoutMeta.getCurStepDurations(),
-        onSecondDecrease: () {
+    _timer = WorkoutTimer(0, onSecondDecrease: () {
       //TODO initTime seems useless
       for (final view in _views) {
         view?.onCount(_timer.getTimeRemaining(), _stage);
       }
-    }, onBreakpoint: () {
-      // _workoutMeta.nextStep();
-      _renderLaterStep();
     }, onDone: () {
       switch (_stage) {
         case WorkoutStage.ready:
           break;
         case WorkoutStage.workoutBreak:
-          _coordinateExerciseStage();
+          _coordinateExerciseStage(restore: false);
           break;
         case WorkoutStage.countdown:
           _coordinateExerciseStage(restore: true);
@@ -176,9 +175,10 @@ class WorkoutController {
           soundView.onFinish();
         };
       } else {
-        _views[_ViewTypes.audio.index] = TTSView(); //TODO allow audio setting
+        _views[_ViewTypes.audio.index] =
+            TTSView(l10n); //TODO allow audio setting
         _onFinishes[_ViewTypes.audio.index] = () {
-          TTSHelper.tts.speak("You did it!".i18n, priority: AudioPriority.high);
+          TTSHelper.tts.speak(l10n.txtYouDidIt, priority: AudioPriority.high);
         };
       }
     });
@@ -193,14 +193,14 @@ class WorkoutController {
   void skipToNext() {
     if (!_workoutMeta.isLastExercise()) {
       _workoutMeta.next();
-      _coordinateExerciseStage();
+      _coordinateExerciseStage(restore: false);
     }
   }
 
   void skipToPrevious() {
     if (!_workoutMeta.isFirstExercise()) {
       _workoutMeta.previous();
-      _coordinateExerciseStage();
+      _coordinateExerciseStage(restore: false);
     } else {
       _timer.reset(_workoutMeta.getCurExerciseDuration(),
           null // _workoutMeta.getCurStepDurations()
@@ -229,7 +229,7 @@ class WorkoutController {
   }
 
   // Stage creation
-  void _coordinateExerciseStage({bool restore = false}) {
+  void _coordinateExerciseStage({required bool restore}) {
     _stage = WorkoutStage.exercise;
     _renderStage();
 
@@ -337,15 +337,6 @@ class WorkoutController {
         view?.onPause();
       }
     }
-  }
-
-  void _renderLaterStep() {
-    // final step = _workoutMeta.getCurStep();
-    // if (step != null) {
-    //   for (final view in _views) {
-    //     view?.onLaterStep(_workoutMeta._stepPos, step);
-    //   }
-    // }
   }
 
   void _renderSeconds() {

@@ -22,6 +22,7 @@
 
 import 'package:feeel/components/illustration_widget.dart';
 import 'package:feeel/db/database.dart';
+import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/screens/workout_detail/components/body_exercise_content.dart';
 import 'package:feeel/screens/workout_detail/components/contribution_overlay.dart';
 import 'package:feeel/screens/workout_detail/components/head_exercise_content.dart';
@@ -32,7 +33,6 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../utils/asset_util.dart';
 import '../enums/exercise_type.dart';
-import 'package:feeel/i18n/translations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../theming/feeel_shade.dart';
@@ -41,23 +41,23 @@ import '../theming/feeel_swatch.dart';
 class ExerciseSheet extends StatelessWidget {
   //TODO migrate to FullExercise!
   //TODO make responsive // TODO show during breaks
-  final Exercise exercise;
+  final FullExercise primaryLangFullExercise;
   final FeeelSwatch colorSwatch;
 
   const ExerciseSheet(
       //TODO make an alternative for Linux — a dialog with the same content
-      {required this.exercise,
+      {required this.primaryLangFullExercise,
       required this.colorSwatch,
       Key? key})
       : super(key: key);
 
-  static void showSheet(
-      BuildContext context, Exercise exercise, FeeelSwatch colorSwatch) {
+  static void showSheet(BuildContext context,
+      FullExercise primaryLangFullExercise, FeeelSwatch colorSwatch) {
     showModalBottomSheet<void>(
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
         builder: (context) => ExerciseSheet(
-              exercise: exercise,
+              primaryLangFullExercise: primaryLangFullExercise,
               colorSwatch: colorSwatch,
             ),
         context: context);
@@ -72,8 +72,10 @@ class ExerciseSheet extends StatelessWidget {
       snap: true,
       snapSizes: const [0.75, 1.0],
       builder: (BuildContext context, ScrollController scrollController) {
-        final imageSlug = exercise.imageSlug; //TODO reset image slug on display
-        final headOnly = exercise.type == ExerciseType.head;
+        final imageSlug = primaryLangFullExercise
+            .exercise.imageSlug; //TODO reset image slug on display
+        final headOnly =
+            primaryLangFullExercise.exercise.type == ExerciseType.head;
 
         final brightness = Theme.of(context).brightness;
         final bgColor = brightness == Brightness.dark
@@ -93,7 +95,11 @@ class ExerciseSheet extends StatelessWidget {
                 a: TextStyle(
                     color: licenseColor, decoration: TextDecoration.underline));
 
-        final hasImageLicense = exercise.imageLicense != null;
+        final hasImageLicense =
+            primaryLangFullExercise.exercise.imageLicense != null;
+
+        final translatedNotes =
+            primaryLangFullExercise.getFirstTranslatedNotes();
 
         return CustomScrollView(
           controller: scrollController,
@@ -129,8 +135,10 @@ class ExerciseSheet extends StatelessWidget {
                                         imageAssetString:
                                             AssetUtil.getImageOrPlaceholderPath(
                                                 imageSlug),
-                                        flipped: exercise.flipped),
-                                    triangleSeed: exercise.name.hashCode)
+                                        flipped: primaryLangFullExercise
+                                            .exercise.flipped),
+                                    triangleSeed: primaryLangFullExercise
+                                        .exercise.name.hashCode)
                                 : imageSlug != null
                                     ? BodyExerciseContent(
                                         onBreak: false,
@@ -138,7 +146,8 @@ class ExerciseSheet extends StatelessWidget {
                                           imageAssetString: AssetUtil
                                               .getImageOrPlaceholderPath(
                                                   imageSlug),
-                                          flipped: exercise.flipped,
+                                          flipped: primaryLangFullExercise
+                                              .exercise.flipped,
                                         ))
                                     : Stack(children: <Widget>[
                                         BodyExerciseContent(
@@ -147,7 +156,8 @@ class ExerciseSheet extends StatelessWidget {
                                               imageAssetString: AssetUtil
                                                   .getImageOrPlaceholderPath(
                                                       imageSlug),
-                                              flipped: exercise.flipped),
+                                              flipped: primaryLangFullExercise
+                                                  .exercise.flipped),
                                           alignment: Alignment.center,
                                         ),
                                         ContributionOverlay(
@@ -172,7 +182,8 @@ class ExerciseSheet extends StatelessWidget {
                               children: [
                                 Center(
                                     child: Text(
-                                  exercise.name.i18n,
+                                  primaryLangFullExercise
+                                      .getFirstTranslatedName(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 40,
@@ -183,7 +194,9 @@ class ExerciseSheet extends StatelessWidget {
                                   height: 8,
                                 ),
                                 MarkdownBody(
-                                  data: exercise.description ?? "",
+                                  data: primaryLangFullExercise
+                                          .getFirstTranslatedDesc() ??
+                                      "",
                                   styleSheet: markdownBodyStyle,
                                   imageBuilder: (a, b, c) => const SizedBox(),
                                   onTapLink: (a, b, c) {},
@@ -191,7 +204,7 @@ class ExerciseSheet extends StatelessWidget {
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                if (exercise.notes != null)
+                                if (translatedNotes != null)
                                   Text(
                                     AppLocalizations.of(context)!
                                         .txtNotesInDesc,
@@ -202,9 +215,9 @@ class ExerciseSheet extends StatelessWidget {
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                if (exercise.notes != null)
+                                if (translatedNotes != null)
                                   MarkdownBody(
-                                    data: exercise.notes!,
+                                    data: translatedNotes,
                                     styleSheet: markdownBodyStyle,
                                     imageBuilder: (a, b, c) => const SizedBox(),
                                     onTapLink: (a, b, c) {},
@@ -250,14 +263,17 @@ class ExerciseSheet extends StatelessWidget {
                                     data: AppLocalizations.of(context)!
                                         .txtEnglishDescLicense
                                         .replaceFirst("]",
-                                            "](${exercise.descLicense.licenseLink})")
+                                            "](${primaryLangFullExercise.exercise.descLicense.licenseLink})")
                                         .replaceFirst(
                                             "%1s",
-                                            exercise.descAuthors
+                                            primaryLangFullExercise
+                                                .exercise.descAuthors
                                                 .split(Exercises.listSeparator)
                                                 .join(", "))
-                                        .replaceFirst("%2s",
-                                            exercise.descLicense.licenseName),
+                                        .replaceFirst(
+                                            "%2s",
+                                            primaryLangFullExercise.exercise
+                                                .descLicense.licenseName),
                                     styleSheet: markdownLicenseStyle,
                                     onTapLink: (text, url, title) =>
                                         URLUtil.launchURL(context, url ?? "")),
@@ -275,7 +291,9 @@ class ExerciseSheet extends StatelessWidget {
                                           ?.copyWith(color: licenseColor)),
                                 if (hasImageLicense)
                                   MarkdownBody(
-                                      data: exercise.imageLicense ?? "",
+                                      data: primaryLangFullExercise
+                                              .exercise.imageLicense ??
+                                          "",
                                       styleSheet: markdownLicenseStyle,
                                       onTapLink: (text, url, title) =>
                                           URLUtil.launchURL(context, url ?? ""))

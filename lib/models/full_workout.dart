@@ -21,13 +21,15 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
+import 'package:feeel/models/full_exercise.dart';
+import 'package:flutter/widgets.dart';
 // import 'package:feeel/db/db_migration_maps.dart';
 import 'package:get_it/get_it.dart';
 
 class FullWorkout {
   final Workout workout;
   final List<WorkoutExercise> workoutExercises;
-  final List<Exercise> exercises;
+  final List<FullExercise> primaryLangFullExercises;
   late int _duration;
   int get duration => _duration;
 
@@ -37,7 +39,7 @@ class FullWorkout {
   FullWorkout({
     required this.workout,
     required this.workoutExercises,
-    required this.exercises,
+    required this.primaryLangFullExercises,
   }) {
     _duration = (workoutExercises.isNotEmpty)
         ? workoutExercises[0].exerciseDuration ?? workout.exerciseDuration
@@ -49,8 +51,8 @@ class FullWorkout {
     }
   }
 
-  static Future<FullWorkout> fromJson(
-      Map<String, dynamic> json, DateTime utcMetadataDate) async {
+  static Future<FullWorkout> fromJson(Map<String, dynamic> json,
+      DateTime utcMetadataDate, Locale locale) async {
     final workoutExercises =
         (json[_workoutExerciseKey] as List).map((dynamic weJson) {
       final weTemp = WorkoutExercise.fromJson(weJson as Map<String, dynamic>);
@@ -71,8 +73,8 @@ class FullWorkout {
     return FullWorkout(
         workoutExercises: workoutExercises,
         workout: Workout.fromJson(json[_workoutKey] as Map<String, dynamic>),
-        exercises: await GetIt.I<FeeelDB>()
-            .queryExercisesFromExerciseIds(exerciseIds));
+        primaryLangFullExercises: await GetIt.I<FeeelDB>()
+            .queryPrimaryLangFullExercisesFromIds(exerciseIds, locale));
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{

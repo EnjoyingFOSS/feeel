@@ -24,41 +24,27 @@ import 'dart:io';
 
 import 'package:feeel/db/database.dart';
 import 'package:feeel/models/full_workout.dart';
+import 'package:feeel/providers/db_provider.dart';
 import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'components/empty_workout.dart';
 import 'components/workout_header.dart';
 import 'components/workout_pager.dart';
 
-class WorkoutDetailScreen extends ConsumerStatefulWidget {
+class WorkoutDetailScreen extends ConsumerWidget {
   final Workout workout;
 
   const WorkoutDetailScreen({Key? key, required this.workout})
       : super(key: key);
-
   @override
-  ConsumerState<WorkoutDetailScreen> createState() {
-    return _WorkoutDetailScreenState();
-  }
-}
-
-class _WorkoutDetailScreenState extends ConsumerState<WorkoutDetailScreen> {
-  late Future<FullWorkout> _future;
-
-  @override
-  void initState() {
-    super.initState();
-    _future = GetIt.I<FeeelDB>().queryFullWorkout(widget.workout);
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final db = ref.read(dbProvider);
     final colorSwatch =
-        ref.read(feeelSwatchProvider)[widget.workout.category.feeelColor]!;
+        ref.read(feeelSwatchProvider)[workout.category.feeelColor]!;
     return WillPopScope(
         onWillPop: () async {
           if (!Platform.isLinux) {
@@ -68,19 +54,22 @@ class _WorkoutDetailScreenState extends ConsumerState<WorkoutDetailScreen> {
         },
         child: Scaffold(
             body: FutureBuilder<FullWorkout>(
-                future: _future,
+                future: db.queryFullWorkout(
+                    workout, Localizations.localeOf(context)),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     final fullWorkout = snapshot.data!;
                     if (fullWorkout.workoutExercises.isNotEmpty) {
                       return WorkoutPager(
-                          fullWorkout: fullWorkout, colorSwatch: colorSwatch);
+                          fullWorkout: fullWorkout,
+                          colorSwatch: colorSwatch,
+                          l10n: AppLocalizations.of(context)!);
                     } else {
                       return SafeArea(
                           child: Column(children: [
                         //TODO make scrollable (for landscape)
                         WorkoutHeader(
-                            workout: widget.workout, colorSwatch: colorSwatch),
+                            workout: workout, colorSwatch: colorSwatch),
                         Flexible(child: EmptyWorkout(fullWorkout: fullWorkout))
                       ]));
                     }
@@ -89,7 +78,7 @@ class _WorkoutDetailScreenState extends ConsumerState<WorkoutDetailScreen> {
                         child: Column(children: [
                       //TODO make scrollable (for landscape)
                       WorkoutHeader(
-                        workout: widget.workout,
+                        workout: workout,
                         colorSwatch: colorSwatch,
                       ),
                       const Flexible(

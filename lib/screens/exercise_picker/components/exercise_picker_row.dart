@@ -30,16 +30,13 @@ class ExercisePickerRow extends StatelessWidget {
           .getColor(FeeelShade.dark.invertIfDark(Theme.of(context).brightness)),
       value: checked,
       title: Row(children: [
-        Expanded(
-            child: Text(primaryLangFullExercise
-                    .translationsByLanguage?.values.first.name ??
-                primaryLangFullExercise.exercise.name)),
+        Expanded(child: Text(primaryLangFullExercise.getFirstTranslatedName())),
         IconButton(
           //TODO add labels to all icons
           icon: const Icon(Icons.info_outline),
           tooltip: AppLocalizations.of(context)!.btnMoreInfo,
           onPressed: () => ExerciseSheet.showSheet(
-              context, primaryLangFullExercise.exercise, colorSwatch),
+              context, primaryLangFullExercise, colorSwatch),
         ),
       ]),
       secondary: (primaryLangFullExercise.exercise.flipped

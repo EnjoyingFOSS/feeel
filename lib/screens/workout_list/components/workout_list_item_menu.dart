@@ -69,7 +69,8 @@ class WorkoutListItemMenu extends ConsumerWidget {
 
   void _onEditCustom(BuildContext context, Workout workout) async {
     final navigator = Navigator.of(context);
-    final fullWorkout = await GetIt.I<FeeelDB>().queryFullWorkout(workout);
+    final fullWorkout = await GetIt.I<FeeelDB>()
+        .queryFullWorkout(workout, Localizations.localeOf(context));
     navigator.push<void>(MaterialPageRoute(
         builder: (context) => WorkoutEditorScreen(
               editableWorkout: EditableWorkout.fromWorkout(fullWorkout),
@@ -78,8 +79,8 @@ class WorkoutListItemMenu extends ConsumerWidget {
 
   void _onDuplicate(BuildContext context, Workout origWorkout) async {
     final navigator = Navigator.of(context);
-    final origFullWorkout =
-        await GetIt.I<FeeelDB>().queryFullWorkout(origWorkout);
+    final origFullWorkout = await GetIt.I<FeeelDB>()
+        .queryFullWorkout(origWorkout, Localizations.localeOf(context));
     final editableCopy = EditableWorkout.fromWorkout(origFullWorkout);
     editableCopy.dbId = null;
     editableCopy.type = WorkoutType.custom;
@@ -97,7 +98,8 @@ class WorkoutListItemMenu extends ConsumerWidget {
     final workoutListNotifier = ref.read(workoutListProvider.notifier);
 
     workoutListNotifier.startExporting();
-    final fullWorkout = await GetIt.I<FeeelDB>().queryFullWorkout(workout);
+    final fullWorkout = await GetIt.I<FeeelDB>()
+        .queryFullWorkout(workout, Localizations.localeOf(context));
     try {
       final exported = await WorkoutImportExport.exportWorkout(fullWorkout);
       if (exported) {

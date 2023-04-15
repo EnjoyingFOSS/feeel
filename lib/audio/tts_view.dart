@@ -23,26 +23,31 @@
 import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/controllers/workout_view.dart';
-import 'package:feeel/db/database.dart';
 import 'package:feeel/enums/workout_stage.dart';
-import 'package:feeel/i18n/translations.dart';
+import 'package:feeel/models/full_exercise.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TTSView implements WorkoutView {
+  final AppLocalizations l10n;
+
   int _halfTime = 0;
 
+  TTSView(this.l10n);
+
   @override
-  void onStart(int exercisePos, Exercise nextExercise, int duration) {
+  void onStart(
+      int exercisePos, FullExercise nextPrimaryLangFullExercise, int duration) {
     TTSHelper.tts.speak(
-        "Let's go! First up: %s"
-            .i18n
-            .replaceFirst("%s", nextExercise.name.i18n),
+        l10n.txtLetsGoFirstUp.replaceFirst(
+            "%s", nextPrimaryLangFullExercise.getFirstTranslatedName()),
         priority: AudioPriority.high); //TODO internationalization
   }
 
   @override
-  void onBreak(int exercisePos, Exercise nextExercise, int duration) {
+  void onBreak(
+      int exercisePos, FullExercise nextPrimaryLangFullExercise, int duration) {
     TTSHelper.tts.speak(
-        "${"Break!".i18n} ${"Next up:".i18n} ${nextExercise.name.i18n}",
+        "${l10n.txtBreak} ${l10n.txtNextUp} ${nextPrimaryLangFullExercise.getFirstTranslatedName()}",
         priority: AudioPriority.high);
   }
 
@@ -52,14 +57,17 @@ class TTSView implements WorkoutView {
     if (seconds <= AudioHelper.countdown) {
       TTSHelper.tts.speak(seconds.toString(), priority: AudioPriority.low);
     } else if (seconds == _halfTime && stage == WorkoutStage.exercise) {
-      TTSHelper.tts.speak("%d seconds left".i18n.replaceFirst("%d", "$seconds"),
+      TTSHelper.tts.speak(
+          l10n.txtSecondsLeft5plus.replaceFirst("%d", "$seconds"),
           priority: AudioPriority.low); //TODO internationalize with declension
     }
   }
 
   @override
-  void onExercise(int exercisePos, Exercise exercise, int duration) {
-    TTSHelper.tts.speak(exercise.name.i18n, priority: AudioPriority.high);
+  void onExercise(
+      int exercisePos, FullExercise primaryLangFullExercise, int duration) {
+    TTSHelper.tts.speak(primaryLangFullExercise.getFirstTranslatedName(),
+        priority: AudioPriority.high);
     _halfTime = (duration / 2).ceil();
     // TODO handle first step
   }
@@ -70,15 +78,9 @@ class TTSView implements WorkoutView {
   @override
   void onPlay() {}
 
-  // @override
-  // void onLaterStep(int stepPos, ExerciseStep step) {
-  //   final hint = step.voiceHint?.i18n;
-  //   if (hint != null) TTSHelper.tts.speak(hint);
-  // }
-
   @override
   void onCountdown(int exercisePos) {
-    TTSHelper.tts.speak("Get ready!".i18n, priority: AudioPriority.high);
+    TTSHelper.tts.speak(l10n.txtGetReady, priority: AudioPriority.high);
   }
 
   void stop() {

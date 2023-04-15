@@ -22,6 +22,7 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:archive/archive_io.dart';
 import 'package:feeel/db/database.dart';
@@ -156,23 +157,27 @@ class WorkoutImportExport {
   }
 
   static Future<void> importWorkoutZip(
-      InputFileStream readStream, WidgetRef ref) async {
+      InputFileStream readStream, WidgetRef ref, Locale locale) async {
     final archive = ZipDecoder().decodeBuffer(readStream);
 
     for (final file in archive.files) {
       if (file.isFile) {
-        await _importWorkout(utf8.decode(file.content as List<int>), ref);
+        await _importWorkout(
+            utf8.decode(file.content as List<int>), ref, locale);
       }
     }
   }
 
-  static Future<void> importWorkoutFile(File feeelFile, WidgetRef ref) async {
-    await _importWorkout(await feeelFile.readAsString(), ref);
+  static Future<void> importWorkoutFile(
+      File feeelFile, WidgetRef ref, Locale locale) async {
+    await _importWorkout(await feeelFile.readAsString(), ref, locale);
   }
 
-  static Future<void> _importWorkout(String jsonContent, WidgetRef ref) async {
+  static Future<void> _importWorkout(
+      String jsonContent, WidgetRef ref, Locale locale) async {
     final decodedJson = jsonDecode(jsonContent) as Map<String, dynamic>;
-    final feeelJsonWorkout = await FeeelWorkoutJson.fromJson(decodedJson);
+    final feeelJsonWorkout =
+        await FeeelWorkoutJson.fromJson(decodedJson, locale);
 
     if (feeelJsonWorkout.exerciseDbUtcImportDate
         .isAfter(FeeelDB.bundledExerciseImportDate)) {

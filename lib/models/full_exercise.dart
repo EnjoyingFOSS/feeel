@@ -20,18 +20,28 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:ui';
+
 import 'package:feeel/db/database.dart';
-import 'package:feeel/enums/language.dart'; //TODO start actually using the translations in the UI
 
 class FullExercise {
   final Exercise exercise;
   final List<ExerciseEquipmentPiece>? equipment;
   final List<ExerciseMuscle> muscles;
-  final Map<ExerciseLanguage, ExerciseTranslation>? translationsByLanguage;
+  final Map<Locale, ExerciseTranslation>? translationsByLanguage;
 
   FullExercise(
       {required this.exercise,
       required this.equipment,
       required this.muscles,
       this.translationsByLanguage});
+
+  String getFirstTranslatedName() =>
+      translationsByLanguage?.values.first.name ?? exercise.name;
+
+  String? getFirstTranslatedDesc() =>
+      translationsByLanguage?.values.first.description ?? exercise.description;
+
+  String? getFirstTranslatedNotes() =>
+      translationsByLanguage?.values.first.notes ?? exercise.notes;
 }

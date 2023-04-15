@@ -1,14 +1,14 @@
-import 'package:feeel/db/database.dart';
 import 'package:feeel/enums/workout_stage.dart';
+import 'package:feeel/models/full_exercise.dart';
 
 abstract class WorkoutView {
-  void onStart(
-      int exercisePos, Exercise nextExercise, int defaultBreakDuration);
-  void onBreak(
-      int exercisePos, Exercise nextExercise, int defaultBreakDuration);
+  void onStart(int exercisePos, FullExercise nextPrimaryLangFullExercise,
+      int defaultBreakDuration);
+  void onBreak(int exercisePos, FullExercise nextPrimaryLangFullExercise,
+      int defaultBreakDuration);
   void onExercise(
       int exercisePos,
-      Exercise exercise,
+      FullExercise primaryLangFullExercise,
       // ExerciseStep? firstStep,
       int defaultExerciseDuration);
   void onCountdown(

@@ -105,6 +105,7 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
     if (chosenFilePath == null) {
       return false;
     } else {
+      final locale = Localizations.localeOf(context);
       if (chosenFileExtension == "zip") {
         final shouldImport = await showDialog<bool>(
                 //TODO try catch in case it's a corrupt/invalid file
@@ -131,12 +132,13 @@ class WorkoutAddSpeedDial extends ConsumerWidget {
 
         if (shouldImport) {
           await WorkoutImportExport.importWorkoutZip(
-              InputFileStream(chosenFilePath), ref);
+              InputFileStream(chosenFilePath), ref, locale);
         }
 
         return shouldImport;
       } else if (chosenFileExtension == "feeel") {
-        await WorkoutImportExport.importWorkoutFile(File(chosenFilePath), ref);
+        await WorkoutImportExport.importWorkoutFile(
+            File(chosenFilePath), ref, locale);
         return true;
       } else {
         throw ArgumentError("${file.name} has an unsupported file extension.");

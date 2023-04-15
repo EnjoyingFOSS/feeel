@@ -51,8 +51,8 @@ class WorkoutListMenu extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     workoutListNotifier.startExporting();
-    final fullCustomWorkouts =
-        await GetIt.I<FeeelDB>().queryFullWorkoutsByType(WorkoutType.custom);
+    final fullCustomWorkouts = await GetIt.I<FeeelDB>().queryFullWorkoutsByType(
+        WorkoutType.custom, Localizations.localeOf(context));
     if (fullCustomWorkouts.isEmpty) {
       SnackBarHelper.showInfoSnackBar(
           scaffoldMessenger, l10n.txtNoCustomWorkouts);

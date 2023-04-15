@@ -30,6 +30,7 @@ import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'exercise_page.dart';
 import 'finish_page.dart';
@@ -37,11 +38,16 @@ import 'finish_page.dart';
 enum _WorkoutPageTypes { cover, exercise, finish }
 
 class WorkoutPager extends StatefulWidget {
+  //TODO convert to StatelessWidget, get rid of the l10n argument
   final FullWorkout fullWorkout;
   final FeeelSwatch colorSwatch;
+  final AppLocalizations l10n;
 
   const WorkoutPager(
-      {Key? key, required this.fullWorkout, required this.colorSwatch})
+      {Key? key,
+      required this.fullWorkout,
+      required this.colorSwatch,
+      required this.l10n})
       : super(key: key);
 
   @override
@@ -57,7 +63,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   @override
   void initState() {
     super.initState();
-    _workoutController = WorkoutController(widget.fullWorkout);
+    _workoutController = WorkoutController(widget.fullWorkout, widget.l10n);
   }
 
   @override
@@ -65,7 +71,8 @@ class _WorkoutPagerState extends State<WorkoutPager> {
     super.didChangeDependencies();
 
     if (widget.fullWorkout.workoutExercises.isNotEmpty) {
-      final imageSlug = widget.fullWorkout.exercises[0].imageSlug;
+      final imageSlug =
+          widget.fullWorkout.primaryLangFullExercises[0].exercise.imageSlug;
       precacheImage(
           Image.asset(AssetUtil.getImageOrPlaceholderPath(imageSlug))
               .image, //TODO precache inside workout page instead?

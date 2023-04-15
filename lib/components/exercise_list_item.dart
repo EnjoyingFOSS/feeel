@@ -21,29 +21,28 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/exercise_sheet.dart';
+import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/utils/asset_util.dart';
-import 'package:feeel/db/database.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
 
 import 'flipped.dart';
 
 class ExerciseListItem extends StatelessWidget {
-  final Exercise exercise; //TODO migrate to FullExercise
+  final FullExercise primaryLangFullExercise; //TODO migrate to FullExercise
   final FeeelSwatch colorSwatch;
   final Widget subtitle;
 
   const ExerciseListItem(
       {Key? key,
-      required this.exercise,
+      required this.primaryLangFullExercise,
       required this.subtitle,
       required this.colorSwatch})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final imageSlug = exercise.imageSlug;
+    final imageSlug = primaryLangFullExercise.exercise.imageSlug;
     return InkWell(
         child: Row(children: [
           Padding(
@@ -52,7 +51,7 @@ class ExerciseListItem extends StatelessWidget {
               right: 8,
               bottom: 8,
             ),
-            child: exercise.flipped
+            child: primaryLangFullExercise.exercise.flipped
                 ? Flipped(
                     child: Image.asset(
                         AssetUtil.getThumbOrPlaceholderPath(imageSlug),
@@ -63,12 +62,13 @@ class ExerciseListItem extends StatelessWidget {
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
-              exercise.name.i18n,
+              primaryLangFullExercise.getFirstTranslatedName(),
               style: Theme.of(context).textTheme.titleSmall,
             ),
             subtitle
           ])
         ]),
-        onTap: () => ExerciseSheet.showSheet(context, exercise, colorSwatch));
+        onTap: () => ExerciseSheet.showSheet(
+            context, primaryLangFullExercise, colorSwatch));
   }
 }

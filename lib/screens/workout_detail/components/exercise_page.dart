@@ -21,7 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/exercise_sheet.dart';
-import 'package:feeel/db/database.dart';
+import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/models/full_workout.dart';
 import '../../../controllers/workout_controller.dart';
 import 'package:feeel/controllers/workout_view.dart';
@@ -30,7 +30,6 @@ import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/workout_stage.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-import 'package:feeel/i18n/translations.dart';
 
 import 'exercise_layout.dart';
 
@@ -71,8 +70,8 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
 
   @override
   Widget build(BuildContext context) {
-    final exercise = _getExercise(_exercisePos);
-    final headOnly = exercise.type == ExerciseType.head;
+    final fe = _getPrimaryLangFullExercise(_exercisePos);
+    final headOnly = fe.exercise.type == ExerciseType.head;
 
     return
         // CallbackShortcuts(
@@ -91,19 +90,19 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
         });
       },
       //TODO onHorizontalDrag
-      onVerticalDragStart: (_) => onLearn(exercise),
+      onVerticalDragStart: (_) => onLearn(fe),
       child: Material(
           color: Theme.of(context).colorScheme.background,
           child: ExerciseLayout(
             imageSlug:
                 // (exercise.steps?[_stepPos].imageSlug != null)
                 //     ? exercise.steps![_stepPos].imageSlug :
-                exercise.imageSlug,
-            animated: exercise.animated,
-            flipped: exercise.flipped,
-            onLearn: () => onLearn(exercise),
+                fe.exercise.imageSlug,
+            animated: fe.exercise.animated,
+            flipped: fe.exercise.flipped,
+            onLearn: () => onLearn(fe),
             colorSwatch: widget.colorSwatch,
-            triangleSeed: headOnly ? exercise.name.hashCode : 0,
+            triangleSeed: headOnly ? fe.exercise.name.hashCode : 0,
             secondsString: _seconds.toString(),
             skipToPrevious: () {
               widget.workoutController.skipToPrevious();
@@ -114,8 +113,8 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
             togglePlayPause: () {
               widget.workoutController.togglePlayPause();
             },
-            headOnly: exercise.type == ExerciseType.head,
-            title: exercise.name.i18n,
+            headOnly: fe.exercise.type == ExerciseType.head,
+            title: fe.getFirstTranslatedName(),
             onBreak: _stage == WorkoutStage.workoutBreak ||
                 _stage == WorkoutStage.countdown,
             paused: _paused,
@@ -123,14 +122,15 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     ); //);
   }
 
-  void onLearn(Exercise exercise) {
+  void onLearn(FullExercise primaryLangFullExercise) {
     if (!_paused &&
         (_stage == WorkoutStage.workoutBreak ||
             _stage == WorkoutStage.countdown)) {
       widget.workoutController.togglePlayPause();
     }
     if (_paused) {
-      ExerciseSheet.showSheet(context, exercise, widget.colorSwatch);
+      ExerciseSheet.showSheet(
+          context, primaryLangFullExercise, widget.colorSwatch);
     }
   }
 
@@ -174,24 +174,13 @@ class _ExercisePageState extends State<ExercisePage> implements WorkoutView {
     });
   }
 
-  Exercise _getExercise(int i) => widget.fullWorkout.exercises[i];
-
-  // void _preloadUpcomingStep() {
-  // final steps = _getExercise(_exercisePos).steps;
-  // if (steps != null) {
-  //   final nextImageSlug = (_stepPos + 1 < steps.length)
-  //       ? steps[_stepPos + 1].imageSlug
-  //       : steps[0].imageSlug;
-  //   if (nextImageSlug != null) {
-  //     precacheImage(
-  //         Image.asset(AssetHelper.getImage(nextImageSlug)).image, context);
-  //   }
-  // }
-  // }
+  FullExercise _getPrimaryLangFullExercise(int i) =>
+      widget.fullWorkout.primaryLangFullExercises[i];
 
   void _preloadUpcomingExercise() {
     if (_exercisePos + 1 < widget.fullWorkout.workoutExercises.length) {
-      final nextImageSlug = _getExercise(_exercisePos + 1).imageSlug;
+      final nextImageSlug =
+          _getPrimaryLangFullExercise(_exercisePos + 1).exercise.imageSlug;
       precacheImage(
           Image.asset(AssetUtil.getImageOrPlaceholderPath(nextImageSlug)).image,
           context);
