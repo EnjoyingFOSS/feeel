@@ -234,5 +234,13 @@
   "txtImportInProgress": "Probíhá import...",
   "@txtImportInProgress": {},
   "txtUseSystemLanguage": "Použít jazyk systému",
-  "@txtUseSystemLanguage": {}
+  "@txtUseSystemLanguage": {},
+  "txtSecondsLeft": "{count, plural, one{zbývá {count} vteřina} few{zbývají {count} vteřiny} other{zbývá {count} vteřin}}",
+  "@txtSecondsLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
