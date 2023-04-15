@@ -62,7 +62,21 @@ class SimpleHtmlMarkdownUtil {
               paragraphs.addAll(_getList(paragraphString, false));
               break;
             case "o": //ol
-              paragraphs.addAll(_getList(paragraphString, true));
+              final olStartMatch =
+                  RegExp("start=['\"][0-9]*['\"]").stringMatch(matchedTag);
+
+              if (olStartMatch != null && olStartMatch.isNotEmpty) {
+                final numberMatch =
+                    int.tryParse(olStartMatch.split(RegExp("['\"]"))[1]);
+                if (numberMatch == null) {
+                  paragraphs.addAll(_getList(paragraphString, true));
+                } else {
+                  paragraphs.addAll(
+                      _getList(paragraphString, true, start: numberMatch));
+                }
+              } else {
+                paragraphs.addAll(_getList(paragraphString, true));
+              }
               break;
             case "p": //p
               paragraphs.add(paragraphString);
@@ -76,19 +90,20 @@ class SimpleHtmlMarkdownUtil {
     }
   }
 
-  static List<String> _getList(String listString, bool ordered) {
+  static List<String> _getList(String listString, bool ordered,
+      {int start = 1}) {
     final splitString = listString.split(RegExp("<li[^>]*>"));
     if (splitString.first.trim().isEmpty) {
       return List.generate(
           splitString.length - 1,
           (i) => ordered
-              ? "${i + 1}.\t${splitString[i + 1]}"
+              ? "${i + start}.\t${splitString[i + 1]}"
               : "*\t${splitString[i + 1]}");
     } else {
       return List.generate(
           splitString.length,
           (i) => ordered
-              ? "${i + 1}.\t${splitString[i]}"
+              ? "${i + start}.\t${splitString[i]}"
               : "*\t${splitString[i]}");
     }
   }
