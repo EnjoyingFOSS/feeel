@@ -10,7 +10,6 @@
     "txtWorkoutToMakeYouFeelBest": "Sənə ən yaxşı hiss etdirən məşqi dizayn et",
     "txtWorkoutTitle": "Məşq adı",
     "txtHowToPerformExercise": "İdmanı necə etməli (istəyə bağlı)",
-    "txtSubmitExerciseMessageTitle": "İdman təklifi: %s",
     "txtSettings": "Ayarlar",
     "txtWorkoutExercisesEmpty": "Ən azı 1 idman əlavə edin",
     "txtWorkoutTitleEmpty": "Zəhmət olmasa, məşq adını qeyd edin",
@@ -66,7 +65,6 @@
     "txtCouldNotOpenURL": "URL açılmadı.",
     "btnAddALinkToPhotos": "Şəkil(lər)inə link əlavə et",
     "txtDonate": "Bağış et",
-    "txtEmailCouldNotBeSent": "Email göndərilə bilmədi",
     "txtFeeelDescription": "Məxfiliyinizə hörmət edən açıq-mənbə ev məşq tətbiqi",
     "txtStrength": "Güc",
     "txtNoExercises": "Burada heç bir məşq yoxdur. :(",
@@ -77,6 +75,5 @@
     "btnEdit": "Dəyiş",
     "btnSubmitViaEmail": "Email ilə göndər",
     "txtExerciseName": "İdman adı",
-    "txtSubmitExerciseMessageContents": "Salam,\n\nMən idman təklifi göndərirəm. Bununla bildirirəm ki, həm əlavə olunmuş şəkillər, həm də təsvir tamamilə mənim şəxsi işimə aiddir. Bu mesajı göndərməklə, mən təqdim edilmiş adın və təsvirin CC BY-SA 4.0 lisenziyası və tətbiq mağazası istisna lisenziyası olan AGPLv3 altında buraxılması ilə geri dönməz şəkildə razılaşıram. Mən həmçinin əlavə edilmiş şəkilləri azkünclü variantlara çevirməyə icazə verirəm. Onlar emal edildikdən sonra CC BY-SA 4.0 lisenziyası əsasında onlara lisenziya verməyə hazır olub-olmadığımı qiymətləndirəcəyəm.\n\nMəşqin adı: %1s\nMəşq addımları:\n%2s",
     "txtNotificationTime": "Bildiriş vaxtı"
 }

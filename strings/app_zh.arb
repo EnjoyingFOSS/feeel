@@ -1,5 +1,4 @@
 {
-    "txtEmailCouldNotBeSent": "无法发送电子邮件",
     "txtSubmitNewExercise": "贡献",
     "txtYoureGlowing": "你在发光！",
     "txtCategoryLegs": "腿部",
@@ -47,7 +46,6 @@
     "txtWorkoutTitleEmpty": "请指定锻炼标题",
     "txtDiscardChanges": "放弃修改吗？",
     "txtBreak": "休息！",
-    "txtSubmitExerciseMessageTitle": "练习建议：%s",
     "txtWorkoutExercisesEmpty": "请至少添加 1 个练习",
     "txtNotANumber": "非数字",
     "txtNotificationInfoDesc": "每日提醒您锻炼身体",
