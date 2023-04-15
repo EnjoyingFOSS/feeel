@@ -4,6 +4,14 @@
     "txtGetReady": "Get ready!",
     "txtLetsGoFirstUp": "Let's go! First up: %s",
     "txtSecondsLeft5plus": "%d seconds left",
+    "txtSecondsLeft": "{count, plural, one{{count} second left} few{{count} seconds left} other{{count} seconds left}}",
+    "@txtSecondsLeft": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
     "txtBreak": "Break!",
     "txtTapForControls": "Tap for controls",
     "txtWorkoutTitle": "Workout title",
