@@ -1,6 +1,5 @@
-Feeel è un'applicazione open-source per fare semplici esercizi a casa. Contiene l'acclamato regime di 7 minuti di allenamento scientifico per tutto il corpo e permette anche di creare allenamenti personalizzati. Mentre l'app attualmente contiene una quantità limitata di esercizi, il piano è quello di espandere drasticamente il numero di esercizi e allenamenti con l'aiuto della comunità.
+Feel è un'app open source per fare semplici esercizi a casa. Contiene l'acclamato regime di allenamento scientifico di 7 minuti per tutto il corpo e consente anche di creare allenamenti personalizzati. L'app fornisce esercizi da wger, un wiki di esercizi online gratuito e open source.
 
-Contribuisci a https://gitlab.com/enjoyingfoss/feeel/wikis
+Contribuisci su https://gitlab.com/enjoyingfoss/feeel/wikis
 
-Dona su https://liberapay.com/Feeel/
-Le donazioni mi permetteranno di lavorare regolarmente sull'app, piuttosto che solo nel mio tempo libero.
+Dona su https://liberapay.com/Feeel/ . Le donazioni mi permetteranno di lavorare regolarmente sull'app, piuttosto che solo nel tempo libero.
