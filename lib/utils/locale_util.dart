@@ -24,6 +24,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:feeel/db/database.dart';
+import 'package:intl/intl.dart';
 
 class LocaleUtil {
   static final supportedLocaleNames = {
@@ -102,6 +103,6 @@ class LocaleUtil {
   }
 
   /// only used for the cases where a CLDR language tag is required
-  static String basicBcp47ToCLDR(String bcp47LanguageTag) =>
-      bcp47LanguageTag.replaceAll("-", "_");
+  static String basicBcp47ToCLDR(Locale locale) =>
+      Intl.canonicalizedLocale(locale.toLanguageTag());
 }
