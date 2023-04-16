@@ -21,8 +21,8 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
+import 'package:feeel/enums/workout_category.dart';
 import 'package:feeel/screens/activity/components/workout_donut_chart.dart';
-import 'package:feeel/screens/activity/components/workout_record_util.dart';
 import 'package:feeel/utils/locale_util.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -68,8 +68,7 @@ class ActivityCalendar extends StatelessWidget {
               TextStyle(color: Theme.of(context).colorScheme.onBackground),
           weekendStyle:
               TextStyle(color: Theme.of(context).colorScheme.onBackground)),
-      locale: LocaleUtil.basicBcp47ToCLDR(
-          Localizations.localeOf(context).toLanguageTag()),
+      locale: LocaleUtil.basicBcp47ToCLDR(Localizations.localeOf(context)),
       availableGestures: AvailableGestures.horizontalSwipe,
       calendarStyle: calendarStyle,
       onDaySelected: onDaySelected,
@@ -88,12 +87,24 @@ class ActivityCalendar extends StatelessWidget {
               width: double.maxFinite,
               height: double.maxFinite,
               child: WorkoutDonutChart(
-                  secondsByWorkoutCategory:
-                      WorkoutRecordUtil.calcSecondsByWorkoutCategory(
-                          events))); // TODO cache this calculation
+                  secondsByWorkoutCategory: _calcSecondsByWorkoutCategory(
+                      events))); // TODO cache this calculation
         },
       ),
     );
+  }
+
+  Map<WorkoutCategory, int> _calcSecondsByWorkoutCategory(
+      List<WorkoutRecord> workoutRecords) {
+    final secondsByWorkoutCategory = <WorkoutCategory, int>{};
+    for (final wr in workoutRecords) {
+      secondsByWorkoutCategory.update(
+        wr.category,
+        (value) => value + wr.completedDuration,
+        ifAbsent: () => wr.completedDuration,
+      );
+    }
+    return secondsByWorkoutCategory;
   }
 
   StartingDayOfWeek _getStartingDayOfWeek(BuildContext context) {
