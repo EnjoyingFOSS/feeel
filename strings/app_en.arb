@@ -124,7 +124,7 @@
     },
     "txtNewlineTimeCompletedOutOfTotal": "{completed} \n/ {total}",
     "@txtNewlineTimeCompletedOutOfTotal": {
-        "description": "Indication of how much time was completed out of the total time that should have been completed, split across two lines. (E.g. '2 \n/ 30s' or '2s (1%) \n/ 4m2s')",
+        "description": "Indication of how much time was completed out of the total time that should have been completed, split across two lines. (E.g. '2 / 30s' or '2s (1%) / 4m2s', with the newline coming before the /.)",
         "placeholders": {
             "completed": {
                 "type": "String"
@@ -196,6 +196,13 @@
     "btnWgerSignUp": "Sign up for wger",
     "btnWgerLogIn": "Log in with wger",
     "btnContributeAnImage": "Contribute one now",
-    "btnShowXUncompletedWorkouts": "Show %d uncompleted workouts",
+    "btnShowNUncompletedWorkouts": "{count, plural, one{Show {count} uncompleted workout} few{Show {count} uncompleted workouts} other{Show {count} uncompleted workouts}}",
+    "@btnShowNUncompletedWorkouts": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
     "btnHideUncompletedWorkouts": "Hide uncompleted workouts"
 }
