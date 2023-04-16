@@ -110,6 +110,42 @@
             }
         }
     },
+    "txtTimeCompletedOutOfTotal": "{completed} / {total}",
+    "@txtTimeCompletedOutOfTotal": {
+        "description": "Indication of how much time was completed out of the total time that should have been completed. (E.g. '2 / 30s' or '2s (1%) / 4m2s')",
+        "placeholders": {
+            "completed": {
+                "type": "String"
+            },
+            "total": {
+                "type": "String"
+            }
+        }
+    },
+    "txtNewlineTimeCompletedOutOfTotal": "{completed} \n/ {total}",
+    "@txtNewlineTimeCompletedOutOfTotal": {
+        "description": "Indication of how much time was completed out of the total time that should have been completed, split across two lines. (E.g. '2 \n/ 30s' or '2s (1%) \n/ 4m2s')",
+        "placeholders": {
+            "completed": {
+                "type": "String"
+            },
+            "total": {
+                "type": "String"
+            }
+        }
+    },
+    "txtValueAndParenthesizedPercentage": "{value} ({percentage})",
+    "@txtValueAndParenthesizedPercentage": {
+        "description": "A value followed by the percentage it constitutes. (E.g. '2m10s (4%)').",
+        "placeholders": {
+            "value": {
+                "type": "String"
+            },
+            "percentage": {
+                "type": "String"
+            }
+        }
+    },
     "txtDragToReorder": "Drag this handle to reorder exercises.",
     "txtNoExercises": "There are no exercises in this workout. :(",
     "txtEnglishDescriptionLicense": "English description license",
