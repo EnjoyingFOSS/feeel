@@ -26,6 +26,7 @@ import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/format_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
 import '../../../db/database.dart';
@@ -109,7 +110,16 @@ class WorkoutRecordRow extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     isUncompleted
-                        ? "${FormatUtil.getDuration(context, workoutRecord.completedDuration)} (${NumberFormat.percentPattern().format(percentage)}) \n/ ${FormatUtil.getDuration(context, workoutRecord.workoutDuration)}"
+                        ? AppLocalizations.of(context)!
+                            .txtNewlineTimeCompletedOutOfTotal(
+                                AppLocalizations.of(context)!
+                                    .txtValueAndParenthesizedPercentage(
+                                        FormatUtil.getDuration(context,
+                                            workoutRecord.completedDuration),
+                                        NumberFormat.percentPattern()
+                                            .format(percentage)),
+                                FormatUtil.getDuration(
+                                    context, workoutRecord.workoutDuration))
                         : FormatUtil.getDuration(
                             context, workoutRecord.workoutDuration),
                     style: FormatUtil.durationTextStyle,
