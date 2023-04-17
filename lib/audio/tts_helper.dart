@@ -28,16 +28,14 @@ import 'package:flutter_tts/flutter_tts.dart';
 enum _TtsState { playing, stopped }
 
 class TTSHelper {
-  //TODO use provider, perhaps one for both available sound views?
-  TTSHelper._();
   static final tts = TTSHelper._();
   static final _flutterTts = FlutterTts();
 
   _TtsState _ttsState = _TtsState.stopped; //TODO see if I need this
   AudioPriority _formerPriority = AudioPriority.low;
 
-  void init(Locale locale) async {
-    // TODO set to current language ONLY IF translations are available; _flutterTts.setLanguage(Localizations.localeOf(context).languageCode);
+  //TODO use provider, perhaps one for both available sound views?
+  TTSHelper._() {
     _flutterTts.setStartHandler(() {
       _ttsState = _TtsState.playing;
     });
@@ -53,19 +51,17 @@ class TTSHelper {
     _flutterTts.setErrorHandler((dynamic msg) {
       _ttsState = _TtsState.stopped;
     });
-
-    _initLocale(locale);
   }
 
-  void _initLocale(Locale curLocale) async {
-    final fullLocaleTag = curLocale.toLanguageTag();
+  Future<void> initLocale(Locale locale) async {
+    final fullLocaleTag = locale.toLanguageTag();
     final isLanguageAvailable =
         await _flutterTts.isLanguageAvailable(fullLocaleTag) as bool;
 
     if (isLanguageAvailable) {
       _flutterTts.setLanguage(fullLocaleTag);
     } else {
-      final languageTag = curLocale.languageCode;
+      final languageTag = locale.languageCode;
       if (await _flutterTts.isLanguageAvailable(languageTag) as bool) {
         //TODO not sure if this is needed, not sure how the fallback mechanism works for TTS
         _flutterTts.setLanguage(languageTag);
