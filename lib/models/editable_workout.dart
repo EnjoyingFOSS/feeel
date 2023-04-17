@@ -21,6 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/models/full_workout.dart';
@@ -69,6 +70,14 @@ class EditableWorkout {
       duration += workoutExercises[i].breakDuration ?? breakDuration;
     }
     return duration;
+  }
+
+  String getTranslatedTitle(Locale locale) {
+    final localeTag = locale.toLanguageTag();
+    if (translations.containsKey(localeTag)) {
+      return translations[localeTag] as String;
+    }
+    return title;
   }
 
   static EditableWorkout fromWorkout(FullWorkout fullWorkout) {
