@@ -177,7 +177,7 @@ class WorkoutImportExport {
       String jsonContent, WidgetRef ref, Locale locale) async {
     final decodedJson = jsonDecode(jsonContent) as Map<String, dynamic>;
     final feeelJsonWorkout =
-        await FeeelWorkoutJson.fromJson(decodedJson, locale);
+        await FeeelWorkoutJson.fromJson(decodedJson, locale, ref);
 
     if (feeelJsonWorkout.exerciseDbUtcImportDate
         .isAfter(FeeelDB.bundledExerciseImportDate)) {

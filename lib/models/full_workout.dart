@@ -22,9 +22,10 @@
 
 import 'package:feeel/db/database.dart';
 import 'package:feeel/models/full_exercise.dart';
+import 'package:feeel/providers/db_provider.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:feeel/db/db_migration_maps.dart';
-import 'package:get_it/get_it.dart';
 
 class FullWorkout {
   final Workout workout;
@@ -52,7 +53,8 @@ class FullWorkout {
   }
 
   static Future<FullWorkout> fromJson(Map<String, dynamic> json,
-      DateTime utcMetadataDate, Locale locale) async {
+      DateTime utcMetadataDate, Locale locale, WidgetRef ref) async {
+    final db = ref.read(dbProvider);
     final workoutExercises =
         (json[_workoutExerciseKey] as List).map((dynamic weJson) {
       final weTemp = WorkoutExercise.fromJson(weJson as Map<String, dynamic>);
@@ -73,8 +75,8 @@ class FullWorkout {
     return FullWorkout(
         workoutExercises: workoutExercises,
         workout: Workout.fromJson(json[_workoutKey] as Map<String, dynamic>),
-        primaryLangFullExercises: await GetIt.I<FeeelDB>()
-            .queryPrimaryLangFullExercisesFromIds(exerciseIds, locale));
+        primaryLangFullExercises:
+            await db.queryPrimaryLangFullExercisesFromIds(exerciseIds, locale));
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{

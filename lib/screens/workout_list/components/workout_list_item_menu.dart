@@ -23,6 +23,7 @@
 import 'package:feeel/db/database.dart';
 import 'package:feeel/db/workout_import_export.dart';
 import 'package:feeel/enums/workout_type.dart';
+import 'package:feeel/providers/db_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:feeel/models/editable_workout.dart';
 import 'package:feeel/providers/workout_provider.dart';
@@ -31,7 +32,6 @@ import 'package:feeel/screens/workout_list/providers/workout_list_provider.dart'
 import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
 
 class WorkoutListItemMenu extends ConsumerWidget {
   final Workout workout;
@@ -40,48 +40,53 @@ class WorkoutListItemMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final providerNotifier = ref.read(workoutProvider.notifier);
     return PopupMenuButton<void>(
         itemBuilder: (context) => [
               if (workout.type == WorkoutType.custom)
                 PopupMenuItem(
                     child: Text(AppLocalizations.of(context)!.btnEdit),
-                    onTap: () => _onEditCustom(context, workout)),
+                    onTap: () => _onEditCustom(context, workout, ref)),
               if (workout.type == WorkoutType.custom)
                 PopupMenuItem(
                     child: Text(AppLocalizations.of(context)!.btnDelete),
-                    onTap: () =>
-                        _onDeleteCustom(context, workout, providerNotifier)),
+                    onTap: () => _onDeleteCustom(context, workout, ref)),
               PopupMenuItem(
                   child: Text(AppLocalizations.of(context)!.btnDuplicate),
-                  onTap: () => _onDuplicate(context, workout)),
+                  onTap: () => _onDuplicate(context, workout, ref)),
               PopupMenuItem(
                   child: Text(AppLocalizations.of(context)!.btnExport),
                   onTap: () => _onExport(context, workout, ref))
             ]);
   }
 
-  void _onDeleteCustom(BuildContext context, Workout workoutListed,
-      WorkoutProviderNotifier notifier) {
+  void _onDeleteCustom(
+      BuildContext context, Workout workoutListed, WidgetRef ref) async {
+    final providerNotifier = ref.read(workoutProvider.notifier);
     // TODO allow an undo !!!
-    notifier.deleteWorkout(workoutListed.id);
+    await providerNotifier.deleteWorkout(workoutListed.id);
   }
 
-  void _onEditCustom(BuildContext context, Workout workout) async {
+  void _onEditCustom(
+      BuildContext context, Workout workout, WidgetRef ref) async {
+    final db = ref.read(dbProvider);
     final navigator = Navigator.of(context);
-    final fullWorkout = await GetIt.I<FeeelDB>()
-        .queryFullWorkout(workout, Localizations.localeOf(context));
+    final fullWorkout =
+        await db.queryFullWorkout(workout, Localizations.localeOf(context));
     navigator.push<void>(MaterialPageRoute(
         builder: (context) => WorkoutEditorScreen(
               editableWorkout: EditableWorkout.fromWorkout(fullWorkout),
             )));
   }
 
-  void _onDuplicate(BuildContext context, Workout origWorkout) async {
+  void _onDuplicate(
+      BuildContext context, Workout origWorkout, WidgetRef ref) async {
+    final db = ref.read(dbProvider);
+    final locale = Localizations.localeOf(context);
     final navigator = Navigator.of(context);
-    final origFullWorkout = await GetIt.I<FeeelDB>()
-        .queryFullWorkout(origWorkout, Localizations.localeOf(context));
+    final origFullWorkout = await db.queryFullWorkout(origWorkout, locale);
     final editableCopy = EditableWorkout.fromWorkout(origFullWorkout);
+    editableCopy.title = editableCopy.getTranslatedTitle(
+        locale); // this is temporary, until the editor allows editing translations
     editableCopy.dbId = null;
     editableCopy.type = WorkoutType.custom;
 
@@ -93,13 +98,14 @@ class WorkoutListItemMenu extends ConsumerWidget {
 
   Future<void> _onExport(
       BuildContext context, Workout workout, WidgetRef ref) async {
+    final db = ref.read(dbProvider);
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final l10n = AppLocalizations.of(context)!;
     final workoutListNotifier = ref.read(workoutListProvider.notifier);
 
     workoutListNotifier.startExporting();
-    final fullWorkout = await GetIt.I<FeeelDB>()
-        .queryFullWorkout(workout, Localizations.localeOf(context));
+    final fullWorkout =
+        await db.queryFullWorkout(workout, Localizations.localeOf(context));
     try {
       final exported = await WorkoutImportExport.exportWorkout(fullWorkout);
       if (exported) {

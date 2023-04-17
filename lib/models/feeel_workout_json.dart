@@ -23,6 +23,7 @@
 import 'package:feeel/db/database.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // TODO save export files, create import/export tests
 class FeeelWorkoutJson {
@@ -43,14 +44,15 @@ class FeeelWorkoutJson {
       this.metadataVersion = _curMetadataVersion});
 
   static Future<FeeelWorkoutJson> fromJson(
-      Map<String, dynamic> json, Locale locale) async {
+      Map<String, dynamic> json, Locale locale, WidgetRef ref) async {
     final utcMetadataDate =
         DateTime.parse(json[_exerciseDbImportDateKey] as String);
     return FeeelWorkoutJson(
         fullWorkout: await FullWorkout.fromJson(
             json[_fullWorkoutKey] as Map<String, dynamic>,
             utcMetadataDate,
-            locale),
+            locale,
+            ref),
         metadataVersion: json[_metadataVersionKey] as int,
         exerciseDbUtcImportDate: utcMetadataDate);
   }
