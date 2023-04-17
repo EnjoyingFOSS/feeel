@@ -111,7 +111,7 @@ class FeeelThemes {
                     : IconThemeData(color: colorScheme.onSurface))),
             shadowColor: colorScheme.onBackground,
             indicatorColor: colorScheme.primaryContainer,
-            backgroundColor: colorScheme.background,
+            backgroundColor: colorScheme.surface,
             height: 56,
             elevation: 8),
         navigationDrawerTheme: NavigationDrawerThemeData(
@@ -120,7 +120,7 @@ class FeeelThemes {
                     ? IconThemeData(color: colorScheme.onPrimaryContainer)
                     : IconThemeData(color: colorScheme.onSurface))),
             shadowColor: colorScheme.onBackground,
-            backgroundColor: colorScheme.background,
+            backgroundColor: colorScheme.surface,
             indicatorColor: colorScheme.primaryContainer,
             elevation: 8,
             labelTextStyle: MaterialStateProperty.resolveWith(

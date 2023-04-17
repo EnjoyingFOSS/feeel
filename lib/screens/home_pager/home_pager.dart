@@ -56,19 +56,25 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final showSidebar =
-        MediaQuery.of(context).size.width > FeeelGrid.breakpointXL;
+  void _initLocaleDependentAppState(Locale locale) async {
     if (!Platform.isLinux) {
       //TODO SHOULDN'T INIT HERE! THIS IS AN UGLY HACK :( NEED TO TURN TTS INTO A PROVIDER
-      TTSHelper.tts.init(Localizations.localeOf(
-          context)); //TODO should really depend on whether the TTS preference is set
+      await TTSHelper.tts.initLocale(
+          locale); //TODO should really depend on whether the TTS preference is set
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _initLocaleDependentAppState(Localizations.localeOf(context));
+
+    final showPills =
+        MediaQuery.of(context).size.width > FeeelGrid.breakpointXL;
+
     return Scaffold(
         //TODO do I need SafeArea here?
         backgroundColor: Theme.of(context).colorScheme.background,
-        bottomNavigationBar: (!showSidebar)
+        bottomNavigationBar: (!showPills)
             ? NavigationBar(
                 labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
                 selectedIndex: _currentPage,
@@ -88,7 +94,7 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
             : NavigationPills(
                 shadowColor: Theme.of(context).colorScheme.onBackground,
                 elevation: 8,
-                backgroundColor: Theme.of(context).colorScheme.background,
+                backgroundColor: Theme.of(context).colorScheme.surface,
                 onDestinationSelected: _onDestinationSelected,
                 selectedIndex: _currentPage,
                 effectiveHeight: 64,
