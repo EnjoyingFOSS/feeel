@@ -69,7 +69,7 @@ Donations are much appreciated, as they allow me to be able to devote more time 
 
 You can donate via [Liberapay](https://liberapay.com/Feeel/).
 
-Other ways to help
+Reach out to us
 ===============
 
 ANYONE can contribute, no special skills required. Message me on the [Feeel channel on Matrix](https://matrix.to/#/!jFShhgWHRXehKXrToU:matrix.org?via=matrix.org) if you'd like to help.
