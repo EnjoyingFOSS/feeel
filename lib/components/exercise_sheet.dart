@@ -54,13 +54,14 @@ class ExerciseSheet extends StatelessWidget {
   static void showSheet(BuildContext context,
       FullExercise primaryLangFullExercise, FeeelSwatch colorSwatch) {
     showModalBottomSheet<void>(
+        context: context,
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
-        builder: (context) => ExerciseSheet(
+        isDismissible: true,
+        builder: (_) => ExerciseSheet(
               primaryLangFullExercise: primaryLangFullExercise,
               colorSwatch: colorSwatch,
-            ),
-        context: context);
+            ));
   }
 
   @override
