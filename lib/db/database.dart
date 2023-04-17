@@ -381,7 +381,8 @@ class FeeelDB extends _$FeeelDB {
         : await (select(exerciseTranslations)
               ..where((et) =>
                   et.exercise.equals(exercise.wgerId) &
-                  et.locale.equals(locale.toLanguageTag())))
+                  et.locale.equals(locale
+                      .languageCode))) // wger does not support sublocales yet
             .getSingleOrNull();
     final equipment = await (select(exerciseEquipment)
           ..where((eq) => eq.exercise.equals(exercise.wgerId)))
@@ -444,51 +445,53 @@ class FeeelDB extends _$FeeelDB {
   }
 
   Future<void> createOrUpdateWorkout(final EditableWorkout ew) async {
-    //TODO double-check everything; ideally go by categories - R, C, U, D
-    if (ew.dbId != null) {
-      await (delete(workoutExercises)
-            ..where((we) => we.workoutId.equals(ew.dbId!)))
-          .go();
-    }
+    return transaction(() async {
+      //TODO double-check everything; ideally go by categories - R, C, U, D
+      if (ew.dbId != null) {
+        await (delete(workoutExercises)
+              ..where((we) => we.workoutId.equals(ew.dbId!)))
+            .go();
+      }
 
-    //TODO onConflictUpdate might not return the right rowID
+      //TODO onConflictUpdate might not return the right rowID
 
-    final createdRowId =
-        await into(workouts).insertOnConflictUpdate(WorkoutsCompanion(
-      id: ew.dbId != null ? Value(ew.dbId!) : const Value<int>.absent(),
-      type: Value(ew.type),
-      title: Value(ew.title),
-      translationJson: Value(
-          ew.translations.isNotEmpty ? jsonEncode(ew.translations) : null),
-      category: Value(ew.category),
-      countdownDuration: Value(ew.countdownDuration),
-      exerciseDuration: Value(ew.exerciseDuration),
-      breakDuration: Value(ew.breakDuration),
-      // TODO cachedTotalDuration: Value(ew.getDuration())
-    ));
+      final createdRowId =
+          await into(workouts).insertOnConflictUpdate(WorkoutsCompanion(
+        id: ew.dbId != null ? Value(ew.dbId!) : const Value<int>.absent(),
+        type: Value(ew.type),
+        title: Value(ew.title),
+        translationJson: Value(
+            ew.translations.isNotEmpty ? jsonEncode(ew.translations) : null),
+        category: Value(ew.category),
+        countdownDuration: Value(ew.countdownDuration),
+        exerciseDuration: Value(ew.exerciseDuration),
+        breakDuration: Value(ew.breakDuration),
+        // TODO cachedTotalDuration: Value(ew.getDuration())
+      ));
 
-    final insertedItem = await (select(workouts)
-          ..where((w) => (ew.dbId != null)
-              ? w.id.equals(ew.dbId!)
-              : w.rowId.equals(createdRowId)))
-        .getSingle();
+      final insertedItem = await (select(workouts)
+            ..where((w) => (ew.dbId != null)
+                ? w.id.equals(ew.dbId!)
+                : w.rowId.equals(createdRowId)))
+          .getSingle();
 
-    final ewes = ew.workoutExercises;
-    await batch((batch) {
-      batch.insertAll(
-          workoutExercises,
-          List.generate(ewes.length, (i) {
-            final ewe = ewes[i];
-            return WorkoutExercisesCompanion(
-                workoutId: Value(insertedItem.id),
-                orderPosition: Value(i),
-                exercise: BundledExercises.notAddedToWgerYet.contains(ewe
-                        .exercise) //TODO REMOVE THIS CONDITION AFTER THE DEFAULT EXERCISES HAVE BEEN ADDED!!!!
-                    ? const Value(20)
-                    : Value(ewe.exercise),
-                exerciseDuration: Value(ewe.exerciseDuration),
-                breakDuration: Value(ewe.breakDuration));
-          }, growable: false));
+      final ewes = ew.workoutExercises;
+      await batch((batch) {
+        batch.insertAll(
+            workoutExercises,
+            List.generate(ewes.length, (i) {
+              final ewe = ewes[i];
+              return WorkoutExercisesCompanion(
+                  workoutId: Value(insertedItem.id),
+                  orderPosition: Value(i),
+                  exercise: BundledExercises.notAddedToWgerYet.contains(ewe
+                          .exercise) //TODO REMOVE THIS CONDITION AFTER THE DEFAULT EXERCISES HAVE BEEN ADDED!!!!
+                      ? const Value(20)
+                      : Value(ewe.exercise),
+                  exerciseDuration: Value(ewe.exerciseDuration),
+                  breakDuration: Value(ewe.breakDuration));
+            }, growable: false));
+      });
     });
   }
 
@@ -498,26 +501,6 @@ class FeeelDB extends _$FeeelDB {
         cachedLastUse: Value(time),
       ),
     );
-  }
-
-  Future<void> _deleteBundledWorkouts(int fromDBVersion) async {
-    if (fromDBVersion < _v3_0_0) {
-      await customStatement(
-          "DELETE FROM $_pre3_0_0WorkoutExerciseTableName WHERE 'workoutType' = 0");
-    } else {
-      final bundledWorkouts = await (select(workouts)
-            ..where((w) => w.type.equalsValue(WorkoutType.bundled)))
-          .get();
-
-      for (final bw in bundledWorkouts) {
-        await (delete(workoutExercises)
-              ..where((we) => we.workoutId.equals(bw.id)))
-            .go();
-      }
-    }
-    await (delete(workouts)
-          ..where((w) => w.type.equalsValue(WorkoutType.bundled)))
-        .go();
   }
 
   Future<List<WorkoutRecord>> get queryAllWorkoutRecords =>
@@ -540,12 +523,24 @@ class FeeelDB extends _$FeeelDB {
         primaryLangFullExercises: fes);
   }
 
-  Future<void> recordWorkout(final EditableWorkoutRecord ewr) async {
-    await _createWorkoutRecord(ewr);
+  Future<void> deleteWorkout(int workoutId) async {
+    return transaction(() async {
+      await (delete(workoutExercises)
+            ..where((we) => we.workoutId.equals(workoutId)))
+          .go();
+      await (delete(workouts)..where((w) => w.id.equals(workoutId))).go();
+    });
+  }
+
+  // WORKOUT RECORDS
+
+  Future<void> recordWorkout(EditableWorkoutRecord ewr, Locale locale) async {
+    await _createWorkoutRecord(ewr, locale);
     await _setWorkoutLastUsed(ewr.workout.id, ewr.workoutStart);
   }
 
-  Future<void> _createWorkoutRecord(final EditableWorkoutRecord ewr) async {
+  Future<void> _createWorkoutRecord(
+      final EditableWorkoutRecord ewr, Locale locale) async {
     final wers = ewr.workoutExercises;
 
     int workoutDuration = 0;
@@ -557,7 +552,7 @@ class FeeelDB extends _$FeeelDB {
     final createdRowId = await into(workoutRecords).insertOnConflictUpdate(
         WorkoutRecordsCompanion(
             id: const Value<int>.absent(),
-            title: Value(ewr.workout.title),
+            title: Value(LocaleUtil.getWorkoutTranslation(ewr.workout, locale)),
             category: Value(ewr.workout.category),
             workoutStart: Value(ewr.workoutStart),
             completedDuration: Value(ewr.completedDurations

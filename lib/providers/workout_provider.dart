@@ -54,11 +54,7 @@ class WorkoutProviderNotifier extends AsyncNotifier<WorkoutProviderState> {
     state = const AsyncValue.loading();
 
     final db = ref.read(dbProvider);
-    await (db.delete(db.workoutExercises)
-          ..where((we) => we.workoutId.equals(workoutId)))
-        .go();
-    await (db.delete(db.workouts)..where((w) => w.id.equals(workoutId)))
-        .go(); //TODO what if I passed in workout and just ran delete on that workout?
+    db.deleteWorkout(workoutId);
 
     state = AsyncValue.data(WorkoutProviderState(
         await _queryAllWorkouts(db))); //TODO is this too expensive?

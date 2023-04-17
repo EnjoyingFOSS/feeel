@@ -22,6 +22,7 @@
 
 import 'dart:io';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/audio/sound_view.dart';
@@ -35,6 +36,7 @@ import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/enums/workout_stage.dart';
+import 'package:feeel/utils/locale_util.dart';
 // import 'package:feeel/models/view/exercise_step.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -381,7 +383,13 @@ class WorkoutController {
     _recordInProgressExercise();
     for (final completed in _editableWorkoutRecord.completedDurations) {
       if (completed > 0) {
-        await GetIt.I<FeeelDB>().recordWorkout(_editableWorkoutRecord);
+        final localeNameSplit = l10n.localeName.split('_');
+        final locale = localeNameSplit.length == 1
+            ? Locale(localeNameSplit[0])
+            : localeNameSplit.length > 1
+                ? Locale(localeNameSplit[0], localeNameSplit[1])
+                : LocaleUtil.fallbackLocale;
+        await GetIt.I<FeeelDB>().recordWorkout(_editableWorkoutRecord, locale);
         return;
       }
     }
