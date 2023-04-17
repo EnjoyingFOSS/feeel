@@ -25,16 +25,48 @@ import 'package:flutter/widgets.dart';
 
 class IllustrationWidget extends StatelessWidget {
   const IllustrationWidget(
-      {Key? key, required this.imageAssetString, required this.flipped})
+      {Key? key,
+      required this.imageAssetString,
+      required this.flipped,
+      this.dimension,
+      this.colorFilter})
       : super(key: key);
 
   final String imageAssetString;
   final bool flipped;
+  final double? dimension;
+  final ColorFilter? colorFilter;
 
   @override
   Widget build(BuildContext context) {
-    return flipped
-        ? Flipped(child: Image.asset(imageAssetString))
-        : Image.asset(imageAssetString);
+    if (colorFilter != null) {
+      return ColorFiltered(
+          colorFilter: colorFilter!,
+          child: flipped
+              ? Flipped(
+                  child: Image.asset(
+                  imageAssetString,
+                  width: dimension,
+                  height: dimension,
+                ))
+              : Image.asset(
+                  imageAssetString,
+                  width: dimension,
+                  height: dimension,
+                ));
+    } else {
+      return flipped
+          ? Flipped(
+              child: Image.asset(
+              imageAssetString,
+              width: dimension,
+              height: dimension,
+            ))
+          : Image.asset(
+              imageAssetString,
+              width: dimension,
+              height: dimension,
+            );
+    }
   }
 }
