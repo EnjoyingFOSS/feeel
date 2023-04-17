@@ -21,23 +21,24 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/exercise_sheet.dart';
+import 'package:feeel/components/illustration_widget.dart';
 import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 
-import 'flipped.dart';
-
 class ExerciseListItem extends StatelessWidget {
   final FullExercise primaryLangFullExercise; //TODO migrate to FullExercise
   final FeeelSwatch colorSwatch;
   final Widget subtitle;
+  final ColorFilter? colorFilter;
 
   const ExerciseListItem(
       {Key? key,
       required this.primaryLangFullExercise,
       required this.subtitle,
-      required this.colorSwatch})
+      required this.colorSwatch,
+      this.colorFilter})
       : super(key: key);
 
   @override
@@ -46,20 +47,18 @@ class ExerciseListItem extends StatelessWidget {
     return InkWell(
         child: Row(children: [
           Padding(
-            padding: const EdgeInsets.only(
-              left: 8,
-              right: 8,
-              bottom: 8,
-            ),
-            child: primaryLangFullExercise.exercise.flipped
-                ? Flipped(
-                    child: Image.asset(
-                        AssetUtil.getThumbOrPlaceholderPath(imageSlug),
-                        width: 64,
-                        height: 64))
-                : Image.asset(AssetUtil.getThumbOrPlaceholderPath(imageSlug),
-                    width: 64, height: 64),
-          ),
+              padding: const EdgeInsets.only(
+                left: 8,
+                right: 8,
+                bottom: 8,
+              ),
+              child: IllustrationWidget(
+                imageAssetString:
+                    AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                flipped: primaryLangFullExercise.exercise.flipped,
+                dimension: 64,
+                colorFilter: colorFilter,
+              )),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               primaryLangFullExercise.getFirstTranslatedName(),

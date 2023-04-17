@@ -21,6 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/flipped.dart';
+import 'package:feeel/components/illustration_widget.dart';
 import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/providers/exercise_provider.dart';
 import 'package:feeel/utils/asset_util.dart';
@@ -62,14 +63,11 @@ class ExerciseEditorRow extends ConsumerWidget {
           return Row(children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: fullExercise.exercise.flipped
-                  ? Flipped(
-                      child: Image.asset(
-                          AssetUtil.getThumbOrPlaceholderPath(imageSlug),
-                          width: 72,
-                          height: 72))
-                  : Image.asset(AssetUtil.getThumbOrPlaceholderPath(imageSlug),
-                      width: 72, height: 72),
+              child: IllustrationWidget(
+                  imageAssetString:
+                      AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+                  flipped: fullExercise.exercise.flipped,
+                  dimension: 72),
             ),
             Expanded(
                 child: Padding(

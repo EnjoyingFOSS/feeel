@@ -1,3 +1,4 @@
+import 'package:feeel/components/illustration_widget.dart';
 import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/components/flipped.dart';
@@ -39,11 +40,9 @@ class ExercisePickerRow extends StatelessWidget {
               context, primaryLangFullExercise, colorSwatch),
         ),
       ]),
-      secondary: (primaryLangFullExercise.exercise.flipped
-          ? Flipped(
-              child:
-                  Image.asset(AssetUtil.getThumbOrPlaceholderPath(imageSlug)))
-          : Image.asset(AssetUtil.getThumbOrPlaceholderPath(imageSlug))),
+      secondary: IllustrationWidget(
+          imageAssetString: AssetUtil.getThumbOrPlaceholderPath(imageSlug),
+          flipped: primaryLangFullExercise.exercise.flipped),
       onChanged: onChanged,
     );
   }
