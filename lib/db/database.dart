@@ -207,7 +207,6 @@ class FeeelDB extends _$FeeelDB {
   static const _dbFilename = "feeel.db";
 
   static const _v3_0_0 = 300;
-  static const _pre3_0_0WorkoutExerciseTableName = 'workoutExercises';
 
   FeeelDB() : super(_openConnection());
 
