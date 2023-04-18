@@ -44,7 +44,7 @@ void main() async {
   // debugRepaintRainbowEnabled = true; //TODO debug
   GetIt.I.registerSingleton(
       FeeelDB()); //TODO get rid of this after migrating to Riverpod fully
-  await date_intl.initializeDateFormatting();
+  await date_intl.initializeDateFormatting(); //TODO does this even do anything?
   runApp(const ProviderScope(child: Feeel()));
 }
 
@@ -80,7 +80,7 @@ class Feeel extends ConsumerWidget {
 
       final darkTheme = isThemePersonalized
           ? FeeelThemes.getThemeFromScheme(
-              dynamicLightScheme ?? FeeelThemes.darkColors)
+              dynamicDarkScheme ?? FeeelThemes.darkColors)
           : FeeelThemes.getThemeFromScheme(FeeelThemes.darkColors);
 
       if (isThemePersonalized) {
