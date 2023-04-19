@@ -23,14 +23,11 @@
 import 'dart:io';
 
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:feeel/audio/tts_helper.dart';
-import 'package:feeel/db/database.dart';
 import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:feeel/providers/locale_provider.dart';
 import 'package:feeel/providers/theme_meta_provider.dart';
 import 'package:feeel/screens/home_pager/home_pager.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'utils/notification_helper.dart';
 import 'theming/feeel_themes.dart';
@@ -42,8 +39,6 @@ void main() async {
   //TODO could maybe do my theme and language init here...
   // TODO think about implementing auto-update: https://pub.dev/packages/auto_update, https://github.com/GrapheneOS/Camera/issues/227#issuecomment-1132208894
   // debugRepaintRainbowEnabled = true; //TODO debug
-  GetIt.I.registerSingleton(
-      FeeelDB()); //TODO get rid of this after migrating to Riverpod fully
   await date_intl.initializeDateFormatting(); //TODO does this even do anything?
   runApp(const ProviderScope(child: Feeel()));
 }

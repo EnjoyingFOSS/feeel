@@ -23,12 +23,15 @@
 import 'dart:io';
 
 import 'package:feeel/controllers/workout_controller.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/providers/db_provider.dart';
 import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wakelock/wakelock.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -37,7 +40,7 @@ import 'finish_page.dart';
 
 enum _WorkoutPageTypes { cover, exercise, finish }
 
-class WorkoutPager extends StatefulWidget {
+class WorkoutPager extends ConsumerStatefulWidget {
   //TODO convert to StatelessWidget, get rid of the l10n argument
   final FullWorkout fullWorkout;
   final FeeelSwatch colorSwatch;
@@ -51,18 +54,20 @@ class WorkoutPager extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<ConsumerStatefulWidget> createState() {
     return _WorkoutPagerState();
   }
 }
 
-class _WorkoutPagerState extends State<WorkoutPager> {
+class _WorkoutPagerState extends ConsumerState<WorkoutPager> {
   final _pageController = PageController();
+  late FeeelDB _db;
   late WorkoutController _workoutController;
 
   @override
   void initState() {
     super.initState();
+    _db = ref.read(dbProvider);
     _workoutController = WorkoutController(widget.fullWorkout, widget.l10n);
   }
 
@@ -115,7 +120,7 @@ class _WorkoutPagerState extends State<WorkoutPager> {
   @override
   void dispose() {
     super.dispose();
-    _workoutController.recordState();
+    _workoutController.recordState(_db);
     _workoutController.close();
   }
 }

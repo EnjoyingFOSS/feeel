@@ -22,10 +22,9 @@
 
 import 'package:feeel/db/database.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
 
 final dbProvider = Provider<FeeelDB>((ref) {
-  final db = GetIt.I<FeeelDB>(); // TODO FeeelDB(), get rid of getIt
+  final db = FeeelDB();
   ref.onDispose(() {
     db.close();
   });
