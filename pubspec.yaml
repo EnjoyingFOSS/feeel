@@ -44,6 +44,7 @@ dependencies:
   cross_file: ^0.3.3
   file_picker: ^5.2.9
   dynamic_color: ^1.6.3 # for Material You theming
+  device_info_plus: ^8.2.0 # for checking support for Material You theming only
   
   archive: ^3.3.7
 

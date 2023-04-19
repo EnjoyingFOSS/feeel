@@ -22,6 +22,7 @@
 
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:feeel/components/body_container.dart';
 import 'package:feeel/providers/locale_provider.dart';
 import 'package:feeel/providers/theme_meta_provider.dart';
@@ -49,8 +50,9 @@ class SettingsScreen extends ConsumerStatefulWidget {
 
 class _SettingsBundle {
   final SharedPreferences preferences;
+  final bool onAndroidWithMaterialYou;
 
-  _SettingsBundle(this.preferences);
+  _SettingsBundle(this.preferences, this.onAndroidWithMaterialYou);
 }
 
 class _SettingsScreenState extends ConsumerState<SettingsScreen> {
@@ -159,7 +161,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           });
                         },
                       ),
-                      if (Platform.isAndroid || Platform.isLinux)
+                      if (settingsBundle.onAndroidWithMaterialYou ||
+                          Platform.isLinux)
                         SwitchListTile.adaptive(
                             secondary: const SizedBox(),
                             title: Text(AppLocalizations.of(context)!
@@ -300,7 +303,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   Future<_SettingsBundle> _getSettingsBundle() async {
     //TODO add language to bundle
+    final onAndroidWithMaterialYou = Platform.isAndroid &&
+        (await (DeviceInfoPlugin().androidInfo)).version.sdkInt >= 31;
     final preferences = await SharedPreferences.getInstance();
-    return _SettingsBundle(preferences);
+    return _SettingsBundle(preferences, onAndroidWithMaterialYou);
   }
 }
