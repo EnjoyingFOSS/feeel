@@ -175,7 +175,6 @@ class DBImageHelper {
     BundledExercises.neckCirclesCCW: _neckCircleLicense,
     BundledExercises.neckHalfCircles: _neckCircleLicense,
     BundledExercises.headTilts: _lateralNeckStretchImageLicense,
-    //TODO !!!
     BundledExercises.quadrupedThoracicRotationL:
         _quadrupedThoracicRotationLicense,
     BundledExercises.quadrupedThoracicRotationR:

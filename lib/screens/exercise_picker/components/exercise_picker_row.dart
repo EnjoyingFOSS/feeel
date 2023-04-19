@@ -1,7 +1,6 @@
 import 'package:feeel/components/illustration_widget.dart';
 import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/utils/asset_util.dart';
-import 'package:feeel/components/flipped.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

@@ -20,7 +20,6 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/components/flipped.dart';
 import 'package:feeel/components/illustration_widget.dart';
 import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/providers/exercise_provider.dart';
