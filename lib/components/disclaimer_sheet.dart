@@ -47,8 +47,8 @@ class DisclaimerSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fgColor = Theme.of(context).colorScheme.onBackground;
-    final bgColor = Theme.of(context).colorScheme.background;
+    final fgColor = Theme.of(context).colorScheme.onSurface;
+    final bgColor = Theme.of(context).colorScheme.surface;
 
     return CustomScrollView(
       shrinkWrap: true,

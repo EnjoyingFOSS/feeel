@@ -47,7 +47,7 @@ class ContributeSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = Theme.of(context).colorScheme.background;
+    final bgColor = Theme.of(context).colorScheme.surface;
     final narrowLayout = _isNarrowLayout(context);
     final curLocale = Localizations.localeOf(context);
     final wgerLangBit = LocaleUtil.wgerSupportsLocale(curLocale)
