@@ -1,4 +1,4 @@
-Feeel is a hobby project that I'm working on in my spare time. As such, help is appreciated. :)
+Feeel is conceived as a community project.
 
 Here's how you can get involved:
 
