@@ -24,22 +24,23 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:feeel/components/body_container.dart';
+import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/providers/locale_provider.dart';
 import 'package:feeel/providers/theme_meta_provider.dart';
 import 'package:feeel/screens/settings/components/language_dialog.dart';
+import 'package:feeel/screens/settings/components/theme_dialog.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/utils/locale_util.dart';
 // import 'package:feeel/screens/settings/components/import_export_tile.dart';
 // import 'package:archive/archive_io.dart';
 import 'package:feeel/utils/notification_helper.dart';
-import 'package:feeel/db/preference_keys.dart';
-import 'package:feeel/screens/settings/components/theme_dialog.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -260,20 +261,22 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     return TimeOfDay(hour: now.hour, minute: (now.minute ~/ 30) * 30);
   }
 
-  void _showAboutDialog() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    showAboutDialog(
-        context: context,
-        applicationName: packageInfo.appName,
-        applicationVersion: packageInfo.version,
-        applicationIcon: const SizedBox(
-          width: 48,
-          height: 48,
-          child: Image(
-            image: AssetImage('assets/icon_generic.png'),
+  Future<void> _showAboutDialog() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    if (context.mounted) {
+      showAboutDialog(
+          context: context,
+          applicationName: packageInfo.appName,
+          applicationVersion: packageInfo.version,
+          applicationIcon: SizedBox(
+            width: 48,
+            height: 48,
+            child: Image(
+              image: AssetImage(AssetUtil.getImagePath("icon_generic.png")),
+            ),
           ),
-        ),
-        applicationLegalese: "© Miroslav Mazel et al., 2021");
+          applicationLegalese: "© Miroslav Mazel et al., 2021");
+    }
     //TODO add app LICENSE info to LicenseRegistry + source code and donate items
   }
 

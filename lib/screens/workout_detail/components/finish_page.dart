@@ -21,6 +21,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/body_container.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -39,7 +40,10 @@ class FinishPage extends StatelessWidget {
         BackButton(
           color: color,
         ),
-        Expanded(child: Center(child: Image.asset("assets/image_success.png"))),
+        Expanded(
+            child: Center(
+                child:
+                    Image.asset(AssetUtil.getImagePath("image_success.png")))),
         Padding(
             padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
             child: Center(
