@@ -26,16 +26,10 @@ class AssetUtil {
   static const _assetsDir = "assets";
   static const _thumbsPrefix = "thumbs_";
   static const _placeholderAsset = "placeholder.webp";
-  static const _fullPlaceholderPath =
-      "$_assetsDir/$_placeholderAsset"; // hard-coded path
-  static const _fullPlaceholderThumbsPath =
-      "$_assetsDir/$_thumbsPrefix$_placeholderAsset"; // hard-coded path
-  static const _fullExercisesPath =
-      "$_assetsDir/exercises.json"; // hard-coded path
 
   static String getImageOrPlaceholderPath(String? imageSlug) {
     if (imageSlug == null) {
-      return _fullPlaceholderPath;
+      return p.join(_assetsDir, _placeholderAsset);
     }
 
     final path = getImagePath(imageSlug);
@@ -48,7 +42,7 @@ class AssetUtil {
 
   static String getThumbOrPlaceholderPath(String? imageSlug) {
     if (imageSlug == null) {
-      return _fullPlaceholderThumbsPath;
+      return p.join(_assetsDir, "$_thumbsPrefix$_placeholderAsset");
     }
     final path = getImagePath(_thumbsPrefix + imageSlug);
     // TODO  figure out how to check: if (File(path).existsSync()) {
@@ -60,5 +54,6 @@ class AssetUtil {
 
   static String getImagePath(String imageSlug) =>
       p.join(_assetsDir, imageSlug); //TODO test p.join
-  static String getExerciseJson() => _fullExercisesPath;
+
+  static String getExerciseJson() => p.join(_assetsDir, "exercises.json");
 }
