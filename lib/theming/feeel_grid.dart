@@ -41,5 +41,4 @@ enum LayoutXL {
 
 class FeeelGrid {
   static const breakpointXL = 960;
-  static const bottomAppBarHeight = 48.0;
 }

@@ -20,12 +20,12 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/theming/feeel_color.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatches.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'feeel_color.dart';
-import 'feeel_shade.dart';
 
 class FeeelThemes {
   //TODO make into providers too?
@@ -79,6 +79,8 @@ class FeeelThemes {
   static ThemeData getThemeFromScheme(ColorScheme colorScheme) {
     //TODO system bar icon colors are wrong
     return ThemeData(
+        useMaterial3: true,
+        cupertinoOverrideTheme: const CupertinoThemeData(applyThemeToAll: true),
         materialTapTargetSize: MaterialTapTargetSize.padded,
         colorScheme: colorScheme,
         visualDensity: VisualDensity.standard,
@@ -86,6 +88,18 @@ class FeeelThemes {
         primaryColor: colorScheme.primary,
         scaffoldBackgroundColor: colorScheme.background,
         cardColor: colorScheme.surface,
+        pageTransitionsTheme: const PageTransitionsTheme(
+            builders: <TargetPlatform, PageTransitionsBuilder>{
+              TargetPlatform.android: ZoomPageTransitionsBuilder(),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.macOS: CupertinoPageTransitionsBuilder()
+            }),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+          shape: const StadiumBorder(),
+        ),
         appBarTheme: AppBarTheme(
             systemOverlayStyle: colorScheme.brightness == Brightness.light
                 ? SystemUiOverlayStyle.dark.copyWith(
@@ -107,13 +121,14 @@ class FeeelThemes {
         navigationBarTheme: NavigationBarThemeData(
             iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
                 (states) => (states.contains(MaterialState.selected)
-                    ? IconThemeData(color: colorScheme.onPrimaryContainer)
+                    ? IconThemeData(color: colorScheme.primary)
                     : IconThemeData(color: colorScheme.onSurface))),
             shadowColor: colorScheme.onBackground,
-            indicatorColor: colorScheme.primaryContainer,
-            backgroundColor: colorScheme.surface,
+            indicatorColor: colorScheme.background,
+            elevation: 16,
+            backgroundColor: colorScheme.background,
             height: 56,
-            elevation: 8),
+            surfaceTintColor: Colors.transparent),
         navigationDrawerTheme: NavigationDrawerThemeData(
             iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
                 (states) => (states.contains(MaterialState.selected)
@@ -123,8 +138,8 @@ class FeeelThemes {
             backgroundColor: colorScheme.surface,
             indicatorColor: colorScheme.primaryContainer,
             elevation: 8,
-            labelTextStyle: MaterialStateProperty.resolveWith(
-                (states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? TextStyle(color: colorScheme.onPrimaryContainer, fontWeight: FontWeight.w500) : null)),
+            labelTextStyle:
+                MaterialStateProperty.resolveWith((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? TextStyle(color: colorScheme.onPrimaryContainer, fontWeight: FontWeight.w500) : null)),
         switchTheme: SwitchThemeData(thumbColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null), trackColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary.withAlpha(80) : null)),
         radioTheme: RadioThemeData(
           fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
