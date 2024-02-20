@@ -1,6 +1,21 @@
 include: package:flutter_lints/flutter.yaml
 
-analyzer:
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+linter:
+  rules:
+    - unawaited_futures
+    - prefer_final_locals
+    - prefer_final_in_for_each
+    - always_declare_return_types
+    - always_use_package_imports
+    - avoid_slow_async_io
+    - unnecessary_statements
+    - cascade_invocations
+    - directives_ordering
+    - discarded_futures
+    - prefer_foreach
+    - prefer_if_elements_to_conditional_expressions
+    - unnecessary_breaks
+    - unnecessary_lambdas
+    - unnecessary_to_list_in_spreads
+    - use_enums
+    - secure_pubspec_urls
