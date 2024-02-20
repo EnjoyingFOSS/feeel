@@ -29,11 +29,11 @@ import 'package:feeel/db/db_image_helper.dart';
 import 'package:feeel/enums/equipment.dart';
 import 'package:feeel/enums/exercise_category.dart';
 import 'package:feeel/enums/exercise_type.dart';
-import 'package:feeel/utils/locale_util.dart';
 import 'package:feeel/enums/license.dart';
 import 'package:feeel/enums/muscle.dart';
 import 'package:feeel/enums/muscle_role.dart';
 import 'package:feeel/models/full_exercise.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:feeel/utils/simple_html_markdown_util.dart';
 
 class WgerExerciseUtil {
@@ -57,13 +57,10 @@ class WgerExerciseUtil {
         ? ExerciseCategory.cardio
         : ExerciseCategory
             .strength; //TODO change when Stretching and Yoga becomes a category too !!!
-    final enAuthors = <String>{};
-    enAuthors.addAll(List<String>.from(wgerBase["author_history"] as List? ??
-        const <String>[])); //TODO nullable author_history is just temporary
-    enAuthors.addAll(List<String>.from(
-        wgerExerciseEn["author_history"] as List? ??
-            const <String>[])); //TODO nullable author_history is just temporary
-    final descAuthors = enAuthors.join(Exercises.listSeparator);
+    final enAuthors = <String>[
+      ...(wgerBase["author_history"] as List? ?? []),
+      ...(wgerExerciseEn["author_history"] as List? ?? [])
+    ]; //TODO nullable author_history is just temporary
     final type = BundledExercises.headExercises.contains(wgerBaseId)
         ? ExerciseType.head
         : ExerciseType.fullBody;
@@ -80,23 +77,25 @@ class WgerExerciseUtil {
     final description = SimpleHtmlMarkdownUtil.simpleHtmlToMarkdown(
         wgerExerciseEn["description"] as String);
     final unparsedNotes = wgerExerciseEn["notes"] as List?;
-    final noteList =
-        unparsedNotes?.map((dynamic un) => (un as Map)["comment"] as String);
-    final notes =
-        noteList?.isEmpty ?? true ? null : "* ${noteList!.join("\n* ")}";
-    final aliasesJoined =
-        (wgerExerciseEn["aliases"] as List?)?.join(Exercises.listSeparator);
-    final aliases = (aliasesJoined?.isEmpty ?? true) ? null : aliasesJoined;
+    final noteList = unparsedNotes
+        ?.map((dynamic un) => (un as Map)["comment"] as String)
+        .toList();
+    final aliasContents = wgerExerciseEn["aliases"] as List?;
+    final aliasesJoined = (aliasContents?.isNotEmpty ?? false)
+        ? aliasContents!
+            .map((aliasItem) => aliasItem["alias"] as String)
+            .toList()
+        : null;
 
     final exercise = Exercise(
         wgerId: wgerBaseId,
         name: name,
-        aliases: aliases,
+        aliases: aliasesJoined,
         type: type,
         description: description,
-        notes: notes,
+        notes: noteList,
         descLicense: descLicense,
-        descAuthors: descAuthors,
+        descAuthors: enAuthors,
         category: category,
         imageSlug: imageSlug,
         imageLicense: imageLicense,
@@ -110,12 +109,12 @@ class WgerExerciseUtil {
       return ExerciseEquipmentPiece(exercise: wgerBaseId, equipment: equipment);
     }).toList();
 
-    final exerciseMuscles = List<ExerciseMuscle>.empty(growable: true);
-
-    exerciseMuscles.addAll(_parseMuscles(
-        wgerBase["muscles"] as List, wgerBaseId, MuscleRole.primary));
-    exerciseMuscles.addAll(_parseMuscles(wgerBase["muscles_secondary"] as List,
-        wgerBaseId, MuscleRole.secondary));
+    final exerciseMuscles = [
+      ...(_parseMuscles(
+          wgerBase["muscles"] as List, wgerBaseId, MuscleRole.primary)),
+      ...(_parseMuscles(wgerBase["muscles_secondary"] as List, wgerBaseId,
+          MuscleRole.secondary))
+    ];
 
     final wgerTranslations = (wgerExercises.length == 1)
         ? null
@@ -141,21 +140,21 @@ class WgerExerciseUtil {
             wgerExercise["description"] as String);
         final unparsedNotes = wgerExercise["notes"] as List?;
         final noteList = unparsedNotes
-            ?.map((dynamic un) => (un as Map)["comment"] as String);
-        final notes =
-            noteList?.isEmpty ?? true ? null : "* ${noteList!.join("\n* ")}";
-        final aliasesJoined =
-            (wgerExercise["aliases"] as List?)?.join(Exercises.listSeparator);
-        final aliases = (aliasesJoined?.isEmpty ?? true) ? null : aliasesJoined;
+            ?.map((dynamic un) => (un as Map)["comment"] as String)
+            .toList();
+        final aliasContents = wgerExercise["aliases"] as List?;
+        final aliasesJoined = (aliasContents?.isNotEmpty ?? false)
+            ? aliasContents!
+                .map((aliasItem) => aliasItem["alias"] as String)
+                .toList()
+            : null;
 
         final translationAuthors = () {
           //TODO simplify later and remove try catch, after fixing: _CastError (type 'List<dynamic>' is not a subtype of type 'List<String>' in type cast)
           try {
-            return (wgerExercise["author_history"] as List<String>)
-                .map((author) => author)
-                .join(Exercises.listSeparator);
+            return (wgerExercise["author_history"] as List<String>);
           } catch (_) {
-            return "";
+            return <String>[];
           }
         }();
 
@@ -163,14 +162,13 @@ class WgerExerciseUtil {
             locale,
             () => ExerciseTranslation(
                 exercise: exerciseWgerId,
-                locale: locale.toLanguageTag(),
+                locale: locale,
                 name: name,
-                aliases: aliases,
+                aliases: aliasesJoined,
                 description: description,
-                notes: notes,
+                notes: noteList,
                 translationAuthors: translationAuthors,
-                translationLicense:
-                    descLicense)); //TODO is the translation license the description one?
+                translationLicense: descLicense));
       }
     }
     return exerciseTranslations;

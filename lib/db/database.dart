@@ -23,110 +23,41 @@
 // TODO capitalize: commando pull-ups, kettlebell swing, knee raises, one-handed kettlebell curls, BUS DRIVERS, LYING DUMBELL ROW ...
 
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:drift/drift.dart';
-
-import 'dart:io';
 import 'package:drift/native.dart';
-import 'package:feeel/db/db_migration_maps.dart';
 import 'package:feeel/db/bundled_exercises.dart';
 import 'package:feeel/db/bundled_workouts.dart';
+import 'package:feeel/db/db_migration_maps.dart';
+import 'package:feeel/db/exercise_tables.dart';
 import 'package:feeel/enums/equipment.dart';
 import 'package:feeel/enums/exercise_category.dart';
-import 'package:feeel/utils/locale_util.dart';
+import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/license.dart';
 import 'package:feeel/enums/muscle.dart';
-import 'package:feeel/models/editable_workout_record.dart';
-import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/muscle_role.dart';
 import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/enums/workout_type.dart';
+import 'package:feeel/models/editable_workout.dart';
+import 'package:feeel/models/editable_workout_record.dart';
 import 'package:feeel/models/full_exercise.dart';
+import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/models/full_workout_record.dart';
 import 'package:feeel/utils/asset_util.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:feeel/utils/wger_exercise_util.dart';
 import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
-
+import 'package:path_provider/path_provider.dart';
 import 'package:sqlite3/sqlite3.dart';
-
-import '../enums/workout_type.dart';
-import '../models/editable_workout.dart';
-import '../models/full_workout.dart';
 
 part 'database.g.dart';
 
 //TODO consider using textEnum instead of intEnum in databases in general
 
 //TODO add cache
-
-class Exercises extends Table {
-  static const listSeparator = "|";
-
-  IntColumn get wgerId => integer()();
-  TextColumn get name => text()();
-  TextColumn get aliases => text().nullable()();
-
-  /// pipe-separated list of aliases
-  IntColumn get category => intEnum<ExerciseCategory>()();
-  TextColumn get description => text().nullable()();
-  TextColumn get notes => text().nullable()();
-  TextColumn get descLicense => textEnum<License>()();
-  TextColumn get descAuthors => text()();
-
-  /// pipe-separated list of authors
-  TextColumn get imageSlug => text().nullable()();
-  IntColumn get type => intEnum<ExerciseType>()(); //TODO how to convert this?
-  BoolColumn get flipped => boolean().withDefault(const Constant(
-      false))(); //TODO what's the use of withDefault if constructor requires it anyway?
-  TextColumn get imageLicense => text().nullable()();
-  BoolColumn get animated => boolean()();
-
-  IntColumn get variationGroup => integer().nullable()();
-
-  @override
-  Set<Column>? get primaryKey => {wgerId};
-}
-
-// TODO Missing from exercise database
-//
-// "images": [],
-// "videos": [],
-
-class ExerciseTranslations extends Table {
-  IntColumn get exercise => integer()();
-  TextColumn get locale => text()();
-  TextColumn get name => text()();
-  TextColumn get description => text().nullable()();
-  TextColumn get notes => text().nullable()();
-  TextColumn get translationLicense => textEnum<License>()();
-  TextColumn get translationAuthors => text()();
-  TextColumn get aliases => text().nullable()();
-
-  /// pipe-separated list of aliases
-
-  @override
-  Set<Column>? get primaryKey => {exercise, locale};
-}
-
-class ExerciseMuscles extends Table {
-  IntColumn get exercise => integer()();
-  IntColumn get muscle => intEnum<Muscle>()();
-  IntColumn get role => intEnum<MuscleRole>()();
-
-  @override
-  Set<Column>? get primaryKey => {exercise, muscle};
-}
-
-@DataClassName("ExerciseEquipmentPiece")
-class ExerciseEquipment extends Table {
-  IntColumn get exercise => integer()();
-  IntColumn get equipment => intEnum<EquipmentPiece>()();
-
-  @override
-  Set<Column>? get primaryKey => {exercise, equipment};
-}
 
 class Workouts extends Table {
   //TODO FIGURE OUT TRANSLATABLE WORKOUT NAMES!!!
@@ -230,6 +161,8 @@ class FeeelDB extends _$FeeelDB {
         // MIGRATE
         if (from < _v3_0_0) {
           await _migrateFromPre3_0_0(m, backupFile);
+        } else {
+          await regenerateExercises();
         }
 
         // DELETE BACKUP
@@ -336,14 +269,21 @@ class FeeelDB extends _$FeeelDB {
   // EXERCISES
   //
 
+  Future<void> regenerateExercises() async {
+    await (exercises.deleteAll());
+    await (exerciseMuscles.deleteAll());
+    await (exerciseTranslations.deleteAll());
+    await (exerciseEquipment.deleteAll());
+    await _addAllExercises();
+  }
+
   Future<void> _addAllExercises() async {
     final exerciseFileContents =
         await rootBundle.loadString(AssetUtil.getExerciseJson());
 
-    final fullExercises = WgerExerciseUtil.parseWgerJson(exerciseFileContents);
-
-    fullExercises.sort((a, b) => a.exercise.name.compareTo(b.exercise
-        .name)); //TODO check if this reflects on how they're actually stored
+    final fullExercises = WgerExerciseUtil.parseWgerJson(exerciseFileContents)
+      ..sort((a, b) => a.exercise.name.compareTo(b.exercise
+          .name)); //TODO check if this reflects on how they're actually stored
 
     for (final fe in fullExercises) {
       try {

@@ -42,6 +42,6 @@ class FullExercise {
   String? getFirstTranslatedDesc() =>
       translationsByLanguage?.values.first.description ?? exercise.description;
 
-  String? getFirstTranslatedNotes() =>
+  List<String>? getFirstTranslatedNotes() =>
       translationsByLanguage?.values.first.notes ?? exercise.notes;
 }

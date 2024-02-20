@@ -21,26 +21,21 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/illustration_widget.dart';
-import 'package:feeel/db/database.dart';
+import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/screens/workout_detail/components/body_exercise_content.dart';
 import 'package:feeel/screens/workout_detail/components/contribution_overlay.dart';
 import 'package:feeel/screens/workout_detail/components/head_exercise_content.dart';
 import 'package:feeel/theming/feeel_grid.dart';
+import 'package:feeel/theming/feeel_shade.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/utils/url_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../utils/asset_util.dart';
-import '../enums/exercise_type.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../theming/feeel_shade.dart';
-import '../theming/feeel_swatch.dart';
-
 class ExerciseSheet extends StatelessWidget {
-  //TODO migrate to FullExercise!
-  //TODO make responsive // TODO show during breaks
   final FullExercise primaryLangFullExercise;
   final FeeelSwatch colorSwatch;
 
@@ -218,7 +213,7 @@ class ExerciseSheet extends StatelessWidget {
                                 ),
                                 if (translatedNotes != null)
                                   MarkdownBody(
-                                    data: translatedNotes,
+                                    data: "* ${translatedNotes.join("\n* ")}",
                                     styleSheet: markdownBodyStyle,
                                     imageBuilder: (a, b, c) => const SizedBox(),
                                     onTapLink: (a, b, c) {},
@@ -269,7 +264,6 @@ class ExerciseSheet extends StatelessWidget {
                                             "%1s",
                                             primaryLangFullExercise
                                                 .exercise.descAuthors
-                                                .split(Exercises.listSeparator)
                                                 .join(", "))
                                         .replaceFirst(
                                             "%2s",

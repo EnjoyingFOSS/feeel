@@ -22,9 +22,10 @@ class $ExercisesTable extends Exercises
   static const VerificationMeta _aliasesMeta =
       const VerificationMeta('aliases');
   @override
-  late final GeneratedColumn<String> aliases = GeneratedColumn<String>(
-      'aliases', aliasedName, true,
-      type: DriftSqlType.string, requiredDuringInsert: false);
+  late final GeneratedColumnWithTypeConverter<List<String>?, String> aliases =
+      GeneratedColumn<String>('aliases', aliasedName, true,
+              type: DriftSqlType.string, requiredDuringInsert: false)
+          .withConverter<List<String>?>($ExercisesTable.$converteraliases);
   static const VerificationMeta _categoryMeta =
       const VerificationMeta('category');
   @override
@@ -40,9 +41,10 @@ class $ExercisesTable extends Exercises
       type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _notesMeta = const VerificationMeta('notes');
   @override
-  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
-      'notes', aliasedName, true,
-      type: DriftSqlType.string, requiredDuringInsert: false);
+  late final GeneratedColumnWithTypeConverter<List<String>?, String> notes =
+      GeneratedColumn<String>('notes', aliasedName, true,
+              type: DriftSqlType.string, requiredDuringInsert: false)
+          .withConverter<List<String>?>($ExercisesTable.$converternotes);
   static const VerificationMeta _descLicenseMeta =
       const VerificationMeta('descLicense');
   @override
@@ -53,9 +55,10 @@ class $ExercisesTable extends Exercises
   static const VerificationMeta _descAuthorsMeta =
       const VerificationMeta('descAuthors');
   @override
-  late final GeneratedColumn<String> descAuthors = GeneratedColumn<String>(
-      'desc_authors', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+  late final GeneratedColumnWithTypeConverter<List<String>, String>
+      descAuthors = GeneratedColumn<String>('desc_authors', aliasedName, false,
+              type: DriftSqlType.string, requiredDuringInsert: true)
+          .withConverter<List<String>>($ExercisesTable.$converterdescAuthors);
   static const VerificationMeta _imageSlugMeta =
       const VerificationMeta('imageSlug');
   @override
@@ -141,10 +144,7 @@ class $ExercisesTable extends Exercises
     } else if (isInserting) {
       context.missing(_nameMeta);
     }
-    if (data.containsKey('aliases')) {
-      context.handle(_aliasesMeta,
-          aliases.isAcceptableOrUnknown(data['aliases']!, _aliasesMeta));
-    }
+    context.handle(_aliasesMeta, const VerificationResult.success());
     context.handle(_categoryMeta, const VerificationResult.success());
     if (data.containsKey('description')) {
       context.handle(
@@ -152,19 +152,9 @@ class $ExercisesTable extends Exercises
           description.isAcceptableOrUnknown(
               data['description']!, _descriptionMeta));
     }
-    if (data.containsKey('notes')) {
-      context.handle(
-          _notesMeta, notes.isAcceptableOrUnknown(data['notes']!, _notesMeta));
-    }
+    context.handle(_notesMeta, const VerificationResult.success());
     context.handle(_descLicenseMeta, const VerificationResult.success());
-    if (data.containsKey('desc_authors')) {
-      context.handle(
-          _descAuthorsMeta,
-          descAuthors.isAcceptableOrUnknown(
-              data['desc_authors']!, _descAuthorsMeta));
-    } else if (isInserting) {
-      context.missing(_descAuthorsMeta);
-    }
+    context.handle(_descAuthorsMeta, const VerificationResult.success());
     if (data.containsKey('image_slug')) {
       context.handle(_imageSlugMeta,
           imageSlug.isAcceptableOrUnknown(data['image_slug']!, _imageSlugMeta));
@@ -205,20 +195,23 @@ class $ExercisesTable extends Exercises
           .read(DriftSqlType.int, data['${effectivePrefix}wger_id'])!,
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
-      aliases: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}aliases']),
+      aliases: $ExercisesTable.$converteraliases.fromSql(attachedDatabase
+          .typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}aliases'])),
       category: $ExercisesTable.$convertercategory.fromSql(attachedDatabase
           .typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}category'])!),
       description: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}description']),
-      notes: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}notes']),
+      notes: $ExercisesTable.$converternotes.fromSql(attachedDatabase
+          .typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}notes'])),
       descLicense: $ExercisesTable.$converterdescLicense.fromSql(
           attachedDatabase.typeMapping.read(
               DriftSqlType.string, data['${effectivePrefix}desc_license'])!),
-      descAuthors: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}desc_authors'])!,
+      descAuthors: $ExercisesTable.$converterdescAuthors.fromSql(
+          attachedDatabase.typeMapping.read(
+              DriftSqlType.string, data['${effectivePrefix}desc_authors'])!),
       imageSlug: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}image_slug']),
       type: $ExercisesTable.$convertertype.fromSql(attachedDatabase.typeMapping
@@ -239,10 +232,16 @@ class $ExercisesTable extends Exercises
     return $ExercisesTable(attachedDatabase, alias);
   }
 
+  static TypeConverter<List<String>?, String?> $converteraliases =
+      const NullableListConverter();
   static JsonTypeConverter2<ExerciseCategory, int, int> $convertercategory =
       const EnumIndexConverter<ExerciseCategory>(ExerciseCategory.values);
+  static TypeConverter<List<String>?, String?> $converternotes =
+      const NullableListConverter();
   static JsonTypeConverter2<License, String, String> $converterdescLicense =
       const EnumNameConverter<License>(License.values);
+  static TypeConverter<List<String>, String> $converterdescAuthors =
+      const ListConverter();
   static JsonTypeConverter2<ExerciseType, int, int> $convertertype =
       const EnumIndexConverter<ExerciseType>(ExerciseType.values);
 }
@@ -250,16 +249,12 @@ class $ExercisesTable extends Exercises
 class Exercise extends DataClass implements Insertable<Exercise> {
   final int wgerId;
   final String name;
-  final String? aliases;
-
-  /// pipe-separated list of aliases
+  final List<String>? aliases;
   final ExerciseCategory category;
   final String? description;
-  final String? notes;
+  final List<String>? notes;
   final License descLicense;
-  final String descAuthors;
-
-  /// pipe-separated list of authors
+  final List<String> descAuthors;
   final String? imageSlug;
   final ExerciseType type;
   final bool flipped;
@@ -287,7 +282,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     map['wger_id'] = Variable<int>(wgerId);
     map['name'] = Variable<String>(name);
     if (!nullToAbsent || aliases != null) {
-      map['aliases'] = Variable<String>(aliases);
+      final converter = $ExercisesTable.$converteraliases;
+      map['aliases'] = Variable<String>(converter.toSql(aliases));
     }
     {
       final converter = $ExercisesTable.$convertercategory;
@@ -297,13 +293,17 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       map['description'] = Variable<String>(description);
     }
     if (!nullToAbsent || notes != null) {
-      map['notes'] = Variable<String>(notes);
+      final converter = $ExercisesTable.$converternotes;
+      map['notes'] = Variable<String>(converter.toSql(notes));
     }
     {
       final converter = $ExercisesTable.$converterdescLicense;
       map['desc_license'] = Variable<String>(converter.toSql(descLicense));
     }
-    map['desc_authors'] = Variable<String>(descAuthors);
+    {
+      final converter = $ExercisesTable.$converterdescAuthors;
+      map['desc_authors'] = Variable<String>(converter.toSql(descAuthors));
+    }
     if (!nullToAbsent || imageSlug != null) {
       map['image_slug'] = Variable<String>(imageSlug);
     }
@@ -358,14 +358,14 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     return Exercise(
       wgerId: serializer.fromJson<int>(json['wgerId']),
       name: serializer.fromJson<String>(json['name']),
-      aliases: serializer.fromJson<String?>(json['aliases']),
+      aliases: serializer.fromJson<List<String>?>(json['aliases']),
       category: $ExercisesTable.$convertercategory
           .fromJson(serializer.fromJson<int>(json['category'])),
       description: serializer.fromJson<String?>(json['description']),
-      notes: serializer.fromJson<String?>(json['notes']),
+      notes: serializer.fromJson<List<String>?>(json['notes']),
       descLicense: $ExercisesTable.$converterdescLicense
           .fromJson(serializer.fromJson<String>(json['descLicense'])),
-      descAuthors: serializer.fromJson<String>(json['descAuthors']),
+      descAuthors: serializer.fromJson<List<String>>(json['descAuthors']),
       imageSlug: serializer.fromJson<String?>(json['imageSlug']),
       type: $ExercisesTable.$convertertype
           .fromJson(serializer.fromJson<int>(json['type'])),
@@ -381,14 +381,14 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     return <String, dynamic>{
       'wgerId': serializer.toJson<int>(wgerId),
       'name': serializer.toJson<String>(name),
-      'aliases': serializer.toJson<String?>(aliases),
+      'aliases': serializer.toJson<List<String>?>(aliases),
       'category': serializer
           .toJson<int>($ExercisesTable.$convertercategory.toJson(category)),
       'description': serializer.toJson<String?>(description),
-      'notes': serializer.toJson<String?>(notes),
+      'notes': serializer.toJson<List<String>?>(notes),
       'descLicense': serializer.toJson<String>(
           $ExercisesTable.$converterdescLicense.toJson(descLicense)),
-      'descAuthors': serializer.toJson<String>(descAuthors),
+      'descAuthors': serializer.toJson<List<String>>(descAuthors),
       'imageSlug': serializer.toJson<String?>(imageSlug),
       'type':
           serializer.toJson<int>($ExercisesTable.$convertertype.toJson(type)),
@@ -402,12 +402,12 @@ class Exercise extends DataClass implements Insertable<Exercise> {
   Exercise copyWith(
           {int? wgerId,
           String? name,
-          Value<String?> aliases = const Value.absent(),
+          Value<List<String>?> aliases = const Value.absent(),
           ExerciseCategory? category,
           Value<String?> description = const Value.absent(),
-          Value<String?> notes = const Value.absent(),
+          Value<List<String>?> notes = const Value.absent(),
           License? descLicense,
-          String? descAuthors,
+          List<String>? descAuthors,
           Value<String?> imageSlug = const Value.absent(),
           ExerciseType? type,
           bool? flipped,
@@ -492,12 +492,12 @@ class Exercise extends DataClass implements Insertable<Exercise> {
 class ExercisesCompanion extends UpdateCompanion<Exercise> {
   final Value<int> wgerId;
   final Value<String> name;
-  final Value<String?> aliases;
+  final Value<List<String>?> aliases;
   final Value<ExerciseCategory> category;
   final Value<String?> description;
-  final Value<String?> notes;
+  final Value<List<String>?> notes;
   final Value<License> descLicense;
-  final Value<String> descAuthors;
+  final Value<List<String>> descAuthors;
   final Value<String?> imageSlug;
   final Value<ExerciseType> type;
   final Value<bool> flipped;
@@ -528,7 +528,7 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     this.description = const Value.absent(),
     this.notes = const Value.absent(),
     required License descLicense,
-    required String descAuthors,
+    required List<String> descAuthors,
     this.imageSlug = const Value.absent(),
     required ExerciseType type,
     this.flipped = const Value.absent(),
@@ -578,12 +578,12 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
   ExercisesCompanion copyWith(
       {Value<int>? wgerId,
       Value<String>? name,
-      Value<String?>? aliases,
+      Value<List<String>?>? aliases,
       Value<ExerciseCategory>? category,
       Value<String?>? description,
-      Value<String?>? notes,
+      Value<List<String>?>? notes,
       Value<License>? descLicense,
-      Value<String>? descAuthors,
+      Value<List<String>>? descAuthors,
       Value<String?>? imageSlug,
       Value<ExerciseType>? type,
       Value<bool>? flipped,
@@ -618,7 +618,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       map['name'] = Variable<String>(name.value);
     }
     if (aliases.present) {
-      map['aliases'] = Variable<String>(aliases.value);
+      final converter = $ExercisesTable.$converteraliases;
+      map['aliases'] = Variable<String>(converter.toSql(aliases.value));
     }
     if (category.present) {
       final converter = $ExercisesTable.$convertercategory;
@@ -628,7 +629,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       map['description'] = Variable<String>(description.value);
     }
     if (notes.present) {
-      map['notes'] = Variable<String>(notes.value);
+      final converter = $ExercisesTable.$converternotes;
+      map['notes'] = Variable<String>(converter.toSql(notes.value));
     }
     if (descLicense.present) {
       final converter = $ExercisesTable.$converterdescLicense;
@@ -636,7 +638,9 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
           Variable<String>(converter.toSql(descLicense.value));
     }
     if (descAuthors.present) {
-      map['desc_authors'] = Variable<String>(descAuthors.value);
+      final converter = $ExercisesTable.$converterdescAuthors;
+      map['desc_authors'] =
+          Variable<String>(converter.toSql(descAuthors.value));
     }
     if (imageSlug.present) {
       map['image_slug'] = Variable<String>(imageSlug.value);
@@ -927,9 +931,10 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
       type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _localeMeta = const VerificationMeta('locale');
   @override
-  late final GeneratedColumn<String> locale = GeneratedColumn<String>(
-      'locale', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+  late final GeneratedColumnWithTypeConverter<Locale, String> locale =
+      GeneratedColumn<String>('locale', aliasedName, false,
+              type: DriftSqlType.string, requiredDuringInsert: true)
+          .withConverter<Locale>($ExerciseTranslationsTable.$converterlocale);
   static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
@@ -943,9 +948,11 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
       type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _notesMeta = const VerificationMeta('notes');
   @override
-  late final GeneratedColumn<String> notes = GeneratedColumn<String>(
-      'notes', aliasedName, true,
-      type: DriftSqlType.string, requiredDuringInsert: false);
+  late final GeneratedColumnWithTypeConverter<List<String>?, String> notes =
+      GeneratedColumn<String>('notes', aliasedName, true,
+              type: DriftSqlType.string, requiredDuringInsert: false)
+          .withConverter<List<String>?>(
+              $ExerciseTranslationsTable.$converternotes);
   static const VerificationMeta _translationLicenseMeta =
       const VerificationMeta('translationLicense');
   @override
@@ -958,15 +965,20 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
   static const VerificationMeta _translationAuthorsMeta =
       const VerificationMeta('translationAuthors');
   @override
-  late final GeneratedColumn<String> translationAuthors =
-      GeneratedColumn<String>('translation_authors', aliasedName, false,
-          type: DriftSqlType.string, requiredDuringInsert: true);
+  late final GeneratedColumnWithTypeConverter<List<String>, String>
+      translationAuthors = GeneratedColumn<String>(
+              'translation_authors', aliasedName, false,
+              type: DriftSqlType.string, requiredDuringInsert: true)
+          .withConverter<List<String>>(
+              $ExerciseTranslationsTable.$convertertranslationAuthors);
   static const VerificationMeta _aliasesMeta =
       const VerificationMeta('aliases');
   @override
-  late final GeneratedColumn<String> aliases = GeneratedColumn<String>(
-      'aliases', aliasedName, true,
-      type: DriftSqlType.string, requiredDuringInsert: false);
+  late final GeneratedColumnWithTypeConverter<List<String>?, String> aliases =
+      GeneratedColumn<String>('aliases', aliasedName, true,
+              type: DriftSqlType.string, requiredDuringInsert: false)
+          .withConverter<List<String>?>(
+              $ExerciseTranslationsTable.$converteraliases);
   @override
   List<GeneratedColumn> get $columns => [
         exercise,
@@ -994,12 +1006,7 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
     } else if (isInserting) {
       context.missing(_exerciseMeta);
     }
-    if (data.containsKey('locale')) {
-      context.handle(_localeMeta,
-          locale.isAcceptableOrUnknown(data['locale']!, _localeMeta));
-    } else if (isInserting) {
-      context.missing(_localeMeta);
-    }
+    context.handle(_localeMeta, const VerificationResult.success());
     if (data.containsKey('name')) {
       context.handle(
           _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
@@ -1012,23 +1019,10 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
           description.isAcceptableOrUnknown(
               data['description']!, _descriptionMeta));
     }
-    if (data.containsKey('notes')) {
-      context.handle(
-          _notesMeta, notes.isAcceptableOrUnknown(data['notes']!, _notesMeta));
-    }
+    context.handle(_notesMeta, const VerificationResult.success());
     context.handle(_translationLicenseMeta, const VerificationResult.success());
-    if (data.containsKey('translation_authors')) {
-      context.handle(
-          _translationAuthorsMeta,
-          translationAuthors.isAcceptableOrUnknown(
-              data['translation_authors']!, _translationAuthorsMeta));
-    } else if (isInserting) {
-      context.missing(_translationAuthorsMeta);
-    }
-    if (data.containsKey('aliases')) {
-      context.handle(_aliasesMeta,
-          aliases.isAcceptableOrUnknown(data['aliases']!, _aliasesMeta));
-    }
+    context.handle(_translationAuthorsMeta, const VerificationResult.success());
+    context.handle(_aliasesMeta, const VerificationResult.success());
     return context;
   }
 
@@ -1040,22 +1034,27 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
     return ExerciseTranslation(
       exercise: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}exercise'])!,
-      locale: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}locale'])!,
+      locale: $ExerciseTranslationsTable.$converterlocale.fromSql(
+          attachedDatabase.typeMapping
+              .read(DriftSqlType.string, data['${effectivePrefix}locale'])!),
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
       description: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}description']),
-      notes: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}notes']),
+      notes: $ExerciseTranslationsTable.$converternotes.fromSql(attachedDatabase
+          .typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}notes'])),
       translationLicense: $ExerciseTranslationsTable
           .$convertertranslationLicense
           .fromSql(attachedDatabase.typeMapping.read(DriftSqlType.string,
               data['${effectivePrefix}translation_license'])!),
-      translationAuthors: attachedDatabase.typeMapping.read(
-          DriftSqlType.string, data['${effectivePrefix}translation_authors'])!,
-      aliases: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}aliases']),
+      translationAuthors: $ExerciseTranslationsTable
+          .$convertertranslationAuthors
+          .fromSql(attachedDatabase.typeMapping.read(DriftSqlType.string,
+              data['${effectivePrefix}translation_authors'])!),
+      aliases: $ExerciseTranslationsTable.$converteraliases.fromSql(
+          attachedDatabase.typeMapping
+              .read(DriftSqlType.string, data['${effectivePrefix}aliases'])),
     );
   }
 
@@ -1064,21 +1063,29 @@ class $ExerciseTranslationsTable extends ExerciseTranslations
     return $ExerciseTranslationsTable(attachedDatabase, alias);
   }
 
+  static TypeConverter<Locale, String> $converterlocale =
+      const LocaleConverter();
+  static TypeConverter<List<String>?, String?> $converternotes =
+      const NullableListConverter();
   static JsonTypeConverter2<License, String, String>
       $convertertranslationLicense =
       const EnumNameConverter<License>(License.values);
+  static TypeConverter<List<String>, String> $convertertranslationAuthors =
+      const ListConverter();
+  static TypeConverter<List<String>?, String?> $converteraliases =
+      const NullableListConverter();
 }
 
 class ExerciseTranslation extends DataClass
     implements Insertable<ExerciseTranslation> {
   final int exercise;
-  final String locale;
+  final Locale locale;
   final String name;
   final String? description;
-  final String? notes;
+  final List<String>? notes;
   final License translationLicense;
-  final String translationAuthors;
-  final String? aliases;
+  final List<String> translationAuthors;
+  final List<String>? aliases;
   const ExerciseTranslation(
       {required this.exercise,
       required this.locale,
@@ -1092,22 +1099,31 @@ class ExerciseTranslation extends DataClass
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['exercise'] = Variable<int>(exercise);
-    map['locale'] = Variable<String>(locale);
+    {
+      final converter = $ExerciseTranslationsTable.$converterlocale;
+      map['locale'] = Variable<String>(converter.toSql(locale));
+    }
     map['name'] = Variable<String>(name);
     if (!nullToAbsent || description != null) {
       map['description'] = Variable<String>(description);
     }
     if (!nullToAbsent || notes != null) {
-      map['notes'] = Variable<String>(notes);
+      final converter = $ExerciseTranslationsTable.$converternotes;
+      map['notes'] = Variable<String>(converter.toSql(notes));
     }
     {
       final converter = $ExerciseTranslationsTable.$convertertranslationLicense;
       map['translation_license'] =
           Variable<String>(converter.toSql(translationLicense));
     }
-    map['translation_authors'] = Variable<String>(translationAuthors);
+    {
+      final converter = $ExerciseTranslationsTable.$convertertranslationAuthors;
+      map['translation_authors'] =
+          Variable<String>(converter.toSql(translationAuthors));
+    }
     if (!nullToAbsent || aliases != null) {
-      map['aliases'] = Variable<String>(aliases);
+      final converter = $ExerciseTranslationsTable.$converteraliases;
+      map['aliases'] = Variable<String>(converter.toSql(aliases));
     }
     return map;
   }
@@ -1135,16 +1151,16 @@ class ExerciseTranslation extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return ExerciseTranslation(
       exercise: serializer.fromJson<int>(json['exercise']),
-      locale: serializer.fromJson<String>(json['locale']),
+      locale: serializer.fromJson<Locale>(json['locale']),
       name: serializer.fromJson<String>(json['name']),
       description: serializer.fromJson<String?>(json['description']),
-      notes: serializer.fromJson<String?>(json['notes']),
+      notes: serializer.fromJson<List<String>?>(json['notes']),
       translationLicense: $ExerciseTranslationsTable
           .$convertertranslationLicense
           .fromJson(serializer.fromJson<String>(json['translationLicense'])),
       translationAuthors:
-          serializer.fromJson<String>(json['translationAuthors']),
-      aliases: serializer.fromJson<String?>(json['aliases']),
+          serializer.fromJson<List<String>>(json['translationAuthors']),
+      aliases: serializer.fromJson<List<String>?>(json['aliases']),
     );
   }
   @override
@@ -1152,27 +1168,27 @@ class ExerciseTranslation extends DataClass
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'exercise': serializer.toJson<int>(exercise),
-      'locale': serializer.toJson<String>(locale),
+      'locale': serializer.toJson<Locale>(locale),
       'name': serializer.toJson<String>(name),
       'description': serializer.toJson<String?>(description),
-      'notes': serializer.toJson<String?>(notes),
+      'notes': serializer.toJson<List<String>?>(notes),
       'translationLicense': serializer.toJson<String>($ExerciseTranslationsTable
           .$convertertranslationLicense
           .toJson(translationLicense)),
-      'translationAuthors': serializer.toJson<String>(translationAuthors),
-      'aliases': serializer.toJson<String?>(aliases),
+      'translationAuthors': serializer.toJson<List<String>>(translationAuthors),
+      'aliases': serializer.toJson<List<String>?>(aliases),
     };
   }
 
   ExerciseTranslation copyWith(
           {int? exercise,
-          String? locale,
+          Locale? locale,
           String? name,
           Value<String?> description = const Value.absent(),
-          Value<String?> notes = const Value.absent(),
+          Value<List<String>?> notes = const Value.absent(),
           License? translationLicense,
-          String? translationAuthors,
-          Value<String?> aliases = const Value.absent()}) =>
+          List<String>? translationAuthors,
+          Value<List<String>?> aliases = const Value.absent()}) =>
       ExerciseTranslation(
         exercise: exercise ?? this.exercise,
         locale: locale ?? this.locale,
@@ -1218,13 +1234,13 @@ class ExerciseTranslation extends DataClass
 class ExerciseTranslationsCompanion
     extends UpdateCompanion<ExerciseTranslation> {
   final Value<int> exercise;
-  final Value<String> locale;
+  final Value<Locale> locale;
   final Value<String> name;
   final Value<String?> description;
-  final Value<String?> notes;
+  final Value<List<String>?> notes;
   final Value<License> translationLicense;
-  final Value<String> translationAuthors;
-  final Value<String?> aliases;
+  final Value<List<String>> translationAuthors;
+  final Value<List<String>?> aliases;
   final Value<int> rowid;
   const ExerciseTranslationsCompanion({
     this.exercise = const Value.absent(),
@@ -1239,12 +1255,12 @@ class ExerciseTranslationsCompanion
   });
   ExerciseTranslationsCompanion.insert({
     required int exercise,
-    required String locale,
+    required Locale locale,
     required String name,
     this.description = const Value.absent(),
     this.notes = const Value.absent(),
     required License translationLicense,
-    required String translationAuthors,
+    required List<String> translationAuthors,
     this.aliases = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : exercise = Value(exercise),
@@ -1278,13 +1294,13 @@ class ExerciseTranslationsCompanion
 
   ExerciseTranslationsCompanion copyWith(
       {Value<int>? exercise,
-      Value<String>? locale,
+      Value<Locale>? locale,
       Value<String>? name,
       Value<String?>? description,
-      Value<String?>? notes,
+      Value<List<String>?>? notes,
       Value<License>? translationLicense,
-      Value<String>? translationAuthors,
-      Value<String?>? aliases,
+      Value<List<String>>? translationAuthors,
+      Value<List<String>?>? aliases,
       Value<int>? rowid}) {
     return ExerciseTranslationsCompanion(
       exercise: exercise ?? this.exercise,
@@ -1306,7 +1322,8 @@ class ExerciseTranslationsCompanion
       map['exercise'] = Variable<int>(exercise.value);
     }
     if (locale.present) {
-      map['locale'] = Variable<String>(locale.value);
+      final converter = $ExerciseTranslationsTable.$converterlocale;
+      map['locale'] = Variable<String>(converter.toSql(locale.value));
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
@@ -1315,7 +1332,8 @@ class ExerciseTranslationsCompanion
       map['description'] = Variable<String>(description.value);
     }
     if (notes.present) {
-      map['notes'] = Variable<String>(notes.value);
+      final converter = $ExerciseTranslationsTable.$converternotes;
+      map['notes'] = Variable<String>(converter.toSql(notes.value));
     }
     if (translationLicense.present) {
       final converter = $ExerciseTranslationsTable.$convertertranslationLicense;
@@ -1323,10 +1341,13 @@ class ExerciseTranslationsCompanion
           Variable<String>(converter.toSql(translationLicense.value));
     }
     if (translationAuthors.present) {
-      map['translation_authors'] = Variable<String>(translationAuthors.value);
+      final converter = $ExerciseTranslationsTable.$convertertranslationAuthors;
+      map['translation_authors'] =
+          Variable<String>(converter.toSql(translationAuthors.value));
     }
     if (aliases.present) {
-      map['aliases'] = Variable<String>(aliases.value);
+      final converter = $ExerciseTranslationsTable.$converteraliases;
+      map['aliases'] = Variable<String>(converter.toSql(aliases.value));
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
