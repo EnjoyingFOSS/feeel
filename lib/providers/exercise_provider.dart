@@ -31,7 +31,6 @@ import 'package:feeel/providers/locale_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ExerciseProviderState {
-  //TODO not sure if it's best to load all of this into memory at all times...
   final Map<int, FullExercise> primaryLanguageExercises;
 
   ExerciseProviderState(this.primaryLanguageExercises);
@@ -44,6 +43,19 @@ class ExerciseProviderNotifier extends AsyncNotifier<ExerciseProviderState> {
     final locale = ref.read(localeProvider);
     return ExerciseProviderState(await _queryPrimaryLanguageFullExercises(
         db, locale ?? LocaleUtil.fallbackLocale));
+  }
+
+  Future<void> fetchNewExercises() async {
+    final db = ref.read(dbProvider);
+    final locale = ref.read(localeProvider);
+
+    state = const AsyncValue.loading();
+
+    await db.regenerateExercises();
+
+    state = AsyncValue.data(ExerciseProviderState(
+        await _queryPrimaryLanguageFullExercises(
+            db, locale ?? LocaleUtil.fallbackLocale)));
   }
 
   Future<Map<int, FullExercise>> _queryPrimaryLanguageFullExercises(
