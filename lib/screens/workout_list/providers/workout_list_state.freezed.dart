@@ -12,7 +12,7 @@ part of 'workout_list_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$WorkoutListState {
@@ -63,22 +63,22 @@ class _$WorkoutListStateCopyWithImpl<$Res, $Val extends WorkoutListState>
 }
 
 /// @nodoc
-abstract class _$$_WorkoutListStateCopyWith<$Res>
+abstract class _$$WorkoutListStateImplCopyWith<$Res>
     implements $WorkoutListStateCopyWith<$Res> {
-  factory _$$_WorkoutListStateCopyWith(
-          _$_WorkoutListState value, $Res Function(_$_WorkoutListState) then) =
-      __$$_WorkoutListStateCopyWithImpl<$Res>;
+  factory _$$WorkoutListStateImplCopyWith(_$WorkoutListStateImpl value,
+          $Res Function(_$WorkoutListStateImpl) then) =
+      __$$WorkoutListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool exporting, bool importing});
 }
 
 /// @nodoc
-class __$$_WorkoutListStateCopyWithImpl<$Res>
-    extends _$WorkoutListStateCopyWithImpl<$Res, _$_WorkoutListState>
-    implements _$$_WorkoutListStateCopyWith<$Res> {
-  __$$_WorkoutListStateCopyWithImpl(
-      _$_WorkoutListState _value, $Res Function(_$_WorkoutListState) _then)
+class __$$WorkoutListStateImplCopyWithImpl<$Res>
+    extends _$WorkoutListStateCopyWithImpl<$Res, _$WorkoutListStateImpl>
+    implements _$$WorkoutListStateImplCopyWith<$Res> {
+  __$$WorkoutListStateImplCopyWithImpl(_$WorkoutListStateImpl _value,
+      $Res Function(_$WorkoutListStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_WorkoutListStateCopyWithImpl<$Res>
     Object? exporting = null,
     Object? importing = null,
   }) {
-    return _then(_$_WorkoutListState(
+    return _then(_$WorkoutListStateImpl(
       exporting: null == exporting
           ? _value.exporting
           : exporting // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,9 @@ class __$$_WorkoutListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WorkoutListState implements _WorkoutListState {
-  const _$_WorkoutListState({required this.exporting, required this.importing});
+class _$WorkoutListStateImpl implements _WorkoutListState {
+  const _$WorkoutListStateImpl(
+      {required this.exporting, required this.importing});
 
   @override
   final bool exporting;
@@ -116,10 +117,10 @@ class _$_WorkoutListState implements _WorkoutListState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WorkoutListState &&
+            other is _$WorkoutListStateImpl &&
             (identical(other.exporting, exporting) ||
                 other.exporting == exporting) &&
             (identical(other.importing, importing) ||
@@ -132,14 +133,15 @@ class _$_WorkoutListState implements _WorkoutListState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WorkoutListStateCopyWith<_$_WorkoutListState> get copyWith =>
-      __$$_WorkoutListStateCopyWithImpl<_$_WorkoutListState>(this, _$identity);
+  _$$WorkoutListStateImplCopyWith<_$WorkoutListStateImpl> get copyWith =>
+      __$$WorkoutListStateImplCopyWithImpl<_$WorkoutListStateImpl>(
+          this, _$identity);
 }
 
 abstract class _WorkoutListState implements WorkoutListState {
   const factory _WorkoutListState(
       {required final bool exporting,
-      required final bool importing}) = _$_WorkoutListState;
+      required final bool importing}) = _$WorkoutListStateImpl;
 
   @override
   bool get exporting;
@@ -147,6 +149,6 @@ abstract class _WorkoutListState implements WorkoutListState {
   bool get importing;
   @override
   @JsonKey(ignore: true)
-  _$$_WorkoutListStateCopyWith<_$_WorkoutListState> get copyWith =>
+  _$$WorkoutListStateImplCopyWith<_$WorkoutListStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
