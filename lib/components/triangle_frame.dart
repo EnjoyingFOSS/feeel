@@ -27,7 +27,6 @@
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -77,14 +76,17 @@ class _TriangleClipper extends CustomClipper<Path> {
     final clipPath = Path();
 
     if (rightLean) {
-      clipPath.lineTo(0, offsetYRatio * size.height);
-      clipPath.lineTo(size.width, size.height);
+      clipPath
+        ..lineTo(0, offsetYRatio * size.height)
+        ..lineTo(size.width, size.height);
     } else {
-      clipPath.lineTo(0, size.height);
-      clipPath.lineTo(size.width, offsetYRatio * size.height);
+      clipPath
+        ..lineTo(0, size.height)
+        ..lineTo(size.width, offsetYRatio * size.height);
     }
-    clipPath.lineTo(size.width, 0);
-    clipPath.close();
+    clipPath
+      ..lineTo(size.width, 0)
+      ..close();
 
     return clipPath;
   }
@@ -105,8 +107,9 @@ class _BackgroundPainter extends CustomPainter {
   _BackgroundPainter(
       Color color, this.rightLean, this.offsetYRatio, this.peakXRatio) {
     // init triangle paint
-    _trianglePaint.color = color;
-    _trianglePaint.style = PaintingStyle.fill;
+    _trianglePaint
+      ..color = color
+      ..style = PaintingStyle.fill;
   }
 
   @override
@@ -115,14 +118,17 @@ class _BackgroundPainter extends CustomPainter {
     final trianglePath = Path();
 
     if (rightLean) {
-      trianglePath.moveTo(size.width, size.height);
-      trianglePath.lineTo(0, offsetYRatio * size.height);
+      trianglePath
+        ..moveTo(size.width, size.height)
+        ..lineTo(0, offsetYRatio * size.height);
     } else {
-      trianglePath.moveTo(0, size.height);
-      trianglePath.lineTo(size.width, offsetYRatio * size.height);
+      trianglePath
+        ..moveTo(0, size.height)
+        ..lineTo(size.width, offsetYRatio * size.height);
     }
-    trianglePath.lineTo(size.width / 4 + (size.width / 2) * peakXRatio, 0);
-    trianglePath.close();
+    trianglePath
+      ..lineTo(size.width / 4 + (size.width / 2) * peakXRatio, 0)
+      ..close();
 
     canvas.drawPath(trianglePath, _trianglePaint);
   }
