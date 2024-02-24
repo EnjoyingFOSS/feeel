@@ -30,11 +30,19 @@
 
 import 'dart:ui';
 
+import 'package:feeel/db/bundled_exercises.dart';
 import 'package:feeel/db/database.dart';
+import 'package:feeel/enums/equipment_item.dart';
+import 'package:feeel/enums/exercise_category.dart';
+import 'package:feeel/enums/license.dart';
+import 'package:feeel/enums/muscle.dart';
+import 'package:feeel/enums/muscle_role.dart';
+import 'package:feeel/utils/locale_util.dart';
+import 'package:feeel/utils/simple_html_markdown_util.dart';
 
 class FullExercise {
   final Exercise exercise;
-  final List<ExerciseEquipmentPiece>? equipment;
+  final List<ExerciseEquipmentItem>? equipment;
   final List<ExerciseMuscle> muscles;
   final Map<Locale, ExerciseTranslation>? translationsByLanguage;
 
@@ -44,12 +52,150 @@ class FullExercise {
       required this.muscles,
       this.translationsByLanguage});
 
-  String getFirstTranslatedName() =>
-      translationsByLanguage?.values.first.name ?? exercise.name;
+  static FullExercise fromWikiJson(
+      Map wgerBase, Map<int, Map> exerciseImageMaps) {
+    final wgerExercises = wgerBase["exercises"] as List;
 
-  String? getFirstTranslatedDesc() =>
-      translationsByLanguage?.values.first.description ?? exercise.description;
+    final wgerExerciseEn = wgerExercises.firstWhere((dynamic wgerExercise) =>
+            (wgerExercise["language"] as int) == LocaleUtil.wgerFallbackId)
+        as Map; //TODO do I need to deal with cases where there is no English original?
+    final wgerBaseId = wgerBase["id"] as int;
+    final category = ((wgerBase["category"] as Map)["id"] as int) == 15
+        ? ExerciseCategory.cardio
+        : ExerciseCategory
+            .strength; //TODO change when Stretching and Yoga becomes a category too !!!
+    final enAuthors = <String>[
+      ...(wgerBase["author_history"] as List? ?? []),
+      ...(wgerExerciseEn["author_history"] as List? ?? [])
+    ]; //TODO nullable author_history is just temporary
+    final variationGroup = wgerBase["variations"] as int?;
+    final descLicense =
+        License.fromWgerId((wgerBase["license"] as Map)["id"] as int);
 
-  List<String>? getFirstTranslatedNotes() =>
-      translationsByLanguage?.values.first.notes ?? exercise.notes;
+    final name = wgerExerciseEn["name"] as String;
+    final description = SimpleHtmlMarkdownUtil.simpleHtmlToMarkdown(
+        wgerExerciseEn["description"] as String);
+    final unparsedNotes = wgerExerciseEn["notes"] as List?;
+    final noteList = unparsedNotes
+        ?.map((dynamic un) => (un as Map)["comment"] as String)
+        .toList();
+    final aliasContents = wgerExerciseEn["aliases"] as List?;
+    final aliasesJoined = (aliasContents?.isNotEmpty ?? false)
+        ? aliasContents!
+            .map((aliasItem) => aliasItem["alias"] as String)
+            .toList()
+        : null;
+
+    final imageMap = exerciseImageMaps.containsKey(wgerBaseId)
+        ? exerciseImageMaps[wgerBaseId]
+        : null;
+    final imageSlug = imageMap?["imageSlug"] as String?;
+    final flipped = imageMap?["flipped"] as bool? ?? false;
+    final imageLicense = imageMap?["license"] as String?;
+    final animated = imageMap?["animated"] as bool? ?? false;
+
+    final exercise = Exercise(
+        wgerId: wgerBaseId,
+        name: name,
+        aliases: aliasesJoined,
+        headOnly: BundledExercises.headExercises.contains(wgerBaseId),
+        description: description,
+        notes: noteList,
+        descLicense: descLicense,
+        descAuthors: enAuthors,
+        category: category,
+        imageSlug: imageSlug,
+        imageLicense: imageLicense,
+        imageFlipped: flipped,
+        animated: animated,
+        variationGroup: variationGroup);
+
+    final exerciseEquipment = (wgerBase["equipment"] as List).map((dynamic e) {
+      final wgerEquipmentId = (e as Map)["id"] as int;
+      final equipment = EquipmentItem.fromWgerId(wgerEquipmentId);
+      return ExerciseEquipmentItem(exercise: wgerBaseId, equipment: equipment);
+    }).toList();
+
+    final exerciseMuscles = [
+      ...(_parseMuscles(
+          wgerBase["muscles"] as List, wgerBaseId, MuscleRole.primary)),
+      ...(_parseMuscles(wgerBase["muscles_secondary"] as List, wgerBaseId,
+          MuscleRole.secondary))
+    ];
+
+    final wgerTranslations = (wgerExercises.length == 1)
+        ? null
+        : _parseTranslations(
+            wgerBaseId, wgerBase["exercises"] as List, descLicense);
+
+    return FullExercise(
+        exercise: exercise,
+        muscles: exerciseMuscles,
+        equipment: exerciseEquipment,
+        translationsByLanguage: wgerTranslations);
+  }
+
+  static Map<Locale, ExerciseTranslation> _parseTranslations(
+      int exerciseWgerId, List wgerExercises, License descLicense) {
+    final exerciseTranslations = <Locale, ExerciseTranslation>{};
+
+    for (final wgerExercise in wgerExercises) {
+      final locale = _parseLocale(wgerExercise as Map);
+      if (locale != null && locale != LocaleUtil.fallbackLocale) {
+        final name = wgerExercise["name"] as String;
+        final description = SimpleHtmlMarkdownUtil.simpleHtmlToMarkdown(
+            wgerExercise["description"] as String);
+        final unparsedNotes = wgerExercise["notes"] as List?;
+        final noteList = unparsedNotes
+            ?.map((dynamic un) => (un as Map)["comment"] as String)
+            .toList();
+        final aliasContents = wgerExercise["aliases"] as List?;
+        final aliasesJoined = (aliasContents?.isNotEmpty ?? false)
+            ? aliasContents!
+                .map((aliasItem) => aliasItem["alias"] as String)
+                .toList()
+            : null;
+
+        final translationAuthors = () {
+          //TODO simplify later and remove try catch, after fixing: _CastError (type 'List<dynamic>' is not a subtype of type 'List<String>' in type cast)
+          try {
+            return (wgerExercise["author_history"] as List<String>);
+          } catch (_) {
+            return <String>[];
+          }
+        }();
+
+        exerciseTranslations.putIfAbsent(
+            locale,
+            () => ExerciseTranslation(
+                exercise: exerciseWgerId,
+                locale: locale,
+                name: name,
+                aliases: aliasesJoined,
+                description: description,
+                notes: noteList,
+                translationAuthors: translationAuthors,
+                translationLicense: descLicense));
+      }
+    }
+    return exerciseTranslations;
+  }
+
+  static Locale? _parseLocale(Map wgerExercise) {
+    try {
+      return LocaleUtil.fromWgerLanguage(wgerExercise["language"] as int);
+    } on ArgumentError catch (_) {
+      return null;
+    } // catching ArgumentException here, in case a wger language is not yet implemented in Feeel
+  }
+
+  static Iterable<ExerciseMuscle> _parseMuscles(
+      List wgerMuscles, int exerciseWgerId, MuscleRole muscleRole) {
+    return wgerMuscles.map<ExerciseMuscle>((dynamic wgerMuscle) {
+      final wgerId = (wgerMuscle as Map)["id"] as int;
+      final muscle = Muscle.fromWgerMuscle(wgerId);
+      return ExerciseMuscle(
+          exercise: exerciseWgerId, muscle: muscle, role: muscleRole);
+    });
+  }
 }
