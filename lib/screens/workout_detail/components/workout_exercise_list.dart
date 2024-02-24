@@ -53,8 +53,7 @@ class WorkoutExerciseList extends StatelessWidget {
                   fullWorkout.workout.exerciseDuration;
           return ExerciseListItem(
             //TODO allow two-row exercise names
-            primaryLangFullExercise:
-                fullWorkout.primaryLangFullExercises[index],
+            translatedExercise: fullWorkout.translatedExercises[index],
             subtitle: Text(
               FormatUtil.getDuration(context, duration),
               style: FormatUtil.durationTextStyle,

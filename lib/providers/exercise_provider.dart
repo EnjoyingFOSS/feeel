@@ -31,17 +31,17 @@
 import 'dart:ui';
 
 import 'package:drift/drift.dart';
-import 'package:feeel/utils/locale_util.dart';
-import 'package:feeel/models/full_exercise.dart';
-import 'package:feeel/providers/db_provider.dart';
 import 'package:feeel/db/database.dart';
+import 'package:feeel/models/translated_exercise.dart';
+import 'package:feeel/providers/db_provider.dart';
 import 'package:feeel/providers/locale_provider.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ExerciseProviderState {
-  final Map<int, FullExercise> primaryLanguageExercises;
+  final Map<int, TranslatedExercise> translatedExercises;
 
-  ExerciseProviderState(this.primaryLanguageExercises);
+  ExerciseProviderState(this.translatedExercises);
 }
 
 class ExerciseProviderNotifier extends AsyncNotifier<ExerciseProviderState> {
@@ -49,7 +49,7 @@ class ExerciseProviderNotifier extends AsyncNotifier<ExerciseProviderState> {
   Future<ExerciseProviderState> build() async {
     final db = ref.read(dbProvider);
     final locale = ref.read(localeProvider);
-    return ExerciseProviderState(await _queryPrimaryLanguageFullExercises(
+    return ExerciseProviderState(await _queryTranslatedExercises(
         db, locale ?? LocaleUtil.fallbackLocale));
   }
 
@@ -62,19 +62,19 @@ class ExerciseProviderNotifier extends AsyncNotifier<ExerciseProviderState> {
     await db.regenerateExercises();
 
     state = AsyncValue.data(ExerciseProviderState(
-        await _queryPrimaryLanguageFullExercises(
+        await _queryTranslatedExercises(
             db, locale ?? LocaleUtil.fallbackLocale)));
   }
 
-  Future<Map<int, FullExercise>> _queryPrimaryLanguageFullExercises(
+  Future<Map<int, TranslatedExercise>> _queryTranslatedExercises(
       FeeelDB db, Locale locale) async {
     final exercises = await (db.select(db.exercises)
           ..orderBy([(e) => OrderingTerm.asc(e.name)]))
         .get();
-    final fullExercises = await Future.wait(
-        exercises.map((e) => db.queryPrimaryLangFullExercise(e, locale)));
+    final translatedExercises = await Future.wait(
+        exercises.map((e) => db.queryTranslatedExercise(e, locale)));
 
-    return {for (final fe in fullExercises) (fe).exercise.wgerId: fe};
+    return {for (final fe in translatedExercises) (fe).exercise.wgerId: fe};
   }
 }
 

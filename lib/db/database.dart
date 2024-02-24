@@ -40,9 +40,8 @@ import 'package:feeel/db/bundled_exercises.dart';
 import 'package:feeel/db/bundled_workouts.dart';
 import 'package:feeel/db/db_migration_maps.dart';
 import 'package:feeel/db/exercise_tables.dart';
-import 'package:feeel/enums/equipment.dart';
+import 'package:feeel/enums/equipment_item.dart';
 import 'package:feeel/enums/exercise_category.dart';
-import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/license.dart';
 import 'package:feeel/enums/muscle.dart';
 import 'package:feeel/enums/muscle_role.dart';
@@ -53,9 +52,9 @@ import 'package:feeel/models/editable_workout_record.dart';
 import 'package:feeel/models/full_exercise.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/models/full_workout_record.dart';
+import 'package:feeel/models/translated_exercise.dart';
 import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/utils/locale_util.dart';
-import 'package:feeel/utils/wger_exercise_util.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -287,11 +286,25 @@ class FeeelDB extends _$FeeelDB {
 
   Future<void> _addAllExercises() async {
     final exerciseFileContents =
-        await rootBundle.loadString(AssetUtil.getExerciseJson());
+        await rootBundle.loadString(WikiJsonAsset.exercises.getPath());
 
-    final fullExercises = WgerExerciseUtil.parseWgerJson(exerciseFileContents)
-      ..sort((a, b) => a.exercise.name.compareTo(b.exercise
-          .name)); //TODO check if this reflects on how they're actually stored
+    final exerciseImageJson = jsonDecode(await rootBundle.loadString(
+            SupplementJsonAsset.exerciseImages.getPath()))["exercises"]
+        as List<dynamic>;
+    final exerciseImageMaps = {
+      for (final jsonMap in exerciseImageJson)
+        jsonMap["id"] as int: jsonMap as Map
+    };
+
+    final wgerExerciseMaps =
+        (jsonDecode(exerciseFileContents) as Map)["results"] as List;
+
+    final fullExercises = wgerExerciseMaps
+        .map((dynamic fweb) =>
+            FullExercise.fromWikiJson(fweb as Map, exerciseImageMaps))
+        .toList()
+      ..sort((a, b) => a.exercise.name.toLowerCase().compareTo(b.exercise.name
+          .toLowerCase())); //TODO check if this reflects on how they're actually stored
 
     for (final fe in fullExercises) {
       try {
@@ -309,7 +322,7 @@ class FeeelDB extends _$FeeelDB {
       }
       try {
         for (final equipmentPiece
-            in fe.equipment ?? <ExerciseEquipmentPiece>[]) {
+            in fe.equipment ?? <ExerciseEquipmentItem>[]) {
           await into(exerciseEquipment).insert(equipmentPiece);
         }
       } catch (e) {
@@ -319,7 +332,7 @@ class FeeelDB extends _$FeeelDB {
     }
   }
 
-  Future<FullExercise> queryPrimaryLangFullExercise(
+  Future<TranslatedExercise> queryTranslatedExercise(
       //TODO move to ExerciseProvider?
       Exercise exercise,
       Locale locale) async {
@@ -337,22 +350,21 @@ class FeeelDB extends _$FeeelDB {
     final muscles = await (select(exerciseMuscles)
           ..where((m) => m.exercise.equals(exercise.wgerId)))
         .get();
-    return FullExercise(
+    return TranslatedExercise(
         exercise: exercise,
         equipment: equipment,
         muscles: muscles,
-        translationsByLanguage:
-            translation != null ? {locale: translation} : null);
+        translation: translation);
   }
 
-  Future<List<FullExercise>> queryPrimaryLangFullExercisesFromIds(
+  Future<List<TranslatedExercise>> queryTranslatedExercisesFromIds(
       List<int> exerciseIds, Locale locale) async {
     final futureExerciseList = exerciseIds.map((id) =>
         (select(exercises)..where((e) => e.wgerId.equals(id))).getSingle());
     final exerciseList = await Future.wait(futureExerciseList);
-    final futureFullExerciseList =
-        exerciseList.map((e) => queryPrimaryLangFullExercise(e, locale));
-    return await Future.wait(futureFullExerciseList);
+    final futureTranslatedExerciseList =
+        exerciseList.map((e) => queryTranslatedExercise(e, locale));
+    return await Future.wait(futureTranslatedExerciseList);
   }
   //
   // WORKOUTS
@@ -375,9 +387,9 @@ class FeeelDB extends _$FeeelDB {
           ..where((we) => we.workoutId.equals(w.id)))
         .get();
     final exerciseIds = wes.map((we) => we.exercise).toList();
-    final es = await queryPrimaryLangFullExercisesFromIds(exerciseIds, locale);
+    final es = await queryTranslatedExercisesFromIds(exerciseIds, locale);
     return FullWorkout(
-        workout: w, workoutExercises: wes, primaryLangFullExercises: es);
+        workout: w, workoutExercises: wes, translatedExercises: es);
   }
 
   Future<List<FullWorkout>> queryFullWorkoutsByType(
@@ -462,12 +474,12 @@ class FeeelDB extends _$FeeelDB {
     final es = await Future.wait(wers.map((wer) async =>
         await (select(exercises)..where((e) => e.wgerId.equals(wer.exercise)))
             .getSingle()));
-    final fes = await Future.wait(
-        es.map((e) => queryPrimaryLangFullExercise(e, locale)));
+    final fes =
+        await Future.wait(es.map((e) => queryTranslatedExercise(e, locale)));
     return FullWorkoutRecord(
         workoutRecord: wr,
         workoutExerciseRecords: wers,
-        primaryLangFullExercises: fes);
+        translatedExercises: fes);
   }
 
   Future<void> deleteWorkout(int workoutId) async {

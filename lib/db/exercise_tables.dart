@@ -31,9 +31,8 @@
 import 'dart:ui';
 
 import 'package:drift/drift.dart';
-import 'package:feeel/enums/equipment.dart';
+import 'package:feeel/enums/equipment_item.dart';
 import 'package:feeel/enums/exercise_category.dart';
-import 'package:feeel/enums/exercise_type.dart';
 import 'package:feeel/enums/license.dart';
 import 'package:feeel/enums/muscle.dart';
 import 'package:feeel/enums/muscle_role.dart';
@@ -100,9 +99,8 @@ class Exercises extends Table {
   TextColumn get descLicense => textEnum<License>()();
   TextColumn get descAuthors => text().map(const ListConverter())();
   TextColumn get imageSlug => text().nullable()();
-  IntColumn get type => intEnum<ExerciseType>()(); //TODO how to convert this?
-  BoolColumn get flipped => boolean().withDefault(const Constant(
-      false))(); //TODO what's the use of withDefault if constructor requires it anyway?
+  BoolColumn get headOnly => boolean().withDefault(const Constant(false))();
+  BoolColumn get imageFlipped => boolean().withDefault(const Constant(false))();
   TextColumn get imageLicense => text().nullable()();
   BoolColumn get animated => boolean()();
 
@@ -142,10 +140,10 @@ class ExerciseMuscles extends Table {
   Set<Column>? get primaryKey => {exercise, muscle};
 }
 
-@DataClassName("ExerciseEquipmentPiece")
+@DataClassName("ExerciseEquipmentItem")
 class ExerciseEquipment extends Table {
   IntColumn get exercise => integer()();
-  IntColumn get equipment => intEnum<EquipmentPiece>()();
+  IntColumn get equipment => intEnum<EquipmentItem>()();
 
   @override
   Set<Column>? get primaryKey => {exercise, equipment};

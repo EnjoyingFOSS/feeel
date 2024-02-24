@@ -65,21 +65,28 @@ class $ExercisesTable extends Exercises
   late final GeneratedColumn<String> imageSlug = GeneratedColumn<String>(
       'image_slug', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
-  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  static const VerificationMeta _headOnlyMeta =
+      const VerificationMeta('headOnly');
   @override
-  late final GeneratedColumnWithTypeConverter<ExerciseType, int> type =
-      GeneratedColumn<int>('type', aliasedName, false,
-              type: DriftSqlType.int, requiredDuringInsert: true)
-          .withConverter<ExerciseType>($ExercisesTable.$convertertype);
-  static const VerificationMeta _flippedMeta =
-      const VerificationMeta('flipped');
-  @override
-  late final GeneratedColumn<bool> flipped =
-      GeneratedColumn<bool>('flipped', aliasedName, false,
+  late final GeneratedColumn<bool> headOnly =
+      GeneratedColumn<bool>('head_only', aliasedName, false,
           type: DriftSqlType.bool,
           requiredDuringInsert: false,
           defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
-            SqlDialect.sqlite: 'CHECK ("flipped" IN (0, 1))',
+            SqlDialect.sqlite: 'CHECK ("head_only" IN (0, 1))',
+            SqlDialect.mysql: '',
+            SqlDialect.postgres: '',
+          }),
+          defaultValue: const Constant(false));
+  static const VerificationMeta _imageFlippedMeta =
+      const VerificationMeta('imageFlipped');
+  @override
+  late final GeneratedColumn<bool> imageFlipped =
+      GeneratedColumn<bool>('image_flipped', aliasedName, false,
+          type: DriftSqlType.bool,
+          requiredDuringInsert: false,
+          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
+            SqlDialect.sqlite: 'CHECK ("image_flipped" IN (0, 1))',
             SqlDialect.mysql: '',
             SqlDialect.postgres: '',
           }),
@@ -119,8 +126,8 @@ class $ExercisesTable extends Exercises
         descLicense,
         descAuthors,
         imageSlug,
-        type,
-        flipped,
+        headOnly,
+        imageFlipped,
         imageLicense,
         animated,
         variationGroup
@@ -159,10 +166,15 @@ class $ExercisesTable extends Exercises
       context.handle(_imageSlugMeta,
           imageSlug.isAcceptableOrUnknown(data['image_slug']!, _imageSlugMeta));
     }
-    context.handle(_typeMeta, const VerificationResult.success());
-    if (data.containsKey('flipped')) {
-      context.handle(_flippedMeta,
-          flipped.isAcceptableOrUnknown(data['flipped']!, _flippedMeta));
+    if (data.containsKey('head_only')) {
+      context.handle(_headOnlyMeta,
+          headOnly.isAcceptableOrUnknown(data['head_only']!, _headOnlyMeta));
+    }
+    if (data.containsKey('image_flipped')) {
+      context.handle(
+          _imageFlippedMeta,
+          imageFlipped.isAcceptableOrUnknown(
+              data['image_flipped']!, _imageFlippedMeta));
     }
     if (data.containsKey('image_license')) {
       context.handle(
@@ -214,10 +226,10 @@ class $ExercisesTable extends Exercises
               DriftSqlType.string, data['${effectivePrefix}desc_authors'])!),
       imageSlug: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}image_slug']),
-      type: $ExercisesTable.$convertertype.fromSql(attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}type'])!),
-      flipped: attachedDatabase.typeMapping
-          .read(DriftSqlType.bool, data['${effectivePrefix}flipped'])!,
+      headOnly: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}head_only'])!,
+      imageFlipped: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}image_flipped'])!,
       imageLicense: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}image_license']),
       animated: attachedDatabase.typeMapping
@@ -242,8 +254,6 @@ class $ExercisesTable extends Exercises
       const EnumNameConverter<License>(License.values);
   static TypeConverter<List<String>, String> $converterdescAuthors =
       const ListConverter();
-  static JsonTypeConverter2<ExerciseType, int, int> $convertertype =
-      const EnumIndexConverter<ExerciseType>(ExerciseType.values);
 }
 
 class Exercise extends DataClass implements Insertable<Exercise> {
@@ -256,8 +266,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
   final License descLicense;
   final List<String> descAuthors;
   final String? imageSlug;
-  final ExerciseType type;
-  final bool flipped;
+  final bool headOnly;
+  final bool imageFlipped;
   final String? imageLicense;
   final bool animated;
   final int? variationGroup;
@@ -271,8 +281,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       required this.descLicense,
       required this.descAuthors,
       this.imageSlug,
-      required this.type,
-      required this.flipped,
+      required this.headOnly,
+      required this.imageFlipped,
       this.imageLicense,
       required this.animated,
       this.variationGroup});
@@ -307,11 +317,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
     if (!nullToAbsent || imageSlug != null) {
       map['image_slug'] = Variable<String>(imageSlug);
     }
-    {
-      final converter = $ExercisesTable.$convertertype;
-      map['type'] = Variable<int>(converter.toSql(type));
-    }
-    map['flipped'] = Variable<bool>(flipped);
+    map['head_only'] = Variable<bool>(headOnly);
+    map['image_flipped'] = Variable<bool>(imageFlipped);
     if (!nullToAbsent || imageLicense != null) {
       map['image_license'] = Variable<String>(imageLicense);
     }
@@ -340,8 +347,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       imageSlug: imageSlug == null && nullToAbsent
           ? const Value.absent()
           : Value(imageSlug),
-      type: Value(type),
-      flipped: Value(flipped),
+      headOnly: Value(headOnly),
+      imageFlipped: Value(imageFlipped),
       imageLicense: imageLicense == null && nullToAbsent
           ? const Value.absent()
           : Value(imageLicense),
@@ -367,9 +374,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           .fromJson(serializer.fromJson<String>(json['descLicense'])),
       descAuthors: serializer.fromJson<List<String>>(json['descAuthors']),
       imageSlug: serializer.fromJson<String?>(json['imageSlug']),
-      type: $ExercisesTable.$convertertype
-          .fromJson(serializer.fromJson<int>(json['type'])),
-      flipped: serializer.fromJson<bool>(json['flipped']),
+      headOnly: serializer.fromJson<bool>(json['headOnly']),
+      imageFlipped: serializer.fromJson<bool>(json['imageFlipped']),
       imageLicense: serializer.fromJson<String?>(json['imageLicense']),
       animated: serializer.fromJson<bool>(json['animated']),
       variationGroup: serializer.fromJson<int?>(json['variationGroup']),
@@ -390,9 +396,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           $ExercisesTable.$converterdescLicense.toJson(descLicense)),
       'descAuthors': serializer.toJson<List<String>>(descAuthors),
       'imageSlug': serializer.toJson<String?>(imageSlug),
-      'type':
-          serializer.toJson<int>($ExercisesTable.$convertertype.toJson(type)),
-      'flipped': serializer.toJson<bool>(flipped),
+      'headOnly': serializer.toJson<bool>(headOnly),
+      'imageFlipped': serializer.toJson<bool>(imageFlipped),
       'imageLicense': serializer.toJson<String?>(imageLicense),
       'animated': serializer.toJson<bool>(animated),
       'variationGroup': serializer.toJson<int?>(variationGroup),
@@ -409,8 +414,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           License? descLicense,
           List<String>? descAuthors,
           Value<String?> imageSlug = const Value.absent(),
-          ExerciseType? type,
-          bool? flipped,
+          bool? headOnly,
+          bool? imageFlipped,
           Value<String?> imageLicense = const Value.absent(),
           bool? animated,
           Value<int?> variationGroup = const Value.absent()}) =>
@@ -424,8 +429,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
         descLicense: descLicense ?? this.descLicense,
         descAuthors: descAuthors ?? this.descAuthors,
         imageSlug: imageSlug.present ? imageSlug.value : this.imageSlug,
-        type: type ?? this.type,
-        flipped: flipped ?? this.flipped,
+        headOnly: headOnly ?? this.headOnly,
+        imageFlipped: imageFlipped ?? this.imageFlipped,
         imageLicense:
             imageLicense.present ? imageLicense.value : this.imageLicense,
         animated: animated ?? this.animated,
@@ -444,8 +449,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           ..write('descLicense: $descLicense, ')
           ..write('descAuthors: $descAuthors, ')
           ..write('imageSlug: $imageSlug, ')
-          ..write('type: $type, ')
-          ..write('flipped: $flipped, ')
+          ..write('headOnly: $headOnly, ')
+          ..write('imageFlipped: $imageFlipped, ')
           ..write('imageLicense: $imageLicense, ')
           ..write('animated: $animated, ')
           ..write('variationGroup: $variationGroup')
@@ -464,8 +469,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
       descLicense,
       descAuthors,
       imageSlug,
-      type,
-      flipped,
+      headOnly,
+      imageFlipped,
       imageLicense,
       animated,
       variationGroup);
@@ -482,8 +487,8 @@ class Exercise extends DataClass implements Insertable<Exercise> {
           other.descLicense == this.descLicense &&
           other.descAuthors == this.descAuthors &&
           other.imageSlug == this.imageSlug &&
-          other.type == this.type &&
-          other.flipped == this.flipped &&
+          other.headOnly == this.headOnly &&
+          other.imageFlipped == this.imageFlipped &&
           other.imageLicense == this.imageLicense &&
           other.animated == this.animated &&
           other.variationGroup == this.variationGroup);
@@ -499,8 +504,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
   final Value<License> descLicense;
   final Value<List<String>> descAuthors;
   final Value<String?> imageSlug;
-  final Value<ExerciseType> type;
-  final Value<bool> flipped;
+  final Value<bool> headOnly;
+  final Value<bool> imageFlipped;
   final Value<String?> imageLicense;
   final Value<bool> animated;
   final Value<int?> variationGroup;
@@ -514,8 +519,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     this.descLicense = const Value.absent(),
     this.descAuthors = const Value.absent(),
     this.imageSlug = const Value.absent(),
-    this.type = const Value.absent(),
-    this.flipped = const Value.absent(),
+    this.headOnly = const Value.absent(),
+    this.imageFlipped = const Value.absent(),
     this.imageLicense = const Value.absent(),
     this.animated = const Value.absent(),
     this.variationGroup = const Value.absent(),
@@ -530,8 +535,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     required License descLicense,
     required List<String> descAuthors,
     this.imageSlug = const Value.absent(),
-    required ExerciseType type,
-    this.flipped = const Value.absent(),
+    this.headOnly = const Value.absent(),
+    this.imageFlipped = const Value.absent(),
     this.imageLicense = const Value.absent(),
     required bool animated,
     this.variationGroup = const Value.absent(),
@@ -539,7 +544,6 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
         category = Value(category),
         descLicense = Value(descLicense),
         descAuthors = Value(descAuthors),
-        type = Value(type),
         animated = Value(animated);
   static Insertable<Exercise> custom({
     Expression<int>? wgerId,
@@ -551,8 +555,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     Expression<String>? descLicense,
     Expression<String>? descAuthors,
     Expression<String>? imageSlug,
-    Expression<int>? type,
-    Expression<bool>? flipped,
+    Expression<bool>? headOnly,
+    Expression<bool>? imageFlipped,
     Expression<String>? imageLicense,
     Expression<bool>? animated,
     Expression<int>? variationGroup,
@@ -567,8 +571,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       if (descLicense != null) 'desc_license': descLicense,
       if (descAuthors != null) 'desc_authors': descAuthors,
       if (imageSlug != null) 'image_slug': imageSlug,
-      if (type != null) 'type': type,
-      if (flipped != null) 'flipped': flipped,
+      if (headOnly != null) 'head_only': headOnly,
+      if (imageFlipped != null) 'image_flipped': imageFlipped,
       if (imageLicense != null) 'image_license': imageLicense,
       if (animated != null) 'animated': animated,
       if (variationGroup != null) 'variation_group': variationGroup,
@@ -585,8 +589,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       Value<License>? descLicense,
       Value<List<String>>? descAuthors,
       Value<String?>? imageSlug,
-      Value<ExerciseType>? type,
-      Value<bool>? flipped,
+      Value<bool>? headOnly,
+      Value<bool>? imageFlipped,
       Value<String?>? imageLicense,
       Value<bool>? animated,
       Value<int?>? variationGroup}) {
@@ -600,8 +604,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
       descLicense: descLicense ?? this.descLicense,
       descAuthors: descAuthors ?? this.descAuthors,
       imageSlug: imageSlug ?? this.imageSlug,
-      type: type ?? this.type,
-      flipped: flipped ?? this.flipped,
+      headOnly: headOnly ?? this.headOnly,
+      imageFlipped: imageFlipped ?? this.imageFlipped,
       imageLicense: imageLicense ?? this.imageLicense,
       animated: animated ?? this.animated,
       variationGroup: variationGroup ?? this.variationGroup,
@@ -645,12 +649,11 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
     if (imageSlug.present) {
       map['image_slug'] = Variable<String>(imageSlug.value);
     }
-    if (type.present) {
-      final converter = $ExercisesTable.$convertertype;
-      map['type'] = Variable<int>(converter.toSql(type.value));
+    if (headOnly.present) {
+      map['head_only'] = Variable<bool>(headOnly.value);
     }
-    if (flipped.present) {
-      map['flipped'] = Variable<bool>(flipped.value);
+    if (imageFlipped.present) {
+      map['image_flipped'] = Variable<bool>(imageFlipped.value);
     }
     if (imageLicense.present) {
       map['image_license'] = Variable<String>(imageLicense.value);
@@ -676,8 +679,8 @@ class ExercisesCompanion extends UpdateCompanion<Exercise> {
           ..write('descLicense: $descLicense, ')
           ..write('descAuthors: $descAuthors, ')
           ..write('imageSlug: $imageSlug, ')
-          ..write('type: $type, ')
-          ..write('flipped: $flipped, ')
+          ..write('headOnly: $headOnly, ')
+          ..write('imageFlipped: $imageFlipped, ')
           ..write('imageLicense: $imageLicense, ')
           ..write('animated: $animated, ')
           ..write('variationGroup: $variationGroup')
@@ -1373,7 +1376,7 @@ class ExerciseTranslationsCompanion
 }
 
 class $ExerciseEquipmentTable extends ExerciseEquipment
-    with TableInfo<$ExerciseEquipmentTable, ExerciseEquipmentPiece> {
+    with TableInfo<$ExerciseEquipmentTable, ExerciseEquipmentItem> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -1387,10 +1390,10 @@ class $ExerciseEquipmentTable extends ExerciseEquipment
   static const VerificationMeta _equipmentMeta =
       const VerificationMeta('equipment');
   @override
-  late final GeneratedColumnWithTypeConverter<EquipmentPiece, int> equipment =
+  late final GeneratedColumnWithTypeConverter<EquipmentItem, int> equipment =
       GeneratedColumn<int>('equipment', aliasedName, false,
               type: DriftSqlType.int, requiredDuringInsert: true)
-          .withConverter<EquipmentPiece>(
+          .withConverter<EquipmentItem>(
               $ExerciseEquipmentTable.$converterequipment);
   @override
   List<GeneratedColumn> get $columns => [exercise, equipment];
@@ -1400,7 +1403,7 @@ class $ExerciseEquipmentTable extends ExerciseEquipment
   String get actualTableName => 'exercise_equipment';
   @override
   VerificationContext validateIntegrity(
-      Insertable<ExerciseEquipmentPiece> instance,
+      Insertable<ExerciseEquipmentItem> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -1417,9 +1420,9 @@ class $ExerciseEquipmentTable extends ExerciseEquipment
   @override
   Set<GeneratedColumn> get $primaryKey => {exercise, equipment};
   @override
-  ExerciseEquipmentPiece map(Map<String, dynamic> data, {String? tablePrefix}) {
+  ExerciseEquipmentItem map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return ExerciseEquipmentPiece(
+    return ExerciseEquipmentItem(
       exercise: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}exercise'])!,
       equipment: $ExerciseEquipmentTable.$converterequipment.fromSql(
@@ -1433,15 +1436,15 @@ class $ExerciseEquipmentTable extends ExerciseEquipment
     return $ExerciseEquipmentTable(attachedDatabase, alias);
   }
 
-  static JsonTypeConverter2<EquipmentPiece, int, int> $converterequipment =
-      const EnumIndexConverter<EquipmentPiece>(EquipmentPiece.values);
+  static JsonTypeConverter2<EquipmentItem, int, int> $converterequipment =
+      const EnumIndexConverter<EquipmentItem>(EquipmentItem.values);
 }
 
-class ExerciseEquipmentPiece extends DataClass
-    implements Insertable<ExerciseEquipmentPiece> {
+class ExerciseEquipmentItem extends DataClass
+    implements Insertable<ExerciseEquipmentItem> {
   final int exercise;
-  final EquipmentPiece equipment;
-  const ExerciseEquipmentPiece(
+  final EquipmentItem equipment;
+  const ExerciseEquipmentItem(
       {required this.exercise, required this.equipment});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1461,10 +1464,10 @@ class ExerciseEquipmentPiece extends DataClass
     );
   }
 
-  factory ExerciseEquipmentPiece.fromJson(Map<String, dynamic> json,
+  factory ExerciseEquipmentItem.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return ExerciseEquipmentPiece(
+    return ExerciseEquipmentItem(
       exercise: serializer.fromJson<int>(json['exercise']),
       equipment: $ExerciseEquipmentTable.$converterequipment
           .fromJson(serializer.fromJson<int>(json['equipment'])),
@@ -1480,14 +1483,14 @@ class ExerciseEquipmentPiece extends DataClass
     };
   }
 
-  ExerciseEquipmentPiece copyWith({int? exercise, EquipmentPiece? equipment}) =>
-      ExerciseEquipmentPiece(
+  ExerciseEquipmentItem copyWith({int? exercise, EquipmentItem? equipment}) =>
+      ExerciseEquipmentItem(
         exercise: exercise ?? this.exercise,
         equipment: equipment ?? this.equipment,
       );
   @override
   String toString() {
-    return (StringBuffer('ExerciseEquipmentPiece(')
+    return (StringBuffer('ExerciseEquipmentItem(')
           ..write('exercise: $exercise, ')
           ..write('equipment: $equipment')
           ..write(')'))
@@ -1499,15 +1502,15 @@ class ExerciseEquipmentPiece extends DataClass
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is ExerciseEquipmentPiece &&
+      (other is ExerciseEquipmentItem &&
           other.exercise == this.exercise &&
           other.equipment == this.equipment);
 }
 
 class ExerciseEquipmentCompanion
-    extends UpdateCompanion<ExerciseEquipmentPiece> {
+    extends UpdateCompanion<ExerciseEquipmentItem> {
   final Value<int> exercise;
-  final Value<EquipmentPiece> equipment;
+  final Value<EquipmentItem> equipment;
   final Value<int> rowid;
   const ExerciseEquipmentCompanion({
     this.exercise = const Value.absent(),
@@ -1516,11 +1519,11 @@ class ExerciseEquipmentCompanion
   });
   ExerciseEquipmentCompanion.insert({
     required int exercise,
-    required EquipmentPiece equipment,
+    required EquipmentItem equipment,
     this.rowid = const Value.absent(),
   })  : exercise = Value(exercise),
         equipment = Value(equipment);
-  static Insertable<ExerciseEquipmentPiece> custom({
+  static Insertable<ExerciseEquipmentItem> custom({
     Expression<int>? exercise,
     Expression<int>? equipment,
     Expression<int>? rowid,
@@ -1534,7 +1537,7 @@ class ExerciseEquipmentCompanion
 
   ExerciseEquipmentCompanion copyWith(
       {Value<int>? exercise,
-      Value<EquipmentPiece>? equipment,
+      Value<EquipmentItem>? equipment,
       Value<int>? rowid}) {
     return ExerciseEquipmentCompanion(
       exercise: exercise ?? this.exercise,

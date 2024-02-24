@@ -81,8 +81,8 @@ class _ExercisePickerScreenState extends ConsumerState<ExercisePickerScreen> {
                   child: CircularProgressIndicator.adaptive(),
                 ),
             data: (data) {
-              final fullExercises =
-                  data.primaryLanguageExercises.values.toList();
+              final translatedExercises =
+                  data.translatedExercises.values.toList();
               return BodyContainer(
                   child: CustomScrollView(
                 slivers: [
@@ -100,14 +100,14 @@ class _ExercisePickerScreenState extends ConsumerState<ExercisePickerScreen> {
                       padding: const EdgeInsets.fromLTRB(0, 16, 0, 64),
                       sliver: SliverList(
                           delegate: SliverChildBuilderDelegate(
-                        childCount: fullExercises.length + 1,
+                        childCount: translatedExercises.length + 1,
                         (context, i) {
-                          if (i < fullExercises.length) {
-                            final exercise = fullExercises[i].exercise;
+                          if (i < translatedExercises.length) {
+                            final exercise = translatedExercises[i].exercise;
                             return ExercisePickerRow(
                                 checked: _chosenExerciseIds
                                     .contains(exercise.wgerId),
-                                primaryLangFullExercise: fullExercises[i],
+                                translatedExercise: translatedExercises[i],
                                 colorSwatch: widget.swatch,
                                 onChanged: (chosen) {
                                   setState(() {

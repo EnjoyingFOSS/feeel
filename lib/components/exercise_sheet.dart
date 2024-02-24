@@ -29,8 +29,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/illustration_widget.dart';
-import 'package:feeel/enums/exercise_type.dart';
-import 'package:feeel/models/full_exercise.dart';
+import 'package:feeel/models/translated_exercise.dart';
 import 'package:feeel/screens/workout_detail/components/body_exercise_content.dart';
 import 'package:feeel/screens/workout_detail/components/contribution_overlay.dart';
 import 'package:feeel/screens/workout_detail/components/head_exercise_content.dart';
@@ -44,25 +43,25 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 class ExerciseSheet extends StatelessWidget {
-  final FullExercise primaryLangFullExercise;
+  final TranslatedExercise translatedExercise;
   final FeeelSwatch colorSwatch;
 
   const ExerciseSheet(
       //TODO make an alternative for Linux — a dialog with the same content
-      {required this.primaryLangFullExercise,
+      {required this.translatedExercise,
       required this.colorSwatch,
       Key? key})
       : super(key: key);
 
   static void showSheet(BuildContext context,
-      FullExercise primaryLangFullExercise, FeeelSwatch colorSwatch) {
+      TranslatedExercise translatedExercise, FeeelSwatch colorSwatch) {
     showModalBottomSheet<void>(
         context: context,
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
         isDismissible: true,
         builder: (_) => ExerciseSheet(
-              primaryLangFullExercise: primaryLangFullExercise,
+              translatedExercise: translatedExercise,
               colorSwatch: colorSwatch,
             ));
   }
@@ -76,10 +75,7 @@ class ExerciseSheet extends StatelessWidget {
       snap: true,
       snapSizes: const [0.75, 1.0],
       builder: (BuildContext context, ScrollController scrollController) {
-        final imageSlug = primaryLangFullExercise
-            .exercise.imageSlug; //TODO reset image slug on display
-        final headOnly =
-            primaryLangFullExercise.exercise.type == ExerciseType.head;
+        //TODO reset image slug on display
 
         final brightness = Theme.of(context).brightness;
         final bgColor = brightness == Brightness.dark
@@ -100,10 +96,9 @@ class ExerciseSheet extends StatelessWidget {
                     color: licenseColor, decoration: TextDecoration.underline));
 
         final hasImageLicense =
-            primaryLangFullExercise.exercise.imageLicense != null;
+            translatedExercise.exercise.imageLicense != null;
 
-        final translatedNotes =
-            primaryLangFullExercise.getFirstTranslatedNotes();
+        final translatedNotes = translatedExercise.getNotes();
 
         return CustomScrollView(
           controller: scrollController,
@@ -129,44 +124,46 @@ class ExerciseSheet extends StatelessWidget {
                                     color: bgColor,
                                   ),
                                 )),
-                            headOnly
-                                ? HeadExerciseContent(
-                                    color: colorSwatch.getColor(FeeelShade
-                                        .lightest
-                                        .invertIfDark(brightness)),
-                                    onBreak: false,
-                                    illustration: IllustrationWidget(
+                            if (translatedExercise.exercise.headOnly)
+                              HeadExerciseContent(
+                                  color: colorSwatch.getColor(FeeelShade
+                                      .lightest
+                                      .invertIfDark(brightness)),
+                                  onBreak: false,
+                                  illustration: IllustrationWidget(
+                                      imageAssetString:
+                                          AssetUtil.getExerciseImage(
+                                              translatedExercise.exercise),
+                                      flipped: translatedExercise
+                                          .exercise.imageFlipped),
+                                  triangleSeed:
+                                      translatedExercise.exercise.name.hashCode)
+                            else
+                              translatedExercise.exercise.imageSlug != null
+                                  ? BodyExerciseContent(
+                                      onBreak: false,
+                                      illustration: IllustrationWidget(
                                         imageAssetString:
-                                            AssetUtil.getImageOrPlaceholderPath(
-                                                imageSlug),
-                                        flipped: primaryLangFullExercise
-                                            .exercise.flipped),
-                                    triangleSeed: primaryLangFullExercise
-                                        .exercise.name.hashCode)
-                                : imageSlug != null
-                                    ? BodyExerciseContent(
+                                            AssetUtil.getExerciseImage(
+                                                translatedExercise.exercise),
+                                        flipped: translatedExercise
+                                            .exercise.imageFlipped,
+                                      ))
+                                  : Stack(children: <Widget>[
+                                      BodyExerciseContent(
                                         onBreak: false,
                                         illustration: IllustrationWidget(
-                                          imageAssetString: AssetUtil
-                                              .getImageOrPlaceholderPath(
-                                                  imageSlug),
-                                          flipped: primaryLangFullExercise
-                                              .exercise.flipped,
-                                        ))
-                                    : Stack(children: <Widget>[
-                                        BodyExerciseContent(
-                                          onBreak: false,
-                                          illustration: IllustrationWidget(
-                                              imageAssetString: AssetUtil
-                                                  .getImageOrPlaceholderPath(
-                                                      imageSlug),
-                                              flipped: primaryLangFullExercise
-                                                  .exercise.flipped),
-                                          alignment: Alignment.center,
-                                        ),
-                                        ContributionOverlay(
-                                            colorSwatch: colorSwatch)
-                                      ]),
+                                            imageAssetString:
+                                                AssetUtil.getExerciseImage(
+                                                    translatedExercise
+                                                        .exercise),
+                                            flipped: translatedExercise
+                                                .exercise.imageFlipped),
+                                        alignment: Alignment.center,
+                                      ),
+                                      ContributionOverlay(
+                                          colorSwatch: colorSwatch)
+                                    ]),
                           ])))),
               Container(
                   padding: EdgeInsets.fromLTRB(
@@ -186,8 +183,7 @@ class ExerciseSheet extends StatelessWidget {
                               children: [
                                 Center(
                                     child: Text(
-                                  primaryLangFullExercise
-                                      .getFirstTranslatedName(),
+                                  translatedExercise.getName(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontSize: 40,
@@ -198,9 +194,8 @@ class ExerciseSheet extends StatelessWidget {
                                   height: 8,
                                 ),
                                 MarkdownBody(
-                                  data: primaryLangFullExercise
-                                          .getFirstTranslatedDesc() ??
-                                      "",
+                                  data:
+                                      translatedExercise.getDescription() ?? "",
                                   styleSheet: markdownBodyStyle,
                                   imageBuilder: (a, b, c) => const SizedBox(),
                                   onTapLink: (a, b, c) {},
@@ -267,15 +262,15 @@ class ExerciseSheet extends StatelessWidget {
                                     data: AppLocalizations.of(context)!
                                         .txtEnglishDescLicense
                                         .replaceFirst("]",
-                                            "](${primaryLangFullExercise.exercise.descLicense.licenseLink})")
+                                            "](${translatedExercise.exercise.descLicense.licenseLink})")
                                         .replaceFirst(
                                             "%1s",
-                                            primaryLangFullExercise
+                                            translatedExercise
                                                 .exercise.descAuthors
                                                 .join(", "))
                                         .replaceFirst(
                                             "%2s",
-                                            primaryLangFullExercise.exercise
+                                            translatedExercise.exercise
                                                 .descLicense.licenseName),
                                     styleSheet: markdownLicenseStyle,
                                     onTapLink: (text, url, title) =>
@@ -294,7 +289,7 @@ class ExerciseSheet extends StatelessWidget {
                                           ?.copyWith(color: licenseColor)),
                                 if (hasImageLicense)
                                   MarkdownBody(
-                                      data: primaryLangFullExercise
+                                      data: translatedExercise
                                               .exercise.imageLicense ??
                                           "",
                                       styleSheet: markdownLicenseStyle,

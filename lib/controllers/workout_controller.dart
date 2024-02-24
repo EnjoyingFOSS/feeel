@@ -38,17 +38,15 @@ import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/audio/tts_view.dart';
 import 'package:feeel/controllers/workout_timer.dart';
 import 'package:feeel/controllers/workout_view.dart';
-import 'package:feeel/models/editable_workout_record.dart';
 import 'package:feeel/db/database.dart';
-import 'package:feeel/models/full_exercise.dart';
-import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/enums/workout_stage.dart';
+import 'package:feeel/models/editable_workout_record.dart';
+import 'package:feeel/models/full_workout.dart';
+import 'package:feeel/models/translated_exercise.dart';
 import 'package:feeel/utils/locale_util.dart';
-// import 'package:feeel/models/view/exercise_step.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum _ViewTypes { gui, audio }
 
@@ -110,8 +108,8 @@ class WorkoutMeta {
 
   bool isFirstExercise() => _exercisePos == 0;
 
-  FullExercise getCurExercise() =>
-      _fullWorkout.primaryLangFullExercises[_exercisePos];
+  TranslatedExercise getCurExercise() =>
+      _fullWorkout.translatedExercises[_exercisePos];
 
   WorkoutExercise _getCurWorkoutExercise() =>
       _fullWorkout.workoutExercises[_exercisePos];

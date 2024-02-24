@@ -29,10 +29,9 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/components/illustration_widget.dart';
-import 'package:feeel/models/full_exercise.dart';
+import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/providers/exercise_provider.dart';
 import 'package:feeel/utils/asset_util.dart';
-import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -64,24 +63,22 @@ class ExerciseEditorRow extends ConsumerWidget {
             padding: EdgeInsets.all(16),
             child: CircularProgressIndicator.adaptive()),
         data: (data) {
-          FullExercise fullExercise =
-              data.primaryLanguageExercises[editableWorkoutExercise.exercise]!;
-          final imageSlug = fullExercise.exercise.imageSlug;
+          final translatedExercise =
+              data.translatedExercises[editableWorkoutExercise.exercise]!;
           return Row(children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: IllustrationWidget(
                   imageAssetString:
-                      AssetUtil.getThumbOrPlaceholderPath(imageSlug),
-                  flipped: fullExercise.exercise.flipped,
+                      AssetUtil.getExerciseThumb(translatedExercise.exercise),
+                  flipped: translatedExercise.exercise.imageFlipped,
                   dimension: 72),
             ),
             Expanded(
                 child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                fullExercise.translationsByLanguage?.values.first.name ??
-                    fullExercise.exercise.name,
+                translatedExercise.getName(),
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             )),

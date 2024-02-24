@@ -30,20 +30,20 @@
 
 import 'package:feeel/components/exercise_sheet.dart';
 import 'package:feeel/components/illustration_widget.dart';
-import 'package:feeel/models/full_exercise.dart';
-import 'package:feeel/utils/asset_util.dart';
+import 'package:feeel/models/translated_exercise.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseListItem extends StatelessWidget {
-  final FullExercise primaryLangFullExercise; //TODO migrate to FullExercise
+  final TranslatedExercise translatedExercise;
   final FeeelSwatch colorSwatch;
   final Widget subtitle;
   final ColorFilter? colorFilter;
 
   const ExerciseListItem(
       {Key? key,
-      required this.primaryLangFullExercise,
+      required this.translatedExercise,
       required this.subtitle,
       required this.colorSwatch,
       this.colorFilter})
@@ -51,7 +51,6 @@ class ExerciseListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageSlug = primaryLangFullExercise.exercise.imageSlug;
     return InkWell(
         child: Row(children: [
           Padding(
@@ -62,20 +61,20 @@ class ExerciseListItem extends StatelessWidget {
               ),
               child: IllustrationWidget(
                 imageAssetString:
-                    AssetUtil.getThumbOrPlaceholderPath(imageSlug),
-                flipped: primaryLangFullExercise.exercise.flipped,
+                    AssetUtil.getExerciseThumb(translatedExercise.exercise),
+                flipped: translatedExercise.exercise.imageFlipped,
                 dimension: 64,
                 colorFilter: colorFilter,
               )),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
-              primaryLangFullExercise.getFirstTranslatedName(),
+              translatedExercise.getName(),
               style: Theme.of(context).textTheme.titleSmall,
             ),
             subtitle
           ])
         ]),
-        onTap: () => ExerciseSheet.showSheet(
-            context, primaryLangFullExercise, colorSwatch));
+        onTap: () =>
+            ExerciseSheet.showSheet(context, translatedExercise, colorSwatch));
   }
 }

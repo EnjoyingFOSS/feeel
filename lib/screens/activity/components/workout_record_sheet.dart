@@ -112,15 +112,14 @@ class WorkoutRecordSheet extends ConsumerWidget {
                               SliverList(
                                   delegate: SliverChildBuilderDelegate(
                                       childCount: fullWorkoutRecord
-                                          .primaryLangFullExercises
-                                          .length, (_, i) {
-                                final fe = fullWorkoutRecord
-                                    .primaryLangFullExercises[i];
+                                          .translatedExercises.length, (_, i) {
+                                final fe =
+                                    fullWorkoutRecord.translatedExercises[i];
                                 final wer =
                                     fullWorkoutRecord.workoutExerciseRecords[i];
                                 if (wer.completedDuration == 0) {
                                   return ExerciseListItem(
-                                    primaryLangFullExercise: fe,
+                                    translatedExercise: fe,
                                     subtitle: Text(
                                       AppLocalizations.of(context)!
                                           .txtTimeCompletedOutOfTotal(
@@ -141,7 +140,7 @@ class WorkoutRecordSheet extends ConsumerWidget {
                                   );
                                 } else {
                                   return ExerciseListItem(
-                                      primaryLangFullExercise: fe,
+                                      translatedExercise: fe,
                                       subtitle: Text(
                                           AppLocalizations.of(context)!
                                               .txtTimeCompletedOutOfTotal(

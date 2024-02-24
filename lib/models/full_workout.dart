@@ -29,7 +29,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
-import 'package:feeel/models/full_exercise.dart';
+import 'package:feeel/models/translated_exercise.dart';
 import 'package:feeel/providers/db_provider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,7 +38,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class FullWorkout {
   final Workout workout;
   final List<WorkoutExercise> workoutExercises;
-  final List<FullExercise> primaryLangFullExercises;
+  final List<TranslatedExercise> translatedExercises;
   late int _duration;
   int get duration => _duration;
 
@@ -48,7 +48,7 @@ class FullWorkout {
   FullWorkout({
     required this.workout,
     required this.workoutExercises,
-    required this.primaryLangFullExercises,
+    required this.translatedExercises,
   }) {
     _duration = (workoutExercises.isNotEmpty)
         ? workoutExercises[0].exerciseDuration ?? workout.exerciseDuration
@@ -83,8 +83,8 @@ class FullWorkout {
     return FullWorkout(
         workoutExercises: workoutExercises,
         workout: Workout.fromJson(json[_workoutKey] as Map<String, dynamic>),
-        primaryLangFullExercises:
-            await db.queryPrimaryLangFullExercisesFromIds(exerciseIds, locale));
+        translatedExercises:
+            await db.queryTranslatedExercisesFromIds(exerciseIds, locale));
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{

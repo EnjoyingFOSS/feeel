@@ -32,7 +32,7 @@ import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/audio/tts_helper.dart';
 import 'package:feeel/controllers/workout_view.dart';
 import 'package:feeel/enums/workout_stage.dart';
-import 'package:feeel/models/full_exercise.dart';
+import 'package:feeel/models/translated_exercise.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TTSView implements WorkoutView {
@@ -43,19 +43,19 @@ class TTSView implements WorkoutView {
   TTSView(this.l10n);
 
   @override
-  void onStart(
-      int exercisePos, FullExercise nextPrimaryLangFullExercise, int duration) {
+  void onStart(int exercisePos, TranslatedExercise nextTranslatedExercise,
+      int duration) {
     TTSHelper.tts.speak(
-        l10n.txtLetsGoFirstUp.replaceFirst(
-            "%s", nextPrimaryLangFullExercise.getFirstTranslatedName()),
+        l10n.txtLetsGoFirstUp
+            .replaceFirst("%s", nextTranslatedExercise.getName()),
         priority: AudioPriority.high); //TODO internationalization
   }
 
   @override
-  void onBreak(
-      int exercisePos, FullExercise nextPrimaryLangFullExercise, int duration) {
+  void onBreak(int exercisePos, TranslatedExercise nextTranslatedExercise,
+      int duration) {
     TTSHelper.tts.speak(
-        "${l10n.txtBreak} ${l10n.txtNextUp} ${nextPrimaryLangFullExercise.getFirstTranslatedName()}",
+        "${l10n.txtBreak} ${l10n.txtNextUp} ${nextTranslatedExercise.getName()}",
         priority: AudioPriority.high);
   }
 
@@ -73,9 +73,9 @@ class TTSView implements WorkoutView {
 
   @override
   void onExercise(
-      int exercisePos, FullExercise primaryLangFullExercise, int duration) {
-    TTSHelper.tts.speak(primaryLangFullExercise.getFirstTranslatedName(),
-        priority: AudioPriority.high);
+      int exercisePos, TranslatedExercise translatedExercise, int duration) {
+    TTSHelper.tts
+        .speak(translatedExercise.getName(), priority: AudioPriority.high);
     _halfTime = (duration / 2).ceil();
     // TODO handle first step
   }

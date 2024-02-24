@@ -28,27 +28,25 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:feeel/enums/workout_stage.dart';
-import 'package:feeel/models/translated_exercise.dart';
+import 'package:feeel/db/database.dart';
 
-abstract class WorkoutView {
-  void onStart(int exercisePos, TranslatedExercise nextTranslatedExercise,
-      int defaultBreakDuration);
-  void onBreak(int exercisePos, TranslatedExercise nextTranslatedExercise,
-      int defaultBreakDuration);
-  void onExercise(
-      int exercisePos,
-      TranslatedExercise translatedExercise,
-      // ExerciseStep? firstStep,
-      int defaultExerciseDuration);
-  void onCountdown(
-      int exercisePos); //TODO exercisePos is here only because of the non-ideal architecture of the exercise view
-  // void onLaterStep(int stepPos, ExerciseStep step);
-  void onCount(
-      int seconds,
-      WorkoutStage
-          stage); //TODO need to pass in stage here OR how about I register to be notified of a specific time? just like with stages; could maybe keep a map of functions for each breakpoint...
-  void onPause();
-  void onPlay();
-  void onDispose();
+class TranslatedExercise {
+  final Exercise exercise;
+  final ExerciseTranslation? translation;
+  final List<ExerciseEquipmentItem> equipment;
+  final List<ExerciseMuscle> muscles;
+
+  TranslatedExercise(
+      {required this.exercise,
+      required this.equipment,
+      required this.muscles,
+      this.translation});
+
+  String getName() => translation?.name ?? exercise.name;
+
+  String? getDescription() => translation?.description ?? exercise.description;
+
+  List<String>? getAliases() => translation?.aliases ?? exercise.aliases;
+
+  List<String>? getNotes() => translation?.notes ?? exercise.notes;
 }
