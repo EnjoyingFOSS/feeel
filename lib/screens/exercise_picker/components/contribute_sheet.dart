@@ -87,7 +87,7 @@ class ContributeSheet extends StatelessWidget {
                           color: bgColor,
                         )),
                     Image.asset(
-                      AssetUtil.getImagePath("wger-logo.webp"),
+                      ImageAsset.wgerLogo.getPath(),
                       width: 128,
                     ),
                   ]))),

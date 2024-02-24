@@ -280,7 +280,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             width: 48,
             height: 48,
             child: Image(
-              image: AssetImage(AssetUtil.getImagePath("icon_generic.png")),
+              image: AssetImage(ImageAsset.icon.getPath()),
             ),
           ),
           applicationLegalese: "© Miroslav Mazel et al., 2021");

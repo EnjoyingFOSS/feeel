@@ -72,7 +72,7 @@ class DisclaimerSheet extends StatelessWidget {
                   color: bgColor,
                 )),
             Image.asset(
-              AssetUtil.getImagePath("image_volunteer_heart.webp"),
+              ImageAsset.imageVolunteerHeart.getPath(),
               width: 128,
             ),
           ]),

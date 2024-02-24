@@ -49,9 +49,8 @@ class FinishPage extends StatelessWidget {
           color: color,
         ),
         Expanded(
-            child: Center(
-                child:
-                    Image.asset(AssetUtil.getImagePath("image_success.png")))),
+            child:
+                Center(child: Image.asset(ImageAsset.imageSuccess.getPath()))),
         Padding(
             padding: const EdgeInsets.fromLTRB(16, 24, 16, 32),
             child: Center(

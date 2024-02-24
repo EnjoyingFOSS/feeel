@@ -1,0 +1,492 @@
+{
+    "exercises": [
+        {
+            "id": 982,
+            "imageSlug": "!!!no ID!!!chairDips",
+            "license": "Miroslav Mazel's \"Chair Dips\" is licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 320,
+            "imageSlug": "jumpingJacks",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from United States Air Force's [\"Top leaders unite for senior enlisted summit\"](http://www.af.mil/News/Photos/igphoto/2000617206/), which is in the public domain.",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 718,
+            "imageSlug": "wallSit",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Fitness Gym Wall Sit Workout Vaughan Gray Fitness\"](http://maxpixel.freegreatpicture.com/Vaughan-Wall-Sit-Workout-Gym-Fitness-2523075) from Max Pixel, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 482,
+            "imageSlug": "pushUps",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Keiji Yoshiki's [push-up photo](https://www.pexels.com/photo/adult-athlete-body-exercise-176782/), published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 167,
+            "imageSlug": "abCrunches",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from bwanderd's [\"26 Abs 1\"](https://www.flickr.com/photos/86598533@N04/8252254965), published under the [CC BY 2.0 license](https://creativecommons.org/licenses/by/2.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 981,
+            "imageSlug": "stepUps",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Bodyweight Step Up\"](https://www.youtube.com/watch?v=6tuRv_B-tj4) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 615,
+            "imageSlug": "squats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Vinceypo0's [\"Parallel Squat Form\"](https://commons.wikimedia.org/wiki/File:Parallel_Squat_Form.jpeg), published under the [CC BY-SA 3.0 license](https://creativecommons.org/licenses/by-sa/3.0/deed.en).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 458,
+            "imageSlug": "forearmPlank",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a [plank photo](https://pxhere.com/en/photo/1165192) from PxHere, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 983,
+            "imageSlug": "highKnees",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from US Air Force's [\"RIP It! New running program puts Airmen's best foot forward\"](http://www.barksdale.af.mil/News/Photos/igphoto/2000179280/), which is in the public domain.",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 984,
+            "imageSlug": "lunges",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Mass Communication Specialist 2nd Class Brian Morales's [\"U.S. Navy Gas Turbine Systems Technician (Mechanical) 2nd Class Milton Lovelace, left, and Logistics Specialist Seaman Brittney Joseph, both assigned to the Naval Air Station (NAS) Key West port operations department, perform lunges during a physical training session at NAS Key West, Fla., Aug. 28, 2013. The Sailors were preparing for a Navy-wide physical fitness assessment.\"](https://commons.wikimedia.org/wiki/File:U.S._Navy_Gas_Turbine_Systems_Technician_(Mechanical)_2nd_Class_Milton_Lovelace,_left,_and_Logistics_Specialist_Seaman_Brittney_Joseph,_both_assigned_to_the_Naval_Air_Station_(NAS)_Key_West_port_operations_130828-N-YB753-041.jpg), which is in the public domain.",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 985,
+            "imageSlug": "pushUpRotations",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Woman in Purple Tank Top and Gray Sweat Pants\"](https://www.pexels.com/photo/woman-in-purple-tank-top-and-gray-sweat-pants-163437/) on Pexels, published under the [CC0 license](https://creativecommons.org/publicdomain/zero/1.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 580,
+            "imageSlug": "sidePlank",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Sgt. Thomas Childs's [\"U.S. Marine Corps Sgt. Jonathan Benezette demonstrates the left plank position during Marine Corps martial arts training aboard the dock landing ship USS Oak Hill (LSD 51) during Amphibious-Southern Partnership Station (A-SPS) 2012 in the Caribbean Sea Oct. 9, 2011. SPS is an annual deployment of U.S. ships to the U.S. Southern Command's area of responsibility in the Caribbean and Latin America. The exercise involves information sharing with navies, coast guards and civilian services throughout the region.\"](https://commons.wikimedia.org/wiki/File:U.S._Marine_Corps_Sgt._Jonathan_Benezette_demonstrates_the_left_plank_position_during_Marine_Corps_martial_arts_training_aboard_the_dock_landing_ship_USS_Oak_Hill_(LSD_51)_during_Amphibious-Southern_Partnership_111009-A-WF228-011.jpg), which is in the public domain.",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 1019,
+            "imageSlug": "sidePlank",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from Sgt. Thomas Childs's [\"U.S. Marine Corps Sgt. Jonathan Benezette demonstrates the left plank position during Marine Corps martial arts training aboard the dock landing ship USS Oak Hill (LSD 51) during Amphibious-Southern Partnership Station (A-SPS) 2012 in the Caribbean Sea Oct. 9, 2011. SPS is an annual deployment of U.S. ships to the U.S. Southern Command's area of responsibility in the Caribbean and Latin America. The exercise involves information sharing with navies, coast guards and civilian services throughout the region.\"](https://commons.wikimedia.org/wiki/File:U.S._Marine_Corps_Sgt._Jonathan_Benezette_demonstrates_the_left_plank_position_during_Marine_Corps_martial_arts_training_aboard_the_dock_landing_ship_USS_Oak_Hill_(LSD_51)_during_Amphibious-Southern_Partnership_111009-A-WF228-011.jpg), which is in the public domain.",
+            "flipped": true,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 986,
+            "imageSlug": "sideSplitSquats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": true,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 987,
+            "imageSlug": "sideSplitSquats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 988,
+            "imageSlug": "bulgarianSplitSquats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 989,
+            "imageSlug": "bulgarianSplitSquats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": true,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 456,
+            "imageSlug": "pistolSquats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": true,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 1020,
+            "imageSlug": "pistolSquats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 990,
+            "imageSlug": "kneelingKickbacks",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 702,
+            "imageSlug": "singleLegCalfRaises",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 1021,
+            "imageSlug": "singleLegCalfRaises",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": true,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 991,
+            "imageSlug": "splitSquats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 992,
+            "imageSlug": "splitSquats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by paolo.dev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": true,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 993,
+            "imageSlug": "jumpRopeBasic",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by Mohammad H. Tajaddini, which was derived from [\"Jump rope - skipping\"](https://www.flickr.com/photos/90177949@N00/1394676434) by [Drew and Merissa](https://www.flickr.com/photos/90177949@N00), published under the [CC BY 2.0 license](https://creativecommons.org/licenses/by/2.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 994,
+            "imageSlug": "armCirclesFW",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Arm Circle to Shoulder Press Down\"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 454,
+            "imageSlug": "pikePushUps",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"FULL BODY Bodyweight Workout [NO EQUIPMENT] // School of Calisthenics\"](https://www.youtube.com/watch?v=96X4fYKe3QY) by School of Calisthenics on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 996,
+            "imageSlug": "mountainClimbers",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Mountain Climber\"](https://vimeo.com/149362946) by Dr. Greg Wells on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 997,
+            "imageSlug": "fourCountBurpees",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 998,
+            "imageSlug": "noPushUpBurpees",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 616,
+            "imageSlug": "squatThrusts",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 999,
+            "imageSlug": "reverseLunges",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Fraser Wilson Lower Body Home Workout - NO EQUIPMENT NEEDED | EHPlabs\"](https://www.youtube.com/watch?v=WROyapZyYME) by EHPlabs on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 377,
+            "imageSlug": "legRaises",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"20-Minute At-Home Full-Body Workout | No Equipment\"](https://www.youtube.com/watch?v=1A7pdAKODEU) by \"EatMoveRest - The Stanczyks\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 1000,
+            "imageSlug": "floorDips",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"20-Minute At-Home Full-Body Workout | No Equipment\"](https://www.youtube.com/watch?v=1A7pdAKODEU) by \"EatMoveRest - The Stanczyks\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 1001,
+            "imageSlug": "highPlank",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"The 6-Minute Sweat Workout: Burpee\"](https://www.youtube.com/watch?v=sHLu6-liUL0) by ExperienceLifeMag on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 995,
+            "imageSlug": "armCirclesBW",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Arm Circle to Shoulder Press Down\"](https://www.youtube.com/watch?v=PD3P7zWzzg8) by Heartmybody Fitness on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": true
+        },
+        {
+            "id": 1002,
+            "imageSlug": "childsPose",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a privately submitted photo by Ali Aliyev, who agreed to license the triangulated version under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 475,
+            "imageSlug": "pullUps",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"A US Marine Doing Pull-ups\"](https://commons.wikimedia.org/wiki/File:Marine_Pull-ups.jpg) by \"Cpl. C. J. Yard, USMC\", published under a public domain license.",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 1003,
+            "imageSlug": "kettlebellDeadlift",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Man In Blue Shorts Carrying Brown Exercise Equipments\"](https://www.dreamstime.com/man-blue-shorts-carrying-brown-exercise-equipments-public-domain-image-free-83059944) by creativecommonsstockphotos, published under the [CC0 1.0 license](https://creativecommons.org/publicdomain/zero/1.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 632,
+            "imageSlug": "sumoSquats",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"GET SCULPTED LEGS & THIGHS IN 30 DAYS CHALLENGE! Day 18: 100 Tipsy Butterfly! 🦋 #StretchyFit100\"](https://www.youtube.com/watch?v=CbLwLgx6_kw) by Action Jacquelyn on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 1004,
+            "imageSlug": "shoulderRotationFW",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"SHOULDERS ROTATION EXERCISE (2020)\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by \"Traditional Martial Arts by Dmitry Prosvirov\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1005,
+            "imageSlug": "shoulderRotationBW",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"SHOULDERS ROTATION EXERCISE (2020)\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by \"Traditional Martial Arts by Dmitry Prosvirov\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1006,
+            "imageSlug": "chinTuck",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Home Exercises for Cerivcal Disc Pain | Tim Keeley | Physio REHAB\"](https://www.youtube.com/watch?v=AiTt-zCdluc) by \"Physio Fitness | Physio REHAB | Tim Keeley\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 570,
+            "imageSlug": "shoulderShrug",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Yoga class for shoulder relief\"](https://www.youtube.com/watch?v=H8tUMz9ydUw) by \"Stewart Hamblin The Feldenkrais Way\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1007,
+            "imageSlug": "headTurns",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief\"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by \"Kit Laughlin (Stretch Therapy)\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1010,
+            "imageSlug": "backNeckStretch",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"A Complete Sequence to Stretching Your Neck Muscles | Olivia Allnutt from Stretch Therapy\"](https://www.youtube.com/watch?v=7kqdQSQxtnY) by \"Kit Laughlin (Stretch Therapy)\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1008,
+            "imageSlug": "lateralNeckStretch",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"How to do a Lateral Neck Stretch Chin to Shoulder\"](https://www.youtube.com/watch?v=gT6_7GyUsI4) by \"Heartmybody Fitness\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": true,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1009,
+            "imageSlug": "lateralNeckStretch",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"How to do a Lateral Neck Stretch Chin to Shoulder\"](https://www.youtube.com/watch?v=gT6_7GyUsI4) by \"Heartmybody Fitness\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1011,
+            "imageSlug": "frontNeckStretch",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"Jaw-Neck Stretching Exercises | TMJ Exercises and Pain Relief\"](https://www.youtube.com/watch?v=QtH7lQrPoxU) by \"Kit Laughlin (Stretch Therapy)\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1012,
+            "imageSlug": "alternatingBicepCurls",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"P3 W1 ex6 Bicep Curls\"](https://www.youtube.com/watch?v=N-nJ3ZMzTzg) by [\"Nick Korderas\"](https://www.youtube.com/channel/UCcf215MCeKPhNEzVlIjjp-w) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 1013,
+            "imageSlug": "levatorScapulaeStretch",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"How to stretch your Levator Scapulae\"](https://www.youtube.com/watch?v=Yu4DiooIutk) by [\"Spire Injury Clinic\"](https://www.youtube.com/c/SpireInjuryClinic) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1014,
+            "imageSlug": "levatorScapulaeStretch",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"How to stretch your Levator Scapulae\"](https://www.youtube.com/watch?v=Yu4DiooIutk) by [\"Spire Injury Clinic\"](https://www.youtube.com/c/SpireInjuryClinic) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": true,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1015,
+            "imageSlug": "neckCirclesCW",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Neck Circles\"](https://www.youtube.com/watch?v=CQlqdL8rok8) by [\"Paleo University\"](https://www.youtube.com/channel/UCQwF6JMwi_iZKX1DbYrYDWg/featured) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1016,
+            "imageSlug": "neckCirclesCCW",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Neck Circles\"](https://www.youtube.com/watch?v=CQlqdL8rok8) by [\"Paleo University\"](https://www.youtube.com/channel/UCQwF6JMwi_iZKX1DbYrYDWg/featured) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1017,
+            "imageSlug": "neckHalfCircles",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Neck Circles\"](https://www.youtube.com/watch?v=CQlqdL8rok8) by [\"Paleo University\"](https://www.youtube.com/channel/UCQwF6JMwi_iZKX1DbYrYDWg/featured) on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1018,
+            "imageSlug": "headTilts",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from a triangulation by kettenfett, which was derived from [\"How to do a Lateral Neck Stretch Chin to Shoulder\"](https://www.youtube.com/watch?v=gT6_7GyUsI4) by \"Heartmybody Fitness\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": true,
+            "animated": true
+        },
+        {
+            "id": 1028,
+            "imageSlug": "quadrupedThoracicRotation",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Quadruped Thoracic Rotation\"](https://www.youtube.com/watch?v=8_XIYNYuHO8) by \"Onyx Athletic Perfomance\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 1029,
+            "imageSlug": "quadrupedThoracicRotation",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Quadruped Thoracic Rotation\"](https://www.youtube.com/watch?v=8_XIYNYuHO8) by \"Onyx Athletic Perfomance\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": true,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 1081,
+            "imageSlug": "shoulderDislocates",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Wanna Stand Taller? Yoga for Back and Shoulder Mobility (10 Minutes)\"](https://www.youtube.com/watch?v=5EzGZqvvOmo) by \"Action Jacquelyn\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 1082,
+            "imageSlug": "bentOverRowToExternalRotation",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Bent-Over External Rotation @ 90 degrees\"](https://www.youtube.com/watch?v=iXOkQBgRTrE) by \"Change Your Body Boot Camps, Newton, MA\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        },
+        {
+            "id": 1083,
+            "imageSlug": "YWTs",
+            "license": "Licensed under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/). Derived from [\"Prone YWTs - Exercise Demo\"](https://www.youtube.com/watch?v=k05bf8UOqVA) by \"CrossFit Chiltern - Personal and Group Fitness\" on YouTube, published under the [CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/legalcode).",
+            "flipped": false,
+            "headOnly": false,
+            "animated": false
+        }
+    ]
+}

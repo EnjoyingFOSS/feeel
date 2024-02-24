@@ -69,5 +69,10 @@ flutter:
   generate: true
 
   assets:
-    - assets/
+    - assets/images/
+    - assets/exercise_images/
+    - assets/exercise_thumbs/
+    - assets/json/
+    - assets/json_supplements/
+    - assets/sounds/
     - README.md

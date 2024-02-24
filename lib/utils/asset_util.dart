@@ -28,40 +28,85 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
-import 'package:path/path.dart' as p;
+import 'package:feeel/db/database.dart';
+import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
 
+class _PathUtil {
+  static const assetDir = "assets";
+  static const imageSubdir = "images";
+  static const exerciseImageSubdir = "exercise_images";
+  static const exerciseThumbSubdir = "exercise_thumbs";
+  static const jsonSubdir = "json";
+  static const jsonSupplementsSubdir = "json_supplements";
+  static const soundSubdir = "sounds";
+  static const placeholderFilename = "_placeholder.webp";
+}
+
+enum WikiJsonAsset {
+  exercises("exercisebaseinfo.json");
+  // TODO redirects("deletion-log.json");
+
+  final String _filename;
+
+  const WikiJsonAsset(this._filename);
+
+  String getPath() => join(_PathUtil.assetDir, _PathUtil.jsonSubdir, _filename);
+}
+
+enum SupplementJsonAsset {
+  exerciseImages("local_exercise_images.json");
+
+  final String _filename;
+
+  const SupplementJsonAsset(this._filename);
+
+  String getPath() =>
+      join(_PathUtil.assetDir, _PathUtil.jsonSupplementsSubdir, _filename);
+}
+
+enum SoundAsset {
+  breakTime("break.mp3"),
+  exercise("exercise.mp3"),
+  finish("finish.mp3"),
+  tick("tick.mp3");
+
+  final String _filename;
+
+  const SoundAsset(this._filename);
+
+  String getPath() =>
+      join(_PathUtil.assetDir, _PathUtil.soundSubdir, _filename);
+}
+
+enum ImageAsset {
+  icon("icon.png"),
+  imageCoach("image_coach.webp"),
+  imageSuccess("image_success.png"),
+  imageVolunteerHeart("image_volunteer_heart.webp"),
+  wgerLogo("wger-logo.webp");
+
+  final String _filename;
+
+  const ImageAsset(this._filename);
+
+  String getPath() =>
+      join(_PathUtil.assetDir, _PathUtil.imageSubdir, _filename);
+}
+
+// TODO chairDips has no wiki ID yet!!!
 class AssetUtil {
-  static const _assetsDir = "assets";
-  static const _thumbsPrefix = "thumbs_";
-  static const _placeholderAsset = "placeholder.webp";
+  static String getExerciseThumb(Exercise exercise) => join(
+      _PathUtil.assetDir,
+      _PathUtil.exerciseThumbSubdir,
+      exercise.imageSlug != null
+          ? "${exercise.imageSlug}.webp"
+          : _PathUtil.placeholderFilename);
 
-  static String getImageOrPlaceholderPath(String? imageSlug) {
-    if (imageSlug == null) {
-      return p.join(_assetsDir, _placeholderAsset);
-    }
-
-    final path = getImagePath(imageSlug);
-    // TODO  figure out how to check: if (File(path).existsSync()) {
-    return path;
-    // } else {
-    // return _fullPlaceholderPath;
-    // }
-  }
-
-  static String getThumbOrPlaceholderPath(String? imageSlug) {
-    if (imageSlug == null) {
-      return p.join(_assetsDir, "$_thumbsPrefix$_placeholderAsset");
-    }
-    final path = getImagePath(_thumbsPrefix + imageSlug);
-    // TODO  figure out how to check: if (File(path).existsSync()) {
-    return path;
-    // } else {
-    // return _fullPlaceholderThumbsPath;
-    // }
-  }
-
-  static String getImagePath(String imageSlug) =>
-      p.join(_assetsDir, imageSlug); //TODO test p.join
-
-  static String getExerciseJson() => p.join(_assetsDir, "exercises.json");
+  static String getExerciseImage(Exercise exercise) => join(
+      _PathUtil.assetDir,
+      _PathUtil.exerciseImageSubdir,
+      exercise.imageSlug != null
+          ? "${exercise.imageSlug}.webp"
+          : _PathUtil.placeholderFilename);
 }

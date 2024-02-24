@@ -137,8 +137,8 @@ class _WorkoutEditorScreenState extends ConsumerState<WorkoutEditorScreen> {
                                     color: _colorSwatch.getColor(FeeelShade
                                         .lightest
                                         .invertIfDark(theme.brightness)),
-                                    child: Image.asset(AssetUtil.getImagePath(
-                                        "image_coach.webp")),
+                                    child: Image.asset(
+                                        ImageAsset.imageCoach.getPath()),
                                   ),
                                 )
                               : _editingTimeMode

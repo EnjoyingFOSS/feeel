@@ -28,23 +28,23 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:feeel/controllers/workout_controller.dart';
 import 'package:feeel/db/database.dart';
-import 'package:feeel/providers/db_provider.dart';
-import 'package:feeel/utils/asset_util.dart';
 import 'package:feeel/models/full_workout.dart';
+import 'package:feeel/providers/db_provider.dart';
+import 'package:feeel/screens/workout_detail/components/exercise_page.dart';
+import 'package:feeel/screens/workout_detail/components/finish_page.dart';
+import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
-import 'package:feeel/screens/workout_detail/components/workout_cover.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wakelock/wakelock.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'exercise_page.dart';
-import 'finish_page.dart';
 
 enum _WorkoutPageTypes { cover, exercise, finish }
 
@@ -84,12 +84,11 @@ class _WorkoutPagerState extends ConsumerState<WorkoutPager> {
     super.didChangeDependencies();
 
     if (widget.fullWorkout.workoutExercises.isNotEmpty) {
-      final imageSlug =
-          widget.fullWorkout.primaryLangFullExercises[0].exercise.imageSlug;
-      precacheImage(
-          Image.asset(AssetUtil.getImageOrPlaceholderPath(imageSlug))
+      unawaited(precacheImage(
+          Image.asset(AssetUtil.getExerciseImage(
+                  widget.fullWorkout.translatedExercises.first.exercise))
               .image, //TODO precache inside workout page instead?
-          context);
+          context));
     }
   }
 
