@@ -29,7 +29,7 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 /// intEnum in DB
-enum EquipmentPiece {
+enum EquipmentItem {
   none("None needed"),
   barbell("Barbell"),
   bench("Bench"),
@@ -43,9 +43,9 @@ enum EquipmentPiece {
 
   final String translationKey;
 
-  const EquipmentPiece(this.translationKey);
+  const EquipmentItem(this.translationKey);
 
-  static EquipmentPiece fromWgerId(int wgerId) {
+  static EquipmentItem fromWgerId(int wgerId) {
     switch (wgerId) {
       case 1:
         return barbell;
