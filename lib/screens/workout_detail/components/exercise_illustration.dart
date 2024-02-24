@@ -28,18 +28,20 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:async';
+
+import 'package:feeel/components/illustration_widget.dart';
+import 'package:feeel/db/database.dart';
+import 'package:feeel/screens/workout_detail/components/body_exercise_content.dart';
 import 'package:feeel/screens/workout_detail/components/contribution_overlay.dart';
+import 'package:feeel/screens/workout_detail/components/head_exercise_content.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:flutter/material.dart';
 
-import '../../../components/illustration_widget.dart';
-import '../../../utils/asset_util.dart';
-import '../../../theming/feeel_shade.dart';
-import 'body_exercise_content.dart';
-import 'head_exercise_content.dart';
-
 class ExerciseIllustration extends StatelessWidget {
-  final String? imageSlug;
+  final Exercise exercise;
   final String title;
   final Color bgColor;
   final bool headOnly;
@@ -54,7 +56,7 @@ class ExerciseIllustration extends StatelessWidget {
 
   const ExerciseIllustration(
       {Key? key,
-      required this.imageSlug,
+      required this.exercise,
       required this.title,
       required this.headOnly,
       required this.animated,
@@ -73,12 +75,12 @@ class ExerciseIllustration extends StatelessWidget {
     final brightness = Theme.of(context).brightness;
     final screenSize = MediaQuery.of(context).size;
 
-    final imageAssetString = AssetUtil.getImageOrPlaceholderPath(imageSlug);
+    final imageAssetString = AssetUtil.getExerciseImage(exercise);
 
-    final showContributionOverlay = imageSlug == null;
+    final showContributionOverlay = exercise.imageSlug == null;
 
     if (animated) {
-      AssetImage(imageAssetString).evict();
+      unawaited(AssetImage(imageAssetString).evict());
     }
 
     return Expanded(

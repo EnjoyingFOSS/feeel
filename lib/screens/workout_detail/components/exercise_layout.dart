@@ -1,20 +1,20 @@
 import 'dart:math';
 
+import 'package:feeel/db/database.dart';
+import 'package:feeel/screens/workout_detail/components/exercise_controls.dart';
+import 'package:feeel/screens/workout_detail/components/exercise_counter.dart';
+import 'package:feeel/screens/workout_detail/components/exercise_footer.dart';
+import 'package:feeel/screens/workout_detail/components/exercise_illustration.dart';
+import 'package:feeel/theming/feeel_shade.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../../theming/feeel_shade.dart';
-import '../../../theming/feeel_swatch.dart';
-import 'exercise_controls.dart';
-import 'exercise_counter.dart';
-import 'exercise_footer.dart';
-import 'exercise_illustration.dart';
 
 class ExerciseLayout extends StatelessWidget {
   static const _bottomPadding = 16.0;
   static const _minFooterContentHeight = 152.0;
 
-  final String? imageSlug;
+  final Exercise exercise;
   final String title;
   final String secondsString;
   final bool headOnly;
@@ -31,7 +31,7 @@ class ExerciseLayout extends StatelessWidget {
 
   const ExerciseLayout({
     Key? key,
-    this.imageSlug,
+    required this.exercise,
     required this.title,
     required this.secondsString,
     required this.headOnly,
@@ -98,18 +98,18 @@ class ExerciseLayout extends StatelessWidget {
                                 color: onBackgroundColor,
                                 paused: paused,
                                 counterText: secondsString),
-                            paused
-                                ? ExerciseControls(
-                                    themeDarkColor: onBackgroundColor,
-                                    skipToPrevious: skipToPrevious,
-                                    skipToNext: skipToNext,
-                                    togglePlayPause: togglePlayPause,
-                                  )
-                                : Text(
-                                    AppLocalizations.of(context)!
-                                        .txtTapForControls,
-                                    style: TextStyle(color: onBackgroundColor),
-                                  ),
+                            if (paused)
+                              ExerciseControls(
+                                themeDarkColor: onBackgroundColor,
+                                skipToPrevious: skipToPrevious,
+                                skipToNext: skipToNext,
+                                togglePlayPause: togglePlayPause,
+                              )
+                            else
+                              Text(
+                                AppLocalizations.of(context)!.txtTapForControls,
+                                style: TextStyle(color: onBackgroundColor),
+                              ),
                             const Expanded(
                               child: SizedBox(),
                             ),
@@ -137,8 +137,8 @@ class ExerciseLayout extends StatelessWidget {
                       Padding(
                           padding: const EdgeInsets.all(8),
                           child: ExerciseIllustration(
+                              exercise: exercise,
                               floating: true,
-                              imageSlug: imageSlug,
                               title: title,
                               headOnly: headOnly,
                               animated: animated,
@@ -159,23 +159,24 @@ class ExerciseLayout extends StatelessWidget {
                   color: onBackgroundColor,
                   paused: paused,
                   counterText: secondsString),
-              paused
-                  ? ExerciseControls(
-                      themeDarkColor: onBackgroundColor,
-                      skipToPrevious: skipToPrevious,
-                      skipToNext: skipToNext,
-                      togglePlayPause: togglePlayPause,
-                    )
-                  : Text(
-                      AppLocalizations.of(context)!.txtTapForControls,
-                      style: TextStyle(color: onBackgroundColor),
-                    ),
+              if (paused)
+                ExerciseControls(
+                  themeDarkColor: onBackgroundColor,
+                  skipToPrevious: skipToPrevious,
+                  skipToNext: skipToNext,
+                  togglePlayPause: togglePlayPause,
+                )
+              else
+                Text(
+                  AppLocalizations.of(context)!.txtTapForControls,
+                  style: TextStyle(color: onBackgroundColor),
+                ),
               const SizedBox(
                 height: 16,
               ),
               ExerciseIllustration(
+                  exercise: exercise,
                   floating: false,
-                  imageSlug: imageSlug,
                   title: title,
                   headOnly: headOnly,
                   animated: animated,
