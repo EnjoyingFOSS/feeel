@@ -31,10 +31,10 @@
 import 'dart:math';
 
 import 'package:feeel/providers/feeel_swatch_provider.dart';
+import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/screens/workout_list/components/workout_list_item.dart';
 import 'package:feeel/screens/workout_list/components/workout_list_item_menu.dart';
 import 'package:feeel/screens/workout_list/components/workout_list_menu.dart';
-import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/screens/workout_list/providers/workout_list_provider.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +53,7 @@ class WorkoutListListView extends ConsumerWidget {
     final colorSwatches = ref.read(feeelSwatchProvider);
 
     final gridColumns = (min(
-                MediaQuery.of(context).size.width, LayoutXL.cols12.width) /
+                MediaQuery.sizeOf(context).width, LayoutXL.cols12.width) /
             (600 + _crossAxisSpacing)) //TODO does the 600 need to be hardcoded?
         .ceil();
 

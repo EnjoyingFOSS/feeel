@@ -55,6 +55,8 @@ class ContributeSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaPadding = MediaQuery.paddingOf(context);
+
     final bgColor = Theme.of(context).colorScheme.surface;
     final narrowLayout = _isNarrowLayout(context);
     final curLocale = Localizations.localeOf(context);
@@ -93,10 +95,10 @@ class ContributeSheet extends StatelessWidget {
                   ]))),
           Container(
               padding: EdgeInsets.fromLTRB(
-                  MediaQuery.of(context).padding.left + 16,
+                  mediaPadding.left + 16,
                   16,
-                  MediaQuery.of(context).padding.right + 16,
-                  MediaQuery.of(context).padding.bottom + 16),
+                  mediaPadding.right + 16,
+                  mediaPadding.bottom + 16),
               color: bgColor,
               width: double.infinity,
               alignment: Alignment.center,
@@ -198,5 +200,5 @@ class ContributeSheet extends StatelessWidget {
   }
 
   bool _isNarrowLayout(BuildContext context) =>
-      MediaQuery.of(context).size.width <= 400;
+      MediaQuery.sizeOf(context).width <= 400;
 }

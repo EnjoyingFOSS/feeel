@@ -76,6 +76,8 @@ class ExerciseSheet extends StatelessWidget {
       snapSizes: const [0.75, 1.0],
       builder: (BuildContext context, ScrollController scrollController) {
         //TODO reset image slug on display
+        final mediaSize = MediaQuery.sizeOf(context);
+        final mediaPadding = MediaQuery.of(context).padding;
 
         final brightness = Theme.of(context).brightness;
         final bgColor = brightness == Brightness.dark
@@ -108,7 +110,7 @@ class ExerciseSheet extends StatelessWidget {
                 delegate: SliverChildListDelegate([
               ConstrainedBox(
                   constraints: BoxConstraints(
-                      maxHeight: MediaQuery.of(context).size.height * 0.4),
+                      maxHeight: mediaSize.height * 0.4),
                   child: GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: Container(
@@ -167,9 +169,9 @@ class ExerciseSheet extends StatelessWidget {
                           ])))),
               Container(
                   padding: EdgeInsets.fromLTRB(
-                      MediaQuery.of(context).padding.left + 16,
+                      mediaPadding.left + 16,
                       0,
-                      MediaQuery.of(context).padding.right + 16,
+                      mediaPadding.right + 16,
                       16),
                   color: bgColor,
                   width: double.infinity,

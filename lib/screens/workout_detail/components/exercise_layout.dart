@@ -64,9 +64,9 @@ class ExerciseLayout extends StatelessWidget {
             ? colorSwatch.getColor(FeeelShade.darker)
             : colorSwatch.getColor(FeeelShade.dark));
 
-    final screenSize = MediaQuery.of(context).size;
+    final screenSize = MediaQuery.sizeOf(context);
 
-    final bottomViewPadding = MediaQuery.of(context).viewPadding.bottom;
+    final bottomViewPadding = MediaQuery.viewPaddingOf(context).bottom;
     final footerBottomPadding =
         bottomViewPadding > _bottomPadding ? bottomViewPadding : _bottomPadding;
 

@@ -77,7 +77,7 @@ class _HomePagerScreenState extends State<HomePagerScreen> {
     _initLocaleDependentAppState(Localizations.localeOf(context));
 
     final showPills =
-        MediaQuery.of(context).size.width > FeeelGrid.breakpointXL;
+        MediaQuery.sizeOf(context).width > FeeelGrid.breakpointXL;
 
     return Scaffold(
         //TODO do I need SafeArea here?

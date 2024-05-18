@@ -55,6 +55,8 @@ class DisclaimerSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaPadding = MediaQuery.paddingOf(context);
+
     final fgColor = Theme.of(context).colorScheme.onSurface;
     final bgColor = Theme.of(context).colorScheme.surface;
 
@@ -78,10 +80,10 @@ class DisclaimerSheet extends StatelessWidget {
           ]),
           Container(
               padding: EdgeInsets.fromLTRB(
-                  MediaQuery.of(context).padding.left + 16,
+                  mediaPadding.left + 16,
                   16,
-                  MediaQuery.of(context).padding.right + 16,
-                  MediaQuery.of(context).padding.bottom + 16),
+                  mediaPadding.right + 16,
+                  mediaPadding.bottom + 16),
               color: bgColor,
               width: double.infinity,
               child: Column(

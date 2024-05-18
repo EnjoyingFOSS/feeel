@@ -29,10 +29,10 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'dart:ui';
-import 'package:feeel/theming/feeel_swatch.dart';
 
-import 'feeel_color.dart';
-import 'feeel_shade.dart';
+import 'package:feeel/theming/feeel_color.dart';
+import 'package:feeel/theming/feeel_shade.dart';
+import 'package:feeel/theming/feeel_swatch.dart';
 
 class FeeelSwatches {
   static const swatches = {

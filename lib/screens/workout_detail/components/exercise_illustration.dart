@@ -73,7 +73,7 @@ class ExerciseIllustration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;
-    final screenSize = MediaQuery.of(context).size;
+    final screenSize = MediaQuery.sizeOf(context);
 
     final imageAssetString = AssetUtil.getExerciseImage(exercise);
 
