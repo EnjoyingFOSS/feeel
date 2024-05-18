@@ -21,6 +21,11 @@
 		<value key="Purism::form_factor">mobile</value>
 	</custom>
 
+	<branding>
+		<color type="primary" scheme_preference="light">#DAEDFF</color>
+		<color type="primary" scheme_preference="dark">#2A2F48</color>
+	</branding>
+
 	<description>
 		<p>Feeel is an open-source app for doing simple at-home exercises. It holds the acclaimed full body scientific 7-minute workout regime and allows creating custom workouts as well. The app sources exercises from wger, a free and open-source online exercise wiki.</p>
 
