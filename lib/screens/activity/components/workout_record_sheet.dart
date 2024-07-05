@@ -36,8 +36,8 @@ import 'package:feeel/screens/activity/components/workout_record_row.dart';
 import 'package:feeel/theming/feeel_grid.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WorkoutRecordSheet extends ConsumerWidget {
   static const _translucentGrayscaleColorFilter = ColorFilter.matrix([

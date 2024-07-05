@@ -154,10 +154,8 @@ class WorkoutController {
           break;
         case WorkoutStage.workoutBreak:
           _coordinateExerciseStage(restore: false);
-          break;
         case WorkoutStage.countdown:
           _coordinateExerciseStage(restore: true);
-          break;
         case WorkoutStage.exercise:
           _recordCompletedExercise();
           if (_workoutMeta.isLastExercise()) {
@@ -166,7 +164,6 @@ class WorkoutController {
             _workoutMeta.next();
             _coordinateBreakStage();
           }
-          break;
         case WorkoutStage.end:
           break;
       }
@@ -303,12 +300,10 @@ class WorkoutController {
           view?.onStart(_workoutMeta.getExercisePos(),
               _workoutMeta.getCurExercise(), _workoutMeta.getStartDuration());
         }
-        break;
       case WorkoutStage.countdown:
         for (final view in _views) {
           view?.onCountdown(_workoutMeta.getExercisePos());
         }
-        break;
       case WorkoutStage.exercise:
         for (final view in _views) {
           view?.onExercise(
@@ -317,7 +312,6 @@ class WorkoutController {
               //_workoutMeta.getCurStep(),
               _workoutMeta.getCurExerciseDuration());
         }
-        break;
       case WorkoutStage.workoutBreak:
         for (final view in _views) {
           view?.onBreak(
@@ -325,12 +319,10 @@ class WorkoutController {
               _workoutMeta.getCurExercise(),
               _workoutMeta.getCurBreakDuration());
         }
-        break;
       case WorkoutStage.end:
         for (final onFinish in _onFinishes) {
           if (onFinish != null) onFinish();
         }
-        break;
     }
   }
 

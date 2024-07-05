@@ -30,13 +30,11 @@
 
 import 'package:feeel/db/preference_keys.dart';
 import 'package:feeel/theming/feeel_grid.dart';
+import 'package:feeel/utils/asset_util.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../utils/asset_util.dart';
 
 class DisclaimerSheet extends StatelessWidget {
   const DisclaimerSheet({Key? key}) : super(key: key);
@@ -112,7 +110,7 @@ class DisclaimerSheet extends StatelessWidget {
                       onPressed: () async {
                         final navigator = Navigator.of(context);
                         final prefs = await SharedPreferences.getInstance();
-                        prefs.setBool(PreferenceKeys.showDisclaimer, false);
+                        await prefs.setBool(PreferenceKeys.showDisclaimer, false);
                         navigator.pop();
                       },
                       child: Text(AppLocalizations.of(context)!.btnIunderstand),

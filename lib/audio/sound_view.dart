@@ -29,9 +29,8 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:feeel/audio/audio_helper.dart';
 import 'package:feeel/controllers/workout_view.dart';
-
-import 'audio_helper.dart';
 
 class SoundView implements WorkoutView {
   //TODO should this whole thing be static? TTS as well?

@@ -1,4 +1,4 @@
-import '../db/database.dart';
+import 'package:feeel/db/database.dart';
 
 class EditableWorkoutRecord {
   final int? dbId;

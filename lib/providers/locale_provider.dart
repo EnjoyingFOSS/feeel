@@ -31,9 +31,9 @@
 import 'dart:ui';
 
 import 'package:feeel/db/preference_keys.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LocaleProviderNotifier extends Notifier<Locale?> {
   static const _bcp47LocaleSeperator = '-';

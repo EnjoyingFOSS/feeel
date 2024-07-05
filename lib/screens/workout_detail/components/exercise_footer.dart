@@ -29,12 +29,11 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:feeel/screens/workout_detail/components/learn_info.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../../theming/feeel_shade.dart';
-import 'learn_info.dart';
 
 class ExerciseFooter extends StatelessWidget {
   final bool onBreak;

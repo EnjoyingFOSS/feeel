@@ -30,7 +30,7 @@
 
 import 'package:feeel/db/database.dart';
 
-import 'translated_exercise.dart';
+import 'package:feeel/models/translated_exercise.dart';
 
 class FullWorkoutRecord {
   final WorkoutRecord workoutRecord;

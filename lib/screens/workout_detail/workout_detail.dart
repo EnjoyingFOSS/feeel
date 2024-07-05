@@ -34,14 +34,13 @@ import 'package:feeel/db/database.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/providers/db_provider.dart';
 import 'package:feeel/providers/feeel_swatch_provider.dart';
+import 'package:feeel/screens/workout_detail/components/empty_workout.dart';
+import 'package:feeel/screens/workout_detail/components/workout_header.dart';
+import 'package:feeel/screens/workout_detail/components/workout_pager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wakelock/wakelock.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'components/empty_workout.dart';
-import 'components/workout_header.dart';
-import 'components/workout_pager.dart';
 
 class WorkoutDetailScreen extends ConsumerWidget {
   final Workout workout;

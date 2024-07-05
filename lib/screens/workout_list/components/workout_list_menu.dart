@@ -31,11 +31,11 @@
 import 'package:feeel/db/workout_import_export.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/providers/db_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:feeel/screens/workout_list/providers/workout_list_provider.dart';
 import 'package:feeel/utils/format_util.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WorkoutListMenu extends ConsumerWidget {

@@ -35,11 +35,11 @@ import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:feeel/providers/locale_provider.dart';
 import 'package:feeel/providers/theme_meta_provider.dart';
 import 'package:feeel/screens/home_pager/home_pager.dart';
+import 'package:feeel/theming/feeel_themes.dart';
+import 'package:feeel/utils/notification_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'utils/notification_helper.dart';
-import 'theming/feeel_themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart' as date_intl;
 // import 'package:window_size/window_size.dart';
 

@@ -28,10 +28,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/screens/workout_editor/components/duration_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'duration_dropdown.dart';
 
 class TimingHeader extends StatelessWidget {
   final int exerciseDuration;

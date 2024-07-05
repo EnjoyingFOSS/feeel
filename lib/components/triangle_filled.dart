@@ -59,8 +59,7 @@ class _TrianglePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final path = Path();
-    path.lineTo(rX * size.width, size.height);
+    final path = Path()..lineTo(rX * size.width, size.height);
     if (rX < 0.5) {
       path.lineTo(size.width, (rY + 1) * size.height / 2);
     } else {
@@ -68,12 +67,12 @@ class _TrianglePainter extends CustomPainter {
     }
     path.close();
 
-    int rotation = (rRotation * 4).floor();
-    canvas.translate(size.width / 2, size.height / 2);
-    canvas.rotate(rotation * pi / 2);
-    canvas.translate(-size.width / 2, -size.height / 2);
-
-    canvas.drawPath(path, _fillPaint);
+    final rotation = (rRotation * 4).floor();
+    canvas
+      ..translate(size.width / 2, size.height / 2)
+      ..rotate(rotation * pi / 2)
+      ..translate(-size.width / 2, -size.height / 2)
+      ..drawPath(path, _fillPaint);
   }
 
   @override

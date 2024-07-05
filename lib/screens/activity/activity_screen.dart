@@ -35,13 +35,12 @@ import 'package:feeel/providers/feeel_swatch_provider.dart';
 import 'package:feeel/screens/activity/components/activity_calendar.dart';
 import 'package:feeel/screens/activity/components/workout_record_list_item.dart';
 import 'package:feeel/utils/format_util.dart';
+import 'package:feeel/utils/locale_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:table_calendar/table_calendar.dart';
-
-import '../../utils/locale_util.dart';
 
 class ActivityScreen extends ConsumerStatefulWidget {
   const ActivityScreen({super.key});

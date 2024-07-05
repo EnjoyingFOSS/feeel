@@ -28,16 +28,15 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/components/triangle_filled.dart';
 import 'package:feeel/db/database.dart';
+import 'package:feeel/enums/workout_type.dart';
+import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:feeel/utils/format_util.dart';
+import 'package:feeel/utils/hero_util.dart';
 import 'package:feeel/utils/locale_util.dart';
 import 'package:flutter/material.dart';
-
-import '../../../components/triangle_filled.dart';
-import '../../../enums/workout_type.dart';
-import '../../../theming/feeel_shade.dart';
-import '../../../utils/hero_util.dart';
 
 class WorkoutHeader extends StatelessWidget {
   final Workout workout;

@@ -129,8 +129,8 @@ class FeeelThemes {
             centerTitle: false,
             elevation: 0),
         navigationBarTheme: NavigationBarThemeData(
-            iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
-                (states) => (states.contains(MaterialState.selected)
+            iconTheme: WidgetStateProperty.resolveWith<IconThemeData?>(
+                (states) => (states.contains(WidgetState.selected)
                     ? IconThemeData(color: colorScheme.primary)
                     : IconThemeData(color: colorScheme.onSurface))),
             shadowColor: colorScheme.onBackground,
@@ -140,8 +140,8 @@ class FeeelThemes {
             height: 56,
             surfaceTintColor: Colors.transparent),
         navigationDrawerTheme: NavigationDrawerThemeData(
-            iconTheme: MaterialStateProperty.resolveWith<IconThemeData?>(
-                (states) => (states.contains(MaterialState.selected)
+            iconTheme: WidgetStateProperty.resolveWith<IconThemeData?>(
+                (states) => (states.contains(WidgetState.selected)
                     ? IconThemeData(color: colorScheme.onPrimaryContainer)
                     : IconThemeData(color: colorScheme.onSurface))),
             shadowColor: colorScheme.onBackground,
@@ -149,15 +149,15 @@ class FeeelThemes {
             indicatorColor: colorScheme.primaryContainer,
             elevation: 8,
             labelTextStyle:
-                MaterialStateProperty.resolveWith((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? TextStyle(color: colorScheme.onPrimaryContainer, fontWeight: FontWeight.w500) : null)),
-        switchTheme: SwitchThemeData(thumbColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null), trackColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary.withAlpha(80) : null)),
+                WidgetStateProperty.resolveWith((states) => (!states.contains(WidgetState.disabled) && states.contains(WidgetState.selected)) ? TextStyle(color: colorScheme.onPrimaryContainer, fontWeight: FontWeight.w500) : null)),
+        switchTheme: SwitchThemeData(thumbColor: WidgetStateProperty.resolveWith<Color?>((states) => (!states.contains(WidgetState.disabled) && states.contains(WidgetState.selected)) ? colorScheme.primary : null), trackColor: WidgetStateProperty.resolveWith<Color?>((states) => (!states.contains(WidgetState.disabled) && states.contains(WidgetState.selected)) ? colorScheme.primary.withAlpha(80) : null)),
         radioTheme: RadioThemeData(
-          fillColor: MaterialStateProperty.resolveWith<Color?>((states) =>
-              (!states.contains(MaterialState.disabled) &&
-                      states.contains(MaterialState.selected))
+          fillColor: WidgetStateProperty.resolveWith<Color?>((states) =>
+              (!states.contains(WidgetState.disabled) &&
+                      states.contains(WidgetState.selected))
                   ? colorScheme.primary
                   : null),
         ),
-        checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.resolveWith<Color?>((states) => (!states.contains(MaterialState.disabled) && states.contains(MaterialState.selected)) ? colorScheme.primary : null)));
+        checkboxTheme: CheckboxThemeData(fillColor: WidgetStateProperty.resolveWith<Color?>((states) => (!states.contains(WidgetState.disabled) && states.contains(WidgetState.selected)) ? colorScheme.primary : null)));
   }
 }

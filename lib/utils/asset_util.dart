@@ -29,7 +29,6 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/db/database.dart';
-import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 
 class _PathUtil {

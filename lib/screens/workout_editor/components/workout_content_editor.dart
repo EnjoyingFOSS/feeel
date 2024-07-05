@@ -29,11 +29,10 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/models/editable_workout_exercise.dart';
+import 'package:feeel/screens/workout_editor/components/exercise_editor_row.dart';
 import 'package:feeel/utils/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'exercise_editor_row.dart';
 
 class WorkoutContentEditor extends StatelessWidget {
   final Widget header;

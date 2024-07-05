@@ -28,12 +28,11 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/db/database.dart';
 import 'package:feeel/screens/activity/components/workout_record_row.dart';
 import 'package:feeel/screens/activity/components/workout_record_sheet.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
 import 'package:flutter/material.dart';
-
-import '../../../db/database.dart';
 
 class WorkoutRecordListItem extends StatelessWidget {
   final WorkoutRecord workoutRecord;

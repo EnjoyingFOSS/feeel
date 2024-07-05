@@ -33,8 +33,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final dbProvider = Provider<FeeelDB>((ref) {
   final db = FeeelDB();
-  ref.onDispose(() {
-    db.close();
-  });
+  ref.onDispose(db.close);
   return db;
 });

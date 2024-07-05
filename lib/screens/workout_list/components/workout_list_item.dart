@@ -29,16 +29,15 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:feeel/components/triangle_filled.dart';
+import 'package:feeel/db/database.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/screens/workout_detail/workout_detail.dart';
 import 'package:feeel/theming/feeel_shade.dart';
-import 'package:feeel/components/triangle_filled.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
+import 'package:feeel/utils/hero_util.dart';
 import 'package:feeel/utils/locale_util.dart';
 import 'package:flutter/material.dart';
-
-import '../../../db/database.dart';
-import '../../../utils/hero_util.dart';
 
 class WorkoutListItem extends StatelessWidget {
   static const extent = 112.0;
@@ -59,8 +58,8 @@ class WorkoutListItem extends StatelessWidget {
         color: Colors.transparent,
         child: // Row(children: [
             InkWell(
-                onTap: () {
-                  Navigator.push<void>(context,
+                onTap: () async {
+                  await Navigator.push<void>(context,
                       MaterialPageRoute(builder: (BuildContext context) {
                     return WorkoutDetailScreen(workout: workout);
                   }));

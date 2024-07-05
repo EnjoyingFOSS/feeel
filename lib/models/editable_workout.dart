@@ -31,11 +31,10 @@
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:feeel/enums/workout_category.dart';
+import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/editable_workout_exercise.dart';
 import 'package:feeel/models/full_workout.dart';
-
-import '../enums/workout_category.dart';
-import '../enums/workout_type.dart';
 
 class EditableWorkout {
   static const int _defaultCountodwnDuration = 5;
@@ -98,9 +97,9 @@ class EditableWorkout {
                 (dynamic key, dynamic value) =>
                     MapEntry(key as String, value as String))
             : {},
-        initialWorkoutExercises: fullWorkout.workoutExercises.map((we) {
-          return EditableWorkoutExercise.fromWorkoutExercise(we);
-        }).toList(),
+        initialWorkoutExercises: fullWorkout.workoutExercises
+            .map(EditableWorkoutExercise.fromWorkoutExercise)
+            .toList(),
         countdownDuration: fullWorkout.workout.countdownDuration,
         breakDuration: fullWorkout.workout.breakDuration,
         exerciseDuration: fullWorkout.workout.exerciseDuration,

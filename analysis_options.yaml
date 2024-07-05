@@ -8,6 +8,7 @@ linter:
     - always_declare_return_types
     - always_use_package_imports
     - avoid_slow_async_io
+    - avoid_void_async
     - unnecessary_statements
     - cascade_invocations
     - directives_ordering

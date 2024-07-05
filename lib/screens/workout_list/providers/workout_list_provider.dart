@@ -28,9 +28,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'package:feeel/screens/workout_list/providers/workout_list_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'workout_list_state.dart';
 
 class WorkoutListNotifier extends Notifier<WorkoutListState> {
   @override

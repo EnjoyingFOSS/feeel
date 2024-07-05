@@ -34,16 +34,16 @@ import 'dart:ui';
 
 import 'package:archive/archive_io.dart';
 import 'package:feeel/db/database.dart';
-import 'package:feeel/models/feeel_workout_json.dart';
 import 'package:feeel/enums/workout_type.dart';
 import 'package:feeel/models/editable_workout.dart';
+import 'package:feeel/models/feeel_workout_json.dart';
 import 'package:feeel/models/full_workout.dart';
 import 'package:feeel/providers/workout_provider.dart';
 import 'package:feeel/utils/format_util.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 class WorkoutImportExport {

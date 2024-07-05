@@ -29,11 +29,10 @@
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
 import 'package:feeel/models/editable_workout_exercise.dart';
+import 'package:feeel/screens/workout_editor/components/exercise_editor_row.dart';
 import 'package:feeel/screens/workout_editor/components/timing_header.dart';
 import 'package:feeel/screens/workout_editor/components/trailing_seconds_input.dart';
 import 'package:flutter/material.dart';
-
-import 'exercise_editor_row.dart';
 
 class WorkoutTimingEditor extends StatelessWidget {
   final int exerciseDuration;

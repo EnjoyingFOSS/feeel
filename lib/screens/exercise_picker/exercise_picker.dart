@@ -31,9 +31,9 @@
 import 'package:feeel/components/body_container.dart';
 import 'package:feeel/providers/exercise_provider.dart';
 import 'package:feeel/screens/exercise_picker/components/contribute_sheet.dart';
+import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:feeel/theming/feeel_shade.dart';
 import 'package:feeel/theming/feeel_swatch.dart';
-import 'package:feeel/screens/exercise_picker/components/exercise_picker_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

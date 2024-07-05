@@ -68,7 +68,6 @@ class SimpleHtmlMarkdownUtil {
           switch (matchedTag[1]) {
             case "u": //ul
               paragraphs.addAll(_getList(paragraphString, false));
-              break;
             case "o": //ol
               final olStartMatch =
                   RegExp("start=['\"][0-9]*['\"]").stringMatch(matchedTag);
@@ -85,10 +84,8 @@ class SimpleHtmlMarkdownUtil {
               } else {
                 paragraphs.addAll(_getList(paragraphString, true));
               }
-              break;
             case "p": //p
               paragraphs.add(paragraphString);
-              break;
             default:
               throw ArgumentError.value(matchedTag);
           }
