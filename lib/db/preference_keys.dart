@@ -28,6 +28,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+
 class PreferenceKeys {
   static const themeMode = "themeMode";
   static const themePersonalized = "themePersonalized";
@@ -35,4 +36,11 @@ class PreferenceKeys {
   static const ttsDisabled = "ttsDisabled";
   static const notificationTime = "notificationTime";
   static const locale = "locale";
+
+  static const updateExercises = "updateExercises";
+  static const updateViaWifiOnly = "updateViaWifiOnly";
+
+  static const wgerExerciseBaseVersion = "wgerExerciseBaseVersion";
+  static const wgerDeletionLogVersion = "wgerDeletionLogVersion";
+  static const lastWgerUpdateCheck = "lastWgerUpdateCheck";
 }
