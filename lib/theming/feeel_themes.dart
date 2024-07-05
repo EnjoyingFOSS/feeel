@@ -96,6 +96,8 @@ class FeeelThemes {
         primaryColor: colorScheme.primary,
         scaffoldBackgroundColor: colorScheme.background,
         cardColor: colorScheme.surface,
+        bottomSheetTheme:
+            const BottomSheetThemeData(surfaceTintColor: Colors.transparent),
         pageTransitionsTheme: const PageTransitionsTheme(
             builders: <TargetPlatform, PageTransitionsBuilder>{
               TargetPlatform.android: ZoomPageTransitionsBuilder(),
