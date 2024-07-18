@@ -78,7 +78,7 @@ class LocaleConverter extends TypeConverter<Locale, String> {
   Locale fromSql(String fromDb) {
     final localeSplit = fromDb.split(_localeSeparator);
 
-    return Locale(localeSplit[0], localeSplit[1]);
+    return localeSplit.length > 1 ? Locale(localeSplit[0], localeSplit[1]) : Locale(localeSplit[0]);
   }
 
   @override
