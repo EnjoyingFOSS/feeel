@@ -28,27 +28,29 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Feeel.  If not, see <http://www.gnu.org/licenses/>.
 
+import 'dart:async';
+
 import 'package:feeel/enums/workout_stage.dart';
 import 'package:feeel/models/translated_exercise.dart';
 
 abstract class WorkoutView {
-  void onStart(int exercisePos, TranslatedExercise nextTranslatedExercise,
+  FutureOr<void> onStart(int exercisePos, TranslatedExercise nextTranslatedExercise,
       int defaultBreakDuration);
-  void onBreak(int exercisePos, TranslatedExercise nextTranslatedExercise,
+  FutureOr<void> onBreak(int exercisePos, TranslatedExercise nextTranslatedExercise,
       int defaultBreakDuration);
-  void onExercise(
+  FutureOr<void> onExercise(
       int exercisePos,
       TranslatedExercise translatedExercise,
       // ExerciseStep? firstStep,
       int defaultExerciseDuration);
-  void onCountdown(
+  FutureOr<void> onCountdown(
       int exercisePos); //TODO exercisePos is here only because of the non-ideal architecture of the exercise view
   // void onLaterStep(int stepPos, ExerciseStep step);
-  void onCount(
+  FutureOr<void> onCount(
       int seconds,
       WorkoutStage
           stage); //TODO need to pass in stage here OR how about I register to be notified of a specific time? just like with stages; could maybe keep a map of functions for each breakpoint...
-  void onPause();
-  void onPlay();
-  void onDispose();
+  FutureOr<void> onPause();
+  FutureOr<void> onPlay();
+  FutureOr<void> onDispose();
 }

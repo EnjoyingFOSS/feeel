@@ -34,11 +34,12 @@ import 'package:feeel/controllers/workout_view.dart';
 
 class SoundView implements WorkoutView {
   //TODO should this whole thing be static? TTS as well?
-  static final _soundExercise = AssetSource("sound_exercise.mp3");
-  static final _soundBreak = AssetSource("sound_break.mp3");
-  static final _soundFinish = AssetSource("sound_finish.mp3");
+  static final _soundExercise =
+      AssetSource("sounds/exercise.mp3"); //TODO use path here!!!
+  static final _soundBreak = AssetSource("sounds/break.mp3");
+  static final _soundFinish = AssetSource("sounds/finish.mp3");
   static final _soundTick = AssetSource(
-      "sound_tick.mp3"); // TODO use ogg, or debug how tinny it sounds
+      "sounds/tick.mp3"); // TODO use ogg, or debug how tinny it sounds
   static final AudioPlayer _player = AudioPlayer();
 
   SoundView() {
@@ -46,21 +47,24 @@ class SoundView implements WorkoutView {
   }
 
   @override
-  void onBreak(int exercisePos, _, int defaultBreakDuration) {
-    _player.play(_soundBreak);
+  Future<void> onBreak(int exercisePos, _, int defaultBreakDuration) async {
+    await _player.stop(); //TODO this is temporary, due to bug
+    await _player.play(_soundBreak);
   }
 
   @override
-  void onCount(int seconds, _) {
+  Future<void> onCount(int seconds, _) async {
     if (seconds <= AudioHelper.countdown) {
-      _player.play(_soundTick);
-      _player.stop(); //TODO this is temporary, due to bug
+      await _player.stop(); //TODO this is temporary, due to bug
+      await _player.play(_soundTick);
     }
   }
 
   @override
-  void onExercise(int exercisePos, _, int defaultExerciseDuration) {
-    _player.play(_soundExercise);
+  Future<void> onExercise(
+      int exercisePos, _, int defaultExerciseDuration) async {
+    await _player.stop(); //TODO this is temporary, due to bug
+    await _player.play(_soundExercise);
     //TODO handle step
   }
 
@@ -73,8 +77,9 @@ class SoundView implements WorkoutView {
   @override
   void onStart(int exercisePos, _, int defaultBreakDuration) {}
 
-  void onFinish() {
-    _player.play(_soundFinish);
+  Future<void> onFinish() async {
+    await _player.stop(); //TODO this is temporary, due to bug
+    await _player.play(_soundFinish);
   }
 
   // @override
@@ -86,7 +91,7 @@ class SoundView implements WorkoutView {
   void onCountdown(int exercisePos) {}
 
   @override
-  void onDispose() {
-    _player.dispose();
+  Future<void> onDispose() async {
+    await _player.dispose();
   }
 }
